@@ -1,0 +1,216 @@
+[
+  {
+    "gate_id": "stage1_letter",
+    "stage": "1 letters (perplexity)",
+    "baseline": 19.95577644340798,
+    "baseline_name": "unigram letter freqs",
+    "model": 11.921497344970703,
+    "ceiling": 5.992772311745901,
+    "ceiling_name": "order-1 entropy floor on the evaluation passage",
+    "ceiling_type": "model_class_bound",
+    "threshold": 19.95577644340798,
+    "verdict": "BRACKETED_BOUND",
+    "outcome": "PASS",
+    "baseline_relative": true,
+    "margin_of_interest": {
+      "value": 0.5151753775240284,
+      "unit": "nats",
+      "smallest_effect_size": 0.25,
+      "clears_sesoi": true
+    }
+  },
+  {
+    "gate_id": "stage2_phoneme",
+    "stage": "2A phonemes (perplexity)",
+    "baseline": 27.59444910094536,
+    "baseline_name": "unigram phone freqs",
+    "model": 16.74450805059278,
+    "ceiling": 15.831319461273662,
+    "ceiling_name": "order-1 MLE floor on the same full-dictionary positions",
+    "ceiling_type": "model_class_bound",
+    "threshold": 27.59444910094536,
+    "verdict": "BRACKETED_BOUND",
+    "outcome": "PASS",
+    "baseline_relative": true,
+    "margin_of_interest": {
+      "value": 0.4995443060339739,
+      "unit": "nats",
+      "smallest_effect_size": 0.25,
+      "clears_sesoi": true
+    },
+    "eval_positions": 800198,
+    "evaluation_population": "in-sample full CMUdict dictionary"
+  },
+  {
+    "gate_id": "stage2_g2p",
+    "stage": "2B G2P (accuracy)",
+    "baseline": 0.7025455394675385,
+    "baseline_name": "per-letter argmax",
+    "model": 0.7080102755721626,
+    "ceiling": 0.756422232601588,
+    "ceiling_name": "forward-backward smoothing (reference, not a bound)",
+    "ceiling_type": "reference_model",
+    "threshold": 0.7025455394675385,
+    "verdict": "BRACKETED_REFERENCE",
+    "outcome": "PASS",
+    "baseline_relative": true,
+    "margin_of_interest": {
+      "value": 0.5464736104624057,
+      "unit": "percentage points",
+      "smallest_effect_size": 0.5,
+      "clears_sesoi": true
+    },
+    "eval_positions": 42820,
+    "eval_pairs": 6484,
+    "evaluation_population": "full held-out CMUdict dictionary"
+  },
+  {
+    "gate_id": "stage3_word",
+    "stage": "3 word (per-emission ppl)",
+    "baseline": 9.054720916239274,
+    "baseline_name": "letter bigram, same positions",
+    "model": 3.271283234288059,
+    "ceiling": 3.2447501403195567,
+    "ceiling_name": "held-out-oracle word model",
+    "ceiling_type": "privileged_oracle",
+    "threshold": 9.054720916239274,
+    "verdict": "BRACKETED_REFERENCE",
+    "outcome": "PASS",
+    "baseline_relative": true,
+    "margin_of_interest": {
+      "value": 1.0181039355860921,
+      "unit": "nats",
+      "smallest_effect_size": 0.25,
+      "clears_sesoi": true
+    },
+    "eval_positions": 378648
+  },
+  {
+    "gate_id": "stage4_case",
+    "stage": "4 case/derived (agreement)",
+    "baseline": 42.91129643669447,
+    "baseline_name": "context-free argmax P(case|UPOS)",
+    "model": 50.72024260803639,
+    "ceiling": 49.58301743745262,
+    "ceiling_name": "forward-backward smoothing (reference, not a bound)",
+    "ceiling_type": "reference_model",
+    "threshold": 42.91129643669447,
+    "verdict": "BRACKETED_REFERENCE",
+    "outcome": "PASS",
+    "baseline_relative": true,
+    "margin_of_interest": {
+      "value": 7.808946171341923,
+      "unit": "percentage points",
+      "smallest_effect_size": 2.0,
+      "clears_sesoi": true
+    },
+    "eval_positions": 1319
+  },
+  {
+    "gate_id": "generation",
+    "stage": "G generation (exact TV + realized diversity)",
+    "baseline": 0.9092015478241242,
+    "baseline_name": "exact ancestral distribution induced by B",
+    "model": 0.34488240316141755,
+    "ceiling": 0.0,
+    "ceiling_name": "sampling exactly from the lexicon",
+    "ceiling_type": "analytic_bound",
+    "threshold": 0.9092015478241242,
+    "verdict": "BRACKETED_BOUND",
+    "outcome": "PASS",
+    "baseline_relative": true,
+    "margin_of_interest": {
+      "value": 0.5643191446627067,
+      "unit": "total variation",
+      "smallest_effect_size": 0.1,
+      "clears_sesoi": true
+    },
+    "generation_gate": {
+      "tv_estimator": "exact finite distribution",
+      "tv_passes": true,
+      "diversity_estimator": "sampled declared run protocol",
+      "model_distinct": 180.66666666666666,
+      "baseline_distinct": 325.0,
+      "diversity_fraction": 0.2,
+      "diversity_floor": 65.0,
+      "diversity_passes": true,
+      "sampled_words": 1200,
+      "composite_passes": true
+    }
+  },
+  {
+    "gate_id": "stage5_clause",
+    "stage": "5 clause, widened observation alphabet (decisions 112, 114)",
+    "baseline": 4.770765509110108,
+    "baseline_name": "type-free pooled chain REFITTED on the widened stream",
+    "model": 4.744918864786659,
+    "ceiling": 4.65644682461189,
+    "ceiling_name": "type ORACLE at the widened alphabet (true type given)",
+    "ceiling_type": "privileged_oracle",
+    "threshold": 4.770765509110108,
+    "verdict": "BRACKETED_REFERENCE",
+    "outcome": "PASS",
+    "baseline_relative": true,
+    "margin_of_interest": {
+      "value": 0.19864701760206638,
+      "unit": "nats per sentence",
+      "smallest_effect_size": 0.05,
+      "clears_sesoi": true
+    },
+    "eval_positions": 1679,
+    "oracle_gain": {
+      "n_sentences": 205,
+      "n_documents": 55,
+      "n_positions": 1679,
+      "mean_nats_per_sentence": 0.19864701760206638,
+      "sentence_ci_low": 0.024597772226780674,
+      "sentence_ci_high": 0.35861735614176554,
+      "pooled_nats_per_position": 0.02425410280430233,
+      "position_ci_low": 0.0030534628096694177,
+      "position_ci_high": 0.0460579818467592,
+      "confidence": 0.99,
+      "resamples": 10000,
+      "seed": 20260804,
+      "resampling_unit": "document"
+    }
+  },
+  {
+    "gate_id": "stage6_narrative",
+    "stage": "6 narrative (type log-loss, nats)",
+    "baseline": 0.3729094935848927,
+    "baseline_name": "type unigram (the bar itself)",
+    "model": 0.36780972620841584,
+    "ceiling": 0.368146222906204,
+    "ceiling_name": "phase-conditional FITTED ON TEST (reference)",
+    "ceiling_type": "privileged_oracle",
+    "threshold": 0.3729094935848927,
+    "verdict": "BRACKETED_REFERENCE",
+    "outcome": "PASS",
+    "baseline_relative": true,
+    "margin_of_interest": {
+      "value": 0.00509976737647692,
+      "unit": "nats per sentence",
+      "smallest_effect_size": 0.005,
+      "clears_sesoi": true
+    },
+    "eval_positions": 187,
+    "finding_status": "positive_point_replicated",
+    "cluster_primary": {
+      "ci_low": -0.009563369213140552,
+      "ci_high": 0.024959172285540527,
+      "p_value": 0.5469453054694531,
+      "p_method": "cluster sign-flip sensitivity under joint central symmetry",
+      "unit": "document"
+    },
+    "held_back_cluster": {
+      "population": "ud_ewt_test",
+      "decision": 115,
+      "ci_low": 0.002562,
+      "ci_high": 0.014556,
+      "excludes_zero": true,
+      "sign_crosses_frozen_threshold": true,
+      "sign_direction_agrees": "true",
+      "unit": "document"
+    }
+  }
+]

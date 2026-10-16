@@ -1,0 +1,1787 @@
+{
+  "corpus_sha256": "cd96a285e7339f401f4803dd0f4f61109c51692e3ef6f9186a1f977544080b69",
+  "documents": [
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3891651084477608,
+        "level_events": [
+          [
+            "case",
+            1067
+          ],
+          [
+            "clause",
+            1067
+          ],
+          [
+            "letter",
+            6052
+          ],
+          [
+            "phase",
+            63
+          ],
+          [
+            "phone",
+            4985
+          ],
+          [
+            "word",
+            4736
+          ]
+        ],
+        "normalized_letters": 4985,
+        "normalized_tokens": 1067,
+        "oov_tokens": 274,
+        "scored_characters": 6052,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_essay_fear",
+      "integrated": {
+        "letter_log_loss": 1.9875191405322845,
+        "level_events": [
+          [
+            "case",
+            1067
+          ],
+          [
+            "clause",
+            1067
+          ],
+          [
+            "letter",
+            6052
+          ],
+          [
+            "phase",
+            63
+          ],
+          [
+            "phone",
+            4985
+          ],
+          [
+            "word",
+            4736
+          ]
+        ],
+        "normalized_letters": 4985,
+        "normalized_tokens": 1067,
+        "oov_tokens": 274,
+        "scored_characters": 6052,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 6238,
+      "source_nonspace_characters": 5169,
+      "source_sentences": 60
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3884905109739796,
+        "level_events": [
+          [
+            "case",
+            974
+          ],
+          [
+            "clause",
+            974
+          ],
+          [
+            "letter",
+            5189
+          ],
+          [
+            "phase",
+            51
+          ],
+          [
+            "phone",
+            4215
+          ],
+          [
+            "word",
+            4416
+          ]
+        ],
+        "normalized_letters": 4215,
+        "normalized_tokens": 974,
+        "oov_tokens": 180,
+        "scored_characters": 5189,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_essay_system",
+      "integrated": {
+        "letter_log_loss": 1.89978061750923,
+        "level_events": [
+          [
+            "case",
+            974
+          ],
+          [
+            "clause",
+            974
+          ],
+          [
+            "letter",
+            5189
+          ],
+          [
+            "phase",
+            51
+          ],
+          [
+            "phone",
+            4215
+          ],
+          [
+            "word",
+            4419
+          ]
+        ],
+        "normalized_letters": 4215,
+        "normalized_tokens": 974,
+        "oov_tokens": 180,
+        "scored_characters": 5189,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 5361,
+      "source_nonspace_characters": 4416,
+      "source_sentences": 55
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.413905976656597,
+        "level_events": [
+          [
+            "case",
+            819
+          ],
+          [
+            "clause",
+            819
+          ],
+          [
+            "letter",
+            4479
+          ],
+          [
+            "phase",
+            68
+          ],
+          [
+            "phone",
+            3660
+          ],
+          [
+            "word",
+            3338
+          ]
+        ],
+        "normalized_letters": 3660,
+        "normalized_tokens": 819,
+        "oov_tokens": 272,
+        "scored_characters": 4479,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_fiction_falling",
+      "integrated": {
+        "letter_log_loss": 2.0705421667887585,
+        "level_events": [
+          [
+            "case",
+            819
+          ],
+          [
+            "clause",
+            819
+          ],
+          [
+            "letter",
+            4479
+          ],
+          [
+            "phase",
+            68
+          ],
+          [
+            "phone",
+            3660
+          ],
+          [
+            "word",
+            3337
+          ]
+        ],
+        "normalized_letters": 3660,
+        "normalized_tokens": 819,
+        "oov_tokens": 272,
+        "scored_characters": 4479,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 4719,
+      "source_nonspace_characters": 3917,
+      "source_sentences": 76
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.323474212192838,
+        "level_events": [
+          [
+            "case",
+            892
+          ],
+          [
+            "clause",
+            892
+          ],
+          [
+            "letter",
+            4899
+          ],
+          [
+            "phase",
+            46
+          ],
+          [
+            "phone",
+            4007
+          ],
+          [
+            "word",
+            3848
+          ]
+        ],
+        "normalized_letters": 4007,
+        "normalized_tokens": 892,
+        "oov_tokens": 241,
+        "scored_characters": 4899,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_fiction_teeth",
+      "integrated": {
+        "letter_log_loss": 1.9752040079161826,
+        "level_events": [
+          [
+            "case",
+            892
+          ],
+          [
+            "clause",
+            892
+          ],
+          [
+            "letter",
+            4899
+          ],
+          [
+            "phase",
+            46
+          ],
+          [
+            "phone",
+            4007
+          ],
+          [
+            "word",
+            3854
+          ]
+        ],
+        "normalized_letters": 4007,
+        "normalized_tokens": 892,
+        "oov_tokens": 241,
+        "scored_characters": 4899,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 5022,
+      "source_nonspace_characters": 4141,
+      "source_sentences": 47
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.389549586161134,
+        "level_events": [
+          [
+            "case",
+            703
+          ],
+          [
+            "clause",
+            703
+          ],
+          [
+            "letter",
+            3942
+          ],
+          [
+            "phase",
+            59
+          ],
+          [
+            "phone",
+            3239
+          ],
+          [
+            "word",
+            3288
+          ]
+        ],
+        "normalized_letters": 3239,
+        "normalized_tokens": 703,
+        "oov_tokens": 148,
+        "scored_characters": 3942,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_interview_hill",
+      "integrated": {
+        "letter_log_loss": 1.8729552592126066,
+        "level_events": [
+          [
+            "case",
+            703
+          ],
+          [
+            "clause",
+            703
+          ],
+          [
+            "letter",
+            3942
+          ],
+          [
+            "phase",
+            59
+          ],
+          [
+            "phone",
+            3239
+          ],
+          [
+            "word",
+            3293
+          ]
+        ],
+        "normalized_letters": 3239,
+        "normalized_tokens": 703,
+        "oov_tokens": 148,
+        "scored_characters": 3942,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 4096,
+      "source_nonspace_characters": 3381,
+      "source_sentences": 58
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.4519612508304327,
+        "level_events": [
+          [
+            "case",
+            737
+          ],
+          [
+            "clause",
+            737
+          ],
+          [
+            "letter",
+            4614
+          ],
+          [
+            "phase",
+            39
+          ],
+          [
+            "phone",
+            3877
+          ],
+          [
+            "word",
+            3629
+          ]
+        ],
+        "normalized_letters": 3877,
+        "normalized_tokens": 737,
+        "oov_tokens": 191,
+        "scored_characters": 4614,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_interview_libertarian",
+      "integrated": {
+        "letter_log_loss": 1.9394003544767229,
+        "level_events": [
+          [
+            "case",
+            737
+          ],
+          [
+            "clause",
+            737
+          ],
+          [
+            "letter",
+            4614
+          ],
+          [
+            "phase",
+            39
+          ],
+          [
+            "phone",
+            3877
+          ],
+          [
+            "word",
+            3633
+          ]
+        ],
+        "normalized_letters": 3877,
+        "normalized_tokens": 737,
+        "oov_tokens": 191,
+        "scored_characters": 4614,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 4743,
+      "source_nonspace_characters": 4010,
+      "source_sentences": 42
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.314962816990756,
+        "level_events": [
+          [
+            "case",
+            826
+          ],
+          [
+            "clause",
+            826
+          ],
+          [
+            "letter",
+            4462
+          ],
+          [
+            "phase",
+            52
+          ],
+          [
+            "phone",
+            3636
+          ],
+          [
+            "word",
+            3710
+          ]
+        ],
+        "normalized_letters": 3636,
+        "normalized_tokens": 826,
+        "oov_tokens": 184,
+        "scored_characters": 4462,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_letter_attorney",
+      "integrated": {
+        "letter_log_loss": 1.8720061520671274,
+        "level_events": [
+          [
+            "case",
+            826
+          ],
+          [
+            "clause",
+            826
+          ],
+          [
+            "letter",
+            4462
+          ],
+          [
+            "phase",
+            52
+          ],
+          [
+            "phone",
+            3636
+          ],
+          [
+            "word",
+            3710
+          ]
+        ],
+        "normalized_letters": 3636,
+        "normalized_tokens": 826,
+        "oov_tokens": 184,
+        "scored_characters": 4462,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 4586,
+      "source_nonspace_characters": 3766,
+      "source_sentences": 46
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3241778617971005,
+        "level_events": [
+          [
+            "case",
+            900
+          ],
+          [
+            "clause",
+            900
+          ],
+          [
+            "letter",
+            5253
+          ],
+          [
+            "phase",
+            51
+          ],
+          [
+            "phone",
+            4353
+          ],
+          [
+            "word",
+            4417
+          ]
+        ],
+        "normalized_letters": 4353,
+        "normalized_tokens": 900,
+        "oov_tokens": 173,
+        "scored_characters": 5253,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_letter_mandela",
+      "integrated": {
+        "letter_log_loss": 1.8063739499075715,
+        "level_events": [
+          [
+            "case",
+            900
+          ],
+          [
+            "clause",
+            900
+          ],
+          [
+            "letter",
+            5253
+          ],
+          [
+            "phase",
+            51
+          ],
+          [
+            "phone",
+            4353
+          ],
+          [
+            "word",
+            4432
+          ]
+        ],
+        "normalized_letters": 4353,
+        "normalized_tokens": 900,
+        "oov_tokens": 173,
+        "scored_characters": 5253,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 5391,
+      "source_nonspace_characters": 4497,
+      "source_sentences": 58
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.40878814562937,
+        "level_events": [
+          [
+            "case",
+            1100
+          ],
+          [
+            "clause",
+            1100
+          ],
+          [
+            "letter",
+            6601
+          ],
+          [
+            "phase",
+            57
+          ],
+          [
+            "phone",
+            5501
+          ],
+          [
+            "word",
+            4928
+          ]
+        ],
+        "normalized_letters": 5501,
+        "normalized_tokens": 1100,
+        "oov_tokens": 360,
+        "scored_characters": 6601,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_news_nasa",
+      "integrated": {
+        "letter_log_loss": 1.9950205710753828,
+        "level_events": [
+          [
+            "case",
+            1100
+          ],
+          [
+            "clause",
+            1100
+          ],
+          [
+            "letter",
+            6601
+          ],
+          [
+            "phase",
+            57
+          ],
+          [
+            "phone",
+            5501
+          ],
+          [
+            "word",
+            4928
+          ]
+        ],
+        "normalized_letters": 5501,
+        "normalized_tokens": 1100,
+        "oov_tokens": 360,
+        "scored_characters": 6601,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 6844,
+      "source_nonspace_characters": 5752,
+      "source_sentences": 50
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.4508287121085077,
+        "level_events": [
+          [
+            "case",
+            530
+          ],
+          [
+            "clause",
+            530
+          ],
+          [
+            "letter",
+            3287
+          ],
+          [
+            "phase",
+            22
+          ],
+          [
+            "phone",
+            2757
+          ],
+          [
+            "word",
+            2479
+          ]
+        ],
+        "normalized_letters": 2757,
+        "normalized_tokens": 530,
+        "oov_tokens": 160,
+        "scored_characters": 3287,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_news_sensitive",
+      "integrated": {
+        "letter_log_loss": 1.9957257613087374,
+        "level_events": [
+          [
+            "case",
+            530
+          ],
+          [
+            "clause",
+            530
+          ],
+          [
+            "letter",
+            3287
+          ],
+          [
+            "phase",
+            22
+          ],
+          [
+            "phone",
+            2757
+          ],
+          [
+            "word",
+            2480
+          ]
+        ],
+        "normalized_letters": 2757,
+        "normalized_tokens": 530,
+        "oov_tokens": 160,
+        "scored_characters": 3287,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 3424,
+      "source_nonspace_characters": 2893,
+      "source_sentences": 35
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3821287280837704,
+        "level_events": [
+          [
+            "case",
+            839
+          ],
+          [
+            "clause",
+            839
+          ],
+          [
+            "letter",
+            4709
+          ],
+          [
+            "phase",
+            40
+          ],
+          [
+            "phone",
+            3870
+          ],
+          [
+            "word",
+            3783
+          ]
+        ],
+        "normalized_letters": 3870,
+        "normalized_tokens": 839,
+        "oov_tokens": 213,
+        "scored_characters": 4709,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_podcast_bezos",
+      "integrated": {
+        "letter_log_loss": 1.9391260390755152,
+        "level_events": [
+          [
+            "case",
+            839
+          ],
+          [
+            "clause",
+            839
+          ],
+          [
+            "letter",
+            4709
+          ],
+          [
+            "phase",
+            40
+          ],
+          [
+            "phone",
+            3870
+          ],
+          [
+            "word",
+            3785
+          ]
+        ],
+        "normalized_letters": 3870,
+        "normalized_tokens": 839,
+        "oov_tokens": 213,
+        "scored_characters": 4709,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 4840,
+      "source_nonspace_characters": 4020,
+      "source_sentences": 38
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3535258636188714,
+        "level_events": [
+          [
+            "case",
+            1007
+          ],
+          [
+            "clause",
+            1007
+          ],
+          [
+            "letter",
+            5342
+          ],
+          [
+            "phase",
+            42
+          ],
+          [
+            "phone",
+            4335
+          ],
+          [
+            "word",
+            4488
+          ]
+        ],
+        "normalized_letters": 4335,
+        "normalized_tokens": 1007,
+        "oov_tokens": 194,
+        "scored_characters": 5342,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_podcast_multitasking",
+      "integrated": {
+        "letter_log_loss": 1.892220433427697,
+        "level_events": [
+          [
+            "case",
+            1007
+          ],
+          [
+            "clause",
+            1007
+          ],
+          [
+            "letter",
+            5342
+          ],
+          [
+            "phase",
+            42
+          ],
+          [
+            "phone",
+            4335
+          ],
+          [
+            "word",
+            4490
+          ]
+        ],
+        "normalized_letters": 4335,
+        "normalized_tokens": 1007,
+        "oov_tokens": 194,
+        "scored_characters": 5342,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 5508,
+      "source_nonspace_characters": 4531,
+      "source_sentences": 39
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.4006323121942126,
+        "level_events": [
+          [
+            "case",
+            833
+          ],
+          [
+            "clause",
+            833
+          ],
+          [
+            "letter",
+            5118
+          ],
+          [
+            "phase",
+            44
+          ],
+          [
+            "phone",
+            4285
+          ],
+          [
+            "word",
+            4068
+          ]
+        ],
+        "normalized_letters": 4285,
+        "normalized_tokens": 833,
+        "oov_tokens": 218,
+        "scored_characters": 5118,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_speech_austria",
+      "integrated": {
+        "letter_log_loss": 1.9020963983083352,
+        "level_events": [
+          [
+            "case",
+            833
+          ],
+          [
+            "clause",
+            833
+          ],
+          [
+            "letter",
+            5118
+          ],
+          [
+            "phase",
+            44
+          ],
+          [
+            "phone",
+            4285
+          ],
+          [
+            "word",
+            4078
+          ]
+        ],
+        "normalized_letters": 4285,
+        "normalized_tokens": 833,
+        "oov_tokens": 218,
+        "scored_characters": 5118,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 5230,
+      "source_nonspace_characters": 4400,
+      "source_sentences": 44
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.35060252817085,
+        "level_events": [
+          [
+            "case",
+            717
+          ],
+          [
+            "clause",
+            717
+          ],
+          [
+            "letter",
+            4202
+          ],
+          [
+            "phase",
+            33
+          ],
+          [
+            "phone",
+            3485
+          ],
+          [
+            "word",
+            3509
+          ]
+        ],
+        "normalized_letters": 3485,
+        "normalized_tokens": 717,
+        "oov_tokens": 148,
+        "scored_characters": 4202,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_speech_newzealand",
+      "integrated": {
+        "letter_log_loss": 1.8435048281354134,
+        "level_events": [
+          [
+            "case",
+            717
+          ],
+          [
+            "clause",
+            717
+          ],
+          [
+            "letter",
+            4202
+          ],
+          [
+            "phase",
+            33
+          ],
+          [
+            "phone",
+            3485
+          ],
+          [
+            "word",
+            3509
+          ]
+        ],
+        "normalized_letters": 3485,
+        "normalized_tokens": 717,
+        "oov_tokens": 148,
+        "scored_characters": 4202,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 4312,
+      "source_nonspace_characters": 3597,
+      "source_sentences": 33
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3358404230785723,
+        "level_events": [
+          [
+            "case",
+            822
+          ],
+          [
+            "clause",
+            822
+          ],
+          [
+            "letter",
+            4925
+          ],
+          [
+            "phase",
+            47
+          ],
+          [
+            "phone",
+            4103
+          ],
+          [
+            "word",
+            3894
+          ]
+        ],
+        "normalized_letters": 4103,
+        "normalized_tokens": 822,
+        "oov_tokens": 224,
+        "scored_characters": 4925,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_textbook_chemistry",
+      "integrated": {
+        "letter_log_loss": 1.8739509679096231,
+        "level_events": [
+          [
+            "case",
+            822
+          ],
+          [
+            "clause",
+            822
+          ],
+          [
+            "letter",
+            4925
+          ],
+          [
+            "phase",
+            47
+          ],
+          [
+            "phone",
+            4103
+          ],
+          [
+            "word",
+            3894
+          ]
+        ],
+        "normalized_letters": 4103,
+        "normalized_tokens": 822,
+        "oov_tokens": 224,
+        "scored_characters": 4925,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 5129,
+      "source_nonspace_characters": 4314,
+      "source_sentences": 55
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3443446813578213,
+        "level_events": [
+          [
+            "case",
+            952
+          ],
+          [
+            "clause",
+            952
+          ],
+          [
+            "letter",
+            5912
+          ],
+          [
+            "phase",
+            49
+          ],
+          [
+            "phone",
+            4960
+          ],
+          [
+            "word",
+            4572
+          ]
+        ],
+        "normalized_letters": 4960,
+        "normalized_tokens": 952,
+        "oov_tokens": 259,
+        "scored_characters": 5912,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_textbook_union",
+      "integrated": {
+        "letter_log_loss": 1.9084018201831408,
+        "level_events": [
+          [
+            "case",
+            952
+          ],
+          [
+            "clause",
+            952
+          ],
+          [
+            "letter",
+            5912
+          ],
+          [
+            "phase",
+            49
+          ],
+          [
+            "phone",
+            4960
+          ],
+          [
+            "word",
+            4569
+          ]
+        ],
+        "normalized_letters": 4960,
+        "normalized_tokens": 952,
+        "oov_tokens": 259,
+        "scored_characters": 5912,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 6148,
+      "source_nonspace_characters": 5180,
+      "source_sentences": 57
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3529084228721793,
+        "level_events": [
+          [
+            "case",
+            683
+          ],
+          [
+            "clause",
+            683
+          ],
+          [
+            "letter",
+            3266
+          ],
+          [
+            "phase",
+            23
+          ],
+          [
+            "phone",
+            2583
+          ],
+          [
+            "word",
+            2914
+          ]
+        ],
+        "normalized_letters": 2583,
+        "normalized_tokens": 683,
+        "oov_tokens": 112,
+        "scored_characters": 3266,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_vlog_london",
+      "integrated": {
+        "letter_log_loss": 1.911873357622725,
+        "level_events": [
+          [
+            "case",
+            683
+          ],
+          [
+            "clause",
+            683
+          ],
+          [
+            "letter",
+            3266
+          ],
+          [
+            "phase",
+            23
+          ],
+          [
+            "phone",
+            2583
+          ],
+          [
+            "word",
+            2912
+          ]
+        ],
+        "normalized_letters": 2583,
+        "normalized_tokens": 683,
+        "oov_tokens": 112,
+        "scored_characters": 3266,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 3356,
+      "source_nonspace_characters": 2708,
+      "source_sentences": 21
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.415820868164048,
+        "level_events": [
+          [
+            "case",
+            814
+          ],
+          [
+            "clause",
+            814
+          ],
+          [
+            "letter",
+            3784
+          ],
+          [
+            "phase",
+            43
+          ],
+          [
+            "phone",
+            2970
+          ],
+          [
+            "word",
+            3334
+          ]
+        ],
+        "normalized_letters": 2970,
+        "normalized_tokens": 814,
+        "oov_tokens": 154,
+        "scored_characters": 3784,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_vlog_studying",
+      "integrated": {
+        "letter_log_loss": 1.9736544296153922,
+        "level_events": [
+          [
+            "case",
+            814
+          ],
+          [
+            "clause",
+            814
+          ],
+          [
+            "letter",
+            3784
+          ],
+          [
+            "phase",
+            43
+          ],
+          [
+            "phone",
+            2970
+          ],
+          [
+            "word",
+            3334
+          ]
+        ],
+        "normalized_letters": 2970,
+        "normalized_tokens": 814,
+        "oov_tokens": 154,
+        "scored_characters": 3784,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 3884,
+      "source_nonspace_characters": 3105,
+      "source_sentences": 43
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3925907752232027,
+        "level_events": [
+          [
+            "case",
+            973
+          ],
+          [
+            "clause",
+            973
+          ],
+          [
+            "letter",
+            5676
+          ],
+          [
+            "phase",
+            36
+          ],
+          [
+            "phone",
+            4703
+          ],
+          [
+            "word",
+            4348
+          ]
+        ],
+        "normalized_letters": 4703,
+        "normalized_tokens": 973,
+        "oov_tokens": 299,
+        "scored_characters": 5676,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_voyage_oakland",
+      "integrated": {
+        "letter_log_loss": 1.9584487252381289,
+        "level_events": [
+          [
+            "case",
+            973
+          ],
+          [
+            "clause",
+            973
+          ],
+          [
+            "letter",
+            5676
+          ],
+          [
+            "phase",
+            36
+          ],
+          [
+            "phone",
+            4703
+          ],
+          [
+            "word",
+            4350
+          ]
+        ],
+        "normalized_letters": 4703,
+        "normalized_tokens": 973,
+        "oov_tokens": 299,
+        "scored_characters": 5676,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 5827,
+      "source_nonspace_characters": 4872,
+      "source_sentences": 37
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3645019433693197,
+        "level_events": [
+          [
+            "case",
+            566
+          ],
+          [
+            "clause",
+            566
+          ],
+          [
+            "letter",
+            3190
+          ],
+          [
+            "phase",
+            34
+          ],
+          [
+            "phone",
+            2624
+          ],
+          [
+            "word",
+            2498
+          ]
+        ],
+        "normalized_letters": 2624,
+        "normalized_tokens": 566,
+        "oov_tokens": 181,
+        "scored_characters": 3190,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_voyage_vavau",
+      "integrated": {
+        "letter_log_loss": 1.9906771631284668,
+        "level_events": [
+          [
+            "case",
+            566
+          ],
+          [
+            "clause",
+            566
+          ],
+          [
+            "letter",
+            3190
+          ],
+          [
+            "phase",
+            34
+          ],
+          [
+            "phone",
+            2624
+          ],
+          [
+            "word",
+            2494
+          ]
+        ],
+        "normalized_letters": 2624,
+        "normalized_tokens": 566,
+        "oov_tokens": 181,
+        "scored_characters": 3190,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 3290,
+      "source_nonspace_characters": 2726,
+      "source_sentences": 38
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3443216934337148,
+        "level_events": [
+          [
+            "case",
+            560
+          ],
+          [
+            "clause",
+            560
+          ],
+          [
+            "letter",
+            3009
+          ],
+          [
+            "phase",
+            42
+          ],
+          [
+            "phone",
+            2449
+          ],
+          [
+            "word",
+            2467
+          ]
+        ],
+        "normalized_letters": 2449,
+        "normalized_tokens": 560,
+        "oov_tokens": 134,
+        "scored_characters": 3009,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_whow_cactus",
+      "integrated": {
+        "letter_log_loss": 1.9694625893872577,
+        "level_events": [
+          [
+            "case",
+            560
+          ],
+          [
+            "clause",
+            560
+          ],
+          [
+            "letter",
+            3009
+          ],
+          [
+            "phase",
+            42
+          ],
+          [
+            "phone",
+            2449
+          ],
+          [
+            "word",
+            2465
+          ]
+        ],
+        "normalized_letters": 2449,
+        "normalized_tokens": 560,
+        "oov_tokens": 134,
+        "scored_characters": 3009,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 3114,
+      "source_nonspace_characters": 2544,
+      "source_sentences": 43
+    },
+    {
+      "disconnected": {
+        "letter_log_loss": 2.3929013222373574,
+        "level_events": [
+          [
+            "case",
+            874
+          ],
+          [
+            "clause",
+            874
+          ],
+          [
+            "letter",
+            4611
+          ],
+          [
+            "phase",
+            63
+          ],
+          [
+            "phone",
+            3737
+          ],
+          [
+            "word",
+            3774
+          ]
+        ],
+        "normalized_letters": 3737,
+        "normalized_tokens": 874,
+        "oov_tokens": 216,
+        "scored_characters": 4611,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "document_id": "GUM_whow_mice",
+      "integrated": {
+        "letter_log_loss": 1.9830883738130096,
+        "level_events": [
+          [
+            "case",
+            874
+          ],
+          [
+            "clause",
+            874
+          ],
+          [
+            "letter",
+            4611
+          ],
+          [
+            "phase",
+            63
+          ],
+          [
+            "phone",
+            3737
+          ],
+          [
+            "word",
+            3779
+          ]
+        ],
+        "normalized_letters": 3737,
+        "normalized_tokens": 874,
+        "oov_tokens": 216,
+        "scored_characters": 4611,
+        "word_log_loss": null,
+        "word_loss_status": "infinite_oov"
+      },
+      "source_characters": 4741,
+      "source_nonspace_characters": 3862,
+      "source_sentences": 65
+    }
+  ],
+  "excluded_documents": [
+    "GUM_academic_discrimination",
+    "GUM_academic_eegimaa",
+    "GUM_bio_dvorak",
+    "GUM_bio_jespersen",
+    "GUM_conversation_lambada",
+    "GUM_conversation_retirement",
+    "GUM_court_insanity",
+    "GUM_court_mitigation"
+  ],
+  "execution_binding": {
+    "data/case_word/ud_ewt_case_word_counts.json": "64ddd48465745a23b9beda4733670897192b3d95efe1e613c7e66fd65d8b4c90",
+    "data/widened/ud_ewt_clause_widened_counts.json": "28664a4c9efe690aa69997ea312f1597bce9723c12dc4a839d6a829f9603c4aa",
+    "gnn/models/L1_letter.gnn.md": "afca00114d35064fd1d8f3e0546e7e68aab76721857c3d27c27476686bf5d842",
+    "gnn/models/L1g_letter_generation.gnn.md": "dd011196a42429c8ef8f4a4296ca622ebe56d85b4a2f02ec76b59f908226dd69",
+    "gnn/models/L2a_phoneme_sequence.gnn.md": "185789218d0c966a02ce7da51e5ff96c43487d7c01a4c4d65e692fa8c541f725",
+    "gnn/models/L2b_grapheme_to_phoneme.gnn.md": "405d21b510e4f09e9999b6b61fcb7b0b725236c0fd14d32c0bf212b659ce8f73",
+    "gnn/models/L3_word.gnn.md": "f76f81b0c839a1307cdfb56a4b1141b77da86018f3e359f9797ef31f073c03e8",
+    "gnn/models/L4_case.gnn.md": "01c3bc56779818dc27105051c8f83119d570577d053090bdd3aca6e068db1715",
+    "gnn/models/L5_clause.gnn.md": "60e39a0314061eaaccfcc84d3575fb7e83000f03e247813d664deb2218d9fa16",
+    "gnn/models/L5w_clause_widened.gnn.md": "f96b42f753775900a56ae18ab3f66dda6f85cf9aa598d836658f271e9a06a5fa",
+    "gnn/models/L6_narrative.gnn.md": "5d87426eb2d6ed0eb65079ce9498224bbb4e5480c550da15389b578b77e1394d",
+    "pyproject.toml": "d5a78054b8b0ad44a11d67d2ed0accd1a2a6acfeda2401e4f40d38ceb5fea353",
+    "scripts/_artifact_io.py": "f87c8d73b879bedb14828dbda43da6906b27b895ca3ca2381a37db4560393f8b",
+    "scripts/record_connected_gum_claims.py": "56ff9d8acfd135d19272fd6a75f1d1bf0113253e7eb0f6334dc65255872f2f16",
+    "src/ailm/__init__.py": "5df7a711329b1a8d9191c4ae900235aa44792bd538c4dcdfeaea518f06e47423",
+    "src/ailm/cases.py": "0373f419360e81f4c426df3d834b079b8ea00ff335e666f9de58e06ba98de80d",
+    "src/ailm/claims.py": "23196cb762d0c8cc25093d8d4b845e22d1b18a99cdff4bf0c1071364882598df",
+    "src/ailm/config.py": "a8e17769aba5e4046c86ec330a3a7ecfd6ce5ef24a92561f73826c33055a10bc",
+    "src/ailm/corpus/__init__.py": "7feeda6ba3835db5b093712d3efc45672c7f39a2a99aa6bfede69a19761107bf",
+    "src/ailm/corpus/_download.py": "72ca3df4005909785eee00856c7631ecb132c828b779e18882666ec8b14ac1a2",
+    "src/ailm/corpus/brown.py": "5309dc25dbcf50b3f062bf494df86c3e467eaa2bdf3680db6fd6f832e6800806",
+    "src/ailm/corpus/case_word.py": "9caead6dfb9c40bc918118c3e5312768919db0448bd26ec22f28bdbde6f65369",
+    "src/ailm/corpus/cmudict.py": "d10ebf9609e2f7571b399a00cda52f0e4c9f98bebd81c9cbdc2cb31d05364dd8",
+    "src/ailm/corpus/connected_gum.py": "ff90c6976dd454b431c2b258cd62560137be7fd61c4ea5de31808659fb622f4b",
+    "src/ailm/corpus/ud.py": "3403abb60d6c8ed64622a2825144c517cd26c0bfb599b55d9dcfb6626cae1dcf",
+    "src/ailm/corpus/ud_czech.py": "9fc84a5dd2ce9a58058e39a93971cf8ecb998d7f1fbe4ff5fa7165acd9e9f7fd",
+    "src/ailm/gnn/__init__.py": "3c5a46a9266eced169a854b207d3e36fe58e5d9c66a749d192c3fa098c3eeab1",
+    "src/ailm/gnn/conformance.py": "f900ebdfd5851ef826839e334da94ab6fd2a9e2b6c0f6ae946ea92cc1f9f381a",
+    "src/ailm/gnn/declarations.py": "5c96ce8704d5dad81bf182ce2a82ffd66cf63bab007da884753abc9431a216c5",
+    "src/ailm/gnn/live.py": "43f91cac94b50bd9ccb4079b441681ff43e3e41c8e06a92fbc9893dee5030fc8",
+    "src/ailm/gnn/parsing.py": "5d9dd11b86a5538cb74979735c6b928c7f23895bdae7a1c94d5330e0ee5167e6",
+    "src/ailm/gnn/registry.py": "d447136058f43039faeea3f58ab6294a2418002b7a9557cfd97a2adaf2222d0e",
+    "src/ailm/gnn/shapes.py": "3cd63c88bceaa7fb6671e80534e84d5cd0d372a3e66acb0f102650e36aa0cc41",
+    "src/ailm/gnn/types.py": "40024a976fa2cfb1b41800bc9c4e07663b8b0dee94c75b043b7071d8cedd3fbf",
+    "src/ailm/ledger_lock.py": "e858d1b013494ce26380f8688627bf48b61ca8310ffc4139a08519d0960a8c03",
+    "src/ailm/levels/__init__.py": "10a9670a6cfd6fbcdb4c11311049978490b892a6d49785f3021acac60eaa9313",
+    "src/ailm/levels/_stochastic.py": "8a6e8837bb4097b80bd99750b086eadb39d3f51ae5746a85dac3b2da3b67389d",
+    "src/ailm/levels/case.py": "c180a6a312ada8d2d870e0c3e1eec273099f55e90c497d8d33bfa2c8d8469c1b",
+    "src/ailm/levels/case_czech.py": "e41158ef5c35c8ce879dab3c9e331d06f972e8a0d0cb16ab11aa960b6f0d4d0e",
+    "src/ailm/levels/clause.py": "3dc5dd9b310bb33cab1ef61e190143aa39bb5b0095c43af58facb673726ca643",
+    "src/ailm/levels/clause_channel.py": "fb34d6e192b00aca783b35c3ad996f2228ce772ed3a7cf176ebc7ae16d597c66",
+    "src/ailm/levels/connected.py": "7c40e2d9f6d71eec3d7c66db61f6d3e4faa1479334f531b0c5b65b098388c4c6",
+    "src/ailm/levels/connected_builder.py": "9174f4444957d93762560a10b7c3e78b977de5207bec45b05eab47bc5b71dcf3",
+    "src/ailm/levels/connected_evaluation.py": "79145aa07a4123b5120b37b4d1f3a61290d22aad3b4332d47fb90f142628dfe4",
+    "src/ailm/levels/connected_types.py": "e590d32baeba31c8b076254c0e21eece9101648038b56ba74f09561456118e7b",
+    "src/ailm/levels/coupling.py": "f65665faca350f7ede634ba6748fa729a1eaa4233923e1fefb301f6fcec94d8c",
+    "src/ailm/levels/g2p_learning.py": "c09afdf719b837853f5dd366ebe1730d5d6c8ea8d65fdebce0857c26a13ec227",
+    "src/ailm/levels/letter.py": "2f1832c08aec0000bfc26d4a8e0d3fe3e67486f5cfd768c2967d75b3d5110506",
+    "src/ailm/levels/lexical_channel.py": "24bafd2baa7169d03e352c9477ce0bac7c84f6af105a8ca9dd20f34cc090d7f6",
+    "src/ailm/levels/narrative.py": "bd1a4040c04c5f45be52ab32c9ab9afa39ca2143062219aea935d02a2027a261",
+    "src/ailm/levels/online_learning.py": "567648942e70a6f98c06ae4eda176bebf9317d95c11a4956b03a95fbe42cc367",
+    "src/ailm/levels/phoneme.py": "3d408889bc574c98e4238a8bb3bcbf1234273a9fe7a221fc1e7391df585e15e8",
+    "src/ailm/levels/synthetic.py": "8cc41fe14ca38fe0de25713d9300a216e4aea16db9ab6381c909a8f06c4b1ed6",
+    "src/ailm/levels/widened.py": "5a2174bc03cb11dccb50b9bd06722a6aead1042fd2cbb0e272398c8a5e8b4e86",
+    "src/ailm/levels/word.py": "57cec0c5b0a519958d3d7de341445cb713176ae83f894c1a8947843df649debf",
+    "src/ailm/resources.py": "394ccf5a795bacfa807dbe96a9b3a25643fc6e0f5c9c9c204354870615264ec7",
+    "src/ailm/spec_agent.py": "ca8bc24f113c9d0ad9643c31b219667edc6aeaa9cdfe8e50b9322e4564cc0125",
+    "src/ailm/statistics.py": "f577e0b72231a0ff4333c651fd5743c571ef7e88eb1a3dfd7e37e4fc58195a34",
+    "src/ailm/verification/__init__.py": "e093f12b7a85f212bf61ed330cc5a6763fd0a8d1063cbddd560fac3cdeef00bc",
+    "src/ailm/verification/connected_provenance.py": "6c96cd0e090c032eaa3218b5a6131c449a33632bc3cf968444c50166d5bd8f51",
+    "src/ailm/verification/oracle.py": "323808c6dbf96f848a5259ff2f381b828dd65218e37264d26750c3f626971cea",
+    "uv.lock": "f50e89d2ae308408c9b25bfc07a50cad2dfee90531c17f52077f0c76630a8777",
+    "vendor/brown_clause_word_counts.json": "3f061df8fb36103db6eb52e9232bd9efb6bb9de04db6bddee422e740fdae7e63",
+    "vendor/brown_counts.json": "778e2b31740b417e2cc3829e4919a5e4d8f9a180a18695474ad05060d1f5f660",
+    "vendor/brown_heldout_stream.json": "749b0ed11c00504247985a759eb466fe78408dffd9cd600f815ffb3ca1f39723",
+    "vendor/brown_online_drift.json": "131e4653b229c732ff8f57bb3a091b6dc1f5d008f7e9bf63c2e43d3e8f7a5233",
+    "vendor/brown_word_counts.json": "2d10d0c6e237207a53566e37ed6c66e95ae9258aa4e3c8fc953f3a2ce84a2268",
+    "vendor/brown_word_counts_full.json": "9e9608b135d6ef5ec2438e077834eb0c918b4ef6e8351ad8e25c084ba635a41f",
+    "vendor/cmudict_counts.json": "9f0f20746086e378b54f5cef82792c9d99f51c80a00b65a00bd783ef917d3def",
+    "vendor/synthetic_aligned_g2p_counts.json": "a6bdd76c4ced420661ab3dd1c2e772910604630e3227504e9dfd22dfb7d715c1",
+    "vendor/synthetic_counts.json": "32b00fa2fb3b818df7b509267ec70efb9418867eb7af7e4779069d25a9c78bb3",
+    "vendor/synthetic_phone_counts.json": "319b3926e8a811ef8842602824c122905b11187d481891cdab42500a9116cc41",
+    "vendor/ud_czech_case_counts.json": "4abe72f960e0a11c5384454c8b6f131088bcd10b2487af700ffab246d1dc92f7",
+    "vendor/ud_ewt_case_counts.json": "3de812c40139decbb1272ed8e52e90b71942198d49dc62dabd2df0a8a0fb9afe",
+    "vendor/ud_ewt_clause_counts.json": "e3fe327068149fbc64144d8fda4a8befe7ea4dc5a32393d0a79ab071f92a71d3",
+    "vendor/ud_ewt_narrative_counts.json": "11e7b49ce27d61a173de8ac296212fd801095612d312f694c875cca91c185133"
+  },
+  "execution_sha256": "0cd3b86fd81face210db6d06dbb07435b44c4fa5ca82aa83b1c48d531f76389d",
+  "full_stream_word_loss_status": "infinite_oov",
+  "input_manifest_sha256": "ca5f0e69d07c3328ec23f9dec6647b71a05cd3ba2e56483fd812cae4e80cf2e0",
+  "protocol_sha256": "c2ad1ee3b9aa285b5ef80ff29895665e959748bb9a90e94d1890ff18c7b2578d",
+  "runtime_sha256": "7c40e2d9f6d71eec3d7c66db61f6d3e4faa1479334f531b0c5b65b098388c4c6",
+  "schema": "ailm-connected-gum-report-v1",
+  "scope": "locally prospectively specified population; not external preregistration or global exact inference",
+  "uncertainty": {
+    "ci_high": 0.46325671494396264,
+    "ci_low": 0.42010385279024465,
+    "confidence": 0.95,
+    "document_mean_gain": 0.4420177562251402,
+    "outcome": "integrated_lower_loss",
+    "resamples": 10000,
+    "seed": 20261005
+  },
+  "versions": {
+    "inferactively-pymdp": "1.0.4",
+    "jax": "0.4.38",
+    "numpy": "2.3.5",
+    "python": "3.12.13"
+  }
+}

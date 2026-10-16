@@ -1,0 +1,1571 @@
+@comment{
+  AILM bibliography. Read by Pandoc with --natbib during PDF rendering.
+
+  Policy for this file: every entry is a work whose existence, authorship, venue,
+  and year the author can state without guessing. Fields that could not be
+  confirmed are OMITTED rather than filled with a plausible value — a fabricated
+  page range or DOI is worse than a missing one, because it is not visibly
+  missing.
+
+  A `note` field RENDERS into the printed reference list, so it is reserved for
+  what a reader of the bibliography needs: an edition, a locator, what a resource
+  is. Provenance uncertainty about this file is not that, and it lives here
+  instead, because an `@comment` block never renders. Entry by entry:
+
+  brier1950 — the registered DOI is of the form 10.1175/1520-0493(1950)078<0001:
+  VOFEIT>2.0.CO;2. The angle brackets do not survive a LaTeX text-mode round
+  trip, so the field is omitted rather than mangled.
+
+  obuchowski1998clustered — same angle-bracket DOI form, same treatment. The DOI
+  is 10.1002/(SICI)1097-0258(19980715)17:13<1495::AID-SIM863>3.0.CO;2-I.
+
+  coecke2010mathematical — Linguistic Analysis 36, the Lambek Festschrift issue.
+  Several secondary bibliographies give the pages as 345--384, but neither DBLP
+  nor Crossref indexes the journal version at all; both hold only the arXiv
+  preprint. The range stays omitted until the printed issue is checked.
+
+  chen1999empirical — the Crossref deposit for the registered DOI records the
+  range as 359--393 while the range in circulation is 359--394; the publisher's
+  own landing page was not reachable at audit time, so the conflict is left
+  unresolved and the commonly printed 359--394 is kept rather than picking the
+  registrar's figure without confirmation.
+
+  Unresolved-field register, from the 2026-09-08 primary-source audit (84 of 97
+  entries fully field-verified against a reachable primary record, after the N1
+  pass below). Two classes. CONFIRMED METADATA CONFLICT (one): chen1999empirical
+  above. SOURCE UNAVAILABLE (no reachable primary record confirms the named
+  field; the entry keeps or omits it rather than guessing): brown1992entropy,
+  marcus1993penn, holm1979 — no digital primary record for these journal years
+  is reachable; fillmore1968case, lamb1966outline, lockwood1972introduction,
+  makkai1973readings, francis1979brown, miller1955note — pre-digital books and
+  chapters with no online publisher or registration record (the extent
+  disagreements for lamb1966outline and lockwood1972introduction are noted
+  above); parr2022active, bird2009nltk — the recorded ISBNs could not be checked
+  against any reachable publisher or bookseller record; coecke2010mathematical —
+  the journal identity per the note above. Three entries left this register
+  during the same day's passes. jax2018: the official JAX CITATION.bib supplied
+  the missing twelfth author (Katariya). smollm_2024: the release post's byline
+  names exactly three authors, so the former `and others` was dropped. cmudict
+  (N1): the note's unsupported `Version 0.7b` field was omitted under the
+  omit-don't-guess policy once the pinned commit confirmed no reachable version
+  designation; repository, title, URL, and the BSD-2-Clause license are verified
+  against the upstream repository.
+
+  vaswani2017attention, brown2020language, dwork2015adaptive — the NeurIPS
+  proceedings site publishes no page numbers for these years. The ranges in
+  circulation come from the Curran print volumes, which were not checked here.
+
+  hoffmann2022training — also appears in the NeurIPS 2022 proceedings; those page
+  numbers were not confirmed. Its author list, and those of brown2020language,
+  liang2023holistic, is truncated with `and others`,
+  which is a BibTeX convention rather than a defect.
+
+  liang2023holistic — TMLR assigns neither volume nor article number.
+
+  qwen25_2024 — the technical report credits the Qwen Team collectively and
+  prints no individual author list.
+
+  fillmore1968case — the paper circulated in 1967 as a pre-print for the Texas
+  symposium of 13--15 April 1967 (ERIC ED019631) and was published in the 1968
+  Bach & Harms volume. Both dates are correct for different objects; the entry
+  is the published chapter, so it carries 1968. Citations giving 1967 for the
+  chapter are conflating the pre-print with the publication.
+
+  lamb1966prolegomena — Crossref records the issue as 42(2); the article is
+  widely cited as 42(3). The volume and page range are secure and the issue
+  number is not, so `number` is omitted rather than picking a side.
+
+  lamb1966outline, lockwood1972introduction — total extents in circulation
+  disagree (109 vs v+109; 305 vs 365). Neither is needed to cite a book, so
+  neither is recorded.
+
+  reich1968symbols — a Linguistic Automation Project report, not a journal
+  article. Reprinted as chapter 6 of makkai1973readings. The `note` carries the
+  ERIC accession because that is where a reader obtains the full text.
+
+  fillmore1977reopened — Crossref confirms the series volume, pages, publisher
+  and date but the editors were not verified, so `editor` is omitted.
+
+  A note on what is NOT here. A. Kornai's survey reports, citing Borgida, that
+  Lamb's 1966 formalism is essentially equivalent to finite automata. That is a
+  claim this manuscript would like to make, and it is left uncited: the reading
+  is two removes from a primary source and the survey's own venue and year were
+  not confirmed. The finite-state position is attributed to reich1969finiteness
+  instead, which argues it directly and is fully indexed.
+
+  cmudict — the customary `0.7b` label carries no dated release on the upstream
+  repository (and no reachable upstream file asserts the string; see the
+  register), so the year is omitted.
+
+  friedman2024cerebrum, friedman2024ccd — the keys say 2024 and both works are
+  dated later; the years inside the entries are the correct ones. The keys are
+  cited from several sections and were left alone rather than renamed piecemeal.
+  The DOI previously recorded for friedman2024cerebrum, 10.5281/zenodo.12812427,
+  resolves to an unrelated 2023 taxonomic record and has been replaced with the
+  version DOI of the release the project actually reads. Zenodo identifies that
+  record as v1.4 dated 2025-04-16, while the deposited PDF title page prints
+  Version 1.2 (2025-04-12). Both identities are retained in the rendered note
+  and in data/reference_sources.json.
+
+  friedman2024ccd — the Zenodo record at 10.5281/zenodo.19695260 is titled
+  "Compositional Approaches to Linguistic Case for Cognitive Modeling"; the title
+  page of the exact deposited PDF prints "Cognitive Diagrams: Reviewing
+  Categorical Accounts of Linguistic Case" and is dated 2026-04-22. The optional
+  companion repository at the pinned revision declares that printed-title work
+  as v2.3. The entry follows the archival record, because that is what a reader
+  resolving the DOI is shown, while the note preserves the deposited identity.
+
+  marneffe2021universal — added 2026-09-28 during the multi-lane bibliography
+  merge. The Crossref deposit for 10.1162/coli_a_00402 carries no volume or
+  issue and gives page "1-54" (an early/typeset-stage registration). The ACL
+  Anthology record for the same DOI (2021.cl-2.11, MIT Press, Cambridge, MA)
+  gives the print pagination actually used by the venue: Computational
+  Linguistics 47(2):255-308. The entry follows the ACL Anthology print
+  pagination rather than the incomplete Crossref deposit, consistent with the
+  chen1999empirical precedent above of preferring the circulating publisher
+  record over a conflicting registrar figure.
+
+  smekal2023gnn, pezzulo2024generating, wong2023word, schick2023toolformer,
+  yao2023react — added 2026-09-29 during the future-directions/related-work
+  bibliography merge. Four independent lanes proposed overlapping subsets of
+  these five keys for the new Future Directions discussion and the expanded
+  Related Work survey; each was re-verified here directly against its primary
+  record before merge (Zenodo record 7803328 for smekal2023gnn; Crossref DOI
+  10.1016/j.tics.2023.10.002 for pezzulo2024generating; the arXiv Atom API for
+  2302.04761, 2210.03629, and 2306.12672) rather than trusting either lane's
+  report. All fields agree across the lanes' proposals and this
+  re-verification, so no conflict needed resolving. yao2023react carries the
+  ICLR 2023 publication year, matching this file's existing convention for
+  arXiv preprints later published in ICLR proceedings (see e.g.
+  sclar2024quantifying below, an ICLR paper cited by its eprint); the paper's
+  first arXiv submission was 2022-10-06.
+}
+
+% ── Active inference and the free energy principle ────────────────────────────
+
+@article{friston2010free,
+  author  = {Friston, Karl},
+  title   = {The free-energy principle: a unified brain theory?},
+  journal = {Nature Reviews Neuroscience},
+  volume  = {11},
+  number  = {2},
+  pages   = {127--138},
+  year    = {2010},
+  doi     = {10.1038/nrn2787}
+}
+
+@article{friston2017process,
+  author  = {Friston, Karl and FitzGerald, Thomas and Rigoli, Francesco and
+             Schwartenbeck, Philipp and Pezzulo, Giovanni},
+  title   = {{Active Inference}: A Process Theory},
+  journal = {Neural Computation},
+  volume  = {29},
+  number  = {1},
+  pages   = {1--49},
+  year    = {2017},
+  doi     = {10.1162/NECO_a_00912}
+}
+
+@article{friston2020linguistic,
+  author  = {Friston, Karl J. and Parr, Thomas and Yufik, Yan and Sajid, Noor and
+             Price, Catherine J. and Holmes, Emma},
+  title   = {Generative models, linguistic communication and active inference},
+  journal = {Neuroscience and Biobehavioral Reviews},
+  volume  = {118},
+  pages   = {42--64},
+  year    = {2020},
+  doi     = {10.1016/j.neubiorev.2020.07.005}
+}
+
+@article{friston2017deep,
+  author  = {Friston, Karl J. and Rosch, Richard and Parr, Thomas and
+             Price, Cathy and Bowman, Howard},
+  title   = {Deep temporal models and active inference},
+  journal = {Neuroscience and Biobehavioral Reviews},
+  volume  = {77},
+  pages   = {388--402},
+  year    = {2017},
+  doi     = {10.1016/j.neubiorev.2017.04.009}
+}
+
+@article{friston2021listening,
+  author  = {Friston, Karl J. and Sajid, Noor and Quiroga-Martinez, David Ricardo and
+             Parr, Thomas and Price, Catherine J. and Holmes, Emma},
+  title   = {Active listening},
+  journal = {Hearing Research},
+  volume  = {399},
+  pages   = {107998},
+  year    = {2021},
+  doi     = {10.1016/j.heares.2020.107998}
+}
+
+@article{donnarumma2025reading,
+  author  = {Donnarumma, Francesco and Frosolone, Mirco and Pezzulo, Giovanni},
+  title   = {Integrating large language models and active inference to
+             understand eye movements in reading and dyslexia},
+  journal = {Physics of Life Reviews},
+  volume  = {55},
+  pages   = {61--78},
+  year    = {2025},
+  doi     = {10.1016/j.plrev.2025.08.008}
+}
+
+@article{pezzulo2024generating,
+  author  = {Pezzulo, Giovanni and Parr, Thomas and Cisek, Paul and
+             Clark, Andy and Friston, Karl},
+  title   = {Generating meaning: active inference and the scope and limits of
+             passive {AI}},
+  journal = {Trends in Cognitive Sciences},
+  volume  = {28},
+  number  = {2},
+  pages   = {97--112},
+  year    = {2024},
+  doi     = {10.1016/j.tics.2023.10.002}
+}
+
+@misc{vijayaraghavan2024compositionality,
+  author        = {Vijayaraghavan, Prasanna and Queisser, Jeffrey Frederic and
+                   Flores, Sergio Verduzco and Tani, Jun},
+  title         = {Development of Compositionality and Generalization through
+                   Interactive Learning of Language and Action of Robots},
+  year          = {2024},
+  eprint        = {2403.19995},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  doi           = {10.48550/arXiv.2403.19995}
+}
+
+@misc{tinker2025curiosity,
+  author        = {Tinker, Theodore Jerome and Doya, Kenji and Tani, Jun},
+  title         = {Curiosity-Driven Development of Action and Language in Robots
+                   Through Self-Exploration},
+  year          = {2025},
+  eprint        = {2510.05013},
+  archivePrefix = {arXiv},
+  primaryClass  = {stat.ML},
+  doi           = {10.48550/arXiv.2510.05013}
+}
+
+@article{friston2015epistemic,
+  author  = {Friston, Karl and Rigoli, Francesco and Ognibene, Dimitri and
+             Mathys, Christoph and Fitzgerald, Thomas and Pezzulo, Giovanni},
+  title   = {Active inference and epistemic value},
+  journal = {Cognitive Neuroscience},
+  volume  = {6},
+  number  = {4},
+  pages   = {187--214},
+  year    = {2015},
+  doi     = {10.1080/17588928.2015.1020053}
+}
+
+@article{dacosta2020active,
+  author  = {Da Costa, Lancelot and Parr, Thomas and Sajid, Noor and
+             Veselic, Sebastijan and Neacsu, Victorita and Friston, Karl},
+  title   = {Active inference on discrete state-spaces: A synthesis},
+  journal = {Journal of Mathematical Psychology},
+  volume  = {99},
+  pages   = {102447},
+  year    = {2020},
+  doi     = {10.1016/j.jmp.2020.102447}
+}
+
+@article{smith2022stepbystep,
+  author  = {Smith, Ryan and Friston, Karl J. and Whyte, Christopher J.},
+  title   = {A step-by-step tutorial on active inference and its application to
+             empirical data},
+  journal = {Journal of Mathematical Psychology},
+  volume  = {107},
+  pages   = {102632},
+  year    = {2022},
+  doi     = {10.1016/j.jmp.2021.102632}
+}
+
+@book{parr2022active,
+  author    = {Parr, Thomas and Pezzulo, Giovanni and Friston, Karl J.},
+  title     = {Active Inference: The Free Energy Principle in Mind, Brain, and Behavior},
+  publisher = {MIT Press},
+  address   = {Cambridge, MA},
+  year      = {2022},
+  isbn      = {9780262045353}
+}
+
+@article{heins2022pymdp,
+  author  = {Heins, Conor and Millidge, Beren and Demekas, Daphne and
+             Klein, Brennan and Friston, Karl and Couzin, Iain and
+             Tschantz, Alexander},
+  title   = {{pymdp}: A {P}ython library for active inference in discrete state spaces},
+  journal = {Journal of Open Source Software},
+  volume  = {7},
+  number  = {73},
+  pages   = {4098},
+  year    = {2022},
+  doi     = {10.21105/joss.04098}
+}
+
+@article{smekal2023gnn,
+  author  = {Sm{\'e}kal, Jakub and Friedman, Daniel Ari},
+  title   = {Generalized Notation Notation for {Active Inference} Models},
+  journal = {Active Inference Journal},
+  year    = {2023},
+  doi     = {10.5281/zenodo.7803328}
+}
+
+@article{hinton2002training,
+  author  = {Hinton, Geoffrey E.},
+  title   = {Training Products of Experts by Minimizing Contrastive Divergence},
+  journal = {Neural Computation},
+  volume  = {14},
+  number  = {8},
+  pages   = {1771--1800},
+  year    = {2002},
+  doi     = {10.1162/089976602760128018}
+}
+
+% ── Author's prior work grounding the case structure ─────────────────────────
+
+@techreport{friedman2024cerebrum,
+  author      = {Friedman, Daniel Ari},
+  title       = {{CEREBRUM}: {C}ase-{E}nabled {R}easoning {E}ngine with
+                 {B}ayesian {R}epresentations for {U}nified {M}odeling},
+  institution = {Active Inference Institute},
+  year        = {2025},
+  doi         = {10.5281/zenodo.15231156},
+  note        = {Zenodo record version 1.4, published 2025-04-16; the exact
+                 deposited file CEREBRUM\_1-4\_April-16-2025.pdf prints the title
+                 Case-Enabled Reasoning Engine with Bayesian Representations for
+                 Unified Modeling (CEREBRUM), Version 1.2 (2025-04-12).
+                 Supplement 8 defines the source POMDP tuple; Figure 13 is
+                 caption-only and supplies no crosswalk}
+}
+
+@techreport{friedman2024ccd,
+  author      = {Friedman, Daniel Ari},
+  title       = {{C}ompositional {A}pproaches to {L}inguistic {C}ase for
+                 {C}ognitive {M}odeling},
+  institution = {Active Inference Institute},
+  year        = {2026},
+  doi         = {10.5281/zenodo.19695260},
+  note        = {Zenodo record version v1, published 2026-04-23. The exact
+                 deposited file cognitive\_case\_diagrams\_v1\_DAF\_04-23-2026.pdf
+                 prints the title Cognitive Diagrams: Reviewing Categorical
+                 Accounts of Linguistic Case, dated 2026-04-22, with no printed
+                 version; the optional companion repository is external to AILM
+                 and its inspected v2.3 revision is pinned in AILM's provenance
+                 record}
+}
+
+@article{coecke2010mathematical,
+  author  = {Coecke, Bob and Sadrzadeh, Mehrnoosh and Clark, Stephen},
+  title   = {Mathematical foundations for a compositional distributional model of meaning},
+  journal = {Linguistic Analysis},
+  volume  = {36},
+  year    = {2010},
+  eprint  = {1003.4394},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note    = {Lambek Festschrift issue}
+}
+
+% ── Information theory and the entropy of English ─────────────────────────────
+
+@article{shannon1948,
+  author  = {Shannon, Claude E.},
+  title   = {A mathematical theory of communication},
+  journal = {Bell System Technical Journal},
+  volume  = {27},
+  number  = {3},
+  pages   = {379--423},
+  year    = {1948},
+  doi     = {10.1002/j.1538-7305.1948.tb01338.x}
+}
+
+@article{shannon1951,
+  author  = {Shannon, Claude E.},
+  title   = {Prediction and entropy of printed {E}nglish},
+  journal = {Bell System Technical Journal},
+  volume  = {30},
+  number  = {1},
+  pages   = {50--64},
+  year    = {1951},
+  doi     = {10.1002/j.1538-7305.1951.tb01366.x}
+}
+
+@article{cover1978gambling,
+  author  = {Cover, Thomas M. and King, Roger C.},
+  title   = {A convergent gambling estimate of the entropy of {E}nglish},
+  journal = {IEEE Transactions on Information Theory},
+  volume  = {24},
+  number  = {4},
+  pages   = {413--421},
+  year    = {1978},
+  doi     = {10.1109/TIT.1978.1055912}
+}
+
+@article{brown1992entropy,
+  author  = {Brown, Peter F. and Della Pietra, Stephen A. and
+             Della Pietra, Vincent J. and Lai, Jennifer C. and Mercer, Robert L.},
+  title   = {An estimate of an upper bound for the entropy of {E}nglish},
+  journal = {Computational Linguistics},
+  volume  = {18},
+  number  = {1},
+  pages   = {31--40},
+  year    = {1992}
+}
+
+@article{jiao2015logarithmic,
+  author  = {Jiao, Jiantao and Courtade, Thomas A. and Venkat, Kartik and
+             Weissman, Tsachy},
+  title   = {Justification of logarithmic loss via the benefit of side
+             information},
+  journal = {IEEE Transactions on Information Theory},
+  volume  = {61},
+  number  = {10},
+  pages   = {5357--5365},
+  year    = {2015},
+  doi     = {10.1109/TIT.2015.2462848},
+  eprint  = {1403.4679},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.IT}
+}
+
+@article{chen1999empirical,
+  author  = {Chen, Stanley F. and Goodman, Joshua},
+  title   = {An empirical study of smoothing techniques for language modeling},
+  journal = {Computer Speech and Language},
+  volume  = {13},
+  number  = {4},
+  pages   = {359--394},
+  year    = {1999},
+  doi     = {10.1006/csla.1999.0128}
+}
+
+@book{jelinek1997statistical,
+  author    = {Jelinek, Frederick},
+  title     = {Statistical Methods for Speech Recognition},
+  publisher = {MIT Press},
+  address   = {Cambridge, Massachusetts},
+  year      = {1997},
+  isbn      = {0-262-10066-5}
+}
+
+% ── Discrete sequence models ──────────────────────────────────────────────────
+
+@article{rabiner1989tutorial,
+  author  = {Rabiner, Lawrence R.},
+  title   = {A tutorial on hidden {M}arkov models and selected applications in
+             speech recognition},
+  journal = {Proceedings of the IEEE},
+  volume  = {77},
+  number  = {2},
+  pages   = {257--286},
+  year    = {1989},
+  doi     = {10.1109/5.18626}
+}
+
+@article{fine1998hierarchical,
+  author  = {Fine, Shai and Singer, Yoram and Tishby, Naftali},
+  title   = {The hierarchical hidden {M}arkov model: analysis and applications},
+  journal = {Machine Learning},
+  volume  = {32},
+  number  = {1},
+  pages   = {41--62},
+  year    = {1998},
+  doi     = {10.1023/A:1007469218079}
+}
+
+@article{mohri2002weighted,
+  author  = {Mohri, Mehryar and Pereira, Fernando and Riley, Michael},
+  title   = {Weighted finite-state transducers in speech recognition},
+  journal = {Computer Speech and Language},
+  volume  = {16},
+  number  = {1},
+  pages   = {69--88},
+  year    = {2002},
+  doi     = {10.1006/csla.2001.0184}
+}
+
+@article{viterbi1967error,
+  author  = {Viterbi, Andrew J.},
+  title   = {Error bounds for convolutional codes and an asymptotically optimum
+             decoding algorithm},
+  journal = {IEEE Transactions on Information Theory},
+  volume  = {13},
+  number  = {2},
+  pages   = {260--269},
+  year    = {1967},
+  doi     = {10.1109/TIT.1967.1054010}
+}
+
+@article{lari1990estimation,
+  author  = {Lari, K. and Young, S. J.},
+  title   = {The estimation of stochastic context-free grammars using the
+             inside-outside algorithm},
+  journal = {Computer Speech and Language},
+  volume  = {4},
+  number  = {1},
+  pages   = {35--56},
+  year    = {1990},
+  doi     = {10.1016/0885-2308(90)90022-X}
+}
+
+% ── Grapheme-to-phoneme conversion ────────────────────────────────────────────
+
+@inproceedings{jiampojamarn2007many,
+  author    = {Jiampojamarn, Sittichai and Kondrak, Grzegorz and Sherif, Tarek},
+  title     = {Applying many-to-many alignments and hidden {M}arkov models to
+               letter-to-phoneme conversion},
+  booktitle = {Human Language Technologies 2007: The Conference of the North
+               American Chapter of the Association for Computational Linguistics;
+               Proceedings of the Main Conference},
+  pages     = {372--379},
+  address   = {Rochester, New York},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/N07-1047/},
+  year      = {2007}
+}
+
+@article{bisani2008joint,
+  author  = {Bisani, Maximilian and Ney, Hermann},
+  title   = {Joint-sequence models for grapheme-to-phoneme conversion},
+  journal = {Speech Communication},
+  volume  = {50},
+  number  = {5},
+  pages   = {434--451},
+  year    = {2008},
+  doi     = {10.1016/j.specom.2008.01.002}
+}
+
+@inproceedings{yao2015sequence,
+  author    = {Yao, Kaisheng and Zweig, Geoffrey},
+  title     = {Sequence-to-sequence neural net models for grapheme-to-phoneme
+               conversion},
+  booktitle = {Interspeech 2015},
+  pages     = {3330--3334},
+  year      = {2015},
+  doi       = {10.21437/Interspeech.2015-134},
+  eprint    = {1506.00196},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+% ── Mechanistic interpretability ──────────────────────────────────────────────
+
+@article{olah2020zoom,
+  author  = {Olah, Chris and Cammarata, Nick and Schubert, Ludwig and
+             Goh, Gabriel and Petrov, Michael and Carter, Shan},
+  title   = {{Z}oom {I}n: {A}n {I}ntroduction to {C}ircuits},
+  journal = {Distill},
+  volume  = {5},
+  number  = {3},
+  year    = {2020},
+  doi     = {10.23915/distill.00024.001}
+}
+
+@misc{elhage2021framework,
+  author       = {Elhage, Nelson and Nanda, Neel and Olsson, Catherine and
+                  Henighan, Tom and Joseph, Nicholas and Mann, Ben and
+                  Askell, Amanda and Bai, Yuntao and Chen, Anna and
+                  Conerly, Tom and DasSarma, Nova and Drain, Dawn and
+                  Ganguli, Deep and Hatfield-Dodds, Zac and Hernandez, Danny and
+                  Jones, Andy and Kernion, Jackson and Lovitt, Liane and
+                  Ndousse, Kamal and Amodei, Dario and Brown, Tom and
+                  Clark, Jack and Kaplan, Jared and McCandlish, Sam and
+                  Olah, Christopher},
+  title        = {A {M}athematical {F}ramework for {T}ransformer {C}ircuits},
+  howpublished = {Transformer Circuits Thread},
+  year         = {2021},
+  url          = {https://transformer-circuits.pub/2021/framework/index.html}
+}
+
+@article{lipton2018mythos,
+  author  = {Lipton, Zachary C.},
+  title   = {The mythos of model interpretability},
+  journal = {Queue},
+  volume  = {16},
+  number  = {3},
+  pages   = {31--57},
+  year    = {2018},
+  doi     = {10.1145/3236386.3241340}
+}
+
+@misc{doshivelez2017rigorous,
+  author       = {Doshi-Velez, Finale and Kim, Been},
+  title        = {Towards a rigorous science of interpretable machine learning},
+  year         = {2017},
+  eprint       = {1702.08608},
+  archivePrefix = {arXiv},
+  primaryClass  = {stat.ML},
+  doi          = {10.48550/arXiv.1702.08608}
+}
+
+@article{rudin2019stop,
+  author  = {Rudin, Cynthia},
+  title   = {Stop explaining black box machine learning models for high stakes
+             decisions and use interpretable models instead},
+  journal = {Nature Machine Intelligence},
+  volume  = {1},
+  number  = {5},
+  pages   = {206--215},
+  year    = {2019},
+  doi     = {10.1038/s42256-019-0048-x}
+}
+
+% ── Statistics ────────────────────────────────────────────────────────────────
+
+@inproceedings{vaicenavicien2019evaluating,
+  author    = {Vaicenavicius, Juozas and Widmann, David and Andersson, Carl and
+               Lindsten, Fredrik and Roll, Jacob and Sch{\"o}n, Thomas},
+  title     = {Evaluating model calibration in classification},
+  booktitle = {Proceedings of the Twenty-Second International Conference on
+               Artificial Intelligence and Statistics},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {89},
+  pages     = {3459--3467},
+  year      = {2019}
+}
+
+@article{kumar2019calibration,
+  author  = {Kumar, Ananya and Liang, Percy and Ma, Tengyu},
+  title   = {Verified uncertainty calibration},
+  journal = {Advances in Neural Information Processing Systems},
+  volume  = {32},
+  year    = {2019}
+}
+
+@article{nixon2019measuring,
+  author  = {Nixon, Jeremy and Dusenberry, Michael W. and Zhang, Linchuan and
+             Jerfel, Ghassen and Tran, Dustin},
+  title   = {Measuring calibration in deep learning},
+  journal = {IEEE/CVF Conference on Computer Vision and Pattern Recognition
+             Workshops},
+  year    = {2019}
+}
+
+@article{newcombe1998paired,
+  author  = {Newcombe, Robert G.},
+  title   = {Improved confidence intervals for the difference between binomial
+             proportions based on paired data},
+  journal = {Statistics in Medicine},
+  volume  = {17},
+  number  = {22},
+  pages   = {2635--2650},
+  url     = {https://www.eiti.uottawa.ca/~nat/Courses/csi5388/Newcombe.1998.pdf},
+  year    = {1998}
+}
+
+@article{cameron2008bootstrap,
+  author  = {Cameron, A. Colin and Gelbach, Jonah B. and Miller, Douglas L.},
+  title   = {Bootstrap-Based Improvements for Inference with Clustered Errors},
+  journal = {The Review of Economics and Statistics},
+  volume  = {90},
+  number  = {3},
+  pages   = {414--427},
+  year    = {2008}
+}
+
+@article{mcnemar1947,
+  author  = {McNemar, Quinn},
+  title   = {Note on the sampling error of the difference between correlated
+             proportions or percentages},
+  journal = {Psychometrika},
+  volume  = {12},
+  number  = {2},
+  pages   = {153--157},
+  year    = {1947},
+  doi     = {10.1007/BF02295996}
+}
+
+@article{agresti2001exact,
+  author  = {Agresti, Alan},
+  title   = {Exact inference for categorical data: recent advances and continuing
+             controversies},
+  journal = {Statistics in Medicine},
+  volume  = {20},
+  number  = {17--18},
+  pages   = {2709--2722},
+  year    = {2001},
+  doi     = {10.1002/sim.738}
+}
+
+@article{eliasziw1991mcnemar,
+  author  = {Eliasziw, Michael and Donner, Allan},
+  title   = {Application of the {M}c{N}emar test to non-independent matched pair
+             data},
+  journal = {Statistics in Medicine},
+  volume  = {10},
+  number  = {12},
+  pages   = {1981--1991},
+  year    = {1991},
+  doi     = {10.1002/sim.4780101211}
+}
+
+@article{obuchowski1998clustered,
+  author  = {Obuchowski, Nancy A.},
+  title   = {On the comparison of correlated proportions for clustered data},
+  journal = {Statistics in Medicine},
+  volume  = {17},
+  number  = {13},
+  pages   = {1495--1507},
+  year    = {1998}
+}
+
+@inproceedings{dwork2015adaptive,
+  author    = {Dwork, Cynthia and Feldman, Vitaly and Hardt, Moritz and
+               Pitassi, Toniann and Reingold, Omer and Roth, Aaron},
+  title     = {Generalization in adaptive data analysis and holdout reuse},
+  booktitle = {Advances in Neural Information Processing Systems 28 (NIPS)},
+  year      = {2015},
+  eprint    = {1506.02629},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+@article{cawley2010overfitting,
+  author  = {Cawley, Gavin C. and Talbot, Nicola L. C.},
+  title   = {On over-fitting in model selection and subsequent selection bias in
+             performance evaluation},
+  journal = {Journal of Machine Learning Research},
+  volume  = {11},
+  pages   = {2079--2107},
+  year    = {2010}
+}
+
+@article{simmons2011false,
+  author  = {Simmons, Joseph P. and Nelson, Leif D. and Simonsohn, Uri},
+  title   = {False-positive psychology: Undisclosed flexibility in data
+             collection and analysis allows presenting anything as
+             significant},
+  journal = {Psychological Science},
+  volume  = {22},
+  number  = {11},
+  pages   = {1359--1366},
+  year    = {2011},
+  doi     = {10.1177/0956797611417632}
+}
+
+@unpublished{gelman2013garden,
+  author = {Gelman, Andrew and Loken, Eric},
+  title  = {The garden of forking paths: Why multiple comparisons can be a
+            problem, even when there is no "fishing expedition" or
+            "p-hacking" and the research hypothesis was posited ahead of
+            time},
+  note   = {Unpublished manuscript, Department of Statistics, Columbia
+            University},
+  year   = {2013}
+}
+
+@article{nosek2018preregistration,
+  author  = {Nosek, Brian A. and Ebersole, Charles R. and DeHaven, Alexander C.
+             and Mellor, David T.},
+  title   = {The preregistration revolution},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {115},
+  number  = {11},
+  pages   = {2600--2606},
+  year    = {2018},
+  doi     = {10.1073/pnas.1708274114}
+}
+
+@article{pineau2021improving,
+  author  = {Pineau, Joelle and Vincent-Lamarre, Philippe and Sinha, Koustuv and
+             Larivi{\`e}re, Vincent and Beygelzimer, Alina and
+             d'Alch{\'e}-Buc, Florence and Fox, Emily and Larochelle, Hugo},
+  title   = {Improving Reproducibility in Machine Learning Research (A Report
+             from the {NeurIPS} 2019 Reproducibility Program)},
+  journal = {Journal of Machine Learning Research},
+  volume  = {22},
+  number  = {164},
+  pages   = {1--20},
+  year    = {2021}
+}
+
+@inproceedings{bouthillier2021accounting,
+  author        = {Bouthillier, Xavier and Delaunay, Pierre and Bronzi, Mirko
+                   and Trofimov, Assya and Nichyporuk, Brennan and Szeto,
+                   Justin and Mohammadi Sepahvand, Nazanin and Raff, Edward and
+                   Madan, Kanika and Voleti, Vikram and Ebrahimi Kahou, Samira
+                   and Michalski, Vincent and Arbel, Tal and Pal, Chris and
+                   Varoquaux, Ga{\"e}l and Vincent, Pascal},
+  title         = {Accounting for variance in machine learning benchmarks},
+  booktitle     = {Proceedings of Machine Learning and Systems},
+  volume        = {3},
+  year          = {2021},
+  url           = {https://proceedings.mlsys.org/paper_files/paper/2021/hash/0184b0cd3cfb185989f858a1d9f5c1eb-Abstract.html},
+  eprint        = {2103.03098},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+@article{clopper1934,
+  author  = {Clopper, C. J. and Pearson, E. S.},
+  title   = {The use of confidence or fiducial limits illustrated in the case of
+             the binomial},
+  journal = {Biometrika},
+  volume  = {26},
+  number  = {4},
+  pages   = {404--413},
+  year    = {1934},
+  doi     = {10.1093/biomet/26.4.404}
+}
+
+@article{wilson1927,
+  author  = {Wilson, Edwin B.},
+  title   = {Probable inference, the law of succession, and statistical inference},
+  journal = {Journal of the American Statistical Association},
+  volume  = {22},
+  number  = {158},
+  pages   = {209--212},
+  year    = {1927},
+  doi     = {10.1080/01621459.1927.10502953}
+}
+
+@article{dunn1961multiple,
+  author  = {Dunn, Olive Jean},
+  title   = {Multiple comparisons among means},
+  journal = {Journal of the American Statistical Association},
+  volume  = {56},
+  number  = {293},
+  pages   = {52--64},
+  year    = {1961},
+  doi     = {10.1080/01621459.1961.10482090}
+}
+
+@article{holm1979,
+  author  = {Holm, Sture},
+  title   = {A simple sequentially rejective multiple test procedure},
+  journal = {Scandinavian Journal of Statistics},
+  volume  = {6},
+  number  = {2},
+  pages   = {65--70},
+  year    = {1979}
+}
+
+@article{benjamini1995controlling,
+  author  = {Benjamini, Yoav and Hochberg, Yosef},
+  title   = {Controlling the false discovery rate: a practical and powerful
+             approach to multiple testing},
+  journal = {Journal of the Royal Statistical Society: Series B (Methodological)},
+  volume  = {57},
+  number  = {1},
+  pages   = {289--300},
+  year    = {1995},
+  doi     = {10.1111/j.2517-6161.1995.tb02031.x}
+}
+
+@article{hoenig2001abuse,
+  author  = {Hoenig, John M. and Heisey, Dennis M.},
+  title   = {The abuse of power: the pervasive fallacy of power calculations for
+             data analysis},
+  journal = {The American Statistician},
+  volume  = {55},
+  number  = {1},
+  pages   = {19--24},
+  year    = {2001},
+  doi     = {10.1198/000313001300339897}
+}
+
+@article{gelman2014beyond,
+  author  = {Gelman, Andrew and Carlin, John},
+  title   = {Beyond power calculations: assessing {T}ype {S} (sign) and
+             {T}ype {M} (magnitude) errors},
+  journal = {Perspectives on Psychological Science},
+  volume  = {9},
+  number  = {6},
+  pages   = {641--651},
+  year    = {2014},
+  doi     = {10.1177/1745691614551642}
+}
+
+@article{schuirmann1987comparison,
+  author  = {Schuirmann, Donald J.},
+  title   = {A comparison of the two one-sided tests procedure and the power
+             approach for assessing the equivalence of average bioavailability},
+  journal = {Journal of Pharmacokinetics and Biopharmaceutics},
+  volume  = {15},
+  number  = {6},
+  pages   = {657--680},
+  year    = {1987},
+  doi     = {10.1007/BF01068419}
+}
+
+@article{lakens2017equivalence,
+  author  = {Lakens, Dani{\"e}l},
+  title   = {Equivalence tests: a practical primer for $t$ tests, correlations,
+             and meta-analyses},
+  journal = {Social Psychological and Personality Science},
+  volume  = {8},
+  number  = {4},
+  pages   = {355--362},
+  year    = {2017},
+  doi     = {10.1177/1948550617697177}
+}
+
+@article{lakens2018tutorial,
+  author  = {Lakens, Dani{\"e}l and Scheel, Anne M. and Isager, Peder M.},
+  title   = {Equivalence testing for psychological research: a tutorial},
+  journal = {Advances in Methods and Practices in Psychological Science},
+  volume  = {1},
+  number  = {2},
+  pages   = {259--269},
+  year    = {2018},
+  doi     = {10.1177/2515245918770963}
+}
+
+% ── Calibration and proper scoring rules ──────────────────────────────────────
+
+@article{brier1950,
+  author  = {Brier, Glenn W.},
+  title   = {Verification of forecasts expressed in terms of probability},
+  journal = {Monthly Weather Review},
+  volume  = {78},
+  number  = {1},
+  pages   = {1--3},
+  year    = {1950}
+}
+
+@article{gneiting2007strictly,
+  author  = {Gneiting, Tilmann and Raftery, Adrian E.},
+  title   = {Strictly proper scoring rules, prediction, and estimation},
+  journal = {Journal of the American Statistical Association},
+  volume  = {102},
+  number  = {477},
+  pages   = {359--378},
+  year    = {2007},
+  doi     = {10.1198/016214506000001437}
+}
+
+@article{degroot1983comparison,
+  author  = {DeGroot, Morris H. and Fienberg, Stephen E.},
+  title   = {The comparison and evaluation of forecasters},
+  journal = {Journal of the Royal Statistical Society: Series D (The Statistician)},
+  volume  = {32},
+  number  = {1--2},
+  pages   = {12--22},
+  year    = {1983},
+  doi     = {10.2307/2987588}
+}
+
+@inproceedings{naeini2015obtaining,
+  author    = {Naeini, Mahdi Pakdaman and Cooper, Gregory F. and
+               Hauskrecht, Milos},
+  title     = {Obtaining well calibrated probabilities using {B}ayesian binning},
+  booktitle = {Proceedings of the Twenty-Ninth {AAAI} Conference on Artificial
+               Intelligence},
+  pages     = {2901--2907},
+  year      = {2015}
+}
+
+@inproceedings{guo2017calibration,
+  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+  title     = {On calibration of modern neural networks},
+  booktitle = {Proceedings of the 34th International Conference on Machine
+               Learning (ICML)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {70},
+  pages     = {1321--1330},
+  year      = {2017}
+}
+
+@misc{kadavath2022language,
+  author        = {Kadavath, Saurav and Conerly, Tom and Askell, Amanda and
+                   Henighan, Tom and Drain, Dawn and Perez, Ethan and Schiefer,
+                   Nicholas and Hatfield-Dodds, Zac and DasSarma, Nova and
+                   Tran-Johnson, Eli and others},
+  title         = {Language models (mostly) know what they know},
+  year          = {2022},
+  eprint        = {2207.05221},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+% ── Evaluation methodology for prompted language models ──────────────────────
+
+@inproceedings{vaswani2017attention,
+  author    = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and
+               Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and
+               Kaiser, {\L}ukasz and Polosukhin, Illia},
+  title     = {Attention is all you need},
+  booktitle = {Advances in Neural Information Processing Systems 30 (NeurIPS)},
+  year      = {2017}
+}
+
+@inproceedings{brown2020language,
+  author    = {Brown, Tom B. and Mann, Benjamin and Ryder, Nick and
+               Subbiah, Melanie and Kaplan, Jared and Dhariwal, Prafulla and
+               Neelakantan, Arvind and Shyam, Pranav and Sastry, Girish and
+               Askell, Amanda and others},
+  title     = {Language models are few-shot learners},
+  booktitle = {Advances in Neural Information Processing Systems 33 (NeurIPS)},
+  year      = {2020},
+  eprint    = {2005.14165},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@misc{hoffmann2022training,
+  author       = {Hoffmann, Jordan and Borgeaud, Sebastian and Mensch, Arthur and
+                  Buchatskaya, Elena and Cai, Trevor and Rutherford, Eliza and
+                  de Las Casas, Diego and Hendricks, Lisa Anne and
+                  Welbl, Johannes and Clark, Aidan and others},
+  title        = {Training compute-optimal large language models},
+  year         = {2022},
+  eprint       = {2203.15556},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@misc{schick2023toolformer,
+  author        = {Schick, Timo and Dwivedi-Yu, Jane and Dess{\`i}, Roberto and
+                   Raileanu, Roberta and Lomeli, Maria and Zettlemoyer, Luke and
+                   Cancedda, Nicola and Scialom, Thomas},
+  title         = {Toolformer: Language Models Can Teach Themselves to Use
+                   Tools},
+  year          = {2023},
+  eprint        = {2302.04761},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@inproceedings{yao2023react,
+  author    = {Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and
+               Shafran, Izhak and Narasimhan, Karthik and Cao, Yuan},
+  title     = {{ReAct}: Synergizing Reasoning and Acting in Language Models},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023},
+  eprint    = {2210.03629},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@misc{wong2023word,
+  author        = {Wong, Lionel and Grand, Gabriel and Lew, Alexander K. and
+                   Goodman, Noah D. and Mansinghka, Vikash K. and
+                   Andreas, Jacob and Tenenbaum, Joshua B.},
+  title         = {From Word Models to World Models: Translating from Natural
+                   Language to the Probabilistic Language of Thought},
+  year          = {2023},
+  eprint        = {2306.12672},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@inproceedings{sainz2023nlp,
+  author    = {Sainz, Oscar and Campos, Jon Ander and Garc{\'i}a-Ferrero, Iker and
+               Etxaniz, Julen and Lopez de Lacalle, Oier and Agirre, Eneko},
+  title     = {{NLP} evaluation in trouble: on the need to measure {LLM} data
+               contamination for each benchmark},
+  booktitle = {Findings of the Association for Computational Linguistics:
+               EMNLP 2023},
+  pages     = {10776--10787},
+  year      = {2023}
+}
+
+@article{kapoor2023leakage,
+  author  = {Kapoor, Sayash and Narayanan, Arvind},
+  title   = {Leakage and the reproducibility crisis in machine-learning-based
+             science},
+  journal = {Patterns},
+  volume  = {4},
+  number  = {9},
+  pages   = {100804},
+  year    = {2023},
+  doi     = {10.1016/j.patter.2023.100804}
+}
+
+@inproceedings{dodge2021documenting,
+  author    = {Dodge, Jesse and Sap, Maarten and Marasovi{\'c}, Ana and
+               Agnew, William and Ilharco, Gabriel and Groeneveld, Dirk and
+               Mitchell, Margaret and Gardner, Matt},
+  title     = {Documenting large webtext corpora: a case study on the
+               {C}olossal {C}lean {C}rawled {C}orpus},
+  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural
+               Language Processing (EMNLP)},
+  pages     = {1286--1305},
+  year      = {2021},
+  doi       = {10.18653/v1/2021.emnlp-main.98}
+}
+
+@inproceedings{dodge2019show,
+  author    = {Dodge, Jesse and Gururangan, Suchin and Card, Dallas and
+               Schwartz, Roy and Smith, Noah A.},
+  title     = {Show your work: improved reporting of experimental results},
+  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in
+               Natural Language Processing and the 9th International Joint
+               Conference on Natural Language Processing (EMNLP-IJCNLP)},
+  publisher = {Association for Computational Linguistics},
+  pages     = {2185--2194},
+  year      = {2019},
+  doi       = {10.18653/v1/D19-1224}
+}
+
+@inproceedings{sclar2024quantifying,
+  author    = {Sclar, Melanie and Choi, Yejin and Tsvetkov, Yulia and
+               Suhr, Alane},
+  title     = {Quantifying language models' sensitivity to spurious features in
+               prompt design or: how {I} learned to start worrying about prompt
+               formatting},
+  booktitle = {Proceedings of the 12th International Conference on Learning
+               Representations (ICLR)},
+  year      = {2024},
+  eprint    = {2310.11324},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@inproceedings{zhao2021calibrate,
+  author    = {Zhao, Tony Z. and Wallace, Eric and Feng, Shi and Klein, Dan and
+               Singh, Sameer},
+  title     = {Calibrate before use: improving few-shot performance of language
+               models},
+  booktitle = {Proceedings of the 38th International Conference on Machine
+               Learning (ICML)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {139},
+  pages     = {12697--12706},
+  year      = {2021},
+  eprint    = {2102.09690},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@misc{willard2023efficient,
+  author       = {Willard, Brandon T. and Louf, R{\'e}mi},
+  title        = {Efficient guided generation for large language models},
+  year         = {2023},
+  eprint       = {2307.09702},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@article{liang2023holistic,
+  author  = {Liang, Percy and Bommasani, Rishi and Lee, Tony and
+             Tsipras, Dimitris and Soylu, Dilara and Yasunaga, Michihiro and
+             Zhang, Yian and Narayanan, Deepak and Wu, Yuhuai and
+             Kumar, Ananya and others},
+  title   = {Holistic evaluation of language models},
+  journal = {Transactions on Machine Learning Research},
+  year    = {2023},
+  eprint  = {2211.09110},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@inproceedings{card2020little,
+  author    = {Card, Dallas and Henderson, Peter and Khandelwal, Urvashi and
+               Jia, Robin and Mahowald, Kyle and Jurafsky, Dan},
+  title     = {With little power comes great responsibility},
+  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural
+               Language Processing (EMNLP)},
+  pages     = {9263--9274},
+  year      = {2020}
+}
+
+@inproceedings{dror2018hitchhiker,
+  author    = {Dror, Rotem and Baumer, Gili and Shlomov, Segev and
+               Reichart, Roi},
+  title     = {The hitchhiker's guide to testing statistical significance in
+               natural language processing},
+  booktitle = {Proceedings of the 56th Annual Meeting of the Association for
+               Computational Linguistics (Volume 1: Long Papers)},
+  pages     = {1383--1392},
+  year      = {2018}
+}
+
+% ── The three externally served probe models ─────────────────────────────────
+
+@misc{gemma3_2025,
+  author       = {{Gemma Team, Google DeepMind}},
+  title        = {{Gemma 3} Technical Report},
+  year         = {2025},
+  eprint       = {2503.19786},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@misc{qwen25_2024,
+  author       = {{Qwen Team}},
+  title        = {{Qwen2.5} Technical Report},
+  year         = {2024},
+  eprint       = {2412.15115},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+@misc{smollm_2024,
+  author       = {Ben Allal, Loubna and Lozhkov, Anton and Bakouch, Elie},
+  title        = {{SmolLM} -- blazingly fast and remarkably powerful},
+  year         = {2024},
+  url          = {https://huggingface.co/blog/smollm},
+  note         = {Hugging Face release post of 2024-07-16, whose byline names
+                  these three authors and the \texttt{HuggingFaceTB/SmolLM-1.7B}
+                  base checkpoint}
+}
+
+
+% ── Discourse and narrative structure ────────────────────────────────────────
+
+@inproceedings{chambers2008narrative,
+  author    = {Chambers, Nathanael and Jurafsky, Dan},
+  title     = {Unsupervised learning of narrative event chains},
+  booktitle = {Proceedings of ACL-08: HLT},
+  pages     = {789--797},
+  address   = {Columbus, Ohio},
+  publisher = {Association for Computational Linguistics},
+  year      = {2008}
+}
+
+@inproceedings{carlson2001rst,
+  author    = {Carlson, Lynn and Marcu, Daniel and Okurowski, Mary Ellen},
+  title     = {Building a discourse-tagged corpus in the framework of
+               {R}hetorical {S}tructure {T}heory},
+  booktitle = {Proceedings of the Second SIGdial Workshop on Discourse and
+               Dialogue},
+  year      = {2001},
+  note      = {The annotation effort behind the RST Discourse Treebank,
+               LDC2002T07}
+}
+
+% ── Corpora and resources ─────────────────────────────────────────────────────
+
+@article{bender2018data,
+  author  = {Bender, Emily M. and Friedman, Batya},
+  title   = {Data statements for natural language processing: toward mitigating
+             system bias and enabling better science},
+  journal = {Transactions of the Association for Computational Linguistics},
+  volume  = {6},
+  pages   = {587--604},
+  year    = {2018},
+  doi     = {10.1162/tacl_a_00041}
+}
+
+@book{francis1979brown,
+  author    = {Francis, W. Nelson and Ku{\v{c}}era, Henry},
+  title     = {Brown Corpus Manual: Manual of Information to Accompany a Standard
+               Corpus of Present-Day Edited American English, for use with Digital
+               Computers},
+  publisher = {Department of Linguistics, Brown University},
+  address   = {Providence, RI},
+  year      = {1979},
+  note      = {Revised and augmented edition of the 1964 manual}
+}
+
+@book{bird2009nltk,
+  author    = {Bird, Steven and Klein, Ewan and Loper, Edward},
+  title     = {Natural Language Processing with Python},
+  publisher = {O'Reilly Media},
+  address   = {Sebastopol, CA},
+  year      = {2009},
+  isbn      = {9780596516499}
+}
+
+@misc{cmudict,
+  author       = {{Carnegie Mellon University Speech Group}},
+  title        = {The {CMU} {P}ronouncing {D}ictionary},
+  howpublished = {\url{https://github.com/cmusphinx/cmudict}},
+  note         = {BSD-2-Clause. The vendored artifact derived from this source is
+                  checksummed in docs/provenance/sources.md}
+}
+
+@article{marneffe2021universal,
+  author  = {de Marneffe, Marie-Catherine and Manning, Christopher D. and
+             Nivre, Joakim and Zeman, Daniel},
+  title   = {{Universal Dependencies}},
+  journal = {Computational Linguistics},
+  volume  = {47},
+  number  = {2},
+  pages   = {255--308},
+  year    = {2021},
+  doi     = {10.1162/coli_a_00402}
+}
+
+@inproceedings{nivre2020ud,
+  author    = {Nivre, Joakim and de Marneffe, Marie-Catherine and Ginter, Filip and
+               Haji{\v{c}}, Jan and Manning, Christopher D. and Pyysalo, Sampo and
+               Schuster, Sebastian and Tyers, Francis and Zeman, Daniel},
+  title     = {{Universal Dependencies} v2: {A}n {E}vergrowing {M}ultilingual
+               {T}reebank {C}ollection},
+  booktitle = {Proceedings of the 12th Language Resources and Evaluation Conference
+               (LREC)},
+  pages     = {4034--4043},
+  year      = {2020}
+}
+
+@inproceedings{silveira2014gold,
+  author    = {Silveira, Natalia and Dozat, Timothy and
+               de Marneffe, Marie-Catherine and Bowman, Samuel R. and Connor, Miriam and
+               Bauer, John and Manning, Christopher D.},
+  title     = {A {G}old {S}tandard {D}ependency {C}orpus for {E}nglish},
+  booktitle = {Proceedings of the 9th International Conference on Language Resources
+               and Evaluation (LREC)},
+  pages     = {2897--2904},
+  year      = {2014},
+  note      = {The English Web Treebank underlying UD English-EWT}
+}
+
+@article{marcus1993penn,
+  author  = {Marcus, Mitchell P. and Santorini, Beatrice and
+             Marcinkiewicz, Mary Ann},
+  title   = {Building a large annotated corpus of {E}nglish: {T}he {P}enn {T}reebank},
+  journal = {Computational Linguistics},
+  volume  = {19},
+  number  = {2},
+  pages   = {313--330},
+  year    = {1993}
+}
+
+@misc{jax2018,
+  author       = {Bradbury, James and Frostig, Roy and Hawkins, Peter and
+                  Johnson, Matthew James and Katariya, Yash and Leary, Chris and
+                  Maclaurin, Dougal and Necula, George and Paszke, Adam and
+                  VanderPlas, Jake and Wanderman-Milne, Skye and Zhang, Qiao},
+  title        = {{JAX}: composable transformations of {P}ython+{N}um{P}y programs},
+  howpublished = {\url{https://github.com/jax-ml/jax}},
+  year         = {2018}
+}
+
+@incollection{fillmore1968case,
+  author       = {Fillmore, Charles J.},
+  title        = {The Case for Case},
+  booktitle    = {Universals in Linguistic Theory},
+  editor       = {Bach, Emmon and Harms, Robert T.},
+  publisher    = {Holt, Rinehart and Winston},
+  address      = {New York},
+  year         = {1968},
+  pages        = {1--88}
+}
+
+@incollection{fillmore1977reopened,
+  author       = {Fillmore, Charles J.},
+  title        = {The Case for Case Reopened},
+  booktitle    = {Grammatical Relations},
+  series       = {Syntax and Semantics},
+  volume       = {8},
+  publisher    = {Brill},
+  year         = {1977},
+  pages        = {59--81},
+  doi          = {10.1163/9789004368866_005}
+}
+
+@book{lamb1966outline,
+  author       = {Lamb, Sydney M.},
+  title        = {Outline of Stratificational Grammar},
+  publisher    = {Georgetown University Press},
+  address      = {Washington, DC},
+  year         = {1966}
+}
+
+@article{lamb1966prolegomena,
+  author       = {Lamb, Sydney M.},
+  title        = {Prolegomena to a Theory of Phonology},
+  journal      = {Language},
+  volume       = {42},
+  year         = {1966},
+  pages        = {536--573},
+  doi          = {10.2307/411709}
+}
+
+@article{lamb1964sememic,
+  author       = {Lamb, Sydney M.},
+  title        = {The Sememic Approach to Structural Semantics},
+  journal      = {American Anthropologist},
+  volume       = {66},
+  number       = {3, Part 2},
+  year         = {1964},
+  pages        = {57--78},
+  doi          = {10.1525/aa.1964.66.3.02a00830}
+}
+
+@article{chomsky1956three,
+  author       = {Chomsky, Noam},
+  title        = {Three Models for the Description of Language},
+  journal      = {IRE Transactions on Information Theory},
+  volume       = {2},
+  number       = {3},
+  year         = {1956},
+  pages        = {113--124},
+  doi          = {10.1109/TIT.1956.1056813}
+}
+
+@article{reich1969finiteness,
+  author       = {Reich, Peter A.},
+  title        = {The Finiteness of Natural Language},
+  journal      = {Language},
+  volume       = {45},
+  number       = {4},
+  year         = {1969},
+  pages        = {831--843},
+  doi          = {10.2307/412337}
+}
+
+@techreport{reich1968symbols,
+  author       = {Reich, Peter A.},
+  title        = {Symbols, Relations, and Structural Complexity},
+  institution  = {Yale University, Linguistic Automation Project},
+  address      = {New Haven, CT},
+  month        = may,
+  year         = {1968},
+  note         = {ERIC ED025751}
+}
+
+@book{makkai1973readings,
+  editor       = {Makkai, Adam and Lockwood, David G.},
+  title        = {Readings in Stratificational Linguistics},
+  publisher    = {University of Alabama Press},
+  address      = {University, Alabama},
+  year         = {1973}
+}
+
+@book{lockwood1972introduction,
+  author       = {Lockwood, David G.},
+  title        = {Introduction to Stratificational Linguistics},
+  publisher    = {Harcourt Brace Jovanovich},
+  address      = {New York},
+  year         = {1972}
+}
+
+@article{durkalski2003clustered,
+  author  = {Durkalski, Valerie L. and Palesch, Yuko Y. and Lipsitz, Stuart R.
+             and Rust, Philip F.},
+  title   = {Analysis of clustered matched-pair data},
+  journal = {Statistics in Medicine},
+  volume  = {22},
+  number  = {15},
+  pages   = {2417--2428},
+  year    = {2003},
+  doi     = {10.1002/sim.1438}
+}
+
+@article{gonen2004sample,
+  author  = {G{\"o}nen, Mithat},
+  title   = {Sample size and power for {M}c{N}emar's test with clustered data},
+  journal = {Statistics in Medicine},
+  volume  = {23},
+  number  = {14},
+  pages   = {2283--2294},
+  year    = {2004},
+  doi     = {10.1002/sim.1768}
+}
+
+@article{miller1955note,
+  author  = {Miller, George A.},
+  title   = {Note on the bias of information estimates},
+  journal = {Information Theory in Psychology: Problems and Methods},
+  pages   = {95--100},
+  year    = {1955}
+}
+
+@article{paninski2003estimation,
+  author  = {Paninski, Liam},
+  title   = {Estimation of entropy and mutual information},
+  journal = {Neural Computation},
+  volume  = {15},
+  number  = {6},
+  pages   = {1191--1253},
+  year    = {2003},
+  doi     = {10.1162/089976603321780272}
+}
+
+@book{blake2001case,
+  author    = {Blake, Barry J.},
+  title     = {Case},
+  edition   = {2},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  series    = {Cambridge Textbooks in Linguistics},
+  year      = {2001},
+  doi       = {10.1017/CBO9781139164894}
+}
+
+% ── Formal verification and software-testing methodology ──────────────────────
+
+@inproceedings{demoura2021lean,
+  author    = {de Moura, Leonardo and Ullrich, Sebastian},
+  title     = {The {L}ean 4 theorem prover and programming language},
+  booktitle = {Automated Deduction -- {CADE} 28},
+  series    = {Lecture Notes in Computer Science},
+  pages     = {625--635},
+  publisher = {Springer International Publishing},
+  address   = {Cham},
+  year      = {2021},
+  doi       = {10.1007/978-3-030-79876-5_37}
+}
+
+@article{barr2015oracle,
+  author  = {Barr, Earl T. and Harman, Mark and McMinn, Phil and Shahbaz,
+             Muzammil and Yoo, Shin},
+  title   = {The oracle problem in software testing: a survey},
+  journal = {IEEE Transactions on Software Engineering},
+  volume  = {41},
+  number  = {5},
+  pages   = {507--525},
+  year    = {2015},
+  doi     = {10.1109/TSE.2014.2372785}
+}
+
+% Verified against the corpus maintainers' citation at UD English-GUM revision
+% b58e74bc22d17220c9198864c253a50a897bf27f, README.md References section.
+@article{zeldes2017gum,
+  author = {Amir Zeldes},
+  title = {The {GUM} Corpus: Creating Multilayer Resources in the Classroom},
+  journal = {Language Resources and Evaluation},
+  year = {2017},
+  volume = {51},
+  number = {3},
+  pages = {581--612},
+  doi = {10.1007/s10579-016-9343-x}
+}
+
+% Verified primary records for the prospective cognitive/biometric agenda.
+% Hale: ACL Anthology N01-1021; Levy: author's hosted publisher PDF.
+@inproceedings{hale2001probabilistic,
+  author = {Hale, John},
+  title = {A Probabilistic {Earley} Parser as a Psycholinguistic Model},
+  booktitle = {Second Meeting of the North American Chapter of the Association for Computational Linguistics},
+  year = {2001},
+  url = {https://aclanthology.org/N01-1021/}
+}
+
+@article{levy2008expectation,
+  author = {Levy, Roger},
+  title = {Expectation-based syntactic comprehension},
+  journal = {Cognition},
+  year = {2008},
+  volume = {106},
+  number = {3},
+  pages = {1126--1177},
+  doi = {10.1016/j.cognition.2007.05.006}
+}
+
+% OUP's copyright page states first publication 2006; the online listing
+% is dated 2005-12-22. Year follows the printed edition, not the online date.
+@book{goldberg2006constructions,
+  author = {Goldberg, Adele E.},
+  title = {Constructions at Work: The Nature of Generalization in Language},
+  publisher = {Oxford University Press},
+  year = {2006},
+  doi = {10.1093/acprof:oso/9780199268511.001.0001}
+}
+
+% Journal of Cognition's primary record identifies article 16; joc.18 is
+% the DOI suffix, not the article number.
+@article{mathot2018pupillometry,
+  author = {Math{\^o}t, Sebastiaan},
+  title = {Pupillometry: Psychology, Physiology, and Function},
+  journal = {Journal of Cognition},
+  year = {2018},
+  volume = {1},
+  number = {1},
+  pages = {16},
+  doi = {10.5334/joc.18}
+}
+
+% Metadata checked against the author manuscript in PMC4052444.
+@article{kutas2011n400,
+  author = {Kutas, Marta and Federmeier, Kara D.},
+  title = {Thirty years and counting: Finding meaning in the {N400} component of the event-related brain potential ({ERP})},
+  journal = {Annual Review of Psychology},
+  year = {2011},
+  volume = {62},
+  pages = {621--647},
+  doi = {10.1146/annurev.psych.093008.131123}
+}

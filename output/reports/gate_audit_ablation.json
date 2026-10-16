@@ -1,0 +1,33 @@
+[
+  {
+    "gate_id": "stage5_clause_case_only",
+    "stage": "5 clause, retained case-only ABLATION (non-passing; oracle gain unresolved)",
+    "baseline": 4.374119843391411,
+    "baseline_name": "type-free case bigram (the bar itself)",
+    "model": 4.385829214885965,
+    "ceiling": 4.38189676332013,
+    "ceiling_name": "type ORACLE (true type given)",
+    "ceiling_type": "privileged_oracle",
+    "threshold": 4.374119843391411,
+    "verdict": "ABOVE_REFERENCE",
+    "outcome": "FAIL",
+    "baseline_relative": true,
+    "eval_positions": 1072,
+    "finding_status": "nonpassing_oracle_gain_unresolved",
+    "oracle_gain": {
+      "n_sentences": 178,
+      "n_documents": 53,
+      "n_positions": 1072,
+      "mean_nats_per_sentence": -0.010698082527128481,
+      "sentence_ci_low": -0.03423294926407712,
+      "sentence_ci_high": 0.008941298159023803,
+      "pooled_nats_per_position": -0.0017763607181239456,
+      "position_ci_low": -0.006208525380415159,
+      "position_ci_high": 0.001416642927718376,
+      "confidence": 0.99,
+      "resamples": 10000,
+      "seed": 20260804,
+      "resampling_unit": "document"
+    }
+  }
+]
