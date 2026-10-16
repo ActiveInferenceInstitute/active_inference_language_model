@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AILM — Level Stack Inspector</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <header>
+        <div class="title-group">
+            <h1>AILM Level Stack Inspector <span class="badge">Local model inspection</span></h1>
+            <p>Input analysis across Levels 1–6; generated replies use the separate L3→L1g policy path only (STT → pymdp → TTS)</p>
+        </div>
+        <div class="header-actions">
+            <button id="talkback-btn" class="btn-primary btn-go" onclick="speakTopDownContinuation()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Talk Back (Speak Generated Next Words)
+            </button>
+            <button id="speak-btn" class="btn-primary btn-neutral" onclick="speakCurrentSentence()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.08"/></svg>
+                Echo Input
+            </button>
+            <button class="btn-primary btn-accent" onclick="speakFullUtterance()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                Speak Full Utterance
+            </button>
+        </div>
+    </header>
+
+    <nav class="dashboard-views" aria-label="Dashboard views">
+        <button id="inspector-view-button" class="btn-primary" aria-pressed="true"
+                aria-controls="inspector-view" onclick="showDashboardView('inspector')">Analysis &amp; chat</button>
+        <button id="explorer-view-button" class="btn-primary" aria-pressed="false"
+                aria-controls="explorer-view" onclick="showDashboardView('explorer')">Matrix explorer</button>
+    </nav>
+    <main id="inspector-view">
+    <div class="controls-card">
+        <div class="input-row">
+            <button id="mic-btn" class="btn-mic" onclick="toggleSTT()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                Voice Input (STT)
+            </button>
+            <input type="text" id="sentence-input" aria-label="Sentence to analyze"
+                   value="The quick brown fox jumps over the lazy dog." placeholder="Type or speak a sentence...">
+            <button onclick="runInference()" class="btn-primary">Infer Level Stack</button>
+        </div>
+
+        <!-- Bounds on these controls are not written here. `js/config.js`
+             applies them from GET /api/config at load, so the ceiling the
+             server enforces and the ceiling the input allows are one value. -->
+        <div class="input-row control-row">
+            <label class="control-label">
+                Manual L6 phase
+                <select id="narrative-phase-input" class="control-field" onchange="runInference()">
+                    <option value="0">opening</option>
+                    <option value="1">middle</option>
+                    <option value="2">closing</option>
+                </select>
+            </label>
+            <label class="control-label">
+                L6&#8594;L5 channel weight α
+                <input type="range" id="narrative-alpha-input" class="control-slider" step="0.05"
+                       oninput="document.getElementById('alpha-readout').textContent = (+this.value).toFixed(2)"
+                       onchange="runInference()">
+                <span id="alpha-readout" class="control-readout">0.50</span>
+            </label>
+            <label class="control-label">
+                Reply length (words)
+                <input type="number" id="rollout-len-input" class="control-field control-number" step="1"
+                       onchange="runInference()">
+            </label>
+            <span id="status-line" class="status-line" role="status" aria-live="polite"></span>
+        </div>
+
+        <div class="timeline-section">
+            <div class="slider-header">
+                <label id="time-slider-label" for="time-slider">Temporal Trajectory Slider (t = 0 … T)</label>
+                <span id="slider-step-label" class="slider-step-label" role="status"
+                      aria-live="polite" aria-atomic="true">Step 0 / 0 (' ')</span>
+            </div>
+            <div class="slider-container">
+                <input type="range" id="time-slider" min="0" max="0" value="0"
+                       aria-labelledby="time-slider-label slider-step-label"
+                       oninput="onSliderChange(this.value)">
+            </div>
+            <div class="char-tracker" id="char-tracker"></div>
+        </div>
+    </div>
+
+
+    <!-- Bidirectional chat: speak or type in, read or hear back -->
+    <div class="chat-card">
+        <div class="chat-head">
+            <h3>Bidirectional Chat</h3>
+            <span class="chat-endpoint">
+                POST /api/chat &middot; <span id="chat-turn-count">0</span> turns
+            </span>
+            <div class="chat-head-actions">
+                <span id="speaking-indicator" class="speaking-indicator" role="status"
+                      aria-live="polite" aria-label="Speech status: idle"></span>
+                <button id="stop-speaking-btn" class="btn-primary btn-small btn-stop" disabled
+                        onclick="stopSpeaking('Speech stopped.')">Stop speaking</button>
+                <label class="chat-toggle">
+                    <input type="checkbox" id="chat-speak-replies" checked>
+                    Speak replies
+                </label>
+                <button class="btn-primary btn-small btn-neutral" onclick="toggleChatSTT()" id="chat-mic-btn">Speak</button>
+                <button class="btn-primary btn-small btn-neutral" onclick="resetChat()">Reset</button>
+            </div>
+        </div>
+
+        <p class="chat-disclaimer">
+            Chat derives its document-position phase from the turn number; the Manual L6 phase
+            selector applies to Infer Level Stack.
+            Only the L3→L1g policy rollout produces the reply: Level 3's lexicon preference
+            acts against Level 1g's letter habit and resumes from your text. L2, L4, L5, and
+            L6 analyze your input for inspection; their posteriors do not feed the reply, so
+            this dashboard is not an end-to-end L1–L6 generation cascade. This model has no semantics, no
+            retrieval, and nothing that rewards answering a question &mdash; it has a few
+            thousand free parameters and emits English letter statistics shaped by a
+            2,000-word lexicon. Expect word salad. What is worth watching is the line under
+            each reply: that is what the analysis panels inferred separately about
+            <em>your</em> turn, and every panel below updates to that turn's analysis.
+        </p>
+
+        <div id="chat-log" role="log" aria-live="polite" aria-relevant="additions text"
+             aria-label="Conversation transcript"><div class="chat-empty">No turns yet. Say something, or type below.</div></div>
+
+        <div class="chat-input-row">
+            <input type="text" id="chat-input" aria-label="Chat message"
+                   placeholder="Type a message and press Enter..."
+                   onkeydown="if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendChat(); }">
+            <button class="btn-primary" onclick="sendChat()" id="chat-send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- One rollout banner. There were two, identically titled, both fed the
+         same continuation from both render paths: a reader saw the same
+         sentence twice under the same heading and had to work out which was
+         authoritative. Neither was; they were copies. -->
+    <div class="rollout-banner" id="continuation-banner" role="status"
+         aria-live="polite" aria-atomic="true">
+        <div class="rollout-body">
+            <strong class="rollout-title">Generated Reply (L3 &rarr; L1g EFE Policy Selection Only):</strong>
+            <span class="rollout-line">
+                <span id="input-echo" class="rollout-echo-input">The quick brown fox jumps over </span>
+                <span id="generated-echo" class="rollout-echo-generated">...</span>
+            </span>
+        </div>
+        <button class="btn-primary btn-go btn-play" onclick="speakTopDownContinuation()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Play Next Words
+        </button>
+    </div>
+
+    <div class="grid-levels">
+        <!-- Level 1: Letters -->
+        <div class="level-card">
+            <div class="level-header">
+                <h3>Level 1: Letter Dynamics</h3>
+                <span class="level-tag">30 Symbols | B Matrix Transition</span>
+            </div>
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Observed Character</div>
+                    <div class="stat-val tint-blue" id="l1-obs">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Predictive Entropy</div>
+                    <div class="stat-val" id="l1-entropy">- nats</div>
+                </div>
+            </div>
+            <div>
+                <div class="chart-label">
+                    Active Column P(next ∣ obs) (Top-5 Transition Probabilities)
+                </div>
+                <div class="bar-chart" id="l1-top-predictions" role="list"
+                     aria-label="Level 1 next-symbol probabilities"></div>
+            </div>
+        </div>
+
+        <!-- Level 2: Phonemes & position-aligned letter-to-phone -->
+        <div class="level-card">
+            <div class="level-header">
+                <h3>Level 2: Phonemes & Position-Aligned Letter-to-Phone Coupling</h3>
+                <span class="level-tag">39 Canonical ARPAbet</span>
+            </div>
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Active Word Token</div>
+                    <div class="stat-val tint-green" id="l2-word">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Letter-to-Phone Inferred Phonemes</div>
+                    <div class="stat-val tint-cyan stat-val-small" id="l2-decoded-phones">-</div>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Gold CMUdict Phonemes</div>
+                <div class="stat-val tint-muted stat-val-small" id="l2-gold-phones">-</div>
+            </div>
+            <div id="l2-phone-step-container">
+                <div class="chart-label">Active Character Letter-to-Phone Posterior q(phone ∣ char)</div>
+                <div class="bar-chart" id="l2-phone-step-bars" role="list"
+                     aria-label="Level 2 phoneme posterior probabilities"></div>
+            </div>
+        </div>
+
+        <!-- Level 3: Words as Paths -->
+        <div class="level-card">
+            <div class="level-header">
+                <h3>Level 3: Word Lexicon & Trie Path</h3>
+                <span class="level-tag">2,000-Word Lexicon | D[0] Unigram</span>
+            </div>
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Lexicon Status</div>
+                    <div class="stat-val" id="l3-in-vocab">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Token Position</div>
+                    <div class="stat-val" id="l3-word-idx">-</div>
+                </div>
+            </div>
+            <div>
+                <div class="chart-label">Trie-Node Support Narrowing (Matching Lexicon Words)</div>
+                <div class="word-chips" id="l3-trie-candidates"></div>
+            </div>
+        </div>
+
+        <!-- Level 4: Case Roles -->
+        <div class="level-card">
+            <div class="level-header">
+                <h3>Level 4: Case</h3>
+                <span class="level-tag">Sanskrit 8-Case Ontology</span>
+            </div>
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Observed UPOS</div>
+                    <div class="stat-val tint-orange" id="l4-upos">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Top Inferred Case Role</div>
+                    <div class="stat-val tint-purple" id="l4-top-case">-</div>
+                </div>
+            </div>
+            <div>
+                <div class="chart-label">Case Posterior Distribution q(caseₜ)</div>
+                <div class="bar-chart" id="l4-case-bars" role="list"
+                     aria-label="Level 4 case posterior probabilities"></div>
+            </div>
+        </div>
+
+        <!-- Level 5: Clause Level. The tag names the model, not a score: this
+             panel runs on INFERRED case roles, and the probe's AUC is measured
+             on gold ones. Printing that number here would attribute a harder
+             setting's result to an easier claim. -->
+        <div class="level-card">
+            <div class="level-header">
+                <h3>Level 5: Clause Dynamics</h3>
+                <span class="level-tag">10-Symbol Widened Model (8 cases + VERB + AUX)</span>
+            </div>
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <div class="stat-label">L5 Clause Type (Widened)</div>
+                    <div class="stat-val tint-sky" id="l5-clause-type">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Widened Surface Sequence</div>
+                    <div class="stat-val tint-cyan stat-val-small" id="l5-widened-obs">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">L6 Document-Position Tercile</div>
+                    <div class="stat-val tint-lilac" id="l6-narrative-phase">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Document-Position Type Bias P(Type|Phase)</div>
+                    <div class="stat-val tint-orange stat-val-small" id="l6-phase-bias">-</div>
+                </div>
+            </div>
+            <div>
+                <div class="chart-label">Sentence Type Posterior P(type ∣ cases₁:ₜ)</div>
+                <div class="bar-chart" id="l5-clause-bars" role="list"
+                     aria-label="Level 5 clause posterior probabilities"></div>
+            </div>
+            <div>
+                <div class="chart-label">L6 &#8594; L5 channel: interrogative mass under D′(α) per phase</div>
+                <div class="bar-chart" id="l6-channel-sweep" role="list"
+                     aria-label="Level 6 to Level 5 channel probabilities"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Matrix Inspection Panel -->
+    <div class="matrix-inspect-container">
+        <div class="matrix-inspect-header">
+            <h3>Structural Generative Matrices Inspection</h3>
+            <span class="matrix-provenance">Static Pymdp Parameters (Brown / CMUdict / UD EWT)</span>
+        </div>
+        <div class="matrix-grid-view">
+            <div class="matrix-pane">
+                <h4>L1 Bigram Transition Bₗ₁ (30×30)</h4>
+                <canvas id="matrix-l1-canvas" class="matrix-heatmap" role="img"
+                        aria-label="Level 1 letter-transition matrix heatmap">
+                    Level 1 letter-transition probability matrix heatmap, with rows as next symbols and columns as current symbols.
+                </canvas>
+            </div>
+            <div class="matrix-pane">
+                <h4>L2 Letter-to-Phone Emission A(G2P) (30×39)</h4>
+                <canvas id="matrix-g2p-canvas" class="matrix-heatmap" role="img"
+                        aria-label="Level 2 letter-to-phone emission matrix heatmap">
+                    Level 2 letter-to-phone emission probability matrix heatmap, with letter observations by phoneme states.
+                </canvas>
+            </div>
+            <div class="matrix-pane">
+                <h4>L4 Case Transition B(case) (8×8)</h4>
+                <canvas id="matrix-case-canvas" class="matrix-heatmap" role="img"
+                        aria-label="Level 4 case-transition matrix heatmap">
+                    Level 4 case-transition probability matrix heatmap, with next case roles by current case roles.
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+    </main>
+    <section id="explorer-view" class="explorer-view" aria-label="Exported matrix explorer" hidden>
+        <h2>Explore the exported matrices</h2>
+        <p>The browser runs the letter filter, generation policy and case partition over the exported model.
+           These are component demonstrations; chat remains in Analysis &amp; chat.</p>
+        <p id="explorer-status" class="explorer-status" role="status" aria-live="polite"></p>
+        <button class="btn-primary" onclick="showDashboardView('explorer', true)">Reload explorer</button>
+        <iframe id="explorer-frame" class="explorer-frame" title="AILM exported matrix explorer"
+                data-src="/explorer/" hidden></iframe>
+    </section>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

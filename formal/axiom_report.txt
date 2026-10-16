@@ -1,0 +1,157 @@
+'AILM.sum_le_length_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.bonferroni_union_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.bonferroni_threshold_scales' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.bonferroni_union_bound_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamily_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamily_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamily_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamily_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamily_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamily_corrected_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamily_bounded_by_corrected_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamily_bound_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.scaleHypothesisIsLoadBearing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.zeroFamilyThresholdCollapses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.sum_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.normalize_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.normalize_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.normalize_isDistribution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.evWitness_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.evWitness_not_distribution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.evWitness_sum_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.evWitness_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.evWitness_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.evWitness_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.zeroMassCounterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.smul_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.vadd_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.predict_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.smul_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.zeroVec_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.vadd_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.predict_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.smul_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.zeroVec_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.vadd_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.predict_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.predict_isDistribution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.transWitness_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.transWitness_width' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.transWitness_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.priorWitness_isDistribution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.predictWitness_mixes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.predictWitness_isDistribution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.raggedColumnLosesMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.raggedTransition_meets_the_other_hypotheses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.leakyColumnLosesMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.leakyTransition_meets_the_other_hypotheses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.missingColumnLosesMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.shortTransition_meets_the_other_hypotheses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.instDecidablePasses' does not depend on any axioms
+'AILM.instDecidableSatisfies' does not depend on any axioms
+'AILM.passes_irrefl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.satisfies_of_passes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.passes_iff_satisfies_and_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.classify_some_cases' does not depend on any axioms
+'AILM.classify_none_cases' does not depend on any axioms
+'AILM.bracketedFor_isBracketed' depends on axioms: [propext]
+'AILM.beyondFor_not_isBracketed' depends on axioms: [propext]
+'AILM.bracketedFor_ne_beyondFor' does not depend on any axioms
+'AILM.beyondFor_eq_unreachable_iff' does not depend on any axioms
+'AILM.beyondFor_eq_aboveReference_iff' does not depend on any axioms
+'AILM.bracketed_iff' does not depend on any axioms
+'AILM.vacuous_iff' does not depend on any axioms
+'AILM.no_co_fire' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.degenerate_no_gate' depends on axioms: [propext]
+'AILM.unreachable_of_bound_fails' does not depend on any axioms
+'AILM.above_reference_of_reference_fails' does not depend on any axioms
+'AILM.bracketed_at_baseline_bar_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.unreachable_requires_bound' does not depend on any axioms
+'AILM.above_reference_requires_exceedable' does not depend on any axioms
+'AILM.no_co_fire_hypothesis_inhabited' does not depend on any axioms
+'AILM.unreachable_hypotheses_inhabited' does not depend on any axioms
+'AILM.inv_antitone_of_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.div_antitone_in_denominator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.bonferroni_le_holm_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.bonferroni_le_holm_threshold_at_every_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.holm_threshold_monotone_in_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.holm_rank_one_is_bonferroni' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.stepDownCount_mono_in_bar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.countBelow_eq_zero_of_all_at_least' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.sorted_countBelow_eq_stepDown_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.holm_rejects_every_bonferroni_rejection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamilySorted_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamilySorted_ascending' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamilySorted_bars' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamilySorted_fixed_bar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamilySorted_holm_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamilySorted_bonferroni_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamilySorted_containment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamilySorted_holm_rejects_strictly_more' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witnessFamilySorted_bars_dominate_the_fixed_bar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.sortednessIsLoadBearing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.holm_rank_one_hypothesis_is_load_bearing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.holm_rank_positivity_is_load_bearing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.inversionPositivityIsLoadBearing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.lexicalSweep_interiorOptimum' depends on axioms: [propext, Quot.sound]
+'AILM.lexicalSweep_peak_is_recorded_best' depends on axioms: [propext, Quot.sound]
+'AILM.lexicalSweep_anchor_is_recorded' depends on axioms: [propext, Quot.sound]
+'AILM.lexical_peak_index_selects_the_recorded_best_alpha' depends on axioms: [propext, Quot.sound]
+'AILM.lexical_interior_flag_agrees_with_the_sweep' depends on axioms: [propext, Quot.sound]
+'AILM.lexicalSweep_not_noInteriorGain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.lexicalSweep_not_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.couplingRecorded_declines_across_recorded_points' depends on axioms: [propext, Quot.sound]
+'AILM.couplingRecorded_noInteriorGain' depends on axioms: [propext, Quot.sound]
+'AILM.couplingRecorded_not_interiorOptimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.couplingRecorded_entries_are_the_recorded_scalars' depends on axioms: [propext, Quot.sound]
+'AILM.couplingRecorded_covers_part_of_the_grid' does not depend on any axioms
+'AILM.couplingBestAlpha_is_between_the_recorded_endpoints' does not depend on any axioms
+'AILM.channel_anchors_agree_with_stage2' does not depend on any axioms
+'AILM.stage1_bracketed' does not depend on any axioms
+'AILM.stage2Phoneme_bracketed' does not depend on any axioms
+'AILM.stage2G2p_bracketed' does not depend on any axioms
+'AILM.stage3Word_bracketed' does not depend on any axioms
+'AILM.stage4Derived_bracketed' does not depend on any axioms
+'AILM.stage5Clause_above_reference' does not depend on any axioms
+'AILM.stage1_model_passes' does not depend on any axioms
+'AILM.stage2Phoneme_model_passes' does not depend on any axioms
+'AILM.stage2G2p_model_passes' does not depend on any axioms
+'AILM.stage3Word_model_passes' does not depend on any axioms
+'AILM.stage4Derived_model_passes' does not depend on any axioms
+'AILM.stage5Clause_model_fails' does not depend on any axioms
+'AILM.stage4Derived_declared_gate_above_reference' does not depend on any axioms
+'AILM.stage4Gold_declared_gate_vacuous' does not depend on any axioms
+'AILM.stage4Gold_is_degenerate' does not depend on any axioms
+'AILM.stage4Gold_no_threshold_is_sound' depends on axioms: [propext]
+'AILM.stage3Word_declared_gate_vacuous' does not depend on any axioms
+'AILM.stage1_ceiling_misses_declared_gate' does not depend on any axioms
+'AILM.stage1_declared_gate_unreachable_for_every_bounded_model' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AILM.stage1_shipped_model_is_bounded_by_the_ceiling' does not depend on any axioms
+'AILM.stage1_shipped_model_was_unreachable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.manufacturedAnchorWins_not_interior' depends on axioms: [propext, Quot.sound]
+'AILM.manufacturedAnchorWins_noInteriorGain' depends on axioms: [propext, Quot.sound]
+'AILM.lexicalSweepFromPeak_not_interior' depends on axioms: [propext, Quot.sound]
+'AILM.lexicalSweepFromPeak_noInteriorGain' depends on axioms: [propext, Quot.sound]
+'AILM.stage1_bar_at_ceiling_is_unreachable' does not depend on any axioms
+'AILM.stage1_loose_bar_is_vacuous' does not depend on any axioms
+'AILM.stage1_without_ceiling_is_unaudited' does not depend on any axioms
+'AILM.stage1_population_reaches_every_verdict' does not depend on any axioms
+'AILM.stage1_direction_is_load_bearing' does not depend on any axioms
+'AILM.stage1_comparator_kind_is_load_bearing' does not depend on any axioms
+'AILM.instDecidablePeakAt' depends on axioms: [propext, Quot.sound]
+'AILM.instDecidableInteriorOptimum' depends on axioms: [propext, Quot.sound]
+'AILM.instDecidableNoInteriorGain' depends on axioms: [propext, Quot.sound]
+'AILM.instDecidableMonotoneDecline' depends on axioms: [propext, Quot.sound]
+'AILM.monotone_decline_no_interior_gain' depends on axioms: [propext, Quot.sound]
+'AILM.interior_excludes_no_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.interior_excludes_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.interiorWitness_interior' depends on axioms: [propext, Quot.sound]
+'AILM.interiorWitness_not_no_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.interiorWitness_not_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.monotoneWitness_monotone' depends on axioms: [propext, Quot.sound]
+'AILM.monotoneWitness_no_gain' depends on axioms: [propext, Quot.sound]
+'AILM.monotoneWitness_not_interior' depends on axioms: [propext, Quot.sound]
+'AILM.noGainButNotMonotone_no_gain' depends on axioms: [propext, Quot.sound]
+'AILM.noGainButNotMonotone_not_monotone' depends on axioms: [propext, Quot.sound]

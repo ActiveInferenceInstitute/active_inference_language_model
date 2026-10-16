@@ -1,0 +1,188 @@
+{
+  "_schema": "ailm-reference-sources-v1",
+  "sources": {
+    "cerebrum": {
+      "zenodo_record": {
+        "concept_doi": "10.5281/zenodo.15170907",
+        "record_doi": "10.5281/zenodo.15231156",
+        "record_id": 15231156,
+        "title": "CEREBRUM: Case-Enabled Reasoning Engine with Bayesian Representations for Unified Modeling",
+        "version": "1.4",
+        "publication_date": "2025-04-16"
+      },
+      "deposited_file": {
+        "filename": "CEREBRUM_1-4_April-16-2025.pdf",
+        "size_bytes": 1327184,
+        "md5": "7b44c4f126b9acc2925196a667f68183",
+        "sha256": "105121d737fa0b288c26a67d456bfea12c36764364a3b57c9ffe6b6adee01451",
+        "pdf_pages": 146,
+        "download_url": "https://zenodo.org/api/records/15231156/files/CEREBRUM_1-4_April-16-2025.pdf/content"
+      },
+      "printed_identity": {
+        "title": "Case-Enabled Reasoning Engine with Bayesian Representations for Unified Modeling (CEREBRUM)",
+        "version": "1.2",
+        "date": "2025-04-12",
+        "physical_page": 1
+      },
+      "pdf_evidence": {
+        "core_function_table": {
+          "physical_page": 12,
+          "locator": "Table 1",
+          "genitive_role": "Model as source or possessor; outputs, products, and derived models originate from it"
+        },
+        "active_inference_figure": {
+          "physical_page": 21,
+          "locator": "Figure 13",
+          "caption": "Figure 13: Active Inference Integration Framework.",
+          "content_kind": "caption_only",
+          "provides_symbol_crosswalk": false
+        },
+        "novel_generative_case": {
+          "physical_pages": [
+            51,
+            52
+          ],
+          "locator": "Supplement 2.12",
+          "source_abbreviation": "GEN",
+          "distinct_from_core_genitive": true
+        },
+        "pomdp_tuple": {
+          "physical_page": 90,
+          "locator": "Supplement 8.1",
+          "symbols": [
+            "S",
+            "A",
+            "T",
+            "Ω",
+            "O",
+            "F",
+            "π"
+          ],
+          "meanings": {
+            "S": "hidden state space",
+            "A": "action space",
+            "T": "state transition dynamics",
+            "Ω": "observation space",
+            "O": "likelihood mapping from states to observations",
+            "F": "free-energy functional",
+            "π": "precision parameters"
+          }
+        },
+        "case_transition_free_energy": {
+          "physical_page": 93,
+          "locator": "Supplement 8.2.3",
+          "form": "F_trans = F_target + KL(q_target || q_source)",
+          "kl_scaled": false
+        },
+        "expected_free_energy_transition": {
+          "physical_page": 98,
+          "locator": "Supplement 8.8.3",
+          "form": "G_transition = G_base + gamma * KL(q_target || q_source)",
+          "kl_scaled": true,
+          "scale_symbol": "γ"
+        },
+        "core_case_formulations_locator": "Supplement 11",
+        "core_case_formulations": {
+          "NOM": {
+            "physical_page": 122,
+            "form": "likelihood term weighted by alpha_NOM",
+            "precision_relation": "alpha_NOM > 1",
+            "ailm_precision_relation": "alpha_NOM > 1"
+          },
+          "ACC": {
+            "physical_page": 123,
+            "form": "complexity term weighted by beta_ACC",
+            "precision_relation": "beta_ACC < 1",
+            "ailm_precision_relation": "beta_ACC < 1"
+          },
+          "GEN": {
+            "physical_page": 124,
+            "form": "joint latent state (s, r)",
+            "source_auxiliary_symbol": "r",
+            "ailm_auxiliary_symbol": "r",
+            "precision_relation": "pi_GEN(r) > pi_GEN(s)",
+            "ailm_precision_relation": "pi_GEN(r) > pi_GEN(s)"
+          },
+          "DAT": {
+            "physical_page": 125,
+            "form": "joint latent state (s, g)",
+            "source_auxiliary_symbol": "g",
+            "ailm_auxiliary_symbol": "g",
+            "precision_relation": "pi_DAT(g) approximately equals pi_DAT(s)",
+            "ailm_precision_relation": "pi_DAT(g) approximately equals pi_DAT(s)"
+          },
+          "INS": {
+            "physical_page": 126,
+            "form": "joint latent state (s, a)",
+            "source_auxiliary_symbol": "a",
+            "ailm_auxiliary_symbol": "a",
+            "precision_relation": "pi_INS(a) > pi_INS(s)",
+            "ailm_precision_relation": "pi_INS(a) > pi_INS(s)"
+          },
+          "LOC": {
+            "physical_pages": [
+              126,
+              127
+            ],
+            "form": "joint latent state (s, e)",
+            "source_auxiliary_symbol": "e",
+            "ailm_auxiliary_symbol": "e",
+            "precision_relation": "pi_LOC(e) > pi_LOC(s)",
+            "ailm_precision_relation": "pi_LOC(e) > pi_LOC(s)"
+          },
+          "ABL": {
+            "physical_pages": [
+              127,
+              128
+            ],
+            "form": "joint latent state (s, o)",
+            "source_auxiliary_symbol": "o",
+            "source_downstream_observation_symbol": "o_prime",
+            "ailm_auxiliary_symbol": "o_origin",
+            "precision_relation": "pi_ABL(o) > pi_ABL(s)",
+            "ailm_precision_relation": "pi_ABL(o_origin) > pi_ABL(s)"
+          },
+          "VOC": {
+            "physical_page": 128,
+            "form": "joint latent state (s, c)",
+            "source_auxiliary_symbol": "c",
+            "ailm_auxiliary_symbol": "c",
+            "precision_relation": "pi_VOC(c) > pi_VOC(s)",
+            "ailm_precision_relation": "pi_VOC(c) > pi_VOC(s)"
+          }
+        }
+      }
+    },
+    "compositional_case": {
+      "zenodo_record": {
+        "concept_doi": "10.5281/zenodo.19695259",
+        "record_doi": "10.5281/zenodo.19695260",
+        "record_id": 19695260,
+        "title": "Compositional Approaches to Linguistic Case for Cognitive Modeling",
+        "version": "v1",
+        "publication_date": "2026-04-23"
+      },
+      "deposited_file": {
+        "filename": "cognitive_case_diagrams_v1_DAF_04-23-2026.pdf",
+        "size_bytes": 13601721,
+        "md5": "8740f4b058d8ca2202c5fdccc9e4a5ce",
+        "sha256": "3767c3c3090994c67bf9bbf5ddf47d38142a3c76ed859d56d36a052c6c9e284f",
+        "pdf_pages": 113,
+        "download_url": "https://zenodo.org/api/records/19695260/files/cognitive_case_diagrams_v1_DAF_04-23-2026.pdf/content"
+      },
+      "printed_identity": {
+        "title": "Cognitive Diagrams: Reviewing Categorical Accounts of Linguistic Case",
+        "version": null,
+        "date": "2026-04-22",
+        "physical_page": 1
+      },
+      "optional_companion_repository": {
+        "url": "https://github.com/docxology/cognitive_case_diagrams",
+        "revision": "ce0811b7da5fb38a365fb2bf441d6a534ecd3e91",
+        "manuscript_title": "Cognitive Diagrams: Reviewing Categorical Accounts of Linguistic Case",
+        "manuscript_version": "2.3",
+        "manuscript_date": "2026-04-22"
+      }
+    }
+  }
+}

@@ -1,0 +1,1263 @@
+{
+ "correspondence": {
+  "a": "ER",
+  "b": "EH",
+  "c": "K",
+  "d": "UW",
+  "e": "B",
+  "f": "EH",
+  "g": "UH",
+  "h": "UH",
+  "i": "NG",
+  "j": "AE",
+  "k": "Z",
+  "l": "P",
+  "m": "M",
+  "n": "F",
+  "o": "R",
+  "p": "K",
+  "q": "NG",
+  "r": "AE",
+  "s": "Z",
+  "t": "B",
+  "u": "M",
+  "v": "R",
+  "w": "UW",
+  "x": "F",
+  "y": "ER",
+  "z": "P"
+ },
+ "provenance": {
+  "attempt_stride": 10000000,
+  "broken_map_seed": 20260913,
+  "chain_generation": "ailm.levels.synthetic.generate_sequence (one word per trajectory)",
+  "chain_version": "synthetic-chain-v1",
+  "corpus_seed": 20261300,
+  "correspondence_seed": 20260912,
+  "correspondence_table_digest": "e5c8931b6a7578f30e85fc9a6a3215b370f8f8422dd2bc1c0b4147629e99dcb6",
+  "correspondence_version": "aligned-g2p-correspondence-v1",
+  "decoder_policy": "shipped benchmark comparator path comparators._ailm_g2p_metrics -> _ailm_g2p_decode: position-wise filtering (posterior = emission row * prior, argmax, prior <- transition @ posterior), prior reset per word by build_g2p_start; not Viterbi, no backtrace",
+  "exposure_limitation": "generator ownership does not certify the absence of unknown pretraining exposure; the artifact is never called contamination-free (ERRATUM-S2)",
+  "generator_path": "scripts/generate_synthetic_aligned_g2p.py",
+  "held_out_seed": 20261540,
+  "letter_inventory_source": "ailm.levels.synthetic.SYNTHETIC_LETTERS (26 lowercase letters)",
+  "phone_inventory_source": "ailm.levels.phoneme.PHONES (claim:phoneme_count_39 canonical ARPAbet)",
+  "resample_attempts_cap": 64,
+  "smoothing_policy": "add-k Laplace: emission over the full 30x39 grid with resolved_emission_smoothing (k=1 default), transition and start with smoothing (k=1 default); unseen letter-phone pairs carry exactly the pseudocount, never zero",
+  "test_resamples": 5,
+  "test_words": 60,
+  "test_words_digest": "cfcd14063574a15ecb247d6f5d0bc708dfb1739682791dabaec1fbcfc68566b1",
+  "train_resamples": 10,
+  "train_words": 240,
+  "train_words_digest": "e36ce1dde17636a41aee7291c42edf01fb70ba2edcae71babc036e00ce7c655a",
+  "unseen_policy": "no unseen-symbol case exists on the stipulated inventory: every letter is a row of the emission grid and every gold phone is a column, both pseudocount-backed; the uniform floor is the analytic 1/39 per position",
+  "word_length_L": 6
+ },
+ "schema": "ailm-synthetic-aligned-g2p-v1",
+ "splits": {
+  "test": [
+   [
+    "depete",
+    "UW B K B B B"
+   ],
+   [
+    "pohemi",
+    "K R UH B M NG"
+   ],
+   [
+    "juyuka",
+    "AE M ER M Z ER"
+   ],
+   [
+    "linejo",
+    "P NG F B AE R"
+   ],
+   [
+    "zejopo",
+    "P B AE R K R"
+   ],
+   [
+    "daguxi",
+    "UW ER UH M F NG"
+   ],
+   [
+    "dinadu",
+    "UW NG F ER UW M"
+   ],
+   [
+    "qaduxa",
+    "NG ER UW M F ER"
+   ],
+   [
+    "doleqj",
+    "UW R P B NG AE"
+   ],
+   [
+    "danada",
+    "UW ER F ER UW ER"
+   ],
+   [
+    "ditada",
+    "UW NG B ER UW ER"
+   ],
+   [
+    "duxosa",
+    "UW M F R Z ER"
+   ],
+   [
+    "dabemp",
+    "UW ER EH B M K"
+   ],
+   [
+    "cadada",
+    "K ER UW ER UW ER"
+   ],
+   [
+    "vaxinq",
+    "R ER F NG F NG"
+   ],
+   [
+    "nejovo",
+    "F B AE R R R"
+   ],
+   [
+    "huxine",
+    "UH M F NG F B"
+   ],
+   [
+    "dadaku",
+    "UW ER UW ER Z M"
+   ],
+   [
+    "rjinej",
+    "AE AE NG F B AE"
+   ],
+   [
+    "muteja",
+    "M M B B AE ER"
+   ],
+   [
+    "nuxote",
+    "F M F R B B"
+   ],
+   [
+    "dfnexo",
+    "UW EH F B F R"
+   ],
+   [
+    "gadfii",
+    "UH ER UW EH NG NG"
+   ],
+   [
+    "ifinez",
+    "NG EH NG F B P"
+   ],
+   [
+    "dosuwa",
+    "UW R Z M UW ER"
+   ],
+   [
+    "dzuxgz",
+    "UW P M F UH P"
+   ],
+   [
+    "jeyugu",
+    "AE B ER M UH M"
+   ],
+   [
+    "joweco",
+    "AE R UW B K R"
+   ],
+   [
+    "dasuvo",
+    "UW ER Z M R R"
+   ],
+   [
+    "kosuma",
+    "Z R Z M M ER"
+   ],
+   [
+    "wainej",
+    "UW ER NG F B AE"
+   ],
+   [
+    "dzejos",
+    "UW P B AE R Z"
+   ],
+   [
+    "duxixi",
+    "UW M F NG F NG"
+   ],
+   [
+    "xosdam",
+    "F R Z UW ER M"
+   ],
+   [
+    "dafiqq",
+    "UW ER EH NG NG NG"
+   ],
+   [
+    "wadacb",
+    "UW ER UW ER K EH"
+   ],
+   [
+    "wadyzd",
+    "UW ER UW ER P UW"
+   ],
+   [
+    "goheme",
+    "UH R UH B M B"
+   ],
+   [
+    "mecosu",
+    "M B K R Z M"
+   ],
+   [
+    "guxine",
+    "UH M F NG F B"
+   ],
+   [
+    "dafmis",
+    "UW ER EH M NG Z"
+   ],
+   [
+    "daxina",
+    "UW ER F NG F ER"
+   ],
+   [
+    "diadad",
+    "UW NG ER UW ER UW"
+   ],
+   [
+    "fkadyo",
+    "EH Z ER UW ER R"
+   ],
+   [
+    "chospo",
+    "K UH R Z K R"
+   ],
+   [
+    "dqadad",
+    "UW NG ER UW ER UW"
+   ],
+   [
+    "riwehs",
+    "AE NG UW B UH Z"
+   ],
+   [
+    "slisur",
+    "Z P NG Z M AE"
+   ],
+   [
+    "davori",
+    "UW ER R R AE NG"
+   ],
+   [
+    "posuxx",
+    "K R Z M F F"
+   ],
+   [
+    "qabine",
+    "NG ER EH NG F B"
+   ],
+   [
+    "dinejm",
+    "UW NG F B AE M"
+   ],
+   [
+    "didaqa",
+    "UW NG UW ER NG ER"
+   ],
+   [
+    "loszos",
+    "P R Z P R Z"
+   ],
+   [
+    "dejoxa",
+    "UW B AE R F ER"
+   ],
+   [
+    "waposi",
+    "UW ER K R Z NG"
+   ],
+   [
+    "rixuxi",
+    "AE NG F M F NG"
+   ],
+   [
+    "rzoubi",
+    "AE P R M EH NG"
+   ],
+   [
+    "bepinf",
+    "EH B K NG F EH"
+   ],
+   [
+    "isubej",
+    "NG Z M EH B AE"
+   ]
+  ],
+  "train": [
+   [
+    "dineve",
+    "UW NG F B R B"
+   ],
+   [
+    "dadada",
+    "UW ER UW ER UW ER"
+   ],
+   [
+    "dlilin",
+    "UW P NG P NG F"
+   ],
+   [
+    "dagtej",
+    "UW ER UH B B AE"
+   ],
+   [
+    "daliwu",
+    "UW ER P NG UW M"
+   ],
+   [
+    "dacosu",
+    "UW ER K R Z M"
+   ],
+   [
+    "dadigu",
+    "UW ER UW NG UH M"
+   ],
+   [
+    "binejo",
+    "EH NG F B AE R"
+   ],
+   [
+    "lzeqed",
+    "P P B NG B UW"
+   ],
+   [
+    "wteriz",
+    "UW B B AE NG P"
+   ],
+   [
+    "dadejo",
+    "UW ER UW B AE R"
+   ],
+   [
+    "bepoge",
+    "EH B K R UH B"
+   ],
+   [
+    "qosute",
+    "NG R Z M B B"
+   ],
+   [
+    "doejov",
+    "UW R B AE R R"
+   ],
+   [
+    "hoxadt",
+    "UH R F ER UW B"
+   ],
+   [
+    "tejejo",
+    "B B AE B AE R"
+   ],
+   [
+    "dpaxka",
+    "UW K ER F Z ER"
+   ],
+   [
+    "mujori",
+    "M M AE R AE NG"
+   ],
+   [
+    "dadadx",
+    "UW ER UW ER UW F"
+   ],
+   [
+    "rinejo",
+    "AE NG F B AE R"
+   ],
+   [
+    "zejojo",
+    "P B AE R AE R"
+   ],
+   [
+    "qadade",
+    "NG ER UW ER UW B"
+   ],
+   [
+    "dazexi",
+    "UW ER P B F NG"
+   ],
+   [
+    "dtfado",
+    "UW B EH ER UW R"
+   ],
+   [
+    "neqada",
+    "F B NG ER UW ER"
+   ],
+   [
+    "xepuxg",
+    "F B K M F UH"
+   ],
+   [
+    "degemu",
+    "UW B UH B M M"
+   ],
+   [
+    "zrines",
+    "P AE NG F B Z"
+   ],
+   [
+    "xiqoka",
+    "F NG NG R Z ER"
+   ],
+   [
+    "juxizf",
+    "AE M F NG P EH"
+   ],
+   [
+    "dalgud",
+    "UW ER P UH M UW"
+   ],
+   [
+    "kyxiju",
+    "Z ER F NG AE M"
+   ],
+   [
+    "deyoba",
+    "UW B ER R EH ER"
+   ],
+   [
+    "zejqav",
+    "P B AE NG ER R"
+   ],
+   [
+    "dejoge",
+    "UW B AE R UH B"
+   ],
+   [
+    "tentej",
+    "B B F B B AE"
+   ],
+   [
+    "fuhuop",
+    "EH M UH M R K"
+   ],
+   [
+    "qadafi",
+    "NG ER UW ER EH NG"
+   ],
+   [
+    "nefina",
+    "F B EH NG F ER"
+   ],
+   [
+    "ridovq",
+    "AE NG UW R R NG"
+   ],
+   [
+    "opposi",
+    "R K K R Z NG"
+   ],
+   [
+    "doduxa",
+    "UW R UW M F ER"
+   ],
+   [
+    "cosuwo",
+    "K R Z M UW R"
+   ],
+   [
+    "ejosux",
+    "B AE R Z M F"
+   ],
+   [
+    "dadine",
+    "UW ER UW NG F B"
+   ],
+   [
+    "damuge",
+    "UW ER M M UH B"
+   ],
+   [
+    "duxinj",
+    "UW M F NG F AE"
+   ],
+   [
+    "pguxux",
+    "K UH M F M F"
+   ],
+   [
+    "dinosq",
+    "UW NG F R Z NG"
+   ],
+   [
+    "darine",
+    "UW ER AE NG F B"
+   ],
+   [
+    "dnohej",
+    "UW F R UH B AE"
+   ],
+   [
+    "yuxixi",
+    "ER M F NG F NG"
+   ],
+   [
+    "voszin",
+    "R R Z P NG F"
+   ],
+   [
+    "dadeju",
+    "UW ER UW B AE M"
+   ],
+   [
+    "xejoge",
+    "F B AE R UH B"
+   ],
+   [
+    "daline",
+    "UW ER P NG F B"
+   ],
+   [
+    "muxoze",
+    "M M F R P B"
+   ],
+   [
+    "pokosu",
+    "K R Z R Z M"
+   ],
+   [
+    "dapose",
+    "UW ER K R Z B"
+   ],
+   [
+    "gucosx",
+    "UH M K R Z F"
+   ],
+   [
+    "suposo",
+    "Z M K R Z R"
+   ],
+   [
+    "dadfik",
+    "UW ER UW EH NG Z"
+   ],
+   [
+    "puqoco",
+    "K M NG R K R"
+   ],
+   [
+    "muluad",
+    "M M P M ER UW"
+   ],
+   [
+    "wadosu",
+    "UW ER UW R Z M"
+   ],
+   [
+    "dguxij",
+    "UW UH M F NG AE"
+   ],
+   [
+    "doslin",
+    "UW R Z P NG F"
+   ],
+   [
+    "dasuxk",
+    "UW ER Z M F Z"
+   ],
+   [
+    "dademu",
+    "UW ER UW B M M"
+   ],
+   [
+    "dhemux",
+    "UW UH B M M F"
+   ],
+   [
+    "posuxi",
+    "K R Z M F NG"
+   ],
+   [
+    "dwilus",
+    "UW UW NG P M Z"
+   ],
+   [
+    "dabejo",
+    "UW ER EH B AE R"
+   ],
+   [
+    "dadado",
+    "UW ER UW ER UW R"
+   ],
+   [
+    "dasuxe",
+    "UW ER Z M F B"
+   ],
+   [
+    "jyiejo",
+    "AE ER NG B AE R"
+   ],
+   [
+    "dahejo",
+    "UW ER UH B AE R"
+   ],
+   [
+    "gukupl",
+    "UH M Z M K P"
+   ],
+   [
+    "daheni",
+    "UW ER UH B F NG"
+   ],
+   [
+    "duboso",
+    "UW M EH R Z R"
+   ],
+   [
+    "dbosud",
+    "UW EH R Z M UW"
+   ],
+   [
+    "dadadu",
+    "UW ER UW ER UW M"
+   ],
+   [
+    "dadamu",
+    "UW ER UW ER M M"
+   ],
+   [
+    "joliza",
+    "AE R P NG P ER"
+   ],
+   [
+    "guvine",
+    "UH M R NG F B"
+   ],
+   [
+    "dmadag",
+    "UW M ER UW ER UH"
+   ],
+   [
+    "dizote",
+    "UW NG P R B B"
+   ],
+   [
+    "finezi",
+    "EH NG F B P NG"
+   ],
+   [
+    "zerufi",
+    "P B AE M EH NG"
+   ],
+   [
+    "uxicos",
+    "M F NG K R Z"
+   ],
+   [
+    "darigu",
+    "UW ER AE NG UH M"
+   ],
+   [
+    "viyumu",
+    "R NG ER M M M"
+   ],
+   [
+    "drigku",
+    "UW AE NG UH Z M"
+   ],
+   [
+    "wadfin",
+    "UW ER UW EH NG F"
+   ],
+   [
+    "wadada",
+    "UW ER UW ER UW ER"
+   ],
+   [
+    "lajosu",
+    "P ER AE R Z M"
+   ],
+   [
+    "daygur",
+    "UW ER ER UH M AE"
+   ],
+   [
+    "poline",
+    "K R P NG F B"
+   ],
+   [
+    "dydada",
+    "UW ER UW ER UW ER"
+   ],
+   [
+    "pozhpa",
+    "K R P UH K ER"
+   ],
+   [
+    "gosuxe",
+    "UH R Z M F B"
+   ],
+   [
+    "dadxux",
+    "UW ER UW F M F"
+   ],
+   [
+    "mripos",
+    "M AE NG K R Z"
+   ],
+   [
+    "dineju",
+    "UW NG F B AE M"
+   ],
+   [
+    "deweri",
+    "UW B UW B AE NG"
+   ],
+   [
+    "usublp",
+    "M Z M EH P K"
+   ],
+   [
+    "uxuqac",
+    "M F M NG ER K"
+   ],
+   [
+    "hejaza",
+    "UH B AE ER P ER"
+   ],
+   [
+    "dfinep",
+    "UW EH NG F B K"
+   ],
+   [
+    "dpayzo",
+    "UW K ER ER P R"
+   ],
+   [
+    "dijezu",
+    "UW NG AE B P M"
+   ],
+   [
+    "dguxme",
+    "UW UH M F M B"
+   ],
+   [
+    "watuxi",
+    "UW ER B M F NG"
+   ],
+   [
+    "qadazi",
+    "NG ER UW ER P NG"
+   ],
+   [
+    "qadada",
+    "NG ER UW ER UW ER"
+   ],
+   [
+    "posuxu",
+    "K R Z M F M"
+   ],
+   [
+    "dinuhe",
+    "UW NG F M UH B"
+   ],
+   [
+    "adawad",
+    "ER UW ER UW ER UW"
+   ],
+   [
+    "dwaqin",
+    "UW UW ER NG NG F"
+   ],
+   [
+    "nkekos",
+    "F Z B Z R Z"
+   ],
+   [
+    "dwinad",
+    "UW UW NG F ER UW"
+   ],
+   [
+    "dqabri",
+    "UW NG ER EH AE NG"
+   ],
+   [
+    "duoson",
+    "UW M R Z R F"
+   ],
+   [
+    "dinejo",
+    "UW NG F B AE R"
+   ],
+   [
+    "rireri",
+    "AE NG AE B AE NG"
+   ],
+   [
+    "zexiyu",
+    "P B F NG ER M"
+   ],
+   [
+    "deteto",
+    "UW B B B B R"
+   ],
+   [
+    "dadvos",
+    "UW ER UW R R Z"
+   ],
+   [
+    "ososeq",
+    "R Z R Z B NG"
+   ],
+   [
+    "dadind",
+    "UW ER UW NG F UW"
+   ],
+   [
+    "ykadad",
+    "ER Z ER UW ER UW"
+   ],
+   [
+    "gejosu",
+    "UH B AE R Z M"
+   ],
+   [
+    "bguxin",
+    "EH UH M F NG F"
+   ],
+   [
+    "ominab",
+    "R M NG F ER EH"
+   ],
+   [
+    "fitosa",
+    "EH NG B R Z ER"
+   ],
+   [
+    "vohejo",
+    "R R UH B AE R"
+   ],
+   [
+    "fiqine",
+    "EH NG NG NG F B"
+   ],
+   [
+    "xineji",
+    "F NG F B AE NG"
+   ],
+   [
+    "dejosu",
+    "UW B AE R Z M"
+   ],
+   [
+    "dakejh",
+    "UW ER Z B AE UH"
+   ],
+   [
+    "vinejz",
+    "R NG F B AE P"
+   ],
+   [
+    "konajo",
+    "Z R F ER AE R"
+   ],
+   [
+    "kadine",
+    "Z ER UW NG F B"
+   ],
+   [
+    "qadyux",
+    "NG ER UW ER M F"
+   ],
+   [
+    "dayawa",
+    "UW ER ER ER UW ER"
+   ],
+   [
+    "zejkta",
+    "P B AE Z B ER"
+   ],
+   [
+    "dalseg",
+    "UW ER P Z B UH"
+   ],
+   [
+    "dosuxu",
+    "UW R Z M F M"
+   ],
+   [
+    "cosuxk",
+    "K R Z M F Z"
+   ],
+   [
+    "dateje",
+    "UW ER B B AE B"
+   ],
+   [
+    "dcuxka",
+    "UW K M F Z ER"
+   ],
+   [
+    "dadyum",
+    "UW ER UW ER M M"
+   ],
+   [
+    "pguqec",
+    "K UH M NG B K"
+   ],
+   [
+    "dawaqf",
+    "UW ER UW ER NG EH"
+   ],
+   [
+    "joqada",
+    "AE R NG ER UW ER"
+   ],
+   [
+    "dadabe",
+    "UW ER UW ER EH B"
+   ],
+   [
+    "danejk",
+    "UW ER F B AE Z"
+   ],
+   [
+    "yurenu",
+    "ER M AE B F M"
+   ],
+   [
+    "siqegu",
+    "Z NG NG B UH M"
+   ],
+   [
+    "xichej",
+    "F NG K UH B AE"
+   ],
+   [
+    "duxesu",
+    "UW M F B Z M"
+   ],
+   [
+    "duxvos",
+    "UW M F R R Z"
+   ],
+   [
+    "yerinq",
+    "ER B AE NG F NG"
+   ],
+   [
+    "veqawo",
+    "R B NG ER UW R"
+   ],
+   [
+    "danejo",
+    "UW ER F B AE R"
+   ],
+   [
+    "cejoda",
+    "K B AE R UW ER"
+   ],
+   [
+    "dikine",
+    "UW NG Z NG F B"
+   ],
+   [
+    "vuxiyu",
+    "R M F NG ER M"
+   ],
+   [
+    "daduxf",
+    "UW ER UW M F EH"
+   ],
+   [
+    "nejosa",
+    "F B AE R Z ER"
+   ],
+   [
+    "rzejoz",
+    "AE P B AE R P"
+   ],
+   [
+    "epapos",
+    "B K ER K R Z"
+   ],
+   [
+    "dbavic",
+    "UW EH ER R NG K"
+   ],
+   [
+    "suxine",
+    "Z M F NG F B"
+   ],
+   [
+    "qisdad",
+    "NG NG Z UW ER UW"
+   ],
+   [
+    "wahejo",
+    "UW ER UH B AE R"
+   ],
+   [
+    "dyuxil",
+    "UW ER M F NG P"
+   ],
+   [
+    "daubej",
+    "UW ER M EH B AE"
+   ],
+   [
+    "cosazg",
+    "K R Z ER P UH"
+   ],
+   [
+    "zcvuin",
+    "P K R M NG F"
+   ],
+   [
+    "newuxi",
+    "F B UW M F NG"
+   ],
+   [
+    "qesudt",
+    "NG B Z M UW B"
+   ],
+   [
+    "daduvo",
+    "UW ER UW M R R"
+   ],
+   [
+    "mexime",
+    "M B F NG M B"
+   ],
+   [
+    "herino",
+    "UH B AE NG F R"
+   ],
+   [
+    "ruxigo",
+    "AE M F NG UH R"
+   ],
+   [
+    "dafwad",
+    "UW ER EH UW ER UW"
+   ],
+   [
+    "lposun",
+    "P K R Z M F"
+   ],
+   [
+    "ocosux",
+    "R K R Z M F"
+   ],
+   [
+    "vilino",
+    "R NG P NG F R"
+   ],
+   [
+    "kosuxo",
+    "Z R Z M F R"
+   ],
+   [
+    "dahiri",
+    "UW ER UH NG AE NG"
+   ],
+   [
+    "dabrin",
+    "UW ER EH AE NG F"
+   ],
+   [
+    "bkavos",
+    "EH Z ER R R Z"
+   ],
+   [
+    "fabuvu",
+    "EH ER EH M R M"
+   ],
+   [
+    "dubegu",
+    "UW M EH B UH M"
+   ],
+   [
+    "fuyosi",
+    "EH M ER R Z NG"
+   ],
+   [
+    "hrevuq",
+    "UH AE B R M NG"
+   ],
+   [
+    "daxzaj",
+    "UW ER F P ER AE"
+   ],
+   [
+    "fibuqi",
+    "EH NG EH M NG NG"
+   ],
+   [
+    "dadriv",
+    "UW ER UW AE NG R"
+   ],
+   [
+    "dosine",
+    "UW R Z NG F B"
+   ],
+   [
+    "dejoxi",
+    "UW B AE R F NG"
+   ],
+   [
+    "socuxu",
+    "Z R K M F M"
+   ],
+   [
+    "dadosu",
+    "UW ER UW R Z M"
+   ],
+   [
+    "duxejo",
+    "UW M F B AE R"
+   ],
+   [
+    "suxuxu",
+    "Z M F M F M"
+   ],
+   [
+    "riqasu",
+    "AE NG NG ER Z M"
+   ],
+   [
+    "kadkne",
+    "Z ER UW Z F B"
+   ],
+   [
+    "uxihej",
+    "M F NG UH B AE"
+   ],
+   [
+    "wadint",
+    "UW ER UW NG F B"
+   ],
+   [
+    "yeckad",
+    "ER B K Z ER UW"
+   ],
+   [
+    "djosud",
+    "UW AE R Z M UW"
+   ],
+   [
+    "dadoso",
+    "UW ER UW R Z R"
+   ],
+   [
+    "yusuej",
+    "ER M Z M B AE"
+   ],
+   [
+    "deluxi",
+    "UW B P M F NG"
+   ],
+   [
+    "dasuli",
+    "UW ER Z M P NG"
+   ],
+   [
+    "dineos",
+    "UW NG F B R Z"
+   ],
+   [
+    "dadali",
+    "UW ER UW ER P NG"
+   ],
+   [
+    "ficosu",
+    "EH NG K R Z M"
+   ],
+   [
+    "dadade",
+    "UW ER UW ER UW B"
+   ],
+   [
+    "dadfiv",
+    "UW ER UW EH NG R"
+   ],
+   [
+    "daguad",
+    "UW ER UH M ER UW"
+   ],
+   [
+    "wayudg",
+    "UW ER ER M UW UH"
+   ],
+   [
+    "sfitfm",
+    "Z EH NG B EH M"
+   ],
+   [
+    "dakada",
+    "UW ER Z ER UW ER"
+   ],
+   [
+    "dadala",
+    "UW ER UW ER P ER"
+   ],
+   [
+    "tmuyux",
+    "B M M ER M F"
+   ],
+   [
+    "voszaj",
+    "R R Z P ER AE"
+   ],
+   [
+    "cbejoy",
+    "K EH B AE R ER"
+   ],
+   [
+    "dadmuf",
+    "UW ER UW M M EH"
+   ],
+   [
+    "catada",
+    "K ER B ER UW ER"
+   ],
+   [
+    "dadadi",
+    "UW ER UW ER UW NG"
+   ],
+   [
+    "vosebe",
+    "R R Z B EH B"
+   ],
+   [
+    "pposte",
+    "K K R Z B B"
+   ],
+   [
+    "daxeof",
+    "UW ER F B R EH"
+   ],
+   [
+    "kacosu",
+    "Z ER K R Z M"
+   ],
+   [
+    "dazsam",
+    "UW ER P Z ER M"
+   ],
+   [
+    "xiniqe",
+    "F NG F NG NG B"
+   ],
+   [
+    "ohewac",
+    "R UH B UW ER K"
+   ]
+  ]
+ }
+}

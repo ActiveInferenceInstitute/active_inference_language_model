@@ -1,0 +1,57 @@
+QUICKSTART_VERIFIED_COMMIT:
+  value: 00ebcde
+  reason: "The commit the quickstart [verified] command set was last re-run against; bump this literal whenever that set is re-run so the promise names a real commit."
+# Declared manuscript variables that are not measured results.
+#
+# Measurements belong in data/claims.json and are written only by recorders.
+# This file owns decision-log locators and search-protocol metadata that the
+# manuscript must inject but for which no measured run exists. Deposited-source
+# metadata and locators come directly from data/reference_sources.json; frozen
+# executable constants come directly from their code registries. The generator
+# parses this schema, validates every entry, and inserts each key through the
+# same collision-refusing token map as claims. It is therefore a real source of
+# values, not a value-global exemption list. Literature-search metadata has its
+# own evidence record in data/literature_search.json and is not duplicated here.
+
+schema: ailm-manuscript-literals-v2
+
+variables:
+  DECISION_UNOBSERVED_EMISSION_LEARNING:
+    value: 29
+    reason: "Stable decision-log locator for the unobserved-emission learning experiment."
+  DECISION_CZECH_CASE_PROTOCOL:
+    value: 77
+    reason: "Stable decision-log locator for the Czech development-session protocol specification."
+  DECISION_CONFIRMATORY_REPLICATION:
+    value: 79
+    reason: "Stable decision-log locator for the confirmatory replication contract."
+  DECISION_REPLICATION_RETIRED:
+    value: 91
+    reason: "Stable decision-log locator for the replication retired by exhaustion of the external_lexicon population."
+  DECISION_PYMDP_CONJUGACY:
+    value: 22
+    reason: "Stable decision-log locator for the pymdp conjugate-counting pre-registration."
+  DECISION_NARRATIVE_REFERENCE:
+    value: 25
+    reason: "Stable decision-log locator for the narrative-level receiver-sensitivity pre-registration entry."
+  DECISION_CLAUSE_WORD_HARM:
+    value: 27
+    reason: "Stable decision-log locator for the clause-to-word harm pre-registration."
+  DECISION_ONLINE_VS_FROZEN:
+    value: 28
+    reason: "Stable decision-log locator for the online-learning-versus-frozen-control drift pre-registration entry."
+  DECISION_SENTENCE_STRIDE_SUPERSEDED:
+    value: 85
+    reason: "Stable decision-log locator for the superseded document-partition contract."
+  DECISION_DOCUMENT_PARTITION_REPAIR:
+    value: 88
+    reason: "Stable decision-log locator for the EWT document-partition repair."
+  DECISION_CLAUSE_WORD_NON_PASSING:
+    value: 83
+    reason: "Stable decision-log locator for the Stage 5 non-passing correction."
+  DECISION_LEXICAL_BACKOFF:
+    value: 110
+    reason: "Stable decision-log locator for the lexical-channel backoff correction and the re-recorded arms that depend on it."
+  DECISION_CASE_WORD_SWEEP:
+    value: 121
+    reason: "Stable decision-log locator for the case-word influence sweep pre-registration (protocol P3 partition 3)."

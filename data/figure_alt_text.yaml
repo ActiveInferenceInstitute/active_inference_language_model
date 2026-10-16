@@ -1,0 +1,166 @@
+# Short accessibility descriptions, one per referenced figure.
+#
+# These are NOT the captions. A caption in this paper carries the population, the
+# provenance and the falsification condition, and runs to several hundred words;
+# read aloud as an image alternative it buries the thing a screen-reader user
+# actually needs, which is what the picture shows. The caption stays the caption
+# and is read in sequence; this is the one-sentence "what is on the canvas".
+#
+# Two rules, both enforced by tests/test_figure_alt_text.py:
+#   - No {{TOKEN}}, no [@ref], no math. A number that drifts must never reach a
+#     reader through a channel the ledger cannot see, and a citation key read
+#     aloud is noise. Quantities belong in the caption, where they are hydrated.
+#   - Every figure the manuscript references has an entry, and every entry is
+#     referenced. A figure added without one fails the render, not the review.
+figures:
+  fig:dashboard_observation: >-
+    Actual dark-themed dashboard with input and trajectory controls, a chat turn,
+    and a separately labeled lexical policy reply. The visible interface explains
+    that input-analysis levels do not form an end-to-end reply-generation cascade.
+  fig:connected_core: >-
+    A directed diagram of the connected linguistic levels distinguishes named
+    channels from the shared spelling and lexical observation encoder, beside
+    individual document gains and their mean with a document-bootstrap interval.
+  fig:inference_evidence: >-
+    Three panels labeling each upper-level score by its evidence kind: a numpy
+    filter checked against pymdp on a prefix, a closed-form mixture with a
+    recorded zero-disagreement pymdp equivalence on a bounded slice, and a
+    conditional table beside the live pymdp filter score it must not be
+    conflated with.
+  fig:belief_dynamics: >-
+    Stacked belief columns for one sentence, one column per position, showing the
+    letter agent's predictive prior above the letter-to-phone posterior.
+  fig:calibration_floor: >-
+    A five-panel offline sweep locating the captured-mass floor, plotting signed
+    and absolute divergence between the two completion rules against captured
+    mass, with the declared and located floors marked.
+  fig:case_both_defects: >-
+    A number line placing Stage 4's single declared threshold against two
+    evaluation populations, showing it lands in a different verdict region on
+    each.
+  fig:case_matrices: >-
+    The Level 4 emission, transition and initial-state prior on one canvas, each
+    as a labeled heatmap with every probability written into its cell.
+  fig:channel_comparison: >-
+    Measured cross-level channel outcomes drawn against their registered
+    predictions, so the pre-registered sign sits on the same axis as the result.
+  fig:clause_null: >-
+    Three per-position perplexity bars, the type-free bar, the mixture and the
+    privileged-label reference, with the paired gain drawn in an inset as an
+    interval spanning its zero line and quoted in the panel title, beside the
+    two-bar planted-type positive control that shows the harness could have
+    detected an effect.
+  fig:complexity_memory: >-
+    Measured parameter bytes per level as bars, each with the closed-form value
+    its declared shape predicts, beside transition memory against vocabulary
+    size for the dense and factored forms against the instantiation budget.
+  fig:complexity_ops: >-
+    Three panels of per-symbol cost: the recorded rate split into its emission,
+    transition and decode terms; the rates against state count inside the
+    envelope the recursion permits; and cost against context length for AILM
+    beside an attention mechanism.
+  fig:composition: >-
+    The three Part-A models side by side with the alphabet seam that joins them,
+    the composition pattern the rest of the stack repeats.
+  fig:external_benchmarks: >-
+    A six-panel comparison of AILM against the complete registered probe set on
+    letter, phoneme and letter-to-phone tasks, with proportion intervals, paired
+    differences, and calibration scores. The stipulated letter and phone panel uses
+    separate run cohorts of one hosted model, each chain against its own uniform floor.
+  fig:g2p_accuracy: >-
+    A bar chart of letter-to-phone position accuracy on the held-out split for
+    the context-free baseline, the filtering agent, and the whole-word smoothing
+    reference.
+  fig:gate_taxonomy: >-
+    A number line showing the vacuous, bracketed and unreachable regions a
+    threshold can fall in, with this project's two mis-specified gates marked at
+    their measured positions.
+  fig:level_gate_summary: >-
+    A horizontal chart with one row per discrete level, each showing where its
+    shipped model landed between that level's own trivial baseline and its own
+    achievable ceiling, with the audited placement verdict and the baseline,
+    model and ceiling numbers labeled on the row.
+  fig:generation_samples: >-
+    Sample text generated under three regimes, printed side by side so the
+    difference between them is legible as text rather than asserted.
+  fig:generation_sweep: >-
+    Distance between the generated and true word distributions plotted against
+    policy precision, showing where the sweep turns.
+  fig:gnn_pipeline: >-
+    A flow diagram taking one level from its GNN specification file through the
+    builders to a running agent.
+  fig:hierarchy: >-
+    The six modeled AILM levels plus the dashed speech-interface row, drawn as a
+    labeled table from letters up to document position and speech, with each
+    level's alphabet size taken from the code and a Stage 0 infrastructure band
+    beneath.
+  fig:incontext_sweep: >-
+    Separate run cohorts of one hosted model plotted against the number of labeled
+    one-transition examples supplied,
+    beside a character-level prefix-and-label-multiset-matched derangement control.
+  fig:aligned_g2p_arms: >-
+    Five bars of position accuracy for the stipulated aligned spelling-to-pronunciation
+    comparator arms, each with an interval whisker, against a dashed uniform-floor rule.
+  fig:case_word_sweep: >-
+    Two line series over mixing weight: the mean per-token log-gain and the
+    clustered per-emission effect with interval bars, beside the scrambled control,
+    the zero anchor line, and a vertical marker at the recorded best weight.
+  fig:inference_cycle: >-
+    One inference cycle at a single level as a loop diagram: prior, observation,
+    posterior, transition push, next prior.
+  fig:information_ceiling: >-
+    The Level 1 information budget in nats, showing the declared gate target
+    sitting outside the band the first-order model class can reach.
+  fig:learning_agreement: >-
+    A log-log scatter of every transition cell, the learned value against the
+    counted value, against the identity line.
+  fig:letter_transition: >-
+    The Level 1 letter transition matrix as a square heatmap on a log color
+    scale, next symbol against current symbol.
+  fig:confirmatory_replication: >-
+    Three panels on the held-back replication: each scored member's exact p on a
+    log axis beside its development counterpart, against the frozen and Holm
+    thresholds, with a verdict badge and the registered controls; the discordant
+    counts each population produced; and the Level 6 clustered improvement on
+    both populations, with primary and corrected intervals.
+  fig:multiplicity_forest: >-
+    A forest plot of the four primary paired effects on the discordant win-share
+    scale, with nested marginal and family-corrected intervals and the structural
+    null at one half, beside a column stating each row's population, clustering,
+    corrected verdict, Holm verdict and replication status, above a strip placing
+    the Stage 6 sign-test p values between the Bonferroni and Holm thresholds.
+  fig:narrative_channel: >-
+    Stage 6's two registered predictions drawn against their measured outcomes on
+    the document-position channel.
+  fig:null_bounds: >-
+    Every null and near-null result in the project drawn as a bounded interval
+    rather than as an absence, each against its own null value.
+  fig:perplexity_ladder: >-
+    Two panels of perplexity comparators, letters and phonemes, each showing
+    uniform, context-free unigram, the trained agent, and the empirical
+    first-order optimum on that level's own stream.
+  fig:phoneme_matrices: >-
+    Level 2's learned emission and transition matrices as heatmaps, built by the
+    same calls the shipped agent uses.
+  fig:scaling_ladder: >-
+    Word-level scores across nested frequency-ranked lexicon prefixes, each rung
+    against its own comparator.
+  fig:subsample_bias: >-
+    Two panels comparing the prefix, two stride subsamples and the full held-out
+    set, one showing the letter-to-phone margin and one its paired-test p-value.
+  fig:trie_narrowing: >-
+    How many vocabulary words stay consistent with a prefix as prefix length
+    grows, drawn as mean and median curves with one worked example annotated
+    prefix by prefix.
+  fig:wiring_comparison: >-
+    The same learned bigram matrix shown twice, once in the transition slot as
+    shipped and once in the emission slot as mis-wired, each labeled with its
+    measured perplexity, above one bar chart ranking both against the
+    comparators.
+  fig:word_matrices: >-
+    The word level's parameters read off the live builders: two spelling-path
+    heatmaps and the position shift, with the head of the learned word prior as
+    a horizontal bar chart.
+  fig:word_miswirings: >-
+    Perplexity of four Stage 3 mis-wirings against the letter-bigram bar on a log
+    axis, the time-reversed emission far above the rest.

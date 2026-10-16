@@ -1,0 +1,25 @@
+{
+  "schema": "ailm-connected-unseen-gum-evaluation-v1",
+  "registered_utc": "2026-10-05T22:10:00.732557+00:00",
+  "input_manifest_sha256": "ca5f0e69d07c3328ec23f9dec6647b71a05cd3ba2e56483fd812cae4e80cf2e0",
+  "input_split": "test",
+  "population": "All complete documents in the frozen GUM test file except the eight already examined in the bounded systems evaluation; exclusion is at document level",
+  "excluded_documents": [
+    "GUM_academic_discrimination",
+    "GUM_academic_eegimaa",
+    "GUM_bio_dvorak",
+    "GUM_bio_jespersen",
+    "GUM_conversation_lambada",
+    "GUM_conversation_retirement",
+    "GUM_court_insanity",
+    "GUM_court_mitigation"
+  ],
+  "observation": "Only raw text comments in original sentence order; join with a space and normalize using parse_text, so source sentence boundaries without punctuation are not supplied to raw mode. No UPOS, deprel, morphological case, type or gold phonemes enter inference.",
+  "fixed_model": "GNN-built Brown/CMUdict/EWT train-only kernels and live pymdp Agents, optional numerically validated JIT acceleration with no change to parameters/schedule",
+  "strength": 0.5,
+  "primary_comparison": "paired per-document predictive normalized-letter mean log loss: all-seven-channels-disabled minus integrated",
+  "uncertainty": "document bootstrap percentile95 percent,10000 resamples, seed20261005; one primary comparison",
+  "secondary_descriptive": "token and OOV coverage, per-level events, raw normalization coverage; any OOV means closed-vocabulary word log loss infinity, never omit OOVs from word denominator",
+  "frozen_constraints": "No model, hyperparameter or protocol retuning from this evaluation. Runtime failures stop and are reported; no silently skipped documents. Already-examined eight documents are never added to this untouched population.",
+  "scope": "Prospectively specified new population analysis under this engineering-fixed model; not external replication and not a claim of exact global inference. Final report must state sample size, input/source hashes and all excluded documents."
+}

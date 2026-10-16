@@ -1,0 +1,2186 @@
+{
+ "schema": "ailm-confirmatory-narrative-counts-v1",
+ "provenance": {
+  "corpus": "UD English EWT test (en_ewt-ud-test.conllu)",
+  "license": "CC BY-SA 4.0",
+  "source_url": "https://raw.githubusercontent.com/UniversalDependencies/UD_English-EWT/4a4d77f599ea53cc405f85d0cec4b2f14f81d42b/en_ewt-ud-test.conllu",
+  "source_revision": "4a4d77f599ea53cc405f85d0cec4b2f14f81d42b",
+  "source_sha256": "fa024f43dc5da3c5ac02563bc9bd0e974f46cbb1560823976a8f342a37dc494a",
+  "source_size_bytes": 1900101,
+  "population": "ud_ewt_test",
+  "registration": "docs/decisions.md entry 111",
+  "stride_applied": false,
+  "split": "none: the whole authenticated corpus is the evaluation population, because nothing is fitted on it (decision 79's registered rule, re-registered by decision 111)",
+  "documents": 316,
+  "document_identity_source": "# newdoc id comments from the authenticated CoNLL-U source",
+  "document_identity_sha256": "f53f67efbc7a76090b913e5db34c34ded231d35165d3c63755f85f8e7d67604d",
+  "observation": "sentence-type sequence per document (Level 5's latent variable, one level down); typing rules identical to the clause artifact",
+  "phase_definition": "document-position tercile (opening/middle/closing) - a deterministic function of position, so every parameter is a count; no EM, no fitted segmentation",
+  "min_typed_sentences": 3,
+  "documents_with_typed_sentences": 278,
+  "documents_excluded_short": 166,
+  "eligible_documents": 150
+ },
+ "entries": [
+  {
+   "doc": "weblog-blogspot.com_marketview_20050511222700_ENG_20050511_222700",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-blogspot.com_floppingaces_20041126180010_ENG_20041126_180010",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-blogspot.com_marketview_20050224181500_ENG_20050224_181500",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-blogspot.com_grandpasgripes_20060413051000_ENG_20060413_051000",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-juancole.com_juancole_20030914114200_ENG_20030914_114200",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-blogspot.com_aggressivevoicedaily_20060629164800_ENG_20060629_164800",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-blogspot.com_tacitusproject_20040715092419_ENG_20040715_092419",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-blogspot.com_marketview_20060625150800_ENG_20060625_150800",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-blogspot.com_floppingaces_20050313182621_ENG_20050313_182621",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-juancole.com_juancole_20041109060653_ENG_20041109_060653",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-blogspot.com_aggressivevoicedaily_20060811122000_ENG_20060811_122000",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-juancole.com_juancole_20041018060600_ENG_20041018_060600",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "weblog-juancole.com_juancole_20040722101300_ENG_20040722_101300",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent23_01",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "email-enronsent23_05",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "email-enronsent23_12",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent23_02",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent23_06",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent23_07",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent23_03",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent27_02",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent21_01",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent04_02",
+   "types": [
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent23_04",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent18_01",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent32_02",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "email-enronsent36_01",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent09_02",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent29_02",
+   "types": [
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent28_01",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "email-enronsent04_01",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "email-enronsent32_01",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "email-enronsent18_02",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "email-enronsent21_02",
+   "types": [
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_HarryPotterAppreciationSociety_a3adbf6ac3dc191c_ENG_20050921_061800",
+   "types": [
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_IndiaNewsWindow_8945cbef01f41435_ENG_20051113_092500",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_APassionforRats_207517af35c166ef_ENG_20050526_150700",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_civilization_1201f7692b7769fb_ENG_20050908_010400",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_n3td3v_e874a1e5eb995654_ENG_20060120_052200",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_hiddennook_f50294175d32a8ac_ENG_20041120_152800",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_alt.animals.cat_003362349f033873_ENG_20040712_077100",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_alt.animals.bears_07e0e03c803ffdbd_ENG_20040217_113500",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_fineart_0339fc0ed4e53c5a_ENG_20050930_025500",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_hiddennook_1fd8f731ae7ffaa0_ENG_20050214_192900",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_chantonline_3e01677617c74720_ENG_20060112_102000",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_jokecity_0566f0ba3b5f748f_ENG_20051125_240500",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_hiddennook_88969236563fa748_ENG_20050215_173600",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_hiddennook_e21e429b3ad58235_ENG_20050830_214700",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "newsgroup-groups.google.com_JokeEruption_df151b356f94881c_ENG_20050819_155700",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "answers-20111108044633AAdN4ph_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108051957AALVg5J_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20110101171252AA43jJo_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108101906AA2JJqq_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111107201117AANg07J_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108084149AAbQBhq_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111105235047AAgQW4l_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108075412AA4d7Up_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111107163942AA08rP5_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20090717130909AAPrVWu_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108064636AAvIKDE_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108102612AASRNao_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "answers-20111107214231AA68BMD_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111024111513AAAQhAO_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108081519AAdHz5c_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108071652AA8GAZw_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111107035344AAdi9dS_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111106022931AAwpqXm_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111107143529AAW8bjR_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108100703AAo53QA_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108074555AAFT8Aj_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111107155815AA6LXXJ_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108084036AAh8Ws9_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20081218053636AA9vV0u_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108083559AAp6Jfq_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "answers-20111108082432AAph0C0_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111107164802AAq8nhF_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108104957AAsMzvU_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111104115933AA30CRJ_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111106130843AA7yj7U_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111107221352AAlIioO_ans",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111107211645AA391wC_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111107155845AAE3kCA_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108105137AA9BNtk_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108081911AAy6QeW_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20110320195750AAkPbFG_ans",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111106015552AAj6rCu_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111106103415AAqdokn_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108111112AAAjhoy_ans",
+   "types": [
+    "declarative",
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "answers-20111107200249AAIyCy5_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111107082312AAPNaxb_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "interrogative"
+   ]
+  },
+  {
+   "doc": "answers-20111108050147AAOkFgL_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108074455AAiMwmn_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108102205AArwNzY_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111103205154AAOod9K_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111106230959AAuYQ5Q_ans",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "answers-20111108104517AAw5v4L_ans",
+   "types": [
+    "interrogative",
+    "interrogative",
+    "declarative",
+    "declarative",
+    "interrogative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-283903",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-241108",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-001325",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-059655",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-025516",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-128808",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-130647",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-171877",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-363428",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-329807",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-325330",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-392826",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-369608",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-101864",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-217747",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-256677",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-005760",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-343813",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-012047",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-035993",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-290238",
+   "types": [
+    "interrogative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-341750",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-214912",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-028996",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-335490",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-138249",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-042085",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-302465",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-122564",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-087368",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-229100",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-227515",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-374344",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-389298",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-153921",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-118679",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-325741",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-048644",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-354474",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-206303",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-163250",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-254908",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-346563",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-118668",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-178726",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-107608",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-225861",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-357217",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-268952",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-235190",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-165032",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-025894",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-048201",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  },
+  {
+   "doc": "reviews-216281",
+   "types": [
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative",
+    "declarative"
+   ]
+  }
+ ],
+ "documents": {
+  "ids": [
+   "weblog-blogspot.com_zentelligence_20040423000200_ENG_20040423_000200",
+   "weblog-blogspot.com_marketview_20050511222700_ENG_20050511_222700",
+   "weblog-blogspot.com_floppingaces_20041126180010_ENG_20041126_180010",
+   "weblog-blogspot.com_marketview_20050224181500_ENG_20050224_181500",
+   "weblog-blogspot.com_grandpasgripes_20060413051000_ENG_20060413_051000",
+   "weblog-juancole.com_juancole_20030914114200_ENG_20030914_114200",
+   "weblog-blogspot.com_aggressivevoicedaily_20060629164800_ENG_20060629_164800",
+   "weblog-blogspot.com_tacitusproject_20040715092419_ENG_20040715_092419",
+   "weblog-blogspot.com_marketview_20060625150800_ENG_20060625_150800",
+   "weblog-blogspot.com_floppingaces_20050313182621_ENG_20050313_182621",
+   "weblog-juancole.com_juancole_20041109060653_ENG_20041109_060653",
+   "weblog-blogspot.com_aggressivevoicedaily_20060811122000_ENG_20060811_122000",
+   "weblog-juancole.com_juancole_20041018060600_ENG_20041018_060600",
+   "weblog-juancole.com_juancole_20040722101300_ENG_20040722_101300",
+   "email-enronsent23_09",
+   "email-enronsent23_10",
+   "email-enronsent23_01",
+   "email-enronsent23_05",
+   "email-enronsent23_12",
+   "email-enronsent23_02",
+   "email-enronsent23_06",
+   "email-enronsent23_07",
+   "email-enronsent23_03",
+   "email-enronsent27_02",
+   "email-enronsent21_01",
+   "email-enronsent04_02",
+   "email-enronsent23_04",
+   "email-enronsent18_01",
+   "email-enronsent32_02",
+   "email-enronsent36_01",
+   "email-enronsent09_02",
+   "email-enronsent29_02",
+   "email-enronsent28_01",
+   "email-enronsent04_01",
+   "email-enronsent32_01",
+   "email-enronsent18_02",
+   "email-enronsent21_02",
+   "newsgroup-groups.google.com_HarryPotterAppreciationSociety_a3adbf6ac3dc191c_ENG_20050921_061800",
+   "newsgroup-groups.google.com_alt.animals_0b4766087b0d36b7_ENG_20031231_183500",
+   "newsgroup-groups.google.com_JyotishRemedies_cc96334336b9368b_ENG_20050623_013400",
+   "newsgroup-groups.google.com_8TRACKGROUPFORCOOLPEOPLE_3b43577fb9121c9f_ENG_20050320_090500",
+   "newsgroup-groups.google.com_GayNews_0f9e221229ed0ee5_ENG_20050307_110600",
+   "newsgroup-groups.google.com_HumorUniversity_00dd93cc9545deb3_ENG_20051130_122700",
+   "newsgroup-groups.google.com_GUHarryPotterReaders_75faa7d55aff9230_ENG_20050715_234000",
+   "newsgroup-groups.google.com_alt.animals.cat_0e976a5d400ddce1_ENG_20040103_090500",
+   "newsgroup-groups.google.com_RagnarokOnlineII_9a68fd122989608b_ENG_20051110_012200",
+   "newsgroup-groups.google.com_alt.animals.cat_0f877e44e3521d27_ENG_20040131_084700",
+   "newsgroup-groups.google.com_IndiaNewsWindow_8945cbef01f41435_ENG_20051113_092500",
+   "newsgroup-groups.google.com_HistoricalLinguistics_f65a1220aacc96f3_ENG_20050517_153400",
+   "newsgroup-groups.google.com_APassionforRats_207517af35c166ef_ENG_20050526_150700",
+   "newsgroup-groups.google.com_CognitiveScienceNews_05a0175fc6ece48b_ENG_20050828_091900",
+   "newsgroup-groups.google.com_civilization_1201f7692b7769fb_ENG_20050908_010400",
+   "newsgroup-groups.google.com_n3td3v_e874a1e5eb995654_ENG_20060120_052200",
+   "newsgroup-groups.google.com_hiddennook_f50294175d32a8ac_ENG_20041120_152800",
+   "newsgroup-groups.google.com_alt.animals.cat_003362349f033873_ENG_20040712_077100",
+   "newsgroup-groups.google.com_alt.animals.bears_07e0e03c803ffdbd_ENG_20040217_113500",
+   "newsgroup-groups.google.com_fineart_0339fc0ed4e53c5a_ENG_20050930_025500",
+   "newsgroup-groups.google.com_hiddennook_1fd8f731ae7ffaa0_ENG_20050214_192900",
+   "newsgroup-groups.google.com_chantonline_3e01677617c74720_ENG_20060112_102000",
+   "newsgroup-groups.google.com_jokecity_0566f0ba3b5f748f_ENG_20051125_240500",
+   "newsgroup-groups.google.com_hiddennook_88969236563fa748_ENG_20050215_173600",
+   "newsgroup-groups.google.com_hiddennook_e21e429b3ad58235_ENG_20050830_214700",
+   "newsgroup-groups.google.com_JokeEruption_df151b356f94881c_ENG_20050819_155700",
+   "answers-20090605110621AA3jC62_ans",
+   "answers-20090203211448AAoG2yX_ans",
+   "answers-20080426140040AA4YiX5_ans",
+   "answers-20090716131314AA4W9uJ_ans",
+   "answers-20090716131753AAhQKkW_ans",
+   "answers-20111107173321AASNJjc_ans",
+   "answers-20111107144434AA0lJDI_ans",
+   "answers-20111108044633AAdN4ph_ans",
+   "answers-20111108063043AAOhkv9_ans",
+   "answers-20090801154222AA09uXV_ans",
+   "answers-20111108044917AALAHtc_ans",
+   "answers-20111108075238AAOhbL0_ans",
+   "answers-20110828235728AAvFDPs_ans",
+   "answers-20111106112223AAmR2im_ans",
+   "answers-20111108051957AALVg5J_ans",
+   "answers-20090709103651AAwwZKx_ans",
+   "answers-20111108081113AAiSNVY_ans",
+   "answers-20090717131703AARh8u2_ans",
+   "answers-20110101171252AA43jJo_ans",
+   "answers-20111108101906AA2JJqq_ans",
+   "answers-20111108073410AAlpgTl_ans",
+   "answers-20111108090345AAQiffR_ans",
+   "answers-20111107201117AANg07J_ans",
+   "answers-20090730195539AAVSpaH_ans",
+   "answers-20111108084149AAbQBhq_ans",
+   "answers-20111024202518AA18Sg7_ans",
+   "answers-20111105235047AAgQW4l_ans",
+   "answers-20111108075412AA4d7Up_ans",
+   "answers-20111107163942AA08rP5_ans",
+   "answers-20090717130909AAPrVWu_ans",
+   "answers-20111108064636AAvIKDE_ans",
+   "answers-20111108102612AASRNao_ans",
+   "answers-20111108084122AAYLqSQ_ans",
+   "answers-20111107214231AA68BMD_ans",
+   "answers-20111024111513AAAQhAO_ans",
+   "answers-20111108081519AAdHz5c_ans",
+   "answers-20111108071652AA8GAZw_ans",
+   "answers-20111107035344AAdi9dS_ans",
+   "answers-20111106022931AAwpqXm_ans",
+   "answers-20111107143529AAW8bjR_ans",
+   "answers-20111108100703AAo53QA_ans",
+   "answers-20111108074555AAFT8Aj_ans",
+   "answers-20111107155815AA6LXXJ_ans",
+   "answers-20111108084036AAh8Ws9_ans",
+   "answers-20081218053636AA9vV0u_ans",
+   "answers-20111108083559AAp6Jfq_ans",
+   "answers-20111108082432AAph0C0_ans",
+   "answers-20111107164802AAq8nhF_ans",
+   "answers-20111108104957AAsMzvU_ans",
+   "answers-20111104115933AA30CRJ_ans",
+   "answers-20111108103704AAB0G7y_ans",
+   "answers-20111106130843AA7yj7U_ans",
+   "answers-20111107221352AAlIioO_ans",
+   "answers-20111107211645AA391wC_ans",
+   "answers-20111107155845AAE3kCA_ans",
+   "answers-20111108105137AA9BNtk_ans",
+   "answers-20111108081911AAy6QeW_ans",
+   "answers-20110320195750AAkPbFG_ans",
+   "answers-20111106015552AAj6rCu_ans",
+   "answers-20111106103415AAqdokn_ans",
+   "answers-20111108111112AAAjhoy_ans",
+   "answers-20111107200249AAIyCy5_ans",
+   "answers-20111107082312AAPNaxb_ans",
+   "answers-20111108050147AAOkFgL_ans",
+   "answers-20111108074455AAiMwmn_ans",
+   "answers-20111108102205AArwNzY_ans",
+   "answers-20111103205154AAOod9K_ans",
+   "answers-20111106230959AAuYQ5Q_ans",
+   "answers-20111108104517AAw5v4L_ans",
+   "reviews-219984",
+   "reviews-334808",
+   "reviews-303728",
+   "reviews-314711",
+   "reviews-327867",
+   "reviews-002288",
+   "reviews-289763",
+   "reviews-333628",
+   "reviews-166983",
+   "reviews-081116",
+   "reviews-059685",
+   "reviews-061079",
+   "reviews-314938",
+   "reviews-058009",
+   "reviews-227605",
+   "reviews-056408",
+   "reviews-120724",
+   "reviews-295935",
+   "reviews-184290",
+   "reviews-362073",
+   "reviews-395218",
+   "reviews-005265",
+   "reviews-255757",
+   "reviews-351950",
+   "reviews-152281",
+   "reviews-211709",
+   "reviews-304759",
+   "reviews-354555",
+   "reviews-174824",
+   "reviews-283903",
+   "reviews-250878",
+   "reviews-388121",
+   "reviews-034858",
+   "reviews-171120",
+   "reviews-343336",
+   "reviews-038523",
+   "reviews-286172",
+   "reviews-124492",
+   "reviews-207348",
+   "reviews-199045",
+   "reviews-126134",
+   "reviews-277703",
+   "reviews-086914",
+   "reviews-346074",
+   "reviews-058878",
+   "reviews-395640",
+   "reviews-266955",
+   "reviews-212369",
+   "reviews-336305",
+   "reviews-187163",
+   "reviews-223040",
+   "reviews-224117",
+   "reviews-232278",
+   "reviews-047891",
+   "reviews-192399",
+   "reviews-089136",
+   "reviews-175434",
+   "reviews-139152",
+   "reviews-296357",
+   "reviews-046500",
+   "reviews-138110",
+   "reviews-104703",
+   "reviews-103878",
+   "reviews-200668",
+   "reviews-155050",
+   "reviews-146820",
+   "reviews-299524",
+   "reviews-241108",
+   "reviews-001325",
+   "reviews-363482",
+   "reviews-002317",
+   "reviews-059655",
+   "reviews-390330",
+   "reviews-126086",
+   "reviews-210153",
+   "reviews-025516",
+   "reviews-396046",
+   "reviews-158285",
+   "reviews-245928",
+   "reviews-022273",
+   "reviews-334928",
+   "reviews-314024",
+   "reviews-226715",
+   "reviews-128808",
+   "reviews-130647",
+   "reviews-171877",
+   "reviews-363428",
+   "reviews-014764",
+   "reviews-171255",
+   "reviews-011806",
+   "reviews-122514",
+   "reviews-329807",
+   "reviews-325330",
+   "reviews-088954",
+   "reviews-313126",
+   "reviews-392826",
+   "reviews-369608",
+   "reviews-097548",
+   "reviews-181696",
+   "reviews-030395",
+   "reviews-336285",
+   "reviews-061721",
+   "reviews-169610",
+   "reviews-034995",
+   "reviews-101864",
+   "reviews-200566",
+   "reviews-270889",
+   "reviews-294978",
+   "reviews-217747",
+   "reviews-264993",
+   "reviews-256677",
+   "reviews-054269",
+   "reviews-083563",
+   "reviews-060396",
+   "reviews-034320",
+   "reviews-005760",
+   "reviews-080814",
+   "reviews-287360",
+   "reviews-299169",
+   "reviews-186235",
+   "reviews-343813",
+   "reviews-332068",
+   "reviews-307170",
+   "reviews-012047",
+   "reviews-039173",
+   "reviews-035993",
+   "reviews-290238",
+   "reviews-085009",
+   "reviews-037179",
+   "reviews-045972",
+   "reviews-024306",
+   "reviews-341750",
+   "reviews-214912",
+   "reviews-263909",
+   "reviews-353891",
+   "reviews-130216",
+   "reviews-252791",
+   "reviews-193257",
+   "reviews-028996",
+   "reviews-335490",
+   "reviews-138249",
+   "reviews-257735",
+   "reviews-145645",
+   "reviews-042085",
+   "reviews-302465",
+   "reviews-030430",
+   "reviews-122564",
+   "reviews-384229",
+   "reviews-087368",
+   "reviews-229100",
+   "reviews-227515",
+   "reviews-188382",
+   "reviews-374344",
+   "reviews-389298",
+   "reviews-103519",
+   "reviews-153921",
+   "reviews-118679",
+   "reviews-325741",
+   "reviews-131965",
+   "reviews-048644",
+   "reviews-354474",
+   "reviews-206303",
+   "reviews-309258",
+   "reviews-163250",
+   "reviews-251755",
+   "reviews-275595",
+   "reviews-254908",
+   "reviews-210875",
+   "reviews-346563",
+   "reviews-118668",
+   "reviews-178726",
+   "reviews-107608",
+   "reviews-225861",
+   "reviews-357217",
+   "reviews-268952",
+   "reviews-235190",
+   "reviews-165032",
+   "reviews-025894",
+   "reviews-314880",
+   "reviews-229442",
+   "reviews-048201",
+   "reviews-042530",
+   "reviews-216281",
+   "reviews-211933"
+  ]
+ }
+}

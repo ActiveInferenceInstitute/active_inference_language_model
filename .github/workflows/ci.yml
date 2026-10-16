@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: "0.12.0"
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install Pandoc for portable documentation checks
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y pandoc
+          pandoc --version
+
+      - name: Sync locked environment
+        run: uv sync --locked --extra dev
+
+      - name: Run quick receipt
+        run: .venv/bin/python -I -S scripts/verify_release.py quick
+
+      - name: Upload receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: quick-release-receipt
+          path: output/reports/
+
+# Hosted CI deliberately stops at the quick profile. Full publication acceptance
+# consumes the ignored, machine-local external-call cache, rechecks a sample
+# against a reachable Ollama server serving every declared probe, and uses an
+# exact clean docxology/template checkout routed to this sidecar. It then requires
+# Lean, TeX, qpdf, Pandoc, and the template validator. A hosted job without those
+# inputs can only fail or skip; neither result is publication evidence. Run the
+# documented full command from a prepared release workstation.

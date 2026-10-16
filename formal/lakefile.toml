@@ -1,0 +1,14 @@
+# AILM formal layer.
+#
+# Deliberately dependency-free: there is NO [[require]] stanza, so `lake build`
+# is offline by construction and needs no network, no Mathlib, and no cache.
+# Everything is proved against plain Lean 4 core (List, Rat, Decidable).
+#
+# Consequences of that choice are documented in README.md; the load-bearing one
+# is that `Rat` arithmetic does not kernel-reduce, so every `decide`d fact in
+# this tree is a pure order comparison.
+name = "ailmFormal"
+defaultTargets = ["AILM"]
+
+[[lean_lib]]
+name = "AILM"

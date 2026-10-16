@@ -1,0 +1,31 @@
+{
+  "schema": "ailm-frozen-gum-inputs-v1",
+  "upstream_commit": "b58e74bc22d17220c9198864c253a50a897bf27f",
+  "release_tag": "r2.18",
+  "license": "CC BY-NC-SA 4.0",
+  "frozen_unix_time": 1791237128.372032,
+  "measurement_status": "No scoring conducted. Evaluation protocol must be registered before test split is opened by scorer.",
+  "files": [
+    {
+      "split": "train",
+      "path": "en_gum-ud-train.conllu",
+      "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_English-GUM/b58e74bc22d17220c9198864c253a50a897bf27f/en_gum-ud-train.conllu",
+      "bytes": 20996445,
+      "sha256": "88c410ca6a51ccc79f9536d75feb1633421691165cd191f8137f8b37569a0329"
+    },
+    {
+      "split": "dev",
+      "path": "en_gum-ud-dev.conllu",
+      "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_English-GUM/b58e74bc22d17220c9198864c253a50a897bf27f/en_gum-ud-dev.conllu",
+      "bytes": 2970960,
+      "sha256": "61d02ce27a143e9749118b1b9c314ac3da40f64ec17a6aaff5fc7b42704f7910"
+    },
+    {
+      "split": "test",
+      "path": "en_gum-ud-test.conllu",
+      "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_English-GUM/b58e74bc22d17220c9198864c253a50a897bf27f/en_gum-ud-test.conllu",
+      "bytes": 2950684,
+      "sha256": "cd96a285e7339f401f4803dd0f4f61109c51692e3ef6f9186a1f977544080b69"
+    }
+  ]
+}

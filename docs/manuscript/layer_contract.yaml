@@ -1,0 +1,38 @@
+# Layer contract for active_inference_language_model (AILM).
+#
+# The template repository's two-layer architecture keeps generic behavior in
+# `infrastructure/` and domain behavior in `<project>/src/`. This file is the
+# project's declaration of which of its own modules are permitted to import the
+# template `infrastructure` package — an allow-list. The enforcing check is
+# `tests/test_figure_registry.py::test_nothing_under_src_imports_infrastructure`;
+# the template's drift gate carries the same check but only warns for this
+# project.
+#
+# AILM's allow-list is EMPTY, and that is a deliberate invariant rather than an
+# omission:
+#
+#   * Nothing under `src/ailm/` imports `infrastructure`. The package is a
+#     standalone active inference library with its own declared dependencies —
+#     so it can be installed, tested, and audited without the template repo
+#     present. `src/ailm/manuscript_variables/` is the module that would most
+#     plausibly want an infrastructure import (token substitution lives there in
+#     the canonical exemplars); it deliberately reads `SOURCE_DATE_EPOCH` and
+#     parses `config.yaml` itself instead.
+#
+#   * Template coupling belongs in thin orchestrators, not src modules. For example:
+#     `scripts/z_generate_manuscript_variables.py` imports
+#     `infrastructure.rendering.manuscript_injection` to write the resolved
+#     manuscript tree. Scripts are the layer where that coupling belongs, so it
+#     needs no entry here.
+#
+#   * `src/ailm/verification/oracle.py` carries a stricter prohibition of its own,
+#     documented in its module docstring: it must never import pymdp or jax
+#     either. Its value is being an independent implementation of what pymdp
+#     computes, and an auditor that shares code with the system it audits
+#     inherits the flaw it is auditing for.
+#
+# Adding an entry here means a `src/ailm/` module now requires the template
+# checkout to import. Before doing that, check whether the code belongs in
+# `scripts/` instead.
+
+allow_infrastructure_imports: []

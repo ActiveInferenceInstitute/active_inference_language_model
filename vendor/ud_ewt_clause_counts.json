@@ -1,0 +1,12723 @@
+{
+ "schema": "ailm-clause-counts-v2",
+ "provenance": {
+  "corpus": "UD English EWT dev (en_ewt-ud-dev.conllu)",
+  "license": "CC BY-SA 4.0",
+  "source_url": "https://raw.githubusercontent.com/UniversalDependencies/UD_English-EWT/4a4d77f599ea53cc405f85d0cec4b2f14f81d42b/en_ewt-ud-dev.conllu",
+  "source_revision": "4a4d77f599ea53cc405f85d0cec4b2f14f81d42b",
+  "source_sha256": "39239e0a60db3ae68f4b7036189f11b6692741d10ff8240dd91f74f2760d90f8",
+  "source_size_bytes": 1898574,
+  "observation": "derived case-role sequence (Level 4's states, one level down); UPOS, deprel and all token forms withheld",
+  "type_label_source": "sentence-final punctuation token form: '.' declarative, '?' interrogative. PUNCT tokens carry no case role, so the label source cannot appear in the observation stream.",
+  "excluded_exclamative": 68,
+  "excluded_unpunctuated": 184,
+  "split": "document-index stride over authenticated # newdoc id values, before type and length filtering; matching the case artifact",
+  "test_every": 5,
+  "min_sequence_len": 2,
+  "sentences": 2001,
+  "documents": 318,
+  "train_documents": 254,
+  "test_documents": 64,
+  "document_identity_source": "# newdoc id comments from the authenticated CoNLL-U source",
+  "document_identity_sha256": "4b6f9aad219953cad57290fb1f40d2614ae93736143c90c06acb96b3aea8ef56",
+  "case_label_source": "ailm.cases derived heuristic \u2014 a research claim, not ground truth (decisions 16 and 84); Stage 5 inherits its label uncertainty, while the English morphological overlap validates only its explicitly measured subset"
+ },
+ "splits": {
+  "train": [
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "GEN",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "ABL",
+     "GEN",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "ACC",
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "LOC",
+     "NOM",
+     "DAT",
+     "LOC",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "NOM",
+     "NOM",
+     "DAT",
+     "ACC",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "INS",
+     "LOC",
+     "ACC",
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "GEN",
+     "INS",
+     "LOC",
+     "INS",
+     "GEN",
+     "GEN",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "DAT",
+     "LOC",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC",
+     "DAT",
+     "GEN",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "LOC",
+     "LOC",
+     "INS",
+     "LOC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "NOM",
+     "INS",
+     "GEN",
+     "INS",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "ABL",
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "NOM",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "GEN",
+     "ACC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "DAT",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "LOC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "GEN",
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "ABL",
+     "ABL",
+     "GEN",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "NOM",
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "GEN",
+     "LOC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "INS",
+     "ABL",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "NOM",
+     "INS",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "LOC",
+     "NOM",
+     "INS",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "ACC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "INS",
+     "LOC",
+     "ABL",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "ACC",
+     "GEN",
+     "LOC",
+     "NOM",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "GEN",
+     "INS",
+     "ABL",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN",
+     "ABL",
+     "LOC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "INS",
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM",
+     "INS",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "GEN",
+     "INS",
+     "ABL",
+     "LOC",
+     "LOC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "ACC",
+     "ACC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "INS",
+     "ABL",
+     "INS",
+     "LOC",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "ACC",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "VOC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN",
+     "GEN",
+     "NOM",
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "LOC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "LOC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "DAT",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "DAT",
+     "LOC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "ACC",
+     "ACC",
+     "GEN",
+     "ACC",
+     "ACC",
+     "ACC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "ACC",
+     "INS",
+     "ABL",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN",
+     "NOM",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "NOM",
+     "DAT",
+     "INS",
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "DAT",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "NOM",
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "INS",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC",
+     "LOC",
+     "INS",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM",
+     "DAT",
+     "ACC",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "VOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "DAT"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC",
+     "INS",
+     "ABL"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ABL",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "LOC",
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC",
+     "DAT",
+     "GEN",
+     "NOM",
+     "ACC",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "ABL",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "DAT",
+     "GEN",
+     "ACC",
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "INS",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "GEN",
+     "INS",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "LOC",
+     "GEN",
+     "LOC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "GEN",
+     "ACC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "ABL",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "VOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "LOC",
+     "ACC",
+     "NOM",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "ABL",
+     "LOC",
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "ACC",
+     "DAT",
+     "GEN",
+     "INS",
+     "ABL"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ABL",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "DAT",
+     "ACC",
+     "INS",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "ACC",
+     "GEN",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "VOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ABL",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "LOC",
+     "ACC",
+     "NOM",
+     "DAT",
+     "LOC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "DAT",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "NOM",
+     "NOM",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ABL",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "INS",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "ACC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "ACC",
+     "INS",
+     "LOC",
+     "INS",
+     "ACC",
+     "LOC",
+     "LOC",
+     "ACC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "ACC",
+     "DAT",
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "ABL",
+     "GEN",
+     "LOC",
+     "ACC",
+     "DAT",
+     "GEN",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "DAT",
+     "LOC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "DAT"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "LOC",
+     "ACC",
+     "ACC",
+     "ACC",
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "INS",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "INS",
+     "ABL",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "GEN",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "ACC",
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "ACC",
+     "ACC",
+     "GEN",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ABL",
+     "GEN",
+     "LOC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "ACC",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "DAT",
+     "LOC",
+     "ACC",
+     "GEN",
+     "ACC",
+     "ACC",
+     "LOC",
+     "ACC",
+     "INS",
+     "GEN",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "INS",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ABL",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "VOC",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC",
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "GEN",
+     "DAT"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "ACC",
+     "ABL",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "NOM",
+     "ACC",
+     "INS",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "INS",
+     "ACC",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "ACC",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "DAT",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "GEN",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "DAT",
+     "ACC",
+     "ACC",
+     "NOM",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "NOM",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ABL",
+     "LOC",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "ABL",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "NOM",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "ACC",
+     "NOM",
+     "INS",
+     "GEN",
+     "INS",
+     "GEN",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "NOM",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM",
+     "GEN",
+     "LOC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "VOC",
+     "NOM",
+     "DAT",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ABL"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "LOC",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "GEN",
+     "INS"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "ABL"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "LOC",
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN",
+     "INS",
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "LOC",
+     "DAT",
+     "GEN",
+     "INS",
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "INS",
+     "GEN",
+     "GEN",
+     "GEN",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "NOM",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "ACC",
+     "DAT",
+     "LOC",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "DAT",
+     "LOC",
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN",
+     "ACC",
+     "INS",
+     "GEN",
+     "ABL",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "INS",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "DAT",
+     "LOC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "INS",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "NOM",
+     "DAT",
+     "LOC",
+     "INS",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ABL",
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "ACC",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC",
+     "ACC",
+     "ACC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "LOC",
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "NOM",
+     "GEN",
+     "NOM",
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC",
+     "NOM",
+     "NOM",
+     "GEN",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "INS",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "DAT",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "DAT",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "DAT",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "LOC",
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM",
+     "LOC",
+     "NOM",
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "NOM",
+     "DAT",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ABL",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN",
+     "ABL",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "DAT",
+     "GEN",
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "ABL",
+     "ACC",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "ACC",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "DAT",
+     "ACC",
+     "ACC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "GEN",
+     "LOC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "INS",
+     "GEN",
+     "GEN",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "ABL",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "INS",
+     "LOC",
+     "NOM",
+     "DAT",
+     "GEN",
+     "GEN",
+     "LOC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "ABL",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "ACC",
+     "NOM",
+     "INS",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "DAT",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "INS",
+     "LOC",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "DAT",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "LOC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "LOC",
+     "LOC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "NOM",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "LOC",
+     "ABL",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "ABL",
+     "ACC",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN",
+     "LOC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "INS",
+     "GEN",
+     "LOC",
+     "ABL",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "GEN",
+     "LOC",
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "NOM",
+     "GEN",
+     "NOM",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM",
+     "DAT"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "INS",
+     "GEN",
+     "GEN",
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN",
+     "LOC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "INS"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "ABL"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "GEN",
+     "NOM",
+     "INS",
+     "GEN",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC",
+     "VOC",
+     "NOM",
+     "GEN",
+     "ACC",
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "NOM",
+     "INS",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "INS",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ABL",
+     "GEN",
+     "NOM",
+     "ABL"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ABL",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "LOC",
+     "NOM",
+     "ACC",
+     "INS",
+     "ACC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "DAT",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "ABL",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ABL",
+     "LOC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "VOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "NOM",
+     "LOC",
+     "GEN",
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC",
+     "INS",
+     "ABL",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "DAT",
+     "ACC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "NOM",
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "NOM",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "NOM",
+     "ABL",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "NOM",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "ACC",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ABL",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "VOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "DAT"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "INS",
+     "GEN",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "ABL"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "ACC",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "VOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "INS",
+     "ABL"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "NOM",
+     "ABL",
+     "LOC",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "INS",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN",
+     "ACC",
+     "INS",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "DAT",
+     "INS",
+     "GEN",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "GEN",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "NOM",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ABL",
+     "LOC",
+     "INS",
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "ABL",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "INS",
+     "GEN",
+     "LOC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "INS",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "GEN",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "LOC",
+     "LOC",
+     "INS",
+     "LOC",
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN",
+     "LOC",
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "INS",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "ACC",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "NOM",
+     "LOC",
+     "NOM",
+     "NOM",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM",
+     "DAT",
+     "LOC",
+     "INS",
+     "ABL",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "ACC",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "INS",
+     "GEN",
+     "ABL",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "VOC",
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM",
+     "INS",
+     "LOC"
+    ]
+   }
+  ],
+  "test": [
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "ACC",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "ACC",
+     "ACC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC",
+     "INS",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "ACC",
+     "INS",
+     "ABL",
+     "LOC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "INS",
+     "GEN",
+     "LOC",
+     "LOC",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "ABL",
+     "LOC",
+     "ACC",
+     "INS",
+     "ABL",
+     "NOM",
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "VOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "INS",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "ACC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "DAT",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC",
+     "ABL",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ABL",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "VOC",
+     "NOM",
+     "ABL",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "NOM",
+     "NOM",
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN",
+     "INS",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "ACC",
+     "ACC",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "NOM",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ABL",
+     "LOC",
+     "LOC",
+     "LOC",
+     "DAT",
+     "NOM",
+     "INS",
+     "LOC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "ACC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "GEN",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "ABL",
+     "LOC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "LOC",
+     "NOM",
+     "DAT",
+     "GEN",
+     "NOM",
+     "DAT",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "DAT",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "DAT",
+     "ACC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "ACC",
+     "NOM",
+     "INS",
+     "LOC",
+     "GEN",
+     "GEN",
+     "DAT",
+     "LOC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "INS",
+     "LOC",
+     "LOC",
+     "ACC",
+     "DAT",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "GEN",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC",
+     "GEN",
+     "GEN",
+     "ACC",
+     "ACC",
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "DAT",
+     "ACC",
+     "INS",
+     "GEN",
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "DAT",
+     "GEN",
+     "GEN",
+     "ACC",
+     "NOM",
+     "LOC",
+     "GEN",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC",
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "NOM",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "DAT",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "GEN",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "DAT",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "INS",
+     "NOM",
+     "ACC",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC",
+     "ACC",
+     "GEN",
+     "GEN",
+     "ACC",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "GEN",
+     "GEN",
+     "INS",
+     "GEN",
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "DAT",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "LOC",
+     "LOC",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "NOM",
+     "ACC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "LOC",
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ABL",
+     "GEN",
+     "DAT",
+     "LOC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM",
+     "DAT",
+     "ACC",
+     "LOC",
+     "GEN",
+     "LOC",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "LOC",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "ACC",
+     "LOC",
+     "LOC",
+     "INS",
+     "LOC",
+     "LOC",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC",
+     "NOM",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "GEN",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "GEN",
+     "LOC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "DAT",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "INS",
+     "ABL",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "DAT",
+     "LOC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "ACC",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "NOM",
+     "ACC",
+     "INS",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "LOC",
+     "ACC",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "GEN",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ABL",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "ABL",
+     "GEN",
+     "NOM",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "GEN",
+     "NOM",
+     "NOM"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "NOM",
+     "DAT",
+     "GEN",
+     "DAT",
+     "LOC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "interrogative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "LOC",
+     "LOC",
+     "DAT",
+     "LOC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "ACC",
+     "INS",
+     "GEN"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "GEN",
+     "ACC",
+     "ACC",
+     "LOC",
+     "GEN",
+     "NOM",
+     "LOC",
+     "GEN",
+     "GEN",
+     "NOM",
+     "LOC",
+     "LOC",
+     "GEN",
+     "ACC",
+     "NOM",
+     "ACC"
+    ]
+   },
+   {
+    "type": "declarative",
+    "cases": [
+     "NOM",
+     "NOM",
+     "ACC",
+     "DAT",
+     "ACC",
+     "NOM"
+    ]
+   }
+  ]
+ },
+ "documents": {
+  "ids": [
+   "weblog-blogspot.com_nominations_20041117172713_ENG_20041117_172713",
+   "weblog-blogspot.com_gettingpolitical_20030906235000_ENG_20030906_235000",
+   "weblog-juancole.com_juancole_20040114085100_ENG_20040114_085100",
+   "weblog-blogspot.com_marketview_20050210075500_ENG_20050210_075500",
+   "weblog-juancole.com_juancole_20041120060600_ENG_20041120_060600",
+   "weblog-juancole.com_juancole_20040324065800_ENG_20040324_065800",
+   "weblog-blogspot.com_marketview_20040611132900_ENG_20040611_132900",
+   "weblog-blogspot.com_aggressivevoicedaily_20060814163400_ENG_20060814_163400",
+   "weblog-juancole.com_juancole_20041111060900_ENG_20041111_060900",
+   "weblog-blogspot.com_thelameduck_20041119192207_ENG_20041119_192207",
+   "weblog-blogspot.com_alaindewitt_20060827093500_ENG_20060827_093500",
+   "weblog-blogspot.com_tacitusproject_20040712123425_ENG_20040712_123425",
+   "weblog-typepad.com_ripples_20050410122300_ENG_20050410_122300",
+   "weblog-juancole.com_juancole_20040404101100_ENG_20040404_101100",
+   "email-enronsent23_13",
+   "email-enronsent23_08",
+   "email-enronsent23_11",
+   "email-enronsent05_01",
+   "email-enronsent23_14",
+   "email-enronsent20_02",
+   "email-enronsent26_02",
+   "email-enronsent28_02",
+   "email-enronsent28_03",
+   "email-enronsent01_01",
+   "email-enronsent08_01",
+   "email-enronsent30_02",
+   "email-enronsent29_01",
+   "email-enronsent19_02",
+   "email-enronsent00_02",
+   "newsgroup-groups.google.com_AlaskaTheLastFrontier_e483fe7209d6282b_ENG_20050531_202500",
+   "newsgroup-groups.google.com_AllFreeStuff_7ba8b032d12f81df_ENG_20050929_202700",
+   "newsgroup-groups.google.com_RagnarokOnlineII_aa9a688cad543649_ENG_20051110_012000",
+   "newsgroup-groups.google.com_alt.animals.cat_0c8ba71c3cca7699_ENG_20040617_035200",
+   "newsgroup-groups.google.com_APassionforRats_13b309ec29808aeb_ENG_20050523_143400",
+   "newsgroup-groups.google.com_alt.animals.badgers_1b8e106a9a468d99_ENG_20040220_231100",
+   "newsgroup-groups.google.com_alt.animals.bear_1b8e106a9a468d99_ENG_20040220_231100",
+   "newsgroup-groups.google.com_IndiaNewsWindow_434225fff269b2af_ENG_20051109_074500",
+   "newsgroup-groups.google.com_CaptSpasticsJokes_4c06327c7fb39291_ENG_20050727_125600",
+   "newsgroup-groups.google.com_alt.animals_114e091e6bc84ab3_ENG_20040706_240600",
+   "newsgroup-groups.google.com_DorothyofOz_7933f288ff583a7f_ENG_20050607_240200",
+   "newsgroup-groups.google.com_alt.animals_1054ad831ec01b4c_ENG_20031204_144900",
+   "newsgroup-groups.google.com_AgeingMonkeys_37131d1864a0b950_ENG_20051114_080100",
+   "newsgroup-groups.google.com_AlexandrianReligiousStudies_ebcd97e243c4440b_ENG_20051021_201800",
+   "newsgroup-groups.google.com_RagnarokOnlineII_acbece2a311cfb3c_ENG_20051119_076100",
+   "newsgroup-groups.google.com_AlaskaTheLastFrontier_4709a6627e811b2a_ENG_20050530_201400",
+   "newsgroup-groups.google.com_alt.animals.breeders.rabbits_05b1a59ca1b53df2_ENG_20031116_085000",
+   "newsgroup-groups.google.com_RagnarokOnlineII_5730bc7888fcee99_ENG_20051122_035600",
+   "newsgroup-groups.google.com_alt.animals.cat_04d718686843b577_ENG_20040713_101600",
+   "newsgroup-groups.google.com_alt.animals.cat_119630d7ce2d2e9c_ENG_20051107_021600",
+   "newsgroup-groups.google.com_DungeonsDragonsChillicotheOH45601_022e6f4a0cd6fb61_ENG_20050829_233300",
+   "newsgroup-groups.google.com_n3td3v_a04e0c855b022009_ENG_20051207_035500",
+   "newsgroup-groups.google.com_hiddennook_0bfb82789af9c3c5_ENG_20050309_232400",
+   "newsgroup-groups.google.com_JyotishRemedies_7596b7f4aa16afa6_ENG_20050713_030900",
+   "newsgroup-groups.google.com_alt.animals.cat_0382388c4d68ddf5_ENG_20031019_125000",
+   "newsgroup-groups.google.com_MeninLingerie_78adf09ead5e7e87_ENG_20041219_035800",
+   "newsgroup-groups.google.com_citiesguide_c6edd53b8aaceb4c_ENG_20051102_022300",
+   "newsgroup-groups.google.com_homeopathyclinic_46a87f7e5ce279d5_ENG_20051107_133800",
+   "newsgroup-groups.google.com_alt.animals.badgers_2044a3376e5a87a5_ENG_20040529_135300",
+   "newsgroup-groups.google.com_eHolistic_b8e32f451114ecc2_ENG_20051118_192000",
+   "newsgroup-groups.google.com_eHolistic_e470976a8f836699_ENG_20050829_183800",
+   "newsgroup-groups.google.com_KatrinaAlliance_5aa2d7f53b76354f_ENG_20051125_134100",
+   "newsgroup-groups.google.com_marketplace_e019a6deff0a1c7f_ENG_20050922_024300",
+   "newsgroup-groups.google.com_hiddennook_edef226e24a57863_ENG_20051116_085200",
+   "newsgroup-groups.google.com_hiddennook_23708a8afef2f3a8_ENG_20041226_230600",
+   "newsgroup-groups.google.com_hiddennook_5380fdd00f8e5e56_ENG_20050926_194800",
+   "answers-20090605110350AA2V8bW_ans",
+   "answers-20110909115731AAl3uzs_ans",
+   "answers-20090717131608AAqDfYJ_ans",
+   "answers-20111108003939AA3pvxF_ans",
+   "answers-20100308180028AAHCoBv_ans",
+   "answers-20111107224336AAxQbzk_ans",
+   "answers-20111108082957AAzQGgo_ans",
+   "answers-20080426141111AAgPUwU_ans",
+   "answers-20111106193025AA2h62V_ans",
+   "answers-20111108082040AAmrGJ5_ans",
+   "answers-20111107213255AAT0HQq_ans",
+   "answers-20111108084633AAzZD8i_ans",
+   "answers-20111108092417AAt9bST_ans",
+   "answers-20090705172848AAU56mj_ans",
+   "answers-20111108033619AAb3VQ4_ans",
+   "answers-20111105145356AAtOJyP_ans",
+   "answers-20100605133330AAeW6nm_ans",
+   "answers-20111108102900AA9qsc8_ans",
+   "answers-20111105140228AANN2ZV_ans",
+   "answers-20090625143116AAhML1y_ans",
+   "answers-20111108075111AAmNees_ans",
+   "answers-20111024210339AAIqPa3_ans",
+   "answers-20111108111203AA6gfnr_ans",
+   "answers-20111024210025AAVtDL7_ans",
+   "answers-20111108090559AAyAHCk_ans",
+   "answers-20070723111604AAzUvhb_ans",
+   "answers-20081229195853AAYQ8mR_ans",
+   "answers-20111108084227AAtbjAp_ans",
+   "answers-20111107180248AAnQ3aE_ans",
+   "answers-20111108083850AAzIsFI_ans",
+   "answers-20111108083304AAryBu9_ans",
+   "answers-20111108072305AAPJTjj_ans",
+   "answers-20111107173224AA22AwU_ans",
+   "answers-20111106210027AAhMxfE_ans",
+   "answers-20111107154308AAKOZNX_ans",
+   "answers-20111107080027AA9zCIG_ans",
+   "answers-20111106032810AA43zpY_ans",
+   "answers-20111106213308AA5Nh2g_ans",
+   "answers-20100416184011AAtazxe_ans",
+   "answers-20101109081414AAZ3hSI_ans",
+   "answers-20111108103447AAI7MDa_ans",
+   "answers-20111107173110AA0lVuB_ans",
+   "answers-20111104115557AAEDR78_ans",
+   "answers-20111108104636AAw51HV_ans",
+   "answers-20111108102531AAqeDhx_ans",
+   "answers-20090717131757AAVh6rG_ans",
+   "answers-20090205181308AAZghOH_ans",
+   "answers-20111108024148AAO8oFI_ans",
+   "answers-20111108110008AA7xHnL_ans",
+   "answers-20111107203006AA9ojw8_ans",
+   "answers-20070404104007AAY1Chs_ans",
+   "answers-20111108093942AAYF9Dn_ans",
+   "answers-20111108081748AAkQhGe_ans",
+   "answers-20111107115952AAqfsHV_ans",
+   "answers-20111108105146AAtiEx7_ans",
+   "answers-20111108104131AAWUQHU_ans",
+   "answers-20111107155302AAXXuM1_ans",
+   "answers-20111107201700AAKdymq_ans",
+   "answers-20111108105022AA0Q5wb_ans",
+   "answers-20111108102204AAIivYN_ans",
+   "answers-20111108071348AAWu2FU_ans",
+   "reviews-046906",
+   "reviews-073742",
+   "reviews-052884",
+   "reviews-172245",
+   "reviews-128908",
+   "reviews-258042",
+   "reviews-148346",
+   "reviews-018268",
+   "reviews-253807",
+   "reviews-105719",
+   "reviews-190389",
+   "reviews-035932",
+   "reviews-325538",
+   "reviews-173758",
+   "reviews-070492",
+   "reviews-340891",
+   "reviews-369957",
+   "reviews-077344",
+   "reviews-211844",
+   "reviews-189171",
+   "reviews-367586",
+   "reviews-228154",
+   "reviews-031674",
+   "reviews-208310",
+   "reviews-208180",
+   "reviews-359287",
+   "reviews-296406",
+   "reviews-352068",
+   "reviews-242303",
+   "reviews-184731",
+   "reviews-014629",
+   "reviews-317480",
+   "reviews-009389",
+   "reviews-107292",
+   "reviews-330275",
+   "reviews-052836",
+   "reviews-048302",
+   "reviews-020957",
+   "reviews-080854",
+   "reviews-115566",
+   "reviews-133260",
+   "reviews-076440",
+   "reviews-365688",
+   "reviews-235462",
+   "reviews-186135",
+   "reviews-341435",
+   "reviews-148566",
+   "reviews-356705",
+   "reviews-372582",
+   "reviews-203196",
+   "reviews-317326",
+   "reviews-045753",
+   "reviews-067826",
+   "reviews-224123",
+   "reviews-023926",
+   "reviews-309168",
+   "reviews-138699",
+   "reviews-064100",
+   "reviews-105326",
+   "reviews-139456",
+   "reviews-137883",
+   "reviews-249889",
+   "reviews-232106",
+   "reviews-305681",
+   "reviews-015687",
+   "reviews-186275",
+   "reviews-087176",
+   "reviews-287501",
+   "reviews-255736",
+   "reviews-307209",
+   "reviews-279437",
+   "reviews-099279",
+   "reviews-231724",
+   "reviews-103609",
+   "reviews-115029",
+   "reviews-022900",
+   "reviews-243369",
+   "reviews-117893",
+   "reviews-288894",
+   "reviews-073356",
+   "reviews-389136",
+   "reviews-072067",
+   "reviews-307250",
+   "reviews-088914",
+   "reviews-385436",
+   "reviews-332972",
+   "reviews-395149",
+   "reviews-125522",
+   "reviews-134741",
+   "reviews-207783",
+   "reviews-363633",
+   "reviews-356361",
+   "reviews-041925",
+   "reviews-154113",
+   "reviews-149922",
+   "reviews-001961",
+   "reviews-162662",
+   "reviews-124552",
+   "reviews-294812",
+   "reviews-008635",
+   "reviews-177779",
+   "reviews-353684",
+   "reviews-343035",
+   "reviews-194313",
+   "reviews-105237",
+   "reviews-275140",
+   "reviews-191597",
+   "reviews-262422",
+   "reviews-064146",
+   "reviews-118770",
+   "reviews-162992",
+   "reviews-263830",
+   "reviews-134617",
+   "reviews-014483",
+   "reviews-015573",
+   "reviews-198455",
+   "reviews-267982",
+   "reviews-202402",
+   "reviews-021370",
+   "reviews-147825",
+   "reviews-030875",
+   "reviews-379701",
+   "reviews-205014",
+   "reviews-306740",
+   "reviews-058274",
+   "reviews-158740",
+   "reviews-090390",
+   "reviews-009943",
+   "reviews-188461",
+   "reviews-059088",
+   "reviews-067423",
+   "reviews-016861",
+   "reviews-083849",
+   "reviews-380048",
+   "reviews-148012",
+   "reviews-120992",
+   "reviews-335815",
+   "reviews-114941",
+   "reviews-077034",
+   "reviews-173944",
+   "reviews-047007",
+   "reviews-291088",
+   "reviews-009775",
+   "reviews-310018",
+   "reviews-368431",
+   "reviews-351840",
+   "reviews-048198",
+   "reviews-163703",
+   "reviews-162702",
+   "reviews-279070",
+   "reviews-358063",
+   "reviews-354860",
+   "reviews-359433",
+   "reviews-229142",
+   "reviews-096340",
+   "reviews-071017",
+   "reviews-217485",
+   "reviews-057644",
+   "reviews-262722",
+   "reviews-323248",
+   "reviews-034313",
+   "reviews-327766",
+   "reviews-332785",
+   "reviews-097507",
+   "reviews-079827",
+   "reviews-266676",
+   "reviews-194830",
+   "reviews-371492",
+   "reviews-288930",
+   "reviews-374000",
+   "reviews-061768",
+   "reviews-072271",
+   "reviews-308297",
+   "reviews-194153",
+   "reviews-140164",
+   "reviews-063754",
+   "reviews-236648",
+   "reviews-372665",
+   "reviews-077213",
+   "reviews-125629",
+   "reviews-059386",
+   "reviews-359014",
+   "reviews-228944",
+   "reviews-248616",
+   "reviews-210019",
+   "reviews-280170",
+   "reviews-251475",
+   "reviews-313558",
+   "reviews-287454",
+   "reviews-162253",
+   "reviews-202709",
+   "reviews-140302"
+  ],
+  "split_indices": {
+   "train": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    11,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    19,
+    21,
+    22,
+    23,
+    24,
+    26,
+    27,
+    28,
+    29,
+    31,
+    32,
+    33,
+    34,
+    36,
+    37,
+    38,
+    39,
+    41,
+    42,
+    43,
+    44,
+    46,
+    47,
+    48,
+    49,
+    51,
+    52,
+    53,
+    54,
+    56,
+    57,
+    58,
+    59,
+    61,
+    62,
+    63,
+    64,
+    66,
+    67,
+    68,
+    69,
+    71,
+    72,
+    73,
+    74,
+    76,
+    77,
+    78,
+    79,
+    81,
+    82,
+    83,
+    84,
+    86,
+    87,
+    88,
+    89,
+    91,
+    92,
+    93,
+    94,
+    96,
+    97,
+    98,
+    99,
+    101,
+    102,
+    103,
+    104,
+    106,
+    107,
+    108,
+    109,
+    111,
+    112,
+    113,
+    114,
+    116,
+    117,
+    118,
+    119,
+    121,
+    122,
+    123,
+    124,
+    126,
+    127,
+    128,
+    129,
+    131,
+    132,
+    133,
+    134,
+    136,
+    137,
+    138,
+    139,
+    141,
+    142,
+    143,
+    144,
+    146,
+    147,
+    148,
+    149,
+    151,
+    152,
+    153,
+    154,
+    156,
+    157,
+    158,
+    159,
+    161,
+    162,
+    163,
+    164,
+    166,
+    167,
+    168,
+    169,
+    171,
+    172,
+    173,
+    174,
+    176,
+    177,
+    178,
+    179,
+    181,
+    182,
+    183,
+    184,
+    186,
+    187,
+    188,
+    189,
+    191,
+    192,
+    193,
+    194,
+    196,
+    197,
+    198,
+    199,
+    201,
+    202,
+    203,
+    204,
+    206,
+    207,
+    208,
+    209,
+    211,
+    212,
+    213,
+    214,
+    216,
+    217,
+    218,
+    219,
+    221,
+    222,
+    223,
+    224,
+    226,
+    227,
+    228,
+    229,
+    231,
+    232,
+    233,
+    234,
+    236,
+    237,
+    238,
+    239,
+    241,
+    242,
+    243,
+    244,
+    246,
+    247,
+    248,
+    249,
+    251,
+    252,
+    253,
+    254,
+    256,
+    257,
+    258,
+    259,
+    261,
+    262,
+    263,
+    264,
+    266,
+    267,
+    268,
+    269,
+    271,
+    272,
+    273,
+    274,
+    276,
+    277,
+    278,
+    279,
+    281,
+    282,
+    283,
+    284,
+    286,
+    287,
+    288,
+    289,
+    291,
+    292,
+    293,
+    294,
+    296,
+    297,
+    298,
+    299,
+    301,
+    302,
+    303,
+    304,
+    306,
+    307,
+    308,
+    309,
+    311,
+    312,
+    313,
+    314,
+    316,
+    317
+   ],
+   "test": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100,
+    105,
+    110,
+    115,
+    120,
+    125,
+    130,
+    135,
+    140,
+    145,
+    150,
+    155,
+    160,
+    165,
+    170,
+    175,
+    180,
+    185,
+    190,
+    195,
+    200,
+    205,
+    210,
+    215,
+    220,
+    225,
+    230,
+    235,
+    240,
+    245,
+    250,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290,
+    295,
+    300,
+    305,
+    310,
+    315
+   ]
+  },
+  "sequence_document_indices": {
+   "train": [
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    14,
+    14,
+    14,
+    14,
+    14,
+    14,
+    14,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    17,
+    17,
+    17,
+    17,
+    17,
+    17,
+    17,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    19,
+    19,
+    19,
+    19,
+    19,
+    19,
+    19,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    29,
+    32,
+    33,
+    33,
+    34,
+    34,
+    36,
+    36,
+    37,
+    38,
+    39,
+    41,
+    41,
+    42,
+    42,
+    43,
+    44,
+    44,
+    46,
+    47,
+    47,
+    47,
+    48,
+    48,
+    48,
+    49,
+    49,
+    49,
+    49,
+    51,
+    51,
+    51,
+    51,
+    52,
+    52,
+    52,
+    52,
+    52,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    57,
+    57,
+    57,
+    57,
+    57,
+    58,
+    58,
+    58,
+    58,
+    58,
+    58,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    61,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    62,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    66,
+    67,
+    69,
+    69,
+    71,
+    72,
+    72,
+    73,
+    73,
+    74,
+    74,
+    76,
+    76,
+    76,
+    77,
+    78,
+    79,
+    79,
+    79,
+    79,
+    81,
+    81,
+    81,
+    82,
+    82,
+    83,
+    83,
+    84,
+    84,
+    86,
+    86,
+    86,
+    87,
+    87,
+    87,
+    88,
+    88,
+    88,
+    89,
+    91,
+    91,
+    92,
+    92,
+    92,
+    93,
+    93,
+    93,
+    93,
+    94,
+    94,
+    94,
+    96,
+    96,
+    96,
+    96,
+    96,
+    97,
+    97,
+    97,
+    97,
+    98,
+    98,
+    98,
+    98,
+    98,
+    98,
+    98,
+    99,
+    99,
+    99,
+    101,
+    101,
+    101,
+    101,
+    101,
+    102,
+    102,
+    102,
+    103,
+    103,
+    104,
+    104,
+    104,
+    104,
+    104,
+    106,
+    106,
+    106,
+    106,
+    106,
+    106,
+    107,
+    107,
+    107,
+    108,
+    108,
+    108,
+    109,
+    109,
+    109,
+    109,
+    109,
+    109,
+    111,
+    112,
+    112,
+    112,
+    112,
+    112,
+    113,
+    113,
+    113,
+    113,
+    113,
+    113,
+    114,
+    114,
+    114,
+    114,
+    116,
+    116,
+    116,
+    116,
+    117,
+    117,
+    118,
+    118,
+    118,
+    118,
+    118,
+    118,
+    118,
+    118,
+    119,
+    119,
+    119,
+    119,
+    119,
+    119,
+    119,
+    119,
+    121,
+    121,
+    121,
+    121,
+    121,
+    121,
+    121,
+    122,
+    122,
+    122,
+    122,
+    122,
+    122,
+    122,
+    123,
+    123,
+    123,
+    123,
+    123,
+    123,
+    123,
+    123,
+    123,
+    123,
+    124,
+    124,
+    124,
+    124,
+    124,
+    124,
+    124,
+    139,
+    146,
+    148,
+    151,
+    154,
+    163,
+    164,
+    168,
+    169,
+    171,
+    176,
+    183,
+    184,
+    186,
+    187,
+    188,
+    191,
+    196,
+    197,
+    198,
+    202,
+    202,
+    203,
+    204,
+    204,
+    208,
+    208,
+    209,
+    209,
+    212,
+    213,
+    213,
+    214,
+    216,
+    217,
+    219,
+    219,
+    222,
+    222,
+    223,
+    223,
+    223,
+    224,
+    226,
+    228,
+    228,
+    229,
+    229,
+    231,
+    231,
+    232,
+    233,
+    233,
+    236,
+    236,
+    238,
+    238,
+    239,
+    239,
+    241,
+    242,
+    242,
+    242,
+    243,
+    244,
+    246,
+    246,
+    247,
+    248,
+    248,
+    249,
+    252,
+    252,
+    253,
+    256,
+    256,
+    256,
+    257,
+    258,
+    259,
+    261,
+    262,
+    264,
+    266,
+    267,
+    267,
+    268,
+    268,
+    269,
+    269,
+    271,
+    271,
+    272,
+    272,
+    273,
+    274,
+    276,
+    276,
+    277,
+    277,
+    277,
+    277,
+    278,
+    278,
+    279,
+    279,
+    279,
+    281,
+    281,
+    281,
+    282,
+    282,
+    283,
+    283,
+    284,
+    286,
+    287,
+    287,
+    288,
+    289,
+    289,
+    289,
+    292,
+    293,
+    294,
+    296,
+    296,
+    296,
+    297,
+    297,
+    298,
+    298,
+    301,
+    301,
+    302,
+    303,
+    303,
+    303,
+    304,
+    304,
+    304,
+    304,
+    304,
+    307,
+    307,
+    307,
+    307,
+    307,
+    308,
+    308,
+    308,
+    309,
+    309,
+    309,
+    309,
+    311,
+    311,
+    311,
+    311,
+    313,
+    313,
+    313,
+    313,
+    314,
+    314,
+    314,
+    314,
+    316,
+    316,
+    317
+   ],
+   "test": [
+    0,
+    0,
+    0,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    30,
+    35,
+    35,
+    40,
+    45,
+    45,
+    50,
+    50,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    55,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    70,
+    75,
+    80,
+    85,
+    90,
+    90,
+    90,
+    90,
+    90,
+    95,
+    95,
+    95,
+    100,
+    100,
+    105,
+    105,
+    105,
+    105,
+    110,
+    110,
+    110,
+    110,
+    115,
+    115,
+    115,
+    115,
+    120,
+    120,
+    120,
+    120,
+    125,
+    125,
+    125,
+    125,
+    125,
+    125,
+    125,
+    125,
+    125,
+    125,
+    155,
+    165,
+    170,
+    175,
+    185,
+    200,
+    205,
+    210,
+    215,
+    220,
+    225,
+    235,
+    240,
+    240,
+    245,
+    250,
+    255,
+    255,
+    260,
+    260,
+    260,
+    265,
+    265,
+    270,
+    270,
+    275,
+    275,
+    280,
+    280,
+    280,
+    280,
+    285,
+    285,
+    285,
+    290,
+    290,
+    295,
+    300,
+    300,
+    300,
+    305,
+    305,
+    310,
+    310,
+    310,
+    315,
+    315
+   ]
+  }
+ }
+}

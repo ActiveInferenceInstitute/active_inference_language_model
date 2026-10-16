@@ -1,0 +1,473 @@
+/* AILM dashboard styles.
+   Extracted from a 339-line <style> block inside index.html. Kept as one
+   stylesheet because the page is one screen; the split that mattered was
+   getting it out of the document so the markup is readable. */
+
+:root {
+    --bg: #090d13;
+    --surface: #121820;
+    --surface-hover: #1c2430;
+    --surface-border: #283342;
+    --text-main: #e6edf3;
+    --text-muted: #8b949e;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-purple: #bc8cff;
+    --accent-red: #f85149;
+    --accent-cyan: #39c5cf;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    padding: 24px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--surface-border);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+}
+
+.title-group h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.badge {
+    background: rgba(88, 166, 255, 0.15);
+    color: var(--accent-blue);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(88, 166, 255, 0.3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.title-group p { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+.controls-card {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.input-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.input-row input {
+    flex: 1;
+    background: #06090e;
+    border: 1px solid var(--surface-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+.input-row input:focus { border-color: var(--accent-blue); }
+
+button {
+    background: #1f2937;
+    color: var(--text-main);
+    border: 1px solid var(--surface-border);
+    border-radius: 8px;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.15s ease;
+}
+button:hover { background: #2d3748; color: #fff; border-color: #4b5563; }
+button.btn-primary { background: #238636; border-color: rgba(240,246,252,0.1); color: #fff; }
+button.btn-primary:hover { background: #2ea043; }
+button.btn-mic.recording { background: var(--accent-red); color: #fff; border-color: var(--accent-red); animation: pulse 1.2s infinite; }
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.timeline-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 16px;
+    border-top: 1px solid var(--surface-border);
+}
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+}
+.slider-container input[type=range] {
+    width: 100%;
+    accent-color: var(--accent-blue);
+    cursor: pointer;
+    height: 6px;
+    background: #06090e;
+    border-radius: 3px;
+}
+.char-tracker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+}
+.char-pill {
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #06090e;
+    border: 1px solid var(--surface-border);
+    cursor: pointer;
+    transition: all 0.12s ease;
+    user-select: none;
+}
+.char-pill:hover { border-color: var(--text-muted); background: var(--surface-hover); }
+.char-pill.active {
+    background: var(--accent-blue);
+    color: #000;
+    font-weight: 700;
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(88, 166, 255, 0.4);
+}
+
+.rollout-banner {
+    background: rgba(88, 166, 255, 0.08);
+    border: 1px dashed rgba(88, 166, 255, 0.35);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.rollout-text { font-family: var(--font-mono); color: var(--accent-blue); }
+
+.grid-levels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.level-card {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.level-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-bottom: 10px;
+}
+.level-header h3 { font-size: 16px; font-weight: 700; color: #fff; }
+.level-tag { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); }
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.stat-box {
+    background: #06090e;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-val { font-size: 14px; font-weight: 600; font-family: var(--font-mono); margin-top: 2px; }
+
+.bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+}
+.bar-row {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    gap: 10px;
+    font-family: var(--font-mono);
+}
+.bar-label { width: 75px; text-align: right; color: var(--text-muted); }
+.bar-track {
+    flex: 1;
+    height: 16px;
+    background: #06090e;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+.bar-fill {
+    height: 100%;
+    background: var(--accent-blue);
+    transition: width 0.15s ease;
+}
+.bar-val { width: 48px; font-size: 11px; color: var(--text-muted); text-align: right; }
+
+.word-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.word-chip {
+    background: #06090e;
+    border: 1px solid var(--surface-border);
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 13px;
+    font-family: var(--font-mono);
+}
+.word-chip.active {
+    border-color: var(--accent-green);
+    background: rgba(63, 185, 80, 0.15);
+    color: #7ee787;
+    font-weight: 600;
+}
+
+.matrix-inspect-container {
+    margin-top: 24px;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 10px;
+    padding: 20px;
+}
+.matrix-inspect-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.matrix-grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+.matrix-pane {
+    background: #06090e;
+    border: 1px solid var(--surface-border);
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.matrix-pane h4 { font-size: 13px; color: #fff; font-family: var(--font-mono); }
+canvas.matrix-heatmap {
+    width: 100%;
+    height: 140px;
+    background: #000;
+    border-radius: 4px;
+    image-rendering: pixelated;
+}
+
+/* ── Bidirectional chat ───────────────────────────────────────── */
+.chat-card {
+    background: var(--bg-panel, #161b22);
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.chat-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.chat-head h3 { font-size: 15px; color: #fff; }
+.chat-disclaimer {
+    font-size: 11.5px; color: var(--text-muted); line-height: 1.5;
+    border-left: 2px solid #d29922; padding-left: 10px;
+}
+#chat-log {
+    display: flex; flex-direction: column; gap: 10px;
+    max-height: 340px; overflow-y: auto; padding: 4px 2px;
+}
+.chat-turn { display: flex; flex-direction: column; gap: 3px; max-width: 88%; }
+.chat-turn.user { align-self: flex-end; align-items: flex-end; }
+.chat-turn.model { align-self: flex-start; align-items: flex-start; }
+.chat-bubble {
+    padding: 9px 13px; border-radius: 12px; font-size: 13.5px; line-height: 1.5;
+    white-space: pre-wrap; word-break: break-word;
+}
+.chat-turn.user .chat-bubble { background: #1f6feb; color: #fff; border-bottom-right-radius: 3px; }
+.chat-turn.model .chat-bubble {
+    background: #21262d; color: #c9d1d9; border: 1px solid #30363d;
+    border-bottom-left-radius: 3px; font-family: var(--font-mono);
+}
+.chat-meta { font-size: 10.5px; color: var(--text-muted); font-family: var(--font-mono); }
+.chat-input-row { display: flex; gap: 8px; align-items: center; }
+#chat-input {
+    flex: 1; background: #0d1117; color: #c9d1d9; border: 1px solid #30363d;
+    border-radius: 6px; padding: 9px 12px; font-size: 14px; font-family: inherit;
+}
+#chat-input:focus { outline: none; border-color: var(--accent-blue, #58a6ff); }
+.chat-empty { color: var(--text-muted); font-size: 12.5px; font-style: italic; padding: 8px 2px; }
+
+/* ── Classes lifted out of index.html ─────────────────────────────
+   The markup carried 48 inline `style=` attributes. Three languages in
+   one file is what the split was for, and a `style=` attribute is still
+   CSS living in the markup — it just does not announce itself with a
+   <style> tag. It also cannot be overridden without !important, cannot
+   be reused, and cannot be reviewed as a stylesheet change. */
+
+.header-actions { display: flex; gap: 10px; }
+
+/* Button variants. These were three background colors repeated across
+   eight buttons; naming them means a palette change is one edit.
+
+   Qualified with `button` deliberately. The base rule above is
+   `button.btn-primary` (specificity 0,1,1), so a bare `.btn-variant`
+   (0,1,0) loses to it no matter where it sits in the file — every
+   variant would render the default green, which is exactly what
+   happened when these first moved out of inline styles, and what no
+   DOM test could see. Matching the base rule's specificity lets source
+   order decide, which is what the cascade is for. */
+button.btn-go { background: #238636; }
+button.btn-neutral { background: #30363d; }
+button.btn-accent { background: #8957e5; }
+button.btn-stop { background: #6e2f2f; }
+button.btn-neutral:hover { background: #3c444d; }
+button.btn-accent:hover { background: #9a6ef0; }
+button.btn-stop:hover { background: #8a3a3a; }
+button.btn-primary:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn-small { padding: 6px 12px; font-size: 12px; }
+button.btn-play { padding: 8px 16px; font-size: 13px; border-color: rgba(240, 246, 252, 0.1); color: #fff; }
+button.btn-play svg { margin-right: 4px; }
+
+/* The control row under the sentence input. */
+.control-row { margin-top: 10px; align-items: center; gap: 16px; flex-wrap: wrap; }
+.control-label {
+    font-size: 12px; color: var(--text-muted);
+    display: flex; align-items: center; gap: 6px;
+}
+.control-field {
+    background: #0d1117; color: #c9d1d9;
+    border: 1px solid #30363d; border-radius: 4px;
+    padding: 4px 6px; font-family: var(--font-mono); font-size: 12px;
+}
+.control-number { width: 68px; }
+.control-slider { width: 150px; }
+.control-readout { font-family: var(--font-mono); color: var(--accent-blue); }
+.status-line { font-size: 12px; color: var(--text-muted); min-height: 15px; }
+.slider-step-label { font-family: var(--font-mono); color: var(--accent-blue); }
+
+/* Chat header furniture. */
+.chat-endpoint { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
+.chat-head-actions { margin-left: auto; display: flex; gap: 8px; }
+.chat-toggle {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 11.5px; color: var(--text-muted); cursor: pointer;
+}
+.chat-toggle input { accent-color: var(--accent-blue); cursor: pointer; }
+.speaking-indicator {
+    visibility: hidden;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent-red); animation: pulse 1.2s infinite;
+}
+
+/* The single rollout banner. */
+#continuation-banner {
+    background: linear-gradient(90deg, rgba(88, 166, 255, 0.12), rgba(63, 185, 80, 0.12));
+    border: 1px solid rgba(88, 166, 255, 0.35);
+    margin-bottom: 16px;
+}
+.rollout-body { display: flex; flex-direction: column; gap: 4px; }
+.rollout-title {
+    color: var(--accent-blue); text-transform: uppercase;
+    font-size: 12px; letter-spacing: 0.5px;
+}
+.rollout-line {
+    font-size: 16px; font-weight: 600;
+    font-family: var(--font-mono); color: #ffffff;
+}
+.rollout-echo-input { color: var(--text-muted); }
+.rollout-echo-generated { color: #7ee787; }
+
+/* Level-panel text. */
+.chart-label {
+    font-size: 12px; font-weight: 600;
+    color: var(--text-muted); margin-bottom: 6px;
+}
+.stat-val-small { font-size: 12px; }
+
+/* Semantic tints, so a panel's accent is a name rather than a hex code
+   repeated at each use site. */
+.tint-blue { color: var(--accent-blue); }
+.tint-green { color: var(--accent-green); }
+.tint-cyan { color: var(--accent-cyan); }
+.tint-orange { color: var(--accent-orange); }
+.tint-purple { color: var(--accent-purple); }
+.tint-muted { color: var(--text-muted); }
+.tint-sky { color: #79c0ff; }
+.tint-lilac { color: #d2a8ff; }
+
+/* Matrix panel header. */
+.matrix-inspect-header h3 { font-size: 17px; color: #fff; }
+.matrix-provenance { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+/* Narrow screens must remain a one-dimensional reading flow. Without these
+   constraints the header actions and 400 px level-card minimum combine into a
+   page wider than the viewport, forcing keyboard and zoom users to pan in two
+   directions to reach the chat and results. */
+@media (max-width: 720px) {
+    body { padding: 12px; overflow-wrap: anywhere; }
+    header { align-items: flex-start; flex-direction: column; gap: 16px; }
+    .title-group h1 { align-items: flex-start; flex-wrap: wrap; }
+    .header-actions { flex-wrap: wrap; width: 100%; }
+    .header-actions button { flex: 1 1 9rem; justify-content: center; min-width: 0; }
+    .input-row { flex-wrap: wrap; }
+    .input-row input { min-width: 0; }
+    #sentence-input { flex-basis: 14rem; }
+    .slider-header { flex-wrap: wrap; gap: 6px 16px; }
+    .chat-head-actions { margin-left: 0; flex-wrap: wrap; width: 100%; }
+    .chat-input-row input { min-width: 0; }
+    .rollout-banner { align-items: flex-start; flex-direction: column; gap: 10px; }
+    .grid-levels, .matrix-grid-view, .stat-grid { grid-template-columns: minmax(0, 1fr); }
+    .matrix-inspect-header { align-items: flex-start; flex-direction: column; gap: 6px; }
+}
+
+/* Dashboard views share one launch URL; hidden panels do not occupy layout. */
+[hidden] { display: none !important; }
+.dashboard-views { display: flex; gap: .75rem; margin: 1rem 0; flex-wrap: wrap; }
+.dashboard-views button[aria-pressed="true"] { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
+.explorer-view { width: 100%; }
+.explorer-frame { width: 100%; min-height: 80vh; border: 1px solid var(--surface-border); border-radius: 12px; }
+.explorer-status { margin: 1rem 0; }

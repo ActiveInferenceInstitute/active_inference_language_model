@@ -1,0 +1,11 @@
+# AILM 1.0.0 source distribution and verification scope
+
+This is a curated public export of prepared software build 9ad57480397d2439592b12758702df08416e67d0. Its audited input epoch is 1792176328. Runtime and scientific source bytes match that build. Two AGENTS.md sentences identify the publication repository. The public CI workflow explicitly installs Pandoc for the real portable documentation checks; local quick verification also requires that executable. Private handoff records, private Git ancestry, model-call caches, credentials and local recovery material are excluded.
+
+The retained connected-GUM report is included with its ledger-authenticated original bytes. Generated HTML/demo companions remain ignored in source Git. The separate portable manuscript ZIP includes the complete local link dependencies and its own member manifest.
+
+Reports in output/reports describe the prepared build, including ignored documentation and archived render outputs retained on the release workstation. They are not a fresh validation receipt for this curated checkout. The release source-tree manifest describes the shipped tree. Public quick checks the portable surface; publication_context and template_context tests require retained provenance/raw-source proofs or the configured renderer/staged auxiliaries. Full requires those tests and the complete recorder no-op. Missing prerequisites remain failures, not exemptions from full acceptance.
+
+The full software profile ran with the declared retained inputs and toolchain. Those private proof/cache prerequisites are not redistributed; this is not independent scientific replication. Rebuilding full acceptance requires the documented inputs, toolchain and regenerated outputs. Consult the actual release verification and final independent review for their precise scope and limits.
+
+Source/output import commits use the audited input epoch for reproducible build semantics; the annotated tag and publication records use their actual creation dates. LICENSE and THIRD_PARTY_NOTICES.md retain the component-specific terms, including non-commercial third-party corpus restrictions. The optional renderer runtime support archive has its own Apache-2.0 license.

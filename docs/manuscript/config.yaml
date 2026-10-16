@@ -1,0 +1,70 @@
+paper:
+  # "Fully mechanistic" was the wrong word and made the wrong claim twice over.
+  # A transformer is a mechanism too; what AILM has that it lacks is a declared
+  # correspondence between parameters and named quantities — explicitness, not
+  # mechanism. And "generative system" implied the whole engine is active
+  # inference. The historical independent-stage comprehension agents use flat C
+  # and a single action, so their component filters are Bayesian updates. The
+  # connected mode schedules modular conditional updates; it does not claim a
+  # global HMM or an exact joint posterior. The subtitle now names
+  # what the paper can defend: total explicitness, and the gate-audit method
+  # that explicitness made runnable.
+  title: "Active Inference Language Model: A Fully Explicit Discrete Language System and a Gate-Audit Method"
+  version: "1.0.0"
+  cover:
+    image: "docs/manuscript/cover.png"
+
+authors:
+  - name: "Daniel Ari Friedman"
+    orcid: "0000-0001-6232-9096"
+    email: "daniel@activeinference.institute"
+    affiliation: "Active Inference Institute"
+    corresponding: true
+
+publication:
+  doi: "10.5281/zenodo.22409419"
+
+# "hidden Markov model" and "gate audit" are here because they are what the
+# manuscript actually contributes to: historical independent-stage component
+# filters have the scoped HMM equivalences described in the text, and the
+# transferable result is the gate taxonomy. Connected execution uses modular
+# conditional updates without a global HMM or exact-joint claim. Indexing the
+# paper only under active inference would send it to the wrong readers.
+keywords:
+  - "Active Inference"
+  - "pymdp"
+  - "language model"
+  - "hidden Markov model"
+  - "CEREBRUM"
+  - "cognitive case diagrams"
+  # Not "mechanistic interpretability": the introduction's first page disclaims
+  # that reading, and indexing under it would invite exactly the misreading it
+  # refutes. The paper's own term for what it has is designed semantic
+  # addressability.
+  - "designed semantic addressability"
+  - "gate audit"
+  - "free energy principle"
+
+llm:
+  translations:
+    enabled: false
+    languages: []
+
+rendering:
+  # Article layout has one source; preamble and figure legibility share it.
+  body_font_pt: 9.5
+  body_baseline_pt: 11.4
+  toc_font_pt: 9.5
+  toc_baseline_pt: 11.5
+  margin_top_in: 0.45
+  margin_bottom_in: 0.55
+  margin_left_in: 0.55
+  margin_right_in: 0.55
+  # Article figures may occupy most of a float page so dense portrait panels
+  # remain readable. Beamer applies its own independent height bound.
+  figure_height_fraction: 0.70
+  # The cover is taller than it is wide since the 2026-09-05 redesign, so at the
+  # renderer's default height fraction it is height-limited and leaves
+  # horizontal room unused; this fraction makes it width-limited without
+  # overflow (measured by the cover lane on the frozen combined source).
+  cover_height_fraction: 0.64

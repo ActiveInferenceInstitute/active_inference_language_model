@@ -1,0 +1,123 @@
+{
+  "schema": "ailm-dashboard-capture-v1",
+  "captured_at": "2026-10-10T20:11:29.982300+00:00",
+  "source_commit": "0475208634c07aef1521ef6a4296c315892dbc2c",
+  "url": "http://127.0.0.1:8080/",
+  "input": "The ant followed the trail.",
+  "reply": "and the and or the and what these",
+  "scope": "Warm interactive demonstration; input analysis is separate from L3-to-L1g generated reply; speech disabled; no cold-start, speech-device, semantic-conversation or new scientific measurement claim.",
+  "viewport": {
+    "width": 900,
+    "height": 1050
+  },
+  "image": {
+    "path": "analysis.png",
+    "sha256": "1465f9a2d0c9f9f4ed3645869682e6f3bdd456a879074f79c403bc97af73f534",
+    "rgba_sha256": "9bc01dc8aca7a7b3d1db61d3a6683761791032e9d68d8cd0868a2469d43a63ed",
+    "width": 1280,
+    "height": 1493
+  },
+  "served_assets": [
+    {
+      "route": "/",
+      "source": "src/ailm/dashboard/static/index.html",
+      "bytes": 18190,
+      "sha256": "3a8924b3a98f277e45450152d8fb39112cff94d22c911e7fbe4b5e37c63b7272",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    },
+    {
+      "route": "/dashboard.css",
+      "source": "src/ailm/dashboard/static/dashboard.css",
+      "bytes": 15523,
+      "sha256": "eaf517be6833cf7750e6d2d7d7a9f671477ebd39fc2f3f02d26bcf2d243fe03c",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    },
+    {
+      "route": "/explorer/",
+      "source": "output/web/ailm.html",
+      "bytes": 119011,
+      "sha256": "d4d52da76feaba1ba5734564a108dafa894a48c80faa898c51f75312942f86e7",
+      "http_status": 200,
+      "exact_prior_main_blob": false
+    },
+    {
+      "route": "/js/matrices.js",
+      "source": "src/ailm/dashboard/static/js/matrices.js",
+      "bytes": 1987,
+      "sha256": "fe80b53a2bfcbab9b18e1724af80f3a523ed58bcb618b1a6381edbb4ca755c66",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    },
+    {
+      "route": "/js/config.js",
+      "source": "src/ailm/dashboard/static/js/config.js",
+      "bytes": 1867,
+      "sha256": "cedc251c1c32a9ba8e30dd9d13d4b9fda733fceabcc79a10322ad457378ca24e",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    },
+    {
+      "route": "/js/speech.js",
+      "source": "src/ailm/dashboard/static/js/speech.js",
+      "bytes": 5686,
+      "sha256": "d4a01e123e181ce097f917fe1ebd5e3fe76a5ebdf7e03cd892a2fb8628d5df76",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    },
+    {
+      "route": "/js/main.js",
+      "source": "src/ailm/dashboard/static/js/main.js",
+      "bytes": 4406,
+      "sha256": "19d73dc87faa87171ff99af14091f056b0804001a9b04f1d75af6cc101ffee94",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    },
+    {
+      "route": "/js/stt.js",
+      "source": "src/ailm/dashboard/static/js/stt.js",
+      "bytes": 2868,
+      "sha256": "3c8baf9d549375bf40b23513b91477ef5aeaa20c404269251cae0769e551df81",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    },
+    {
+      "route": "/js/state.js",
+      "source": "src/ailm/dashboard/static/js/state.js",
+      "bytes": 456,
+      "sha256": "63ebbf0b2d136fe41f5fb296cec7bb9fc27c28e08c86eb434668f6bccfb8d497",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    },
+    {
+      "route": "/js/status.js",
+      "source": "src/ailm/dashboard/static/js/status.js",
+      "bytes": 475,
+      "sha256": "e2f6da291c940224fa92b58c28824c15047080ed45b3adfe81dc6e7a5baa5d5c",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    },
+    {
+      "route": "/js/chat.js",
+      "source": "src/ailm/dashboard/static/js/chat.js",
+      "bytes": 7614,
+      "sha256": "de1399a23b6f01b952c3db0160997ca023e3006d2704c511a00e6378b6ba1b2d",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    },
+    {
+      "route": "/js/inference.js",
+      "source": "src/ailm/dashboard/static/js/inference.js",
+      "bytes": 14120,
+      "sha256": "95e7b98d6e14862a2b92983301213fef7a259e90344964d4adc763dce3eb4033",
+      "http_status": 200,
+      "exact_prior_main_blob": true
+    }
+  ],
+  "capture_receipts": {
+    "initial_sha256": "e05b8dfb14f79ac551c38a701fc2f1cd47ce6f59b24bcb2ea0a69dda5af40110",
+    "responsive_sha256": "37ba583ab62e75933fe3b226745a553eefdc0a6915c50d2cf9ddbdc3deb6627d"
+  },
+  "transform": "Native screenshot scaling only; no fabricated UI, crop or image painting"
+}

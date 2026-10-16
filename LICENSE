@@ -1,0 +1,106 @@
+Copyright (c) 2026 Daniel Ari Friedman
+
+# Mixed-license distribution
+
+This repository is a collection of original AILM material, released under two
+different licenses depending on its kind, plus third-party-derived data
+governed by its own upstream terms. No single license covers the whole
+distribution, and neither of the two AILM licenses below relicenses the
+third-party material.
+
+## Original AILM source code — MIT License
+
+Unless a file says otherwise, the original AILM source code — the contents of
+`src/` (including the GNN conformance-checking code in `src/ailm/gnn/`),
+`scripts/`, `tests/`, and the Lean formalization in `formal/` — is licensed
+under the MIT License:
+
+> Permission is hereby granted, free of charge, to any person obtaining a copy
+> of this software and associated documentation files (the "Software"), to
+> deal in the Software without restriction, including without limitation the
+> rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+> sell copies of the Software, and to permit persons to whom the Software is
+> furnished to do so, subject to the following conditions:
+>
+> The above copyright notice and this permission notice shall be included in
+> all copies or substantial portions of the Software.
+>
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+> AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+> LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+> FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+> IN THE SOFTWARE.
+
+The MIT grant above covers the *code itself* — the logic that builds and runs
+the models. It does not extend to the vendored data those programs read (see
+below), and it does not by itself make the packaged distribution safe for
+unrestricted commercial use; see "Commercial-use boundary".
+
+## Original AILM manuscript, documentation, figures, and authored data — CC BY-SA 4.0
+
+Unless a file says otherwise, the original AILM manuscript, documentation, and
+figures, and AILM-authored data (including the curated Stage 1 evaluation
+fixture, the generated corpus-statistics artifacts under `vendor/` that are
+AILM's own transformation rather than a third party's per the component table
+below, and the GNN model specifications in `gnn/` — text-based notation
+documents, distinct from the conformance-checking *code* that reads them in
+`src/ailm/gnn/`) are licensed under the Creative Commons Attribution-ShareAlike
+4.0 International License (CC BY-SA 4.0):
+
+https://creativecommons.org/licenses/by-sa/4.0/
+
+## Third-party material
+
+The repository also contains artifacts governed by narrower third-party terms.
+Those terms continue to apply to the material they cover; neither AILM license
+above relicenses them.
+
+## Commercial-use boundary
+
+The repository and its Python wheel, as distributed with the vendored data,
+must not be represented as an unrestricted commercial-use distribution — this
+is true regardless of the MIT code license above, because the boundary comes
+from the vendored *data*, not from AILM's own code:
+
+- the NLTK Brown Corpus package is supplied for non-commercial purposes, and
+  committed `vendor/brown_*.json` artifacts derive from it;
+- `vendor/ud_czech_case_counts.json` derives from UD Czech-PDTC, licensed
+  CC BY-NC-SA 4.0.
+
+Users contemplating commercial use must obtain any necessary permissions or use
+a distribution from which restricted data has been lawfully replaced or
+excluded. Whether a particular use or derived aggregate falls within copyright,
+database-right, or an exception is jurisdiction- and use-specific; this file does
+not make that determination.
+
+## Component terms
+
+| Component | Upstream material | Governing terms |
+|---|---|---|
+| Original AILM source code (`src/`, `scripts/`, `tests/`, `formal/`) | Daniel Ari Friedman | MIT |
+| Original AILM manuscript, documentation, figures, and authored data (including the GNN model specifications in `gnn/`) | Daniel Ari Friedman | CC BY-SA 4.0 |
+| Stage 1 evaluation protocol fixture in `ailm/evaluation.py` | AILM selection/normalization of an original connective sentence and cited public-domain phrases | CC BY-SA 4.0 for AILM's selection and normalization; constituent phrases remain public domain in the United States |
+| `vendor/ud_ewt_*.json` | Universal Dependencies English EWT | CC BY-SA 4.0 |
+| `vendor/en_gum-ud-test.conllu` | Universal Dependencies English GUM | CC BY-NC-SA 4.0 |
+| `vendor/ud_czech_case_counts.json` | Universal Dependencies Czech-PDTC | CC BY-NC-SA 4.0 |
+| `vendor/brown_*.json` | Brown Corpus distributed by NLTK | Non-commercial purposes only under NLTK's package metadata |
+| `vendor/cmudict_counts.json` | CMU Pronouncing Dictionary | BSD-2-Clause |
+| Runtime dependencies, not vendored | Their respective projects | Their respective licenses |
+
+Attribution, upstream links, transformations, artifact checksums, and the retained
+CMUdict notice are recorded in `THIRD_PARTY_NOTICES.md` and
+`docs/provenance/sources.md`.
+
+## What this grants
+
+This repository grants rights only to the extent its contributors and upstream
+licensors have those rights. It grants no additional rights in the underlying
+corpora, names, trademarks, publicity rights, or other third-party material.
+
+Full license texts:
+
+- CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+- CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+- BSD-2-Clause: retained for CMUdict in `THIRD_PARTY_NOTICES.md`

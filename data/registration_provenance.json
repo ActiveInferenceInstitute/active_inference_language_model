@@ -1,0 +1,114 @@
+{
+  "_schema": "ailm-registration-provenance-v1",
+  "terminology_rule": "Reserve preregistered and confirmatory for an immutable registration commit that strictly predates the outcome commit. Same-commit plans are prospectively specified in-session and are not independently time-stamped.",
+  "protocols": {
+    "18": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "bc070dea6a475f238b68092f0cceafbc3ad8b548",
+      "outcome_artifact": "scripts/record_lexical_channel_claims.py",
+      "outcome_commit": "bc070dea6a475f238b68092f0cceafbc3ad8b548",
+      "temporal_class": "prospective_in_session_not_independently_timestamped",
+      "confirmatory_status_eligible": false,
+      "note": "The lexical-channel prediction, its recorder, its sweep-selected outcome and decision 19 entered Git in one commit; the prediction is prospective within the session and not independently timestamped."
+    },
+    "25": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "5415b8c42d69e15004aa3a26217fbb8b3d238f75",
+      "outcome_artifact": "scripts/record_stage6_claims.py",
+      "outcome_commit": "014d9214a0a0f9ab5a0e0f219dec476885338a6b",
+      "temporal_class": "independently_timestamped_prior_commit",
+      "confirmatory_status_eligible": true,
+      "note": "Eligibility is design-time only: the registered primary estimand's document-clustered interval spans zero, so the recorder stays descriptive and no claim is promoted."
+    },
+    "27": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "a4625942010a7a4ddd39ebbd244901eb6c400d3a",
+      "outcome_artifact": "scripts/record_clause_channel_claims.py",
+      "outcome_commit": "50c21538d3479952046efbf16bac4834e51a06e4",
+      "temporal_class": "independently_timestamped_prior_commit",
+      "confirmatory_status_eligible": true,
+      "note": "Eligibility is design-time only: the registered harm prediction was not reproduced, and the sweep-selected headline stays exploratory."
+    },
+    "29": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "2ed824eeb97ec8cfc340cb7a8029765e660df8b4",
+      "outcome_artifact": "scripts/record_g2p_learning_claims.py",
+      "outcome_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "temporal_class": "independently_timestamped_prior_commit",
+      "confirmatory_status_eligible": true
+    },
+    "46": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "outcome_artifact": "scripts/record_channel_factorial_claims.py",
+      "outcome_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "temporal_class": "prospective_in_session_not_independently_timestamped",
+      "confirmatory_status_eligible": false
+    },
+    "49": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "outcome_artifact": "scripts/record_fitted_channel_claims.py",
+      "outcome_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "temporal_class": "prospective_in_session_not_independently_timestamped",
+      "confirmatory_status_eligible": false
+    },
+    "51": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "outcome_artifact": "scripts/record_incontext_benchmark_claims.py",
+      "outcome_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "temporal_class": "prospective_in_session_not_independently_timestamped",
+      "confirmatory_status_eligible": false
+    },
+    "73": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "outcome_artifact": "scripts/record_l1_context_control_claims.py",
+      "outcome_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "temporal_class": "prospective_in_session_not_independently_timestamped",
+      "confirmatory_status_eligible": false
+    },
+    "74": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "outcome_artifact": "scripts/record_g2p_famsplit_claims.py",
+      "outcome_commit": "3162b61455661a04e9d019a0549e95c75fd993c6",
+      "temporal_class": "prospective_in_session_not_independently_timestamped",
+      "confirmatory_status_eligible": false
+    },
+    "77": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "b87b07b10a5de5a9043718e64f1bd9f6a4438a12",
+      "outcome_artifact": "scripts/record_czech_case_claims.py",
+      "outcome_commit": "b87b07b10a5de5a9043718e64f1bd9f6a4438a12",
+      "temporal_class": "prospective_in_session_not_independently_timestamped",
+      "confirmatory_status_eligible": false
+    },
+    "78": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "b87b07b10a5de5a9043718e64f1bd9f6a4438a12",
+      "outcome_artifact": "scripts/record_generation_word_state_claims.py",
+      "outcome_commit": "b87b07b10a5de5a9043718e64f1bd9f6a4438a12",
+      "temporal_class": "prospective_in_session_not_independently_timestamped",
+      "confirmatory_status_eligible": false
+    },
+    "79": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "b87b07b10a5de5a9043718e64f1bd9f6a4438a12",
+      "outcome_artifact": null,
+      "outcome_commit": null,
+      "temporal_class": "independently_timestamped_pending_outcome",
+      "confirmatory_status_eligible": false
+    },
+    "111": {
+      "registration_artifact": "docs/decisions.md",
+      "registration_commit": "167835cbf368f3ef652914838ef817f20015a78b",
+      "outcome_artifact": "scripts/record_confirmatory_replication.py",
+      "outcome_commit": "65a4948aedff5f1ac0550c53254b68de75f1c095",
+      "temporal_class": "independently_timestamped_prior_commit",
+      "confirmatory_status_eligible": true,
+      "note": "The successor registration decision 91 left room for. The four ud_ewt_test members were scored once against the whole of en_ewt-ud-test.conllu with parameters read unchanged from the development fits; two cross the frozen threshold in their recorded directions and two yield no discordant pair and are recorded as uncomputable. Eligibility here is earned rather than design-time: the registration commit strictly predates the outcome commit, the registered rule was the one used, and the sentinel confirmatory_run_completed_ud_ewt_test makes a second pass refuse."
+    }
+  }
+}

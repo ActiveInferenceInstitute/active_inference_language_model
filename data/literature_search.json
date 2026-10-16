@@ -1,0 +1,116 @@
+{
+  "_schema": "ailm-literature-search-v1",
+  "conducted_on": "2026-08-23",
+  "cutoff_display": "August 2026",
+  "inclusion_criterion": {
+    "description": "A discrete active-inference language model whose own linguistic parameters are estimated from natural-language corpora and which reports a held-out quantitative language-modeling metric.",
+    "required_facets": [
+      "discrete_active_inference_engine",
+      "natural_language_corpus_fit",
+      "heldout_language_model_metric"
+    ]
+  },
+  "claim_policy": {
+    "priority_claim_allowed": false,
+    "reason": "The complete arXiv query found no eligible candidate, but the broader OpenAlex screen was interrupted after 1,000 of 1,597 records and Semantic Scholar returned HTTP 429. This supports a bounded no-counterexample report, not a priority claim.",
+    "retirement_condition": "Any earlier work satisfying all three inclusion facets is a counterexample."
+  },
+  "searches": [
+    {
+      "source": "arXiv API",
+      "endpoint": "https://export.arxiv.org/api/query",
+      "query": "all:\"active inference\" AND (all:language OR all:linguistic OR all:speech OR all:reading)",
+      "status": "complete",
+      "returned_records": 53,
+      "reported_total": 53,
+      "failure": null
+    },
+    {
+      "source": "OpenAlex API",
+      "endpoint": "https://api.openalex.org/works",
+      "query": "filter=title.search:\"active inference\",to_publication_date:2026-08-23",
+      "status": "incomplete_rate_limited",
+      "returned_records": 1000,
+      "reported_total": 1597,
+      "failure": "HTTP 429 before the remaining cursor pages were retrieved"
+    },
+    {
+      "source": "Semantic Scholar Graph API",
+      "endpoint": "https://api.semanticscholar.org/graph/v1/paper/search",
+      "query": "active inference language model; discrete active inference natural language corpus; active inference held-out perplexity; active inference language modeling corpus",
+      "status": "blocked_rate_limited",
+      "returned_records": 0,
+      "reported_total": null,
+      "failure": "HTTP 429 on every query before any result was returned"
+    }
+  ],
+  "screened_candidates": [
+    {
+      "id": "doi:10.1016/j.neubiorev.2017.04.009",
+      "title": "Deep temporal models and active inference",
+      "discrete_active_inference_engine": true,
+      "natural_language_corpus_fit": false,
+      "heldout_language_model_metric": false,
+      "eligible": false,
+      "exclusion": "Constructed lexicon and grammar; no natural-corpus parameter fit or held-out language-modeling score."
+    },
+    {
+      "id": "doi:10.1016/j.neubiorev.2020.07.005",
+      "title": "Generative models, linguistic communication and active inference",
+      "discrete_active_inference_engine": true,
+      "natural_language_corpus_fit": false,
+      "heldout_language_model_metric": false,
+      "eligible": false,
+      "exclusion": "Constructed Twenty Questions simulation; no natural-corpus fit or held-out language-modeling score."
+    },
+    {
+      "id": "doi:10.1016/j.heares.2020.107998",
+      "title": "Active listening",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7812378/",
+      "source_locator": "Sections 2, 3.3, and 5.1",
+      "method_reviewed_on": "2026-09-07",
+      "method_note": "Discrete lexical states generate continuous acoustic signals. Segmentation selects among already sampled intervals by variational free energy; section 5.1 explicitly distinguishes this from expected free energy for planning future observations.",
+      "discrete_active_inference_engine": true,
+      "natural_language_corpus_fit": false,
+      "heldout_language_model_metric": false,
+      "eligible": false,
+      "exclusion": "Simulated auditory input and demonstration rather than a natural speech corpus with a held-out language-modeling score."
+    },
+    {
+      "id": "arxiv:2403.19995",
+      "title": "Development of Compositionality and Generalization through Interactive Learning of Language and Action of Robots",
+      "discrete_active_inference_engine": false,
+      "natural_language_corpus_fit": false,
+      "heldout_language_model_metric": false,
+      "eligible": false,
+      "exclusion": "Neural predictive-coding and active-inference robot simulation over constructed language-action tasks, not a discrete corpus-fitted language model."
+    },
+    {
+      "id": "arxiv:2308.04941",
+      "title": "Integrating large language models and active inference to understand eye movements in reading and dyslexia",
+      "discrete_active_inference_engine": false,
+      "natural_language_corpus_fit": false,
+      "heldout_language_model_metric": false,
+      "eligible": false,
+      "exclusion": "Linguistic predictions come from an external large language model; active inference models eye movements rather than fitting and scoring its own linguistic distribution."
+    },
+    {
+      "id": "arxiv:2510.05013",
+      "title": "Curiosity-Driven Development of Action and Language in Robots Through Self-Exploration",
+      "discrete_active_inference_engine": false,
+      "natural_language_corpus_fit": false,
+      "heldout_language_model_metric": false,
+      "eligible": false,
+      "exclusion": "Active inference is amortized with Q-learning in a constructed imperative-sentence robot simulation; no discrete natural-corpus language model or held-out language-modeling score."
+    },
+    {
+      "id": "arxiv:2508.05766",
+      "title": "A Framework for Inherently Safer AGI through Language-Mediated Active Inference",
+      "discrete_active_inference_engine": false,
+      "natural_language_corpus_fit": false,
+      "heldout_language_model_metric": false,
+      "eligible": false,
+      "exclusion": "Conceptual LLM-based research agenda without an implemented corpus-fitted discrete language model or held-out language-modeling result."
+    }
+  ]
+}

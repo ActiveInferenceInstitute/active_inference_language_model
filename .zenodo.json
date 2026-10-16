@@ -1,0 +1,39 @@
+{
+  "title": "Active Inference Language Model: A Fully Explicit Discrete Language System and a Gate-Audit Method",
+  "description": "Language offers a testbed for cognitive models that connect uncertain perception,\nstructured representations and goal-directed action. AILM (Active Inference\nLanguage Model) explores this connection through explicit discrete generative\nmodels implemented in pymdp. Its six linguistic levels\nrepresent letters, phonemes, words, case roles, sentence types and document\nposition. Conditional probabilities, preferences, habits and policy precision\nhave declared meanings and inspectable parameter sources.\n\nAILM provides a bounded alternative to learned embedding representations for\nstudying specified linguistic mechanisms, and a potential complement to the\nbroader predictive capabilities of large language models. Its generative core\nuses no transformer, neural network or learned embedding. Generalized Notation\nNotation (GNN) specifies the models; pymdp executes their inference and policy\nupdates. A connected runtime exchanges conditional messages and supports\nnext-word policy selection. This composition does not establish a globally\nexact posterior, and the letter generator's expected-free-energy rule reduces\nto a preference-weighted softmax over the habit. These explicit mechanisms are\ncandidates for cognitive investigation, not evidence of human-like understanding.\n\nOn a locally frozen Georgetown University Multilayer (GUM) corpus population,\nthe connected comparison indicates\nlower integrated loss than disabling the named channels while retaining\nthe same train-fitted observation encoder. This result concerns normalized\nletters and token spaces; full-stream closed-vocabulary word loss remains\ninfinite because out-of-vocabulary tokens receive zero word probability. The comparison is local evidence for a fixed\ncomposition, not external replication or unrestricted language competence.\n\nSeparate component and intervention studies show that linguistic messages can\nhelp or harm a receiver; different insertion sites constrain their attribution.\nThe accompanying gate-audit method compares thresholds with trivial baselines,\ntyped comparators and deliberately broken variants, and binds numerical results\nto recorded runs through a claims ledger. Historical gates were largely repaired\nafter construction, and held-back findings retain their stated task and\nuncertainty limits. The contribution is an inspectable platform for testing\nlinguistic inference mechanisms together with an audit method that makes their\nfailures visible. External neural models serve as supplemental reference probes;\nintegration with them remains a proposal.",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "creators": [
+    {
+      "name": "Friedman, Daniel Ari",
+      "affiliation": "Active Inference Institute",
+      "orcid": "0000-0001-6232-9096"
+    }
+  ],
+  "license": "other-nc",
+  "notes": "This repository is under a mixed-license scheme rather than a single SPDX license: original AILM source code (src/, scripts/, tests/, formal/, and the GNN conformance code) is MIT, while the manuscript, documentation, figures, and AILM-authored data (including the GNN model specifications in gnn/) are CC BY-SA 4.0. Several vendored third-party corpora carry narrower terms of their own, unaffected by either AILM license (including a non-commercial-use restriction inherited from the NLTK Brown Corpus package and from UD English-GUM and UD Czech-PDTC, CC BY-NC-SA 4.0). See LICENSE and THIRD_PARTY_NOTICES.md for the full, component-by-component terms; pyproject.toml records this as license = \"LicenseRef-AILM-Mixed\", which has no single Zenodo/SPDX equivalent.",
+  "keywords": [
+    "active inference",
+    "Generalized Notation Notation",
+    "GNN",
+    "pymdp",
+    "discrete state space",
+    "language model",
+    "computational linguistics",
+    "hidden Markov model",
+    "gate audit",
+    "reproducibility"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.7803328",
+      "relation": "references",
+      "scheme": "doi"
+    }
+  ]
+}

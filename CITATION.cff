@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Active Inference Language Model: A Fully Explicit Discrete Language System and a Gate-Audit Method"
+abstract: >-
+  AILM is a set of explicit discrete probabilistic language models implemented in
+  pymdp, with named probabilities, preferences, habits and policy precision.
+  Every quantitative claim resolves from
+  a single-writer ledger, and every acceptance threshold is audited against a
+  trivial baseline, a reference comparator and deliberately broken variants. The
+  connected runtime executes a declared causal schedule of conditional updates;
+  historical level and channel results retain their separate experimental scope.
+type: software
+authors:
+  - given-names: "Daniel Ari"
+    family-names: "Friedman"
+    orcid: "https://orcid.org/0000-0001-6232-9096"
+    email: "daniel@activeinference.institute"
+    affiliation: "Active Inference Institute"
+version: "1.0.0"
+doi: "10.5281/zenodo.22409419"
+repository-code: "https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model"
+license-url: "https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model/blob/main/LICENSE"
+keywords:
+  - active inference
+  - discrete state space
+  - language model
+  - reproducibility
+  - gate audit
+  - pymdp

@@ -1,0 +1,104 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+dist/
+build/
+*.egg-info/
+# ── Generated output: ignored by default, with a curated publication allowlist ──
+#
+# Every project-owned current artifact under output/ is disposable and
+# regenerable. An old ignored output/bench_cache may remain as explicitly
+# documented legacy residue, but no current code reads or writes it. The active
+# call store lives in cache/, which is an input directory. So the default is still
+# "ignore", and the negations below
+# admit only the surfaces the template's own convention calls STABLE — the ones
+# `infrastructure/core/pipeline/artifacts.py` expects a fresh clone to have,
+# because the artifact manifest is committed evidence and an entry a clone
+# cannot produce reads as drift.
+#
+# What that buys: `stage_04_validate.py` can bind its report to a real manifest.
+# What it costs: these are binaries that churn on every render. Slides (~19 MB),
+# and bench_raw stay ignored — they are large, they are
+# not cited as evidence, and nothing validates against them. cache/ is ignored
+# for the same reasons and for one more: it is machine-specific. Network-authored
+# ledger entries are connected to those ignored inputs by the validated receipts
+# under cache/network_claim_bindings/, never by treating the cache as tracked data.
+#
+# The rule in docs/output_conventions.md still holds for everything here: no
+# generated artifact is ever hand-edited to make a check pass.
+# `!output/` must come first: this repo's core.excludesFile is the sidecar's
+# .gitignore, which excludes the output/ DIRECTORY. Git does not descend into an
+# excluded directory, so without re-including it here every negation below is
+# never evaluated. The template's own .gitignore uses the same `!output/` then
+# `output/*` pair for the same reason.
+!output/
+output/*
+!output/data/
+output/data/*
+!output/data/manuscript_variables.json
+!output/figures/
+!output/figures/**
+!output/manuscript/
+!output/manuscript/**
+# Exact generated typography auxiliary; its bytes are checked by the manuscript contract.
+output/manuscript/article_typography.sty
+!output/pdf/
+output/pdf/*
+!output/pdf/*_combined.pdf
+!output/reports/
+output/reports/*
+!output/reports/artifact_manifest.json
+!output/reports/connected_gum.json
+!output/reports/evidence_registry.json
+!output/reports/gate_audit.json
+!output/reports/gate_audit_ablation.json
+!output/reports/manuscript_composition.json
+!output/reports/rendered_provenance.json
+!output/reports/validation_report.json
+!output/web/
+output/web/*
+!output/web/_combined_manuscript.md
+# index.html is the canonical deliverable of an enabled render format, so the
+# template's stable-inventory check requires a fresh clone to have it. It is
+# half a megabyte of diffable text from the same directory as the file above,
+# unlike the slide decks, which are ~19 MB of binaries nothing cites.
+!output/web/index.html
+# Vendored corpora — excluded from git, checksums tracked in docs/provenance/sources.md
+vendor/brown.zip
+vendor/cmudict.dict
+vendor/en_ewt-ud-dev.conllu
+vendor/cmu_arctic/
+# Staged UD Czech-PDTC shards (~90 MB, CC BY-NC-SA): the derived
+# ud_czech_case_counts.json is the committed surface (decision 77)
+vendor/staging_ud_czech/
+# Refs are cloned external repos, not committed here
+refs/
+# IDE
+.DS_Store
+.idea/
+.vscode/
+
+# The claims ledger single-writer lock is runtime state, never an artifact.
+data/.claims-recorder.lock
+
+# Memoized external-model calls. An INPUT, not an output: warming it needs a
+# live Ollama server and some hours, and the release profile's coverage floor
+# depends on it. See scripts/verify_release.py and docs/output_conventions.md.
+cache/
+adapters/
+scratchpad/
+/HERDR.md
+/.claude/
+
+# Local tool state — Groma and Backlog.md are optional local tooling, inert
+# when their CLIs are not installed (see AGENTS.md).
+.groma/
+backlog/
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/

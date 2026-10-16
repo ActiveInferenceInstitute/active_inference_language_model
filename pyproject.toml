@@ -1,0 +1,185 @@
+[project]
+name = "ailm"
+version = "1.0.0"
+description = "Auditable discrete language models from letters through document position, implemented with pymdp"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "LicenseRef-AILM-Mixed"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+authors = [{ name = "Daniel Ari Friedman" }]
+keywords = ["active inference", "pymdp", "discrete state space", "language model", "reproducibility", "gate audit"]
+# No "License :: OSI Approved :: ..." entry: the distribution is a mixed-license
+# collection (see LICENSE), not a single OSI license, and claiming one here would
+# overstate what the packaged vendored data actually grants.
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    "cycler>=0.11",
+    "inferactively-pymdp==1.0.4",
+    # Keep the pymdp-verified JAX line exact. The CUDA extra below uses JAX's
+    # plugin-based install, so CPU and CUDA environments resolve from one lock.
+    # pymdp 1.0.4 declares jax<0.11.1,>=0.3.4 (1.0.3 declared unbounded >=0.3.4);
+    # 0.4.38 still satisfies the upstream range and is what the suite is verified on.
+    "jax==0.4.38",
+    "jaxlib==0.4.38",
+    # NumPy 2.4 stubs use Python 3.12-only type-alias syntax; retain the
+    # package's declared Python 3.11 support until that floor is raised.
+    "numpy>=1.24,<2.4",
+    "scipy>=1.10",
+    "requests>=2.28",
+    "nltk>=3.8",
+    # Manuscript {{TOKEN}} generation reads docs/manuscript/config.yaml.
+    "pyyaml>=6.0",
+    # Figure generation. pymdp already pulls matplotlib in transitively, but the
+    # figure modules import it directly, so it is declared rather than assumed.
+    "matplotlib>=3.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model"
+Repository = "https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model"
+Issues = "https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model/issues"
+DOI = "https://doi.org/10.5281/zenodo.22409419"
+
+[project.scripts]
+# `python -m ailm` (src/ailm/__main__.py) calls the identical ailm.demo.main.
+ailm-demo = "ailm.demo:main"
+
+[project.optional-dependencies]
+dev = [
+    "hatchling==1.32.0",
+    "mypy==2.2.0",
+    "pytest==9.1.1",
+    "pytest-cov==7.1.0",
+    "pytest-timeout==2.4.0",
+    "pytest-xdist==3.8.0",
+    "ruff==0.15.20",
+]
+cuda12 = ["jax[cuda12]==0.4.38"]
+
+# Optional: verifying that gnn/*.md actually parses with the upstream
+# GeneralizedNotationNotation tooling rather than only with AILM's own reader.
+# Upstream's markdown parser imports psutil. AILM's runtime conformance checker
+# (src/ailm/gnn/) is dependency-free by design — this group only enables the
+# interoperability test, which skips cleanly when the GNN checkout is absent.
+gnn-interop = [
+    "psutil>=5.9",
+]
+
+[dependency-groups]
+dev = [
+    "hatchling==1.32.0",
+    "mypy==2.2.0",
+    "pytest==9.1.1",
+    "pytest-cov==7.1.0",
+    "pytest-timeout==2.4.0",
+    "pytest-xdist==3.8.0",
+    "ruff==0.15.20",
+]
+
+[build-system]
+requires = ["hatchling==1.32.0"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+# PEP 517 build requirements are resolved separately from runtime packages.
+# Constrain the backend even for isolated consumers; publication acceptance
+# additionally builds offline without isolation from the locked dev environment.
+build-constraint-dependencies = ["hatchling==1.32.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ailm"]
+
+# The default sdist walk can admit repository-local, Git-ignored operator state
+# (for example editor/agent settings) that is neither a release input nor part
+# of the Git fingerprint.  Start traversal only from the files required to
+# build the wheel; the distribution test audits every emitted member.
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "src/ailm",
+    "vendor",
+    "gnn/models",
+    "data/case_word/ud_ewt_case_word_counts.json",
+    "data/widened/ud_ewt_clause_widened_counts.json",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "pyproject.toml",
+]
+
+[tool.hatch.build.targets.wheel.force-include]
+"gnn/models" = "ailm/_gnn/models"
+"data/case_word/ud_ewt_case_word_counts.json" = "ailm/_data/case_word/ud_ewt_case_word_counts.json"
+"data/widened/ud_ewt_clause_widened_counts.json" = "ailm/_data/widened/ud_ewt_clause_widened_counts.json"
+"vendor/brown_clause_word_counts.json" = "ailm/_vendor/brown_clause_word_counts.json"
+"vendor/brown_counts.json" = "ailm/_vendor/brown_counts.json"
+"vendor/brown_heldout_stream.json" = "ailm/_vendor/brown_heldout_stream.json"
+"vendor/brown_online_drift.json" = "ailm/_vendor/brown_online_drift.json"
+"vendor/brown_word_counts.json" = "ailm/_vendor/brown_word_counts.json"
+"vendor/brown_word_counts_full.json" = "ailm/_vendor/brown_word_counts_full.json"
+"vendor/cmudict_counts.json" = "ailm/_vendor/cmudict_counts.json"
+"vendor/synthetic_aligned_g2p_counts.json" = "ailm/_vendor/synthetic_aligned_g2p_counts.json"
+"vendor/synthetic_counts.json" = "ailm/_vendor/synthetic_counts.json"
+"vendor/synthetic_phone_counts.json" = "ailm/_vendor/synthetic_phone_counts.json"
+"vendor/ud_czech_case_counts.json" = "ailm/_vendor/ud_czech_case_counts.json"
+"vendor/ud_ewt_case_counts.json" = "ailm/_vendor/ud_ewt_case_counts.json"
+"vendor/ud_ewt_clause_counts.json" = "ailm/_vendor/ud_ewt_clause_counts.json"
+"vendor/ud_ewt_narrative_counts.json" = "ailm/_vendor/ud_ewt_narrative_counts.json"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--tb=short -v"
+timeout = 300
+pythonpath = ["src"]
+filterwarnings = [
+    # pymdp 1.0.3 emitted "A JAX array is being set as static!" from every Agent()
+    # construction (JAX arrays stored on an equinox static field). Verified
+    # against installed 1.0.4 (2026-08-29): constructing Agent(A=..., B=..., C=...,
+    # D=...) with real jnp arrays raises no warnings, because Policies now stores a
+    # hashable nested tuple statically and materializes policy_arr lazily. The
+    # ignore filter is retained defensively so a regression upstream cannot flood
+    # the summary; it is scoped to the exact message so other UserWarnings surface.
+    "ignore:A JAX array is being set as static!:UserWarning",
+]
+markers = [
+    "recorder_replay: slow acceptance replay of every claims recorder against an isolated ledger",
+    "raw_corpus_regeneration: opt-in byte-for-byte replay requiring ignored raw corpora",
+    "requires_cuda12: requires the cuda12 extra (jax[cuda12]==0.4.38 plugin set); deselected by both verify_release profiles; run `pytest -m requires_cuda12` on a CUDA host. See docs/troubleshooting.md CUDA section",
+    "slow_demo: builds a real pymdp Agent (ailm.demo); fast once JAX is warm, but pays its one-time cold compile cost the first time in a fresh environment",
+]
+
+[tool.coverage.run]
+source = ["src/ailm"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["output", "site", "scratchpad"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src/ailm"]
+ignore_missing_imports = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
