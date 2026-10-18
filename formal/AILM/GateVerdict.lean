@@ -249,17 +249,17 @@ theorem bracketed_iff (d : Direction) (b cv t : Rat) (k : ComparatorKind) :
     classify d b (some (cv, k)) t = bracketedFor k ↔ (¬ passes d b t ∧ passes d cv t) := by
   rw [classify_some_cases]
   by_cases hb : passes d b t
-  · rw [if_pos hb]
+  · rw [ite_eq_left hb]
     constructor
     · intro h
       exact absurd h (by cases k <;> decide)
     · rintro ⟨hb', -⟩
       exact absurd hb hb'
-  · rw [if_neg hb]
+  · rw [ite_eq_right hb]
     by_cases hc : passes d cv t
-    · rw [if_pos hc]
+    · rw [ite_eq_left hc]
       exact ⟨fun _ => ⟨hb, hc⟩, fun _ => rfl⟩
-    · rw [if_neg hc]
+    · rw [ite_eq_right hc]
       constructor
       · intro h
         exact absurd h.symm (bracketedFor_ne_beyondFor k k)
@@ -285,23 +285,23 @@ theorem vacuous_iff (d : Direction) (b : Rat) (c : Option (Rat × ComparatorKind
   by_cases hb : passes d b t
   · refine ⟨fun _ => hb, fun _ => ?_⟩
     cases c with
-    | none => rw [classify_none_cases, if_pos hb]
+    | none => rw [classify_none_cases, ite_eq_left hb]
     | some pair =>
       obtain ⟨cv, k⟩ := pair
-      rw [classify_some_cases, if_pos hb]
+      rw [classify_some_cases, ite_eq_left hb]
   · refine ⟨fun h => ?_, fun h => absurd h hb⟩
     exfalso
     cases c with
     | none =>
-      rw [classify_none_cases, if_neg hb] at h
+      rw [classify_none_cases, ite_eq_right hb] at h
       exact absurd h (by decide)
     | some pair =>
       obtain ⟨cv, k⟩ := pair
-      rw [classify_some_cases, if_neg hb] at h
+      rw [classify_some_cases, ite_eq_right hb] at h
       by_cases hc : passes d cv t
-      · rw [if_pos hc] at h
+      · rw [ite_eq_left hc] at h
         exact absurd h (by cases k <;> decide)
-      · rw [if_neg hc] at h
+      · rw [ite_eq_right hc] at h
         exact absurd h (by cases k <;> decide)
 
 /--
@@ -359,9 +359,9 @@ theorem degenerate_no_gate (d : Direction) (b t : Rat) (k : ComparatorKind) :
     (classify d b (some (b, k)) t).isBracketed = false := by
   rw [classify_some_cases]
   by_cases hp : passes d b t
-  · rw [if_pos hp]
+  · rw [ite_eq_left hp]
     rfl
-  · rw [if_neg hp, if_neg hp]
+  · rw [ite_eq_right hp, ite_eq_right hp]
     exact beyondFor_not_isBracketed k
 
 /--
@@ -385,7 +385,7 @@ NON-VACUITY: both hypotheses are inhabited — see
 theorem unreachable_of_bound_fails {d : Direction} {b cv t : Rat} {k : ComparatorKind}
     (hk : k.isBound = true) (hb : ¬ passes d b t) (hc : ¬ passes d cv t) :
     classify d b (some (cv, k)) t = .unreachable := by
-  rw [classify_some_cases, if_neg hb, if_neg hc]
+  rw [classify_some_cases, ite_eq_right hb, ite_eq_right hc]
   exact (beyondFor_eq_unreachable_iff k).mpr hk
 
 /--
@@ -405,7 +405,7 @@ theorem above_reference_of_reference_fails {d : Direction} {b cv t : Rat}
     {k : ComparatorKind} (hk : k.isBound = false) (hb : ¬ passes d b t)
     (hc : ¬ passes d cv t) :
     classify d b (some (cv, k)) t = .aboveReference := by
-  rw [classify_some_cases, if_neg hb, if_neg hc]
+  rw [classify_some_cases, ite_eq_right hb, ite_eq_right hc]
   exact (beyondFor_eq_aboveReference_iff k).mpr hk
 
 /--
@@ -457,13 +457,13 @@ theorem unreachable_requires_bound {d : Direction} {b cv t : Rat} {k : Comparato
     (h : classify d b (some (cv, k)) t = .unreachable) : k.isBound = true := by
   rw [classify_some_cases] at h
   by_cases hb : passes d b t
-  · rw [if_pos hb] at h
+  · rw [ite_eq_left hb] at h
     exact absurd h (by decide)
-  · rw [if_neg hb] at h
+  · rw [ite_eq_right hb] at h
     by_cases hc : passes d cv t
-    · rw [if_pos hc] at h
+    · rw [ite_eq_left hc] at h
       exact absurd h (by cases k <;> decide)
-    · rw [if_neg hc] at h
+    · rw [ite_eq_right hc] at h
       exact (beyondFor_eq_unreachable_iff k).mp h
 
 /--
@@ -481,13 +481,13 @@ theorem above_reference_requires_exceedable {d : Direction} {b cv t : Rat}
     k.isBound = false := by
   rw [classify_some_cases] at h
   by_cases hb : passes d b t
-  · rw [if_pos hb] at h
+  · rw [ite_eq_left hb] at h
     exact absurd h (by decide)
-  · rw [if_neg hb] at h
+  · rw [ite_eq_right hb] at h
     by_cases hc : passes d cv t
-    · rw [if_pos hc] at h
+    · rw [ite_eq_left hc] at h
       exact absurd h (by cases k <;> decide)
-    · rw [if_neg hc] at h
+    · rw [ite_eq_right hc] at h
       exact (beyondFor_eq_aboveReference_iff k).mp h
 
 /-! ## Satisfiability witnesses

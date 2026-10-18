@@ -37,7 +37,7 @@ The ledger bridge is driven from the repository root:
 ledger-binding checks need no toolchain and always run, so a machine without
 `elan` still cannot desynchronise the Lean from the measurements.
 
-The toolchain is pinned in `lean-toolchain` to `leanprover/lean4:v4.28.0`, and
+The toolchain is pinned in `lean-toolchain` to `leanprover/lean4:v4.35.0`, and
 `lakefile.toml` has **no `[[require]]` stanza**: there are no dependencies, not
 even Mathlib. `lake build` is therefore offline by construction — no network, no
 cache download, no version resolution. Everything is proved against plain Lean 4

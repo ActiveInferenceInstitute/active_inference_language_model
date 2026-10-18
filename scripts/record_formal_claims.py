@@ -231,7 +231,7 @@ def main() -> int:
         return _refuse(
             "lake is not on PATH, so the formal layer cannot be verified on this "
             "machine and NOTHING WILL BE RECORDED. Install the toolchain the "
-            "formal/lean-toolchain file pins (leanprover/lean4:v4.28.0) via elan, "
+            "formal/lean-toolchain file pins (leanprover/lean4:v4.35.0) via elan, "
             "then re-run. Previously recorded formal_* claims are left untouched."
         )
 

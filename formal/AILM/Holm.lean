@@ -276,9 +276,9 @@ theorem stepDownCount_mono_in_bar (b c : Nat → Rat) :
         have hc : p < c i := by grind
         have hrest := stepDownCount_mono_in_bar b c (i + 1) rest
           (fun j hj => h j (Nat.le_trans (Nat.le_succ i) hj))
-        simp only [stepDownCount, if_pos hp, if_pos hc]
+        simp only [stepDownCount, ite_eq_left hp, ite_eq_left hc]
         omega
-      · simp only [stepDownCount, if_neg hp]
+      · simp only [stepDownCount, ite_eq_right hp]
         exact Nat.zero_le _
 
 /--
@@ -298,7 +298,7 @@ theorem countBelow_eq_zero_of_all_at_least (t : Rat) :
         grind
       have hrest := countBelow_eq_zero_of_all_at_least t rest
         (fun q hq => h q (List.mem_cons_of_mem p hq))
-      simp only [countBelow, if_neg hp, hrest]
+      simp only [countBelow, ite_eq_right hp, hrest]
 
 /--
 **H6.** On a sorted family, the fixed bar's rejection *set* and its leading
@@ -321,13 +321,13 @@ theorem sorted_countBelow_eq_stepDown_const (t : Rat) :
       have htail : List.Pairwise (· ≤ ·) rest := (List.pairwise_cons.mp hsorted).2
       by_cases hp : p < t
       · have hrest := sorted_countBelow_eq_stepDown_const t (i + 1) rest htail
-        simp only [countBelow, stepDownCount, if_pos hp, hrest]
+        simp only [countBelow, stepDownCount, ite_eq_left hp, hrest]
         omega
       · have hall : ∀ q ∈ rest, t ≤ q := by
           intro q hq
           have := hhead q hq
           grind
-        simp only [countBelow, stepDownCount, if_neg hp,
+        simp only [countBelow, stepDownCount, ite_eq_right hp,
           countBelow_eq_zero_of_all_at_least t rest hall]
 
 /--
@@ -414,10 +414,10 @@ theorem witnessFamilySorted_holm_count : holmRejectCount (1 / 100) witnessFamily
   unfold holmRejectCount
   rw [witnessFamilySorted_length]
   simp only [witnessFamilySorted, stepDownCount, b1, b2, b3, b4]
-  rw [if_pos (by grind : (1 : Rat) / 150 < 1 / 100)]
-  rw [if_pos (by grind : (1 : Rat) / 250 < 1 / 200)]
-  rw [if_pos (by grind : (1 : Rat) / 500 < 1 / 300)]
-  rw [if_pos (by grind : (1 : Rat) / 1000 < 1 / 400)]
+  rw [ite_eq_left (by grind : (1 : Rat) / 150 < 1 / 100)]
+  rw [ite_eq_left (by grind : (1 : Rat) / 250 < 1 / 200)]
+  rw [ite_eq_left (by grind : (1 : Rat) / 500 < 1 / 300)]
+  rw [ite_eq_left (by grind : (1 : Rat) / 1000 < 1 / 400)]
 
 /-- Bonferroni rejects two of the four: the third and fourth members clear the
 per-test bar under Holm but not under the fixed one. -/
@@ -426,10 +426,10 @@ theorem witnessFamilySorted_bonferroni_count :
   unfold bonferroniRejectCount
   rw [witnessFamilySorted_length, witnessFamilySorted_fixed_bar]
   simp only [witnessFamilySorted, countBelow]
-  rw [if_neg (by grind : ¬ (1 : Rat) / 150 < 1 / 400)]
-  rw [if_neg (by grind : ¬ (1 : Rat) / 250 < 1 / 400)]
-  rw [if_pos (by grind : (1 : Rat) / 500 < 1 / 400)]
-  rw [if_pos (by grind : (1 : Rat) / 1000 < 1 / 400)]
+  rw [ite_eq_right (by grind : ¬ (1 : Rat) / 150 < 1 / 400)]
+  rw [ite_eq_right (by grind : ¬ (1 : Rat) / 250 < 1 / 400)]
+  rw [ite_eq_left (by grind : (1 : Rat) / 500 < 1 / 400)]
+  rw [ite_eq_left (by grind : (1 : Rat) / 1000 < 1 / 400)]
 
 /-- H7 fires on a nonempty sorted family with every hypothesis discharged, so
 the containment is exercised rather than merely stated. -/
@@ -491,13 +491,13 @@ theorem sortednessIsLoadBearing :
       unfold holmThreshold; push_cast; grind
     unfold holmRejectCount
     simp only [List.length_cons, List.length_nil, stepDownCount, hbar]
-    rw [if_neg (by grind : ¬ (1 : Rat) / 2 < 1 / 200)]
+    rw [ite_eq_right (by grind : ¬ (1 : Rat) / 2 < 1 / 200)]
   · have hbar : bonferroniThreshold (1 / 100) 2 = 1 / 200 := by
       unfold bonferroniThreshold; push_cast; grind
     unfold bonferroniRejectCount
     simp only [List.length_cons, List.length_nil, countBelow, hbar]
-    rw [if_neg (by grind : ¬ (1 : Rat) / 2 < 1 / 200)]
-    rw [if_pos (by grind : (1 : Rat) / 1000 < 1 / 200)]
+    rw [ite_eq_right (by grind : ¬ (1 : Rat) / 2 < 1 / 200)]
+    rw [ite_eq_left (by grind : (1 : Rat) / 1000 < 1 / 200)]
 
 /--
 **Negative control.** H3's `1 ≤ m` hypothesis is load-bearing.

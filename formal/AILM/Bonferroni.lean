@@ -54,7 +54,7 @@ nonempty one so the theorem is exercised where it has content.
 -/
 theorem sum_le_length_mul (t : Rat) : ∀ ps : List Rat, (∀ p ∈ ps, p ≤ t) →
     ps.sum ≤ (ps.length : Rat) * t
-  | [], _ => by simp; grind
+  | [], _ => by simp
   | p :: rest, h => by
       have hrest := sum_le_length_mul t rest (fun q hq => h q (by simp [hq]))
       have hp : p ≤ t := h p (by simp)

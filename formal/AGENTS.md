@@ -54,7 +54,7 @@ deliverable rather than an apology for it.
 | `Scripts/` | The axiom-report tooling — see [`Scripts/AGENTS.md`](Scripts/AGENTS.md) |
 | `axiom_report.txt` | Generated `#print axioms` output for every named declaration |
 | `lakefile.toml` | The build target; deliberately dependency-free |
-| `lean-toolchain` | The pinned toolchain (`leanprover/lean4:v4.28.0`) |
+| `lean-toolchain` | The pinned toolchain (`leanprover/lean4:v4.35.0`) |
 | `lake-manifest.json` | The empty dependency manifest that pin implies |
 
 ## The change order that keeps the bridge honest
