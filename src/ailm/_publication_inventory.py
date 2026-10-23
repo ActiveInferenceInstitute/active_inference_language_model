@@ -13,7 +13,6 @@ import math
 import os
 import pwd
 import re
-import shutil
 import stat
 import subprocess
 import sys
@@ -223,17 +222,40 @@ def read_json_bytes(content: bytes) -> t.JSONMap:
     return t.json_map(value)
 
 
-def trusted_git() -> Path:
-    selected = shutil.which("git", path=os.defpath)
-    t.require(selected is not None, "trusted system Git unavailable")
-    path = Path(str(selected)).absolute()
-    metadata = path.lstat()
-    t.require(
-        stat.S_ISREG(metadata.st_mode) and bool(metadata.st_mode & 0o111),
-        "system Git is not a regular executable",
-    )
-    file_hash(path)  # Reject ancestor/leaf symlinks and concurrent executable drift.
-    return path
+def trusted_git(default_path: str = os.defpath) -> Path:
+    """Select the system Git from the fixed default path, never from ``PATH``.
+
+    Directories are tried in ``default_path`` order and the first one holding a
+    ``git`` entry decides. A directory that is itself a symlink is admitted only
+    when it resolves to another directory of the same default path — the
+    merged-``/usr`` layout, where ``/bin`` is the operating system's alias for
+    ``/usr/bin`` — and the executable is then taken from the resolved directory,
+    so the returned path has no symlink component. An alias resolving anywhere
+    else, and a ``git`` entry that is not a regular executable, are refused
+    rather than skipped.
+    """
+    directories = [Path(entry).absolute() for entry in default_path.split(os.pathsep) if entry]
+    admitted = {str(directory) for directory in directories}
+    for directory in directories:
+        if directory.is_symlink():
+            resolved = directory.resolve()
+            t.require(
+                str(resolved) in admitted,
+                f"symlink refused: {directory} resolves outside the default path",
+            )
+            directory = resolved
+        path = directory / "git"
+        try:
+            metadata = path.lstat()
+        except (FileNotFoundError, NotADirectoryError):
+            continue
+        t.require(
+            stat.S_ISREG(metadata.st_mode) and bool(metadata.st_mode & 0o111),
+            "system Git is not a regular executable",
+        )
+        file_hash(path)  # Reject ancestor/leaf symlinks and concurrent executable drift.
+        return path
+    raise t.DerivativeError("trusted system Git unavailable")
 
 
 def git_command(

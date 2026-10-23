@@ -707,8 +707,30 @@ def test_cover_publication_checks_real_missing_current_and_stale_files(tmp_path:
 
 
 @pytest.mark.timeout(300)
-def test_published_cover_matches_its_generator() -> None:
-    """The ordinary suite must detect a cover left over from an earlier source."""
+def test_published_cover_matches_its_generator(tmp_path: Path) -> None:
+    """The ordinary suite must detect a cover left over from an earlier source.
+
+    Byte identity with the published PNG is asserted on the architecture that
+    recorded it (the ``env_machine`` claim): matplotlib's rasterization is only
+    byte-stable within one architecture, the same last-bit sensitivity decision
+    131 records for analytic floats. On another architecture the generator must
+    still build the cover from the current inputs, deterministically; its
+    disagreement with the published bytes there is a cross-architecture
+    difference the check cannot classify as staleness.
+    """
+    import json
+    import platform
+
     from generate_cover import main
 
-    assert main(["--check"]) == 0
+    claims = json.loads((_ROOT / "data" / "claims.json").read_text(encoding="utf-8"))["claims"]
+    if platform.machine() == claims["env_machine"]["value"]:
+        assert main(["--check"]) == 0
+        return
+    cover = tmp_path / "cover.png"
+    assert main(["--out", str(cover)]) == 0
+    first = cover.read_bytes()
+    assert first.startswith(b"\x89PNG\r\n\x1a\n")
+    assert main(["--out", str(cover), "--check"]) == 0
+    assert main(["--out", str(cover)]) == 0
+    assert cover.read_bytes() == first, "the cover generator is not deterministic on this host"

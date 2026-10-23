@@ -39,6 +39,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import posixpath
 import re
 import shutil
 import subprocess
@@ -176,6 +177,7 @@ def render_supporting_protocol_html(
             DATA_SECTION,
             HtmlInventory,
             heading_id,
+            provider_asset,
             relocate_protocol_html,
             source_view_markdown,
             style_source_view_html,
@@ -224,7 +226,27 @@ def render_supporting_protocol_html(
             for file in page.parent.rglob("*")
             if file.is_file()
         }
-        expected_names = {page.name, data_page.name, "favicon.ico", *context}
+        # The provider's own assets travel with the pages that reference them:
+        # every referenced asset, plus the resource files the provider emitted
+        # in the same directories (a stylesheet's fonts, a loader's data). The
+        # package validator below still requires each referenced asset to be an
+        # ordinary file inside the package, so an undelivered asset fails closed.
+        referenced_assets = {
+            asset
+            for delivered in (page, data_page)
+            for target in HtmlInventory(delivered.read_text(encoding="utf-8")).targets
+            if (asset := provider_asset(target)) is not None
+        }
+        asset_directories = {
+            posixpath.dirname(asset) for asset in referenced_assets if posixpath.dirname(asset)
+        }
+        provider_assets = {
+            name
+            for name in expected
+            if provider_asset(name) is not None
+            and (name in referenced_assets or posixpath.dirname(name) in asset_directories)
+        }
+        expected_names = {page.name, data_page.name, "favicon.ico", *context, *provider_assets}
         if set(expected) != expected_names:
             raise RuntimeError(
                 f"supporting renderer emitted unexpected artifacts: {sorted(expected)}"

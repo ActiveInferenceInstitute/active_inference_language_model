@@ -14,7 +14,13 @@ concurrency:
 
 jobs:
   quick:
-    runs-on: ubuntu-latest
+    # The recorded numeric environment is macOS on arm64 (the env_machine and
+    # env_platform claims in data/claims.json). The suite asserts the live
+    # machine architecture against that record, and the published cover is
+    # byte-compared with its generator only on the recording architecture, so
+    # the hosted quick profile runs on Apple-silicon macOS runners rather than
+    # x86_64 Linux, where those provenance checks fail by design.
+    runs-on: macos-latest
     timeout-minutes: 90
     steps:
       - name: Checkout
@@ -42,11 +48,11 @@ jobs:
           ln -s "$RELEASE_UV_BINARY" "${HOME}/.local/bin/uv"
           "${HOME}/.local/bin/uv" --version
 
-      - name: Install Pandoc for portable documentation checks
+      - name: Install Pandoc and ripgrep for the portable documentation and formal checks
         run: |
-          sudo apt-get update
-          sudo apt-get install --no-install-recommends -y pandoc
+          brew install pandoc ripgrep
           pandoc --version
+          rg --version
 
       - name: Sync locked environment
         run: uv sync --locked --extra dev
@@ -56,7 +62,7 @@ jobs:
 
       - name: Upload receipt
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: quick-release-receipt
           path: output/reports/

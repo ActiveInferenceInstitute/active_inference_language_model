@@ -13,6 +13,7 @@ import shutil
 import stat
 import subprocess
 import sys
+import sysconfig
 import threading
 import time
 import tomllib
@@ -31,7 +32,7 @@ CI_WORKFLOW = PROJECT_ROOT / ".github" / "workflows" / "ci.yml"
 APPROVED_CI_ACTIONS = {
     "actions/checkout": "9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
     "astral-sh/setup-uv": "c771a70e6277c0a99b617c7a806ffedaca235ff9",
-    "actions/upload-artifact": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+    "actions/upload-artifact": "b7c566a772e6b6bfb58ed0dc250532a479d7789f",
 }
 
 
@@ -73,6 +74,11 @@ def _init_git_repository(root: Path, *, with_release_script: bool = False) -> st
         ).mkdir(parents=True)
     (root / "tracked.txt").write_text("initial\n", encoding="utf-8")
     _git(root, "init", "-q")
+    # The release runner reads Git with GIT_CONFIG_GLOBAL=/dev/null, so a
+    # developer's user-level ignore file (for example one listing `.venv/`)
+    # must not decide what this fixture commits: otherwise `git add .` skips
+    # the planted interpreter and the runner then refuses the tree as dirty.
+    _git(root, "config", "core.excludesFile", os.devnull)
     _git(root, "config", "user.name", "AILM Release Test")
     _git(root, "config", "user.email", "release-test@example.invalid")
     _git(root, "add", ".")
@@ -89,6 +95,36 @@ def _repository_python(root: Path) -> str:
     """Exact interpreter path required by a copied release orchestrator."""
 
     return str(root / ".venv" / "bin" / "python")
+
+
+def _stdlib_sitecustomize(repository: Path) -> Path | None:
+    """The stdlib ``sitecustomize`` that shadows a venv one, when the interpreter ships it.
+
+    Debian-family builds install ``sitecustomize.py`` in the standard library,
+    which precedes site-packages on ``sys.path``; a module planted in the venv
+    can then never be imported, so the positive control must read the module
+    that actually did.
+    """
+
+    candidate = Path(sysconfig.get_path("stdlib")) / "sitecustomize.py"
+    if not candidate.exists():
+        return None
+    probe = subprocess.run(
+        [
+            _repository_python(repository),
+            "-I",
+            "-c",
+            "import sitecustomize; print(sitecustomize.__file__)",
+        ],
+        cwd=repository,
+        env=_release_environment(),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert probe.returncode == 0, probe.stderr
+    assert Path(probe.stdout.strip()).resolve() == candidate.resolve()
+    return candidate
 
 
 def _project_python_probe() -> str:
@@ -221,6 +257,11 @@ def _init_template_repository(root: Path, *, project_root: Path = PROJECT_ROOT) 
     project_entry.parent.mkdir(parents=True)
     project_entry.symlink_to(project_root.resolve(), target_is_directory=True)
     _git(root, "init", "-q")
+    # The release runner reads Git with GIT_CONFIG_GLOBAL=/dev/null, so a
+    # developer's user-level ignore file (for example one listing `.venv/`)
+    # must not decide what this fixture commits: otherwise `git add .` skips
+    # the planted interpreter and the runner then refuses the tree as dirty.
+    _git(root, "config", "core.excludesFile", os.devnull)
     _git(root, "config", "user.name", "AILM Release Test")
     _git(root, "config", "user.email", "release-test@example.invalid")
     _git(root, "add", ".")
@@ -1020,8 +1061,11 @@ def test_stdlib_startup_rejects_venv_customization_without_executing_it(tmp_path
     )
     assert site_enabled.returncode == 2
     if customizer == "sitecustomize.py":
-        assert marker.read_text(encoding="utf-8") == "executed"
-        marker.unlink()
+        if _stdlib_sitecustomize(repository) is None:
+            assert marker.read_text(encoding="utf-8") == "executed"
+            marker.unlink()
+        else:
+            assert not marker.exists(), "a shadowed venv sitecustomize must not execute"
     else:
         assert not marker.exists(), "-I should already suppress user-site customization"
 

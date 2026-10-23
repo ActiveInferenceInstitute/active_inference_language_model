@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import importlib
 import json
+import platform
 from functools import lru_cache
 from pathlib import Path
 
@@ -1606,12 +1607,32 @@ class TestDerivedPairedPower:
         """
         claims = _full_claims()
         variables = generate_manuscript_variables(_write_project(tmp_path, claims))
+        recording_machine = claims["env_machine"]["value"]
         for arm in _RECORDED_POWER_ARMS:
             for model in _BENCH_MODELS:
                 b = claims[f"{arm}_paired_b_{model}"]["value"]
                 c = claims[f"{arm}_paired_c_{model}"]["value"]
-                derived_text = _format_value(paired_power_from_counts(b, c))
+                recorded_value = claims[f"{arm}_power_{model}"]["value"]
+                derived_value = paired_power_from_counts(b, c)
+                derived_text = _format_value(derived_value)
                 recorded_text = variables[f"{arm}_power_{model}".upper()]
+                # The recorded path must render through the shared formatter.
+                assert recorded_text == _format_value(recorded_value)
+                if derived_value != recorded_value:
+                    # Another CPU architecture can move the last bit of a
+                    # closed-form float (decision 131 records the same drift for
+                    # analytic protocol fields). The float-layer test above bounds
+                    # it, and the shortest round-trip representations of two
+                    # different floats cannot agree, so off the recording
+                    # architecture this is a cross-architecture difference, not a
+                    # formatter defect. On the recording architecture it remains
+                    # a failure: the derivation changed.
+                    assert derived_value == pytest.approx(recorded_value, rel=1e-12, abs=1e-12)
+                    assert platform.machine() != recording_machine, (
+                        f"{arm}/{model}: derived {derived_value!r} differs from recorded "
+                        f"{recorded_value!r} on the recording architecture"
+                    )
+                    continue
                 assert derived_text == recorded_text, (
                     f"{arm}/{model}: derived {derived_text!r} renders differently from "
                     f"recorded {recorded_text!r}"

@@ -21,6 +21,7 @@ from ailm.supporting_package import (
     HtmlInventory,
     context_source,
     heading_id,
+    provider_asset,
     relocate_protocol_html,
     source_view_markdown,
     style_source_view_html,
@@ -907,10 +908,21 @@ def test_complete_relocated_package_and_production_mutations(tmp_path):
     assert all(
         "context/" in href
         or href.startswith("#")
-        or href == "favicon.ico"
+        or provider_asset(href) is not None
         or href.startswith("reference__data_statement.html#")
         for href in inventory.targets
     )
+    # Every provider asset the page references was delivered beside it, and
+    # the delivered extras are nothing but such assets.
+    delivered_assets = {
+        p.relative_to(relocated).as_posix()
+        for p in relocated.rglob("*")
+        if p.is_file() and not p.relative_to(relocated).as_posix().startswith("context/")
+    } - {page.name, "reference__data_statement.html", "favicon.ico"}
+    assert all(provider_asset(name) is not None for name in delivered_assets)
+    assert {provider_asset(h) for h in inventory.targets if provider_asset(h)} - {
+        "favicon.ico"
+    } <= (delivered_assets)
 
     # The production entrypoint and its local-target validator both refuse a
     # real missing delivered context file, not just a test-side oracle.
@@ -1035,6 +1047,66 @@ def test_heading_ids_are_read_from_provider_html_without_a_slug_algorithm():
     duplicate = HtmlInventory('<h2 id="a">2. One</h2><h2 id="b">2. Two</h2>')
     with pytest.raises(ValueError, match="absent or ambiguous"):
         heading_id(duplicate, "2.", numbered=True)
+
+
+@pytest.mark.parametrize(
+    "markup",
+    [
+        '<script data-template-source-font-loader src="assets/source-web-fonts.js"></script>',
+        '<link rel="stylesheet" href="assets/site.css">',
+        '<img src="./assets/logo.svg">',
+        '<link rel="icon" href="favicon.ico">',
+    ],
+)
+def test_provider_assets_relocate_unchanged_without_context_registration(markup):
+    """A provider improvement that adds a resource must not read as an unregistered source."""
+    assert relocate_protocol_html(markup, "data-id", "data.html") == markup
+
+
+@pytest.mark.parametrize(
+    ("href", "expected"),
+    [
+        ("assets/source-web-fonts.js", "assets/source-web-fonts.js"),
+        ("./assets/site.css", "assets/site.css"),
+        ("assets/fonts/source.woff2", "assets/fonts/source.woff2"),
+        ("favicon.ico", "favicon.ico"),
+        ("../assets/escape.js", None),
+        ("assets/../../escape.js", None),
+        ("/assets/absolute.js", None),
+        ("assets/site.css?v=2", None),
+        ("assets/site.css#fragment", None),
+        ("design/README.md", None),
+        ("context/data/claims.json", None),
+        ("https://example.org/remote.js", None),
+        ("", None),
+    ],
+)
+def test_provider_asset_classification_is_local_contained_and_suffix_bound(href, expected):
+    assert provider_asset(href) == expected
+
+
+def test_escaping_or_decorated_assets_keep_the_source_context_rules():
+    """NEGATIVE CONTROLS: the carve-out admits only contained, plain resource paths."""
+    with pytest.raises(ValueError, match="unregistered supporting context source"):
+        relocate_protocol_html(
+            '<script src="../assets/escape.js"></script>', "data-id", "data.html"
+        )
+    with pytest.raises(ValueError, match="unregistered supporting context source"):
+        relocate_protocol_html('<link href="assets/site.css?v=2">', "data-id", "data.html")
+    with pytest.raises(ValueError, match="unregistered supporting context source"):
+        relocate_protocol_html('<a href="assets/notes.md">notes</a>', "data-id", "data.html")
+
+
+def test_a_referenced_provider_asset_must_be_delivered_as_an_ordinary_file(tmp_path):
+    package = tmp_path / "package"
+    (package / "assets").mkdir(parents=True)
+    (package / "page.html").write_text(
+        '<html><body><script src="assets/fonts.js"></script></body></html>', encoding="utf-8"
+    )
+    with pytest.raises(ValueError, match="missing supporting target"):
+        validate_supporting_package(package)
+    (package / "assets" / "fonts.js").write_text("/* provider asset */\n", encoding="utf-8")
+    assert validate_supporting_package(package) == 1
 
 
 def test_mapping_preserves_provider_bytes_except_registered_attribute_values():

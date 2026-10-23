@@ -267,7 +267,9 @@ docs/manuscript/        the authored sections
 docs/              this project's documentation; docs/README.md indexes it
 handoff/           ledger snapshots taken before recorded passes, and
                    handoff/reports/ for dated lane reports and review snapshots
-                   (provenance only; outside the prose gates, never a status source)
+                   (provenance only; outside the prose gates, never a status
+                   source). Retained in the private development repository;
+                   the public source distribution ships without it
 cache/             the memoized external-model call store and its claim bindings.
                    An INPUT, not an output: gitignored and machine-specific, but
                    the release profile's coverage floor depends on it

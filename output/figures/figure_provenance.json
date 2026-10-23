@@ -53,7 +53,7 @@
     },
     {
       "path": "src/ailm/_publication_inventory.py",
-      "sha256": "07163c8389d592473280b1d6b23879a0d4013f80bee549bb4708bbaa4df068bc"
+      "sha256": "5b1f3355279b3a88184a6309d2bc7b4f648e61e8efadb7744bc39aae58f305fa"
     },
     {
       "path": "src/ailm/_publication_proof.py",
@@ -605,7 +605,7 @@
     },
     {
       "path": "src/ailm/supporting_package.py",
-      "sha256": "c538be4e5803fe3105202e2fed3beee2f181ce92afe4db421cee285644778358"
+      "sha256": "05ea78f6b4ed5dad52c3bdb6f7f6e503b27550ede93e447be7fc4286168578bf"
     },
     {
       "path": "src/ailm/value_formatting.py",

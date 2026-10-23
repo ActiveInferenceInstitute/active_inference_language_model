@@ -22,6 +22,7 @@ Unfamiliar term along the way (a level name, a gate verdict, `{{TOKEN}}`,
 | `mmdc` (mermaid-cli) | needed only if a manuscript section contains a ` ```mermaid ` block | `mmdc --version` |
 | Lean/Lake | needed by the full profile's formal build and mutation control | `(cd formal && lake --version)` |
 | `qpdf` | needed by the full profile after template rendering | `qpdf --version` |
+| `rg` (ripgrep) | needed by the formal axiom report (`formal/Scripts/axiom_report.sh`) and by the vacuity control in `tests/test_formal_isomorphism.py`; hosted CI installs it | `rg --version` |
 | Ollama, every declared probe, and a warmed call store | needed by the full profile's live cache audit and coverage run | see [Before running the `full` release profile](#before-running-the-full-release-profile) |
 | Hosted acquisition credential | `OPENROUTER_API_KEY` is needed by the synthetic and in-context producers before clean release verification; keep it in a protected operator context, never committed | `test -n "${OPENROUTER_API_KEY:-}"` checks presence without printing the key |
 | A `docxology/template` checkout | needed only for the render step — it provides the `infrastructure` package | see [`rendering_pipeline.md`](../method/rendering_pipeline.md) |

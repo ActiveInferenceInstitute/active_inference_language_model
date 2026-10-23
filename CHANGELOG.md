@@ -22,8 +22,51 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   (`salvage/2026-09-30/home-ailm-release-main`); its ledger, outputs and
   decision text were superseded on `main` and were not taken.
 
+### Changed
+
+- Hosted CI runs the quick profile on an Apple-silicon macOS runner, the
+  architecture the numeric environment was recorded on, so the suite's
+  machine-architecture provenance check and the published-cover byte check are
+  exercised there instead of failing by design on an `x86_64` Linux runner.
+  The job also installs ripgrep, which the formal axiom report and its
+  vacuity control require, and pins the receipt-upload action to its current
+  release.
+
 ### Fixed
 
+- The protocol companion delivers the HTML provider's own assets (scripts,
+  styles, fonts and icons) beside the pages that reference them instead of
+  refusing them as unregistered context sources, so a `docxology/template`
+  improvement such as its shared web-font loader cannot fail an AILM release
+  on its own. Each referenced asset must still be an ordinary file inside the
+  package, escaping or decorated paths keep the context rules, and context
+  documents remain registry-bound, with controls for each.
+- The trusted-Git lookup accepts the merged-`/usr` directory alias
+  (`/bin` as a symlink to `usr/bin`) that Debian-family hosts ship and that
+  Python's default path lists first; it previously refused every such host
+  before any object read. An alias resolving outside the default path and a
+  symlinked `git` entry remain refused, with controls for each.
+- The derived-versus-recorded paired-power rendering test and the published
+  cover check assert byte identity only on the recording architecture and
+  report a cross-architecture last-bit difference as such, instead of as a
+  formatter defect or a stale cover.
+- The held-out-stream recorder's namespace-ownership control carries the
+  raw-corpus replay marker, because the recorder reproduces the vendored stream
+  from the pinned Brown archive before writing; the full profile's raw-corpus
+  step now runs that file.
+- The virtual-environment startup control reads the standard-library
+  `sitecustomize` that Debian-family interpreters ship ahead of site-packages
+  instead of expecting a shadowed planted module to execute.
+- The release-orchestration fixture repositories set `core.excludesFile` to
+  the null device, so a developer's user-level Git ignore file cannot keep the
+  planted interpreter out of the fixture commit that the runner, which reads
+  Git without user configuration, then refuses as dirty.
+- The held-out-stream artifact reproduction control skips with the shared
+  offline reason when the pinned Brown archive is absent, like the other
+  raw-corpus controls, instead of failing with a raw traceback.
+- `AGENTS.md`, this changelog and the quickstart prerequisites state that
+  `handoff/` is retained in the private development repository and that
+  ripgrep is a toolchain prerequisite.
 - `ollama_available` allows a cold server's model-directory scan to finish
   before its first `/api/tags` answer, instead of reading a healthy endpoint
   as absent.
@@ -40,7 +83,8 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   lexical-gain wording, wrong decision and count references, and wording
   defects across the body and supplements. The findings, the applied and
   deferred log, and the decisions left to the maintainer are archived in
-  `handoff/reports/rc_review_2026-09-30/`.
+  `handoff/reports/rc_review_2026-09-30/` of the private development
+  repository; the public source distribution ships without `handoff/`.
 - The inference-evidence figure labels its L5 panel as the case-only
   ablation's type-free bar instead of a closed-form mixture score.
 - The wheel-resource test pins its build interpreter, so a user-level uv

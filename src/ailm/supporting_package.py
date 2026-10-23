@@ -1,8 +1,11 @@
 """Finite protocol companion mapping and complete local HTML target checks.
 
 Context files are delivered source views, not another documentation website.
-Only files directly referenced by the whole protocol page enter this package.
-The existing provider remains the owner of rendered headings and their IDs.
+Only files directly referenced by the whole protocol page enter this package:
+the registered source context, and the provider's own assets (its scripts,
+styles, fonts and icons) that the delivered pages reference. The existing
+provider remains the owner of rendered headings and their IDs, and of those
+assets; AILM delivers them unchanged rather than registering their names.
 """
 
 from __future__ import annotations
@@ -34,6 +37,33 @@ CONTEXT_SOURCES = frozenset(
         "src/ailm/corpus/AGENTS.md",
         "docs/README.md",
         "data/claims.json",
+    }
+)
+
+# Resources the HTML provider publishes beside its pages: its own scripts,
+# styles, fonts and icons. They are not source context. An asset is delivered
+# exactly as the provider emitted it and relocation leaves its address alone,
+# while the package validator still requires it to be present as an ordinary
+# file inside the package. Classifying by suffix keeps this companion
+# independent of the provider's internal asset names, so an improvement to the
+# provider cannot fail a release here by introducing a new resource; the finite
+# set of delivered files is still reconstructed from what the pages reference.
+PROVIDER_ASSET_SUFFIXES = frozenset(
+    {
+        ".css",
+        ".gif",
+        ".ico",
+        ".jpeg",
+        ".jpg",
+        ".js",
+        ".map",
+        ".otf",
+        ".png",
+        ".svg",
+        ".ttf",
+        ".webp",
+        ".woff",
+        ".woff2",
     }
 )
 
@@ -745,6 +775,25 @@ def heading_id(inventory: HtmlInventory, text: str, *, numbered: bool = False) -
     return matches[0]
 
 
+def provider_asset(href: str) -> str | None:
+    """Return the package-relative path of a provider-published asset, else ``None``.
+
+    An asset is a local, query-free, fragment-free target with a registered
+    resource suffix whose normalized path stays inside the page directory.
+    Everything else — a context document, an escaping, absolute or decorated
+    path, a remote URI — keeps the source-context rules.
+    """
+    link = urlsplit(href)
+    if link.scheme or link.netloc or link.query or link.fragment or not link.path:
+        return None
+    path = posixpath.normpath(unquote(link.path))
+    if path == ".." or path.startswith(("/", "../")):
+        return None
+    if posixpath.splitext(path)[1] not in PROVIDER_ASSET_SUFFIXES:
+        return None
+    return path
+
+
 def context_source(href: str) -> str:
     """Resolve one protocol link to its registered, directly referenced source."""
     path = unquote(urlsplit(href).path)
@@ -770,8 +819,8 @@ def relocate_protocol_html(text: str, data_id: str, data_page: str) -> str:
                     inventory, PROTOCOL_SECTIONS[link.fragment], numbered=True
                 )
             continue
-        if link.path == "favicon.ico":
-            continue
+        if provider_asset(target) is not None:
+            continue  # delivered beside the page at the provider's own address
         source = context_source(target)
         destination = "context/" + source
         if link.fragment:

@@ -19,6 +19,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+from ailm.corpus.brown import resolve_brown_source_zip
 from ailm.levels.word import load_word_artifact, validate_heldout_stream_artifact
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -47,6 +48,10 @@ def payload() -> dict:
 @pytest.mark.raw_corpus_regeneration
 def test_the_artifact_reproduces_from_its_generator(payload: dict) -> None:
     """Byte-level reproduction, the same standard every other vendored file meets."""
+    try:
+        resolve_brown_source_zip()
+    except FileNotFoundError:
+        pytest.skip("pinned Brown archive absent; raw-source reproduction cannot run offline")
     assert payload == _module("generate_heldout_stream").build_artifact()
 
 
@@ -135,12 +140,21 @@ def test_the_stream_is_unfiltered(payload: dict) -> None:
     assert any(token not in vocabulary for token in payload["held_tokens"])
 
 
+@pytest.mark.raw_corpus_regeneration
 def test_the_recorder_writes_only_its_own_namespace(tmp_path: Path) -> None:
     """Namespace ownership: this recorder clears stale ``stage3_oov_`` labels.
 
     A label written under a different Stage 3 prefix would be retired by
     whichever recorder owns that prefix, and the loss would be silent.
+
+    The recorder refuses to write unless the vendored stream reproduces from the
+    pinned raw Brown archive, so this control needs that ignored input and runs
+    in the full profile's raw-corpus replay step rather than the portable suite.
     """
+    try:
+        resolve_brown_source_zip()
+    except FileNotFoundError:
+        pytest.skip("pinned Brown archive absent; the recorder cannot reproduce the stream offline")
     module = _module("record_heldout_stream_claims")
     assert module.SOURCE == "scripts/record_heldout_stream_claims.py"
     ledger_path = tmp_path / "claims.json"

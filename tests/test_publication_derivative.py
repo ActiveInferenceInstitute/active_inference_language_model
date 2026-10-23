@@ -1733,6 +1733,55 @@ def test_v5_trusted_git_ignores_poisoned_path_config_and_loader(project, tmp_pat
     assert not marker.exists()
 
 
+def _executable_git_stub(directory: Path) -> Path:
+    directory.mkdir(parents=True, exist_ok=True)
+    stub = _write(directory, "git", b"#!/bin/sh\nexit 0\n")
+    stub.chmod(0o755)
+    return stub
+
+
+def test_trusted_git_accepts_the_merged_usr_directory_alias(tmp_path):
+    """Ubuntu's ``/bin -> usr/bin`` alias selects the real executable, with no symlink component.
+
+    Debian-family hosts ship ``/bin`` as a symlink to ``usr/bin`` and Python's
+    default path lists ``/bin`` first, so refusing the alias refused every
+    Linux host outright while proving nothing about the executable.
+    """
+    base = tmp_path.resolve()
+    real = _executable_git_stub(base / "usr" / "bin")
+    (base / "bin").symlink_to(Path("usr") / "bin")
+    selected = inventory.trusted_git(
+        os.pathsep.join([str(base / "bin"), str(base / "usr" / "bin")])
+    )
+    assert selected == real
+    assert not any(part.is_symlink() for part in (selected, *selected.parents))
+    assert inventory.file_identity(selected) == inventory.file_identity(real)
+
+
+def test_trusted_git_refuses_a_directory_alias_that_leaves_the_default_path(tmp_path):
+    """NEGATIVE CONTROL: an alias pointing outside the fixed directories is not an OS layout."""
+    base = tmp_path.resolve()
+    _executable_git_stub(base / "elsewhere")
+    (base / "bin").symlink_to(base / "elsewhere")
+    _executable_git_stub(base / "usr" / "bin")
+    with pytest.raises(types.DerivativeError, match="symlink refused"):
+        inventory.trusted_git(os.pathsep.join([str(base / "bin"), str(base / "usr" / "bin")]))
+
+
+def test_trusted_git_refuses_a_linked_executable_and_skips_absent_directories(tmp_path):
+    """A symlinked ``git`` is refused rather than skipped; an absent directory is skipped."""
+    base = tmp_path.resolve()
+    real = _executable_git_stub(base / "usr" / "bin")
+    (base / "linked").mkdir()
+    (base / "linked" / "git").symlink_to(real)
+    with pytest.raises(types.DerivativeError, match="not a regular executable"):
+        inventory.trusted_git(os.pathsep.join([str(base / "linked"), str(base / "usr" / "bin")]))
+    absent_first = os.pathsep.join([str(base / "absent"), str(base / "usr" / "bin")])
+    assert inventory.trusted_git(absent_first) == real
+    with pytest.raises(types.DerivativeError, match="trusted system Git unavailable"):
+        inventory.trusted_git(str(base / "absent"))
+
+
 @pytest.mark.parametrize(
     "operation",
     [

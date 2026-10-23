@@ -1013,6 +1013,7 @@ def build_steps(
                     "tests/test_corpus_source_integrity.py",
                     "tests/test_cmudict_load.py",
                     "tests/test_provenance_checksums.py",
+                    "tests/test_heldout_stream.py",
                     "-q",
                     "--no-cov",
                     "-m",

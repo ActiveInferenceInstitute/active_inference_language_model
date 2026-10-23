@@ -249,12 +249,15 @@ Select the frozen derivative route above for publication-only repairs.
    git tag -a "v$AILM_RELEASE_VERSION" -m "AILM $AILM_RELEASE_VERSION"
    ```
 
-8. **Verify publication identity before updating availability.** The current
-   source remote is the private `docxology/active_inference_language_model`
-   repository. The intended Institute repository is empty. Keep the manuscript,
-   `CITATION.cff`, and `[project.urls]` aligned with that observed state until
-   publication actually succeeds. The existing DOI does not establish that the
-   current tree is archived. After an authorized publication, verify the public
+8. **Verify publication identity before updating availability.** The source
+   of record during development is the private
+   `docxology/active_inference_language_model` repository. The public Institute
+   repository received the reviewed `v1.0.0` export and tag on 2026-10-16, so
+   the versioned source is public; the archival deposit is a separate step, and
+   on 2026-10-23 the configured DOI still resolved to no registered record.
+   Keep the manuscript, `CITATION.cff`, and `[project.urls]` aligned with that
+   observed state until the deposit actually succeeds. The configured DOI does
+   not establish that the current tree is archived. After an authorized publication, verify the public
    repository's source commit and the archive's contents before changing those
    claims and rendering the final PDF. `tests/test_availability_disclosure.py`
    checks the current disclosure and its negative controls offline; it is not a
