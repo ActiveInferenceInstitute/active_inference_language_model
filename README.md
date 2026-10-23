@@ -394,11 +394,22 @@ policy that currently forbids a priority claim.
 
 ## Verification, in one command
 
+From any clone, including this public one, the portable profile is:
+
+```bash
+.venv/bin/python -I -S scripts/verify_release.py quick
+```
+
+Publication acceptance is the `full` profile, which needs the release
+workstation's inputs described below:
+
 ```bash
 .venv/bin/python -I -S scripts/verify_release.py full
 ```
 
-`quick` is the developer loop and tolerates a dirty worktree. `full` is
+`quick` is the developer loop and tolerates a dirty worktree; it runs the
+static checks, the generated web interface, every portable test, and a bounded
+gate audit, and it is what hosted CI runs. `full` is
 publication acceptance: it requires clean tracked, staged, and untracked input
 state, runs every check from the lock file through the validated PDF under the
 claim:stage0_coverage_floor_pct% branch-coverage floor, and writes one receipt,

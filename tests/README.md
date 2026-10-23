@@ -136,9 +136,10 @@ every publication and refusal operation also checks its standard-library boundar
 .venv/bin/python -m pytest tests/ -n auto -q --no-cov
 ```
 
-The default stays serial, and the release profiles in `scripts/verify_release.py`
-are serial by design — their receipt parser expects exactly one coverage TOTAL
-row. Marker exclusions are unchanged under `-n`
+The default stays serial. The `quick` profile in `scripts/verify_release.py`
+runs its test step on four workers (no coverage is taken there), while the
+`full` profile is serial by design — its receipt parser expects exactly one
+coverage TOTAL row. Marker exclusions are unchanged under `-n`
 (`-m "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 and not publication_context and not template_context"`),
 and with `--cov` the workers combine coverage automatically, with the pyproject
 floor still applied.

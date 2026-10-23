@@ -217,10 +217,11 @@ through in [`docs/guides/quickstart.md`](docs/guides/quickstart.md) § 2.
 .venv/bin/python -m pytest tests/test_stage0_gate.py::TestStage0PymdpSmoke::test_all_pymdp_smoke_tests_pass -v
 ```
 
-Parallel dev loop (`pytest-xdist`); the suite default and the release profiles in
-`scripts/verify_release.py` stay serial — the release receipt parser expects exactly
-one coverage TOTAL row, so parallelism is a development-loop convenience, not a
-release mode.
+Parallel dev loop (`pytest-xdist`). The suite default stays serial. The `quick`
+profile in `scripts/verify_release.py` runs its test step on four workers (it
+takes no coverage, so the receipt's single-TOTAL-row rule does not apply); the
+`full` profile stays serial because its receipt parser expects exactly one
+coverage TOTAL row and its recorder replay shares one ledger lock.
 
 ```bash
 # Parallel development loop. Use -n 4 instead of -n auto when other pytest fleets
@@ -307,7 +308,7 @@ Regenerate this table from `[project].dependencies` and the `dev` group in
 | `pytest` | Test runner | ==9.1.1 |
 | `pytest-cov` | Coverage | ==7.1.0 |
 | `pytest-timeout` | The per-test 300 s bound in `pyproject.toml` | ==2.4.0 |
-| `pytest-xdist` | Parallel test workers for the dev loop; the suite default and the release profiles stay serial | ==3.8.0 |
+| `pytest-xdist` | Parallel test workers for the dev loop and the `quick` profile's test step; the suite default and the `full` profile stay serial | ==3.8.0 |
 | `mypy` | Typing gate over all of `src/ailm`, figures included (no package is excluded) | ==2.2.0 |
 | `ruff` | Lint and format gate | ==0.15.20 |
 

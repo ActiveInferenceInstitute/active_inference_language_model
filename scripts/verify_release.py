@@ -914,6 +914,11 @@ def build_steps(
     )
     if profile == "quick":
         return common + (
+            # Four xdist workers: the quick step runs without coverage, so the
+            # receipt's single-TOTAL-row rule does not apply, and the portable
+            # selection is parallel-safe (the recorder replay, which shares one
+            # ledger lock, is excluded here and runs serially in full). A fixed
+            # worker count keeps the step bounded on a shared workstation.
             Step(
                 "tests-quick",
                 _controlled_python_argv(
@@ -922,6 +927,8 @@ def build_steps(
                     "tests/",
                     "-q",
                     "--no-cov",
+                    "-n",
+                    "4",
                     "-m",
                     "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
                     "and not publication_context and not template_context",

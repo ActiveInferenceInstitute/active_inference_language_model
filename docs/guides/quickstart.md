@@ -164,11 +164,12 @@ release gate.
   -m "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12"
 ```
 
-The suite default stays serial, and the release profiles in
-`scripts/verify_release.py` are intentionally serial: their receipt parser expects
-exactly one coverage TOTAL row, so `-n` is a development-loop convenience, not a
-release mode. With `--cov`, the workers combine coverage automatically and the
-pyproject floor still applies.
+The suite default stays serial. The `quick` profile in `scripts/verify_release.py`
+runs its test step on four workers, because that step takes no coverage; the
+`full` profile is intentionally serial, since its receipt parser expects exactly
+one coverage TOTAL row and its recorder replay shares one ledger lock. With
+`--cov`, the workers combine coverage automatically and the pyproject floor
+still applies.
 
 ### Inspect every skip; do not trust a fixed census
 

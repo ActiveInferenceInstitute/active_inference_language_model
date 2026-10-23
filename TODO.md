@@ -11,6 +11,12 @@ changes what the paper claims or what the artifact is.
 
 ## Minor
 
+- [ ] At the next render, change the abstract's closing sentence from "The
+  planned release repository is" to "The release repository is": the public
+  `v1.0.0` tag exists. The edit is deferred rather than applied because
+  `tests/test_manuscript_crossrefs.py` requires the tracked rendered
+  provenance to match the authored sources, so a manuscript wording change
+  ships only with a template Stage 03/04 render.
 - [ ] Complete the whole-suite cold-start verification under fleet load. Bounded
   release fixtures, lazy imports, shared figure construction, and scoped
   full-model timeout allowances now have focused passing checks. The complete

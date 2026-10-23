@@ -523,6 +523,12 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     tests_quick = next(step for step in quick if step["name"] == "tests-quick")
     assert tests_quick["env_ov"] == []
     assert not tests_quick["forbid_skips"]
+    # Quick parallelizes without coverage; full stays serial so its receipt
+    # parser sees exactly one coverage TOTAL row and the recorder replay keeps
+    # its single ledger lock.
+    assert tests_quick["argv"][tests_quick["argv"].index("-n") + 1] == "4"
+    assert "--no-cov" in tests_quick["argv"]
+    assert "-n" not in tests_full["argv"]
     assert tests_quick["argv"][-1] == (
         "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
         "and not publication_context and not template_context"
