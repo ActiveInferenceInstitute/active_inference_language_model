@@ -129,8 +129,9 @@ print('UNBACKED:', sorted(set(load_ledger(root).scan_prose(*files))))
 TEMPLATE_REPO_ROOT="$AILM_TEMPLATE_ROOT" .venv/bin/python scripts/z_render_docs.py --check --supporting-protocols
 ```
 
-Select `AILM_TEMPLATE_ROOT` as described in the [quickstart](guides/quickstart.md)
-before checking portable companions. This points to the existing clean template
+Select `AILM_TEMPLATE_ROOT` as described in the [quickstart](guides/quickstart.md),
+or declare the checkout once in the repository's `.template-root` file, before
+checking portable companions. This points to the existing clean template
 provider; it is not an instruction to install or modify it.
 
 Check 2 duplicates what check 1 asserts, but prints the offending label and file

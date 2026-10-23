@@ -102,3 +102,8 @@ backlog/
 
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
+
+# The per-machine declaration of the docxology/template checkout used to
+# render (see docs/reference/configuration.md): a machine property, never a
+# project input.
+/.template-root

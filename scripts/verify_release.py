@@ -744,8 +744,9 @@ def _run_controlled_python(arguments: Sequence[str]) -> int:
     return 0
 
 
-def _validate_template_root(candidate: Path) -> Path:
+def _validate_template_root(candidate: Path, *, project_root: Path | None = None) -> Path:
     """Return one exact template checkout or fail without searching elsewhere."""
+    sidecar = PROJECT_ROOT if project_root is None else project_root
     root = candidate.expanduser().resolve()
     project_entry = root / "projects" / TEMPLATE_PROJECT
     required = (
@@ -766,30 +767,51 @@ def _validate_template_root(candidate: Path) -> Path:
             f"template root {root} is missing required publication files: " + ", ".join(missing)
         )
     routed_project = project_entry.resolve()
-    if routed_project != PROJECT_ROOT.resolve():
+    if routed_project != sidecar.resolve():
         raise RuntimeError(
             f"template root {root} routes {TEMPLATE_PROJECT} to {routed_project}, "
-            f"not the audited sidecar {PROJECT_ROOT.resolve()}"
+            f"not the audited sidecar {sidecar.resolve()}"
         )
     return root
 
 
-def _resolve_template_root() -> Path:
+def _resolve_template_root(project_root: Path | None = None) -> Path:
     """Resolve the template provider, treating an explicit environment value as final."""
+    sidecar = PROJECT_ROOT if project_root is None else project_root
     explicit = os.environ.get("TEMPLATE_REPO_ROOT", "").strip()
     if explicit:
-        return _validate_template_root(Path(explicit))
+        return _validate_template_root(Path(explicit), project_root=sidecar)
+    # The per-machine ``.template-root`` file is the second explicit source and
+    # equally final. Its grammar restates ailm.template_root.read_template_root_file
+    # because this runner must stay importable with the standard library alone.
+    configured = sidecar / ".template-root"
+    if configured.is_file():
+        declared_paths = [
+            line.strip()
+            for line in configured.read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.strip().startswith("#")
+        ]
+        if len(declared_paths) != 1:
+            raise RuntimeError(
+                f"{configured} must declare exactly one template checkout path, "
+                f"found {len(declared_paths)}"
+            )
+        declared = Path(declared_paths[0]).expanduser()
+        return _validate_template_root(
+            declared if declared.is_absolute() else configured.parent / declared,
+            project_root=sidecar,
+        )
 
     # The candidate order is byte-identical in scripts/z_generate_manuscript_variables.py
     # and scripts/generate_figure_registry.py; tests/test_figure_registry.py holds them to it.
     candidates = [
-        *PROJECT_ROOT.parents,
-        *(parent / "template" for parent in PROJECT_ROOT.parents[2:3]),
+        *sidecar.parents,
+        *(parent / "template" for parent in sidecar.parents[2:3]),
         _login_home() / "Documents" / "GitHub" / "template",
     ]
     for candidate in candidates:
         if (candidate / "infrastructure" / "__init__.py").is_file():
-            return _validate_template_root(candidate)
+            return _validate_template_root(candidate, project_root=sidecar)
     raise RuntimeError(
         "could not locate the template checkout required for publication; "
         "set TEMPLATE_REPO_ROOT to its exact root"

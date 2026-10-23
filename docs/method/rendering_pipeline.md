@@ -188,11 +188,17 @@ authoritative list):
 1. **`TEMPLATE_REPO_ROOT`** — the authoritative answer. The renderer sets it
    (`infrastructure/rendering/_manuscript_source.py` puts the repo root into the
    subprocess environment before invoking the script).
-2. A walk-up from the script's own location, for the case where the project genuinely
+2. **`.template-root`** at the repository root — the per-machine declaration,
+   read by `ailm.template_root` and restated in the release verifier. One path;
+   gitignored; equally final, so a declared path that holds no template is an
+   error rather than a reason to search on. Write it once and every
+   provider-dependent command on that machine finds the checkout without the
+   environment variable.
+3. A walk-up from the script's own location, for the case where the project genuinely
    does live inside the template repo.
-3. The `template` checkout beside the `projects` sidecar root, which is the canonical
+4. The `template` checkout beside the `projects` sidecar root, which is the canonical
    `<root>/template` plus `<root>/projects/working/<name>` layout.
-4. The conventional home-directory checkout, for manual invocation elsewhere.
+5. The conventional home-directory checkout, for manual invocation elsewhere.
 
 Each candidate is accepted only if `<candidate>/infrastructure/__init__.py` is a
 file, so a directory that merely has the right name is rejected.

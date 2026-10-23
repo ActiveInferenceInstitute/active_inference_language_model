@@ -27,6 +27,14 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   (`salvage/2026-09-30/home-ailm-release-main`); its ledger, outputs and
   decision text were superseded on `main` and were not taken.
 
+- The location of the `docxology/template` checkout is configurable per
+  machine: a gitignored `.template-root` file at the repository root, read by
+  `ailm.template_root` for manuscript hydration and the figure registry and
+  restated in the release verifier, stands in for exporting
+  `TEMPLATE_REPO_ROOT` before every provider-dependent command. The
+  environment value still comes first, and both are final rather than
+  fallbacks.
+
 ### Changed
 
 - The confirmatory recorder's fixture-mode root is `AILM_CONFIRMATORY_ROOT`;

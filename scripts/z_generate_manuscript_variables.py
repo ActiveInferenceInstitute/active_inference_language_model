@@ -277,32 +277,37 @@ def render_supporting_protocol_html(
     return 0
 
 
-def _resolve_template_root(environment: Mapping[str, str] | None = None) -> Path | None:
+def _resolve_template_root(
+    environment: Mapping[str, str] | None = None, *, project_root: Path | None = None
+) -> Path | None:
     """Locate the template repo root that provides the ``infrastructure`` package.
 
     Order of preference:
     1. ``TEMPLATE_REPO_ROOT`` (set by the renderer — the authoritative answer)
-    2. A walk-up from this file, for manual invocation from inside the template
-    3. The ``template`` checkout beside the ``projects`` sidecar root, for the
+    2. The repository's ``.template-root`` file, the per-machine declaration
+       (``ailm.template_root``); like the environment value, it is final
+    3. A walk-up from this file, for manual invocation from inside the template
+    4. The ``template`` checkout beside the ``projects`` sidecar root, for the
        canonical ``<root>/template`` + ``<root>/projects/working/<name>`` layout
-    4. The conventional home-directory checkout, for manual invocation elsewhere
+    5. The conventional home-directory checkout, for manual invocation elsewhere
 
     Returns:
         The directory containing ``infrastructure/``, or None if not found.
     """
-    active_environment = os.environ if environment is None else environment
-    env_root = active_environment.get("TEMPLATE_REPO_ROOT", "").strip()
-    if env_root:
-        # An explicitly supplied root is authoritative.  Falling through from
-        # a typo to another checkout can import a different renderer and make
-        # a failed render look successful.
-        candidate = Path(env_root)
-        return candidate if (candidate / "infrastructure" / "__init__.py").is_file() else None
+    from ailm.template_root import configured_template_root
+
+    root = _PROJECT_ROOT if project_root is None else project_root
+    configured, _source = configured_template_root(root, environment)
+    if configured is not None:
+        # An explicitly supplied root (environment or ``.template-root``) is
+        # authoritative.  Falling through from a typo to another checkout can
+        # import a different renderer and make a failed render look successful.
+        return configured if (configured / "infrastructure" / "__init__.py").is_file() else None
 
     # The candidate order is byte-identical in scripts/generate_figure_registry.py
     # and scripts/verify_release.py; tests/test_figure_registry.py holds them to it.
-    candidates = list(_PROJECT_ROOT.parents)
-    candidates.extend(parent / "template" for parent in _PROJECT_ROOT.parents[2:3])
+    candidates = list(root.parents)
+    candidates.extend(parent / "template" for parent in root.parents[2:3])
     candidates.append(Path.home() / "Documents" / "GitHub" / "template")
 
     for candidate in candidates:

@@ -318,9 +318,12 @@ compares the bytes.
 
 ## 7. Render
 
-Set `AILM_TEMPLATE_ROOT` to the absolute path of the selected template checkout.
-Its local-only `projects/working/active_inference_language_model` symlink must
-resolve to this AILM checkout. Prepare companions from this AILM root, then render
+Set `AILM_TEMPLATE_ROOT` to the absolute path of the selected template checkout,
+or declare that path once in a gitignored `.template-root` file at this
+repository's root, which every provider-dependent command then reads when
+`TEMPLATE_REPO_ROOT` is unset ([configuration reference](../reference/configuration.md)).
+The checkout's local-only `projects/working/active_inference_language_model`
+symlink must resolve to this AILM checkout. Prepare companions from this AILM root, then render
 from the template and repair individual HTML references back here before final
 validation:
 

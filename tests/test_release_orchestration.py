@@ -2411,6 +2411,29 @@ def test_dirty_refusal_never_executes_the_repository_raw_corpus_locator(tmp_path
     assert not marker.exists(), "dirty-source refusal occurred after executing repository code"
 
 
+def test_template_root_file_is_honored_by_the_release_verifier_and_is_final(tmp_path, monkeypatch):
+    """`.template-root` selects the provider when the environment is silent, and is final."""
+    module = _module()
+    monkeypatch.delenv("TEMPLATE_REPO_ROOT", raising=False)
+    sidecar = tmp_path / "sidecar"
+    sidecar.mkdir()
+    template = tmp_path / "template"
+    _init_template_repository(template, project_root=sidecar)
+    configured = sidecar / ".template-root"
+    configured.write_text(f"# chosen checkout\n{template}\n", encoding="utf-8")
+    assert module._resolve_template_root(project_root=sidecar) == template.resolve()
+
+    configured.write_text(f"{tmp_path / 'absent-template'}\n", encoding="utf-8")
+    with pytest.raises(RuntimeError, match="missing required publication files"):
+        module._resolve_template_root(project_root=sidecar)
+    configured.write_text("one\ntwo\n", encoding="utf-8")
+    with pytest.raises(RuntimeError, match="exactly one template checkout path"):
+        module._resolve_template_root(project_root=sidecar)
+    # The environment value remains the first and final source.
+    monkeypatch.setenv("TEMPLATE_REPO_ROOT", str(template))
+    assert module._resolve_template_root(project_root=sidecar) == template.resolve()
+
+
 def test_explicit_template_root_is_final_and_invalid_root_is_receipted(tmp_path, monkeypatch):
     module = _module()
     invalid = tmp_path / "not-a-template"

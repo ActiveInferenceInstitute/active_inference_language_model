@@ -26,6 +26,27 @@ changes what the paper claims or what the artifact is.
 
 ## Medium
 
+- [ ] **Render against the current `docxology/template` head.** The 1.0.0 PDF
+  was rendered on the workstation with an earlier template snapshot. A render
+  attempt on 2026-10-23 against the template's current head produced a clean
+  combined PDF but no publication tree, because four template changes since
+  that snapshot stop short of AILM's documented route: the stage worker's
+  analysis-read custody (`infrastructure/core/analysis_read_custody.py`,
+  `observe_stage_analysis_reads`) refuses a symlinked `projects/working/<name>`
+  entry, which is exactly the route the quickstart documents; the accessible
+  slide composition caps a section's Pandoc AST
+  (`infrastructure/rendering/_slides_accessibility_limits.py`), which the
+  methods and results sections exceed, and the partial failure drops the web
+  edition and the composition report; the web renderer's link validation
+  (`infrastructure/rendering/_web_links.py`) rejects the protocol companion's
+  relative source links before AILM relocates them into the delivered
+  `context/` tree; and the shared web-font loader it now publishes beside
+  `index.html` is gitignored here. Each is a template-side decision or an
+  AILM-side adaptation (a real-directory route, the slide format toggle, a
+  staged context tree for the companion render, a tracked `assets/`
+  allowlist), and the choice belongs with the template's maintainer. Until
+  one lands, renders use the snapshot the release used.
+
 - [ ] **Narrow the source bindings to what each measurement executes.** Three
   bindings currently freeze bytes that the bound measurement never runs, so an
   unrelated edit forces a re-measurement or a reviewed derivative: the

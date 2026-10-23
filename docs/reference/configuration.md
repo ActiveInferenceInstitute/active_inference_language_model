@@ -60,9 +60,12 @@ Read by the installed package and by any script that imports it.
 | `AILM_PATCHED_PYMDP_ROOT` | `scripts/probe_pymdp_sparse.py` (child worker) | Authenticated staged package root the patched sparse worker must import `pymdp` from; the parent process clears any inherited value and sets its own | an empty value makes the worker refuse to start |
 | `TEMPLATE_REPO_ROOT` | `scripts/verify_release.py`, `scripts/z_generate_manuscript_variables.py`, `scripts/generate_figure_registry.py` | The `docxology/template` checkout that provides the `infrastructure` rendering package; an explicit value is final and never silently replaced by a fallback | the scripts search the documented candidate locations and refuse loudly when none holds `infrastructure/` |
 
+| `.template-root` (file, not a variable) | `ailm.template_root`, read by the same three scripts | The per-machine declaration of the template checkout: one path, `~` expanded, relative paths taken from the repository root, `#` comments allowed; gitignored because the location is a machine property. It is consulted only when `TEMPLATE_REPO_ROOT` is unset, and like the environment value it is final: a declared path that holds no template is an error, never a fallback | the scripts search their candidate locations |
+
 The guides write `AILM_TEMPLATE_ROOT` as a shell variable for the operator's
-own chosen checkout and pass it as `TEMPLATE_REPO_ROOT`; the code reads only
-the latter. The other `AILM_*` names that appear in command examples
+own chosen checkout and pass it as `TEMPLATE_REPO_ROOT`; declaring the
+checkout once in `.template-root` makes that export unnecessary. The code
+reads only `TEMPLATE_REPO_ROOT` and the file. The other `AILM_*` names that appear in command examples
 (`AILM_INPUT_JSON`, `AILM_RELEASE_RECEIPT`, `AILM_PUBLICATION_CONTRACT`,
 `AILM_RELEASE_VERSION`, and similar) are likewise shell placeholders for the
 reader's own values, not variables the code reads.

@@ -83,6 +83,66 @@ def test_valid_explicit_template_root_is_used_by_both_publishers(tmp_path, monke
     assert resolve_template_root() == _resolve_template_root() == template
 
 
+def _template_fixture(root: Path) -> Path:
+    (root / "infrastructure").mkdir(parents=True)
+    (root / "infrastructure" / "__init__.py").write_text("", encoding="utf-8")
+    return root
+
+
+def test_template_root_file_configures_both_publishers(tmp_path, monkeypatch):
+    """The per-machine ``.template-root`` file is the persistent explicit source."""
+    import scripts.generate_figure_registry as registry
+    import scripts.z_generate_manuscript_variables as variables
+    from ailm.template_root import TEMPLATE_ROOT_FILE, configured_template_root
+
+    template = _template_fixture(tmp_path / "declared-template")
+    project = tmp_path / "project"
+    project.mkdir()
+    (project / TEMPLATE_ROOT_FILE).write_text(
+        f"# the checkout this machine renders with\n{template}\n", encoding="utf-8"
+    )
+    monkeypatch.delenv("TEMPLATE_REPO_ROOT", raising=False)
+    assert configured_template_root(project, {}) == (template, TEMPLATE_ROOT_FILE)
+    assert (
+        registry.resolve_template_root(project)
+        == variables._resolve_template_root(project_root=project)
+        == template
+    )
+
+    # The environment still wins over the file.
+    chosen = _template_fixture(tmp_path / "environment-template")
+    monkeypatch.setenv("TEMPLATE_REPO_ROOT", str(chosen))
+    assert (
+        registry.resolve_template_root(project)
+        == variables._resolve_template_root(project_root=project)
+        == chosen
+    )
+
+
+def test_template_root_file_is_final_and_names_exactly_one_path(tmp_path, monkeypatch):
+    """A declared path that holds no template is refused, never searched around."""
+    import scripts.generate_figure_registry as registry
+    import scripts.z_generate_manuscript_variables as variables
+    from ailm.template_root import TEMPLATE_ROOT_FILE, read_template_root_file
+
+    project = tmp_path / "project"
+    project.mkdir()
+    configured = project / TEMPLATE_ROOT_FILE
+    configured.write_text(f"{tmp_path / 'missing-template'}\n", encoding="utf-8")
+    monkeypatch.delenv("TEMPLATE_REPO_ROOT", raising=False)
+    assert registry.resolve_template_root(project) is None
+    assert variables._resolve_template_root(project_root=project) is None
+
+    configured.write_text("# nothing declared\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="exactly one template checkout path"):
+        read_template_root_file(configured)
+    configured.write_text("one\ntwo\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="exactly one template checkout path"):
+        read_template_root_file(configured)
+    configured.write_text("relative/template\n", encoding="utf-8")
+    assert read_template_root_file(configured) == project / "relative" / "template"
+
+
 # ── The project-owned facts ──────────────────────────────────────────────────
 
 

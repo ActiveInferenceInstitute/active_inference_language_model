@@ -608,6 +608,10 @@
       "sha256": "05ea78f6b4ed5dad52c3bdb6f7f6e503b27550ede93e447be7fc4286168578bf"
     },
     {
+      "path": "src/ailm/template_root.py",
+      "sha256": "d0675ae819851c7b2753c5aa6b7314d027132969bdef043239855eead2d32f7a"
+    },
+    {
       "path": "src/ailm/value_formatting.py",
       "sha256": "6b8b51c00c1e55efa456fc0506dca667210306d6e11440876e76c70fe5380d75"
     },

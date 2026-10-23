@@ -59,7 +59,6 @@ Usage
 from __future__ import annotations
 
 import argparse
-import os
 import re
 import sys
 from dataclasses import dataclass
@@ -99,7 +98,7 @@ class FigureSpec:
     alt_text: str
 
 
-def resolve_template_root() -> Path | None:
+def resolve_template_root(project_root: Path | None = None) -> Path | None:
     """Locate the template repo root providing the ``infrastructure`` package.
 
     Same order of preference as ``scripts/z_generate_manuscript_variables.py``,
@@ -107,21 +106,25 @@ def resolve_template_root() -> Path | None:
     defect waiting to happen.
 
     1. ``TEMPLATE_REPO_ROOT`` (set by the renderer — the authoritative answer)
-    2. A walk-up from this file, for invocation from inside the template
-    3. The ``template`` checkout beside the ``projects`` sidecar root, for the
+    2. The repository's ``.template-root`` file, the per-machine declaration
+       (``ailm.template_root``); like the environment value, it is final
+    3. A walk-up from this file, for invocation from inside the template
+    4. The ``template`` checkout beside the ``projects`` sidecar root, for the
        canonical ``<root>/template`` + ``<root>/projects/working/<name>`` layout
-    4. The conventional home-directory checkout, for invocation elsewhere
+    5. The conventional home-directory checkout, for invocation elsewhere
     """
-    env_root = os.environ.get("TEMPLATE_REPO_ROOT", "").strip()
-    if env_root:
+    from ailm.template_root import configured_template_root
+
+    root = _PROJECT_ROOT if project_root is None else project_root
+    configured, _source = configured_template_root(root)
+    if configured is not None:
         # An explicit checkout is authoritative, as in manuscript hydration.
         # Falling back after a typo would publish through a different engine.
-        candidate = Path(env_root)
-        return candidate if (candidate / "infrastructure" / "__init__.py").is_file() else None
+        return configured if (configured / "infrastructure" / "__init__.py").is_file() else None
     # The candidate order is byte-identical in scripts/z_generate_manuscript_variables.py
     # and scripts/verify_release.py; tests/test_figure_registry.py holds them to it.
-    candidates = list(_PROJECT_ROOT.parents)
-    candidates.extend(parent / "template" for parent in _PROJECT_ROOT.parents[2:3])
+    candidates = list(root.parents)
+    candidates.extend(parent / "template" for parent in root.parents[2:3])
     candidates.append(Path.home() / "Documents" / "GitHub" / "template")
 
     for candidate in candidates:

@@ -136,8 +136,10 @@ still precede every recorder that reads their artifacts. `record_formal_claims.p
 its own place at step 5 because it reads a `lake build` rather than the corpus.
 
 Set `AILM_TEMPLATE_ROOT` to the selected template checkout whose qualified project
-route resolves to this AILM root. Export that choice before provider-dependent
-hydration, supporting HTML, or figure-registry commands.
+route resolves to this AILM root, or declare it once in the gitignored
+`.template-root` file at the repository root (`ailm.template_root`). Export the
+choice, or rely on the file, before provider-dependent hydration, supporting
+HTML, or figure-registry commands.
 
 ```bash
 cd "$(git rev-parse --show-toplevel)"   # the repository root
