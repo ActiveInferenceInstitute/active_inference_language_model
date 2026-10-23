@@ -218,8 +218,9 @@ through in [`docs/guides/quickstart.md`](docs/guides/quickstart.md) § 2.
 ```
 
 Parallel dev loop (`pytest-xdist`). The suite default stays serial. The `quick`
-profile in `scripts/verify_release.py` runs its test step on four workers (it
-takes no coverage, so the receipt's single-TOTAL-row rule does not apply); the
+profile in `scripts/verify_release.py` runs its test step on up to four workers,
+half the host's cores (it takes no coverage, so the receipt's single-TOTAL-row
+rule does not apply, and a three-core hosted runner stays serial); the
 `full` profile stays serial because its receipt parser expects exactly one
 coverage TOTAL row and its recorder replay shares one ledger lock.
 

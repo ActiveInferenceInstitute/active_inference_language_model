@@ -839,6 +839,19 @@ def _coverage_floor(root: Path = PROJECT_ROOT) -> int:
     return floor
 
 
+def _quick_test_workers(cpu_count: int | None = None) -> int:
+    """Return the ``pytest-xdist`` worker count for the quick profile's test step.
+
+    Half the host's cores, at most four and at least one. Each worker runs JAX,
+    which multi-threads within the process, so a worker per core oversubscribes
+    the machine; on a three-core hosted macOS runner four workers made the
+    negative-control subprocess pytest exceed its own timeout, where a serial
+    step had passed. The receipt records whatever count the host produced.
+    """
+    cores = (os.cpu_count() or 1) if cpu_count is None else cpu_count
+    return max(1, min(4, cores // 2))
+
+
 def _coverage_gate_argument(root: Path = PROJECT_ROOT) -> str:
     """The pytest-cov flag for the declared floor, as recorded in the receipt."""
     return f"--cov-fail-under={_coverage_floor(root)}"
@@ -937,11 +950,12 @@ def build_steps(
     )
     if profile == "quick":
         return common + (
-            # Four xdist workers: the quick step runs without coverage, so the
+            # xdist workers: the quick step runs without coverage, so the
             # receipt's single-TOTAL-row rule does not apply, and the portable
             # selection is parallel-safe (the recorder replay, which shares one
-            # ledger lock, is excluded here and runs serially in full). A fixed
-            # worker count keeps the step bounded on a shared workstation.
+            # ledger lock, is excluded here and runs serially in full). The
+            # count follows the host's cores, capped so a shared workstation
+            # stays bounded and a small hosted runner stays serial.
             Step(
                 "tests-quick",
                 _controlled_python_argv(
@@ -951,7 +965,7 @@ def build_steps(
                     "-q",
                     "--no-cov",
                     "-n",
-                    "4",
+                    str(_quick_test_workers()),
                     "-m",
                     "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
                     "and not publication_context and not template_context",

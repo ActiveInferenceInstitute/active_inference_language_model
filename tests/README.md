@@ -137,7 +137,8 @@ every publication and refusal operation also checks its standard-library boundar
 ```
 
 The default stays serial. The `quick` profile in `scripts/verify_release.py`
-runs its test step on four workers (no coverage is taken there), while the
+runs its test step on up to four workers, half the host's cores (no coverage is
+taken there), while the
 `full` profile is serial by design — its receipt parser expects exactly one
 coverage TOTAL row. Marker exclusions are unchanged under `-n`
 (`-m "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 and not publication_context and not template_context"`),

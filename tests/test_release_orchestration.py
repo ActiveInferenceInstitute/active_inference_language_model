@@ -526,7 +526,9 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     # Quick parallelizes without coverage; full stays serial so its receipt
     # parser sees exactly one coverage TOTAL row and the recorder replay keeps
     # its single ledger lock.
-    assert tests_quick["argv"][tests_quick["argv"].index("-n") + 1] == "4"
+    assert tests_quick["argv"][tests_quick["argv"].index("-n") + 1] == str(
+        max(1, min(4, (os.cpu_count() or 1) // 2))
+    )
     assert "--no-cov" in tests_quick["argv"]
     assert "-n" not in tests_full["argv"]
     assert tests_quick["argv"][-1] == (
@@ -4133,6 +4135,22 @@ def test_controlled_factory_bytecode_preserves_assertions(tmp_path):
 
 
 @pytest.mark.timeout(480)
+def test_quick_worker_count_follows_the_host_and_stays_bounded():
+    """Half the cores, between one and four: serial on a small hosted runner."""
+    module = _module()
+    assert [module._quick_test_workers(n) for n in (1, 2, 3, 4, 7, 8, 18, 64)] == [
+        1,
+        1,
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+    ]
+    assert module._quick_test_workers() == max(1, min(4, (os.cpu_count() or 1) // 2))
+
+
 def test_quick_context_filter_has_real_collection_controls(tmp_path):
     template = tmp_path / "template"
     _init_template_repository(template)

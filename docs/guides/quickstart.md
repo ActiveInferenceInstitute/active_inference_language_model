@@ -165,7 +165,8 @@ release gate.
 ```
 
 The suite default stays serial. The `quick` profile in `scripts/verify_release.py`
-runs its test step on four workers, because that step takes no coverage; the
+runs its test step on up to four workers, half the host's cores, because that
+step takes no coverage; the
 `full` profile is intentionally serial, since its receipt parser expects exactly
 one coverage TOTAL row and its recorder replay shares one ledger lock. With
 `--cov`, the workers combine coverage automatically and the pyproject floor

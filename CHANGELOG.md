@@ -48,11 +48,13 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   those, and the lint gate's rule set (`pyproject.toml` is a non-URL
   configuration input of the same report), wait for that report's next
   scoring replay.
-- The `quick` release profile runs its test step on four `pytest-xdist`
-  workers, cutting that step from about forty minutes to about eleven on the
-  recording workstation with no change in selection or outcome; `full` stays
-  serial because its coverage receipt needs one TOTAL row and its recorder
-  replay shares one ledger lock.
+- The `quick` release profile runs its test step on `pytest-xdist` workers,
+  half the host's cores and at most four, cutting that step from about forty
+  minutes to about eleven on the recording workstation with no change in
+  selection or outcome; a three-core hosted runner stays serial, because four
+  workers there made the negative-control subprocess exceed its timeout.
+  `full` stays serial because its coverage receipt needs one TOTAL row and its
+  recorder replay shares one ledger lock.
 - The README's verification section leads with the portable `quick` profile
   that any clone can run before the workstation-only `full` profile.
 - Hosted CI runs the quick profile on an Apple-silicon macOS runner, the
