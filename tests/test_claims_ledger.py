@@ -89,14 +89,14 @@ class TestClaimsLedger:
         assert alpha == ["alpha_metric"]
         assert beta == ["beta_metric"]
 
-    def test_labels_owned_by_matches_a_legacy_absolute_path_source(self, claims_ledger_tmp):
+    def test_labels_owned_by_matches_an_absolute_path_source(self, claims_ledger_tmp):
         """An entry recorded under an absolute path still belongs to its script."""
-        legacy = "/home/someone/checkout/scripts/record_alpha_claims.py"
-        claims_ledger_tmp.record("legacy_metric", 3, "r", legacy)
+        absolute = "/home/someone/checkout/scripts/record_alpha_claims.py"
+        claims_ledger_tmp.record("absolute_metric", 3, "r", absolute)
         claims_ledger_tmp.record("alpha_metric", 1, "r", "scripts/record_alpha_claims.py")
         claims_ledger_tmp.record("beta_metric", 2, "r", "scripts/record_beta_claims.py")
         owned = claims_ledger_tmp.labels_owned_by("scripts/record_alpha_claims.py")
-        assert owned == ["legacy_metric", "alpha_metric"]
+        assert owned == ["absolute_metric", "alpha_metric"]
 
     def test_labels_owned_by_an_unknown_source_is_empty(self, claims_ledger_tmp):
         claims_ledger_tmp.record("alpha_metric", 1, "r", "scripts/record_alpha_claims.py")

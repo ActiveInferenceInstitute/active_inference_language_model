@@ -10,10 +10,7 @@ is the one that matters.
    binding. It is distributed for offline validation and must not be regenerated
    merely to change provenance hashes or satisfy a check. A
    documented command sequence recreates the current output contract, and none
-   of it is a source of truth. An old ignored `output/bench_cache/` may remain in
-   a long-lived checkout; no current code reads or writes it, and
-   [`output_inventory.md`](output_inventory.md) records it as legacy residue
-   rather than silently treating it as a current artifact.
+   of it is a source of truth.
    This was asserted for a long time before anyone tested it. Deleting the tree
    found two things in it that were **not** regenerable, and both are now fixed
    or documented:
@@ -42,15 +39,14 @@ is the one that matters.
      authenticate immutable hosted weights.
      Their unkeyed digests are integrity/self-consistency checks under the
      trusted-local writer boundary, not hostile-writer authentication.
-     An isolated warming ledger never overwrites them, and legacy cache rows are
-     explicitly ineligible to satisfy them.
+     An isolated warming ledger never overwrites them, and older-schema cache
+     rows are explicitly ineligible to satisfy them.
 
    The lesson generalizes past these two, and both fixes take the same shape:
    give the artifact a generator, or move it out. An artifact that lives in the
    regenerable tree and has neither is protected by nothing at all, and the only
    way to find one is to reconstruct the owned inventory from its generators.
-   Nothing in the **current owned inventory** now falls into that category; the
-   explicitly named legacy cache residue is outside that contract.
+   Nothing in the **current owned inventory** now falls into that category.
 2. **Nothing in `output/` is ever hand-edited to make something pass.** Not a
    figure, not a token map, not an injected manuscript section, not a diagnostic
    report. Editing a generated artifact to satisfy a check converts a caught

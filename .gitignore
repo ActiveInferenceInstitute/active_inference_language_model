@@ -12,10 +12,8 @@ build/
 # ── Generated output: ignored by default, with a curated publication allowlist ──
 #
 # Every project-owned current artifact under output/ is disposable and
-# regenerable. An old ignored output/bench_cache may remain as explicitly
-# documented legacy residue, but no current code reads or writes it. The active
-# call store lives in cache/, which is an input directory. So the default is still
-# "ignore", and the negations below
+# regenerable. The active call store lives in cache/, which is an input
+# directory. So the default is "ignore", and the negations below
 # admit only the surfaces the template's own convention calls STABLE — the ones
 # `infrastructure/core/pipeline/artifacts.py` expects a fresh clone to have,
 # because the artifact manifest is committed evidence and an entry a clone

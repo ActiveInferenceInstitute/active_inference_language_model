@@ -29,7 +29,7 @@ Contracts implemented (see ``docs/extension_protocols.md`` §2.2):
 from __future__ import annotations
 
 from collections import Counter
-from collections.abc import Callable, Iterator, Sequence
+from collections.abc import Sequence
 from dataclasses import dataclass
 
 DATA_PROTOCOL = "fitted-probe-data-v1"
@@ -284,24 +284,3 @@ def synthetic_letter_stream(seed: int, n: int) -> str:
 def canonicalize_pairs(counts: dict[tuple[str, str], int]) -> dict[str, int]:
     """Serialize bigram counts with the vendored artifacts' ``"a,b"`` keys."""
     return {f"{previous},{current}": count for (previous, current), count in sorted(counts.items())}
-
-
-def normalized_stream_from_file(path: str, *, raw: bool) -> tuple[str, Callable[[str], str]]:
-    """Read a stream file, optionally normalizing it with the recorded normalizer.
-
-    Returns the stream and the normalizer actually applied (identity when the
-    file is already normalized), so the receipt can name the exact transform.
-    """
-    with open(path, encoding="utf-8") as handle:
-        text = handle.read()
-    if raw:
-        return letter_stream_from_raw(text), letter_stream_from_raw
-    return text, lambda value: value
-
-
-def iter_jsonl(records: Iterator[dict[str, object]]):
-    """Serialize records to JSONL lines (compact, sorted keys)."""
-    import json
-
-    for record in records:
-        yield json.dumps(record, sort_keys=True, separators=(",", ":"))

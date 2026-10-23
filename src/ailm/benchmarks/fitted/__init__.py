@@ -26,6 +26,7 @@ from ailm.benchmarks.fitted.identity import (
     build_lineage_chain,
     sha256_digest,
     sha256_text,
+    validate_current_registry,
     validate_fitted_probes,
 )
 from ailm.benchmarks.fitted.receipt import (
@@ -55,6 +56,7 @@ __all__ = [
     "sha256_digest",
     "sha256_text",
     "stride_aliasing_demo",
+    "validate_current_registry",
     "validate_fitted_probes",
     "verify_receipt",
     "write_receipt",

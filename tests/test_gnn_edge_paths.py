@@ -35,6 +35,7 @@ from ailm.gnn.live import (
     _check_precision,
     _check_structural_form,
 )
+from ailm.gnn.types import LiveConformanceInputs
 
 # ── SYNTHETIC SPEC BUILDERS ──────────────────────────────────────────────────
 
@@ -116,8 +117,8 @@ def two_factor_spec(
     )
 
 
-def two_factor_live(**overrides: object) -> dict[str, object]:
-    """Live arrays that conform to the default :func:`two_factor_spec`."""
+def two_factor_live(**overrides: object) -> LiveConformanceInputs:
+    """The typed live record that conforms to the default :func:`two_factor_spec`."""
     live: dict[str, object] = {
         "a_matrices": [np.full((3, 2, 2), 1.0 / 3.0)],
         "b_matrices": [np.eye(2), np.eye(2)],
@@ -126,7 +127,7 @@ def two_factor_live(**overrides: object) -> dict[str, object]:
         "n_factors": 2,
     }
     live.update(overrides)
-    return live
+    return LiveConformanceInputs(**live)  # type: ignore[arg-type]
 
 
 def test_the_synthetic_baselines_conform() -> None:
@@ -136,7 +137,7 @@ def test_the_synthetic_baselines_conform() -> None:
     test's ``any(...)`` could be satisfied by baseline noise rather than by the
     branch it was written for.
     """
-    assert check_conformance(two_factor_spec(), **two_factor_live()) == []
+    assert check_conformance(two_factor_spec(), two_factor_live()) == []
     assert _check_declaration_coherence(single_factor_spec()) == []
 
 
@@ -515,14 +516,14 @@ class TestMultifactorSlotRefusals:
         spec = two_factor_spec(
             parameters="num_factors: 2\nnum_hidden_states_f0: 2\nnum_hidden_states_f1: 2"
         )
-        violations = check_conformance(spec, **two_factor_live())
+        violations = check_conformance(spec, two_factor_live())
         assert any("missing 'num_obs'" in v for v in violations), violations
 
     def test_a_non_positive_num_obs_is_reported(self) -> None:
         spec = two_factor_spec(
             parameters="num_factors: 2\nnum_hidden_states_f0: 2\nnum_hidden_states_f1: 2\nnum_obs: 0"
         )
-        violations = check_conformance(spec, **two_factor_live())
+        violations = check_conformance(spec, two_factor_live())
         assert any("num_obs=0 is not a positive integer" in v for v in violations), violations
 
     def test_a_disagreeing_modality_count_is_reported(self) -> None:
@@ -532,7 +533,7 @@ class TestMultifactorSlotRefusals:
                 "num_obs: 3\nnum_modalities: 2"
             )
         )
-        violations = check_conformance(spec, **two_factor_live())
+        violations = check_conformance(spec, two_factor_live())
         assert any("num_modalities=2 but the live model has 1" in v for v in violations), violations
 
     def test_two_transitions_binding_one_factor_is_reported(self) -> None:
@@ -554,14 +555,14 @@ class TestMultifactorSlotRefusals:
                 "D_f1=Prior"
             ),
         )
-        violations = check_conformance(spec, **two_factor_live())
+        violations = check_conformance(spec, two_factor_live())
         assert any(
             "B_extra and B_f0 both bind to factor 0" in v and "_f<N> suffix" in v
             for v in violations
         ), violations
 
     def test_a_transition_slot_with_no_live_array_is_unverified(self) -> None:
-        violations = check_conformance(two_factor_spec(), **two_factor_live(b_matrices=[np.eye(2)]))
+        violations = check_conformance(two_factor_spec(), two_factor_live(b_matrices=[np.eye(2)]))
         assert any(
             "B_f1: spec declares a TransitionMatrix for factor 1 but no live array was supplied"
             in v
@@ -579,7 +580,7 @@ class TestMultifactorSlotRefusals:
                 "D_f1[2,1,type=float]"
             ),
         )
-        violations = check_conformance(spec, **two_factor_live())
+        violations = check_conformance(spec, two_factor_live())
         assert any(
             "B_f0 (TransitionMatrix, factor 0)" in v
             and "requires (2, 2). The spec contradicts itself" in v
@@ -589,21 +590,21 @@ class TestMultifactorSlotRefusals:
     def test_a_non_square_live_transition_is_reported(self) -> None:
         violations = check_conformance(
             two_factor_spec(),
-            **two_factor_live(b_matrices=[np.full((2, 3), 0.5), np.eye(2)]),
+            two_factor_live(b_matrices=[np.full((2, 3), 0.5), np.eye(2)]),
         )
         assert any("are not square in the state axes" in v for v in violations), violations
 
     def test_a_live_transition_of_the_wrong_size_is_reported(self) -> None:
         violations = check_conformance(
             two_factor_spec(),
-            **two_factor_live(b_matrices=[np.eye(3), np.eye(2)]),
+            two_factor_live(b_matrices=[np.eye(3), np.eye(2)]),
         )
         assert any("live state dimension 3 != num_hidden_states_f0=2" in v for v in violations), (
             violations
         )
 
     def test_a_prior_slot_with_no_live_array_is_unverified(self) -> None:
-        violations = check_conformance(two_factor_spec(), **two_factor_live(d_vectors=None))
+        violations = check_conformance(two_factor_spec(), two_factor_live(d_vectors=None))
         assert any(
             "D_f0: spec declares a Prior for factor 0 but no live array was supplied" in v
             for v in violations
@@ -612,7 +613,7 @@ class TestMultifactorSlotRefusals:
     def test_a_mis_sized_live_prior_is_reported(self) -> None:
         violations = check_conformance(
             two_factor_spec(),
-            **two_factor_live(d_vectors=[np.full(2, 0.5), np.full(3, 1.0 / 3.0)]),
+            two_factor_live(d_vectors=[np.full(2, 0.5), np.full(3, 1.0 / 3.0)]),
         )
         assert any(
             "D_f1 (Prior, factor 1): live canonical dims (3,) != (num_hidden_states_f1,) = (2,)"
@@ -621,7 +622,7 @@ class TestMultifactorSlotRefusals:
         ), violations
 
     def test_a_recognition_slot_with_no_live_array_is_unverified(self) -> None:
-        violations = check_conformance(two_factor_spec(), **two_factor_live(a_matrices=None))
+        violations = check_conformance(two_factor_spec(), two_factor_live(a_matrices=None))
         assert any(
             "A_m0: spec declares a RecognitionMatrix for modality 0 but no live array was supplied"
             in v
@@ -631,7 +632,7 @@ class TestMultifactorSlotRefusals:
     def test_a_live_emission_not_indexed_by_observation_is_reported(self) -> None:
         violations = check_conformance(
             two_factor_spec(),
-            **two_factor_live(a_matrices=[np.full((4, 2, 2), 0.25)]),
+            two_factor_live(a_matrices=[np.full((4, 2, 2), 0.25)]),
         )
         assert any("do not start with num_obs=3" in v for v in violations), violations
 
@@ -640,7 +641,7 @@ class TestMultifactorSlotRefusals:
         indexing its factors out of order is a different model."""
         violations = check_conformance(
             two_factor_spec(),
-            **two_factor_live(a_matrices=[np.full((3, 2, 3), 1.0 / 3.0)]),
+            two_factor_live(a_matrices=[np.full((3, 2, 3), 1.0 / 3.0)]),
         )
         joined = "\n".join(violations)
         assert "live state axes (2, 3) != the declared factor sizes (2, 2)" in joined, violations
@@ -670,10 +671,10 @@ class TestMultifactorSlotRefusals:
                 "D_f1=Prior"
             ),
         )
-        withheld = check_conformance(spec, **two_factor_live())
+        withheld = check_conformance(spec, two_factor_live())
         assert not any("LogPreferenceVector" in v for v in withheld), withheld
 
-        mis_sized = check_conformance(spec, **two_factor_live(c_vectors=[np.zeros(4)]))
+        mis_sized = check_conformance(spec, two_factor_live(c_vectors=[np.zeros(4)]))
         assert any(
             "C (LogPreferenceVector): live canonical dims (4,) != (num_obs,) = (3,)" in v
             for v in mis_sized
@@ -686,7 +687,7 @@ class TestMultifactorSlotRefusals:
                 "num_obs: 3\nnum_controls: 0"
             )
         )
-        violations = check_conformance(spec, **two_factor_live())
+        violations = check_conformance(spec, two_factor_live())
         assert any("num_controls=0 is not a positive integer" in v for v in violations), violations
 
     def test_a_declared_action_set_missing_from_the_live_transitions_is_reported(self) -> None:
@@ -699,12 +700,12 @@ class TestMultifactorSlotRefusals:
                 "num_obs: 3\nnum_controls: 3"
             )
         )
-        violations = check_conformance(spec, **two_factor_live())
+        violations = check_conformance(spec, two_factor_live())
         assert any(
             "num_controls=3 but the live transition's canonical dims" in v for v in violations
         ), violations
 
-        withheld = check_conformance(spec, **two_factor_live(b_matrices=None))
+        withheld = check_conformance(spec, two_factor_live(b_matrices=None))
         assert not any("live transition's canonical dims" in v for v in withheld), withheld
         assert any("no live array was supplied" in v for v in withheld), withheld
 
@@ -737,14 +738,14 @@ class TestMultifactorPolicyPrior:
             parameterization="E=Uniform(3)",
         )
 
-    def _live(self, **overrides: object) -> dict[str, object]:
+    def _live(self, **overrides: object) -> LiveConformanceInputs:
         """The baseline plus 3-action transitions, so only E can be at fault."""
         controlled = np.stack([np.eye(2)] * 3, axis=2)
         return two_factor_live(b_matrices=[controlled, controlled], **overrides)
 
     def test_a_policy_prior_sized_off_the_action_set_is_reported(self) -> None:
         violations = check_conformance(
-            self._spec(e_dims="4,1"), **self._live(e_vector=np.full(4, 0.25))
+            self._spec(e_dims="4,1"), self._live(e_vector=np.full(4, 0.25))
         )
         assert any(
             "E (PolicyPrior): declared dims (4,)" in v and "num_controls=3 requires" in v
@@ -752,7 +753,7 @@ class TestMultifactorPolicyPrior:
         ), violations
 
     def test_a_withheld_policy_prior_is_unverified_not_ignored(self) -> None:
-        violations = check_conformance(self._spec(), **self._live())
+        violations = check_conformance(self._spec(), self._live())
         assert any(
             "E: spec declares a PolicyPrior but no live E was supplied" in v for v in violations
         ), violations
@@ -761,7 +762,7 @@ class TestMultifactorPolicyPrior:
         assert not any("Uniform" in v for v in violations), violations
 
     def test_a_live_policy_prior_of_the_wrong_size_is_reported(self) -> None:
-        violations = check_conformance(self._spec(), **self._live(e_vector=np.full(4, 0.25)))
+        violations = check_conformance(self._spec(), self._live(e_vector=np.full(4, 0.25)))
         assert any(
             "E (PolicyPrior): declared dims (3,) but the live E has canonical dims (4,)" in v
             for v in violations
@@ -791,7 +792,7 @@ class TestMultifactorPolicyPrior:
             ),
             parameterization="s_a=Uniform(2)",
         )
-        violations = check_conformance(spec, **two_factor_live())
+        violations = check_conformance(spec, two_factor_live())
         assert violations == []
 
 

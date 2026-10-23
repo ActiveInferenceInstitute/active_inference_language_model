@@ -342,13 +342,14 @@ MIN_ARTIFACT_KEYS = 5
 MIN_FOOTER_PATHS = 16
 
 #: An upstream GNN checkout, if one is available.
-#: Where to look for a GeneralizedNotationNotation checkout, most durable first.
-#: The temporary directory is last and kept only so an existing probe checkout
-#: still works. It used to be the ONLY default, and cleanup reaped it: the parser
-#: sources vanished while the package directory and its ``__pycache__`` stayed, so
-#: thirty-three interoperability tests stopped running and reported "no checkout"
-#: at a path where a checkout plainly was. Evidence for a manuscript claim should
-#: not live where the operating system tidies up.
+#: Where to look for a GeneralizedNotationNotation checkout: the checkout's
+#: sibling namespace first, then a plain sibling directory. Both share the
+#: checkout's lifetime. No temporary directory is searched: a scratch probe was
+#: once the only default, and cleanup reaped it — the parser sources vanished
+#: while the package directory and its ``__pycache__`` stayed, so thirty-three
+#: interoperability tests stopped running and reported "no checkout" at a path
+#: where a checkout plainly was. Evidence for a manuscript claim should not live
+#: where the operating system tidies up.
 _UPSTREAM_CANDIDATES = (
     *(
         (
@@ -360,8 +361,7 @@ _UPSTREAM_CANDIDATES = (
         if len(PROJECT_ROOT.parents) > 2
         else ()
     ),
-    Path.home() / "Documents" / "GitHub" / "GeneralizedNotationNotation",
-    Path("/tmp/claude/gnn_probe"),
+    PROJECT_ROOT.parent / "Generalized_Notation_Notation",
 )
 
 
@@ -1580,13 +1580,14 @@ class TestTypedLiveRecord:
     ``check_conformance`` once took roughly twenty-five untyped positional
     parameters that every caller splatted from ``describe_shapes``. The record
     replaces that surface. Three properties keep the replacement honest: the
-    record form and the legacy keyword form agree on every shipped verdict,
-    a MISSING field defaults to None (unverified) exactly as an absent
-    keyword did, and an EXTRA field is a TypeError rather than a silently
-    dropped value.
+    record form and the keyword form agree on every shipped verdict, a MISSING
+    field defaults to None (unverified) exactly as an absent keyword did, and
+    an EXTRA field is a TypeError rather than a silently dropped value. The
+    keyword adapter is retained only while the connected execution inventory
+    binds this module's bytes; every suite constructs the record directly.
     """
 
-    def test_the_record_form_and_the_legacy_keyword_form_agree(self, letter_agent):
+    def test_the_record_form_and_the_keyword_form_agree(self, letter_agent):
         """Same verdict either way, on the real shipped agent."""
         spec = parse_gnn_spec(spec_path("L1_letter"))
         described = describe_shapes(letter_agent)
@@ -1600,11 +1601,13 @@ class TestTypedLiveRecord:
         assert any("no live array was supplied" in v or "unverified" in v for v in violations)
 
     def test_an_extra_field_is_rejected_not_dropped(self):
-        """A typo'd or renamed field fails at the call, never silently."""
+        """A typo'd or renamed field fails when the record is built, never silently."""
+        with pytest.raises(TypeError, match="unexpected keyword argument"):
+            LiveConformanceInputs(a_shap=(1, 30, 30))  # type: ignore[call-arg]
         with pytest.raises(TypeError, match="unexpected keyword argument"):
             check_conformance(parse_gnn_spec(spec_path("L1_letter")), a_shap=(1, 30, 30))
 
-    def test_the_record_and_the_legacy_form_cannot_be_mixed(self, letter_agent):
+    def test_the_record_and_the_keyword_form_cannot_be_mixed(self, letter_agent):
         described = describe_shapes(letter_agent)
         with pytest.raises(TypeError, match="one form, not both"):
             check_conformance(parse_gnn_spec(spec_path("L1_letter")), described, gamma=16.0)
@@ -1702,12 +1705,14 @@ class TestPositiveControls:
         spec = parse_gnn_spec(spec_path("L1_letter"))
         shapes_only = check_conformance(
             spec,
-            a_shape=described.a_shape,
-            b_shape=described.b_shape,
-            c_shape=described.c_shape,
-            d_shape=described.d_shape,
-            n_modalities=described.n_modalities,
-            n_factors=described.n_factors,
+            LiveConformanceInputs(
+                a_shape=described.a_shape,
+                b_shape=described.b_shape,
+                c_shape=described.c_shape,
+                d_shape=described.d_shape,
+                n_modalities=described.n_modalities,
+                n_factors=described.n_factors,
+            ),
         )
         assert shapes_only == [], (
             "shape-only conformance unexpectedly rejected the swap; if this "
@@ -2612,33 +2617,32 @@ def test_a_gutted_upstream_checkout_is_reported_as_broken_not_absent() -> None:
 
 
 def test_the_interoperability_check_does_not_depend_on_a_scratch_directory() -> None:
-    """The standalone scratch probe stays behind the durable home fallback.
+    """Every discovery candidate shares the checkout's lifetime.
 
-    The canonical sibling shares the checkout's lifetime, including when the
-    entire checkout is temporary in CI. Its location does not make the unrelated
-    standalone scratch probe preferable to the home checkout.
+    A scratch probe was once the only default and was reaped, which silently
+    disabled the interoperability tests; the candidates are now the checkout's
+    sibling namespace and a plain sibling directory, and nothing under a
+    temporary root is searched.
     """
     volatile = ("/tmp", "/private/tmp", "/var/folders")
-    fallback_candidates = _UPSTREAM_CANDIDATES[-2:]
-    assert not str(fallback_candidates[0]).startswith(volatile), (
-        f"the first standalone fallback {fallback_candidates[0]} is a temporary "
-        f"directory; the interoperability check would be lost on the next cleanup"
-    )
-    ordering = [str(c).startswith(volatile) for c in fallback_candidates]
-    assert ordering == sorted(ordering), (
-        f"a temporary directory is searched before a durable one ({list(_UPSTREAM_CANDIDATES)}), "
-        f"so a reaped checkout could shadow a good one"
-    )
+    assert _UPSTREAM_CANDIDATES, "discovery needs at least the plain sibling candidate"
+    for candidate in _UPSTREAM_CANDIDATES:
+        assert not str(candidate).startswith(volatile), (
+            f"{candidate} is a temporary directory; the interoperability check "
+            f"would be lost on the next cleanup"
+        )
+        assert candidate.name == "Generalized_Notation_Notation", candidate
+    assert _UPSTREAM_CANDIDATES[-1] == PROJECT_ROOT.parent / "Generalized_Notation_Notation"
 
 
 @pytest.mark.parametrize(
-    "canonical_kind,legacy_exists,selected_index",
+    "canonical_kind,fallback_exists,selected_index",
     [("file", True, 0), ("missing", True, 1), ("directory", True, 1), ("missing", False, 0)],
 )
 def test_upstream_discovery_requires_a_real_parser_file(
-    tmp_path: Path, canonical_kind: str, legacy_exists: bool, selected_index: int
+    tmp_path: Path, canonical_kind: str, fallback_exists: bool, selected_index: int
 ) -> None:
-    candidates = (tmp_path / "canonical", tmp_path / "legacy")
+    candidates = (tmp_path / "canonical", tmp_path / "fallback")
     relative = Path("src/gnn/parsers/markdown_parser.py")
     if canonical_kind != "missing":
         parser = candidates[0] / relative
@@ -2647,10 +2651,10 @@ def test_upstream_discovery_requires_a_real_parser_file(
             parser.mkdir()
         else:
             parser.write_text("# canonical parser source\n", encoding="utf-8")
-    if legacy_exists:
+    if fallback_exists:
         parser = candidates[1] / relative
         parser.parent.mkdir(parents=True)
-        parser.write_text("# legacy parser source\n", encoding="utf-8")
+        parser.write_text("# fallback parser source\n", encoding="utf-8")
     assert _default_upstream_root(candidates) == candidates[selected_index]
 
 

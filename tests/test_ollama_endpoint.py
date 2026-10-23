@@ -70,7 +70,7 @@ print(json.dumps(module._base_release_environment()['AILM_OLLAMA_ENDPOINT']))
     assert result.returncode == 0, result.stdout + result.stderr
 
 
-def test_absent_override_retains_legacy_default():
+def test_absent_override_retains_the_shipped_default():
     result = _run("from ailm.benchmarks.constants import OLLAMA_URL; print(OLLAMA_URL)", None)
     assert result.returncode == 0, result.stderr
     assert result.stdout.strip() == "http://localhost:11434"

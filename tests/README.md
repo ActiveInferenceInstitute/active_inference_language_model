@@ -78,7 +78,7 @@ newcomer needs to find first.
 | `test_worked_example.py` | the interpretability walk-through in the architecture section names the transition column the model actually read |
 | `test_no_self_offset_strict_zip.py` | `strict=True` is never applied to a self-offset zip, where it raises on every non-empty input |
 | `test_release_orchestration.py` | `verify_release.py`'s profiles, deterministic build environment, complete Git-state fingerprint, clean-input policy, and read-only list mode |
-| `test_replay_provenance.py` | deterministic bindings for every network-excluded recorder, with real current-schema cache records and planted stale-source, wrong-configuration, wrong-model, missing-call, legacy-only, namespace-drift, and path-tampering failures |
+| `test_replay_provenance.py` | deterministic bindings for every network-excluded recorder, with real current-schema cache records and planted stale-source, wrong-configuration, wrong-model, missing-call, older-schema-only, namespace-drift, and path-tampering failures |
 | `test_reproduction_documentation.py` | complete recorder/status/generator ordering before every manuscript consumer, correct negation of Lean's must-fail control, clean-suite prerequisites, dynamic skip guidance, independent-unit split guidance, and planted status-masking/order failures |
 
 `conftest.py` provides offline corpus and ledger fixtures, real pymdp agents,

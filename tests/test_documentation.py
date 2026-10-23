@@ -227,13 +227,12 @@ def test_runtime_vendor_inventory_has_one_code_owned_source_of_truth() -> None:
     assert duplicated(planted) == [RUNTIME_VENDOR_ARTIFACTS[0]]
 
 
-def test_output_inventory_names_current_ignored_classes_and_legacy_residue() -> None:
+def test_output_inventory_names_current_ignored_classes() -> None:
     inventory = (DOCS / "reference" / "output_inventory.md").read_text(encoding="utf-8")
     required = (
         "output/bench_raw/",
         "output/upstream_pymdp_pr/",
-        "output/.release-cache/",
-        "output/bench_cache/",
+        ".venv/release-cache/",
         "release-receipt.json",
         "logs/",
     )

@@ -974,7 +974,7 @@ def main(argv: list[str] | None = None) -> int:
     status = render(check_only=args.check, output_dir=args.output_dir)
     if status or not args.supporting_protocols:
         return status
-    # The full release explicitly requests this artifact; the legacy stdlib-only
+    # The full release explicitly requests this artifact; the stdlib-only
     # documentation mirror remains usable without the external template provider.
     from z_generate_manuscript_variables import render_supporting_protocol_html
 

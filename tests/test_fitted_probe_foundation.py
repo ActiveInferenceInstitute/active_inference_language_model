@@ -28,6 +28,7 @@ from ailm.benchmarks.fitted import (
     build_lineage_chain,
     sha256_text,
     stride_aliasing_demo,
+    validate_current_registry,
     validate_fitted_probes,
     verify_receipt,
     write_receipt,
@@ -70,6 +71,23 @@ class TestIdentity:
         assert FITTED_PROBES == ()
         assert [probe.key for probe in SERVED_PROBES] == ["gemma3", "qwen25", "smollm"]
         assert PROBE_MODEL_TAGS["smollm"] == "smollm:1.7b-base-v0.2-q4_K_M"
+
+    def test_current_registry_validates_against_the_live_served_surface(self) -> None:
+        """The module-level check reads the registered keys and tags, not a copy."""
+        assert validate_current_registry() == ()
+        assert validate_current_registry() == validate_fitted_probes(
+            FITTED_PROBES,
+            registered_keys=frozenset(probe.key for probe in SERVED_PROBES),
+            registered_tags=frozenset(PROBE_MODEL_TAGS.values()),
+        )
+        # The same validator refuses a spec that collides with the served surface,
+        # which is what the live read exists to catch once a fit is registered.
+        with pytest.raises(FittedIdentityError, match="collides with a registered probe tag"):
+            validate_fitted_probes(
+                (_spec(served_tag=PROBE_MODEL_TAGS["smollm"]),),
+                registered_keys=frozenset(probe.key for probe in SERVED_PROBES),
+                registered_tags=frozenset(PROBE_MODEL_TAGS.values()),
+            )
 
     def test_unknown_lineage_family_rejected(self) -> None:
         with pytest.raises(FittedIdentityError, match="not a registered probe key"):

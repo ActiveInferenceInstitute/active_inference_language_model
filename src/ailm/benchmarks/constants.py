@@ -224,8 +224,10 @@ G2P_BUCKETS: tuple[tuple[str, int, int], ...] = (
     ("long", 10, 1_000_000),
 )
 
-# Backward-compatible benchmark API. The protocol fixture itself has one owner:
-# :mod:`ailm.evaluation`, where its bytes, source, and license are authenticated.
+# The benchmark's name for the Stage 1 evaluation passage. The fixture itself has
+# one owner, :mod:`ailm.evaluation`, where its bytes, source, and license are
+# authenticated; this binding exists so the benchmark modules and the web export
+# name the passage by its role here without copying it.
 HELD_OUT_TEXT = STAGE1_EVALUATION_TEXT
 
 

@@ -270,23 +270,23 @@ def test_whole_protocol_page_and_actual_pdf_destinations_survive_relocation(tmp_
 
 def test_reference_errors_preserve_historical_identity_and_real_catch_contract(tmp_path):
     from ailm.manuscript_variables._exceptions import (
-        DuplicateInputKeyError as legacy_duplicate_error,
+        DuplicateInputKeyError as historical_duplicate_error,
     )
     from ailm.manuscript_variables._exceptions import (
-        InvalidReferenceSourceError as legacy_reference_error,
+        InvalidReferenceSourceError as historical_reference_error,
     )
     from ailm.reference_presentation import DuplicateInputKeyError as shared_duplicate_error
     from ailm.reference_presentation import InvalidReferenceSourceError as shared_reference_error
     from ailm.reference_presentation import _load_reference_variables as stdlib_presenter
 
-    assert legacy_reference_error is shared_reference_error
-    assert legacy_duplicate_error is shared_duplicate_error
+    assert historical_reference_error is shared_reference_error
+    assert historical_duplicate_error is shared_duplicate_error
     assert shared_reference_error.__module__ == "ailm.manuscript_variables._exceptions"
     assert shared_duplicate_error.__module__ == "ailm.manuscript_variables._exceptions"
     target, _ = _snapshot(tmp_path)
     target.write_text('{"_schema":"ailm-reference-sources-v1", "_schema":"duplicate"}')
-    with pytest.raises(legacy_duplicate_error, match="duplicate JSON key"):
+    with pytest.raises(historical_duplicate_error, match="duplicate JSON key"):
         stdlib_presenter(tmp_path)
     target.write_text('{"_schema":"wrong"}')
-    with pytest.raises(legacy_reference_error, match="must declare schema"):
+    with pytest.raises(historical_reference_error, match="must declare schema"):
         stdlib_presenter(tmp_path)

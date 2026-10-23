@@ -64,7 +64,7 @@ The package-layout list in `__init__.py`'s docstring follows this table.
 | Variable | Effect |
 | --- | --- |
 | `AILM_CALL_CACHE_PATH` | Overrides the call-store location; unset uses `cache/bench_calls.jsonl` |
-| `AILM_OLLAMA_ENDPOINT` | Validated loopback origin, selected once at import as `OLLAMA_URL`; absent retains the legacy default. See [README.md](README.md) for selection and replay rules. |
+| `AILM_OLLAMA_ENDPOINT` | Validated loopback origin, selected once at import as `OLLAMA_URL`; absent retains the shipped default. See [README.md](README.md) for selection and replay rules. |
 
 ## Usage
 

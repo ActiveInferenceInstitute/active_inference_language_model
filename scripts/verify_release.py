@@ -2417,8 +2417,8 @@ def _distribution_artifacts_from_output(
 
 
 def _is_pytest_step(step: Step) -> bool:
-    """Whether a release step invokes pytest through the audited interpreter."""
-    legacy = any(
+    """Whether a release step invokes pytest, plainly or through the controlled runner."""
+    plain = any(
         step.argv[index : index + 2] == ("-m", "pytest")
         for index in range(max(0, len(step.argv) - 1))
     )
@@ -2426,7 +2426,7 @@ def _is_pytest_step(step: Step) -> bool:
         step.argv[index : index + 3] == (CONTROLLED_RUNNER_MARKER, "module", "pytest")
         for index in range(max(0, len(step.argv) - 2))
     )
-    return legacy or controlled
+    return plain or controlled
 
 
 def _pytest_execution_evidence(

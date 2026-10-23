@@ -81,7 +81,7 @@
     },
     {
       "path": "src/ailm/benchmarks/constants.py",
-      "sha256": "c372cd4eb6afbbf064c687869ca19b3f86789e1814ec837f7064f1640f5c7e3b"
+      "sha256": "67772f53f9571c6f5b3066f58e05ae2da67e8e7556b018da436859da60a6aaeb"
     },
     {
       "path": "src/ailm/benchmarks/corpora.py",
@@ -89,7 +89,7 @@
     },
     {
       "path": "src/ailm/benchmarks/fitted/__init__.py",
-      "sha256": "3277ee9f2ee47c1bd3f3c8d6d1f593787ba1dd02fbf87cd9e0a02ea8b2b34d57"
+      "sha256": "f66a5219afef72236fc0cde385be17942dec9ea3106db6df4c5dc96a53721690"
     },
     {
       "path": "src/ailm/benchmarks/fitted/census.py",
@@ -97,7 +97,7 @@
     },
     {
       "path": "src/ailm/benchmarks/fitted/data.py",
-      "sha256": "b3a32cec8ec9e6b26967edc73ec98a781ab6b1507013f61b261f766f2b1be88f"
+      "sha256": "ef539623d3e74211bee017dae53bf51e0d5e621dd919b3aea4d7027fc50d28a6"
     },
     {
       "path": "src/ailm/benchmarks/fitted/identity.py",

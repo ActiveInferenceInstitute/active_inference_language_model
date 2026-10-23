@@ -17,6 +17,17 @@ changes what the paper claims or what the artifact is.
   `tests/test_manuscript_crossrefs.py` requires the tracked rendered
   provenance to match the authored sources, so a manuscript wording change
   ships only with a template Stage 03/04 render.
+- [ ] At the next connected re-bind, apply the two source edits that the
+  connected report's execution inventory blocks today (it binds 76 modules
+  byte for byte, `src/ailm/claims.py` and `src/ailm/gnn/conformance.py` among
+  them, so `scripts/generate_figures.py` refuses `connected_core` after any
+  edit to them): drop the keyword adapter from `check_conformance` and
+  `assert_conforms` (`_coerce_legacy_live`, `_reject_legacy_live`,
+  `_LIVE_FIELD_NAMES`, the `**legacy` parameters) now that every suite builds
+  the `LiveConformanceInputs` record directly, removing the two adapter tests
+  in `TestTypedLiveRecord` with it; and correct the two `claims.py` docstrings
+  that still describe a v1-to-v2 schema upgrade on open (the code refuses a
+  non-v2 ledger) and call an absolute source path "legacy".
 - [ ] Complete the whole-suite cold-start verification under fleet load. Bounded
   release fixtures, lazy imports, shared figure construction, and scoped
   full-model timeout allowances now have focused passing checks. The complete

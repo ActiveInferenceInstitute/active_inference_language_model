@@ -199,13 +199,15 @@ variable dimensions, ontology roles and model parameters. The explicit `pi` to
 `π` rename is the only accepted variable-name difference. The runtime package
 never imports that parser or its pipeline.
 
-An explicit `AILM_GNN_UPSTREAM` overrides discovery. Otherwise the tests first
-look under the checkout's sibling namespace at
+An explicit `AILM_GNN_UPSTREAM` overrides discovery. Otherwise the tests look
+under the checkout's sibling namespace at
 `PROJECT_ROOT.parents[2] / ActiveInferenceInstitute/Public/Generalized_Notation_Notation`,
-then the legacy home-directory checkout, then the temporary development probe.
+then beside the checkout at `PROJECT_ROOT.parent / Generalized_Notation_Notation`.
 Only a candidate containing `src/gnn/parsers/markdown_parser.py` as a file is
-usable. This ordering selects the canonical GitVault checkout before an older
-home-directory copy; its current Git identity still needs verification.
+usable, and no temporary directory is searched: a scratch probe was once reaped
+while its package directory stayed, which silently disabled the
+interoperability tests. The selected checkout's current Git identity still
+needs verification.
 
 Run the checks against a checkout whose Git identity has been recorded:
 

@@ -275,11 +275,12 @@ manuscript figure caption states three things:
    that would refute the claim the figure carries. A caption that cannot name
    its falsifier is describing decoration.
 
-The enforcement is a **ratchet**, not a purge: the captions that predate the
-standard are frozen in an explicit legacy allowlist inside the test, keyed by
-figure label. That list may only shrink — a new figure must comply from its
-first commit, a legacy caption that gets rewritten complies and leaves the
-list, and adding a label to the list is the defect the test exists to catch.
+The enforcement is absolute: every caption the manuscript's `fig:` anchors
+name must comply, and `tests/test_caption_standard.py` requires exact coverage
+between those anchors and the captions it parsed. The rule began as a ratchet
+over an allowlist of captions predating the standard; that allowlist reached
+empty and was removed rather than kept as a dormant exception, so a new figure
+complies from its first commit and there is no list to add a label to.
 The mechanical proxy for clause 3 is the presence of a falsification statement
 (`falsif…` / `refuses to draw` / `would … fail`); the reviewer's judgement is
 still required for clauses 1 and 2, which resist mechanical checking.

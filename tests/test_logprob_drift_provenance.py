@@ -170,7 +170,7 @@ def test_missing_or_insufficient_producer_population_fails_closed(tmp_path):
         drift._sample_entries(store, limited)
 
 
-def test_unrelated_legacy_rows_do_not_enter_the_current_producer_sample(tmp_path):
+def test_unrelated_older_rows_do_not_enter_the_current_producer_sample(tmp_path):
     store, pool = _store(tmp_path)
     producer = _producer(store)
     expected = drift._sample_entries(store, pool)

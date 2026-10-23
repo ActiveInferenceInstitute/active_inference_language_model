@@ -48,6 +48,26 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ### Changed
 
+- Every conformance suite constructs the typed `LiveConformanceInputs`
+  record directly instead of splatting keyword arguments into
+  `check_conformance`. The keyword adapter itself stays only because the
+  connected report's execution inventory binds `gnn/conformance.py` byte for
+  byte; its removal is queued in `TODO.md` for the next re-bind.
+- The upstream GeneralizedNotationNotation parser that the interoperability
+  tests use is discovered at the checkout's sibling namespace, then beside the
+  checkout, or through `AILM_GNN_UPSTREAM`. A home-directory checkout and a
+  scratch probe, two machine-specific locations from the 2026-09 development
+  history, are no longer searched; nothing under a temporary root ever is.
+- `ailm.benchmarks.fitted` exports `validate_current_registry`, which reads the
+  live registered probe keys and tags, and a test now exercises it; the two
+  stream helpers nothing called are removed.
+- Documentation describes the tree as it is: the output inventory names the
+  release cache's home under `.venv/release-cache/` instead of two old
+  `output/` cache paths no writer uses, the caption-standard guide states that
+  the allowlist reached empty and was removed rather than that it may only
+  shrink, and the benchmark constants name the Stage 1 passage binding as the
+  benchmark's own alias rather than a compatibility layer.
+
 - The dashboard's reply line counts turns from one, as its header does, and
   discloses how many part-of-speech tags the lexicon defaulted; its Level 4
   tag names the panel's eight UD-derived case roles (CEREBRUM names) instead

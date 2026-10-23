@@ -2,9 +2,7 @@
 
 Every project-owned current artifact class under `output/`, what writes it, and
 what consumes it. Current outputs are regenerable; a curated set of publication
-surfaces is tracked and the transient remainder is ignored. A named legacy-residue
-section keeps old ignored cache directories visible without pretending a current
-writer owns them. See
+surfaces is tracked and the transient remainder is ignored. See
 [`output_conventions.md`](output_conventions.md) for the exact tracking rule and
 regeneration order.
 
@@ -205,24 +203,13 @@ applies to a copied installed pymdp tree, runs the fresh-process dense/sparse
 equivalence probe, and compares the bundle bytes. The directory is ignored and is
 not evidence that a pull request was submitted.
 
-## Legacy release scratch — `output/.release-cache/`
+## Release caches — `.venv/release-cache/`
 
-Older release runs placed disposable caches here. The current
 `scripts/verify_release.py` writes its uv and Matplotlib caches to
-`.venv/release-cache/`, outside the publication and source inventories. A dependency-cache symlink inside
-`output/` fails the template's artifact inventory even below a hidden directory;
-an ignored cache is not automatically an admissible output. No current release
-writer uses this old path. Preserve any existing cache outside `output/` before
-validation if it contains such entries.
-
-## Legacy ignored residue — `output/bench_cache/`
-
-No current code writes or reads this path. Older checkouts may retain a v1
-`calls.jsonl` from before the canonical store moved to
-`cache/bench_calls.jsonl`. It is inventory-only residue, cannot satisfy replay or
-network-claim bindings, and is not part of the regeneration contract. Its possible
-presence is documented so “ignored” is not mistaken for “owned by a current
-writer.”
+`.venv/release-cache/`, outside the publication and source inventories, never
+under `output/`: a dependency-cache symlink inside `output/` fails the
+template's artifact inventory even below a hidden directory, and an ignored
+cache is not automatically an admissible output.
 
 ## Not under `output/`
 
