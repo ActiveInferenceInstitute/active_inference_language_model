@@ -1042,15 +1042,57 @@ def test_chat_ui_is_wired_and_states_what_the_reply_is():
         "chat-send-btn",
         "chat-mic-btn",
         "chat-turn-count",
+        "chat-export-btn",
     ):
         assert f'id="{element_id}"' in html, f"{element_id} is addressed but not declared"
 
-    for function_name in ("sendChat", "renderChat", "resetChat", "toggleChatSTT"):
+    for function_name in ("sendChat", "renderChat", "resetChat", "toggleChatSTT", "exportChat"):
         assert f"function {function_name}" in html, f"{function_name} is called but not defined"
 
     assert "/api/chat" in html
     assert "no semantics" in html, "the honesty note was removed from the chat panel"
     assert "word salad" in html, "the expectation-setting line was removed"
+
+
+def _transcript_export_defects(source: str) -> list[str]:
+    """Static contract for the transcript export: a local JSON download, nothing more.
+
+    The function must build the file from the page's own transcript store, type
+    it as JSON, hand it to the browser as an object URL that it then revokes,
+    and never talk to the server: an export that fetched would be a request the
+    README's endpoint table does not list.
+    """
+    match = re.search(r"function exportChat\(\)\s*\{(?P<body>.*?)\n\}", source, re.S)
+    if match is None:
+        return ["exportChat is not defined"]
+    body = match.group("body")
+    defects = []
+    if "store.chatHistory" not in body:
+        defects.append("export does not read the transcript store")
+    if "new Blob(" not in body or "application/json" not in body:
+        defects.append("export is not a JSON blob")
+    if "URL.createObjectURL(" not in body or "URL.revokeObjectURL(" not in body:
+        defects.append("object URL is not created and revoked")
+    if ".download =" not in body:
+        defects.append("export does not trigger a download")
+    if "fetch(" in body:
+        defects.append("export talks to the server")
+    return defects
+
+
+def test_chat_export_is_a_local_json_download_of_the_transcript():
+    source = (STATIC / "js" / "chat.js").read_text(encoding="utf-8")
+    assert _transcript_export_defects(source) == []
+    # The reply line counts turns from one, as the header does, and discloses
+    # defaulted tags instead of hiding them.
+    assert "turn ${data.turn_index + 1}" in source
+    assert "read.defaulted_tags" in source
+    # NEGATIVE CONTROLS: a leaking or server-bound export must be refused.
+    leaking = source.replace("    URL.revokeObjectURL(url);\n", "")
+    assert "object URL is not created and revoked" in _transcript_export_defects(leaking)
+    remote = source.replace("const blob = new Blob(", "fetch('/api/chat'); const blob = new Blob(")
+    assert "export talks to the server" in _transcript_export_defects(remote)
+    assert _transcript_export_defects("function other() {}") == ["exportChat is not defined"]
 
 
 def _opening_tag_attributes(markup: str, element_id: str) -> dict[str, str] | None:

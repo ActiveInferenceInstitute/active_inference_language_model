@@ -49,6 +49,7 @@ inspection and the separate L3→L1g reply rollout.
 | `config.py` | `DashboardConfig` — frozen, env-overridable, validating on construction |
 | `engine.py` | Level 1–6 input analyses, the separate L3→L1g rollout, `converse()` |
 | `server.py` | The HTTP API, the static tree, the credential and rate limits |
+| `capture.py` | The manuscript capture receipt — served-route table and raster bindings; `scripts/capture_dashboard.py` assembles it, `ailm.figures.dashboard_observation` validates it |
 | `static/` | The browser tree — see [`static/AGENTS.md`](static/AGENTS.md) |
 
 ## Usage

@@ -1,7 +1,7 @@
 {
   "schema": "ailm-dashboard-capture-v1",
-  "captured_at": "2026-10-10T20:11:29.982300+00:00",
-  "source_commit": "0475208634c07aef1521ef6a4296c315892dbc2c",
+  "captured_at": "2026-10-23T22:35:44.742730+00:00",
+  "source_commit": "08044ebe3a1c2e9849d0255cf5e52b89db2065ab",
   "url": "http://127.0.0.1:8080/",
   "input": "The ant followed the trail.",
   "reply": "and the and or the and what these",
@@ -12,27 +12,27 @@
   },
   "image": {
     "path": "analysis.png",
-    "sha256": "1465f9a2d0c9f9f4ed3645869682e6f3bdd456a879074f79c403bc97af73f534",
-    "rgba_sha256": "9bc01dc8aca7a7b3d1db61d3a6683761791032e9d68d8cd0868a2469d43a63ed",
-    "width": 1280,
-    "height": 1493
+    "sha256": "c2bf0182c03b35ff62a5023a50d51f338c09ad7b43f14f4cc18894839038593e",
+    "rgba_sha256": "c2d29f78e5a0463dc9ffb95819f8e8239561ce632391ccfa9207ce1fbd90eb3b",
+    "width": 1800,
+    "height": 2100
   },
   "served_assets": [
     {
       "route": "/",
       "source": "src/ailm/dashboard/static/index.html",
-      "bytes": 18190,
-      "sha256": "3a8924b3a98f277e45450152d8fb39112cff94d22c911e7fbe4b5e37c63b7272",
+      "bytes": 18440,
+      "sha256": "eb09a3928006fda044e67e964b0e6a8ce8a8f84f9c86274b96b0872e36a504b3",
       "http_status": 200,
-      "exact_prior_main_blob": true
+      "exact_prior_main_blob": false
     },
     {
       "route": "/dashboard.css",
       "source": "src/ailm/dashboard/static/dashboard.css",
-      "bytes": 15523,
-      "sha256": "eaf517be6833cf7750e6d2d7d7a9f671477ebd39fc2f3f02d26bcf2d243fe03c",
+      "bytes": 15951,
+      "sha256": "077fd686b23412602bfcffd1d23d42174c392a36048f1b4fc18c1e1f316d7904",
       "http_status": 200,
-      "exact_prior_main_blob": true
+      "exact_prior_main_blob": false
     },
     {
       "route": "/explorer/",
@@ -69,10 +69,10 @@
     {
       "route": "/js/main.js",
       "source": "src/ailm/dashboard/static/js/main.js",
-      "bytes": 4406,
-      "sha256": "19d73dc87faa87171ff99af14091f056b0804001a9b04f1d75af6cc101ffee94",
+      "bytes": 4434,
+      "sha256": "b17430a3896369e2c8bb6c9b4847c45dd6dcc4e1df45ad0c3cdfc431fe3ca825",
       "http_status": 200,
-      "exact_prior_main_blob": true
+      "exact_prior_main_blob": false
     },
     {
       "route": "/js/stt.js",
@@ -101,23 +101,33 @@
     {
       "route": "/js/chat.js",
       "source": "src/ailm/dashboard/static/js/chat.js",
-      "bytes": 7614,
-      "sha256": "de1399a23b6f01b952c3db0160997ca023e3006d2704c511a00e6378b6ba1b2d",
+      "bytes": 9837,
+      "sha256": "796a10c3fecd25c54b027aac5187664c01bd0c282730bf8673b6220bb05a16ed",
       "http_status": 200,
-      "exact_prior_main_blob": true
+      "exact_prior_main_blob": false
     },
     {
       "route": "/js/inference.js",
       "source": "src/ailm/dashboard/static/js/inference.js",
-      "bytes": 14120,
-      "sha256": "95e7b98d6e14862a2b92983301213fef7a259e90344964d4adc763dce3eb4033",
+      "bytes": 13965,
+      "sha256": "bb3ea0561ec26b5d6495385d9da2f8599973c1e11f735c71b34f39e2f3175416",
       "http_status": 200,
-      "exact_prior_main_blob": true
+      "exact_prior_main_blob": false
     }
   ],
   "capture_receipts": {
-    "initial_sha256": "e05b8dfb14f79ac551c38a701fc2f1cd47ce6f59b24bcb2ea0a69dda5af40110",
-    "responsive_sha256": "37ba583ab62e75933fe3b226745a553eefdc0a6915c50d2cf9ddbdc3deb6627d"
+    "initial_sha256": "883132abae6fd664ca6de8e17a895b8d6659d612ed6d9dadec24dadcc837a751",
+    "responsive_sha256": "c2bf0182c03b35ff62a5023a50d51f338c09ad7b43f14f4cc18894839038593e"
   },
-  "transform": "Native screenshot scaling only; no fabricated UI, crop or image painting"
+  "transform": "Native screenshot scaling only; no fabricated UI, crop or image painting",
+  "procedure": "scripts/capture_dashboard.py",
+  "browser": {
+    "engine": "chromium",
+    "channel": "chrome",
+    "version": "156.0.8078.48",
+    "playwright": "1.64.1",
+    "headless": true,
+    "device_scale_factor": 2.0,
+    "reduced_motion": "reduce"
+  }
 }

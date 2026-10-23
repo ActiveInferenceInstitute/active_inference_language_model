@@ -27,6 +27,8 @@ function renderChat() {
     const log = document.getElementById('chat-log');
     document.getElementById('chat-turn-count').textContent =
         store.chatHistory.filter(t => t.role === 'user').length;
+    const exportButton = document.getElementById('chat-export-btn');
+    if (exportButton) exportButton.disabled = store.chatHistory.length === 0;
     if (!store.chatHistory.length) {
         log.innerHTML = '<div class="chat-empty">No turns yet. Say something, or type below.</div>';
         return;
@@ -54,6 +56,36 @@ function resetChat() {
     store.chatHistory = [];
     renderChat();
     setStatus('Conversation cleared. The document-position tercile restarts at "opening".');
+}
+
+function exportChat() {
+    // A local download of the transcript as the page holds it: each turn's
+    // text, and for model turns what the analysis read the preceding user turn
+    // as. Nothing leaves the machine and nothing is sent to the server; the
+    // object URL is revoked once the click has been dispatched so a long
+    // session does not accumulate blobs.
+    if (!store.chatHistory.length) { setStatus('Nothing to export yet.'); return; }
+    const payload = {
+        exported_at: new Date().toISOString(),
+        note: 'AILM dashboard transcript. Replies are the L3\u2192L1g policy rollout only; '
+            + 'read_as is what the analysis panels inferred about the user turn before it.',
+        turns: store.chatHistory.map(turn => ({
+            role: turn.role,
+            text: turn.text,
+            ...(turn.read_as ? { read_as: turn.read_as, turn_index: turn.turn_index,
+                                 rollout_seed: turn.rollout_seed } : {}),
+        })),
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = `ailm-chat-${payload.exported_at.replace(/[:.]/g, '-')}.json`;
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    URL.revokeObjectURL(url);
+    setStatus(`Exported ${payload.turns.length} turn(s).`);
 }
 
 export function replySpeechAllowed(inspectorHidden, documentHidden, speakReplies) {
@@ -101,12 +133,22 @@ async function sendChat() {
 
         const read = data.read_as || {};
         const surface = (read.surface || []).join(' \u2192 ') || 'no case-bearing token';
+        // The header counts turns from one; the engine indexes them from zero.
+        // The line under a reply uses the reader's count, and it reports a
+        // defaulted part-of-speech tag rather than hiding it (the engine marks
+        // every tag it had to default, and the Level 4 panel shows which).
+        const defaulted = read.defaulted_tags
+            ? ` · ${read.defaulted_tags} tag${read.defaulted_tags === 1 ? '' : 's'} defaulted`
+            : '';
         store.chatHistory.push({
             role: 'model',
             text: data.reply,
             meta: `read as ${read.clause_type} (${(read.clause_confidence * 100).toFixed(1)}%) · `
-                + `phase ${read.narrative_phase} · turn ${data.turn_index} · `
-                + `${read.in_lexicon}/${read.tokens} in lexicon · ${surface}`
+                + `phase ${read.narrative_phase} · turn ${data.turn_index + 1} · `
+                + `${read.in_lexicon}/${read.tokens} in lexicon${defaulted} · ${surface}`,
+            read_as: read,
+            turn_index: data.turn_index,
+            rollout_seed: data.rollout_seed,
         });
         renderChat();
 
@@ -186,4 +228,4 @@ function toggleChatSTT() {
     }
 }
 
-export { renderChat, resetChat, sendChat, toggleChatSTT };
+export { exportChat, renderChat, resetChat, sendChat, toggleChatSTT };

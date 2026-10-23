@@ -108,6 +108,8 @@
                     Speak replies
                 </label>
                 <button class="btn-primary btn-small btn-neutral" onclick="toggleChatSTT()" id="chat-mic-btn">Speak</button>
+                <button class="btn-primary btn-small btn-neutral" onclick="exportChat()" id="chat-export-btn"
+                        disabled title="Download this transcript, with what each turn was read as, as JSON">Export</button>
                 <button class="btn-primary btn-small btn-neutral" onclick="resetChat()">Reset</button>
             </div>
         </div>
@@ -235,7 +237,7 @@
         <div class="level-card">
             <div class="level-header">
                 <h3>Level 4: Case</h3>
-                <span class="level-tag">Sanskrit 8-Case Ontology</span>
+                <span class="level-tag">8 UD-derived case roles (CEREBRUM names)</span>
             </div>
             <div class="stat-grid">
                 <div class="stat-box">

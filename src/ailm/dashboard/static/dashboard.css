@@ -439,6 +439,15 @@ button.btn-play svg { margin-right: 4px; }
 .tint-sky { color: #79c0ff; }
 .tint-lilac { color: #d2a8ff; }
 
+/* Bar colors per panel; the width stays a per-row inline value because it is
+   the datum, not a style. */
+.bar-fill-cyan { background: var(--accent-cyan); }
+.bar-fill-purple { background: var(--accent-purple); }
+.bar-fill-blue { background: var(--accent-blue); }
+.bar-fill-lilac { background: #d2a8ff; }
+.bar-val-muted { color: var(--text-muted); }
+.chart-note { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+
 /* Matrix panel header. */
 .matrix-inspect-header h3 { font-size: 17px; color: #fff; }
 .matrix-provenance { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }

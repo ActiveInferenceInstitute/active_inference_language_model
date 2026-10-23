@@ -97,6 +97,7 @@ server. The browser loads native ES modules directly.
 | `config.py` | Every tunable, one default each, env-overridable |
 | `engine.py` | Level 1–6 input analyses, the separate L3→L1g rollout, `converse()` |
 | `server.py` | The HTTP API and static tree |
+| `capture.py` | The manuscript capture receipt: the served-route table and the digests that bind a browser raster to the static tree |
 | `__main__.py` | `python -m ailm.dashboard [port] [host]` |
 | `static/index.html` | Markup only — no `<style>`, no `<script>` body, no `style=` attribute |
 | `static/dashboard.css` | Styles |
@@ -209,8 +210,9 @@ no retrieval, and nothing that rewards
 answering a question — a few thousand free parameters emitting English letter
 statistics shaped by a 2,000-word lexicon. Expect word salad. The line under
 each reply is the part worth reading: it is what the level stack inferred about
-*your* turn. The interface says so on the page, and a test asserts that
-disclaimer stays there.
+*your* turn, counted from the first turn as the header counts, with any
+part-of-speech tag the lexicon had to default reported rather than hidden. The
+interface says so on the page, and a test asserts that disclaimer stays there.
 
 **Its Level 5 panel is a harder setting than the Level 5 claim:**
 
@@ -264,7 +266,12 @@ a `resume()` between, because a single `cancel()` can leave a paused item on a
 Chrome queue to resume later. Speech also terminates at every boundary where the
 page stops being what the reader is attending to: a new chat turn, the
 microphone opening (the page would otherwise hear itself), a hidden tab, and
-unload. A **Stop speaking** button and a live indicator sit in the chat header.
+unload. A **Stop speaking** button and a live indicator sit in the chat header,
+beside **Export**, which downloads the transcript as the page holds it: every
+turn's text and, for each reply, what the analysis read the preceding user turn
+as (`read_as`, the turn index and the rollout seed). It is a local JSON
+download built from the page's own transcript store; it sends nothing to the
+server, and a test holds it to that.
 
 `interrupted` and `canceled` are what our own stop produces, so they are not
 reported as errors; anything else is.
@@ -342,9 +349,41 @@ calls, checked by reading the code rather than by hearing it.
 
 ---
 
+## The manuscript figure is a capture of this page
+
+The manuscript's dashboard figure (`fig:dashboard_observation`) is a real
+screenshot of this page after one chat turn, retained under
+`data/dashboard_capture/` with a receipt that binds the raster's bytes and
+decoded pixels to a digest of every asset the server handed the browser:
+`index.html`, `dashboard.css`, each module under `js/`, and the explorer
+export. The figure generator refuses the raster when any binding fails, so an
+edit to the static tree is also a request for a new capture, never for an
+edited receipt.
+
+`scripts/capture_dashboard.py` records that pair. It runs under a scratch
+interpreter with Playwright and Pillow (the project `.venv` stays locked to
+the release lock file), launches the dashboard with the project interpreter,
+drives the locally installed Chrome headless through one turn with speech
+off, fetches every served route and refuses any whose bytes differ from the
+file on disk, and finally has the project interpreter validate what it wrote:
+
+```bash
+python3 -m venv /tmp/ailm-capture && /tmp/ailm-capture/bin/pip install playwright pillow
+/tmp/ailm-capture/bin/python -I scripts/capture_dashboard.py
+MPLBACKEND=Agg .venv/bin/python scripts/generate_figures.py
+```
+
+The receipt names the commit the sources were compared with and flags, per
+asset, whether the served bytes equal that commit's blob; a capture taken
+from an edited working tree flags those files false until the commit that
+carries both. Rasters are not byte-reproducible across browser builds or font
+stacks, so the receipt records the browser build, scale and viewport: the
+binding is to this capture, and the procedure is what a reader repeats.
+
 ## Tests
 
-`tests/test_dashboard.py` plus `tests/test_widened.py` on the shared alphabet.
+`tests/test_dashboard.py` plus `tests/test_widened.py` on the shared alphabet,
+and `tests/test_dashboard_capture.py` for the capture receipt.
 The structural checks came first and passed throughout a period when the Level 5 classifier ranked *below* the
 majority-class baseline: shape assertions cannot see a degraded model. Every
 behavioral test added since carries a negative control — a variant that must

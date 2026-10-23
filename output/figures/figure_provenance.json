@@ -224,6 +224,10 @@
       "sha256": "abd23041f9c8dd925b7de3f0e29b928de3c582586e529fc4a0389034a924f715"
     },
     {
+      "path": "src/ailm/dashboard/capture.py",
+      "sha256": "4bcb616ea22b5a523356b74dc1d2e0bb781e0cdc7b16870a7c508df8bd28621e"
+    },
+    {
       "path": "src/ailm/dashboard/config.py",
       "sha256": "3babc942bfba9990156ac2d04d102325553a3397ff8c641d2680621504810aba"
     },
@@ -301,7 +305,7 @@
     },
     {
       "path": "src/ailm/figures/dashboard_observation.py",
-      "sha256": "e56d3f0216dc77d4317081f999249cbac2772e463ea86d52f3616acc68355cad"
+      "sha256": "0d1debba56784f52a2b4176ea7589bbd10b939900d2d8f727d2ae9bc8b92da21"
     },
     {
       "path": "src/ailm/figures/gates.py",
@@ -663,11 +667,11 @@
     },
     {
       "path": "data/dashboard_capture/analysis.png",
-      "sha256": "1465f9a2d0c9f9f4ed3645869682e6f3bdd456a879074f79c403bc97af73f534"
+      "sha256": "c2bf0182c03b35ff62a5023a50d51f338c09ad7b43f14f4cc18894839038593e"
     },
     {
       "path": "data/dashboard_capture/receipt.json",
-      "sha256": "601bdef4204c90fcbeab9f59f1777faebd84a792ccaa82c3e0aad923b15ae577"
+      "sha256": "c602bbf9b6c1e96ddc94967381d130dd67be705653aa912b40b0ec8d74991840"
     },
     {
       "path": "data/figure_alt_text.yaml",
@@ -811,15 +815,15 @@
     },
     {
       "path": "src/ailm/dashboard/static/dashboard.css",
-      "sha256": "eaf517be6833cf7750e6d2d7d7a9f671477ebd39fc2f3f02d26bcf2d243fe03c"
+      "sha256": "077fd686b23412602bfcffd1d23d42174c392a36048f1b4fc18c1e1f316d7904"
     },
     {
       "path": "src/ailm/dashboard/static/index.html",
-      "sha256": "3a8924b3a98f277e45450152d8fb39112cff94d22c911e7fbe4b5e37c63b7272"
+      "sha256": "eb09a3928006fda044e67e964b0e6a8ce8a8f84f9c86274b96b0872e36a504b3"
     },
     {
       "path": "src/ailm/dashboard/static/js/chat.js",
-      "sha256": "de1399a23b6f01b952c3db0160997ca023e3006d2704c511a00e6378b6ba1b2d"
+      "sha256": "796a10c3fecd25c54b027aac5187664c01bd0c282730bf8673b6220bb05a16ed"
     },
     {
       "path": "src/ailm/dashboard/static/js/config.js",
@@ -827,11 +831,11 @@
     },
     {
       "path": "src/ailm/dashboard/static/js/inference.js",
-      "sha256": "95e7b98d6e14862a2b92983301213fef7a259e90344964d4adc763dce3eb4033"
+      "sha256": "bb3ea0561ec26b5d6495385d9da2f8599973c1e11f735c71b34f39e2f3175416"
     },
     {
       "path": "src/ailm/dashboard/static/js/main.js",
-      "sha256": "19d73dc87faa87171ff99af14091f056b0804001a9b04f1d75af6cc101ffee94"
+      "sha256": "b17430a3896369e2c8bb6c9b4847c45dd6dcc4e1df45ad0c3cdfc431fe3ca825"
     },
     {
       "path": "src/ailm/dashboard/static/js/matrices.js",
@@ -1084,12 +1088,12 @@
       "module": "dashboard_observation",
       "source": {
         "path": "src/ailm/figures/dashboard_observation.py",
-        "sha256": "e56d3f0216dc77d4317081f999249cbac2772e463ea86d52f3616acc68355cad"
+        "sha256": "0d1debba56784f52a2b4176ea7589bbd10b939900d2d8f727d2ae9bc8b92da21"
       },
       "outputs": [
         {
           "path": "dashboard_observation.png",
-          "sha256": "cbfb6253d7f0fb612e2e696297f4a807cefd2a19c77f3b744d7912821440495f"
+          "sha256": "4cd03ca18ecac8311cefd89c5fc70955f44eafaa8331220037c215ca69530d90"
         }
       ]
     },

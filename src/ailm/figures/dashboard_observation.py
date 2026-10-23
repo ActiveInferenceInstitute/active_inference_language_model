@@ -18,34 +18,17 @@ from matplotlib.figure import Figure
 from numpy.typing import NDArray
 from PIL import Image
 
+from ailm.dashboard.capture import CAPTURE_SOURCE_PATHS as _CAPTURE_SOURCE_PATHS
 from ailm.figures._common import project_root
 from ailm.reference_presentation import _unique_json_object
 from ailm.viz_config import FIGSIZES, FONTS, apply_style
 
-CAPTURE_SOURCE_PATHS: Final[frozenset[str]] = frozenset(
-    {
-        "src/ailm/dashboard/static/index.html",
-        "src/ailm/dashboard/static/dashboard.css",
-        "output/web/ailm.html",
-        *(
-            "src/ailm/dashboard/static/js/" + name + ".js"
-            for name in (
-                "matrices",
-                "config",
-                "speech",
-                "main",
-                "stt",
-                "state",
-                "status",
-                "chat",
-                "inference",
-            )
-        ),
-    }
-)
+CAPTURE_SOURCE_PATHS: Final[frozenset[str]] = _CAPTURE_SOURCE_PATHS
 """
 The exact surface authenticated by the capture receipt; changing that surface
-requires recapture rather than accepting a shortened or enlarged receipt.
+requires recapture rather than accepting a shortened or enlarged receipt. The
+table of routes and files is owned by :mod:`ailm.dashboard.capture`, which the
+capture tool uses to assemble the receipt this module validates.
 """
 
 

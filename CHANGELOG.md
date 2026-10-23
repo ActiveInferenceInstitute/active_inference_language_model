@@ -27,6 +27,17 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   (`salvage/2026-09-30/home-ailm-release-main`); its ledger, outputs and
   decision text were superseded on `main` and were not taken.
 
+- The dashboard's chat transcript can be exported as a local JSON download:
+  every turn's text and, for each reply, what the analysis read the preceding
+  user turn as, the turn index and the rollout seed. The export is built from
+  the page's own store and sends nothing to the server, which a test holds it
+  to. The manuscript's dashboard figure was recaptured against the changed
+  page with `scripts/capture_dashboard.py`, a new scripted procedure: one
+  headless-Chrome chat turn against the live dashboard, the raster, and the
+  receipt binding it to every served asset, assembled by the stdlib-only
+  `ailm.dashboard.capture` module that the figure generator now shares, so the
+  bindings a reader checks are the ones the tool wrote. The capture was
+  previously a manual procedure with no tool in the tree.
 - The location of the `docxology/template` checkout is configurable per
   machine: a gitignored `.template-root` file at the repository root, read by
   `ailm.template_root` for manuscript hydration and the figure registry and
@@ -37,6 +48,12 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ### Changed
 
+- The dashboard's reply line counts turns from one, as its header does, and
+  discloses how many part-of-speech tags the lexicon defaulted; its Level 4
+  tag names the panel's eight UD-derived case roles (CEREBRUM names) instead
+  of a Sanskrit case ontology, matching the project's statement that these
+  are syntactic case roles rather than grammatical case; and the panels' bar
+  colors are stylesheet classes rather than style text injected by the script.
 - The confirmatory recorder's fixture-mode root is `AILM_CONFIRMATORY_ROOT`;
   it shared the name `AILM_PROJECT_ROOT` with the figure generators' project
   root, two unrelated meanings under one variable, each validated
@@ -64,6 +81,17 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   The job also installs ripgrep, which the formal axiom report and its
   vacuity control require, and pins the receipt-upload action to its current
   release.
+
+### Removed
+
+- `scripts/generate_case_counts_test.py`, the decision-79 preparation twin of
+  the Stage 4 case generator. Decision 111's confirmatory run read the whole
+  UD English EWT test split through `generate_confirmatory_ewt_counts.py`, so
+  the twin had nothing left to prepare; its row said "retired-pending" and
+  nothing imported or ran it. The decision record keeps the account of what it
+  did. `precheck_confirmatory_replication.py` stays: it exits 1 by design and
+  still refuses a second pass over the spent population, which its tests hold
+  it to.
 
 ### Fixed
 

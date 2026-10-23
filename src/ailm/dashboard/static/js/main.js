@@ -32,7 +32,7 @@ const {
 } = await import('./speech.js');
 const { fetchStaticMatrices } = await import('./matrices.js');
 const { runInference, onSliderChange } = await import('./inference.js');
-const { renderChat, resetChat, sendChat, toggleChatSTT } = await import('./chat.js');
+const { exportChat, renderChat, resetChat, sendChat, toggleChatSTT } = await import('./chat.js');
 const { toggleSTT } = await import('./stt.js');
 
 export async function showDashboardView(view, reload = false) {
@@ -71,6 +71,7 @@ Object.assign(window, {
     onSliderChange,
     sendChat,
     resetChat,
+    exportChat,
     toggleChatSTT,
     toggleSTT,
     stopSpeaking,

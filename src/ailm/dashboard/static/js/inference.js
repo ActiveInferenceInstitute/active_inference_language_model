@@ -180,7 +180,7 @@ function onSliderChange(val) {
             row.className = 'bar-row';
             row.innerHTML = `
                 <div class="bar-label">${tp.phone}</div>
-                <div class="bar-track"><div class="bar-fill" style="width: ${(tp.prob * 100).toFixed(1)}%; background: var(--accent-cyan);"></div></div>
+                <div class="bar-track"><div class="bar-fill bar-fill-cyan" style="width: ${(tp.prob * 100).toFixed(1)}%;"></div></div>
                 <div class="bar-val">${(tp.prob * 100).toFixed(1)}%</div>
             `;
             describeProbabilityBar(row, 'phoneme posterior', tp.phone, tp.prob);
@@ -191,8 +191,7 @@ function onSliderChange(val) {
     // 3. Level 3 Update
     const vocabularyStatus = document.getElementById('l3-in-vocab');
     vocabularyStatus.textContent = activeWord.in_vocab ? 'In lexicon' : 'Out of lexicon';
-    vocabularyStatus.style.color = activeWord.in_vocab
-        ? 'var(--accent-green)' : 'var(--accent-orange)';
+    vocabularyStatus.className = 'stat-val ' + (activeWord.in_vocab ? 'tint-green' : 'tint-orange');
     document.getElementById('l3-word-idx').textContent = `Word ${activeWordIdx + 1} of ${wordsData.length}`;
 
     const trieContainer = document.getElementById('l3-trie-candidates');
@@ -210,8 +209,7 @@ function onSliderChange(val) {
     uposEl.textContent = activeWord.upos +
         (activeWord.upos_source === 'fallback' ? ' (default)' :
          activeWord.upos_source === 'punctuation' ? ' (skipped)' : '');
-    uposEl.style.color = activeWord.upos_source === 'lexicon'
-        ? 'var(--accent-orange)' : 'var(--text-muted)';
+    uposEl.className = 'stat-val ' + (activeWord.upos_source === 'lexicon' ? 'tint-orange' : 'tint-muted');
     document.getElementById('l4-top-case').textContent =
         activeWord.case_bearing ? activeWord.top_case : '— not case-bearing';
 
@@ -222,7 +220,7 @@ function onSliderChange(val) {
         row.className = 'bar-row';
         row.innerHTML = `
             <div class="bar-label">${caseName}</div>
-            <div class="bar-track"><div class="bar-fill" style="width: ${(prob * 100).toFixed(1)}%; background: var(--accent-purple);"></div></div>
+            <div class="bar-track"><div class="bar-fill bar-fill-purple" style="width: ${(prob * 100).toFixed(1)}%;"></div></div>
             <div class="bar-val">${(prob * 100).toFixed(1)}%</div>
         `;
         describeProbabilityBar(row, 'case posterior', caseName, prob);
@@ -241,7 +239,7 @@ function onSliderChange(val) {
         row.className = 'bar-row';
         row.innerHTML = `
             <div class="bar-label">${tName.slice(0, 4)}</div>
-            <div class="bar-track"><div class="bar-fill" style="width: ${(prob * 100).toFixed(1)}%; background: var(--accent-blue);"></div></div>
+            <div class="bar-track"><div class="bar-fill bar-fill-blue" style="width: ${(prob * 100).toFixed(1)}%;"></div></div>
             <div class="bar-val">${(prob * 100).toFixed(1)}%</div>
         `;
         describeProbabilityBar(row, 'clause posterior', tName, prob);
@@ -287,9 +285,9 @@ function onSliderChange(val) {
             row.className = 'bar-row';
             row.innerHTML = `
                 <div class="bar-label">${ph.slice(0, 4)}</div>
-                <div class="bar-track"><div class="bar-fill" style="width: ${(real * 100 * 3).toFixed(1)}%; background: #d2a8ff;"></div></div>
+                <div class="bar-track"><div class="bar-fill bar-fill-lilac" style="width: ${(real * 100 * 3).toFixed(1)}%;"></div></div>
                 <div class="bar-val">${(real * 100).toFixed(2)}%</div>
-                <div class="bar-val" style="color: var(--text-muted);">ctl ${(ctrl * 100).toFixed(2)}%</div>
+                <div class="bar-val bar-val-muted">ctl ${(ctrl * 100).toFixed(2)}%</div>
             `;
             row.setAttribute('role', 'listitem');
             row.setAttribute(
@@ -301,7 +299,7 @@ function onSliderChange(val) {
             sweepEl.appendChild(row);
         });
         const note = document.createElement('div');
-        note.style.cssText = 'font-size: 11px; color: var(--text-muted); margin-top: 6px;';
+        note.className = 'chart-note';
         note.textContent = nearest.alpha === 0
             ? 'alpha = 0: identity anchor — every phase and the control return the unmodified clause prior.'
             : `alpha = ${nearest.alpha.toFixed(2)}: "ctl" is the phase-reversed control, which fixes the middle phase by construction.`;

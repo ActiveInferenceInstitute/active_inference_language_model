@@ -11,7 +11,7 @@ in `vendor/`** and **the numbers in `data/claims.json`**.
 
 ## Inventory
 
-Complete as of the 2026-09-15 scripts audit — 93 Python files. Each tabulated row
+Complete as of the 2026-10-23 scripts audit — 101 Python files. Each tabulated row
 names the script's own measurement modules. The `evaluate_*` family prints a
 structural report and records nothing; `generate_*` writes only `vendor/`
 artifacts and rendered outputs; only `record_*` writes `data/claims.json`. Two
@@ -27,12 +27,12 @@ command with `.venv/bin/python` — never `uv run` in this sidecar (see
 | `assign_claim_status.py` | Assign an epistemic status to every ledger claim that lacks one | `ailm.claims` | `.venv/bin/python scripts/assign_claim_status.py` |
 | `audit_gates.py` | Audit every stage gate for vacuity and reachability; exits non-zero on a non-bracketed verdict | `ailm.gates`, `ailm.levels.*`, `ailm.verification.oracle` | `.venv/bin/python scripts/audit_gates.py` (`--json` also writes `output/reports/gate_audit.json`) |
 | `build_web_ailm.py` | Assemble the generated standalone AILM local demo; records nothing | self-contained assembler | `.venv/bin/python scripts/build_web_ailm.py` |
+| `capture_dashboard.py` | Record the manuscript's dashboard figure: one headless-Chrome chat turn against the live dashboard, the raster, and the receipt binding it to every served asset; runs under a scratch interpreter with Playwright and Pillow, launches the dashboard with the project interpreter, and has that interpreter validate the result | `ailm.dashboard.capture` | `<scratch>/bin/python -I scripts/capture_dashboard.py`, then `MPLBACKEND=Agg .venv/bin/python scripts/generate_figures.py` |
 | `evaluate_case_word_channel.py` | Structural evaluation of the L4→L3 case-word bridge (model-sender arm): anchor identity, seam normalization, causal reachability; prints a report and records nothing | `ailm.case_word_channel`, `ailm.corpus.case_word`, `ailm.levels.case` | `.venv/bin/python scripts/evaluate_case_word_channel.py` |
 | `evaluate_synthetic_aligned_g2p.py` | Offline evaluation of the stipulated aligned spelling-to-pronunciation arm on identical held-out positions, with its English-transfer, broken-correspondence, and uniform-floor controls; prints a report and records nothing | `ailm.benchmarks.aligned_g2p`, `ailm.levels.phoneme` | `.venv/bin/python scripts/evaluate_synthetic_aligned_g2p.py` |
 | `export_web_model.py` | Export the shipped AILM matrices for the browser build; records nothing | `ailm.generation`, `ailm.levels.letter`, `ailm.levels.word` | `.venv/bin/python scripts/export_web_model.py` |
 | `fillmore_subject_rerun.py` | Decision 42's registered per-token re-run of the Fillmore subject arm | standalone | `.venv/bin/python scripts/fillmore_subject_rerun.py` |
 | `generate_case_counts.py` | Generate the vendored Stage 4 case artifact from UD English EWT | `ailm.cases`, `ailm.corpus.ud` | `.venv/bin/python scripts/generate_case_counts.py` |
-| `generate_case_counts_test.py` | Generate the Stage 4 case artifact from the UD English EWT *test* split (decision-79 prep; retired-pending) | `ailm.cases`, `ailm.corpus.ud` | `.venv/bin/python scripts/generate_case_counts_test.py` |
 | `generate_case_word_counts.py` | Generate the case-word (L4→L3) bridge artifact from UD EWT dev: one `(word_form, upos, case_label_or_null, label_source)` row per token, train-only sender map, per-route coverage and agreement | `ailm.corpus.case_word`, `ailm.corpus.ud`, `ailm.levels.word` | `.venv/bin/python scripts/generate_case_word_counts.py` |
 | `generate_clause_counts.py` | Generate the vendored Stage 5 clause artifact from UD English EWT | `ailm.corpus.ud` | `.venv/bin/python scripts/generate_clause_counts.py` |
 | `generate_clause_widened_counts.py` | Generate the vendored widened Stage 5 artifact from UD English EWT | `ailm.corpus.ud`, `ailm.levels.widened` | `.venv/bin/python scripts/generate_clause_widened_counts.py` |
@@ -57,7 +57,7 @@ command with `.venv/bin/python` — never `uv run` in this sidecar (see
 | `generate_word_counts.py` | Generate the vendored Stage 3 word artifact from the NLTK Brown corpus | `ailm.corpus.brown` | `.venv/bin/python scripts/generate_word_counts.py` |
 | `list_raw_corpus_inputs.py` | Describe the exact ignored raw-corpus files consumed by release replay | `ailm.corpus.*` | `.venv/bin/python scripts/list_raw_corpus_inputs.py` |
 | `orchestrate_claim_recorders.py` | Run the complete dynamically discovered claims-recorder inventory by phase | `ailm.replay_provenance` | `.venv/bin/python scripts/orchestrate_claim_recorders.py core\|network\|formal\|aggregate` |
-| `precheck_confirmatory_replication.py` | Decision-79 confirmatory replication precheck — prep only, no scoring (retired-pending) | `ailm.statistics` | `.venv/bin/python scripts/precheck_confirmatory_replication.py` |
+| `precheck_confirmatory_replication.py` | Decision-79 confirmatory replication precheck — prep only, no scoring; exits 1 by design now that decision 111 spent the population, and still refuses a second pass loudly | `ailm.statistics` | `.venv/bin/python scripts/precheck_confirmatory_replication.py` |
 | `probe_budgeted_attention.py` | Kill-check for budgeted attention: is adaptive selection worth its inference? | `ailm.levels.letter`, `ailm.levels.phoneme` | `.venv/bin/python scripts/probe_budgeted_attention.py` |
 | `probe_channel_predictive_loss.py` | Probe proper predictive loss across the L1→L2B channel, and the value inequality | `ailm.channels`, `ailm.levels.coupling`, `ailm.levels.lexical_channel` | `.venv/bin/python scripts/probe_channel_predictive_loss.py` |
 | `probe_l4_case_marking_treebank.py` | Probe Level 4 on morphologically case-marking Universal Dependencies properties | `ailm.cases`, `ailm.corpus.ud`, `ailm.statistics` | `.venv/bin/python scripts/probe_l4_case_marking_treebank.py` |
