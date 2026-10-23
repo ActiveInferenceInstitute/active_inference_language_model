@@ -67,7 +67,7 @@ def test_family_is_explicit_unique_and_includes_stage6():
     assert "stage6_sign_test_p" in SIGNIFICANCE_FAMILY
     assert "stage2_g2p_mcnemar_p" in SIGNIFICANCE_FAMILY
     assert "subsample_full_mcnemar_p" not in SIGNIFICANCE_FAMILY
-    assert BONFERRONI_ALPHA == FAMILYWISE_ALPHA / len(SIGNIFICANCE_FAMILY)
+    assert FAMILYWISE_ALPHA / len(SIGNIFICANCE_FAMILY) == BONFERRONI_ALPHA
 
 
 def test_family_labels_are_all_ledger_backed():

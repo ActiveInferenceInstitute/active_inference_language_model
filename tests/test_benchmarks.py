@@ -254,7 +254,7 @@ def test_prompt_inventory_matches_the_scored_alphabet() -> None:
     probe for obeying it, and space is the most frequent gold symbol. This binds
     the prose to ``ALPHA_LIST``: change one without the other and this fails.
     """
-    assert LETTER_INVENTORY_SYMBOLS == set(ALPHA_LIST)
+    assert set(ALPHA_LIST) == LETTER_INVENTORY_SYMBOLS
     for fragment in ("a-z", "space", "apostrophe", "hyphen", "period"):
         assert fragment in LETTER_INVENTORY_PHRASE
     assert LETTER_INVENTORY_PHRASE in build_prompt("letter", "abc")
@@ -314,7 +314,7 @@ def test_a_window_at_the_passage_period_is_refused() -> None:
     period = letter_passage_period(HELD_OUT_TEXT)
     with pytest.raises(ValueError, match="passage period"):
         unique_letter_positions(HELD_OUT_TEXT, long_window=period)
-    assert LETTER_WINDOW_LONG < period
+    assert period > LETTER_WINDOW_LONG
 
 
 def test_the_order_one_comparator_is_context_invariant() -> None:
@@ -801,9 +801,9 @@ def test_multiclass_brier_cannot_be_gamed_by_being_uniformly_wrong() -> None:
     ``brier_score`` to the top-1 form, this fails.
     """
     inventory = sorted(ALPHA_LIST)
-    confident_and_wrong = {symbol: 0.0 for symbol in inventory}
+    confident_and_wrong = dict.fromkeys(inventory, 0.0)
     confident_and_wrong["z"] = 1.0
-    spread_and_right = {symbol: 0.02 for symbol in inventory}
+    spread_and_right = dict.fromkeys(inventory, 0.02)
     spread_and_right["a"] = 1.0 - 0.02 * (len(inventory) - 1)
 
     always_wrong = brier_score([confident_and_wrong] * 4, ["a"] * 4)

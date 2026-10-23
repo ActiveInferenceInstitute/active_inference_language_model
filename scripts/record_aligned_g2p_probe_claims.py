@@ -80,8 +80,8 @@ import argparse
 import hashlib
 import json
 import sys
+from collections.abc import Collection, Mapping
 from pathlib import Path
-from typing import Collection, Mapping
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))

@@ -3246,12 +3246,12 @@ def test_warming_rejects_non_digest_and_aliased_model_identities() -> None:
     tags = list(warmer._publication_configuration()["model_tags"])
     assert len(tags) >= 2
 
-    non_digest = {tag: "not-a-content-digest" for tag in tags}
+    non_digest = dict.fromkeys(tags, "not-a-content-digest")
     with pytest.raises(ValueError, match="full sha256 digest"):
         warmer._publication_call_keys(identities=non_digest)
 
     shared = "sha256:" + "a" * 64
-    aliased = {tag: shared for tag in tags}
+    aliased = dict.fromkeys(tags, shared)
     with pytest.raises(ValueError, match="duplicate immutable identities"):
         warmer._publication_call_keys(identities=aliased)
 

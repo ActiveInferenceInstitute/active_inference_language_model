@@ -907,7 +907,7 @@ def _score_all_arms_counterbalanced(
     prompts = _all_arm_prompts(positions, pool)
 
     flags: dict[str, list[bool]] = {arm: [] for arm in prompts}
-    bad = {arm: 0 for arm in prompts}
+    bad = dict.fromkeys(prompts, 0)
     trace: list[dict[str, object]] = []
     for index, (_prefix, gold) in enumerate(positions):
         for arm in _rotated_arm_names(index):
@@ -1161,7 +1161,7 @@ def _replay_result_claims(
     expected_keys: set[str] = set()
     for name, model in sorted(MODELS.items()):
         arms: dict[str, list[bool]] = {arm: [] for arm, _k, _deranged in _arm_specs()}
-        unparsable = {arm: 0 for arm in arms}
+        unparsable = dict.fromkeys(arms, 0)
         for index, (_prefix, gold) in enumerate(positions):
             for arm in _rotated_arm_names(index):
                 prompt = prompts[arm][index]

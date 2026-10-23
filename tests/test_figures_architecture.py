@@ -731,7 +731,7 @@ class TestArchitectureFigures:
         assert str(N_WIDENED_SYMBOLS) in clause.observation
         # The count is imported, not typed, so widening the alphabet again moves
         # the figure instead of leaving a stale number on it.
-        assert N_WIDENED_SYMBOLS > len(CaseRole)
+        assert len(CaseRole) < N_WIDENED_SYMBOLS
 
     def test_the_clause_row_names_the_canonical_gate_not_the_ablation(self) -> None:
         """Stage 5 audits two gates and the row must say which one it draws.

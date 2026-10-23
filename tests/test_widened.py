@@ -69,7 +69,7 @@ def test_the_two_non_case_symbols_sit_above_the_case_roles():
     """VERB and AUX extend the case alphabet; they do not overwrite part of it."""
     assert len(CaseRole) == 8
     assert (VERB_SYMBOL, AUX_SYMBOL) == (8, 9)
-    assert N_WIDENED_SYMBOLS == len(CaseRole) + 2
+    assert len(CaseRole) + 2 == N_WIDENED_SYMBOLS
     assert len(WIDENED_SYMBOL_LABELS) == N_WIDENED_SYMBOLS
     assert WIDENED_SYMBOL_LABELS[VERB_SYMBOL] == "VERB"
     assert WIDENED_SYMBOL_LABELS[AUX_SYMBOL] == "AUX"

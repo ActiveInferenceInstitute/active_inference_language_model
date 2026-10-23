@@ -313,7 +313,7 @@ def _fixture_environment(
     environment = {
         **os.environ,
         "AILM_CLAIMS_PATH": str(ledger.resolve()),
-        "AILM_PROJECT_ROOT": str(root.resolve()),
+        "AILM_CONFIRMATORY_ROOT": str(root.resolve()),
         "AILM_CONFIRMATORY_ALTERNATE_LEDGER": "1",
     }
     return ledger, environment
@@ -580,7 +580,7 @@ def test_the_frozen_family_and_threshold_are_unchanged() -> None:
     """The registration is worthless if the family it names can be re-shaped."""
     assert len(SIGNIFICANCE_FAMILY) == 16
     assert len(set(SIGNIFICANCE_FAMILY)) == len(SIGNIFICANCE_FAMILY)
-    assert BONFERRONI_ALPHA == FAMILYWISE_ALPHA / len(SIGNIFICANCE_FAMILY)
+    assert FAMILYWISE_ALPHA / len(SIGNIFICANCE_FAMILY) == BONFERRONI_ALPHA
     scored = sorted(
         label for label, disposition in CONFIRMATORY_REPLICATION if disposition == "ud_ewt_test"
     )
@@ -1467,7 +1467,7 @@ def _fixture_ledger_and_environment(
     environment = {
         **os.environ,
         "AILM_CLAIMS_PATH": str(ledger.resolve()),
-        "AILM_PROJECT_ROOT": str(root.resolve()),
+        "AILM_CONFIRMATORY_ROOT": str(root.resolve()),
         "AILM_CONFIRMATORY_ALTERNATE_LEDGER": "1",
     }
     return ledger, environment, ledger.parent / SENTINEL

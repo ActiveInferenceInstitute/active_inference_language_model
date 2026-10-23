@@ -31,7 +31,6 @@ from __future__ import annotations
 from collections import Counter
 from collections.abc import Callable, Iterator, Sequence
 from dataclasses import dataclass
-from typing import Dict, List, Tuple
 
 DATA_PROTOCOL = "fitted-probe-data-v1"
 
@@ -48,7 +47,7 @@ def letter_stream_from_raw(raw_text: str) -> str:
     return normalize_text(raw_text)
 
 
-def build_letter_instances(stream: str, *, window: int) -> List[Dict[str, object]]:
+def build_letter_instances(stream: str, *, window: int) -> list[dict[str, object]]:
     """One supervised target per stream position, in positional order.
 
     Returns records ``{"position_index", "target", "context_window"}`` where
@@ -70,7 +69,7 @@ def build_letter_instances(stream: str, *, window: int) -> List[Dict[str, object
     ]
 
 
-def letter_sft_record(context_window: str, target: str) -> Dict[str, object]:
+def letter_sft_record(context_window: str, target: str) -> dict[str, object]:
     """The §2.2 SFT record: the exact scored-arm prompt, completions-style.
 
     ``prompt`` is byte-identical to ``build_prompt("letter", context_window)``
@@ -93,9 +92,9 @@ class FitDiagnosticSplit:
     belongs to neither set and is recorded, never silently dropped.
     """
 
-    fit_positions: Tuple[int, int]
-    gap_positions: Tuple[int, int]
-    diagnostic_positions: Tuple[int, ...]
+    fit_positions: tuple[int, int]
+    gap_positions: tuple[int, int]
+    diagnostic_positions: tuple[int, ...]
 
     def __post_init__(self) -> None:
         fit_lo, fit_hi = self.fit_positions
@@ -109,7 +108,7 @@ class FitDiagnosticSplit:
         if len(set(self.diagnostic_positions)) != len(self.diagnostic_positions):
             raise ValueError("diagnostic positions must be unique")
 
-    def counts(self) -> Dict[str, int]:
+    def counts(self) -> dict[str, int]:
         fit_size = self.fit_positions[1] - self.fit_positions[0] + 1
         gap_size = self.gap_positions[1] - self.gap_positions[0] + 1
         return {
@@ -173,8 +172,8 @@ def carve_diagnostic_tail(
 
 
 def refit_letter_bigram_counts(
-    stream: str, fit_positions: Tuple[int, int]
-) -> Dict[Tuple[str, str], int]:
+    stream: str, fit_positions: tuple[int, int]
+) -> dict[tuple[str, str], int]:
     """The experimental native comparator's exact fit material.
 
     Counts every bigram whose target position lies in the fit region and whose
@@ -188,7 +187,7 @@ def refit_letter_bigram_counts(
     lo, hi = fit_positions
     if lo < 1 or hi > len(stream) - 1:
         raise ValueError(f"fit range {fit_positions} outside targets 1..{len(stream) - 1}")
-    counts: Dict[Tuple[str, str], int] = {}
+    counts: dict[tuple[str, str], int] = {}
     for i in range(lo, hi + 1):
         pair = (stream[i - 1], stream[i])
         counts[pair] = counts.get(pair, 0) + 1
@@ -196,8 +195,8 @@ def refit_letter_bigram_counts(
 
 
 def g2p_train_test_pairs(
-    pairs: Sequence[Tuple[str, str]], *, test_every: int
-) -> tuple[list[Tuple[str, List[str]]], list[Tuple[str, List[str]]]]:
+    pairs: Sequence[tuple[str, str]], *, test_every: int
+) -> tuple[list[tuple[str, list[str]]], list[tuple[str, list[str]]]]:
     """Split G2P pairs exactly as the shipped artifact defines the split.
 
     Reuses ``ailm.levels.phoneme.g2p_split`` unchanged: index ``i`` is TEST iff
@@ -211,10 +210,10 @@ def g2p_train_test_pairs(
 
 
 def build_g2p_instances(
-    train_pairs: Sequence[Tuple[str, List[str]]],
-) -> List[Dict[str, object]]:
+    train_pairs: Sequence[tuple[str, list[str]]],
+) -> list[dict[str, object]]:
     """One SFT instance per train pair, strict 1:1, in artifact order."""
-    instances: List[Dict[str, object]] = []
+    instances: list[dict[str, object]] = []
     for index, (word, phones) in enumerate(train_pairs):
         if len(word) != len(phones):
             raise ValueError(
@@ -226,8 +225,8 @@ def build_g2p_instances(
 
 
 def build_phoneme_stream_instances(
-    train_pairs: Sequence[Tuple[str, List[str]]],
-) -> List[Dict[str, object]]:
+    train_pairs: Sequence[tuple[str, list[str]]],
+) -> list[dict[str, object]]:
     """Next-phone instances over the train pronunciations, per-pair reset.
 
     Mirrors the scored phoneme task exactly: the prefix is the whole phone
@@ -235,7 +234,7 @@ def build_phoneme_stream_instances(
     target is ``phones[i]`` — the same construction
     ``corpora.py::phoneme_positions`` scores.
     """
-    instances: List[Dict[str, object]] = []
+    instances: list[dict[str, object]] = []
     for pair_index, (_word, phones) in enumerate(train_pairs):
         for position in range(1, len(phones)):
             instances.append(
@@ -249,12 +248,12 @@ def build_phoneme_stream_instances(
     return instances
 
 
-def count_contexts(instances: Sequence[Dict[str, object]], *, key: str) -> Counter[str]:
+def count_contexts(instances: Sequence[dict[str, object]], *, key: str) -> Counter[str]:
     """Per-occurrence context accounting over one instance list."""
     return Counter(str(instance[key]) for instance in instances)
 
 
-def reconcile_contexts(instances: Sequence[Dict[str, object]], *, key: str) -> Dict[str, int]:
+def reconcile_contexts(instances: Sequence[dict[str, object]], *, key: str) -> dict[str, int]:
     """Return exact totals, asserting context occurrences equal target count."""
     occurrences = count_contexts(instances, key=key)
     total = sum(occurrences.values())
@@ -282,25 +281,25 @@ def synthetic_letter_stream(seed: int, n: int) -> str:
     return "".join(rng.choice("ab c") for _ in range(n))
 
 
-def canonicalize_pairs(counts: Dict[Tuple[str, str], int]) -> Dict[str, int]:
+def canonicalize_pairs(counts: dict[tuple[str, str], int]) -> dict[str, int]:
     """Serialize bigram counts with the vendored artifacts' ``"a,b"`` keys."""
     return {f"{previous},{current}": count for (previous, current), count in sorted(counts.items())}
 
 
-def normalized_stream_from_file(path: str, *, raw: bool) -> Tuple[str, Callable[[str], str]]:
+def normalized_stream_from_file(path: str, *, raw: bool) -> tuple[str, Callable[[str], str]]:
     """Read a stream file, optionally normalizing it with the recorded normalizer.
 
     Returns the stream and the normalizer actually applied (identity when the
     file is already normalized), so the receipt can name the exact transform.
     """
-    with open(path, "r", encoding="utf-8") as handle:
+    with open(path, encoding="utf-8") as handle:
         text = handle.read()
     if raw:
         return letter_stream_from_raw(text), letter_stream_from_raw
     return text, lambda value: value
 
 
-def iter_jsonl(records: Iterator[Dict[str, object]]):
+def iter_jsonl(records: Iterator[dict[str, object]]):
     """Serialize records to JSONL lines (compact, sorted keys)."""
     import json
 

@@ -152,14 +152,14 @@ def main() -> int:
     from ailm.levels.letter import ALPHA_LIST, N_SYMBOLS
     from ailm.levels.word import LETTERS, N_OBS
 
-    if N_SYMBOLS != len(ALPHA_LIST):
+    if len(ALPHA_LIST) != N_SYMBOLS:
         print(
             f"REFUSING TO RECORD: letter.N_SYMBOLS = {N_SYMBOLS} but "
             f"len(ALPHA_LIST) = {len(ALPHA_LIST)}.",
             file=sys.stderr,
         )
         return 1
-    if N_OBS != len(LETTERS) + 1:
+    if len(LETTERS) + 1 != N_OBS:
         print(
             f"REFUSING TO RECORD: word.N_OBS = {N_OBS} but len(LETTERS) + 1 = "
             f"{len(LETTERS) + 1} (letters plus the end-of-word marker).",

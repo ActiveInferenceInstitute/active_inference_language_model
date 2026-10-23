@@ -53,10 +53,11 @@ import subprocess
 import sys
 import time
 import tomllib
+from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass, replace
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import TYPE_CHECKING, Mapping, Sequence
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ailm.publication_derivative import (

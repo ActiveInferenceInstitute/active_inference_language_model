@@ -27,7 +27,7 @@
     },
     {
       "path": "src/ailm/figures/_common.py",
-      "sha256": "ab80d4899924b31ce999e707a4bc0b687031ba82c6537535889745050a0993bf"
+      "sha256": "5826523b718fbca198eb977a8ffeed66d07608ffdada79cc066527644619ed10"
     },
     {
       "path": "src/ailm/viz_config.py",
@@ -53,7 +53,7 @@
     },
     {
       "path": "src/ailm/_publication_inventory.py",
-      "sha256": "5b1f3355279b3a88184a6309d2bc7b4f648e61e8efadb7744bc39aae58f305fa"
+      "sha256": "e556e3f82972cac97b60754c6d47eca1ed202de5c815f42bde20ab1944edbd3e"
     },
     {
       "path": "src/ailm/_publication_proof.py",
@@ -65,7 +65,7 @@
     },
     {
       "path": "src/ailm/benchmarks/__init__.py",
-      "sha256": "92dea92775ba5157b01eec9c374c8c6fc9e9292e044d56746aae79e313a61222"
+      "sha256": "df60ead82c682706b7eb391218d986ec5d0a56111a4a9e5c3287df6a22e5e00c"
     },
     {
       "path": "src/ailm/benchmarks/aligned_g2p.py",
@@ -73,11 +73,11 @@
     },
     {
       "path": "src/ailm/benchmarks/calibration.py",
-      "sha256": "452b93285615bdd1509cad6a5b7eba1162f83472c62bb5229460ee5116c37b18"
+      "sha256": "51f141f01b5291e319d5c985dbd7ac2453bc966a34d35d7a4aba8b2fb3ebbeb3"
     },
     {
       "path": "src/ailm/benchmarks/comparators.py",
-      "sha256": "5d5c025c7d825e45f0126e73b3a57e759ce789081b5ca8d7b51557159f204dd4"
+      "sha256": "6c9cb3ef01288edbc6b85c9d23a4ba8666d108b76d584680baf4ff33b1ce81f5"
     },
     {
       "path": "src/ailm/benchmarks/constants.py",
@@ -93,19 +93,19 @@
     },
     {
       "path": "src/ailm/benchmarks/fitted/census.py",
-      "sha256": "235933dba50fd850dcbf1940a266177b75db99efe536b7f8fbb1627738c2e6ba"
+      "sha256": "7c2b18b0e02c1b4274f6eae06d9dc63a751675fc50cd10b24d5cadfaa9687dec"
     },
     {
       "path": "src/ailm/benchmarks/fitted/data.py",
-      "sha256": "b503f9a084a39fc8c6425d4eddb23358616797560d9b06b47e1f6b7744284cc9"
+      "sha256": "b3a32cec8ec9e6b26967edc73ec98a781ab6b1507013f61b261f766f2b1be88f"
     },
     {
       "path": "src/ailm/benchmarks/fitted/identity.py",
-      "sha256": "5caf939cb7be8df6d06144ef2bd00994d3424620759b6aa267f01faf494c6811"
+      "sha256": "6de859490c5115865247f46a513956d13d68b8a956b91518f0abf2684db01bfd"
     },
     {
       "path": "src/ailm/benchmarks/fitted/receipt.py",
-      "sha256": "b07f88e6cefa7e8d98e185dc359135de480e0feb56c5ff19c4a4628f0a1f8245"
+      "sha256": "360ba53213b354d59018cdb6abcccd2172725d037065de3562b86b47b20e3c93"
     },
     {
       "path": "src/ailm/benchmarks/harness.py",
@@ -113,7 +113,7 @@
     },
     {
       "path": "src/ailm/benchmarks/ollama.py",
-      "sha256": "d3d7b341efdd266d3462c9c1135100c4ed7eb7f5dfb9fc9e17245304df7e683c"
+      "sha256": "42ab62757714f031d3360e788d8e4c7d4b766ef73118465bf41fb813acac4476"
     },
     {
       "path": "src/ailm/benchmarks/openrouter.py",
@@ -125,7 +125,7 @@
     },
     {
       "path": "src/ailm/benchmarks/prompts.py",
-      "sha256": "724127615cb24e3f2dd7d33b064b02f51e976253ab29d14b6c788baca92d5766"
+      "sha256": "34e4d15fdbdfd7bb838cf4b03b825705ed300f36daaefffd2ad7d5b45fed3295"
     },
     {
       "path": "src/ailm/benchmarks/scoring.py",
@@ -137,11 +137,11 @@
     },
     {
       "path": "src/ailm/call_cache.py",
-      "sha256": "5c6a70a1e228871cf2fe268a0ad87b7111e0d1a7d245b2bf415fefc1258a6a0e"
+      "sha256": "9eb76bb798f9f78209e3cf67cf368d9f982fbb8e18a8f32a42e37989a982ff17"
     },
     {
       "path": "src/ailm/case_word_channel.py",
-      "sha256": "b1cc1ed1333c06f9300fbad903f97b37825575cdf97839e6b528572b9b821a09"
+      "sha256": "b34b41edf87e02cf29cd626339485eb983d6520048dc2f9518eafeee0099b482"
     },
     {
       "path": "src/ailm/cases.py",
@@ -149,7 +149,7 @@
     },
     {
       "path": "src/ailm/channel_registry.py",
-      "sha256": "0ec4bb9f3eb816fc9f99180abc7bef017d95b13730ca950ccae734fbab0e67c3"
+      "sha256": "cbc5c5bff510927f07b44d7d173bdd6440dd45e40268c6e9ee2c68adbf384577"
     },
     {
       "path": "src/ailm/channels.py",
@@ -161,7 +161,7 @@
     },
     {
       "path": "src/ailm/clustering.py",
-      "sha256": "8d6fbcddefc013f0253bd097552be1b5956cd3e7507ffab3e21a4b5bdaaaefe9"
+      "sha256": "a01a0eed732042c727daf6027b65b059cb50243ebcb012a7cbf71b8ebb3a4617"
     },
     {
       "path": "src/ailm/comparators.py",
@@ -233,7 +233,7 @@
     },
     {
       "path": "src/ailm/dashboard/server.py",
-      "sha256": "e857c04b89eed5bf00ef6edfd2785c55b45a216ef5499fbe7fb87f49a681cd62"
+      "sha256": "81e4893005af641fdf1f21ad4499b051e62d293d30ac0350edc2436c560875b0"
     },
     {
       "path": "src/ailm/demo.py",
@@ -245,7 +245,7 @@
     },
     {
       "path": "src/ailm/evaluation.py",
-      "sha256": "27ebe408a81dec467e2d44d7d2b669448d47b799fec8f4dbbe27ea9da89866da"
+      "sha256": "9f57b67e78163de65c663956a8b3dff6421e88d795e4203bf4c7e0a42003b04e"
     },
     {
       "path": "src/ailm/figures/__init__.py",
@@ -253,7 +253,7 @@
     },
     {
       "path": "src/ailm/figures/_common.py",
-      "sha256": "ab80d4899924b31ce999e707a4bc0b687031ba82c6537535889745050a0993bf"
+      "sha256": "5826523b718fbca198eb977a8ffeed66d07608ffdada79cc066527644619ed10"
     },
     {
       "path": "src/ailm/figures/aligned_g2p.py",
@@ -345,7 +345,7 @@
     },
     {
       "path": "src/ailm/figures/results.py",
-      "sha256": "06f91215674a0c2bbad931bcb434327fe598026e3bc3fe17c69d0a518085ed6c"
+      "sha256": "49e935c16501b182638098c7629da88303a1f6b574b29082087ca56b6e69b999"
     },
     {
       "path": "src/ailm/figures/samples.py",
@@ -361,11 +361,11 @@
     },
     {
       "path": "src/ailm/gates.py",
-      "sha256": "66c20258ceb502a7bcfd2f0f6656fb7d7933c2eed760c7bb896b7c79b314350e"
+      "sha256": "4a18ffa7a7f4cc81e4efe6608ea6df150bac19628c5b875760bdac0d47180174"
     },
     {
       "path": "src/ailm/generation.py",
-      "sha256": "646acc4cb2f7bd719d0081f645d29cc87257e66a63b4dae1c31ce99e57aa366e"
+      "sha256": "d9e19a9d24baa8d3e0d1162799b491011e30982246c329df0969996e14196e70"
     },
     {
       "path": "src/ailm/generative/__init__.py",
@@ -501,23 +501,23 @@
     },
     {
       "path": "src/ailm/manuscript_contract.py",
-      "sha256": "1f4878ba1d0d3dd814a01e83da13d21d3655fc588d2fc6111777d824c8263ec2"
+      "sha256": "14c6a114dfb4daff06ab11f9b44c612935e8668cd982aaaace82e59a5e8e457e"
     },
     {
       "path": "src/ailm/manuscript_variables/__init__.py",
-      "sha256": "89be437b07de3bebf8cd3cd94573b386e18623d56c526e22408bf60338300c89"
+      "sha256": "8e7a722a441112c57eed5881e1f0fd7db4303531f9931a6756bafce2d2676020"
     },
     {
       "path": "src/ailm/manuscript_variables/_channels.py",
-      "sha256": "e074972b3100efc9b6e9521688a247916347cbd58d795953abab2038af7cd8a1"
+      "sha256": "0ce62ff3535f62bc8ef5e45ba4bfdb221055ab90578b7ff6fd79f614c2240bf1"
     },
     {
       "path": "src/ailm/manuscript_variables/_claims.py",
-      "sha256": "d8f6297d1427cc2e2f5f613d6fc17e073ddf95c87fd5c0234d5d4b4c31160827"
+      "sha256": "a88ed2ae61bce8c4e482844628ce9616b31a17b1c00436d385cecf04495ea72f"
     },
     {
       "path": "src/ailm/manuscript_variables/_core.py",
-      "sha256": "73b8761ddc86ec8969f418129ecc6e56ce44459c46f1dda22c108f81179cd9e8"
+      "sha256": "6d72abe06f5d3b5e6f5859c2f9145a4bccf06f6ce7c821627f4b1f53437f73e2"
     },
     {
       "path": "src/ailm/manuscript_variables/_exceptions.py",
@@ -529,7 +529,7 @@
     },
     {
       "path": "src/ailm/manuscript_variables/_io.py",
-      "sha256": "7f85e6a800fb2fa788fe543234edc433374d07a628feded8b040cfa6c95b7e76"
+      "sha256": "bde1a7c2643d8e768bbc74af733eadb0de3c97c3df7e8092699b28e314f77bb3"
     },
     {
       "path": "src/ailm/manuscript_variables/_stats.py",
@@ -537,7 +537,7 @@
     },
     {
       "path": "src/ailm/manuscript_variables/architecture.py",
-      "sha256": "eb0e21be4600fd009474a31445a36d486e7ec6f9e5f21c19eb56cf2e215f50db"
+      "sha256": "a37ec023e620e86781f41ad73a2b8e70f03944f65edb3ffd325040b70a1941bd"
     },
     {
       "path": "src/ailm/manuscript_variables/connected.py",
@@ -545,7 +545,7 @@
     },
     {
       "path": "src/ailm/manuscript_variables/context.py",
-      "sha256": "a95fbd7615122aecbd41cb465b09c64cf767b6eecfb2196f40f7e220e981c58b"
+      "sha256": "2a7377f488351b1eb626b884c9a4648ec0a1cd6e56140df4a9af1e457ff5eca7"
     },
     {
       "path": "src/ailm/manuscript_variables/literature.py",
@@ -557,7 +557,7 @@
     },
     {
       "path": "src/ailm/manuscript_variables/scaling.py",
-      "sha256": "f5d9d5b1b7464d99217fe7d717bd4742069144999362d884961566e52f5b41f7"
+      "sha256": "8b3486a799620bb41a527a9a6ed825944002c100f3a823649d93b94ba7774750"
     },
     {
       "path": "src/ailm/manuscript_variables/synthetic.py",
@@ -565,11 +565,11 @@
     },
     {
       "path": "src/ailm/parameters.py",
-      "sha256": "799b870691c19d1643b57e60b986b705678965c0dd43071ee0f1ba44d440de84"
+      "sha256": "3f7ed73bb32bc29acf7292d8597eebe2e16f97f32152e3efe24facc38023a833"
     },
     {
       "path": "src/ailm/publication_derivative.py",
-      "sha256": "85ea1ab940eb0d86ff2e0f6110a6229067fbeebb2a61f753c8c691f21e86b46d"
+      "sha256": "d036660e4f9d42658009968749110c6bea8fef786894187f689adc370fe5c61f"
     },
     {
       "path": "src/ailm/reference_presentation.py",
@@ -577,11 +577,11 @@
     },
     {
       "path": "src/ailm/reference_sources.py",
-      "sha256": "10a15250520cc6808f91665b90befbb19e4a8a343c7e150de2b0fe85bc737358"
+      "sha256": "e9ecc71fc815d00515b8cf278d7b23f10b434f38974a364e2063ac3140483a2b"
     },
     {
       "path": "src/ailm/replay_provenance.py",
-      "sha256": "64787a2de4b4c167d7c74aca923f02205611e335a09d8c7cc3aa9daf6ad2fb55"
+      "sha256": "db7f69ab71e58665197e6fe7c4138f21787843e89d9962a4630e7a5593f938af"
     },
     {
       "path": "src/ailm/required_claims.py",
@@ -1106,7 +1106,7 @@
       "module": "results",
       "source": {
         "path": "src/ailm/figures/results.py",
-        "sha256": "06f91215674a0c2bbad931bcb434327fe598026e3bc3fe17c69d0a518085ed6c"
+        "sha256": "49e935c16501b182638098c7629da88303a1f6b574b29082087ca56b6e69b999"
       },
       "outputs": [
         {
@@ -1223,7 +1223,7 @@
       "module": "results",
       "source": {
         "path": "src/ailm/figures/results.py",
-        "sha256": "06f91215674a0c2bbad931bcb434327fe598026e3bc3fe17c69d0a518085ed6c"
+        "sha256": "49e935c16501b182638098c7629da88303a1f6b574b29082087ca56b6e69b999"
       },
       "outputs": [
         {
@@ -1314,7 +1314,7 @@
       "module": "results",
       "source": {
         "path": "src/ailm/figures/results.py",
-        "sha256": "06f91215674a0c2bbad931bcb434327fe598026e3bc3fe17c69d0a518085ed6c"
+        "sha256": "49e935c16501b182638098c7629da88303a1f6b574b29082087ca56b6e69b999"
       },
       "outputs": [
         {

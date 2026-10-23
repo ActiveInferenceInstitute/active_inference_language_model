@@ -455,7 +455,7 @@ def _distribution_from_candidates(candidates: list[dict[str, Any]]) -> dict[str,
     if not missing:
         return {symbol: value / mass for symbol, value in observed.items()}
     bound = min(observed.values())
-    combined = {**observed, **{symbol: bound for symbol in missing}}
+    combined = {**observed, **dict.fromkeys(missing, bound)}
     total = sum(combined.values())
     return {symbol: value / total for symbol, value in combined.items()}
 

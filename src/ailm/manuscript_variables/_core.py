@@ -3,11 +3,10 @@
 from __future__ import annotations
 
 import math
+from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import (
     Any,
-    Callable,
-    Mapping,
 )
 
 from ailm.benchmarks.constants import (
@@ -411,7 +410,7 @@ def _produce_counted_claims(
     _registered_probe_keys_set = set(_registered_probe_keys)
     _base_keys = BASE_MODEL_PROBE_KEYS & _registered_probe_keys_set
     _instruct_count = SERVED_PROBE_COUNT - len(_base_keys)
-    if not (BASE_MODEL_PROBE_KEYS and BASE_MODEL_PROBE_KEYS <= _registered_probe_keys_set):
+    if not (BASE_MODEL_PROBE_KEYS and _registered_probe_keys_set >= BASE_MODEL_PROBE_KEYS):
         raise ManuscriptVariableError(
             "BASE_MODEL_PROBE_KEYS must be a nonempty subset of the served "
             "probe registry; the inventory sentence cannot be derived "

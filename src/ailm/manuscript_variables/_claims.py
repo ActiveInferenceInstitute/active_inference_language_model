@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import math
 import re
+from collections.abc import Mapping
 from enum import Enum
 from typing import (
     Any,
-    Mapping,
     NamedTuple,
 )
 

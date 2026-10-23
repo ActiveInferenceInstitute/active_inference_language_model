@@ -88,9 +88,12 @@ def _pymdp_runtime_replacements(source: str) -> list[str]:
         else:
             continue
         for target in targets:
-            if isinstance(target, ast.Attribute) and dependency_expression(target.value):
-                offenders.append(ast.unparse(target))
-            elif isinstance(target, ast.Subscript) and dependency_expression(target.value):
+            if (
+                isinstance(target, ast.Attribute)
+                and dependency_expression(target.value)
+                or isinstance(target, ast.Subscript)
+                and dependency_expression(target.value)
+            ):
                 offenders.append(ast.unparse(target))
     return offenders
 

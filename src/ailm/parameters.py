@@ -49,15 +49,15 @@ _REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 __all__ = [
     "GNN_AUXILIARY_SPECS",
     "GNN_SPEC_FILES",
+    "NORMALIZED_AXIS",
     "ArrayParameters",
     "LevelParameters",
     "ModelParameters",
-    "NORMALIZED_AXIS",
+    "check_level_against_gnn",
+    "check_model_against_gnn",
     "count_array",
     "count_case_only_clause",
     "count_level",
-    "check_level_against_gnn",
-    "check_model_against_gnn",
     "count_model",
     "gnn_declared_sizes",
 ]

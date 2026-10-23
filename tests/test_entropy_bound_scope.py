@@ -104,7 +104,22 @@ def test_the_correct_qualified_statement_is_present() -> None:
 def test_the_guard_detects_the_phrasing_it_exists_to_forbid() -> None:
     """NEGATIVE CONTROL: a regex that matches nothing would pass silently."""
     reintroduced = " ".join(
-        """The conditional entropy caps the gain, so no letter bigram model
-        could have passed it.""".split()
+        [
+            "The",
+            "conditional",
+            "entropy",
+            "caps",
+            "the",
+            "gain,",
+            "so",
+            "no",
+            "letter",
+            "bigram",
+            "model",
+            "could",
+            "have",
+            "passed",
+            "it.",
+        ]
     )
     assert any(pattern.search(reintroduced) for pattern in _UNQUALIFIED)

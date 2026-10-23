@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import json
 import random
-from typing import Any, Iterable
+from collections.abc import Iterable
+from typing import Any
 
 from ailm.benchmarks.constants import DEFAULT_SEED
 from ailm.levels.letter import ALPHA_TO_IDX

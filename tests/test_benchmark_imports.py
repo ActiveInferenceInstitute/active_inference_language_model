@@ -54,7 +54,7 @@ def test_lazy_registry_matches_the_static_reexport_declarations():
         for alias in node.names
     }
     assert declared
-    assert package._LAZY_EXPORTS == declared
+    assert declared == package._LAZY_EXPORTS
     assert set(package.__all__) <= set(declared)
     assert set(declared) <= set(dir(package))
     with pytest.raises(AttributeError, match="has no attribute"):

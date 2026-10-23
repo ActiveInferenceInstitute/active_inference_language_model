@@ -483,7 +483,7 @@ def test_the_headline_k_is_on_the_grid_and_declared_not_chosen():
     """
     module = _recorder()
     assert module.HEADLINE_K in module.K_GRID
-    assert module.HEADLINE_K == max(module.K_GRID)
+    assert max(module.K_GRID) == module.HEADLINE_K
     assert 0 in module.K_GRID, "the grid must carry its own zero-shot anchor"
 
 

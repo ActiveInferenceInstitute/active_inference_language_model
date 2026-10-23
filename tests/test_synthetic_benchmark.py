@@ -331,10 +331,10 @@ def test_synthetic_prompt_schema_parser_and_gold_share_one_exact_inventory(
 ) -> None:
     """The executed prompt opportunity must equal the schema, parser, and gold set."""
     expected = tuple("abcdefghijklmnopqrstuvwxyz")
-    assert SYNTHETIC_LETTERS == expected
+    assert expected == SYNTHETIC_LETTERS
     assert SYNTHETIC_ZERO_SHOT_PROTOCOL.response_inventory == expected
     assert SYNTHETIC_INCONTEXT_PROTOCOL.response_inventory == expected
-    assert SYNTHETIC_LETTER_INVENTORY_SYMBOLS == frozenset(expected)
+    assert frozenset(expected) == SYNTHETIC_LETTER_INVENTORY_SYMBOLS
     assert SYNTHETIC_LETTER_INVENTORY_PHRASE == "a lowercase letter a-z"
 
     schema = _response_format("synthetic_letter")
@@ -1059,7 +1059,7 @@ def test_phone_comparator_refusals_are_letter_arm_absent() -> None:
 def test_recorder_owns_the_complete_registered_probe_family() -> None:
     recorder = importlib.import_module("scripts.record_synthetic_benchmark_claims")
     expected = {probe.key: probe.tag for probe in SERVED_PROBES}
-    assert recorder.MODELS == expected
+    assert expected == recorder.MODELS
     scope = "20260905T000000000042Z"
     configuration = recorder.publication_replay_configuration(run_scope=scope)
     # The receipt binds the hosted transport: the endpoint and model tags name

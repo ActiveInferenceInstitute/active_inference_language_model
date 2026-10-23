@@ -124,7 +124,7 @@ class TestCerebrumPymdpHeuristic:
         assert AILM_PYMDP_HEURISTIC_CROSSWALK["π"].caveat == "not pymdp E"
 
     def test_c_d_e_have_no_direct_source_tuple_analogue(self):
-        assert PYMDP_COMPONENTS_WITHOUT_CEREBRUM_TUPLE_ANALOGUE == {"C", "D", "E"}
+        assert {"C", "D", "E"} == PYMDP_COMPONENTS_WITHOUT_CEREBRUM_TUPLE_ANALOGUE
 
     def test_validator_rejects_retired_precision_to_e_mapping(self):
         """POSITIVE CONTROL: the exact historical pi-to-E error must fail."""

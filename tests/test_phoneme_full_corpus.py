@@ -110,9 +110,9 @@ class TestAnalyticAnchors:
         # One occurrence of every bigram and every initial makes both tables uniform
         # after add-1 smoothing has equal mass everywhere.
         counts = {
-            "phone_unigrams": {p: 1 for p in PHONES},
+            "phone_unigrams": dict.fromkeys(PHONES, 1),
             "phone_bigrams": {f"{a},{b}": 1 for a in PHONES for b in PHONES},
-            "phone_initials": {p: 1 for p in PHONES},
+            "phone_initials": dict.fromkeys(PHONES, 1),
         }
         perplexity, positions = full_corpus_perplexity(counts)
         assert positions == len(PHONES) + len(PHONES) ** 2

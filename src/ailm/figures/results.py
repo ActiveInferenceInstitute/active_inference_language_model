@@ -75,16 +75,16 @@ from ailm.statistics import wilson_interval
 from ailm.viz_config import FONTS, MIN_FONT_PT, PALETTE, apply_style
 
 __all__ = [
-    "DEMANDED_GAIN_NATS",
     "DECLARED_GATE_TOKEN",
+    "DEMANDED_GAIN_NATS",
     "SMOOTHING_CEILING_TOKEN",
     "build_g2p_accuracy_figure",
     "build_information_ceiling_figure",
     "build_perplexity_ladder_figure",
+    "declared_gain_nats",
     "g2p_accuracy_data",
     "generate_g2p_accuracy",
     "generate_information_ceiling",
-    "declared_gain_nats",
     "generate_perplexity_ladder",
     "information_ceiling_data",
     "load_variables",

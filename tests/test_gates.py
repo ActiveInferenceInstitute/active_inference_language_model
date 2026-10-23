@@ -115,10 +115,10 @@ def test_vacuity_needs_no_ceiling_and_no_type():
 
 
 def test_verdict_is_bracketed_accepts_exactly_the_two_bracketed_verdicts():
-    assert BRACKETED_VERDICTS == {
+    assert {
         GateVerdict.BRACKETED_BOUND,
         GateVerdict.BRACKETED_REFERENCE,
-    }
+    } == BRACKETED_VERDICTS
     for verdict in GateVerdict:
         assert verdict_is_bracketed(verdict) is (verdict in BRACKETED_VERDICTS)
 
@@ -173,7 +173,7 @@ def test_invalid_comparator_type_fails_closed():
 
 
 def test_audited_gate_inventory_is_exact_and_unique():
-    assert AUDITED_GATE_IDS == tuple(GateId)
+    assert tuple(GateId) == AUDITED_GATE_IDS
     assert len(AUDITED_GATE_IDS) == len(set(AUDITED_GATE_IDS)) == 8
 
 

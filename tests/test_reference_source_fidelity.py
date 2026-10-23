@@ -386,7 +386,7 @@ def test_code_crosswalk_matches_the_exact_supplement_tuple() -> None:
         "F": ("F", None, "variational-free-energy objective", "not pymdp G"),
         "π": ("π", None, "precision hyperparameters", "not pymdp E"),
     }
-    assert PYMDP_COMPONENTS_WITHOUT_CEREBRUM_TUPLE_ANALOGUE == {"C", "D", "E"}
+    assert {"C", "D", "E"} == PYMDP_COMPONENTS_WITHOUT_CEREBRUM_TUPLE_ANALOGUE
 
 
 def test_case_formulation_inventory_matches_exact_pdf_evidence() -> None:

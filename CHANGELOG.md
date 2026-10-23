@@ -17,8 +17,7 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   `LevelConfig` hyperparameters and every `AILM_*` environment variable the
   shipped code reads, each with its reader, meaning and unset behavior,
   grouped by library runtime, recorders, dashboard, release verifier and
-  formal layer; it also records that `AILM_PROJECT_ROOT` carries two
-  unrelated meanings (figure project root and confirmatory fixture root).
+  formal layer.
 - The aligned-G2P zero-shot probe arms are reported in the external-benchmark
   supplement: each scoring arm's words scored, position and exact-word
   accuracy, and contract compliance, read against the analytic contract
@@ -30,6 +29,17 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ### Changed
 
+- The confirmatory recorder's fixture-mode root is `AILM_CONFIRMATORY_ROOT`;
+  it shared the name `AILM_PROJECT_ROOT` with the figure generators' project
+  root, two unrelated meanings under one variable, each validated
+  differently.
+- Source, scripts and tests use the Python 3.11 standard annotations and
+  imports (`list[...]`, `collections.abc`, `functools.cache`) that pyupgrade
+  prescribes, except the seven modules and two reviewed test fixtures whose
+  bytes the retained connected-GUM report and the publication derivative bind;
+  those, and the lint gate's rule set (`pyproject.toml` is a non-URL
+  configuration input of the same report), wait for that report's next
+  scoring replay.
 - The `quick` release profile runs its test step on four `pytest-xdist`
   workers, cutting that step from about forty minutes to about eleven on the
   recording workstation with no change in selection or outcome; `full` stays
@@ -54,6 +64,11 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   on its own. Each referenced asset must still be an ordinary file inside the
   package, escaping or decorated paths keep the context rules, and context
   documents remain registry-bound, with controls for each.
+- The poisoned-PATH trusted-Git control keeps the loader variables
+  (`DYLD_INSERT_LIBRARIES`, `LD_PRELOAD`) out of its baseline run, as it
+  already did for the child under test: hosted macOS runners abort a process
+  whose insert library is missing, which failed the control's positive half
+  on the first Apple-silicon CI run for a reason unrelated to the poison.
 - The trusted-Git lookup accepts the merged-`/usr` directory alias
   (`/bin` as a symlink to `usr/bin`) that Debian-family hosts ship and that
   Python's default path lists first; it previously refused every such host

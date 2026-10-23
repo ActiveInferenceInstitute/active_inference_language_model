@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import math
+from collections.abc import Callable
 from itertools import pairwise
-from typing import Any, Callable
+from typing import Any
 
 from ailm.benchmarks.constants import (
     CALIBRATION_BINS,

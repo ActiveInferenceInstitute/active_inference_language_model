@@ -228,7 +228,7 @@ def capture_derivative_state(contract: DerivativeContract, project_root: Path) -
         inventory[name] = identity
         if name in SUPPORT_PATHS:
             continue
-        elif name in _REVIEWED_TEST_FIXTURE_DELTAS and identity != original[name]:
+        if name in _REVIEWED_TEST_FIXTURE_DELTAS and identity != original[name]:
             _validate_reviewed_test_fixture_delta(name, original[name], identity)
         elif name in contract.publication_delta:
             require(

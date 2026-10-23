@@ -18,6 +18,7 @@ import json
 import logging
 import time
 from collections import defaultdict, deque
+from collections.abc import Callable
 from dataclasses import dataclass
 from functools import partial
 from http import HTTPStatus
@@ -26,7 +27,7 @@ from http.server import SimpleHTTPRequestHandler
 from pathlib import Path
 from socketserver import ThreadingTCPServer
 from threading import BoundedSemaphore, Lock
-from typing import Any, Callable
+from typing import Any
 from urllib.parse import urlsplit
 
 from ailm.dashboard.config import (

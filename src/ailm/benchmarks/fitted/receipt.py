@@ -12,7 +12,7 @@ import json
 import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 from ailm.benchmarks.fitted.identity import DIGEST_PATTERN, TASKS, sha256_digest
 
@@ -41,11 +41,11 @@ class DataReceipt:
 
     dataset: str
     run_scope: str
-    policy: Dict[str, int]
-    source_bindings: Dict[str, str]
-    separation: Dict[str, int]
-    counts: Dict[str, int]
-    files: Dict[str, str]
+    policy: dict[str, int]
+    source_bindings: dict[str, str]
+    separation: dict[str, int]
+    counts: dict[str, int]
+    files: dict[str, str]
     generator: str
     protocol: str = RECEIPT_PROTOCOL
 
@@ -97,7 +97,7 @@ class DataReceipt:
         if not isinstance(self.generator, str) or not self.generator.strip():
             raise DataReceiptError("generator must name its producing path")
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "dataset": self.dataset,
             "protocol": self.protocol,
@@ -111,7 +111,7 @@ class DataReceipt:
         }
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "DataReceipt":
+    def from_dict(cls, data: dict[str, Any]) -> "DataReceipt":
         required = {
             "dataset",
             "protocol",
@@ -163,7 +163,7 @@ def load_receipt(path: Path) -> DataReceipt:
     return DataReceipt.from_dict(data)
 
 
-def verify_receipt(path: Path, *, data_dir: Path) -> Dict[str, Any]:
+def verify_receipt(path: Path, *, data_dir: Path) -> dict[str, Any]:
     """Recompute every bound file digest and reconcile against the receipt.
 
     Returns the verified totals. Any missing file, undigestable binding, or
@@ -221,7 +221,7 @@ class CheckpointSpec:
         if not isinstance(self.trainer, str) or not self.trainer.strip():
             raise DataReceiptError("trainer must name its owning module or command")
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "dataset": self.dataset,
             "data_receipt_digest": self.data_receipt_digest,
@@ -233,7 +233,7 @@ class CheckpointSpec:
         }
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "CheckpointSpec":
+    def from_dict(cls, data: dict[str, Any]) -> "CheckpointSpec":
         required = {
             "dataset",
             "data_receipt_digest",

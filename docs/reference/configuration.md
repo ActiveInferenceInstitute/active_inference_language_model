@@ -49,18 +49,13 @@ Read by the installed package and by any script that imports it.
 | `AILM_OPENROUTER_BUDGET_LIMIT_USD` | `src/ailm/benchmarks/openrouter_budget.py` | Independently configured spending cap; must be a finite, positive decimal equal to the ledger's own limit | see the row above |
 | `AILM_CORPUS_CACHE_DIR` | `src/ailm/resources.py` | Destination for raw corpus downloads (CMUdict, UD EWT) | a source checkout keeps `vendor/`; an installed wheel uses the platform's per-user cache directory; an empty or relative value is refused |
 | `AILM_BROWN_SOURCE_ZIP` | `src/ailm/corpus/brown.py` | Candidate path of the pinned NLTK Brown archive, searched before the NLTK data roots and then digest-verified | only the NLTK data roots are searched; when nothing verifies, the error names this variable |
-| `AILM_PROJECT_ROOT` | `src/ailm/figures/_common.py` | Overrides the project root holding `output/`, `vendor/` and `docs/manuscript/` when a figure generator runs from another working directory | walk up from the figures package |
-
-`AILM_PROJECT_ROOT` carries a second, unrelated meaning in the confirmatory
-recorder (next section). The two readers validate differently: the figures
-reader resolves the path without requiring it to be absolute. Set it for one
-purpose at a time.
+| `AILM_PROJECT_ROOT` | `src/ailm/figures/_common.py` | Overrides the project root holding `output/`, `vendor/` and `docs/manuscript/` when a figure generator runs from another working directory; the path is resolved but not required to be absolute | walk up from the figures package |
 
 ## Recorders and scripts
 
 | Variable | Reader | Meaning | Unset |
 |---|---|---|---|
-| `AILM_PROJECT_ROOT` | `scripts/record_confirmatory_replication.py` | Fixture root whose `data/confirmatory` is scored instead of production; must be absolute and must come with `AILM_CLAIMS_PATH` and the opt-in below, otherwise the run is refused | the production root |
+| `AILM_CONFIRMATORY_ROOT` | `scripts/record_confirmatory_replication.py` | Fixture root whose `data/confirmatory` is scored instead of production; must be absolute and must come with `AILM_CLAIMS_PATH` and the opt-in below, otherwise the run is refused | the production root |
 | `AILM_CONFIRMATORY_ALTERNATE_LEDGER` | `scripts/record_confirmatory_replication.py` | Explicit opt-in to fixture-mode shakedown, so an isolated run never starts by accident | only the exact value `1` enables it |
 | `AILM_PATCHED_PYMDP_ROOT` | `scripts/probe_pymdp_sparse.py` (child worker) | Authenticated staged package root the patched sparse worker must import `pymdp` from; the parent process clears any inherited value and sets its own | an empty value makes the worker refuse to start |
 | `TEMPLATE_REPO_ROOT` | `scripts/verify_release.py`, `scripts/z_generate_manuscript_variables.py`, `scripts/generate_figure_registry.py` | The `docxology/template` checkout that provides the `infrastructure` rendering package; an explicit value is final and never silently replaced by a fallback | the scripts search the documented candidate locations and refuse loudly when none holds `infrastructure/` |

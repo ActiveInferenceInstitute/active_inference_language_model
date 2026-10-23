@@ -22,8 +22,8 @@ from __future__ import annotations
 
 import hashlib
 import re
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Mapping, Tuple
 
 #: A digest is always spelled ``sha256:<64 lowercase hex>``.
 DIGEST_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
@@ -69,7 +69,7 @@ class FittedProbeSpec:
     key: str
     lineage_family: str
     display_name: str
-    tasks: Tuple[str, ...]
+    tasks: tuple[str, ...]
     upstream_repo: str
     upstream_revision: str
     precision: str
@@ -170,7 +170,7 @@ def validate_current_registry() -> tuple[FittedProbeSpec, ...]:
 FITTED_PROBES: tuple[FittedProbeSpec, ...] = ()
 
 
-def build_lineage_chain(stages: Mapping[str, str]) -> Tuple[Tuple[str, str], ...]:
+def build_lineage_chain(stages: Mapping[str, str]) -> tuple[tuple[str, str], ...]:
     """Build the ordered lineage chain from stage digests.
 
     Requires exactly the five declared stages, in order, each carrying a

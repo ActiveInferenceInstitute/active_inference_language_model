@@ -262,10 +262,10 @@ __all__ = [
     "assert_no_text_crosses_rules",
     "assert_within_canvas",
     "default_output_dir",
-    "load_manuscript_variables",
     "effective_on_page_dpi",
-    "on_page_point_size",
+    "load_manuscript_variables",
     "manuscript_variables_path",
+    "on_page_point_size",
     "project_root",
     "rendered_texts",
     "resolve_variables",
@@ -722,9 +722,12 @@ def _reference_rules(axes: Axes) -> list[Line2D]:
             continue
         x0, x1 = float(points[:, 0].min()), float(points[:, 0].max())
         y0, y1 = float(points[:, 1].min()), float(points[:, 1].max())
-        if orientation in {"horizontal", "frame"} and y1 - y0 <= _RULE_ALIGNMENT_PX:
-            rules.append(line)
-        elif orientation in {"vertical", "frame"} and x1 - x0 <= _RULE_ALIGNMENT_PX:
+        if (
+            orientation in {"horizontal", "frame"}
+            and y1 - y0 <= _RULE_ALIGNMENT_PX
+            or orientation in {"vertical", "frame"}
+            and x1 - x0 <= _RULE_ALIGNMENT_PX
+        ):
             rules.append(line)
     return rules
 

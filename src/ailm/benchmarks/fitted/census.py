@@ -20,7 +20,6 @@ frequencies. Striding is sampling; the census stands.
 from __future__ import annotations
 
 from collections import Counter
-from typing import Dict, List, Tuple
 
 
 class StreamCensus:
@@ -44,7 +43,7 @@ class StreamCensus:
         self._carry = ""
         self._position = 0
         self.supervised_targets = 0
-        self.bigram_counts: Counter[Tuple[str, str]] = Counter()
+        self.bigram_counts: Counter[tuple[str, str]] = Counter()
         self.context_occurrences: Counter[str] = Counter()
 
     def feed(self, chunk: str) -> None:
@@ -62,7 +61,7 @@ class StreamCensus:
         self._position += len(chunk)
         self._carry = text[-(self._window + 1) :] if len(text) > self._window else text
 
-    def reconcile(self) -> Dict[str, int]:
+    def reconcile(self) -> dict[str, int]:
         """Return the exact totals and assert both reconciliations hold."""
         bigram_tokens = sum(self.bigram_counts.values())
         context_total = sum(self.context_occurrences.values())
@@ -84,7 +83,7 @@ class StreamCensus:
 
 def bigram_relative_frequencies(
     text: str, *, stride: int | None = None
-) -> Dict[Tuple[str, str], float]:
+) -> dict[tuple[str, str], float]:
     """Bigram relative frequencies over the census or over a stride-d sample.
 
     With ``stride=None`` this is the exact census: every consecutive pair.
@@ -93,7 +92,7 @@ def bigram_relative_frequencies(
     see :func:`stride_aliasing_demo` for the counterexample.
     """
     if stride is None:
-        pairs: List[Tuple[str, str]] = list(zip(text, text[1:], strict=False))
+        pairs: list[tuple[str, str]] = list(zip(text, text[1:], strict=False))
     else:
         if stride < 1:
             raise ValueError(f"stride must be >= 1, got {stride}")
@@ -107,7 +106,7 @@ def bigram_relative_frequencies(
 
 def stride_aliasing_demo(
     n: int = 16,
-) -> Tuple[Dict[Tuple[str, str], float], Dict[Tuple[str, str], float]]:
+) -> tuple[dict[tuple[str, str], float], dict[tuple[str, str], float]]:
     """The alternating-stream aliasing counterexample.
 
     On ``"abab…"`` the census carries both ``(a, b)`` and ``(b, a)`` at equal

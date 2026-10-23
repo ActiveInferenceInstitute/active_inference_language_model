@@ -462,31 +462,35 @@ def test_response_identity_rejects_history_and_final_url_drift(local_http_server
         headers={"Location": local_http_server.base_url + target_route},
     )
     local_http_server.enqueue_json(target_route, {"ok": True})
-    with requests.get(
-        local_http_server.base_url + redirect_route,
-        allow_redirects=True,
-        timeout=(1, 1),
-    ) as response:
-        with pytest.raises(ReferenceVerificationError, match="redirect history"):
-            _response_identity(
-                response,
-                expected_url=response.url,
-                source_name="fixture",
-            )
+    with (
+        requests.get(
+            local_http_server.base_url + redirect_route,
+            allow_redirects=True,
+            timeout=(1, 1),
+        ) as response,
+        pytest.raises(ReferenceVerificationError, match="redirect history"),
+    ):
+        _response_identity(
+            response,
+            expected_url=response.url,
+            source_name="fixture",
+        )
 
     direct_route = "/direct"
     local_http_server.enqueue_json(direct_route, {"ok": True})
-    with requests.get(
-        local_http_server.base_url + direct_route,
-        allow_redirects=False,
-        timeout=(1, 1),
-    ) as response:
-        with pytest.raises(ReferenceVerificationError, match="response URL drifted"):
-            _response_identity(
-                response,
-                expected_url=local_http_server.base_url + "/different",
-                source_name="fixture",
-            )
+    with (
+        requests.get(
+            local_http_server.base_url + direct_route,
+            allow_redirects=False,
+            timeout=(1, 1),
+        ) as response,
+        pytest.raises(ReferenceVerificationError, match="response URL drifted"),
+    ):
+        _response_identity(
+            response,
+            expected_url=local_http_server.base_url + "/different",
+            source_name="fixture",
+        )
 
 
 def test_real_http_full_file_verifies_extent_and_both_digests(local_http_server) -> None:

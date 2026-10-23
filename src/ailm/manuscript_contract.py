@@ -15,19 +15,20 @@ letter followed by uppercase letters, digits, or underscores.
 from __future__ import annotations
 
 import re
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping, NamedTuple
+from typing import NamedTuple
 
 __all__ = [
     "ARTICLE_TYPOGRAPHY_INPUT",
     "ARTICLE_TYPOGRAPHY_NAME",
-    "article_typography_bytes",
-    "article_typography_required",
     "EXCLUDED_MANUSCRIPT_DOCS",
     "MANUSCRIPT_TOKEN_RE",
     "TOKEN_NAME_RE",
-    "ManuscriptContractError",
     "HardcodedManuscriptVariable",
+    "ManuscriptContractError",
+    "article_typography_bytes",
+    "article_typography_required",
     "find_hardcoded_manuscript_variables",
     "manuscript_source_files",
     "resolve_manuscript_text",

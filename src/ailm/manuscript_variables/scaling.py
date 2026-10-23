@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import math
 import re
+from collections.abc import Mapping
 from typing import (
     Any,
-    Mapping,
 )
 
 from ailm.statistics import (

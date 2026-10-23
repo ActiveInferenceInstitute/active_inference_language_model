@@ -117,5 +117,5 @@ def test_the_guard_detects_the_assertion_it_exists_to_forbid() -> None:
     )
 
     # Hard-wrapped across a line break, which is how occurrences hid before.
-    wrapped = " ".join("at the letter and grapheme-to-phoneme\nlevels".split())
+    wrapped = " ".join(["at", "the", "letter", "and", "grapheme-to-phoneme", "levels"])
     assert _PHRASE.search(wrapped)

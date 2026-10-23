@@ -39,7 +39,7 @@ The discipline, in the order this script applies it
    precheck's filesystem scan reads.
 4. **Guard where the run may write.** Production mode (no environment
    overrides) reads the production corpus and ledger. The sanctioned
-   isolated shakedown is fixture mode: ``AILM_PROJECT_ROOT`` naming an
+   isolated shakedown is fixture mode: ``AILM_CONFIRMATORY_ROOT`` naming an
    isolated fixture root with its own genuinely synthetic
    ``data/confirmatory``, ``AILM_CLAIMS_PATH`` naming a ledger outside the
    production tree, and ``AILM_CONFIRMATORY_ALTERNATE_LEDGER=1``. Any
@@ -101,7 +101,7 @@ SOURCE = "scripts/record_confirmatory_replication.py"
 POPULATION = "ud_ewt_test"
 SENTINEL = f"confirmatory_run_completed_{POPULATION}"
 LEDGER_ENV = "AILM_CLAIMS_PATH"
-CORPUS_ROOT_ENV = "AILM_PROJECT_ROOT"
+CORPUS_ROOT_ENV = "AILM_CONFIRMATORY_ROOT"
 OPT_IN_ENV = "AILM_CONFIRMATORY_ALTERNATE_LEDGER"
 MARKER_NAME = SENTINEL
 
@@ -185,7 +185,7 @@ def _execution_mode() -> tuple[str, Path, str | None]:
     Production mode — no overrides — reads the production confirmatory corpus
     and writes the production ledger under the one-run sentinel.
 
-    Fixture mode — ``AILM_PROJECT_ROOT`` naming an isolated fixture root that
+    Fixture mode — ``AILM_CONFIRMATORY_ROOT`` naming an isolated fixture root that
     carries its own ``data/confirmatory``, ``AILM_CLAIMS_PATH`` naming a
     ledger outside the production tree, and the explicit opt-in
     ``AILM_CONFIRMATORY_ALTERNATE_LEDGER=1`` — is the inspectable shakedown

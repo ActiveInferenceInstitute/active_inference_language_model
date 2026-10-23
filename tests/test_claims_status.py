@@ -211,7 +211,7 @@ def test_same_commit_protocols_are_not_titled_preregistrations() -> None:
 def test_the_status_vocabulary_is_exactly_the_audit_taxonomy():
     """The four words are load-bearing: docs and the assignment script use them
     literally, so a renamed member would silently orphan both."""
-    assert CLAIM_STATUSES == {"confirmatory", "exploratory", "descriptive", "analytic"}
+    assert {"confirmatory", "exploratory", "descriptive", "analytic"} == CLAIM_STATUSES
 
 
 # ── Writer behavior ──────────────────────────────────────────────────────────

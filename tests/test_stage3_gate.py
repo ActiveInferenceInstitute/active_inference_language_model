@@ -1037,7 +1037,7 @@ def test_build_word_agent_rejects_an_oversized_vocabulary():
         return "w" + "".join(digits)
 
     words = [alphabetic_word(index) for index in range(n)]
-    frequencies = {word: 1 for word in words}
+    frequencies = dict.fromkeys(words, 1)
     document_ids = ["train-doc", "heldout-doc"]
     eval_tokens = words[::20]
     payload = {

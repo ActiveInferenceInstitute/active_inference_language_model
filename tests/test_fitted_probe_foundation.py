@@ -116,10 +116,7 @@ class TestIdentity:
             build_lineage_chain({"upstream": GOOD_DIGEST})
         with pytest.raises(FittedIdentityError, match="unknown stages"):
             build_lineage_chain(
-                {
-                    stage: GOOD_DIGEST
-                    for stage in ("upstream", "adapter", "fused", "converted", "served")
-                }
+                dict.fromkeys(("upstream", "adapter", "fused", "converted", "served"), GOOD_DIGEST)
                 | {"behavioral": GOOD_DIGEST}
             )
         with pytest.raises(FittedIdentityError, match="adapter"):
@@ -132,10 +129,7 @@ class TestIdentity:
             }
             build_lineage_chain(stages)
         chain = build_lineage_chain(
-            {
-                stage: GOOD_DIGEST
-                for stage in ("upstream", "adapter", "fused", "converted", "served")
-            }
+            dict.fromkeys(("upstream", "adapter", "fused", "converted", "served"), GOOD_DIGEST)
         )
         assert [stage for stage, _ in chain] == [
             "upstream",

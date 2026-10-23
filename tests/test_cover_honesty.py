@@ -156,7 +156,7 @@ def test_the_cover_does_not_draw_the_case_to_clause_seam_as_an_identity() -> Non
     # because someone deleted a line. A widening that collapsed back to the case
     # roles would make the check above a rule with nothing behind it.
     role_names = tuple(role.name for role in CaseRole)
-    assert N_WIDENED_SYMBOLS > len(role_names)
+    assert len(role_names) < N_WIDENED_SYMBOLS
     assert set(role_names) < set(WIDENED_SYMBOL_LABELS)
 
 

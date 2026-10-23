@@ -24,6 +24,24 @@ changes what the paper claims or what the artifact is.
   stalls separately from executed-test cost; a timeout remains a failed check
   and must not be converted into a skip to obtain a passing receipt.
 
+## Medium
+
+- [ ] **Narrow the source bindings to what each measurement executes.** Three
+  bindings currently freeze bytes that the bound measurement never runs, so an
+  unrelated edit forces a re-measurement or a reviewed derivative: the
+  network-claim binding receipts hash the whole `src/ailm` tree, so any source
+  change requires fresh hosted calls; the retained connected-GUM report's
+  execution inventory binds seven modules plus every non-URL field of
+  `pyproject.toml`, so a lint-rule change there needs a scoring replay; and the
+  publication derivative pins two reviewed test fixtures byte-for-byte. The
+  proposal: bind each recorder to its executed import closure (resolved by
+  import, not by directory), bind the connected report to the modules its
+  replay actually loads plus the dependency and build fields of `pyproject.toml`
+  rather than the whole file, and let the derivative pin fixtures by their
+  parsed test inventory rather than their bytes. Each is an evidence-rule change
+  that needs its own decision entry and a re-bind on the workstation, and the
+  existing receipts stay valid until then.
+
 ## Major
 
 - [ ] **Equal opportunity to fit the task.** The supplement's fairness table

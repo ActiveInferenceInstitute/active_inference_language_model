@@ -18,10 +18,11 @@ import subprocess
 import sys
 import tempfile
 import tomllib
+from collections.abc import Mapping
 from datetime import date, datetime, time
 from pathlib import Path
 from types import CodeType
-from typing import Final, Mapping, TypeAlias, assert_never
+from typing import Final, TypeAlias, assert_never
 
 from . import _publication_types as t
 from ._publication_types import parse_hashes as parse_hashes

@@ -1702,7 +1702,16 @@ def test_v5_trusted_git_ignores_poisoned_path_config_and_loader(project, tmp_pat
         LD_PRELOAD=str(tmp_path / "missing.so"),
     )
     environment.update(contaminants)
-    baseline = subprocess.run([str(poison)], env=environment, capture_output=True, check=False)
+    # The loader variables stay out of the baseline exactly as they stay out of
+    # the child below: hosted macOS runners abort any process whose
+    # DYLD_INSERT_LIBRARIES names a missing library, which would fail this
+    # positive control for a reason unrelated to the PATH poison it proves.
+    baseline_environment = {
+        k: v for k, v in environment.items() if k not in {"DYLD_INSERT_LIBRARIES", "LD_PRELOAD"}
+    }
+    baseline = subprocess.run(
+        [str(poison)], env=baseline_environment, capture_output=True, check=False
+    )
     assert baseline.returncode == 91 and marker.read_text() == "poison"
     marker.unlink()
     child = subprocess.run(

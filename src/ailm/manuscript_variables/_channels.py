@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from typing import (
     Any,
-    Mapping,
 )
 
 from ailm.channel_registry import (

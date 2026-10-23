@@ -1493,8 +1493,8 @@ class TestRealLedger:
         variables = generate_manuscript_variables(PROJECT_ROOT)
         assert variables["SUBSAMPLE_MATCHED_STRIDE"] == str(SUBSAMPLE_MATCHED_STRIDE)
         assert variables["SUBSAMPLE_LARGER_STRIDE"] == str(SUBSAMPLE_LARGER_STRIDE)
-        assert SUBSAMPLE_MATCHED_ARM == f"stride{SUBSAMPLE_MATCHED_STRIDE}"
-        assert SUBSAMPLE_LARGER_ARM == f"stride{SUBSAMPLE_LARGER_STRIDE}"
+        assert f"stride{SUBSAMPLE_MATCHED_STRIDE}" == SUBSAMPLE_MATCHED_ARM
+        assert f"stride{SUBSAMPLE_LARGER_STRIDE}" == SUBSAMPLE_LARGER_ARM
         assert SUBSAMPLE_STRIDE_BY_ARM == {
             SUBSAMPLE_MATCHED_ARM: SUBSAMPLE_MATCHED_STRIDE,
             SUBSAMPLE_LARGER_ARM: SUBSAMPLE_LARGER_STRIDE,

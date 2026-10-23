@@ -83,7 +83,7 @@ def test_every_interface_reads_the_same_alphabet():
     from ailm.levels.letter import IDX_TO_ALPHA, N_SYMBOLS
 
     canonical = [IDX_TO_ALPHA[i] for i in range(N_SYMBOLS)]
-    assert engine.ALPHA_LIST == canonical
+    assert canonical == engine.ALPHA_LIST
     assert _web_model()["alphabet"] == canonical
 
 

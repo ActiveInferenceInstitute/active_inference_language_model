@@ -99,13 +99,55 @@ PATTERN = re.compile("(" + "|".join(BRITISH) + ")", re.IGNORECASE)
 #: matches the whole ``-ise`` family and subtracts the legitimate words catches
 #: the next one too.
 NOT_BRITISH_ISE = frozenset(
-    """advertise anywise arise chastise circumcise clockwise compromise concise
-    denise exercise supervise
-    demise despise devise disguise excise exercise expertise franchise guise
-    improvise incise likewise merchandise noise otherwise paradise poise praise
-    precise premise promise raise reprise revise rise supervise surmise surprise
-    televise treatise wise comprise comprises comprised comprising
-    imprecise""".split()
+    [
+        "advertise",
+        "anywise",
+        "arise",
+        "chastise",
+        "circumcise",
+        "clockwise",
+        "compromise",
+        "concise",
+        "denise",
+        "exercise",
+        "supervise",
+        "demise",
+        "despise",
+        "devise",
+        "disguise",
+        "excise",
+        "exercise",
+        "expertise",
+        "franchise",
+        "guise",
+        "improvise",
+        "incise",
+        "likewise",
+        "merchandise",
+        "noise",
+        "otherwise",
+        "paradise",
+        "poise",
+        "praise",
+        "precise",
+        "premise",
+        "promise",
+        "raise",
+        "reprise",
+        "revise",
+        "rise",
+        "supervise",
+        "surmise",
+        "surprise",
+        "televise",
+        "treatise",
+        "wise",
+        "comprise",
+        "comprises",
+        "comprised",
+        "comprising",
+        "imprecise",
+    ]
 )
 
 #: Any ``-ise`` family word, to be filtered against the list above.

@@ -146,9 +146,9 @@ def evaluation_population_bound(text: str) -> dict[str, float]:
 
 
 __all__ = [
-    "EvaluationFixture",
-    "EvaluationFixtureError",
     "STAGE1_EVALUATION",
     "STAGE1_EVALUATION_TEXT",
+    "EvaluationFixture",
+    "EvaluationFixtureError",
     "evaluation_population_bound",
 ]
