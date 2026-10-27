@@ -49,18 +49,10 @@ decision entry and a matching edit here.
 
 ## Inventory
 
-101 Python files (2026-10-23 audit). `scripts/README.md` carries the
-per-script table — script | purpose | delegates to | run command. By family:
-
-| Pattern | Count | Role |
-| --- | --- | --- |
-| `generate_*` | 23 | `vendor/` corpus artifacts, figures, cover, Lean ledger bridge, figure registry, pymdp patch |
-| `record_*` | 47 | the only writers of `data/claims.json`; each owns one claim namespace — the 46 `record_*_claims.py` recorders plus `record_confirmatory_replication.py` (decision 111) |
-| `evaluate_*` | 2 | structural/evaluation reports that print and record nothing |
-| `probe_*` | 5 | standalone measurements that record nothing |
-| `verify_*` | 4 | release profiles, network-claim bindings, reference sources, the publication derivative |
-| `z_*` | 2 | last-pipeline-step renderers: manuscript tokens, docs hydration |
-| other | 18 | `audit_gates.py`, `orchestrate_claim_recorders.py`, `assign_claim_status.py`, `sweep_smoothing.py`, `warm_call_cache.py`, `build_web_ailm.py`, `export_web_model.py`, `capture_dashboard.py`, `run_connected_ailm.py`, `precheck_confirmatory_replication.py`, `list_raw_corpus_inputs.py`, `fillmore_subject_rerun.py`, the shared `_artifact_io.py` atomic writer, and the five `_publication_*.py` workers behind `verify_publication_derivative.py` |
+[`README.md`](README.md) owns the current per-script inventory: purpose,
+delegated module and run command. Add or retire its row with the script, and run
+the documentation inventory checks. Keep that checked table as the reference
+rather than duplicating counts or script lists here.
 
 ## May change freely
 

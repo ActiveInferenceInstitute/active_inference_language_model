@@ -81,7 +81,11 @@ def selected_upstream_root(project: Path) -> Path:
 
 def _git(root: Path, *arguments: str) -> bytes:
     environment = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
-    environment.update(GIT_CONFIG_GLOBAL=os.devnull, GIT_CONFIG_NOSYSTEM="1")
+    environment.update(
+        GIT_CONFIG_GLOBAL=os.devnull,
+        GIT_CONFIG_NOSYSTEM="1",
+        GIT_NO_REPLACE_OBJECTS="1",
+    )
     try:
         result = subprocess.run(
             [
@@ -113,7 +117,8 @@ def verify_release_checkout(root: Path, pin: UpstreamRelease) -> dict[str, str |
 
     Reading actual files catches changes hidden by assume-unchanged or
     skip-worktree flags. Unexpected source files and symlinked paths also fail.
-    Interpreter bytecode caches are excluded from the source inventory.
+    Interpreter __pycache__ directories are excluded from the source inventory;
+    unversioned sourceless modules elsewhere are refused.
     """
     root = root.resolve()
     commit = _git(root, "rev-parse", "HEAD").decode().strip()
@@ -144,7 +149,7 @@ def verify_release_checkout(root: Path, pin: UpstreamRelease) -> dict[str, str |
         relative = path.relative_to(root).as_posix()
         if path.is_symlink():
             raise UpstreamReleaseError(f"symlinked upstream source: {relative}")
-        if "__pycache__" in path.parts or path.suffix == ".pyc":
+        if "__pycache__" in path.parts:
             continue
         if not path.is_dir():
             actual.add(relative)

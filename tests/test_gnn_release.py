@@ -86,12 +86,27 @@ def test_modified_source_is_refused_despite_index_flags(release, flag):
         verify_release_checkout(root, pin)
 
 
-@pytest.mark.parametrize("kind", ["missing", "extra", "symlink", "fifo"])
+def test_git_replacement_objects_cannot_redefine_the_pinned_source(release):
+    root, pin = release
+    parser = root / "src/gnn/parsers/markdown_parser.py"
+    parser.write_text("VALUE = 'replacement'\n")
+    _git(root, "add", "src")
+    _git(root, "commit", "-qm", "replacement")
+    replacement = _git(root, "rev-parse", "HEAD")
+    _git(root, "update-ref", "HEAD", pin.commit)
+    _git(root, "replace", pin.commit, replacement)
+    with pytest.raises(UpstreamReleaseError, match="modified upstream source"):
+        verify_release_checkout(root, pin)
+
+
+@pytest.mark.parametrize("kind", ["missing", "extra", "extra-bytecode", "symlink", "fifo"])
 def test_changed_source_inventory_is_refused(release, tmp_path, kind):
     root, pin = release
     parser = root / "src/gnn/parsers/markdown_parser.py"
     if kind == "extra":
         (parser.parent / "injected.py").write_text("VALUE = 'injected'\n")
+    elif kind == "extra-bytecode":
+        (parser.parent / "injected.pyc").write_bytes(b"unversioned sourceless module")
     else:
         content = parser.read_bytes()
         parser.unlink()

@@ -18,6 +18,7 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   forwards `AILM_GNN_UPSTREAM`, checks its release identity, and refuses modified
   source even when Git index flags hide changes. This integration does not add
   a runtime dependency on the upstream pipeline or on FEP_Formal.
+  Git replacement objects cannot redefine the pinned source inventory.
 
 - A configuration reference (`docs/reference/configuration.md`): the
   `LevelConfig` hyperparameters and every `AILM_*` environment variable the
@@ -109,6 +110,9 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   release.
 
 ### Removed
+
+- The duplicated dated script-count table in the agent guide. The checked
+  per-script table in `scripts/README.md` owns the inventory.
 
 - The dashboard's unused `build_unigram_a` re-export and `MAX_REQUEST_BYTES`
   alias. Active callers use `build_letter_transition` and `DashboardConfig`.

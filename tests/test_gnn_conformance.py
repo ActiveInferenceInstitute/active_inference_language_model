@@ -2332,7 +2332,7 @@ def _upstream_skip_reason() -> str:
 
 
 @pytest.fixture(scope="module")
-def upstream_parser():
+def upstream_parser(tmp_path_factory):
     """The REAL GeneralizedNotationNotation Markdown parser, if available.
 
     Imported by inserting the upstream ``src/`` on ``sys.path`` for the duration
@@ -2350,6 +2350,12 @@ def upstream_parser():
         return
     pin = load_release_pin(PROJECT_ROOT / "gnn/upstream.json")
     identity = verify_release_checkout(UPSTREAM_ROOT, pin)
+    previous_cache_prefix = sys.pycache_prefix
+    previous_dont_write_bytecode = sys.dont_write_bytecode
+    # Compile verified source in memory, without reusing a checkout's cached
+    # bytecode. The private empty prefix belongs to this test invocation.
+    sys.pycache_prefix = str(tmp_path_factory.mktemp("gnn-release-bytecode"))
+    sys.dont_write_bytecode = True
     inserted = str(UPSTREAM_SRC)
     sys.path.insert(0, inserted)
     try:
@@ -2365,6 +2371,8 @@ def upstream_parser():
     finally:
         if inserted in sys.path:
             sys.path.remove(inserted)
+        sys.pycache_prefix = previous_cache_prefix
+        sys.dont_write_bytecode = previous_dont_write_bytecode
         assert verify_release_checkout(UPSTREAM_ROOT, pin) == identity, (
             "upstream source changed during interoperability tests"
         )
