@@ -31,8 +31,12 @@ def _disclosure_problems(text: str) -> list[str]:
         problems.append("the section omits the release archive identity")
     if "availability do not establish independent reproduction" not in lowered:
         problems.append("the section conflates availability and reproduction")
-    if any(phrase in lowered for phrase in ("reserved draft", "publication there remains planned")):
-        problems.append("the section retains provisional release metadata")
+    if "zenodo deposition is unpublished" not in lowered or "reserved doi" not in lowered:
+        problems.append("the section omits the unpublished archive's reservation status")
+    if "does not yet resolve to a public record" not in lowered:
+        problems.append("the section presents a reserved DOI as a public archive")
+    if "the archive has been published" in lowered:
+        problems.append("the section claims an unverified published archive")
     if "has been independently reproduced" in lowered:
         problems.append("the section claims an unrecorded independent reproduction")
     if "no independent reproduction outside the project is recorded" not in lowered:
@@ -88,10 +92,13 @@ def test_the_guard_would_notice_the_stale_disclosures() -> None:
         SOURCE_REPOSITORY,
         "/tree/v1.0.0",
         RELEASE_DOI,
+        "Zenodo deposition is unpublished",
+        "reserved DOI",
+        "does not yet resolve to a public record",
         "availability do not establish independent reproduction",
         "No independent reproduction outside the project is recorded",
     ):
         assert phrase in current
         assert _disclosure_problems(current.replace(phrase, "omitted")), phrase
-    assert _disclosure_problems(current + " Publication there remains planned.")
+    assert _disclosure_problems(current + " The archive has been published.")
     assert _disclosure_problems(current + " It has been independently reproduced.")

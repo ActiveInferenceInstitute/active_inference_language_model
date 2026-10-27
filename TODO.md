@@ -11,12 +11,6 @@ changes what the paper claims or what the artifact is.
 
 ## Minor
 
-- [ ] At the next render, change the abstract's closing sentence from "The
-  planned release repository is" to "The release repository is": the public
-  `v1.0.0` tag exists. The edit is deferred rather than applied because
-  `tests/test_manuscript_crossrefs.py` requires the tracked rendered
-  provenance to match the authored sources, so a manuscript wording change
-  ships only with a template Stage 03/04 render.
 - [ ] At the next connected re-bind, apply the two source edits that the
   connected report's execution inventory blocks today (it binds 76 modules
   byte for byte, `src/ailm/claims.py` and `src/ailm/gnn/conformance.py` among

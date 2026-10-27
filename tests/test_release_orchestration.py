@@ -353,6 +353,8 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     assert full_names.index("pymdp-sparse-bundle-check") < full_names.index("tests-full")
     assert full_names.index("release-infrastructure-coverage") < full_names.index("tests-full")
     assert "package-distributions" in full_names
+    assert "gnn-upstream-release" in full_names
+    assert full_names.index("gnn-upstream-release") < full_names.index("tests-full")
     assert full_names.index("package-distributions") < full_names.index("tests-full")
     assert full_names.index("network-claim-bindings") < full_names.index("cache-audit")
     assert full_names.index("cache-audit") < full_names.index("tests-full"), (
@@ -550,6 +552,7 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
         "web-model": ("script", "scripts/export_web_model.py"),
         "web-page": ("script", "scripts/build_web_ailm.py"),
         "package-distributions": ("module", "pytest"),
+        "gnn-upstream-release": ("script", "scripts/verify_gnn_release.py"),
         "network-claim-bindings": ("script", "scripts/verify_network_claim_bindings.py"),
         "cache-audit": ("script", "scripts/record_external_benchmark_claims.py"),
         "raw-corpus-reproducibility": ("module", "pytest"),
@@ -1732,6 +1735,17 @@ def test_release_environment_defeats_collect_only_and_other_inherited_poison(tmp
     assert result["exit_code"] != 0
     assert result["status"] == "failed"
     assert "1 failed" in result["stdout_tail"]
+
+
+def test_release_environment_forwards_and_records_explicit_gnn_checkout(tmp_path, monkeypatch):
+    module = _module()
+    repository = tmp_path / "repository"
+    commit = _init_git_repository(repository)
+    selected = str(tmp_path / "pinned-release")
+    monkeypatch.setenv("AILM_GNN_UPSTREAM", selected)
+    environment, recorded = module._release_environment(commit, root=repository)
+    assert environment["AILM_GNN_UPSTREAM"] == selected
+    assert recorded["AILM_GNN_UPSTREAM"] == selected
 
 
 @pytest.mark.timeout(480)

@@ -76,9 +76,6 @@ from ailm.levels.word import (
     load_word_artifact,
 )
 
-# Preserve the historical re-export while all active callers name the transition.
-build_unigram_a = build_letter_transition
-
 #: Parts of speech that occupy a slot in the widened Level 5 sequence but
 #: carry no case role, so they must not advance the Level 4 case chain.
 NON_CASE_UPOS = ("VERB", "AUX")

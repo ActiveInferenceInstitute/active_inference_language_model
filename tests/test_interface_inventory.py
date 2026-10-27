@@ -74,7 +74,6 @@ def test_the_dashboard_and_the_page_share_one_model_builder():
         "the dashboard no longer uses the shipped letter builder; the standalone "
         "page and the dashboard would now be two models rather than two views"
     )
-    assert engine.build_unigram_a is build_letter_transition
 
 
 def test_every_interface_reads_the_same_alphabet():

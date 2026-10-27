@@ -57,6 +57,30 @@ it is not merely necessary-but-insufficient: it pins each slot by declared name
 and checks the declaration against the live pymdp object. A matrix in the wrong
 slot becomes a named violation instead of a slightly different number.
 
+## Upstream release
+
+[`upstream.json`](upstream.json) pins the public
+[GNN v5.0.1 release](https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation/releases/tag/v5.0.1)
+to commit `e54813b4197df36f7ae0054d5e79f3ad2d5db0ff`. This is an optional parser
+interoperability dependency, separate from AILM's own strict reader and model.
+Use an isolated checkout so ongoing upstream development cannot silently change
+the parser used for release verification:
+
+```bash
+git clone --depth 1 --branch v5.0.1 https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation.git ../ailm-gnn-v5.0.1
+export AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.0.1 && pwd)"
+uv sync --locked --extra gnn-interop
+.venv/bin/python scripts/verify_gnn_release.py
+.venv/bin/python -m pytest tests/test_gnn_conformance.py -q --no-cov
+```
+
+The standalone verifier and upstream test fixture refuse a different commit,
+retargeted tag, missing or altered source, and unexpected source files. The full
+release runner forwards the explicit selection and records its identity check.
+Changing the pin requires actual parser interoperability and mutation controls;
+it changes no historical scientific result. AILM's Lean layer remains local and
+dependency-free; FEP_Formal is not required by this integration.
+
 ## The naming grammar
 
 ```

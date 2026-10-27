@@ -98,14 +98,14 @@ candidate before delivery. This does not authorize a tag, push or deposition.
   Switching profiles requires the corresponding sync: returning to `quick`
   removes the optional parser dependency. The release runner checks this state
   without changing it.
-- **Upstream GNN checkout.** The full profile requires the real parser and the
-  `gnn-interop` extra. Its controlled environment does not forward
-  `AILM_GNN_UPSTREAM`; make the intended checkout discoverable through
-  `_UPSTREAM_CANDIDATES` in `tests/test_gnn_conformance.py`. The first candidate
-  is checkout-relative under the shared `Username` hierarchy at
-  `ActiveInferenceInstitute/Public/Generalized_Notation_Notation`. Direct test
-  invocations can use `AILM_GNN_UPSTREAM`, but exporting it alone does not select
-  the full-profile checkout. Verify the actual resolved parser path.
+- **Pinned upstream GNN release.** The full profile requires the real parser,
+  the `gnn-interop` extra and the release identity in `gnn/upstream.json`.
+  Export `AILM_GNN_UPSTREAM` to its isolated checkout; the controlled runner
+  records and forwards it. The `gnn-upstream-release` step checks the exact tag,
+  commit and source bytes before interoperability tests import the parser.
+  The fixture repeats that check after use. Without an explicit selection,
+  durable sibling discovery applies; a moving sibling head still fails the pin.
+  See [`gnn/README.md`](../../gnn/README.md#upstream-release) for setup.
 
 ## The sequence
 

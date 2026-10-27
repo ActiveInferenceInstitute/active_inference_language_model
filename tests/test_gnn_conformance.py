@@ -117,6 +117,15 @@ from ailm.gnn import (
 )
 from ailm.levels.word import N_OBS as WORD_N_OBS
 from ailm.levels.word import load_word_artifact
+from ailm.verification.upstream_gnn import (
+    default_upstream_root as _default_upstream_root,
+)
+from ailm.verification.upstream_gnn import (
+    load_release_pin,
+    selected_upstream_root,
+    upstream_candidates,
+    verify_release_checkout,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 GNN_DIR = PROJECT_ROOT / "gnn"
@@ -350,36 +359,8 @@ MIN_FOOTER_PATHS = 16
 #: interoperability tests stopped running and reported "no checkout" at a path
 #: where a checkout plainly was. Evidence for a manuscript claim should not live
 #: where the operating system tidies up.
-_UPSTREAM_CANDIDATES = (
-    *(
-        (
-            PROJECT_ROOT.parents[2]
-            / "ActiveInferenceInstitute"
-            / "Public"
-            / "Generalized_Notation_Notation",
-        )
-        if len(PROJECT_ROOT.parents) > 2
-        else ()
-    ),
-    PROJECT_ROOT.parent / "Generalized_Notation_Notation",
-)
-
-
-def _default_upstream_root(candidates: tuple[Path, ...] = _UPSTREAM_CANDIDATES) -> Path:
-    """The first candidate that supplies the parser, else the most durable one.
-
-    Falling back to the first candidate rather than the last keeps the skip
-    message pointing at the durable location, so a reader is told where to put a
-    checkout instead of where one was once reaped.
-    """
-    for candidate in candidates:
-        if (candidate / "src" / "gnn" / "parsers" / "markdown_parser.py").is_file():
-            return candidate
-    return candidates[0]
-
-
-_UPSTREAM_DEFAULT = _default_upstream_root()
-UPSTREAM_ROOT = Path(os.environ.get("AILM_GNN_UPSTREAM", str(_UPSTREAM_DEFAULT)))
+_UPSTREAM_CANDIDATES = upstream_candidates(PROJECT_ROOT)
+UPSTREAM_ROOT = selected_upstream_root(PROJECT_ROOT)
 UPSTREAM_SRC = UPSTREAM_ROOT / "src"
 
 
@@ -2367,6 +2348,8 @@ def upstream_parser():
     if not _UPSTREAM_RUNNABLE:
         yield None
         return
+    pin = load_release_pin(PROJECT_ROOT / "gnn/upstream.json")
+    identity = verify_release_checkout(UPSTREAM_ROOT, pin)
     inserted = str(UPSTREAM_SRC)
     sys.path.insert(0, inserted)
     try:
@@ -2382,6 +2365,9 @@ def upstream_parser():
     finally:
         if inserted in sys.path:
             sys.path.remove(inserted)
+        assert verify_release_checkout(UPSTREAM_ROOT, pin) == identity, (
+            "upstream source changed during interoperability tests"
+        )
 
 
 class TestUpstreamInteroperability:

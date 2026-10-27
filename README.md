@@ -17,6 +17,14 @@ behavioral comprehension claim or general-purpose conversational interface.
 
 ## At a glance
 
+The public source is available on [GitHub](https://github.com/ActiveInferenceInstitute/active_inference_language_model).
+The `v1.0.0` GitHub release remains a draft. Its Zenodo deposition reserves
+[10.5281/zenodo.22409419](https://doi.org/10.5281/zenodo.22409419) but is not yet
+published; the DOI does not yet resolve publicly. The retained release
+verification describes the earlier frozen candidate. The current manuscript
+and companions are prepared for review; replacing the release requires current
+source-bound acceptance.
+
 ![Two panels: the same example sentence run through the explicit level stack from letter to document position, one row per level with its hidden state, observation, likelihood and dynamics named; and that same stack drawn with its per-level pass/fail gate outcomes and the measured cross-level interventions between them, each labeled helps, harms, or prior-only.](docs/manuscript/cover.png)
 
 The recorded stage results cover discrete levels and separately measured

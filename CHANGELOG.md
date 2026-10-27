@@ -13,6 +13,12 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ### Added
 
+- A released upstream GNN pin in `gnn/upstream.json` and offline source-custody
+  verification before parser interoperability. The full profile records and
+  forwards `AILM_GNN_UPSTREAM`, checks its release identity, and refuses modified
+  source even when Git index flags hide changes. This integration does not add
+  a runtime dependency on the upstream pipeline or on FEP_Formal.
+
 - A configuration reference (`docs/reference/configuration.md`): the
   `LevelConfig` hyperparameters and every `AILM_*` environment variable the
   shipped code reads, each with its reader, meaning and unset behavior,
@@ -104,6 +110,11 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ### Removed
 
+- The dashboard's unused `build_unigram_a` re-export and `MAX_REQUEST_BYTES`
+  alias. Active callers use `build_letter_transition` and `DashboardConfig`.
+  Measured-source adapters stay bound to their original evidence until their
+  required scoring replay; historical decisions and controls remain intact.
+
 - `scripts/generate_case_counts_test.py`, the decision-79 preparation twin of
   the Stage 4 case generator. Decision 111's confirmatory run read the whole
   UD English EWT test split through `generate_confirmatory_ewt_counts.py`, so
@@ -114,6 +125,11 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   it to.
 
 ### Fixed
+
+- Availability identifies the Zenodo DOI as reserved for an unpublished
+  deposition, separately from the public GitHub source. The abstract names
+  the existing release repository directly. Older acceptance receipts remain
+  tied to their original source and do not certify the later mainline.
 
 - The protocol companion delivers the HTML provider's own assets (scripts,
   styles, fonts and icons) beside the pages that reference them instead of

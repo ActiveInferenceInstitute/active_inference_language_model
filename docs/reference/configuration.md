@@ -114,7 +114,7 @@ behavior the quick profile deselects.
 | `AILM_RELEASE_MANDATORY_ENVIRONMENT=1` | the full test step | `tests/test_synthetic_benchmark.py`, `tests/test_gnn_conformance.py` | turn an environment gap (unserved probe, absent upstream GNN checkout) into a failure that names it, because the full profile forbids skips |
 | `AILM_PUBLICATION_DERIVATIVE_CONTRACT` | the derivative route only | `tests/test_release_orchestration.py` | the reviewed external derivative contract under test |
 | `AILM_PUBLICATION_DERIVATIVE_LIVE_PROOF` | the derivative route only | `tests/test_release_orchestration.py` | the live local proof the derivative audit produced |
-| `AILM_GNN_UPSTREAM` | nothing (not forwarded by the runner) | `tests/test_gnn_conformance.py` | a direct test invocation's upstream GNN checkout; the full profile discovers its checkout through the test's candidate list instead |
+| `AILM_GNN_UPSTREAM` | inherited and recorded by the release runner | `ailm.verification.upstream_gnn`, `tests/test_gnn_conformance.py` | explicitly select the checkout matching `gnn/upstream.json`; an empty value, wrong commit or changed source is refused; absence uses durable sibling discovery |
 
 The runner also strips any `AILM_OPENROUTER_BUDGET_*` value from its child
 environment, so a release run can never make a hosted acquisition under a

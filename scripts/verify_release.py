@@ -102,6 +102,7 @@ RELEASE_ENV_ALLOWLIST = frozenset(
     {
         "HOME",
         "AILM_OLLAMA_ENDPOINT",
+        "AILM_GNN_UPSTREAM",
         "LANG",
         "LC_ALL",
         "LC_CTYPE",
@@ -996,6 +997,7 @@ def build_steps(
             "web-model",
             "web-page",
             "package-distributions",
+            "gnn-upstream-release",
             "network-claim-bindings",
             "cache-audit",
             "raw-corpus-reproducibility",
@@ -1009,6 +1011,12 @@ def build_steps(
             "lean-negative-control",
         )
         full_steps = common + (
+            Step(
+                "gnn-upstream-release",
+                _controlled_python_argv("script", "scripts/verify_gnn_release.py"),
+                300,
+                depends_on=("environment-compatibility",),
+            ),
             Step(
                 "package-distributions",
                 _controlled_python_argv(
@@ -1132,6 +1140,7 @@ def build_steps(
                 ),
                 43_200,
                 depends_on=(
+                    "gnn-upstream-release",
                     "cache-audit",
                     "raw-corpus-reproducibility",
                     "web-page",
@@ -2109,6 +2118,7 @@ def _release_environment(
         "inherited_environment_policy": "allowlist-v1",
         "inherited_environment_keys": sorted(set(environment) - {"PATH"}),
         "AILM_OLLAMA_ENDPOINT": environment.get("AILM_OLLAMA_ENDPOINT"),
+        "AILM_GNN_UPSTREAM": environment.get("AILM_GNN_UPSTREAM"),
         "HOME": environment["HOME"],
         "home_origin": "login-account-database",
         "PATH": environment["PATH"],

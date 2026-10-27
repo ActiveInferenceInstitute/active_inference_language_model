@@ -51,13 +51,6 @@ GENERIC_INTERNAL_ERROR = "internal server error"
 #: instead of raising while the package itself is still importing.
 CONFIG: DashboardConfig = DashboardConfig()
 
-#: Compatibility alias preserving this module's historical public surface
-#: (the limit lived here before ``config.py``). It is a view onto the
-#: configuration, not a second place the limit is written. No repository
-#: caller or test uses it today; removal is a pending cutover decision, not
-#: a dependency.
-MAX_REQUEST_BYTES = CONFIG.max_request_bytes
-
 
 def _infer_sentence_hierarchy(*args: Any, **kwargs: Any) -> dict[str, Any]:
     from ailm.dashboard.engine import infer_sentence_hierarchy

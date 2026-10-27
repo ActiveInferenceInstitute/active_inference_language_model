@@ -515,13 +515,14 @@ already-declared upstream-parser extra:
 uv sync --locked --extra gnn-interop
 ```
 
-Direct upstream interoperability tests accept `AILM_GNN_UPSTREAM`. The full
-release’s controlled child environment does not inherit it, so the intended
-checkout must resolve through `_UPSTREAM_CANDIDATES` in
-`tests/test_gnn_conformance.py`; its first candidate follows the shared checkout
-hierarchy. Confirm the actual selected parser path as described in the
-[release prerequisites](../method/release_checklist.md#preconditions). A missing
-checkout or extra fails the full profile instead of skipping. Returning to
+Direct interoperability tests and the full release profile accept
+`AILM_GNN_UPSTREAM`, which the runner records and forwards. Select the released
+checkout pinned in [`gnn/upstream.json`](../../gnn/upstream.json), rather than a
+moving development branch. Follow the [GNN setup](../../gnn/README.md#upstream-release)
+and run `.venv/bin/python scripts/verify_gnn_release.py`: the command checks the
+tag, commit and actual source bytes offline. Without an explicit selection,
+durable sibling discovery applies and the same identity checks follow.
+A missing checkout or extra fails the full profile instead of skipping. Returning to
 `quick` requires `uv sync --locked` to restore the base dependency set.
 
 `scripts/verify_release.py full` enforces the `pyproject.toml` coverage floor.

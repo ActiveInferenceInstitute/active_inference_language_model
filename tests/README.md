@@ -74,6 +74,7 @@ newcomer needs to find first.
 | `test_figure_layout.py` | no overlapping text, nothing clipped — the part `assert_legible` cannot see |
 | `test_figure_provenance.py` | the v3 receipt binds the pinned real numeric stack, canonical token map, complete AILM code inventory, bounded data/vendor/GNN inputs, shared renderer/writer, and PNG bytes; real FIFO, descriptor-swap, dependency-mutation, stale-input, symlink, mutated-PNG, and generator-failure controls prove selective preflight and receipt-last publication fail closed |
 | `test_gnn_conformance.py`, `test_gnn_registry.py`, `test_spec_agent.py` | each level's GNN spec declares the semantic role of every matrix, the registry is a grammar rather than a hand-kept index, and a spec-built agent is bit-identical to the builder-built one |
+| `test_gnn_release.py` | real Git and filesystem controls reject a wrong release, modified source, hidden index changes, unexpected files and symlinks before upstream parser import |
 | `test_formal_isomorphism.py` | the generated Lean ledger regenerates byte-identically and matches the recorded values |
 | `test_worked_example.py` | the interpretability walk-through in the architecture section names the transition column the model actually read |
 | `test_no_self_offset_strict_zip.py` | `strict=True` is never applied to a self-offset zip, where it raises on every non-empty input |
