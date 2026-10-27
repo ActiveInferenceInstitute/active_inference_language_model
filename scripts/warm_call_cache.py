@@ -48,12 +48,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
+from ailm.benchmarks.constants import OLLAMA_URL as OLLAMA_ENDPOINT  # noqa: E402
+
 VENV_PYTHON = PROJECT_ROOT / ".venv" / "bin" / "python"
 RECORDER = PROJECT_ROOT / "scripts" / "record_external_benchmark_claims.py"
 LEDGER = PROJECT_ROOT / "data" / "claims.json"
 ISOLATED_LEDGER = PROJECT_ROOT / "cache" / "warming_claims.json"
-
-OLLAMA_ENDPOINT = "http://localhost:11434"
 
 AUDIT_STRATUM_CALIBRATION_N = 25
 

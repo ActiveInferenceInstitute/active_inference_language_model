@@ -2295,8 +2295,8 @@ def test_warming_help_boundary_requires_one_original_git_literal(project, bounda
         derivative.transformed_figure_source(name, altered)
 
 
-def test_actual_warming_finite_transform_is_formatter_clean_and_runtime_identical(tmp_path):
-    """Authenticate actual Git bytes, not a smaller print-only stand-in."""
+def test_retained_warming_finite_transform_is_formatter_clean_and_runtime_identical(tmp_path):
+    """Retain the reviewed presentation transform independently of new acquisition code."""
     name = "scripts/warm_call_cache.py"
     original = derivative.publication_source_bytes(
         ROOT, "9f8842d93c9d3c463589fb6fae45087e7b2048a5", name
@@ -2304,12 +2304,17 @@ def test_actual_warming_finite_transform_is_formatter_clean_and_runtime_identica
     before_format = derivative.publication_source_bytes(
         ROOT, "6b1f24c7300a24d50e82a9b3b8a92f5c7d1bca8e", name
     )
-    current = (ROOT / name).read_bytes()
+    current = derivative.transformed_figure_source(name, original)
     assert (
         derivative.digest(original)
         == "e52a9a189788b0d7aa02318ab92c46fa0557d3bdef2e40edf8e4e482857e7a24"
     )
-    assert derivative.transformed_figure_source(name, original) == current
+    # Exact reviewed bytes from checkpoint 34b7d2d. Operational repairs require
+    # fresh acquisition; they cannot widen this historical layout-only contract.
+    assert (
+        derivative.digest(current)
+        == "fbedd29dde1e93d34942e08739f492b2a5b5ea712fd15ab1bdd6ff63319736a2"
+    )
     assert ast.dump(ast.parse(before_format)) == ast.dump(ast.parse(current))
     original_tree, current_tree = ast.parse(original), ast.parse(current)
     original_tree.body = [

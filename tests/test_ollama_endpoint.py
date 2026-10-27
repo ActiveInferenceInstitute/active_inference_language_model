@@ -76,6 +76,29 @@ def test_absent_override_retains_the_shipped_default():
     assert result.stdout.strip() == "http://localhost:11434"
 
 
+@pytest.mark.parametrize("endpoint", [None, "http://127.0.0.1:15434"])
+def test_warming_preflight_uses_the_transport_endpoint(endpoint):
+    result = _run(
+        "from scripts.warm_call_cache import OLLAMA_ENDPOINT; print(OLLAMA_ENDPOINT)",
+        endpoint,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert result.stdout.strip() == (endpoint or "http://localhost:11434")
+
+
+def test_warming_preflight_checks_selected_server_before_planning(local_http_server):
+    local_http_server.enqueue_json("/api/tags", {"models": [{"name": "unregistered:latest"}]})
+    result = _run(
+        "from scripts.warm_call_cache import preflight; raise SystemExit(preflight())",
+        local_http_server.base_url,
+    )
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert len(local_http_server.requests_for("/api/tags")) == 1
+    assert "the server does not have every declared probe" in result.stderr
+    assert not local_http_server.requests_for("/api/show")
+    assert not local_http_server.requests_for("/api/generate")
+
+
 @pytest.mark.parametrize(
     "endpoint",
     [

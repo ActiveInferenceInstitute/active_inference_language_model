@@ -507,6 +507,18 @@ first. Preparation that runs recorders is acquisition, not a routine docs check.
 The frozen derivative route verifies the retained original source and performs
 its declared local live audit; it does not rerun hosted measurement producers.
 
+If the retained store and reviewed derivative contract are on another machine,
+fresh acquisition is a supported route. Use a separate execution checkout with
+its own canonical `cache/` and ledger, preserve the recorded ledger for comparison,
+and freeze source changes before starting the ordered recorder phases. A new
+run emits new scoped receipts; it does not reconstruct the old run's evidence.
+Keep the exact protocol populations and controls. Review changed results before
+regenerating the manuscript, then use the strict full profile without a
+publication-derivative contract. Historical registration claims still require
+their original Git objects; a flat source snapshot alone does not contain that
+chronology. The isolated warmer is a preparation option, not a replacement for
+the canonical acquisition and semantic binding checks.
+
 The release profiles check exact dependency sets without modifying `.venv`.
 `quick` requires the base set from `uv sync --locked`; `full` also requires the
 already-declared upstream-parser extra:
