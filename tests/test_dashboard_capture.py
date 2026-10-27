@@ -178,6 +178,10 @@ def test_prior_blob_lookup_reads_the_commit_not_the_worktree(tmp_path: Path) -> 
     assert capture.git_blob(repo, head, "tracked.txt") == b"committed\n"
     (repo / "untracked.txt").write_bytes(b"new\n")
     assert capture.git_blob(repo, head, "untracked.txt") is None
+    nested = repo / "uninitialized-checkout"
+    nested.mkdir()
+    with pytest.raises(capture.CaptureError, match="no HEAD commit"):
+        capture.git_head(nested)
     with pytest.raises(capture.CaptureError, match="no HEAD commit"):
         capture.git_head(tmp_path)
 

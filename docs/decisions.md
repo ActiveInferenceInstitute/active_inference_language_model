@@ -157,6 +157,7 @@ Forward-looking guidance on how to *specify* a gate is a separate document:
 | [138](#138--operational-continuation-preserve-interrupted-scopes-and-verify-the-current-upstream-checkout-2026-10-07) | OPERATIONAL CONTINUATION: preserve interrupted scopes and verify the current upstream checkout (2026-10-07) |
 | [139](#139--operational-selection-amendment-current-gnn-interoperability-after-release-recovery-2026-10-09) | OPERATIONAL SELECTION AMENDMENT: current GNN interoperability after release recovery (2026-10-09) |
 | [140](#140--publication-metadata-alignment-institute-release-destination-2026-10-14) | PUBLICATION METADATA ALIGNMENT: Institute release destination (2026-10-14) |
+| [141](#141--release-preparation-pinned-gnn-interoperability-and-dashboard-interruption-2026-10-26) | RELEASE PREPARATION: pinned GNN interoperability and dashboard interruption (2026-10-26) |
 
 ---
 
@@ -9487,6 +9488,9 @@ instead of silently selecting a moving sibling checkout. Real Git/filesystem
 controls reject another head, a retargeted tag, altered source hidden by index
 flags, unexpected source and symlinks. This is parser interoperability, not a
 new linguistic measurement or acceptance of the whole GNN pipeline.
+The real parser runs in a fresh interpreter with bytecode writes disabled and
+a private empty cache prefix; the parent interpreter's configuration is not
+replaced. Its measured results are compared directly with AILM's reader.
 FEP_Formal is not a dependency; the local dependency-free Lean layer is retained.
 
 **Observed lifecycle defects.** A real exec-based control established that a
@@ -9497,6 +9501,8 @@ interrupted worker start after completion: cleanup released its semaphore slot
 again, replacing `KeyboardInterrupt` with a `ValueError` that the HTTP server
 caught. Startup and completion now share an idempotent release. The initial
 timeouts and failing controls remain evidence beside the corrected checks.
+Dashboard capture binding also requires the named checkout root: an
+uninitialized directory cannot borrow the HEAD of an enclosing repository.
 
 **Cleanup and publication boundary.** Unused dashboard aliases are removed.
 The conformance adapter and other measurement-bound source remain unchanged;

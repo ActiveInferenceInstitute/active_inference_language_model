@@ -173,17 +173,18 @@ def git_blob(root: Path, commit: str, path: str) -> bytes | None:
 
 
 def git_head(root: Path) -> str:
-    """Return the checkout's HEAD commit."""
+    """Return this checkout root's HEAD, refusing an enclosing repository."""
     completed = subprocess.run(
-        ["git", "-C", str(root), "rev-parse", "--verify", "-q", "HEAD"],
+        ["git", "-C", str(root), "rev-parse", "--show-toplevel", "--verify", "-q", "HEAD"],
         stdin=subprocess.DEVNULL,
         capture_output=True,
         text=True,
         check=False,
     )
-    if completed.returncode != 0:
+    lines = completed.stdout.splitlines()
+    if completed.returncode != 0 or len(lines) != 2 or Path(lines[0]).resolve() != root.resolve():
         raise CaptureError(f"{root} has no HEAD commit to bind the capture to")
-    return completed.stdout.strip()
+    return lines[1].strip()
 
 
 def build_receipt(

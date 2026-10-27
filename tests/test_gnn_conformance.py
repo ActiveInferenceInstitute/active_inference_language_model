@@ -88,6 +88,7 @@ import importlib.util
 import json
 import os
 import re
+import subprocess
 import sys
 from dataclasses import replace
 from pathlib import Path
@@ -2332,47 +2333,79 @@ def _upstream_skip_reason() -> str:
 
 
 @pytest.fixture(scope="module")
-def upstream_parser(tmp_path_factory):
-    """The REAL GeneralizedNotationNotation Markdown parser, if available.
+def upstream_results(tmp_path_factory):
+    """Parse every spec with real upstream code in a fresh isolated interpreter.
 
-    Imported by inserting the upstream ``src/`` on ``sys.path`` for the duration
-    of the module, then asserting the module actually came from that checkout —
-    this repository has its own top-level ``gnn/`` directory, and a namespace
-    shadowing would make every test in the class pass while proving nothing.
-
-    When the parser cannot run this yields nothing and leaves the verdict to the
-    class's autouse guard, which runs after every module-scoped fixture and is
-    where "skip" or "fail" is decided; importing here would turn a documented
-    environment gap into an opaque setup error.
+    Interpreter flags select a private empty bytecode prefix and disable writes,
+    so verified source is compiled without replacing dependencies or changing
+    the parent interpreter's global configuration. The subprocess emits the
+    real parser's result data; no replacement parser object is constructed.
+    The class guard owns missing-prerequisite skip/failure decisions.
     """
     if not _UPSTREAM_RUNNABLE:
         yield None
         return
     pin = load_release_pin(PROJECT_ROOT / "gnn/upstream.json")
     identity = verify_release_checkout(UPSTREAM_ROOT, pin)
-    previous_cache_prefix = sys.pycache_prefix
-    previous_dont_write_bytecode = sys.dont_write_bytecode
-    # Compile verified source in memory, without reusing a checkout's cached
-    # bytecode. The private empty prefix belongs to this test invocation.
-    sys.pycache_prefix = str(tmp_path_factory.mktemp("gnn-release-bytecode"))
-    sys.dont_write_bytecode = True
-    inserted = str(UPSTREAM_SRC)
-    sys.path.insert(0, inserted)
-    try:
-        from gnn.parsers.markdown_parser import MarkdownGNNParser
+    cache_prefix = tmp_path_factory.mktemp("gnn-release-bytecode")
+    code = """
+import json
+import sys
+from pathlib import Path
 
-        module_file = Path(sys.modules["gnn.parsers.markdown_parser"].__file__)
-        assert UPSTREAM_ROOT in module_file.parents, (
-            f"imported 'gnn' from {module_file}, not from the upstream checkout "
-            f"at {UPSTREAM_ROOT} — the repository's own gnn/ directory has "
-            f"shadowed it and these tests would prove nothing."
+source, cache_prefix, *specs = sys.argv[1:]
+assert sys.dont_write_bytecode and sys.pycache_prefix == cache_prefix
+sys.path.insert(0, source)
+from gnn.parsers.markdown_parser import MarkdownGNNParser
+
+module_file = Path(sys.modules['gnn.parsers.markdown_parser'].__file__).resolve()
+assert Path(source).resolve() in module_file.parents, module_file
+parser = MarkdownGNNParser()
+results = {}
+for spec in specs:
+    result = parser.parse_file(spec)
+    model = result.model
+    results[Path(spec).name.removesuffix('.gnn.md')] = {
+        'success': result.success,
+        'errors': result.errors,
+        'warnings': result.warnings,
+        'model': {
+            'model_name': model.model_name,
+            'variables': [{'name': v.name, 'dimensions': v.dimensions} for v in model.variables],
+            'ontology_mappings': [
+                {'variable_name': m.variable_name, 'ontology_term': m.ontology_term}
+                for m in model.ontology_mappings
+            ],
+            'parameters': [{'name': p.name, 'value': p.value} for p in model.parameters],
+        },
+    }
+print(json.dumps(results))
+"""
+    try:
+        completed = subprocess.run(
+            [
+                sys.executable,
+                "-I",
+                "-B",
+                "-X",
+                f"pycache_prefix={cache_prefix}",
+                "-c",
+                code,
+                str(UPSTREAM_SRC),
+                str(cache_prefix),
+                *(str(spec_path(name)) for name in SPEC_NAMES),
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=120,
         )
-        yield MarkdownGNNParser()
+        assert completed.returncode == 0, completed.stdout + completed.stderr
+        results = json.loads(completed.stdout)
+        assert set(results) == set(SPEC_NAMES)
+        assert not list(cache_prefix.iterdir()), "the no-bytecode parser invocation wrote a cache"
+        yield results
     finally:
-        if inserted in sys.path:
-            sys.path.remove(inserted)
-        sys.pycache_prefix = previous_cache_prefix
-        sys.dont_write_bytecode = previous_dont_write_bytecode
         assert verify_release_checkout(UPSTREAM_ROOT, pin) == identity, (
             "upstream source changed during interoperability tests"
         )
@@ -2388,7 +2421,7 @@ class TestUpstreamInteroperability:
     """
 
     @pytest.fixture(autouse=True)
-    def _require_the_upstream_parser(self) -> None:
+    def _require_the_upstream_results(self) -> None:
         """Skip when the parser cannot run; fail instead under the release profile.
 
         A class-level ``skipif`` would skip unconditionally, and the full
@@ -2404,22 +2437,23 @@ class TestUpstreamInteroperability:
         pytest.skip(reason)
 
     @pytest.mark.parametrize("name", SPEC_NAMES)
-    def test_upstream_parses_the_spec(self, name, upstream_parser):
-        result = upstream_parser.parse_file(str(spec_path(name)))
-        assert result.success, f"{name}: upstream parse failed: {result.errors}"
-        assert not result.errors, f"{name}: {result.errors}"
-        assert not result.warnings, f"{name}: {result.warnings}"
+    def test_upstream_parses_the_spec(self, name, upstream_results):
+        result = upstream_results[name]
+        assert result["success"], f"{name}: upstream parse failed: {result['errors']}"
+        assert not result["errors"], f"{name}: {result['errors']}"
+        assert not result["warnings"], f"{name}: {result['warnings']}"
 
     @pytest.mark.parametrize("name", SPEC_NAMES)
-    def test_upstream_and_ailm_agree_on_the_model(self, name, upstream_parser):
+    def test_upstream_and_ailm_agree_on_the_model(self, name, upstream_results):
         """Both readers must extract the SAME model, not merely both succeed."""
         ours = parse_gnn_spec(spec_path(name))
-        theirs = upstream_parser.parse_file(str(spec_path(name))).model
+        theirs = upstream_results[name]["model"]
 
-        assert theirs.model_name == ours.model_name
+        assert theirs["model_name"] == ours.model_name
 
         upstream_vars = {
-            UPSTREAM_NAME_ALIASES.get(v.name, v.name): tuple(v.dimensions) for v in theirs.variables
+            UPSTREAM_NAME_ALIASES.get(v["name"], v["name"]): tuple(v["dimensions"])
+            for v in theirs["variables"]
         }
         our_vars = {n: dims for n, (dims, _dtype) in ours.variables.items()}
         assert upstream_vars == our_vars, (
@@ -2428,21 +2462,21 @@ class TestUpstreamInteroperability:
         )
 
         upstream_ontology = {
-            UPSTREAM_NAME_ALIASES.get(m.variable_name, m.variable_name): m.ontology_term
-            for m in theirs.ontology_mappings
+            UPSTREAM_NAME_ALIASES.get(m["variable_name"], m["variable_name"]): m["ontology_term"]
+            for m in theirs["ontology_mappings"]
         }
         assert upstream_ontology == ours.ontology
 
         # Every ModelParameters key we read, not a fixed four: L3 has no scalar
         # num_hidden_states and L1g adds num_controls and gamma, so a hardcoded
         # list would silently stop covering whatever a spec declares next.
-        upstream_params = {p.name: p.value for p in theirs.parameters}
+        upstream_params = {p["name"]: p["value"] for p in theirs["parameters"]}
         assert len(ours.parameters) >= 4, ours.parameters
         for key, value in ours.parameters.items():
             assert upstream_params[key] == value, key
 
     @pytest.mark.parametrize("name", SPEC_NAMES)
-    def test_the_recorded_rename_is_the_only_reader_disagreement(self, name, upstream_parser):
+    def test_the_recorded_rename_is_the_only_reader_disagreement(self, name, upstream_results):
         """An alias must never grow into a place a real disagreement can hide.
 
         :data:`UPSTREAM_NAME_ALIASES` is applied above to reconcile the two
@@ -2450,7 +2484,7 @@ class TestUpstreamInteroperability:
         ``π`` in L1g, and nothing else anywhere.
         """
         ours = set(parse_gnn_spec(spec_path(name)).variables)
-        theirs = {v.name for v in upstream_parser.parse_file(str(spec_path(name))).model.variables}
+        theirs = {v["name"] for v in upstream_results[name]["model"]["variables"]}
         renamed = theirs - ours
         assert renamed <= set(UPSTREAM_NAME_ALIASES), (
             f"{name}: upstream reports variable(s) {sorted(renamed)} that AILM "
@@ -2465,30 +2499,30 @@ class TestUpstreamInteroperability:
         )
 
     @pytest.mark.parametrize("name", SINGLE_FACTOR_SPEC_NAMES)
-    def test_upstream_sees_the_matrix_roles(self, name, upstream_parser):
+    def test_upstream_sees_the_matrix_roles(self, name, upstream_results):
         """The ontology block is the load-bearing part; upstream must read it."""
-        theirs = upstream_parser.parse_file(str(spec_path(name))).model
-        roles = {m.variable_name: m.ontology_term for m in theirs.ontology_mappings}
+        theirs = upstream_results[name]["model"]
+        roles = {m["variable_name"]: m["ontology_term"] for m in theirs["ontology_mappings"]}
         assert roles["A"] == "RecognitionMatrix"
         assert roles["B"] == "TransitionMatrix"
         assert roles["D"] == "Prior"
 
     @pytest.mark.parametrize("name", MULTIFACTOR_SPEC_NAMES)
-    def test_upstream_sees_the_per_factor_matrix_roles(self, name, upstream_parser):
+    def test_upstream_sees_the_per_factor_matrix_roles(self, name, upstream_results):
         """The factor-suffixed roles are what bind a matrix to a factor."""
-        theirs = upstream_parser.parse_file(str(spec_path(name))).model
-        roles = {m.variable_name: m.ontology_term for m in theirs.ontology_mappings}
+        theirs = upstream_results[name]["model"]
+        roles = {m["variable_name"]: m["ontology_term"] for m in theirs["ontology_mappings"]}
         assert roles["A"] == "RecognitionMatrix"
         assert roles["B_f0"] == roles["B_f1"] == "TransitionMatrix"
         assert roles["D_f0"] == roles["D_f1"] == "Prior"
 
-    def test_upstream_reads_the_g2p_asymmetry(self, upstream_parser):
+    def test_upstream_reads_the_g2p_asymmetry(self, upstream_results):
         """30 letter observations over 39 hidden phones, read by upstream."""
-        theirs = upstream_parser.parse_file(str(spec_path("L2b_grapheme_to_phoneme"))).model
-        dims = {v.name: tuple(v.dimensions) for v in theirs.variables}
+        theirs = upstream_results["L2b_grapheme_to_phoneme"]["model"]
+        dims = {v["name"]: tuple(v["dimensions"]) for v in theirs["variables"]}
         assert dims["A"] == (30, 39)
         assert dims["B"] == (39, 39, 1)
-        params = {p.name: p.value for p in theirs.parameters}
+        params = {p["name"]: p["value"] for p in theirs["parameters"]}
         assert params["num_obs"] == 30
         assert params["num_hidden_states"] == 39
 
