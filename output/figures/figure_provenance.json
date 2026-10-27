@@ -1,7 +1,7 @@
 {
   "schema": "ailm-figure-provenance-v3",
   "environment": {
-    "python": "3.12.13",
+    "python": "3.12.15",
     "jax": "0.4.38",
     "jaxlib": "0.4.38",
     "jax_backend": "cpu",
@@ -14,7 +14,7 @@
   },
   "manuscript_variables": {
     "path": "output/data/manuscript_variables.json",
-    "sha256": "399f81ef66a7a60b4c0bb88395ece9107955740cdd18417f9dd4ca0e98a5b8cc"
+    "sha256": "91e5f610732c019263dfcc88b409a88de132a498673c58c13bcc0933b4a150f3"
   },
   "shared_sources": [
     {
@@ -221,7 +221,7 @@
     },
     {
       "path": "src/ailm/dashboard/__main__.py",
-      "sha256": "abd23041f9c8dd925b7de3f0e29b928de3c582586e529fc4a0389034a924f715"
+      "sha256": "502c2b175be82c3f3d91cb50285a09efcfb44e219bf4b84e4fbc9be3a51c28fa"
     },
     {
       "path": "src/ailm/dashboard/capture.py",
@@ -233,11 +233,11 @@
     },
     {
       "path": "src/ailm/dashboard/engine.py",
-      "sha256": "543fab111dd80f4da0c6807e3f63c81098a495b4010e57192ce36cd0c81f07ee"
+      "sha256": "4f1ed973af345952944134f419966422895e0df106e9768e018f01568e1c5947"
     },
     {
       "path": "src/ailm/dashboard/server.py",
-      "sha256": "81e4893005af641fdf1f21ad4499b051e62d293d30ac0350edc2436c560875b0"
+      "sha256": "4e0e2251310401bde3ab869a446ab9a376161f0f43f57944d4ac72c122c5cff2"
     },
     {
       "path": "src/ailm/demo.py",
@@ -630,6 +630,10 @@
     {
       "path": "src/ailm/verification/oracle.py",
       "sha256": "323808c6dbf96f848a5259ff2f381b828dd65218e37264d26750c3f626971cea"
+    },
+    {
+      "path": "src/ailm/verification/upstream_gnn.py",
+      "sha256": "b32032dcd25f57824fa803309a289ba1f12e0441e7cf3cbf12c7548c416e40ca"
     },
     {
       "path": "src/ailm/viz_config.py",

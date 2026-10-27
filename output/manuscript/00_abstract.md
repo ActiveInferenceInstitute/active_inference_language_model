@@ -38,5 +38,5 @@ linguistic inference mechanisms together with an audit method that makes their
 failures visible. External neural models serve as supplemental reference probes;
 integration with them remains a proposal.
 
-The planned release repository is
+The release repository is
 <https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model>.
