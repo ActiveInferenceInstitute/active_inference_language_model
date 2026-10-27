@@ -14,7 +14,7 @@
   },
   "manuscript_variables": {
     "path": "output/data/manuscript_variables.json",
-    "sha256": "91e5f610732c019263dfcc88b409a88de132a498673c58c13bcc0933b4a150f3"
+    "sha256": "c841514f89db60203707e2eb609745c0a834be335b564ccf650f35e9f39e8a38"
   },
   "shared_sources": [
     {
@@ -225,7 +225,7 @@
     },
     {
       "path": "src/ailm/dashboard/capture.py",
-      "sha256": "4bcb616ea22b5a523356b74dc1d2e0bb781e0cdc7b16870a7c508df8bd28621e"
+      "sha256": "ee414ac8237b63abea2675a9a39e1651a15bf479e3d75cc09c6072291327abe1"
     },
     {
       "path": "src/ailm/dashboard/config.py",
