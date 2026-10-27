@@ -24,6 +24,7 @@ import threading
 import time
 from functools import partial
 from pathlib import Path
+from socketserver import BaseRequestHandler
 from urllib.error import URLError
 from urllib.request import Request, urlopen
 
@@ -2326,6 +2327,80 @@ def test_run_dashboard_binds_what_it_is_given_and_shuts_down_on_interrupt(tmp_pa
     assert payload["max_spoken_chars"] == 321
     assert f"http://127.0.0.1:{explicit_port}/" in stdout
     assert "Shutting down dashboard server" in stdout
+
+
+@pytest.mark.timeout(45)
+def test_dashboard_cli_handles_sigint_inherited_as_ignored(tmp_path):
+    """A real launcher may ignore SIGINT; the dashboard CLI must still close."""
+    port = _unused_loopback_port()
+    environment = _dashboard_environment(tmp_path, port=port)
+    launcher = (
+        "import os, signal, sys\n"
+        "signal.signal(signal.SIGINT, signal.SIG_IGN)\n"
+        "os.execv(sys.executable, [sys.executable, '-m', 'ailm.dashboard'])\n"
+    )
+    process = subprocess.Popen(
+        [sys.executable, "-c", launcher],
+        cwd=Path(__file__).resolve().parents[1],
+        env=environment,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    try:
+        _wait_for_dashboard(process, port)
+        process.send_signal(signal.SIGINT)
+        try:
+            stdout, stderr = process.communicate(timeout=5)
+        except subprocess.TimeoutExpired:
+            pytest.fail("dashboard kept an inherited ignored SIGINT disposition")
+    finally:
+        if process.poll() is None:
+            process.terminate()
+            process.communicate(timeout=5)
+    assert process.returncode == 0, stderr
+    assert "Shutting down dashboard server" in stdout
+
+
+def test_interrupt_after_worker_completion_preserves_the_interrupt():
+    """A completed worker and interrupted start must return the same slot once.
+
+    The profile hook delivers a real interrupt at Thread.start's return, after
+    the real worker has returned its slot. It does not replace Thread.start or
+    the semaphore: this is the observed startup/completion race, synchronized.
+    """
+    from ailm.dashboard.server import ReusableThreadingServer
+
+    class FinishedHandler(BaseRequestHandler):
+        def handle(self):
+            pass
+
+    server = ReusableThreadingServer(("127.0.0.1", 0), FinishedHandler, max_workers=1)
+    request, peer = socket.socketpair()
+    previous_profile = sys.getprofile()
+    previous_signal = signal.signal(signal.SIGINT, signal.default_int_handler)
+
+    def interrupt_completed_start(frame, event, argument):
+        if frame.f_code is threading.Thread.start.__code__ and event == "return":
+            sys.setprofile(None)
+            # Acquiring the slot proves the real worker's finally completed.
+            assert server._worker_slots.acquire(timeout=5)
+            server._worker_slots.release()
+            signal.raise_signal(signal.SIGINT)
+
+    try:
+        sys.setprofile(interrupt_completed_start)
+        with pytest.raises(KeyboardInterrupt):
+            server.process_request(request, ("127.0.0.1", 0))
+        assert server._worker_slots.acquire(blocking=False)
+        assert not server._worker_slots.acquire(blocking=False)
+        server._worker_slots.release()
+    finally:
+        sys.setprofile(previous_profile)
+        signal.signal(signal.SIGINT, previous_signal)
+        request.close()
+        peer.close()
+        server.server_close()
 
 
 def test_the_static_matrices_endpoint_serves_every_declared_matrix():

@@ -9474,3 +9474,35 @@ maintenance, retaining full catalogs at startup and completion and checking ever
 recorded model identity periodically. Actual timeout, identity, retention and
 terminal catalog controls remain required. Fresh source-bound rendering, package
 verification and independent review are required before successor delivery.
+
+## 141 — RELEASE PREPARATION: pinned GNN interoperability and dashboard interruption (2026-10-26)
+
+**Current upstream selection.** The release-verification pin in
+`gnn/upstream.json` selects public GNN `v5.0.1` at
+`e54813b4197df36f7ae0054d5e79f3ad2d5db0ff`. Decision 139's earlier selection
+remains historical evidence. The standalone verifier checks the release tag,
+commit and actual source inventory before import; interoperability repeats the
+check after use. The full profile records and forwards `AILM_GNN_UPSTREAM`
+instead of silently selecting a moving sibling checkout. Real Git/filesystem
+controls reject another head, a retargeted tag, altered source hidden by index
+flags, unexpected source and symlinks. This is parser interoperability, not a
+new linguistic measurement or acceptance of the whole GNN pipeline.
+FEP_Formal is not a dependency; the local dependency-free Lean layer is retained.
+
+**Observed lifecycle defects.** A real exec-based control established that a
+launcher can pass an ignored interrupt disposition to the dashboard. The CLI
+now installs its own interrupt handler; callers embedding the server retain
+their signal policy. A separate real-thread/signal control reproduced an
+interrupted worker start after completion: cleanup released its semaphore slot
+again, replacing `KeyboardInterrupt` with a `ValueError` that the HTTP server
+caught. Startup and completion now share an idempotent release. The initial
+timeouts and failing controls remain evidence beside the corrected checks.
+
+**Cleanup and publication boundary.** Unused dashboard aliases are removed.
+The conformance adapter and other measurement-bound source remain unchanged;
+removing them still requires the scoring replay recorded in the open queue.
+The scientific ledger, models, corpora and original measurement reports retain
+their bytes. The configured Zenodo identifier is authenticated as a reservation
+in an unpublished deposition, not an available public archive. Current source
+and regenerated outputs require their own acceptance and independent review;
+historical full verification cannot be transferred to this candidate.

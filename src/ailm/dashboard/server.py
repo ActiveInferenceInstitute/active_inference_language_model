@@ -26,7 +26,7 @@ from http.cookies import SimpleCookie
 from http.server import SimpleHTTPRequestHandler
 from pathlib import Path
 from socketserver import ThreadingTCPServer
-from threading import BoundedSemaphore, Lock
+from threading import BoundedSemaphore, Lock, Thread
 from typing import Any
 from urllib.parse import urlsplit
 
@@ -441,17 +441,30 @@ class ReusableThreadingServer(ThreadingTCPServer):
 
     def process_request(self, request, client_address) -> None:
         self._worker_slots.acquire()
-        try:
-            super().process_request(request, client_address)
-        except BaseException:
-            self._worker_slots.release()
-            raise
+        release_lock = Lock()
+        released = False
 
-    def process_request_thread(self, request, client_address) -> None:
+        def release_slot() -> None:
+            nonlocal released
+            with release_lock:
+                if not released:
+                    self._worker_slots.release()
+                    released = True
+
+        def serve_request() -> None:
+            try:
+                self.process_request_thread(request, client_address)
+            finally:
+                release_slot()
+
         try:
-            super().process_request_thread(request, client_address)
-        finally:
-            self._worker_slots.release()
+            # A worker can finish before Thread.start returns. If that return
+            # is interrupted, startup and completion share one slot release;
+            # cleanup must not replace KeyboardInterrupt with ValueError.
+            Thread(target=serve_request, daemon=True).start()
+        except BaseException:
+            release_slot()
+            raise
 
 
 def run_dashboard(

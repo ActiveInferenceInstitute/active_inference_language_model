@@ -25,6 +25,7 @@ requires that token and rejects cross-origin browser requests.
 
 from __future__ import annotations
 
+import signal
 import sys
 
 from ailm.dashboard.config import DashboardConfig, load_config, require_loopback_host
@@ -82,4 +83,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
+    # Launchers may ignore SIGINT before exec. Own Ctrl-C handling at the CLI
+    # boundary without changing signal policy for callers embedding the server.
+    signal.signal(signal.SIGINT, signal.default_int_handler)
     raise SystemExit(main())

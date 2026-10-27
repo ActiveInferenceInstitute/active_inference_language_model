@@ -126,6 +126,14 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ### Fixed
 
+- The dashboard CLI restores Python's interrupt handler when a launcher has
+  inherited an ignored `SIGINT`. A real exec-based control reproduced the
+  server ignoring the interrupt before the fix. Worker completion and interrupted
+  startup also share an idempotent slot release: the former double release
+  replaced `KeyboardInterrupt` with a semaphore error that the HTTP server
+  caught, leaving it running. A synchronized real-thread/signal control catches
+  that race. Embedded server callers keep their own signal policy.
+
 - Availability identifies the Zenodo DOI as reserved for an unpublished
   deposition, separately from the public GitHub source. The abstract names
   the existing release repository directly. Older acceptance receipts remain
