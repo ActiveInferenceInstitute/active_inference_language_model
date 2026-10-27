@@ -53,6 +53,7 @@ _TAIL_BYTES = 4096
 
 _STARTXREF_RE = re.compile(rb"startxref\s+(\d+)\s*%%EOF\s*$", re.DOTALL)
 _TEX_ERROR_RE = re.compile(r"(?m)^! .+$")
+_BIBTEX_ERROR_RE = re.compile(r"(?m)^\(There (?:was|were) [1-9]\d* error messages?\)")
 _COMBINED_LOG = PDF_DIR / "_combined_manuscript.log"
 
 
@@ -136,6 +137,12 @@ def test_combined_render_log_contains_no_tex_errors() -> None:
         "the combined manuscript log contains explicit TeX errors even though "
         f"a PDF was written: {errors}"
     )
+    bibliography_log = PDF_DIR / "_combined_manuscript.blg"
+    assert bibliography_log.is_file(), "the actual bibliography compiler log is missing"
+    bibliography = bibliography_log.read_text(encoding="utf-8", errors="replace")
+    assert re.search(r"You've used \d+ entries", bibliography), "incomplete BibTeX log"
+    assert re.search(r"(?m)^write\$ -- \d+", bibliography), "incomplete BibTeX statistics"
+    assert _BIBTEX_ERROR_RE.findall(bibliography) == [], bibliography
 
 
 def test_tex_error_scan_rejects_a_recovered_render() -> None:
@@ -162,10 +169,13 @@ def test_bibliography_source_passes_bibtex_and_malformed_entry_fails(tmp_path, b
         [bibtex, "paper"], cwd=tmp_path, capture_output=True, text=True, check=False, timeout=30
     )
     diagnostics = result.stdout + result.stderr
+    log_errors = _BIBTEX_ERROR_RE.findall((tmp_path / "paper.blg").read_text(encoding="utf-8"))
     if broken:
         assert result.returncode != 0 and "error message" in diagnostics, diagnostics
+        assert log_errors, "the actual-render error scanner missed a failed BibTeX run"
     else:
         assert result.returncode == 0, diagnostics
+        assert log_errors == [], diagnostics
 
 
 def test_the_scan_knows_where_pdfs_live():
