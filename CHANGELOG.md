@@ -130,6 +130,12 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ### Fixed
 
+- The bibliography header no longer contains an entry marker inside its own
+  comment block, which caused a real BibTeX syntax error despite a completed
+  PDF. Publication verification now invokes BibTeX against the canonical source
+  and proves that a deliberately malformed entry fails. Citation fields and
+  unresolved metadata remain unchanged.
+
 - The dashboard CLI restores Python's interrupt handler when a launcher has
   inherited an ignored `SIGINT`. A real exec-based control reproduced the
   server ignoring the interrupt before the fix. Worker completion and interrupted

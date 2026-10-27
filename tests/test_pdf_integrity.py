@@ -144,6 +144,30 @@ def test_tex_error_scan_rejects_a_recovered_render() -> None:
     assert _tex_errors(planted) == ["! Missing $ inserted."]
 
 
+@pytest.mark.template_context
+@pytest.mark.parametrize("broken", [False, True])
+def test_bibliography_source_passes_bibtex_and_malformed_entry_fails(tmp_path, broken):
+    """Use the actual bibliography compiler; a written PDF can conceal its failure."""
+    bibtex = shutil.which("bibtex")
+    assert bibtex is not None, "BibTeX is required for publication verification"
+    source = (PROJECT_ROOT / "docs/manuscript/references.bib").read_text(encoding="utf-8")
+    if broken:
+        source += "\n@article{deliberately_unclosed,\n"
+    (tmp_path / "references.bib").write_text(source, encoding="utf-8")
+    (tmp_path / "paper.aux").write_text(
+        "\\relax\n\\citation{*}\n\\bibstyle{plainnat}\n\\bibdata{references}\n",
+        encoding="utf-8",
+    )
+    result = subprocess.run(
+        [bibtex, "paper"], cwd=tmp_path, capture_output=True, text=True, check=False, timeout=30
+    )
+    diagnostics = result.stdout + result.stderr
+    if broken:
+        assert result.returncode != 0 and "error message" in diagnostics, diagnostics
+    else:
+        assert result.returncode == 0, diagnostics
+
+
 def test_the_scan_knows_where_pdfs_live():
     """POSITIVE CONTROL: a wrong directory would skip every check silently.
 
