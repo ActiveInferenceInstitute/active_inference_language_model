@@ -50,7 +50,9 @@ is `ρ_t`, not `π`, precisely so that `π` can mean policy unambiguously.
 `tests/test_notation_registry.py` enforces the one-meaning-per-symbol promise on
 exactly the symbols the manuscript's `tbl:notation` registers, and checks in
 particular that `π` never carries a time subscript — the clash the registry was
-built to prevent.
+built to prevent. The three gate-satisfaction rows above (`x ⪰ t`, `x ≻ t`,
+`verdict(t; P)`) are the manuscript's audit relations, carried here for
+reference; they are not part of that enforced `tbl:notation` set.
 
 ### The one deliberate exception: `α`
 
@@ -91,6 +93,23 @@ registry's guarantee false rather than true.
 | `McNemar p` | Two-sided exact binomial test on discordant pairs | Central helper `src/ailm/statistics.py::exact_two_sided_binomial_p`; validated benchmark wrapper `src/ailm/benchmarks/scoring.py::exact_mcnemar_p` |
 | `EFE G(π)` | Expected free energy under policy π | `src/ailm/generation.py::expected_free_energy_terms` (both terms, per action); the closed-form policy posterior is `::efe_policy_posterior` |
 | `F_AILM-scalar(q;c)` | AILM's project-owned NOM/ACC scalar approximation; not a source formula for all cases | `src/ailm/cases.py::case_conditioned_free_energy` (implemented but inert) |
+| `β_c` | AILM's NOM/ACC scalar-scaffold complexity (KL) weight, the companion of the `α_c` accuracy weight | `src/ailm/cases.py::AILM_SCALAR_CASE_WEIGHTS` (the `beta` field of `AilmScalarCaseWeights`) |
+| `F[q]` | Variational free energy (complexity + accuracy), the bound perception minimizes | `src/ailm/verification/oracle.py::forward_filter` (the closed-form minimizer); `src/ailm/levels/letter.py::compute_perplexity` |
+| `PPL_min` | Order-1 empirical optimum: the exponential of the conditional entropy on a named distribution, not a distribution-free bound | `scripts/audit_gates.py::_conditional_entropy` |
+| `σ` | Softmax normalizer over the policy posterior | `src/ailm/generation.py::efe_policy_posterior` |
+| `γ` | Policy precision: inverse temperature on the policy posterior; **not** the classification metric *average precision* | `src/ailm/generation.py` |
+| `δ` | Paired accuracy difference `(2s−1)(b+c)/n` | `src/ailm/benchmarks/scoring.py::paired_difference_interval` |
+| `η` | Fraction of the available order-1 gain captured | `scripts/record_stage1_claims.py::main` |
+| `H_2` | Perplexity in bits: `log_2 ppl` | `scripts/record_stage1_claims.py::main` |
+
+Two conventions this table assumes, both easy to misread in the prose. **Two
+senses of "precision":** `γ` is the *policy* precision, the inverse temperature
+on the policy posterior, and is unrelated to *average precision*, the
+classification ranking metric used for the clause level
+([`manuscript/04_results.md`](../manuscript/04_results.md)); the two share only
+the word. **"Flat `C`" and "zero `C`" name the same thing:** `C` is the
+log-preference vector, so a level running with no preference has `C = 0`, which
+the manuscript calls a flat `C` and the level table calls a zero `C`.
 
 ## Corpus statistics
 

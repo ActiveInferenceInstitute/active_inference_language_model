@@ -12,12 +12,13 @@ AILM provides a bounded alternative to learned embedding representations for
 studying specified linguistic mechanisms, and a potential complement to the
 broader predictive capabilities of large language models. Its generative core
 uses no transformer, neural network or learned embedding. Generalized Notation
-Notation (GNN) specifies the models; `pymdp` executes their inference and policy
-updates. A connected runtime exchanges conditional messages and supports
-next-word policy selection. This composition does not establish a globally
-exact posterior, and the letter generator's expected-free-energy rule reduces
-to a preference-weighted softmax over the habit. These explicit mechanisms are
-candidates for cognitive investigation, not evidence of human-like understanding.
+Notation (GNN) specifies the models; `pymdp` executes their inference and, only
+on the generation path, selects policies under expected free energy. A connected
+runtime exchanges conditional messages and supports next-word policy selection.
+This composition does not establish a globally exact posterior, and the letter
+generator's expected-free-energy rule reduces to a preference-weighted softmax
+over the habit. These explicit mechanisms are candidates for cognitive
+investigation, not evidence of human-like understanding.
 
 On a locally frozen Georgetown University Multilayer (GUM) corpus population,
 the connected comparison indicates

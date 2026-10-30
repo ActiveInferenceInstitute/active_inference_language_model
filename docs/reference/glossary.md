@@ -24,6 +24,25 @@ the admissible class could still clear it. Defined in
 [`../../src/ailm/gates.py`](../../src/ailm/gates.py) (`classify_gate`); see the
 taxonomy table in [`gate_design.md`](../gate_design.md#the-typed-gate-verdict-taxonomy).
 
+### Active inference
+
+The framework this project is named for and the scope its results are stated
+within. An active inference agent holds a generative model $p(o, s)$, updates
+beliefs by minimizing variational free energy, and selects actions by minimizing
+expected free energy against a habit prior. AILM keeps these mechanisms apart
+rather than collapsing them: every modeled level performs the first —
+perceptual filtering through [`A` and `B`](#generative-model-matrices) — while
+only the L3→L1g generation seam performs the second, and no level runs the
+closed action-perception loop or the consequential embodiment the term's
+stronger uses require. AILM is therefore a discrete active-inference
+*implementation*, a stack of `pymdp` agents, not a claim to be an embodied
+active-inference agent; its gate-audit findings are about its own filtering
+models and are not a verdict on active inference as a general framework. See
+[`../manuscript/01_introduction.md`](../manuscript/01_introduction.md) § *Belief
+updating, action selection and the scope of each result*,
+[`../manuscript/02_background.md`](../manuscript/02_background.md), and the
+code-level score paths of [`../hierarchy.md`](../hierarchy.md).
+
 ### `ANALYTIC_BOUND`
 
 A [comparator type](#comparator--comparatortype): a closed-form bound that
@@ -167,6 +186,21 @@ speech itself: DSP sits outside the level stack. See
 [`../design/speech_boundary.md`](../design/speech_boundary.md) and
 [`../architecture.md`](../architecture.md).
 
+### Expected free energy (EFE)
+
+The policy-scoring objective $G(\pi)$ that action selection minimizes,
+decomposing into an epistemic term (the expected information gain about hidden
+states) and a pragmatic term (the expected preference satisfaction). AILM
+exercises it in exactly one place: the L3→L1g generation seam, where a
+deterministic controllable transition makes the epistemic term identically zero,
+so the policy posterior reduces to a preference-weighted softmax over the
+[habit](#habit). The comprehension levels do not compute it — each has a single
+trivial action and a flat preference. The budgeted-attention arm of
+[`../manuscript/05_discussion.md`](../manuscript/05_discussion.md) is the one
+measurement in which the epistemic term is the whole criterion, and it does not
+pay. See [`notation.md`](notation.md) and
+[`../manuscript/02_background.md`](../manuscript/02_background.md).
+
 ### Gate
 
 A falsifiable numeric claim about one level of the hierarchy, stated before
@@ -215,6 +249,17 @@ renderer, whose extension to AILM's own specs is tracked in
 [`guides/roadmap.md`](../guides/roadmap.md#gnn-interoperability-from-parses-like-to-renders-like)
 as proposed, not shipped. See [`../../gnn/README.md`](../../gnn/README.md) and
 [`../gnn_composition.md`](../gnn_composition.md).
+
+### Habit
+
+The policy prior `E`: what the agent would do under no preference and no
+informative epistemic value at all. Policies are scored against it as well as by
+[expected free energy](#expected-free-energy-efe), combining as a softmax over
+expected free energy shifted by a log-habit term, so that where the objective
+carries no information the policy posterior collapses onto the habit alone.
+AILM's generator takes `E` from a Brown-corpus letter bigram. See
+[`notation.md`](notation.md) and
+[`../manuscript/02_background.md`](../manuscript/02_background.md).
 
 ### Held-back partition
 
@@ -346,6 +391,26 @@ zero, so full word log loss is infinite; a finite in-vocabulary diagnostic
 answers a narrower question. The JSON CLI reports this explicitly with
 `word_loss_status` rather than emitting nonstandard JSON infinity.
 
+### Policy
+
+A sequence of actions. In comprehension every modeled level has a single trivial
+action, so no policy is scored; generation makes the letter transition
+controllable, so one action *is* the next symbol and a policy is a next-letter
+commitment selected by [expected free energy](#expected-free-energy-efe). See
+[`../manuscript/02_background.md`](../manuscript/02_background.md) and
+[`../manuscript/04_results.md`](../manuscript/04_results.md).
+
+### Policy precision
+
+The inverse temperature $\gamma$ on the [policy](#policy) posterior: selection
+follows [expected free energy](#expected-free-energy-efe) against the log
+[habit](#habit) through a softmax scaled by $\gamma$, so a larger value sharpens
+the preference term relative to the habit and a smaller one returns selection to
+the habit. The generation results sweep it. It is unrelated to the
+classification metric *average precision* used for the clause level; the two
+share only the word. See [`notation.md`](notation.md) and
+[`../manuscript/04_results.md`](../manuscript/04_results.md).
+
 ### Positive control
 
 A test proving that a detector or gate *can* fire at all — for example, a
@@ -467,6 +532,19 @@ A [gate verdict](#gate-verdict): the trivial [baseline](#baseline) already
 satisfies the threshold, so a model doing nothing hierarchical passes and the
 gate constrains nothing. Defined in
 [`../../src/ailm/gates.py`](../../src/ailm/gates.py) (`classify_gate`).
+
+### Variational free energy (VFE)
+
+The bound perception minimizes, decomposing into a complexity term (a KL
+divergence from the prior) and an accuracy term (the expected log likelihood),
+and bounding the negative log evidence. Each modeled level's filtering update is
+its closed-form minimizer where the exact posterior lies in the family —
+trivially for the single-factor levels and, for the two-factor word level,
+because its position factor is degenerate — so AILM's exactness claim is about
+those conditional updates, not about mean-field [active
+inference](#active-inference) in general. See [`notation.md`](notation.md) for
+the symbol and [`../manuscript/02_background.md`](../manuscript/02_background.md)
+for the equation.
 
 ### Warm store
 

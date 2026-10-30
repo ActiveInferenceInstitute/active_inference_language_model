@@ -114,7 +114,7 @@ Referenced in prose as [@eq:bits_per_char].
 | `{#eq:bits_per_char}` | Perplexity in bits per symbol | `04_results.md` |
 | `{#eq:signal_captured}` | Fraction of available order-1 signal captured | `04_results.md` |
 | `{#eq:gate_satisfies}` | Declared (inclusive) $x \succeq t$ and audit (strict) $x \succ t$ satisfies relations | `03_methods.md` |
-| `{#eq:gate_verdict}` | Population-indexed, comparator-typed VACUOUS / UNREACHABLE / ABOVE_REFERENCE / BRACKETED classification $\operatorname{verdict}(t;P)$ | `03_methods.md` |
+| `{#eq:gate_verdict}` | Population-indexed, comparator-typed VACUOUS / UNREACHABLE / ABOVE_REFERENCE / UNAUDITED / BRACKETED classification $\operatorname{verdict}(t;P)$ | `03_methods.md` |
 | `{#eq:reference_no_impossibility}` | Why a failing exceedable comparator licenses no impossibility claim | `03_methods.md` |
 | `{#eq:policy_posterior}` | The policy posterior, expected free energy weighted against the habit prior | `03_methods.md` |
 | `{#eq:heldout_bound}` | Exact all-position order-1 lower bound on the Stage 1 evaluation passage | `98_supplement_audit_trails.md` |
@@ -426,8 +426,6 @@ a hand-typed numeral.
 - [`README.md`](README.md) — what each section is and how to render
 - [`preamble.md`](preamble.md) — the active LaTeX preamble (keep it fenced)
 - `../docs/provenance/sources.md` — corpus provenance and artifact checksums
-
-| `fig:scaling_ladder` | `98_supplement_audit_trails.md` | Coverage and perplexity across nested lexicon sizes |
 
 ## The `_ceiling` label suffix is historical
 

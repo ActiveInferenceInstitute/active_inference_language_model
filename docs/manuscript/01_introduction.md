@@ -51,7 +51,7 @@ relations, morphological case and a model's assigned functional roles must be
 distinguished [@fillmore1968case; @blake2001case]. The resulting states are operational definitions,
 not an assertion that this particular inventory is uniquely licensed by
 linguistic theory. The object is therefore a stack
-of agents implemented in `pymdp`, a Python library for discrete-state active
+of agents implemented in `pymdp`, a Python library for discrete state-space active
 inference [@heins2022pymdp], whose states are enumerated in the vocabulary of the field:
 letters, phones, words, case roles, sentence types, document-position terciles.
 Each builder exposes named roles: `A` is an emission, `B` is a transition, `C`
@@ -192,7 +192,13 @@ generative model — the predictive prior pushed through `B`, corrected by the
 observation through `A` ([@eq:filtering]). The second is the variational reading
 of that update, under which the same recursion minimizes a free energy
 functional ([@eq:vfe]). The third is expected free energy, which scores policies
-so that an agent can act ([@eq:efe]).
+so that an agent can act ([@eq:efe]). The framework earns its place here as
+organization rather than as accuracy: it places perception and action under the
+single criterion of free energy and supplies the vocabulary — epistemic and
+pragmatic value, habit, precision — in which each result's scope is stated
+below. The framework is not claimed to improve any score; where it bears on one,
+that is reported as its own measured result ([@sec:generation],
+[@sec:limitations]).
 
 Every comprehension-level Agent built here runs with a flat `C` and a single
 action; the generation Agent is a separate controlled variant. Nothing is therefore selected and no expected free energy is computed.

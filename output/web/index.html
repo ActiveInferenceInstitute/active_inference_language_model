@@ -1799,13 +1799,14 @@ representations for studying specified linguistic mechanisms, and a
 potential complement to the broader predictive capabilities of large
 language models. Its generative core uses no transformer, neural network
 or learned embedding. Generalized Notation Notation (GNN) specifies the
-models; <code>pymdp</code> executes their inference and policy updates.
-A connected runtime exchanges conditional messages and supports
-next-word policy selection. This composition does not establish a
-globally exact posterior, and the letter generator’s
-expected-free-energy rule reduces to a preference-weighted softmax over
-the habit. These explicit mechanisms are candidates for cognitive
-investigation, not evidence of human-like understanding.</p>
+models; <code>pymdp</code> executes their inference and, only on the
+generation path, selects policies under expected free energy. A
+connected runtime exchanges conditional messages and supports next-word
+policy selection. This composition does not establish a globally exact
+posterior, and the letter generator’s expected-free-energy rule reduces
+to a preference-weighted softmax over the habit. These explicit
+mechanisms are candidates for cognitive investigation, not evidence of
+human-like understanding.</p>
 <p>On a locally frozen Georgetown University Multilayer (GUM) corpus
 population, the connected comparison indicates lower integrated loss
 than disabling the named channels while retaining the same train-fitted
@@ -1912,7 +1913,7 @@ href="#ref-blake2001case" role="doc-biblioref">Blake 2001</a>)</span>.
 The resulting states are operational definitions, not an assertion that
 this particular inventory is uniquely licensed by linguistic theory. The
 object is therefore a stack of agents implemented in <code>pymdp</code>,
-a Python library for discrete-state active inference <span
+a Python library for discrete state-space active inference <span
 class="citation" data-cites="heins2022pymdp">(<a
 href="#ref-heins2022pymdp" role="doc-biblioref">Heins et al.
 2022</a>)</span>, whose states are enumerated in the vocabulary of the
@@ -2106,7 +2107,14 @@ a discrete generative model — the predictive prior pushed through
 reading of that update, under which the same recursion minimizes a free
 energy functional (eq. <a href="#eq:vfe">1</a>). The third is expected
 free energy, which scores policies so that an agent can act (eq. <a
-href="#eq:efe">2</a>).</p>
+href="#eq:efe">2</a>). The framework earns its place here as
+organization rather than as accuracy: it places perception and action
+under the single criterion of free energy and supplies the vocabulary —
+epistemic and pragmatic value, habit, precision — in which each result’s
+scope is stated below. The framework is not claimed to improve any
+score; where it bears on one, that is reported as its own measured
+result (sec. <a href="#sec:generation">4.9</a>, sec. <a
+href="#sec:limitations">6.1</a>).</p>
 <p>Every comprehension-level Agent built here runs with a flat
 <code>C</code> and a single action; the generation Agent is a separate
 controlled variant. Nothing is therefore selected and no expected free
@@ -4098,6 +4106,7 @@ by the evaluation population <span class="math inline">\(P\)</span>:</p>
 class="math display">\[\operatorname{verdict}(t; P) =
 \begin{cases}
 \text{VACUOUS} &amp; \text{if } b_P \succ t,\\
+\text{UNAUDITED} &amp; \text{if no ceiling } c_P \text{ is measured,}\\
 \text{UNREACHABLE} &amp; \text{if } c_{P} \nsucc t \text{ and }
 c_{\text{type}} \text{ is a bound,}\\
 \text{ABOVE\_REFERENCE} &amp; \text{if } c_{P} \nsucc t \text{ and }
@@ -4150,7 +4159,12 @@ class="math inline">\(b_P \succ t\)</span> and <span
 class="math inline">\(c_P \succeq b_P\)</span>, then <span
 class="math inline">\(c_P \succ t\)</span>, so neither failing case can
 trigger. Reporting <code>VACUOUS</code> first therefore loses no
-information and keeps the more actionable diagnosis in front.</p>
+information and keeps the more actionable diagnosis in front. The
+<code>UNAUDITED</code> case sits second for the same reason at one
+remove: the classifier tests the baseline, then whether a ceiling was
+measured at all, and only then the comparator-relative cases, so a gate
+with no measured comparator is classified before any comparison against
+one can apply.</p>
 <p>The condition <span class="math inline">\(c_P \succeq b_P\)</span> is
 <em>measured on every audited row</em>, not assumed. It cannot be
 justified “by construction, since the comparator bounds every model in
@@ -11582,7 +11596,7 @@ are set out in sec. <a href="#sec:lean">14</a>.</p>
 <h2 data-number="8.6" id="deterministic-build-epoch-and-figures"><span
 class="header-section-number">8.6</span> Deterministic build epoch and
 figures</h2>
-<p>This document was rendered at 2026-10-27T02:45:22Z from version
+<p>This document was rendered at 2026-10-27T13:59:53Z from version
 1.0.0. The timestamp honors <code>SOURCE_DATE_EPOCH</code>; when it is
 omitted, the manuscript orchestrator derives the epoch of the last
 audited commit that touched an input outside the regenerable
@@ -12002,7 +12016,8 @@ lower bound on what any model with this fixed uniform start and
 first-order conditional can score. It caps the gain available over
 uniform at 1.6106 nats, still short of the 2-nat target. The declared
 gate is unreachable on the evaluation population as well as on the
-training one, and now as a theorem rather than as a hope.</p>
+training one, and now as an exact derived bound rather than as a
+hope.</p>
 <p>The estimate’s finite-sample bias runs the safe way, which is why so
 few transitions can carry the argument. The plug-in estimator of an
 entropy is biased <em>downward</em> in the undersampled regime, by an

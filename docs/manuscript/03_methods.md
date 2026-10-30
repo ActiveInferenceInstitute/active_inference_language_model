@@ -597,6 +597,7 @@ $$
 \operatorname{verdict}(t; P) =
 \begin{cases}
 \text{VACUOUS} & \text{if } b_P \succ t,\\
+\text{UNAUDITED} & \text{if no ceiling } c_P \text{ is measured,}\\
 \text{UNREACHABLE} & \text{if } c_{P} \nsucc t \text{ and } c_{\text{type}} \text{ is a bound,}\\
 \text{ABOVE\_REFERENCE} & \text{if } c_{P} \nsucc t \text{ and } c_{\text{type}} \text{ is exceedable,}\\
 \text{BRACKETED\_BOUND} & \text{if } c_{P} \succ t \text{ and } c_{\text{type}} \text{ is a bound,}\\
@@ -632,7 +633,11 @@ The order of the cases in [@eq:gate_verdict] is not arbitrary. Under the strict
 relation, `VACUOUS` and the failing-comparator verdicts cannot co-fire whenever
 $c_P \succeq b_P$: if $b_P \succ t$ and $c_P \succeq b_P$, then $c_P \succ t$, so
 neither failing case can trigger. Reporting `VACUOUS` first therefore loses no
-information and keeps the more actionable diagnosis in front.
+information and keeps the more actionable diagnosis in front. The `UNAUDITED`
+case sits second for the same reason at one remove: the classifier tests the
+baseline, then whether a ceiling was measured at all, and only then the
+comparator-relative cases, so a gate with no measured comparator is classified
+before any comparison against one can apply.
 
 The condition $c_P \succeq b_P$ is *measured on every audited row*, not assumed.
 It cannot be justified "by construction, since the comparator bounds every model

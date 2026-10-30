@@ -1,22 +1,22 @@
 {
   "algorithm": "web-renderer-combine-v1",
-  "binding_sha256": "98125b5bafeed550e3fcf60b154711b19e1afad98a08f147fe0c37d194d7fdd0",
+  "binding_sha256": "3b6abcafa0881d78e773193d66c18e75372ca2b16acc923dc015adca89892a1e",
   "combined_path": "output/web/_combined_manuscript.md",
-  "combined_sha256": "72426ee895ff0236d86d0682ab46cf08b540f7552e4f6db4ab252ef57f6f05e8",
-  "combined_size_bytes": 791058,
+  "combined_sha256": "dafea42a176ceaf750315ebbddd9915d2f5cc0c9f5ddb4be99f53f4460b9d7b4",
+  "combined_size_bytes": 791932,
   "input_root_kind": "hydrated",
   "ordered_inputs": [
     {
       "ordinal": 1,
       "path": "output/manuscript/00_abstract.md",
-      "sha256": "d4c609374ec9962ee00e6f935f8683dcb0a1e7722d31341e4d96e1f509be7889",
-      "size_bytes": 2695
+      "sha256": "9067b60621c4ed0249c5e8fd89c941f2af9a9c7cbc04e0f9c5dcbb202e56567e",
+      "size_bytes": 2754
     },
     {
       "ordinal": 2,
       "path": "output/manuscript/01_introduction.md",
-      "sha256": "3a0e3d5d6cd31f827203183e6b247f80246a0fb9d7109b0a5a024b7be86cec55",
-      "size_bytes": 33113
+      "sha256": "9858becb604b7b05f3e3702a52dc88b23069e70cb6d06a05b9846a7ac614afb5",
+      "size_bytes": 33558
     },
     {
       "ordinal": 3,
@@ -27,8 +27,8 @@
     {
       "ordinal": 4,
       "path": "output/manuscript/03_methods.md",
-      "sha256": "8991ea722823c729f88fcc85381be83d2d81852ea06236095a1ea2a4e9b0e4ba",
-      "size_bytes": 153751
+      "sha256": "7e25f2eaf75a870526ed2fcd506a22b45aa09230602451d32f2ef610bde4e5d6",
+      "size_bytes": 154108
     },
     {
       "ordinal": 5,
@@ -51,7 +51,7 @@
     {
       "ordinal": 8,
       "path": "output/manuscript/07_reproducibility.md",
-      "sha256": "9893af7e6d140adbaffde8ee8667d4afafdfa24a92f1fceda29564e04fb41bc8",
+      "sha256": "3cae140b30617f6625046cc4a9f912928dae574864cabad4f5e5b7a1a506741c",
       "size_bytes": 32275
     },
     {
@@ -63,8 +63,8 @@
     {
       "ordinal": 10,
       "path": "output/manuscript/98_supplement_audit_trails.md",
-      "sha256": "ad9afe3ed862fd2af018bedd7c704f99aedfc84f00646693f9dac4ba46ba4f47",
-      "size_bytes": 59756
+      "sha256": "b9332cb96582f2815431446b1a10641d416666003ac83fcc96336b2214da8430",
+      "size_bytes": 59769
     },
     {
       "ordinal": 11,
@@ -103,7 +103,7 @@
       "size_bytes": 31
     }
   ],
-  "ordered_inputs_sha256": "d1c200fc2bdb4dc71ddc9a477e3a88cea8b281b91dfe6829df05827e217e09fb",
-  "project": "working/active_inference_language_model",
+  "ordered_inputs_sha256": "66ae505e9f52d905e4c967592e50fc4c2e6defacd7740a2a7e766df58a51eb97",
+  "project": "active_inference_language_model",
   "schema_version": "template-manuscript-composition-v1"
 }

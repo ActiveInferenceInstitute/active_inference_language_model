@@ -12,12 +12,13 @@ AILM provides a bounded alternative to learned embedding representations for
 studying specified linguistic mechanisms, and a potential complement to the
 broader predictive capabilities of large language models. Its generative core
 uses no transformer, neural network or learned embedding. Generalized Notation
-Notation (GNN) specifies the models; `pymdp` executes their inference and policy
-updates. A connected runtime exchanges conditional messages and supports
-next-word policy selection. This composition does not establish a globally
-exact posterior, and the letter generator's expected-free-energy rule reduces
-to a preference-weighted softmax over the habit. These explicit mechanisms are
-candidates for cognitive investigation, not evidence of human-like understanding.
+Notation (GNN) specifies the models; `pymdp` executes their inference and, only
+on the generation path, selects policies under expected free energy. A connected
+runtime exchanges conditional messages and supports next-word policy selection.
+This composition does not establish a globally exact posterior, and the letter
+generator's expected-free-energy rule reduces to a preference-weighted softmax
+over the habit. These explicit mechanisms are candidates for cognitive
+investigation, not evidence of human-like understanding.
 
 On a locally frozen Georgetown University Multilayer (GUM) corpus population,
 the connected comparison indicates
@@ -100,7 +101,7 @@ relations, morphological case and a model's assigned functional roles must be
 distinguished [@fillmore1968case; @blake2001case]. The resulting states are operational definitions,
 not an assertion that this particular inventory is uniquely licensed by
 linguistic theory. The object is therefore a stack
-of agents implemented in `pymdp`, a Python library for discrete-state active
+of agents implemented in `pymdp`, a Python library for discrete state-space active
 inference [@heins2022pymdp], whose states are enumerated in the vocabulary of the field:
 letters, phones, words, case roles, sentence types, document-position terciles.
 Each builder exposes named roles: `A` is an emission, `B` is a transition, `C`
@@ -241,7 +242,13 @@ generative model — the predictive prior pushed through `B`, corrected by the
 observation through `A` ([@eq:filtering]). The second is the variational reading
 of that update, under which the same recursion minimizes a free energy
 functional ([@eq:vfe]). The third is expected free energy, which scores policies
-so that an agent can act ([@eq:efe]).
+so that an agent can act ([@eq:efe]). The framework earns its place here as
+organization rather than as accuracy: it places perception and action under the
+single criterion of free energy and supplies the vocabulary — epistemic and
+pragmatic value, habit, precision — in which each result's scope is stated
+below. The framework is not claimed to improve any score; where it bears on one,
+that is reported as its own measured result ([@sec:generation],
+[@sec:limitations]).
 
 Every comprehension-level Agent built here runs with a flat `C` and a single
 action; the generation Agent is a separate controlled variant. Nothing is therefore selected and no expected free energy is computed.
@@ -1500,6 +1507,7 @@ $$
 \operatorname{verdict}(t; P) =
 \begin{cases}
 \text{VACUOUS} & \text{if } b_P \succ t,\\
+\text{UNAUDITED} & \text{if no ceiling } c_P \text{ is measured,}\\
 \text{UNREACHABLE} & \text{if } c_{P} \nsucc t \text{ and } c_{\text{type}} \text{ is a bound,}\\
 \text{ABOVE\_REFERENCE} & \text{if } c_{P} \nsucc t \text{ and } c_{\text{type}} \text{ is exceedable,}\\
 \text{BRACKETED\_BOUND} & \text{if } c_{P} \succ t \text{ and } c_{\text{type}} \text{ is a bound,}\\
@@ -1535,7 +1543,11 @@ The order of the cases in [@eq:gate_verdict] is not arbitrary. Under the strict
 relation, `VACUOUS` and the failing-comparator verdicts cannot co-fire whenever
 $c_P \succeq b_P$: if $b_P \succ t$ and $c_P \succeq b_P$, then $c_P \succ t$, so
 neither failing case can trigger. Reporting `VACUOUS` first therefore loses no
-information and keeps the more actionable diagnosis in front.
+information and keeps the more actionable diagnosis in front. The `UNAUDITED`
+case sits second for the same reason at one remove: the classifier tests the
+baseline, then whether a ceiling was measured at all, and only then the
+comparator-relative cases, so a gate with no measured comparator is classified
+before any comparison against one can apply.
 
 The condition $c_P \succeq b_P$ is *measured on every audited row*, not assumed.
 It cannot be justified "by construction, since the comparator bounds every model
@@ -7206,7 +7218,7 @@ out in [@sec:lean].
 
 ## Deterministic build epoch and figures
 
-This document was rendered at 2026-10-27T02:45:22Z from version
+This document was rendered at 2026-10-27T13:59:53Z from version
 1.0.0. The timestamp honors `SOURCE_DATE_EPOCH`; when it is omitted,
 the manuscript orchestrator derives the epoch of the last audited commit that
 touched an input outside the regenerable `output/` tree, so the build stamp
@@ -7612,8 +7624,8 @@ the transition-only entropy — is the exact lower bound on what any model with
 this fixed uniform start and first-order conditional can score. It caps the gain
 available over uniform at 1.6106 nats, still short of
 the 2-nat target. The declared gate is unreachable
-on the evaluation population as well as on the training one, and now as a
-theorem rather than as a hope.
+on the evaluation population as well as on the training one, and now as an
+exact derived bound rather than as a hope.
 
 The estimate's finite-sample bias runs the safe way, which is why so few
 transitions can carry the argument. The plug-in estimator of an entropy is

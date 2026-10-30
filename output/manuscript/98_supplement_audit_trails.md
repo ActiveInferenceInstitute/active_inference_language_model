@@ -75,8 +75,8 @@ the transition-only entropy — is the exact lower bound on what any model with
 this fixed uniform start and first-order conditional can score. It caps the gain
 available over uniform at 1.6106 nats, still short of
 the 2-nat target. The declared gate is unreachable
-on the evaluation population as well as on the training one, and now as a
-theorem rather than as a hope.
+on the evaluation population as well as on the training one, and now as an
+exact derived bound rather than as a hope.
 
 The estimate's finite-sample bias runs the safe way, which is why so few
 transitions can carry the argument. The plug-in estimator of an entropy is
