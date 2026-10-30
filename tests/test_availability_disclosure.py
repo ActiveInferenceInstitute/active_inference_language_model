@@ -35,7 +35,10 @@ def _disclosure_problems(text: str) -> list[str]:
         problems.append("the section omits the published archive's status")
     if "resolves to the public record" not in lowered:
         problems.append("the section does not name the published record the DOI resolves to")
-    if "deposition is unpublished" in lowered or "does not yet resolve to a public record" in lowered:
+    if (
+        "deposition is unpublished" in lowered
+        or "does not yet resolve to a public record" in lowered
+    ):
         problems.append("the section still presents the published archive as unpublished")
     if "has been independently reproduced" in lowered:
         problems.append("the section claims an unrecorded independent reproduction")
@@ -100,6 +103,6 @@ def test_the_guard_would_notice_the_stale_disclosures() -> None:
         assert phrase in current
         assert _disclosure_problems(current.replace(phrase, "omitted")), phrase
     assert _disclosure_problems(current + " It has been independently reproduced.")
-    assert _disclosure_problems(
-        current.replace("is published, and its", "is unpublished. Its")
-    ), "a stale unpublished disclosure must be rejected"
+    assert _disclosure_problems(current.replace("is published, and its", "is unpublished. Its")), (
+        "a stale unpublished disclosure must be rejected"
+    )
