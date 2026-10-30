@@ -17,6 +17,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 from ailm.call_cache import CallCache, default_cache_path  # noqa: E402
 from ailm.replay_provenance import (  # noqa: E402
     NetworkClaimBindingError,
+    binding_path,
     declared_openrouter_provider,
     declared_run_scope,
     discover_network_recorders,
@@ -57,6 +58,19 @@ def expected_configurations(
             raise NetworkClaimBindingError(
                 f"network recorder {relative} has no publication_replay_configuration()"
             )
+        receipt_path = binding_path(root, relative)
+        if not receipt_path.is_file():
+            # Absent evidence and unreadable evidence are different failures, and
+            # reporting the second as the first sends an operator looking for a
+            # stale scope that does not exist. A fresh checkout has no call store
+            # at all, so say so: the receipt path, and what produced it.
+            raise NetworkClaimBindingError(
+                f"network recorder {relative} has no binding receipt at "
+                f"{receipt_path.relative_to(root.resolve()).as_posix()}; the "
+                f"machine-specific call store is absent from this checkout, so its "
+                f"claims cannot be validated until the recorder is run against a "
+                f"prepared store"
+            )
         scope = declared_run_scope(root, relative)
         route = declared_openrouter_provider(root, relative)
         try:
@@ -65,10 +79,10 @@ def expected_configurations(
             else:
                 configuration = provider() if scope is None else provider(run_scope=scope)
         except TypeError as error:
-            # A run-scoped recorder whose receipt states no scope has a receipt
-            # from before its namespaces carried one, or no receipt at all.
-            # Either way the receipt cannot be validated and the recorder has to
-            # be re-run; say that rather than reporting a signature mismatch.
+            # A run-scoped recorder whose receipt exists but states no scope has a
+            # receipt from before its namespaces carried one. The receipt cannot be
+            # validated and the recorder has to be re-run; say that rather than
+            # reporting a signature mismatch.
             raise NetworkClaimBindingError(
                 f"network recorder {relative} scopes its cache namespaces by run, but its "
                 f"receipt declares no run scope; re-run the recorder to write a current "

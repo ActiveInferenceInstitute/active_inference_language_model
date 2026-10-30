@@ -676,6 +676,37 @@ def test_network_binding_cli_rejects_duplicate_and_undiscovered_selectors(capsys
     assert "does not name a discovered network recorder" in capsys.readouterr().err
 
 
+def test_network_binding_verifier_names_absent_evidence_instead_of_a_stale_scope(
+    tmp_path: Path,
+) -> None:
+    """A missing call store is not a receipt that predates run-scoping.
+
+    A fresh checkout has no ``cache/`` at all, so the run-scoped recorder is
+    reached with no receipt. The verifier used to report that as a receipt
+    "declares no run scope", which sends an operator looking for a stale field
+    that does not exist. The two failures carry different remedies and must not
+    be conflated. NEGATIVE CONTROL: the stale-scope wording is asserted absent.
+    """
+
+    root = tmp_path / "absent-store"
+    scripts = root / "scripts"
+    scripts.mkdir(parents=True)
+    relative = "scripts/record_run_scoped_claims.py"
+    (root / relative).write_text(
+        "def publication_replay_configuration(*, run_scope):\n"
+        "    return {'parameters': {'run_scope': run_scope}}\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(network_binding_verifier.NetworkClaimBindingError) as error:
+        network_binding_verifier.expected_configurations(root, [relative])
+
+    message = str(error.value)
+    assert "has no binding receipt" in message
+    assert "cache/network_claim_bindings/record_run_scoped_claims.json" in message
+    assert "declares no run scope" not in message
+
+
 def test_network_binding_verifier_requires_evidence_and_an_executable_semantic_validator(
     tmp_path: Path,
 ) -> None:

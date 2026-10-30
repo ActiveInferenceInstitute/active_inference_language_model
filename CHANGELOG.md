@@ -130,6 +130,13 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ### Fixed
 
+- The network-binding verifier distinguishes an absent call store from a
+  receipt that predates run-scoping. A fresh checkout has no `cache/` at all,
+  and the verifier reported that as a receipt which "declares no run scope",
+  sending an operator after a stale field that does not exist. It now names the
+  missing receipt path and the operator action that produces it, while the
+  stale-scope refusal keeps its own wording for the case it describes.
+
 - The bibliography header no longer contains an entry marker inside its own
   comment block, which caused a real BibTeX syntax error despite a completed
   PDF. Publication verification now invokes BibTeX against the canonical source
@@ -148,13 +155,6 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   deposition, separately from the public GitHub source. The abstract names
   the existing release repository directly. Older acceptance receipts remain
   tied to their original source and do not certify the later mainline.
-
-- The reserved Zenodo archive is published: the authenticated deposition was
-  released, so `10.5281/zenodo.22409419` resolves to the public record, and the
-  `v1.0.0` GitHub release is published from the same tag with the combined PDF
-  attached. The citation file, package URLs, title page, README and
-  `docs/provenance/sources.md` name the same published archive, and the record
-  and the release page cross-link each other.
 
 - The protocol companion delivers the HTML provider's own assets (scripts,
   styles, fonts and icons) beside the pages that reference them instead of
