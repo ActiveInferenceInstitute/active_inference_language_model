@@ -22,7 +22,7 @@ in `LICENSE` and `THIRD_PARTY_NOTICES.md`.
 **Availability.** The versioned release source is
 [the Institute repository's release tag](https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model/tree/v1.0.0).
 The corresponding Zenodo deposition is published at
-[10.5281/zenodo.22409419](https://doi.org/10.5281/zenodo.22409419), which
+[the release archive](https://doi.org/10.5281/zenodo.22409419), which
 resolves to a public archive record. The citation, package metadata and title
 page identify the same archive and release destination. Public source and
 archival availability do not establish independent reproduction. No independent
@@ -339,7 +339,7 @@ out in [@sec:lean].
 
 ## Deterministic build epoch and figures
 
-This document was rendered at 2026-10-30T22:01:20Z from version
+This document was rendered at 2026-10-30T22:22:22Z from version
 1.0.0. The timestamp honors `SOURCE_DATE_EPOCH`; when it is omitted,
 the manuscript orchestrator derives the epoch of the last audited commit that
 touched an input outside the regenerable `output/` tree, so the build stamp

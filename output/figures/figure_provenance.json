@@ -14,7 +14,7 @@
   },
   "manuscript_variables": {
     "path": "output/data/manuscript_variables.json",
-    "sha256": "91d394fc1e252d6735977a06d25baad2afd4bf9fb00cb27476ebd13fe16bf3ba"
+    "sha256": "b0ccb3c8253e12bb446a81ada8556317e4cb2eefa9c355b7204ff347babc3b67"
   },
   "shared_sources": [
     {
