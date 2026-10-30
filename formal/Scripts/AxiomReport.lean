@@ -186,6 +186,23 @@ import AILM
 #print axioms AILM.stage1_direction_is_load_bearing
 #print axioms AILM.stage1_comparator_kind_is_load_bearing
 
+/-! ## AILM.PairedDifference -/
+#print axioms AILM.pairedDelta_discordant_form
+#print axioms AILM.pairedDelta_pos
+#print axioms AILM.pairedDelta_neg
+#print axioms AILM.pairedDelta_zero
+#print axioms AILM.witness_pos
+#print axioms AILM.witness_neg
+#print axioms AILM.witness_discordant_form
+#print axioms AILM.pairedDelta_pos_drops_imbalance
+#print axioms AILM.pairedDelta_pos_drops_imbalance_companion
+#print axioms AILM.pairedDelta_pos_drops_nonempty
+#print axioms AILM.pairedDelta_pos_drops_nonempty_companion
+#print axioms AILM.pairedDelta_neg_drops_imbalance
+#print axioms AILM.pairedDelta_neg_drops_imbalance_companion
+#print axioms AILM.pairedDelta_neg_drops_nonempty
+#print axioms AILM.pairedDelta_neg_drops_nonempty_companion
+
 /-! ## AILM.SweepShape -/
 #print axioms AILM.instDecidablePeakAt
 #print axioms AILM.instDecidableInteriorOptimum

@@ -140,6 +140,21 @@
 'AILM.stage1_population_reaches_every_verdict' does not depend on any axioms
 'AILM.stage1_direction_is_load_bearing' does not depend on any axioms
 'AILM.stage1_comparator_kind_is_load_bearing' does not depend on any axioms
+'AILM.pairedDelta_discordant_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.pairedDelta_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.pairedDelta_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.pairedDelta_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witness_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witness_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.witness_discordant_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.pairedDelta_pos_drops_imbalance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.pairedDelta_pos_drops_imbalance_companion' does not depend on any axioms
+'AILM.pairedDelta_pos_drops_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.pairedDelta_pos_drops_nonempty_companion' does not depend on any axioms
+'AILM.pairedDelta_neg_drops_imbalance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.pairedDelta_neg_drops_imbalance_companion' does not depend on any axioms
+'AILM.pairedDelta_neg_drops_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AILM.pairedDelta_neg_drops_nonempty_companion' does not depend on any axioms
 'AILM.instDecidablePeakAt' depends on axioms: [propext, Quot.sound]
 'AILM.instDecidableInteriorOptimum' depends on axioms: [propext, Quot.sound]
 'AILM.instDecidableNoInteriorGain' depends on axioms: [propext, Quot.sound]

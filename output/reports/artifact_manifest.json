@@ -3,8 +3,8 @@
     {
       "contract_match": true,
       "path": "output/data/manuscript_variables.json",
-      "sha256": "4bdf579bd7cc323d3e6c438c712435f3d55a1797ee828745425a1e930e4cec0b",
-      "size_bytes": 568041,
+      "sha256": "634d50df6abafe102fcc13e2ed8676dc7c74453779482a20c593e57a17ca1c83",
+      "size_bytes": 568265,
       "stage_name": "standalone-output-scan",
       "stage_num": 0,
       "timestamp": "2026-10-27T13:59:53+00:00"
@@ -768,7 +768,7 @@
     {
       "contract_match": true,
       "path": "output/figures/figure_provenance.json",
-      "sha256": "bc35f821290ac4db043c7b44c2b427e9081dac7264501785521c4c80f3737faf",
+      "sha256": "08798efc10edbead51963e3a27a9baac2e155f18e26f52551906a8edad8739a1",
       "size_bytes": 49070,
       "stage_name": "standalone-output-scan",
       "stage_num": 0,
@@ -1065,7 +1065,7 @@
     {
       "contract_match": true,
       "path": "output/manuscript/07_reproducibility.md",
-      "sha256": "3cae140b30617f6625046cc4a9f912928dae574864cabad4f5e5b7a1a506741c",
+      "sha256": "639d06d4b03412291246b3e572852a5a6a1e8a70bc323e4b274a794c5f0673f1",
       "size_bytes": 32275,
       "stage_name": "standalone-output-scan",
       "stage_num": 0,
@@ -1119,7 +1119,7 @@
     {
       "contract_match": true,
       "path": "output/manuscript/98_supplement_lean.md",
-      "sha256": "2c65efe3cee68fd200bb6d4b04a25f71098605de5f7c95b4cd6e42263f13442f",
+      "sha256": "583565e0cf3d09dff19cc642fc71ce5a9ad9e3bcc2fdfa74d5aa21cbd419ddb2",
       "size_bytes": 4024,
       "stage_name": "standalone-output-scan",
       "stage_num": 0,
@@ -1173,8 +1173,8 @@
     {
       "contract_match": true,
       "path": "output/pdf/active_inference_language_model_combined.pdf",
-      "sha256": "cd7131f085992f051a037e8229bc2413268438ed4e7729f3418b9150719e40dd",
-      "size_bytes": 12655216,
+      "sha256": "ff432e3e6e531303f4ba8628ca044bfcae103315ea818761b1706e02bd468203",
+      "size_bytes": 12655214,
       "stage_name": "standalone-output-scan",
       "stage_num": 0,
       "timestamp": "2026-10-27T13:59:53+00:00"
@@ -1209,7 +1209,7 @@
     {
       "contract_match": true,
       "path": "output/reports/manuscript_composition.json",
-      "sha256": "ab78bf52f0739d40a9e8ae0aa37ef576bda1e8153d8c6917b6a5b73848a84a40",
+      "sha256": "dcfb877df479e2d39f5f91bb5547beb5a2c4e9ba104c0acff0019fcbb401d9ef",
       "size_bytes": 3776,
       "stage_name": "standalone-output-scan",
       "stage_num": 0,
@@ -1281,8 +1281,8 @@
     {
       "contract_match": true,
       "path": "output/slides/07_reproducibility_slides.pdf",
-      "sha256": "2006f03a19eef5eede3de75a2db410e66085863179ac6e0e48c7bf52374be055",
-      "size_bytes": 616335,
+      "sha256": "2881cf51b4de9614b4acea0b30acbb7c6dad042029b875f3810e4f2a975f327e",
+      "size_bytes": 616333,
       "stage_name": "standalone-output-scan",
       "stage_num": 0,
       "timestamp": "2026-10-27T13:59:53+00:00"
@@ -1335,8 +1335,8 @@
     {
       "contract_match": true,
       "path": "output/slides/98_supplement_lean_slides.pdf",
-      "sha256": "e5238975f6c527d394a7bf0e71f74c07982a29341649f005abc00fc61e4df4db",
-      "size_bytes": 34671,
+      "sha256": "da304e3fdc659fd2ca320fd1569f0e064560b09eecaccef139cad1351bdbb56e",
+      "size_bytes": 34532,
       "stage_name": "standalone-output-scan",
       "stage_num": 0,
       "timestamp": "2026-10-27T13:59:53+00:00"
@@ -1362,7 +1362,7 @@
     {
       "contract_match": true,
       "path": "output/web/_combined_manuscript.md",
-      "sha256": "dafea42a176ceaf750315ebbddd9915d2f5cc0c9f5ddb4be99f53f4460b9d7b4",
+      "sha256": "72e10a1c9f6d6c59cdbd08a8fafde70d38eb8a21a71e78ef908a3ded65773ab9",
       "size_bytes": 791932,
       "stage_name": "standalone-output-scan",
       "stage_num": 0,
@@ -1371,7 +1371,7 @@
     {
       "contract_match": true,
       "path": "output/web/index.html",
-      "sha256": "cde8401f5e74ea0920abb714f7cca63baf99906189f820c41a2f9aeac4593a3e",
+      "sha256": "1013924f542bc72c19f1673efbc899e878d91a499cdc0087378cf2d7616455a0",
       "size_bytes": 1094284,
       "stage_name": "standalone-output-scan",
       "stage_num": 0,

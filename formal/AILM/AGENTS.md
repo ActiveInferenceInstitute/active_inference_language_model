@@ -7,8 +7,9 @@ does not restate.
 
 ## Overview
 
-Seven modules of plain Lean 4 core. Six are authored theory plus their witnesses;
-one is generated from the claims ledger. The split between those two categories is
+Nine modules of plain Lean 4 core. Six are authored theory plus their witnesses;
+`Core` is a definition site, `Instances` holds structure only, and `LedgerData`
+is generated from the claims ledger. The split between those two categories is
 the point of the directory: a proof here can never be repaired by adjusting a
 number, because the numbers are not editable from inside Lean.
 
@@ -21,6 +22,8 @@ number, because the numbers are not editable from inside Lean.
 | `SweepShape.lean` | authored | hand; synthetic witnesses only |
 | `Filtering.lean` | authored | hand; synthetic witnesses only |
 | `Bonferroni.lean` | authored | hand; synthetic witnesses only |
+| `Holm.lean` | authored | hand; synthetic witnesses only |
+| `PairedDifference.lean` | authored | hand; synthetic witnesses only |
 | `LedgerData.lean` | **GENERATED** | `scripts/generate_lean_ledger.py`, from `data/claims.json` |
 | `Instances.lean` | authored | hand — *structure* only: metric direction, claimed predicate, expected verdict |
 

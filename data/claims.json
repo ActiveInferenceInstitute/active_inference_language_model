@@ -1919,7 +1919,7 @@
       "status": "descriptive"
     },
     "formal_theorem_count": {
-      "value": 149,
+      "value": 164,
       "run_id": "formal_layer_v1",
       "source": "scripts/record_formal_claims.py",
       "status": "descriptive"
@@ -1951,7 +1951,7 @@
       "status": "descriptive"
     },
     "formal_axiom_report_verdicts": {
-      "value": 155,
+      "value": 170,
       "run_id": "formal_layer_v1",
       "source": "scripts/record_formal_claims.py",
       "status": "descriptive"
@@ -1969,7 +1969,7 @@
       "status": "descriptive"
     },
     "formal_theory_theorem_count": {
-      "value": 104,
+      "value": 119,
       "run_id": "formal_layer_v1",
       "source": "scripts/record_formal_claims.py",
       "status": "descriptive"
@@ -15488,6 +15488,11 @@
       "run_id": "incontext_letter_probe_v3",
       "source": "scripts/record_incontext_benchmark_claims.py",
       "status": "descriptive"
+    },
+    "formal_module_paired_difference_theorem_count": {
+      "value": 15,
+      "run_id": "formal_layer_v1",
+      "source": "scripts/record_formal_claims.py"
     }
   }
 }

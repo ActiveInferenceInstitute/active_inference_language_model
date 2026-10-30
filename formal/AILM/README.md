@@ -20,6 +20,7 @@ dependencies, no network. `lake build` from `../` type-checks every module here.
 | `Filtering.lean` | Both halves of `eq:filtering` — the Bayes correction step and the prediction step |
 | `Bonferroni.lean` | The finite union-bound arithmetic behind `sec:multiplicity` |
 | `Holm.lean` | The step-down comparison in the Holm paragraph of `98_supplement_statistics.md`. Holm's rank-`i` bar `α/(m-i+1)` is never stricter than Bonferroni's `α/m`, is nondecreasing in the rank, and coincides with it at rank 1; on a **sorted** family the step-down walk rejects every member the fixed bar rejects, with a synthetic witness on which it rejects strictly more. Proves **no** familywise error control, and **not** that halting at the first failure is the right stopping rule |
+| `PairedDifference.lean` | `eq:paired_difference` of `98_supplement_statistics.md`. The two forms the manuscript writes for the paired difference `δ` agree — the share-weighted `(2s − 1)(b + c)/n` equals `(c − b)/n` — and the statistic's sign and zero behaviour are pinned. Arithmetic on the definition only: proves **no** sampling distribution, interval coverage, or McNemar-test validity |
 | `LedgerData.lean` | **GENERATED** from `data/claims.json`. Recorded values, no theorems |
 | `Instances.lean` | The recorded values run through the theory above. Structure hand-written, numbers never |
 

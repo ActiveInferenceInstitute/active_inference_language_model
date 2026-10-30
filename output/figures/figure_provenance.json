@@ -14,7 +14,7 @@
   },
   "manuscript_variables": {
     "path": "output/data/manuscript_variables.json",
-    "sha256": "4bdf579bd7cc323d3e6c438c712435f3d55a1797ee828745425a1e930e4cec0b"
+    "sha256": "634d50df6abafe102fcc13e2ed8676dc7c74453779482a20c593e57a17ca1c83"
   },
   "shared_sources": [
     {
@@ -647,7 +647,7 @@
     },
     {
       "path": "data/claims.json",
-      "sha256": "feea2a9d332ad65fb2b595a419d16fdad15f758edd6c575c996155b58b7eec83"
+      "sha256": "f2efdac7b5d0d5c894aa4136d31742e8a45cc0c80cc454cdb28b168474c4c551"
     },
     {
       "path": "data/confirmatory/ud_ewt_test_case_counts.json",

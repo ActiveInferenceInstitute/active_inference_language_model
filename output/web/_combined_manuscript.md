@@ -7165,7 +7165,7 @@ provenance and cause the generator to refuse.](../figures/dashboard_observation.
 
 ## Variable injection and source provenance
 
-All 2577 claims live in `data/claims.json`, each recorded by the run
+All 2578 claims live in `data/claims.json`, each recorded by the run
 that produced it with its `run_id` and source location.
 `src/ailm/manuscript_variables/` supplies the double-brace token map this
 manuscript is written against. Recorded-value tokens follow a mechanical rule:
@@ -7196,7 +7196,7 @@ perplexity as the token `STAGE1_LETTER_PERPLEXITY`. Lowercasing gives the ledger
 perplexity from the vendored counts and re-applies the declared bar; and
 `.venv/bin/python scripts/audit_gates.py` re-derives the verdict that bar is judged
 under. The first two steps of that walk — token to label, label to run and
-source — are mechanical and hold for every one of the 2577
+source — are mechanical and hold for every one of the 2578
 claims. Only the last step is claim-specific, and it is not guesswork either: the
 `source` field names the script that recorded the number. [@tbl:commands]
 identifies the ordinary recorder phases; the one-shot replication is retained
@@ -7205,7 +7205,7 @@ under its separate protocol above.
 Selected mathematical claims are stated and proved in Lean 4 under `formal/`: the gate taxonomy of [@eq:gate_satisfies]
 and [@eq:gate_verdict], the pre-registered sweep-shape predicates of
 [@sec:hierarchy], both halves of [@eq:filtering], and the Bonferroni arithmetic
-behind [@tbl:multiplicity_family]. The layer ships 149
+behind [@tbl:multiplicity_family]. The layer ships 164
 named theorems and 34 witness examples with a recorded
 `formal_sorry_free` verdict of true, and it cannot drift from
 the recorded measurements: the one ledger-facing module is generated from
@@ -10821,7 +10821,7 @@ Selected mathematical claims are stated and proved in Lean 4 under `formal/`: th
 and [@eq:gate_verdict], the pre-registered sweep-shape predicates of
 [@sec:hierarchy], both halves of [@eq:filtering], and the Bonferroni
 arithmetic behind [@tbl:multiplicity_family]. The layer ships
-149 named theorems and 34 witness
+164 named theorems and 34 witness
 examples. No proof in it is incomplete: the recorded `formal_sorry_free` verdict
 is true, established by a word-boundary scan *and* by
 `#print axioms` on every named theorem, because an unfinished Lean proof raises a

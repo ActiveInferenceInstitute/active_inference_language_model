@@ -13,7 +13,7 @@ Selected mathematical claims are stated and proved in Lean 4 under `formal/`: th
 and [@eq:gate_verdict], the pre-registered sweep-shape predicates of
 [@sec:hierarchy], both halves of [@eq:filtering], and the Bonferroni
 arithmetic behind [@tbl:multiplicity_family]. The layer ships
-149 named theorems and 34 witness
+164 named theorems and 34 witness
 examples. No proof in it is incomplete: the recorded `formal_sorry_free` verdict
 is true, established by a word-boundary scan *and* by
 `#print axioms` on every named theorem, because an unfinished Lean proof raises a

@@ -134,6 +134,7 @@ fail. It is the Lean-side analogue of `verify_negative_control_fails` in
 | `AILM/Filtering.lean` | `eq:filtering` (both halves) | claim:formal_module_filtering_theorem_count |
 | `AILM/Bonferroni.lean` | `sec:multiplicity` union bound | claim:formal_module_bonferroni_theorem_count |
 | `AILM/Holm.lean` | the Holm paragraph of `98_supplement_statistics.md` | claim:formal_module_holm_theorem_count |
+| `AILM/PairedDifference.lean` | `eq:paired_difference` of `98_supplement_statistics.md` | claim:formal_module_paired_difference_theorem_count |
 | `AILM/LedgerData.lean` | GENERATED — recorded values, no theorems | claim:formal_module_ledger_data_theorem_count |
 | `AILM/Instances.lean` | the recorded values, run through the theory | claim:formal_instance_theorem_count |
 
@@ -146,6 +147,15 @@ converse can fail" half of the manuscript sentence. What it does **not** prove i
 familywise error control, exactly as `AILM/Bonferroni.lean` does not: there is
 no probability measure in this tree, so "Holm controls the FWER under arbitrary
 dependence" remains assumed. The scope list below carries the rest.
+
+`AILM/PairedDifference.lean` proves that the manuscript's two forms of
+`eq:paired_difference` agree — the share-weighted `(2s − 1)(b + c)/n`, with
+`s = c/(b + c)`, equals the difference form `(c − b)/n` — and pins the sign and
+the zero behaviour of `δ`. What it does **not** prove is statistics: there is no
+probability space in this tree, so it says nothing about the sampling
+distribution of `δ`, the coverage of the bootstrap interval
+`paired_difference_interval` builds, or the validity of the McNemar test the
+discordant counts feed. The scope list below carries the rest.
 
 Every per-module total includes its named witness theorems. Anonymous `example`
 witnesses and named `instance` declarations are excluded from these theorem
@@ -176,7 +186,11 @@ the conclusion fails without it — `Filtering.zeroMassCounterexample`,
 `Bonferroni.zeroFamilyThresholdCollapses`, `Holm.sortednessIsLoadBearing`,
 `Holm.holm_rank_one_hypothesis_is_load_bearing`,
 `Holm.holm_rank_positivity_is_load_bearing`,
-`Holm.inversionPositivityIsLoadBearing`.
+`Holm.inversionPositivityIsLoadBearing`,
+`PairedDifference.pairedDelta_pos_drops_imbalance`,
+`PairedDifference.pairedDelta_pos_drops_nonempty`,
+`PairedDifference.pairedDelta_neg_drops_imbalance`,
+`PairedDifference.pairedDelta_neg_drops_nonempty`.
 
 The three prediction-step controls are stated as one-fault inputs rather than as
 bare counterexamples: each drops exactly one hypothesis of `predict_isDistribution`
@@ -219,6 +233,7 @@ failure mode the table makes visible rather than the one it hides.
 | `Filtering.predict`, `predict_length`, `predict_sum`, `predict_nonneg`, `predict_isDistribution` | the prediction half of `eq:filtering` — `ρ_t = B q_{t-1}` | the `transition @ pred` line of `forward_filter`, whose `transition[i, j] = P(next = i \| cur = j)` is the column-major convention `Transition` transcribes | `tests/test_oracle.py` |
 | `Bonferroni.bonferroniThreshold`, `sum_le_length_mul`, `bonferroni_union_bound`, `bonferroni_union_bound_div`, `bonferroni_threshold_scales` | the multiplicity correction behind `tbl:multiplicity_family` | `src/ailm/statistics.py`; the family is assembled and recorded by `scripts/record_statistical_claims.py` | `tests/test_statistics.py` |
 | `Holm.holmThreshold`, `bonferroni_le_holm_threshold`, `holm_threshold_monotone_in_rank`, `holm_rank_one_is_bonferroni`, `stepDownCount`, `holm_rejects_every_bonferroni_rejection` | the Holm paragraph of `98_supplement_statistics.md`, "uniformly at least as powerful … and the converse can fail" | `holm_step_down` in `src/ailm/statistics.py`, whose rank-`i` bar is `alpha / (size - index)` at `i = index + 1` | `tests/test_statistics.py`; the witness counts are re-run through the real procedure by `tests/test_formal_isomorphism.py::test_holm_witness_agrees_with_the_executable_step_down` |
+| `PairedDifference.pairedDelta`, `discordantShare`, `pairedDelta_discordant_form`, `pairedDelta_pos`, `pairedDelta_neg`, `pairedDelta_zero` | `eq:paired_difference` of `98_supplement_statistics.md`, "discordant win share mapped back to a paired difference" | `paired_difference_interval` in `src/ailm/statistics.py` (re-exported by `src/ailm/benchmarks/scoring.py`); the derived-bound convention is `paired_difference_bound_from_counts` in `src/ailm/manuscript_variables/_stats.py` | `tests/test_statistics.py::TestDerivedPairedBound` |
 | `LedgerData.*` (generated; no theorems) | the recorded values themselves | `scripts/generate_lean_ledger.py`, reading `data/claims.json` | `tests/test_formal_isomorphism.py` — byte-identity plus an independent re-derivation of every literal |
 | `Instances.*` (the claim:formal_instance_theorem_count ledger-facing theorems) | `tbl:gate_audit`, `tbl:unaudited_gates`, `tbl:lexical_channel` | the stage recorders, re-derived independently by `scripts/audit_gates.py` | `tests/test_formal_isomorphism.py` (build + axioms); `scripts/record_formal_claims.py` |
 | `Controls/MustFail.lean` (must **not** compile) | — | `verify_negative_control_fails` in `src/ailm/control.py`, the same idea one layer down | `tests/test_formal_isomorphism.py::test_the_negative_control_does_not_compile` |
@@ -402,7 +417,8 @@ stated in the entry rather than left for the reader to guess:
 
 1. **Not a Lean object at this scope.** Perplexity, the order-1 floor,
    Clopper–Pearson, exact binomial power, familywise error control for either
-   correction, Holm's stopping rule, and the float-level agreement between
+   correction, Holm's stopping rule, the sampling distribution and interval
+   coverage of the paired difference, and the float-level agreement between
    `predict` and `transition @ pred` or between `stepDownCount` and
    `holm_step_down`. These need `exp`/`log`, a measure, or IEEE
    arithmetic, and there is no `Real` without Mathlib. A theorem quantifying over

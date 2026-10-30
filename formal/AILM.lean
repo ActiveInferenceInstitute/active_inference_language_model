@@ -17,6 +17,10 @@
     family Holm rejects every member Bonferroni rejects, sometimes strictly more.
     Rejection-count arithmetic only: it proves **no** familywise error control,
     the same caveat `AILM.Bonferroni` carries and for the same reason.
+  * `AILM.PairedDifference` — `eq:paired_difference`, the paired accuracy
+    difference. It proves the two forms the manuscript writes for `δ` agree and
+    pins the statistic's sign and zero behaviour. Arithmetic only: no sampling
+    distribution, no interval coverage, and no McNemar-test validity.
   * `AILM.LedgerData`  — GENERATED from `data/claims.json`; the recorded
     numbers, nothing else.
   * `AILM.Instances`   — the recorded numbers run through the theory above.
@@ -37,5 +41,6 @@ import AILM.SweepShape
 import AILM.Filtering
 import AILM.Bonferroni
 import AILM.Holm
+import AILM.PairedDifference
 import AILM.LedgerData
 import AILM.Instances
