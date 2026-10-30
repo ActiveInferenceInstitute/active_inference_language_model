@@ -133,6 +133,29 @@ changes what the paper claims or what the artifact is.
 
 ## Principal decisions (these block "done"; not the agent's to make)
 
+- [ ] **The four 1.0.0 publication holds.** The reviewed candidate is
+  `review_candidate_ready: true` with `publication_acceptance: false`, and the
+  independent review approved it *as a truthful review candidate only*. The full
+  profile reached its bindings step and stopped; the remaining steps never ran.
+  Four holds stand between the candidate and a public release:
+  1. The retained network binding receipts predate run-scoping, so
+     `scripts/verify_network_claim_bindings.py` refuses them and the recorder
+     phase has to be re-run. The verifier now distinguishes the two conditions it
+     can meet — a receipt that is absent, or one that exists and declares no
+     scope — instead of reporting the second for both.
+  2. The retained call store and the reviewed publication-derivative
+     prerequisites are not present in this checkout, so neither the acquisition
+     route nor the frozen-derivative route can run here.
+  3. The raw inputs one remaining full gate needs are absent, so that gate has
+     never run.
+  4. Zenodo draft ownership is unresolved: the release draft carries assets older
+     than the reviewed candidate, and the deposition is still unsubmitted.
+
+  A public release requires a clean `full` receipt with
+  `publication_acceptance: true`; a `quick` pass cannot stand in for it, and a
+  reservation is not an archive. Until the holds clear, the availability
+  disclosure stays unpublished, the DOI does not resolve, and the release stays
+  a draft.
 - [ ] How much rationale stays inline in code.
 ## Rejected, with reasons, so they are not rebuilt
 
