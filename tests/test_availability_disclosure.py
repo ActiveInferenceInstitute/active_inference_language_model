@@ -31,15 +31,12 @@ def _disclosure_problems(text: str) -> list[str]:
         problems.append("the section omits the release archive identity")
     if "availability do not establish independent reproduction" not in lowered:
         problems.append("the section conflates availability and reproduction")
-    if "zenodo deposition is published" not in lowered:
-        problems.append("the section omits the published archive's status")
-    if "resolves to the public record" not in lowered:
-        problems.append("the section does not name the published record the DOI resolves to")
-    if (
-        "deposition is unpublished" in lowered
-        or "does not yet resolve to a public record" in lowered
-    ):
-        problems.append("the section still presents the published archive as unpublished")
+    if "zenodo deposition is unpublished" not in lowered or "reserved doi" not in lowered:
+        problems.append("the section omits the unpublished archive's reservation status")
+    if "does not yet resolve to a public record" not in lowered:
+        problems.append("the section presents a reserved DOI as a public archive")
+    if "the archive has been published" in lowered:
+        problems.append("the section claims an unverified published archive")
     if "has been independently reproduced" in lowered:
         problems.append("the section claims an unrecorded independent reproduction")
     if "no independent reproduction outside the project is recorded" not in lowered:
@@ -95,14 +92,13 @@ def test_the_guard_would_notice_the_stale_disclosures() -> None:
         SOURCE_REPOSITORY,
         "/tree/v1.0.0",
         RELEASE_DOI,
-        "Zenodo deposition is published",
-        "resolves to the public record",
+        "Zenodo deposition is unpublished",
+        "reserved DOI",
+        "does not yet resolve to a public record",
         "availability do not establish independent reproduction",
         "No independent reproduction outside the project is recorded",
     ):
         assert phrase in current
         assert _disclosure_problems(current.replace(phrase, "omitted")), phrase
+    assert _disclosure_problems(current + " The archive has been published.")
     assert _disclosure_problems(current + " It has been independently reproduced.")
-    assert _disclosure_problems(current.replace("is published, and its", "is unpublished. Its")), (
-        "a stale unpublished disclosure must be rejected"
-    )

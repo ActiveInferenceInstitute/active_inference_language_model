@@ -21,10 +21,10 @@ in `LICENSE` and `THIRD_PARTY_NOTICES.md`.
 
 **Availability.** The versioned release source is
 [the Institute repository's release tag](https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model/tree/v1.0.0).
-The corresponding Zenodo deposition is published, and its
-[DOI](https://doi.org/10.5281/zenodo.22409419) resolves to the public record for
-this release archive. The citation, package
-metadata and title page identify the same archive and release
+The corresponding Zenodo deposition is unpublished. Its
+[reserved DOI](https://doi.org/10.5281/zenodo.22409419) identifies the intended
+archive and does not yet resolve to a public record. The citation, package
+metadata and title page identify the same intended archive and release
 destination. Public source and archival availability do not establish
 independent reproduction. No independent reproduction outside the project is
 recorded in the evidence available here.
