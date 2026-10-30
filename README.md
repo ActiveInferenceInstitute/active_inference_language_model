@@ -18,12 +18,11 @@ behavioral comprehension claim or general-purpose conversational interface.
 ## At a glance
 
 The public source is available on [GitHub](https://github.com/ActiveInferenceInstitute/active_inference_language_model).
-The `v1.0.0` GitHub release is published, and its Zenodo archive
-[10.5281/zenodo.22409419](https://doi.org/10.5281/zenodo.22409419) is public:
-the DOI resolves to the archived source and manuscript, and the release page
-links back to that record. The retained release verification describes an
-earlier frozen candidate; the current manuscript and companions are bound to
-the published commit.
+The `v1.0.0` GitHub release is published with its Zenodo archive,
+[10.5281/zenodo.22409419](https://doi.org/10.5281/zenodo.22409419): the DOI
+resolves to the archived source and manuscript, and the release page links back
+to that record. The release is a frozen snapshot identified by its own tag, and
+the work on this branch after that tag is not part of it.
 
 ![Two panels: the same example sentence run through the explicit level stack from letter to document position, one row per level with its hidden state, observation, likelihood and dynamics named; and that same stack drawn with its per-level pass/fail gate outcomes and the measured cross-level interventions between them, each labeled helps, harms, or prior-only.](docs/manuscript/cover.png)
 

@@ -153,10 +153,10 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 - Availability identifies the published Zenodo archive beside the public GitHub
   source, and the release tag and that record cross-reference each other. The
-  archive records that the tree passes the `quick` release profile and the
-  complete test suite, while the `full` profile's machine-specific external-model
-  call replay is not claimed. Older acceptance receipts remain tied to their
-  original source and do not certify the later mainline.
+  archive is the accepted 1.0.0 asset set, so its own software-verification
+  record carries the acceptance and the resource-accounting hold it discloses.
+  Older acceptance receipts remain tied to their original source and do not
+  certify the later mainline.
 
 - The protocol companion delivers the HTML provider's own assets (scripts,
   styles, fonts and icons) beside the pages that reference them instead of
