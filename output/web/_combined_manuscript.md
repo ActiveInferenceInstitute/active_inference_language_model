@@ -6879,9 +6879,9 @@ shows why those are different claims.
 # Source-Bound Reproduction, Deterministic Builds, and Availability {#sec:reproducibility}
 
 The core Stage 0--6 results in [@sec:results] use vendored inputs and local
-computation. The release source repository is
+computation. The release source repository is the
 [Institute release source repository](https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model).
-Their ordinary recorders support deterministic offline replay once the pinned
+Its ordinary recorders support deterministic offline replay once the pinned
 environment and generated prerequisites are prepared. The one-shot replication
 of [@sec:confirmatory] is deliberately outside that replay inventory. Its
 spent-population refusal and the separate descriptive replay are explained
@@ -7218,7 +7218,7 @@ out in [@sec:lean].
 
 ## Deterministic build epoch and figures
 
-This document was rendered at 2026-10-30T18:56:59Z from version
+This document was rendered at 2026-10-30T19:02:58Z from version
 1.0.0. The timestamp honors `SOURCE_DATE_EPOCH`; when it is omitted,
 the manuscript orchestrator derives the epoch of the last audited commit that
 touched an input outside the regenerable `output/` tree, so the build stamp
