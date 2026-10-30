@@ -6,7 +6,7 @@
   as one object: the discordant-win-share form `δ = (2s − 1)(b + c)/n`, with
   `s = c/(b + c)` the share of discordant cells won, and the difference form
   `δ = (c − b)/n`. This module proves the two agree and pins the sign and the
-  zero behaviour of the statistic.
+  zero behavior of the statistic.
 
   ## What this file does NOT prove — read this before citing it
 

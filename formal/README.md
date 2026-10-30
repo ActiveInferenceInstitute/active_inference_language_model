@@ -151,7 +151,7 @@ dependence" remains assumed. The scope list below carries the rest.
 `AILM/PairedDifference.lean` proves that the manuscript's two forms of
 `eq:paired_difference` agree — the share-weighted `(2s − 1)(b + c)/n`, with
 `s = c/(b + c)`, equals the difference form `(c − b)/n` — and pins the sign and
-the zero behaviour of `δ`. What it does **not** prove is statistics: there is no
+the zero behavior of `δ`. What it does **not** prove is statistics: there is no
 probability space in this tree, so it says nothing about the sampling
 distribution of `δ`, the coverage of the bootstrap interval
 `paired_difference_interval` builds, or the validity of the McNemar test the

@@ -19,7 +19,7 @@
     the same caveat `AILM.Bonferroni` carries and for the same reason.
   * `AILM.PairedDifference` — `eq:paired_difference`, the paired accuracy
     difference. It proves the two forms the manuscript writes for `δ` agree and
-    pins the statistic's sign and zero behaviour. Arithmetic only: no sampling
+    pins the statistic's sign and zero behavior. Arithmetic only: no sampling
     distribution, no interval coverage, and no McNemar-test validity.
   * `AILM.LedgerData`  — GENERATED from `data/claims.json`; the recorded
     numbers, nothing else.

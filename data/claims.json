@@ -15492,7 +15492,8 @@
     "formal_module_paired_difference_theorem_count": {
       "value": 15,
       "run_id": "formal_layer_v1",
-      "source": "scripts/record_formal_claims.py"
+      "source": "scripts/record_formal_claims.py",
+      "status": "descriptive"
     }
   }
 }
