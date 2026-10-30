@@ -53,6 +53,16 @@ identity was reconfirmed before release preparation. These earlier draft checks
 remain historical evidence; completed publication requires the public record
 and the deposited file checksums to match the final release artifacts.
 
+### Published release record
+
+The authenticated deposition `22409419` was published on 2026-10-30, and the
+reserved identifier `10.5281/zenodo.22409419` became the public record DOI. The
+deposited files are the tagged source archive for `v1.0.0` and the combined
+release PDF, and the record's `related_identifiers` link it to the
+ActiveInferenceInstitute release repository and to the `v1.0.0` release page,
+which links back to the record. The title page, `CITATION.cff`, package URLs and
+README name the same published archive.
+
 ## Primary Papers
 
 ### CEREBRUM: archival record and deposited artifact

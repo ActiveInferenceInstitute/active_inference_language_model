@@ -149,6 +149,13 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   the existing release repository directly. Older acceptance receipts remain
   tied to their original source and do not certify the later mainline.
 
+- The reserved Zenodo archive is published: the authenticated deposition was
+  released, so `10.5281/zenodo.22409419` resolves to the public record, and the
+  `v1.0.0` GitHub release is published from the same tag with the combined PDF
+  attached. The citation file, package URLs, title page, README and
+  `docs/provenance/sources.md` name the same published archive, and the record
+  and the release page cross-link each other.
+
 - The protocol companion delivers the HTML provider's own assets (scripts,
   styles, fonts and icons) beside the pages that reference them instead of
   refusing them as unregistered context sources, so a `docxology/template`

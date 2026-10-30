@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "Cite the versioned GitHub source while the reserved Zenodo DOI awaits publication."
+message: "Cite the archived Zenodo release; the DOI resolves to the public record for this archive."
 title: "Active Inference Language Model: A Fully Explicit Discrete Language System and a Gate-Audit Method"
 abstract: >-
   AILM is a set of explicit discrete probabilistic language models implemented in
