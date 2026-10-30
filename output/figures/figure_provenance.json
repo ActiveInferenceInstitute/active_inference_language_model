@@ -647,7 +647,7 @@
     },
     {
       "path": "data/claims.json",
-      "sha256": "f2efdac7b5d0d5c894aa4136d31742e8a45cc0c80cc454cdb28b168474c4c551"
+      "sha256": "bff62ef7f356dcdf21a4c42d4d80edb798413ff86cffe868da518756a2732456"
     },
     {
       "path": "data/confirmatory/ud_ewt_test_case_counts.json",
