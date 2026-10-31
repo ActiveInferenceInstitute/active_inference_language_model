@@ -5,9 +5,12 @@ outcome, including every negative and null result, is in `docs/decisions.md` and
 stays there permanently. An item that is finished is deleted from this file
 rather than ticked, because a queue of ticked boxes stops being a queue.
 
-Sizing below is by *blast radius*, not by effort: **minor** touches one file and
-no recorded number, **medium** changes a measurement or a guarantee, **major**
-changes what the paper claims or what the artifact is.
+Sizing below is by *blast radius*, not by effort: **minor** changes prose,
+documentation or dead code and no recorded number; **medium** changes a
+measurement, an evidence rule or a guarantee; **major** changes what the paper
+claims or what the artifact is. An item tagged *principal's call* waits on a
+maintainer decision — naming its scope, retiring it, or choosing between
+alternatives — and is not an agent's to take.
 
 ## Minor
 
@@ -22,14 +25,33 @@ changes what the paper claims or what the artifact is.
   in `TestTypedLiveRecord` with it; and correct the two `claims.py` docstrings
   that still describe a v1-to-v2 schema upgrade on open (the code refuses a
   non-v2 ledger) and call an absolute source path "legacy".
-- [ ] Complete the whole-suite cold-start verification under fleet load. Bounded
+
+- [ ] **Decide how much rationale stays inline in code** (*principal's call*).
+  The question is open rather than answered: docstrings and comments carry
+  argument that `docs/decisions.md` also carries, and nothing yet says which
+  copy wins when the two drift. Record the answer as a decision entry, then
+  apply it in one pass rather than moving prose case by case.
+
+## Medium
+
+- [ ] **Take the cold-start release verification through a complete run.** Bounded
   release fixtures, lazy imports, shared figure construction, and scoped
-  full-model timeout allowances now have focused passing checks. The complete
+  full-model timeout allowances now have focused passing checks; the complete
   release run must still verify their integration. Record import and filesystem
   stalls separately from executed-test cost; a timeout remains a failed check
   and must not be converted into a skip to obtain a passing receipt.
 
-## Medium
+  This is also where the branch's `full` acceptance stands, and it is the reason
+  this item is a guarantee rather than a test-hygiene task. The acceptance cannot
+  be taken here: the memoized external-model call store
+  (`cache/network_claim_bindings/`) is absent from this checkout, and
+  `scripts/verify_release.py` treats a cold store as a hard failure, so the
+  `full` profile stops at its bindings step. It needs a machine that holds the
+  store, and it has to be bound to a new version when it is taken. The published
+  release does not rest on it — that archive is the older, separately accepted
+  1.0.0 asset set, whose own record states `full.software_profile_acceptance`
+  for its build — so this is a statement about this branch, not about the
+  release.
 
 - [ ] **Render against the current `docxology/template` head.** The 1.0.0 PDF
   was rendered on the workstation with an earlier template snapshot. A render
@@ -93,9 +115,9 @@ changes what the paper claims or what the artifact is.
   fitted-probe design. That queue is exploratory history, and its truncated
   adversarial export does not establish current task status.
 
-- [ ] **Extend the stipulated-artifact design to aligned pronunciation.**
-  Protocol P2 design B is implemented: the stipulated pair-structured
-  artifact ships with digest-bound provenance
+- [ ] **Extend the stipulated-artifact design to aligned pronunciation**
+  (*principal's call*). Protocol P2 design B is implemented: the stipulated
+  pair-structured artifact ships with digest-bound provenance
   (`vendor/synthetic_aligned_g2p_counts.json`,
   `scripts/generate_synthetic_aligned_g2p.py`), the native comparator is the
   shipped G2P engine refit on the stipulated train pairs, and the offline
@@ -114,6 +136,11 @@ changes what the paper claims or what the artifact is.
   which closes the comparison by refusal rather than ranking). The artifact
   is never called contamination-free.
 
+  Everything this item lists is shipped and recorded, so its remaining scope is
+  not something the body states: it waits on a named extension — a further
+  population, task or comparator this design should reach — or on retirement,
+  with the shipped content already in `CHANGELOG.md`.
+
 - [ ] **The end-to-end top-down cascade: the L4 → L3 account is built and
   the influence sweep is recorded; any performance claim is not.**
   Protocol P3's account ships: the label-construction/split/observation
@@ -131,38 +158,6 @@ changes what the paper claims or what the artifact is.
   specified population, comparator, controls, and uncertainty analysis.
   *Cost large, value uncertain, and the uncertainty is the point.*
 
-## Principal decisions (these block "done"; not the agent's to make)
-
-- [x] **The four 1.0.0 publication holds — closed by principal decision on
-  2026-10-30, with the state of each recorded.** The principal authorized
-  publication. What was repaired, and what each hold is now:
-  1. The run-scope defect is repaired: `scripts/verify_network_claim_bindings.py`
-     no longer reports a stale scope for a receipt that is simply absent, and a
-     test pins the two wordings apart. The recorder phase has still not been
-     re-run, because its one non-Git input is missing (hold 2).
-  2. **Still open for this branch, and not claimed anywhere.** The memoized
-     external-model call store (`cache/network_claim_bindings/`) is absent from
-     this checkout, and `scripts/verify_release.py` treats a cold store as a hard
-     failure, so the `full` profile stops at its bindings step here.
-     The published release does not rest on this branch: it is the older,
-     separately accepted 1.0.0 artifact set, whose own record states
-     `full.software_profile_acceptance: true` for its build.
-  3. The raw inputs the remaining full gate needs are still absent, so that gate
-     has still never run. Publication does not change its scope.
-  4. Resolved by publishing what was already accepted rather than what was not.
-     The 1.0.0 release went public unchanged: its assets are the ones the
-     recorded software-profile acceptance and the independent review cover, its
-     manifest's `public_commit` and `public_tree` still match the tag, and the
-     deposition mirrors those same bytes, verified against the release's own
-     `SHA256SUMS`. The tag was **not** repointed — doing so would have broken the
-     manifest binding and the deposited archive's own recorded identity. This
-     branch's later commits are post-release work.
-
-  A `full` acceptance for this branch still has to be taken on a machine that
-  holds the call store, and bound to a new version. The published release's own
-  disclosed limitation is the cold-public `quick` resource-accounting HOLD in its
-  verification record, which predates this work and is unchanged.
-- [ ] How much rationale stays inline in code.
 ## Rejected, with reasons, so they are not rebuilt
 
 Kept permanently. A rejection with its reasoning is cheaper to read than the
