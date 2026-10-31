@@ -34,6 +34,11 @@
       "identifier": "10.5281/zenodo.7803328",
       "relation": "references",
       "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model/tree/v1.0.0",
+      "relation": "isIdenticalTo",
+      "scheme": "url"
     }
   ]
 }

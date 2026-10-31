@@ -42,16 +42,28 @@ response identified the manuscript by its exact configured title, contained
 `metadata.prereserve_doi.doi` equal to `10.5281/zenodo.22409419`, and reported
 `submitted: false`. The retained response has SHA-256
 `f6466482f0be2233199983bccd5a53db3a04606377ad2af79f73f3e139f0e67a`.
-This verifies an existing reserved, unsubmitted draft; it does not establish
-a published record or public DOI resolution. No draft was created or published
-by this verification.
+This verified an existing reserved, unsubmitted draft at that time. No draft was
+created or published by that verification. Both observations above are retained
+as history.
+
+On 2026-10-30 the deposition was published: the record API then reported
+`state: done` and `submitted: true`, `https://doi.org/10.5281/zenodo.22409419`
+resolves to the public record, and the record's file list gives, for each
+deposited file, an MD5 and a SHA-256 that equal that file's own digests and its
+matching entry in the release's `SHA256SUMS`. Publication of release `AILM 1.0.0`
+on tag `v1.0.0`, on the [public repository](https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model),
+cross-references the same DOI; the deposited source archive embeds the release
+commit as its own archive comment, and the deposited source-tree manifest binds
+that commit and its tree to the tag.
 
 Following human manuscript acceptance, the title page, `CITATION.cff`, package
 URLs and README identify the release archive through
-`publication.doi` in `docs/manuscript/config.yaml`. The authenticated draft
-identity was reconfirmed before release preparation. These earlier draft checks
-remain historical evidence; completed publication requires the public record
-and the deposited file checksums to match the final release artifacts.
+`publication.doi` in `docs/manuscript/config.yaml`.
+
+Publishing the record and the release establishes availability and a digest-level
+match between the deposited files and the release artifacts. It does not establish
+independent reproduction, and no deposited or repository artifact claims
+otherwise.
 
 ## Primary Papers
 

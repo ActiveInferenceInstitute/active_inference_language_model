@@ -1,5 +1,9 @@
 # Active Inference Language Model (AILM)
 
+[![CI](https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model/actions/workflows/ci.yml/badge.svg)](https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model/actions/workflows/ci.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22409419.svg)](https://doi.org/10.5281/zenodo.22409419)
+![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-3776ab)
+
 AILM's contribution is two things, both explicit: a discrete probabilistic
 language-level stack, L1 through L6, with every level declared in Generalized
 Notation Notation (GNN) — the Active Inference Institute's structured notation
@@ -17,12 +21,18 @@ behavioral comprehension claim or general-purpose conversational interface.
 
 ## At a glance
 
-The public source is available on [GitHub](https://github.com/ActiveInferenceInstitute/active_inference_language_model).
+The public source is available on [GitHub](https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model).
 The `v1.0.0` GitHub release is published with its Zenodo archive,
 [10.5281/zenodo.22409419](https://doi.org/10.5281/zenodo.22409419): the DOI
 resolves to the archived source and manuscript, and the release page links back
 to that record. The release is a frozen snapshot identified by its own tag, and
 the work on this branch after that tag is not part of it.
+
+The release carries its own verification record, which accepts the `full`
+software profile and, in that same record, discloses the cold-public `quick`
+resource-accounting hold of that run. Nothing on this branch after the release tag
+is covered by it, and `full` cannot be taken on a checkout that lacks the inputs
+listed under [verification](#verification-in-one-command).
 
 ![Two panels: the same example sentence run through the explicit level stack from letter to document position, one row per level with its hidden state, observation, likelihood and dynamics named; and that same stack drawn with its per-level pass/fail gate outcomes and the measured cross-level interventions between them, each labeled helps, harms, or prior-only.](docs/manuscript/cover.png)
 
@@ -421,17 +431,20 @@ publication acceptance: it requires clean tracked, staged, and untracked input
 state, runs every check from the lock file through the validated PDF under the
 claim:stage0_coverage_floor_pct% branch-coverage floor, and writes one receipt,
 `output/reports/release-receipt.json`, whose `publication_acceptance` field is
-false for any run that used the development dirty override. The full profile
-requires the declared `gnn-interop` extra, which the base environment does not
-carry: `verify_release.py` checks the environment with `uv sync --check --extra
+false for any run that used the development dirty override.
+
+The `full` profile needs inputs a public checkout does not carry. It requires the
+declared `gnn-interop` extra, which the base environment does not have:
+`verify_release.py` checks the environment with `uv sync --check --extra
 gnn-interop` rather than installing it, so install the extra beforehand
 (`uv sync --locked --extra gnn-interop`). It also needs the local publication
-toolchain, the ignored external-call cache, a reachable Ollama server, and an
-completed hosted acquisition receipts. The release verifies stored hosted
-evidence and performs its declared local live cache audit; unset hosted keys
-and budget overrides for release execution. Fresh hosted acquisition is a
-separate authorized measurement workflow. For frozen publication-only repairs,
-use the exact independently reviewed
+toolchain, the ignored external-call cache, a reachable Ollama server, and
+completed hosted acquisition receipts; hosted keys and budget overrides are unset
+for release execution. A cold, partial or unreachable call store is a hard
+failure at the bindings step rather than a skipped one, so `full` cannot be taken
+without those inputs. Fresh hosted acquisition is a separate authorized
+measurement workflow. For frozen publication-only repairs, use the exact
+independently reviewed
 [publication derivative](docs/publication_derivative.md); the original binding
 receipts remain unchanged. Hosted CI runs `quick` only. What each profile
 checks, why the runner must be started with `-I -S`, and how it isolates its
@@ -503,7 +516,9 @@ The release archive is identified by
 Use the [versioned source](https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model/tree/v1.0.0)
 for this release. Public availability does not establish independent reproduction. The
 [provenance record](docs/provenance/sources.md#current-project-archival-status)
-preserves the earlier public API observation and the authenticated draft check.
+keeps the earlier 404 and authenticated-draft observations as history and records
+the verified published state, including that every deposited file digest equals
+the matching entry in the release's own `SHA256SUMS`.
 
 ## License
 

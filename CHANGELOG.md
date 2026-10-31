@@ -30,9 +30,9 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   accuracy, and contract compliance, read against the analytic contract
   floor, plus the smollm arm's recorded contract refusal. The labels join
   `REQUIRED_CLAIMS` and render through `BENCH_SYNTHG2P_PROBE_*_PCT` tokens.
-  This integrates the 2026-09-23 to 2026-09-25 release-checkout branch
-  (`salvage/2026-09-30/home-ailm-release-main`); its ledger, outputs and
-  decision text were superseded on `main` and were not taken.
+  This integrates the 2026-09-23 to 2026-09-25 release-checkout work; its
+  source branch has since been pruned. Its ledger, outputs and decision text
+  were superseded on `main` and were not taken.
 
 - The dashboard's chat transcript can be exported as a local JSON download:
   every turn's text and, for each reply, what the analysis read the preceding
@@ -108,6 +108,19 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   The job also installs ripgrep, which the formal axiom report and its
   vacuity control require, and pins the receipt-upload action to its current
   release.
+- The public repository now reads as an accurate account of its published state.
+  The README gains the CI and version-DOI badges, states what the published
+  release's own verification record accepts and what it separately discloses, and
+  no longer carries the garbled sentence describing the `full` profile's
+  workstation inputs; every release link uses the repository path the release and
+  the record use. The provenance record's archival-status section keeps the
+  2026-10-05 404 and the 2026-10-11 authenticated-draft checks as history and
+  records the published outcome: the record's own file digests equal the release's
+  `SHA256SUMS`, the release cross-references the DOI, and the deposited source
+  archive embeds the release commit as its archive comment.
+- `.zenodo.json` carries the `isIdenticalTo` relation to the release tag that the
+  published record already holds, so the checked-in deposit metadata matches the
+  record rather than trailing it.
 
 ### Removed
 
