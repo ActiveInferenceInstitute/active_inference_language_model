@@ -389,8 +389,8 @@ Diagrams in `docs/` are never rendered through Pandoc, so this constraint applie
 | `paper.title` | PDF title page, page headers, `{{META_TITLE}}` | renderer; `manuscript_variables.py` |
 | `paper.version` | `{{META_VERSION}}` | `manuscript_variables.py` |
 | `authors[*]` | Title-page author block, `{{META_AUTHORS}}`, `{{META_AUTHOR_COUNT}}` | renderer; `manuscript_variables.py` |
-| `publication.doi` | Optional verified DOI on the title page and in citations; currently absent while public archival availability is unverified | renderer |
-| `publication.doi_status` | Plain title-page status text for the authenticated reserved, unpublished draft DOI; used when `publication.doi` is absent and does not create a DOI hyperlink | renderer |
+| `publication.doi` | Verified DOI on the title page and in citations; currently the published version DOI, set in `docs/manuscript/config.yaml` | renderer |
+| `publication.doi_status` | Plain title-page status text used only while no verified DOI exists, when `publication.doi` is absent; it never creates a DOI hyperlink. Unset now that the DOI is published | renderer |
 | `keywords` | `{{META_KEYWORDS}}` | `manuscript_variables.py` |
 | `llm.translations.enabled` | Whether the pipeline's LLM translation stage runs. Currently `false` | `execute_pipeline.py` |
 

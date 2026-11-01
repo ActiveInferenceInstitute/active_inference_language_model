@@ -23,6 +23,12 @@ files and one lock (`pyproject.toml`, `src/ailm/__init__.py`, `CITATION.cff`,
 refuses drift among the first four and `uv lock --check` refuses a
 stale lock. Nothing else in the tree carries the version.
 
+Version `1.0.0` has taken the public route: tag `v1.0.0` on `main`, a published
+GitHub release carrying the accepted asset set, and a published Zenodo record
+identified by the version DOI in `docs/manuscript/config.yaml`, with the release
+and the record cross-referencing each other. The steps below are the sequence for
+the next one, which is why their observations carry dates.
+
 ## Select the evidence route before running commands
 
 For a new measurement or changed numerical/model/protocol input, use the
@@ -249,18 +255,22 @@ Select the frozen derivative route above for publication-only repairs.
    git tag -a "v$AILM_RELEASE_VERSION" -m "AILM $AILM_RELEASE_VERSION"
    ```
 
-8. **Verify publication identity before updating availability.** The source
-   of record during development is the private
-   `docxology/active_inference_language_model` repository. The public Institute
-   repository received the reviewed `v1.0.0` export and tag on 2026-10-16, so
-   the versioned source is public; the archival deposit is a separate step, and
-   on 2026-10-23 the configured DOI still resolved to no registered record.
-   Keep the manuscript, `CITATION.cff`, and `[project.urls]` aligned with that
-   observed state until the deposit actually succeeds. The configured DOI does
-   not establish that the current tree is archived. After an authorized publication, verify the public
-   repository's source commit and the archive's contents before changing those
-   claims and rendering the final PDF. `tests/test_availability_disclosure.py`
-   checks the current disclosure and its negative controls offline; it is not a
+8. **Verify publication identity before updating availability.** The versioned
+   source of record is the public Institute repository, which received the
+   reviewed `v1.0.0` export and tag on 2026-10-16; development happens in a
+   separate private checkout whose commit history that push does not carry. The
+   archival deposit is a separate step, and its outcome is a dated observation
+   rather than a property of the configuration: on 2026-10-23 the configured
+   identifier still resolved to no registered record, and the deposition was
+   published on 2026-10-30, so the version DOI now resolves and the release and
+   the record cross-reference each other. Keep the manuscript, `CITATION.cff`,
+   and `[project.urls]` aligned with the observed state rather than with the
+   intent, because a configured DOI does not establish that the current tree is
+   archived, and a version identifier has no record until its own deposit
+   succeeds. After an authorized publication, verify the public repository's
+   source commit and the archive's contents before changing those claims and
+   rendering the final PDF. `tests/test_availability_disclosure.py`
+   checks the disclosure and its negative controls offline; it is not a
    live availability probe. `commit` and `date-released` in `CITATION.cff` stay
    absent until the corresponding tagged release has been verified.
 
@@ -273,8 +283,9 @@ Select the frozen derivative route above for publication-only repairs.
 9. **Push, deposit, and close the citation.** After explicit publication
    authorization, push the reviewed public commit and tag. Verify the intended
    archival deposition in the authenticated Zenodo account before uploading the
-   tagged archive and combined PDF. The formerly configured identifier has no
-   verified public record; do not assume a reservation or private draft exists.
+   tagged archive and combined PDF. A reserved identifier has no verified public
+   record until its own deposit is published, so a reservation or a private
+   draft is not one.
    Publish the deposition only with the principal's authorization, verify the
    public record and exact deposited artifacts, then set the same verified DOI
    in `CITATION.cff`, `publication.doi`, and package URLs. Publishing is
@@ -290,7 +301,7 @@ Select the frozen derivative route above for publication-only repairs.
 | Dirty template checkout | the `full` profile refuses without the development override | whoever owns the template's working tree |
 | Cold call store or unserved probe | `warm_call_cache.py --check` refuses; coverage falls under the floor with no failing test | `warm_call_cache.py`, with `ollama serve` running |
 | Version drift or stale lock | `test_the_citation_file_stays_in_step_with_the_paper`; the `environment` release step | step 5 |
-| Open principal decisions | `TODO.md` § "Principal decisions" | the principal; a release may proceed with them recorded as open, but not with them silently dropped |
+| Open principal decisions | items tagged *principal's call* in `TODO.md` | the principal; a release may proceed with them recorded as open, but not with them silently dropped |
 
 ## What stays the principal's
 
