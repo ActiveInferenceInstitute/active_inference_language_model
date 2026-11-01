@@ -29,8 +29,7 @@ deployment. Realistic concerns are things like:
 
 Please do not use this channel for general bug reports (open a regular issue
 instead — see [`CONTRIBUTING.md`](CONTRIBUTING.md)) or for questions about the
-research method or its results (those are welcome as a normal issue or a
-discussion).
+research method or its results (those are welcome as a normal issue).
 
 ## Disclosure
 
