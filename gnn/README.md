@@ -60,19 +60,23 @@ slot becomes a named violation instead of a slightly different number.
 ## Upstream release
 
 [`upstream.json`](upstream.json) pins the public
-[GNN v5.0.1 release](https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation/releases/tag/v5.0.1)
-to commit `e54813b4197df36f7ae0054d5e79f3ad2d5db0ff`. This is an optional parser
+[GNN v5.0.3 release](https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation/releases/tag/v5.0.3)
+to commit `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`. This is an optional parser
 interoperability dependency, separate from AILM's own strict reader and model.
 Use an isolated checkout so ongoing upstream development cannot silently change
 the parser used for release verification:
 
 ```bash
-git clone --depth 1 --branch v5.0.1 https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation.git ../ailm-gnn-v5.0.1
-export AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.0.1 && pwd)"
+git clone --depth 1 --branch v5.0.3 https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation.git ../ailm-gnn-v5.0.3
+export AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.0.3 && pwd)"
 uv sync --locked --extra gnn-interop
 .venv/bin/python scripts/verify_gnn_release.py
 .venv/bin/python -m pytest tests/test_gnn_conformance.py -q --no-cov
 ```
+
+Set `AILM_REQUIRE_GNN_INTEROP=1` to turn a missing checkout or a missing
+`psutil` into a failure that names the gap instead of a skip; the hosted
+`gnn-interop` CI job uses it with the pinned release checkout above.
 
 The standalone verifier and upstream test fixture refuse a different commit,
 retargeted tag, missing or altered source, and unexpected source files. The full
@@ -280,9 +284,10 @@ without making the independent `ailm.gnn` checker import construction code.
 canonical specs with the real upstream Markdown parser and requires that both
 readers extract the *same* model — same variables and dimensions, same ontology,
 same `ModelParameters`, with the one documented `pi`→`π` normalization in L1g.
-It skips cleanly when no checkout is present; point
-`AILM_GNN_UPSTREAM` at one to enable it. "Expressed in GNN" is therefore
-demonstrated, not asserted.
+It skips cleanly when no checkout is present and no requirement is set; point
+`AILM_GNN_UPSTREAM` at one to enable it, or set `AILM_REQUIRE_GNN_INTEROP=1`
+(the gate described under "Upstream release") to make the missing prerequisite
+a failure. "Expressed in GNN" is therefore demonstrated, not asserted.
 
 ## Read next
 

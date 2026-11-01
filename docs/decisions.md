@@ -158,6 +158,7 @@ Forward-looking guidance on how to *specify* a gate is a separate document:
 | [139](#139--operational-selection-amendment-current-gnn-interoperability-after-release-recovery-2026-10-09) | OPERATIONAL SELECTION AMENDMENT: current GNN interoperability after release recovery (2026-10-09) |
 | [140](#140--publication-metadata-alignment-institute-release-destination-2026-10-14) | PUBLICATION METADATA ALIGNMENT: Institute release destination (2026-10-14) |
 | [141](#141--release-preparation-pinned-gnn-interoperability-and-dashboard-interruption-2026-10-26) | RELEASE PREPARATION: pinned GNN interoperability and dashboard interruption (2026-10-26) |
+| [142](#142--custody-refresh-the-upstream-gnn-pin-moves-to-v503-with-a-standalone-interop-requirement-gate-2026-11-01) | CUSTODY REFRESH: the upstream GNN pin moves to v5.0.3, with a standalone interop requirement gate (2026-11-01) |
 
 ---
 
@@ -9512,3 +9513,47 @@ their bytes. The configured Zenodo identifier is authenticated as a reservation
 in an unpublished deposition, not an available public archive. Current source
 and regenerated outputs require their own acceptance and independent review;
 historical full verification cannot be transferred to this candidate.
+
+## 142 — CUSTODY REFRESH: the upstream GNN pin moves to v5.0.3, with a standalone interop requirement gate (2026-11-01)
+
+**Decision.** AILM's declared upstream GNN release moves from `v5.0.1`
+(`e54813b4197df36f7ae0054d5e79f3ad2d5db0ff`) to the canonical `v5.0.3`
+(`8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`), recorded in `gnn/upstream.json`.
+The interoperability suite gains a standalone requirement gate,
+`AILM_REQUIRE_GNN_INTEROP=1`, and a hosted `gnn-interop` job that provisions the
+pinned checkout and the extra and sets it. Decisions 139 and 141 remain the
+historical record of the earlier selections; this entry is the current one.
+
+**Alternative displaced.** Keeping `v5.0.1`. The Institute's other downstream
+consumers of the notation are moving to the same `v5.0.3` revision, and two
+pinned answers to "which GNN does this notation mean" is the drift decision 141
+was written to end; retaining `v5.0.1` out of habit would have left AILM as the
+only consumer pinned to a superseded release. The alternative to the requirement
+gate was worse than it looks: the interoperability tests skip cleanly whenever
+the checkout or `psutil` is absent, and the quick CI profile that runs on every
+push requires neither, so the evidence behind a manuscript claim
+("expressed in GNN") could stop being gathered with every job still green.
+
+**Evidence.** `scripts/verify_gnn_release.py` accepted an isolated checkout of
+the release tag: repository
+`ActiveInferenceInstitute/Generalized_Notation_Notation`, tag `v5.0.3`, commit
+`8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`, tree
+`f6c996c7d0ca16e0f120314fc0c30257e3353d54`, every file under `src/` matching
+its Git blob, and `source_sha256`
+`89b075c60f9437b4e64abd2dc680c863def8b89a8b8c8fd35e69888cd7f562cd` computed
+from that checkout rather than from a moving working tree. With the pin,
+`AILM_GNN_UPSTREAM` set to that checkout, and the `gnn-interop` extra installed,
+`tests/test_gnn_conformance.py` passes as a whole with no skips, including every
+`TestUpstreamInteroperability` case that parses the canonical specs with the real
+upstream parser. Before the extra and the checkout were in place, the same file
+passed with those cases silently skipped — the loss mode the gate closes.
+
+**Guard.** The release profile's mandatory-environment flag and the standalone
+flag share one predicate
+(`tests/test_gnn_conformance.py::_interop_required`), and a parametrized control
+requires either flag to convert a missing prerequisite into a failure while an
+unset or non-`1` value keeps ordinary development skipping. The hosted job runs
+the same two commands a maintainer runs locally — the release verifier, then the
+conformance file — so a release whose interoperability cannot be established
+fails in CI instead of reporting a green suite with less evidence behind it.
+

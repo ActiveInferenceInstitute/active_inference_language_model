@@ -13,6 +13,15 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ### Added
 
+- A standalone requirement gate for the upstream GNN interoperability checks:
+  `AILM_REQUIRE_GNN_INTEROP=1` converts a missing checkout or a missing
+  `gnn-interop` extra from a clean skip into a failure, and a hosted
+  `gnn-interop` CI job provisions the pinned release checkout, asserts its
+  commit, and runs the release verifier and the conformance suite with the gate
+  set. Until now only the `full` release profile required the interop, so the
+  evidence behind the interoperability claim could stop being gathered while
+  every push stayed green.
+
 - A released upstream GNN pin in `gnn/upstream.json` and offline source-custody
   verification before parser interoperability. The full profile records and
   forwards `AILM_GNN_UPSTREAM`, checks its release identity, and refuses modified
@@ -54,6 +63,16 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   fallbacks.
 
 ### Changed
+
+- The upstream GNN pin in `gnn/upstream.json` moves from the `v5.0.1` release
+  (`e54813b4197df36f7ae0054d5e79f3ad2d5db0ff`) to the canonical `v5.0.3`
+  release (`8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`), the revision the other
+  downstream consumers of the notation pin. The release verifier re-established
+  the new identity offline: tag, commit, tree
+  `f6c996c7d0ca16e0f120314fc0c30257e3353d54`, and every file under `src/`
+  checked against its Git blob, giving `source_sha256`
+  `89b075c60f9437b4e64abd2dc680c863def8b89a8b8c8fd35e69888cd7f562cd`. See
+  [`docs/decisions.md`](docs/decisions.md) entry 142.
 
 - Every conformance suite constructs the typed `LiveConformanceInputs`
   record directly instead of splatting keyword arguments into

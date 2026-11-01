@@ -315,10 +315,11 @@ Regenerate this table from `[project].dependencies` and the `dev` group in
 
 Optional extras: `cuda12` (the CUDA JAX plugin) and `gnn-interop` (`psutil`; it
 exists only to enable the upstream GNN parser interoperability test, which skips
-cleanly when the GNN checkout is absent). The `full` release profile requires
-`gnn-interop`: `scripts/verify_release.py` verifies the environment with
-`uv sync --check --extra gnn-interop` rather than installing it, so install the
-extra beforehand; `quick` checks the base set.
+cleanly when the GNN checkout is absent unless `AILM_REQUIRE_GNN_INTEROP=1` is
+set, as the hosted `gnn-interop` job sets it with the pinned release checkout).
+The `full` release profile requires `gnn-interop`: `scripts/verify_release.py`
+verifies the environment with `uv sync --check --extra gnn-interop` rather than
+installing it, so install the extra beforehand; `quick` checks the base set.
 
 Install: `uv sync` (uses `pyproject.toml`)
 

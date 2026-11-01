@@ -217,6 +217,8 @@ AILM_GNN_UPSTREAM="$GNN_CHECKOUT" .venv/bin/python -m pytest \
 ```
 
 An absent checkout skips in ordinary development and fails when
-`AILM_RELEASE_MANDATORY_ENVIRONMENT=1`. Parser interoperability does not certify
-upstream rendering, execution, or equivalence of generated Agents; AILM's
-spec-built Agent identity tests are a separate contract.
+`AILM_RELEASE_MANDATORY_ENVIRONMENT=1`; `AILM_REQUIRE_GNN_INTEROP=1` is the
+standalone equivalent the hosted `gnn-interop` CI job sets. Parser
+interoperability does not certify upstream rendering, execution, or equivalence
+of generated Agents; AILM's spec-built Agent identity tests are a separate
+contract.

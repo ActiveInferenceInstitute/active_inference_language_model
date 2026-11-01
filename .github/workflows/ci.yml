@@ -67,6 +67,47 @@ jobs:
           name: quick-release-receipt
           path: output/reports/
 
+  gnn-interop:
+    # The upstream parser is an optional extra in ordinary development, so the
+    # quick profile skips these checks. This job provisions the pinned release
+    # checkout and the gnn-interop extra and then requires them: under
+    # AILM_REQUIRE_GNN_INTEROP a missing prerequisite fails instead of skipping,
+    # which is what keeps "expressed in GNN" enforced rather than only asserted.
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: "0.12.0"
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Check out the pinned upstream GNN release
+        run: |
+          git clone --depth 1 --branch v5.0.3 \
+            https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation.git \
+            ../ailm-gnn-v5.0.3
+          test "$(git -C ../ailm-gnn-v5.0.3 rev-parse HEAD)" = \
+            "8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1"
+
+      - name: Sync the locked environment with the interop extra
+        run: uv sync --locked --extra dev --extra gnn-interop
+
+      - name: Verify and require the pinned upstream release
+        env:
+          AILM_REQUIRE_GNN_INTEROP: "1"
+        run: |
+          export AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.0.3 && pwd)"
+          .venv/bin/python scripts/verify_gnn_release.py
+          .venv/bin/python -m pytest tests/test_gnn_conformance.py -q --no-cov
+
 # Hosted CI deliberately stops at the quick profile. Full publication acceptance
 # consumes the ignored, machine-local external-call cache, rechecks a sample
 # against a reachable Ollama server serving every declared probe, and uses an
