@@ -90,6 +90,7 @@ import os
 import re
 import subprocess
 import sys
+from collections.abc import Mapping
 from dataclasses import replace
 from pathlib import Path
 from typing import Any
@@ -2300,6 +2301,27 @@ _UPSTREAM_RUNNABLE = _UPSTREAM_AVAILABLE and _PSUTIL_AVAILABLE
 #: anyway without saying what to install.
 RELEASE_MANDATORY_ENVIRONMENT_ENV = "AILM_RELEASE_MANDATORY_ENVIRONMENT"
 
+#: The standalone requirement gate for the interoperability checks, independent
+#: of the full release profile: CI sets it alongside ``AILM_GNN_UPSTREAM`` after
+#: provisioning the pinned release checkout and the ``gnn-interop`` extra, so a
+#: missing prerequisite fails instead of skipping. It converts exactly the same
+#: conditions as the release flag, and nothing else in the suite reads it.
+REQUIRE_GNN_INTEROP_ENV = "AILM_REQUIRE_GNN_INTEROP"
+
+
+def _interop_required(environment: Mapping[str, str]) -> bool:
+    """Whether a missing upstream prerequisite must fail instead of skipping.
+
+    Two flags, one decision: the release profile's mandatory-environment flag
+    and the standalone CI gate. Read from a mapping rather than directly from
+    ``os.environ`` so the control test can exercise both without touching the
+    process environment.
+    """
+    return (
+        environment.get(RELEASE_MANDATORY_ENVIRONMENT_ENV) == "1"
+        or environment.get(REQUIRE_GNN_INTEROP_ENV) == "1"
+    )
+
 
 def _upstream_skip_reason() -> str:
     """Why the interoperability checks are not running, said accurately.
@@ -2422,17 +2444,19 @@ class TestUpstreamInteroperability:
 
     @pytest.fixture(autouse=True)
     def _require_the_upstream_results(self) -> None:
-        """Skip when the parser cannot run; fail instead under the release profile.
+        """Skip when the parser cannot run; fail instead under a requirement gate.
 
         A class-level ``skipif`` would skip unconditionally, and the full
         release profile forbids skips, so it could never pass on a host missing
         the checkout or the extra. Under ``AILM_RELEASE_MANDATORY_ENVIRONMENT=1``
-        the same condition is a failure whose message says what to install.
+        (the release profile) or ``AILM_REQUIRE_GNN_INTEROP=1`` (the standalone
+        CI gate) the same condition is a failure whose message says what to
+        install.
         """
         if _UPSTREAM_RUNNABLE:
             return
         reason = _upstream_skip_reason()
-        if os.environ.get(RELEASE_MANDATORY_ENVIRONMENT_ENV) == "1":
+        if _interop_required(os.environ):
             pytest.fail(reason)
         pytest.skip(reason)
 
@@ -2642,6 +2666,28 @@ def test_a_gutted_upstream_checkout_is_reported_as_broken_not_absent() -> None:
         )
     else:
         assert "no GeneralizedNotationNotation checkout" in reason
+
+
+@pytest.mark.parametrize(
+    ("environment", "required"),
+    [
+        ({}, False),
+        ({RELEASE_MANDATORY_ENVIRONMENT_ENV: "1"}, True),
+        ({REQUIRE_GNN_INTEROP_ENV: "1"}, True),
+        ({REQUIRE_GNN_INTEROP_ENV: "0"}, False),
+        ({RELEASE_MANDATORY_ENVIRONMENT_ENV: "0", REQUIRE_GNN_INTEROP_ENV: "1"}, True),
+        ({RELEASE_MANDATORY_ENVIRONMENT_ENV: "1", REQUIRE_GNN_INTEROP_ENV: "0"}, True),
+    ],
+)
+def test_the_interop_requirement_gate_reads_both_flags(environment, required) -> None:
+    """The gate that keeps the interoperability checks from skipping silently.
+
+    The full release profile sets the mandatory-environment flag; the hosted
+    gnn-interop CI job sets the standalone one. Both must convert the same
+    missing-prerequisite condition into a failure, and an unset or non-"1"
+    value must leave ordinary development skipping rather than failing.
+    """
+    assert _interop_required(environment) is required
 
 
 def test_the_interoperability_check_does_not_depend_on_a_scratch_directory() -> None:

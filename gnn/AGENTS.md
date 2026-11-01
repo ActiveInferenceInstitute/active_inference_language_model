@@ -101,4 +101,5 @@ measures nothing about it.
   trustworthy rather than more.
 - **Never** vendor the upstream GNN pipeline into this repository to "make
   interoperability testable". The interop test is opt-in and skips cleanly by
-  design.
+  default; `AILM_REQUIRE_GNN_INTEROP=1` turns a missing prerequisite into a
+  failure where the evidence is required, and installs nothing.
