@@ -152,6 +152,29 @@ deposited PDF disagree, are pinned in
 
 ---
 
+## What Active Inference contributes
+
+Active Inference provides a common framework for perception, learning, and
+action; the [discrete-state synthesis](https://arxiv.org/abs/2001.07203) and
+[pymdp paper](https://doi.org/10.21105/joss.04098) describe that framework.
+AILM exercises its parts in distinct paths:
+
+| Operation | Role in AILM | Evidence boundary |
+| --- | --- | --- |
+| Belief updating | `infer_states` updates beliefs about hidden linguistic states from observations and predictive priors. | This is perceptual inference. The historical stage scorers also use exact or NumPy calculations under the agreements stated in the [scope statement](#honest-scope-statement). |
+| Parameter learning | `infer_parameters` updates Dirichlet beliefs over model parameters in the dedicated [learning experiments](src/ailm/levels/online_learning.py). | Learning is separate from temporal state recursion; it does not mean every decoder learns online. |
+| Action selection | Lexical preferences and a letter habit shape the next-symbol policy posterior. | The historical generator uses a checked closed form; connected generation calls live `infer_policies` and `sample_action`. |
+
+Recognition receives a text stream; generation chooses the symbols it emits.
+In the deterministic letter generator the epistemic term vanishes, so its
+actions reflect preferences and habit rather than information-seeking behavior.
+Using the framework does not by itself establish an advantage over a matched
+probabilistic comparator. The [formalism map](docs/reference/formalism_map.md#scope-notes-what-is-exercised-and-what-remains-scaffold)
+links the equations to their implementations and tests and separates these paths
+from unused case-function scaffolding.
+
+---
+
 ## What this is not
 
 | What AILM is NOT | What it uses instead |
@@ -253,10 +276,10 @@ selection is built and measured. Stage 7 (speech) is an interface contract, not
 a model.
 
 **What that does not mean:** AILM is a closed-vocabulary research system, not a
-usable language model. Comprehension runs one level at a time in the shipped
-decoders; generation is next-symbol commitment under expected free energy at
-the separate L3→L1g seam, scored on held-out corpus statistics rather than on anything a reader
-would call fluency. Level 5's gate passes only as a **development-session
+usable language model. The historical comprehension scores evaluate levels
+separately; the connected runtime combines conditional updates on its declared
+schedule. Generation is bounded next-symbol commitment under expected free
+energy, evaluated separately from anything a reader would call fluency. Level 5's gate passes only as a **development-session
 specification with no held-back replication**, its retained case-only ablation
 is **non-passing with an unresolved privileged-label gain**, and one measured
 receiver intervention made the system significantly worse. Each level's score and
@@ -275,8 +298,10 @@ Universal Dependencies deprel mapping — a principled heuristic, not ground tru
 **Generation via policy selection:** Neither CEREBRUM nor Cognitive Case Diagrams
 provides a generation mechanism (both do comprehension). AILM's implemented
 generation mechanism is the L3→L1g seam: policies are next-letter commitments
-scored by G(π), L3 supplies lexical next-letter preferences through `C`, and a
-Brown-bigram habit supplies `E`. The L6→L5 model-output intervention and the
+scored by G(π), and L3 supplies lexical next-letter preferences through `C`.
+The historical closed form takes the Brown-bigram habit as an explicit argument;
+the built agent's `E` stays uniform. Connected generation instead installs both
+`C` and the habit `E` on the agent before live policy inference. The L6→L5 model-output intervention and the
 punctuation-type-oracle→L3 prior intervention are separate experiments, not
 upstream stages of this generator.
 

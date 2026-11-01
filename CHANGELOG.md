@@ -75,6 +75,19 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   shrink, and the benchmark constants name the Stage 1 passage binding as the
   benchmark's own alias rather than a compatibility layer.
 
+- The repository's process documents describe the queue as it now stands: the
+  release checklist names the *principal's call* tag rather than a `TODO.md`
+  section the queue no longer carries, the manuscript status names both pending
+  principal decisions, and the queue's own account of the connected execution
+  binding no longer disagrees with itself.
+
+- The README separates perceptual inference, parameter learning, and action
+  selection, and includes the connected runtime in its comprehension scope.
+  The formalism map explains the posterior-minimizer qualification on variational
+  free energy and distinguishes the historical generator's explicit habit from
+  the connected generator's installed policy prior. These clarify existing
+  implementations without changing measurements or recorded evidence.
+
 - The dashboard's reply line counts turns from one, as its header does, and
   discloses how many part-of-speech tags the lexicon defaulted; its Level 4
   tag names the panel's eight UD-derived case roles (CEREBRUM names) instead

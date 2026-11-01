@@ -14,17 +14,23 @@ alternatives — and is not an agent's to take.
 
 ## Minor
 
-- [ ] At the next connected re-bind, apply the two source edits that the
-  connected report's execution inventory blocks today (it binds 76 modules
-  byte for byte, `src/ailm/claims.py` and `src/ailm/gnn/conformance.py` among
-  them, so `scripts/generate_figures.py` refuses `connected_core` after any
-  edit to them): drop the keyword adapter from `check_conformance` and
-  `assert_conforms` (`_coerce_legacy_live`, `_reject_legacy_live`,
-  `_LIVE_FIELD_NAMES`, the `**legacy` parameters) now that every suite builds
-  the `LiveConformanceInputs` record directly, removing the two adapter tests
-  in `TestTypedLiveRecord` with it; and correct the two `claims.py` docstrings
-  that still describe a v1-to-v2 schema upgrade on open (the code refuses a
-  non-v2 ledger) and call an absolute source path "legacy".
+- [ ] At the next connected re-bind, apply the three source edits that the
+  connected report's execution inventory blocks today (it binds 76 canonical
+  inputs byte for byte, `src/ailm/claims.py`, `src/ailm/gnn/conformance.py` and
+  `src/ailm/statistics.py` among them, so `scripts/generate_figures.py` refuses
+  `connected_core` after any edit to them): drop the keyword adapter from
+  `check_conformance` and `assert_conforms` (`_coerce_legacy_live`,
+  `_reject_legacy_live`, `_LIVE_FIELD_NAMES`, the `**legacy` parameters) now
+  that every suite builds the `LiveConformanceInputs` record directly, removing
+  the two adapter tests in `TestTypedLiveRecord` with it; correct the two
+  `claims.py` docstrings that still describe a v1-to-v2 schema upgrade on open
+  (the code refuses a non-v2 ledger) and call an absolute source path "legacy";
+  and correct the `statistics.py` comment that says decision 91 records the
+  confirmatory replication's execution and retirement and calls the four
+  `ud_ewt_test` members' status an open principal decision in `TODO.md` —
+  decision 111 is the governing registration and the members carry confirmatory
+  status, so the comment mis-cites its decision and points at a queue entry that
+  never existed.
 
 - [ ] **Decide how much rationale stays inline in code** (*principal's call*).
   The question is open rather than answered: docstrings and comments carry
@@ -81,8 +87,8 @@ alternatives — and is not an agent's to take.
   unrelated edit forces a re-measurement or a reviewed derivative: the
   network-claim binding receipts hash the whole `src/ailm` tree, so any source
   change requires fresh hosted calls; the retained connected-GUM report's
-  execution inventory binds seven modules plus every non-URL field of
-  `pyproject.toml`, so a lint-rule change there needs a scoring replay; and the
+  execution inventory binds 76 canonical inputs, `pyproject.toml` among them,
+  so a lint-rule change there needs a scoring replay; and the
   publication derivative pins two reviewed test fixtures byte-for-byte. The
   proposal: bind each recorder to its executed import closure (resolved by
   import, not by directory), bind the connected report to the modules its

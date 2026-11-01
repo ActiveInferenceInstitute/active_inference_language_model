@@ -311,10 +311,10 @@ declarations are already resolved — see
 the availability-and-licensing subsection of
 [`docs/manuscript/07_reproducibility.md`](../manuscript/07_reproducibility.md) —
 and the `ud_ewt_test` replication was decided and executed under decision 111,
-without establishing a current public archive. Outstanding decisions are recorded
-in `TODO.md` §
-"Principal decisions". Resolve or explicitly defer them with their scope intact;
-a technical check does not decide authorship, disclosures or publication consent.
+without establishing a current public archive. Outstanding decisions are the
+items tagged *principal's call* in `TODO.md`. Resolve or explicitly defer them
+with their scope intact; a technical check does not decide authorship,
+disclosures or publication consent.
 
 
 Each release execution records a unique `run_id`; step logs live beneath

@@ -12,6 +12,7 @@ whole index.
 
 | Need | Start with | Scope |
 | --- | --- | --- |
+| Understand the role of Active Inference | [Perception, learning, and action](../README.md#what-active-inference-contributes), [equations and implementation scope](reference/formalism_map.md#scope-notes-what-is-exercised-and-what-remains-scaffold) | Distinct belief, parameter, and policy updates; action selection is exercised by generation |
 | Run connected text inference or bounded next-word generation | [Connected runtime API and CLI](design/connected_runtime.md#active-generation-and-invocation) | Explicit causal messages through GNN-built agents; conditional-update checks, not a global joint posterior |
 | Interpret the connected evaluation | [GUM result and limits](manuscript/04_results.md#sec:connected_gum), [input provenance](provenance/sources.md#ud-english-gum-connected-evaluation-input) | Locally frozen raw-text comparison; normalized character loss, coverage and infinite full-stream word loss reported separately |
 | Inspect individual model components in a browser | [Browser interface inventory](../src/ailm/dashboard/README.md#one-dashboard-url-with-an-optional-server-free-export) | Component inspection and the separate L3→L1g demonstration; these browser surfaces do not run `ConnectedRuntime` |

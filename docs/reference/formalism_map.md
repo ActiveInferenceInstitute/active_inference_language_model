@@ -122,14 +122,40 @@ The formal apparatus above is wider than the shipped capability. That gap is
 intentional and is stated in the manuscript; it is restated here so that reading
 this file cannot leave the opposite impression.
 
+### Perceptual inference is distinct from action selection
+
+For a normalized generative model and a posterior candidate on its support, the
+same variational objective in `eq:vfe` can be written as
+
+$$
+F[q] = D_{\mathrm{KL}}\!\left[q(s)\,\middle\|\,p(s\mid o)\right] - \log p(o).
+$$
+
+At the exact posterior the KL term vanishes. This explains the map's
+**minimizer only** qualifier: `forward_filter` computes posterior beliefs, not a
+separately recorded scalar variational-free-energy trajectory. A likelihood or
+perplexity score is not evidence that a policy was selected. Exactness of an
+individual conditional update also does not establish exact inference for the
+connected schedule as a global model.
+
+Parameter learning is a further operation: `infer_parameters` updates Dirichlet
+beliefs in the dedicated learning experiments. It is distinct from
+`update_empirical_prior`, which advances a within-level state prior. Neither
+operation alone establishes that an agent sought information through its
+actions.
+
 ### Generation, and policy selection under `eq:efe`
 
 **L3→L1g generation is built.** `src/ailm/generation.py` implements
 `generate_by_policy_selection` and `generate_by_sampling`. The policy-selection
 path evaluates the policy posterior in closed form (`efe_policy_posterior`)
 under `eq:efe` and is verified against `agent.infer_policies`; L3's lexicon
-supplies the next-letter `C`, and a Brown-bigram policy prior supplies `E`. L6
-and L5 do not participate. Results are reported over claim:generation_seeds
+supplies the next-letter `C`. The Brown-bigram policy prior is the explicit
+`habit` argument to the historical closed form; the built agent's `E` attribute
+remains uniform. Its deterministic controllable transition and identity
+likelihood leave no epistemic value, so this construction tests preference- and
+habit-dependent generation, not information-seeking action. L6 and L5 do not
+participate in that historical generator. Results are reported over claim:generation_seeds
 fixed seeds, with membership, total variation, and distinct-word counts across
 gamma-sweep controls. A scrambled-`C` control tests the lexical seam.
 `tests/test_generation.py` verifies the closed-form `efe_policy_posterior`
@@ -140,8 +166,9 @@ states, refusing to write above tolerance (decision 95).
 
 The historical generation sweep above remains distinct from
 `ConnectedRuntime.generate_next_word`, which uses the context-conditioned word
-prior and calls real `infer_policies`/`sample_action` through the compiled or
-eager Agent path. `tests/test_connected.py` checks its policy law and bounded
+prior, installs its current lexical preferences and Brown-bigram habit as the
+agent's `C` and `E`, and calls real `infer_policies`/`sample_action` through the
+compiled or eager Agent path. `tests/test_connected.py` checks its policy law and bounded
 termination. This establishes the implemented policy path, not fluent narrative
 generation; [the connected contract](../design/connected_runtime.md) states its
 scope and clocks.
