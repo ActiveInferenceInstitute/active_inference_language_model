@@ -57,7 +57,7 @@ alternatives — and is not an agent's to take.
   was rendered on the workstation with an earlier template snapshot. A render
   attempt on 2026-10-23 against the template's current head produced a clean
   combined PDF but no publication tree, because four template changes since
-  that snapshot stop short of AILM's documented route: the stage worker's
+  that snapshot stopped short of AILM's documented route: the stage worker's
   analysis-read custody (`infrastructure/core/analysis_read_custody.py`,
   `observe_stage_analysis_reads`) refuses a symlinked `projects/working/<name>`
   entry, which is exactly the route the quickstart documents; the accessible
@@ -67,12 +67,14 @@ alternatives — and is not an agent's to take.
   edition and the composition report; the web renderer's link validation
   (`infrastructure/rendering/_web_links.py`) rejects the protocol companion's
   relative source links before AILM relocates them into the delivered
-  `context/` tree; and the shared web-font loader it now publishes beside
-  `index.html` is gitignored here. Each is a template-side decision or an
-  AILM-side adaptation (a real-directory route, the slide format toggle, a
-  staged context tree for the companion render, a tracked `assets/`
-  allowlist), and the choice belongs with the template's maintainer. Until
-  one lands, renders use the snapshot the release used.
+  `context/` tree; and the shared web-font loader it published beside
+  `index.html` was gitignored here. The last of those four has since landed on
+  AILM's side — the companion now delivers the provider's own assets, so that
+  loader cannot fail a release on its own (`CHANGELOG.md`) — leaving three, each
+  a template-side decision or an AILM-side adaptation (a real-directory route,
+  the slide format toggle, a staged context tree for the companion render), with
+  the choice belonging to the template's maintainer. Until one lands, renders
+  use the snapshot the release used.
 
 - [ ] **Narrow the source bindings to what each measurement executes.** Three
   bindings currently freeze bytes that the bound measurement never runs, so an
