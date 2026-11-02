@@ -30,9 +30,9 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SCRIPT = PROJECT_ROOT / "scripts" / "verify_release.py"
 CI_WORKFLOW = PROJECT_ROOT / ".github" / "workflows" / "ci.yml"
 APPROVED_CI_ACTIONS = {
-    "actions/checkout": "9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
-    "astral-sh/setup-uv": "c771a70e6277c0a99b617c7a806ffedaca235ff9",
-    "actions/upload-artifact": "b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+    "actions/checkout": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+    "astral-sh/setup-uv": "68559e99cc807c1eb7e9238fd43a15bba460eec2",
+    "actions/upload-artifact": "cf430e030ddbb5b0abf93d22962f4752f3646cd9",
 }
 
 
@@ -1410,7 +1410,7 @@ def test_hosted_ci_uses_the_project_interpreter_and_does_not_fake_full_acceptanc
         undocumented_live_input
     )
     floating_action = workflow.replace(
-        "actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0",
+        "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
         "actions/checkout@main",
     )
     assert any(
