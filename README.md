@@ -19,6 +19,8 @@ reference frame used for comparison, not part of AILM's own model stack. It is
 a research system for bounded filtering and lexical generation, with no
 behavioral comprehension claim or general-purpose conversational interface.
 
+GNN maintains a [downstream adoption guide](https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation/blob/main/docs/gnn/integration/downstream_adoption.md) for repositories that consume the notation.
+
 ## At a glance
 
 The public source is available on [GitHub](https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model).
