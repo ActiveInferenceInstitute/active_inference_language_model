@@ -31,11 +31,11 @@ dependencies = [
     # plugin-based install, so CPU and CUDA environments resolve from one lock.
     # pymdp 1.0.4 declares jax<0.11.1,>=0.3.4 (1.0.3 declared unbounded >=0.3.4);
     # 0.4.38 still satisfies the upstream range and is what the suite is verified on.
-    "jax==0.4.38",
-    "jaxlib==0.4.38",
+    "jax==0.10.2",
+    "jaxlib==0.10.2",
     # NumPy 2.4 stubs use Python 3.12-only type-alias syntax; retain the
     # package's declared Python 3.11 support until that floor is raised.
-    "numpy>=1.24,<2.4",
+    "numpy>=1.24,<2.5",
     "scipy>=1.10",
     "requests>=2.28",
     "nltk>=3.8",
@@ -58,15 +58,15 @@ ailm-demo = "ailm.demo:main"
 
 [project.optional-dependencies]
 dev = [
-    "hatchling==1.32.0",
-    "mypy==2.2.0",
-    "pytest==9.1.1",
+    "hatchling==1.33.0",
+    "mypy==2.4.1",
+    "pytest==9.2.0",
     "pytest-cov==7.1.0",
     "pytest-timeout==2.4.0",
     "pytest-xdist==3.8.0",
-    "ruff==0.15.20",
+    "ruff==0.17.3",
 ]
-cuda12 = ["jax[cuda12]==0.4.38"]
+cuda12 = ["jax[cuda12]==0.10.2"]
 
 # Optional: verifying that gnn/*.md actually parses with the upstream
 # GeneralizedNotationNotation tooling rather than only with AILM's own reader.
@@ -79,24 +79,24 @@ gnn-interop = [
 
 [dependency-groups]
 dev = [
-    "hatchling==1.32.0",
-    "mypy==2.2.0",
-    "pytest==9.1.1",
+    "hatchling==1.33.0",
+    "mypy==2.4.1",
+    "pytest==9.2.0",
     "pytest-cov==7.1.0",
     "pytest-timeout==2.4.0",
     "pytest-xdist==3.8.0",
-    "ruff==0.15.20",
+    "ruff==0.17.3",
 ]
 
 [build-system]
-requires = ["hatchling==1.32.0"]
+requires = ["hatchling==1.33.0"]
 build-backend = "hatchling.build"
 
 [tool.uv]
 # PEP 517 build requirements are resolved separately from runtime packages.
 # Constrain the backend even for isolated consumers; publication acceptance
 # additionally builds offline without isolation from the locked dev environment.
-build-constraint-dependencies = ["hatchling==1.32.0"]
+build-constraint-dependencies = ["hatchling==1.33.0"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ailm"]
@@ -155,7 +155,7 @@ filterwarnings = [
 markers = [
     "recorder_replay: slow acceptance replay of every claims recorder against an isolated ledger",
     "raw_corpus_regeneration: opt-in byte-for-byte replay requiring ignored raw corpora",
-    "requires_cuda12: requires the cuda12 extra (jax[cuda12]==0.4.38 plugin set); deselected by both verify_release profiles; run `pytest -m requires_cuda12` on a CUDA host. See docs/troubleshooting.md CUDA section",
+    "requires_cuda12: requires the cuda12 extra (jax[cuda12]==0.10.2 plugin set); deselected by both verify_release profiles; run `pytest -m requires_cuda12` on a CUDA host. See docs/troubleshooting.md CUDA section",
     "slow_demo: builds a real pymdp Agent (ailm.demo); fast once JAX is warm, but pays its one-time cold compile cost the first time in a fresh environment",
 ]
 
