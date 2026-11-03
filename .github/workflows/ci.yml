@@ -68,6 +68,7 @@ jobs:
           path: output/reports/
 
   gnn-interop:
+    name: gnn conformance (pinned v5.0.3)
     # The upstream parser is an optional extra in ordinary development, so the
     # quick profile skips these checks. This job provisions the pinned release
     # checkout and the gnn-interop extra and then requires them: under
@@ -91,11 +92,15 @@ jobs:
 
       - name: Check out the pinned upstream GNN release
         run: |
-          git clone --depth 1 --branch v5.0.3 \
-            https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation.git \
-            ../ailm-gnn-v5.0.3
-          test "$(git -C ../ailm-gnn-v5.0.3 rev-parse HEAD)" = \
-            "8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1"
+          set -euo pipefail
+          PIN=gnn/upstream.json
+          PY=$(uv python find --no-project 3.12)
+          REPO=$("$PY" -c "import json;print(json.load(open('$PIN'))['repository'])")
+          TAG=$("$PY" -c "import json;print(json.load(open('$PIN'))['tag'])")
+          COMMIT=$("$PY" -c "import json;print(json.load(open('$PIN'))['commit'])")
+          # The checkout follows gnn/upstream.json; a pin bump re-points it.
+          git clone --depth 1 --branch "$TAG" "$REPO" ../ailm-gnn-v5.0.3
+          test "$(git -C ../ailm-gnn-v5.0.3 rev-parse HEAD)" = "$COMMIT"
 
       - name: Sync the locked environment with the interop extra
         run: uv sync --locked --extra dev --extra gnn-interop
