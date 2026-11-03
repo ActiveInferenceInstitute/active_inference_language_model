@@ -18,6 +18,9 @@ from ._publication_inventory import file_identity as file_identity
 from ._publication_inventory import git_bytes as git_bytes
 from ._publication_inventory import git_command as git_command
 from ._publication_inventory import git_inventory as git_inventory
+from ._publication_inventory import (
+    measurement_source_binding as measurement_source_binding,
+)
 from ._publication_inventory import original_literal as original_literal
 from ._publication_inventory import parse_hashes as parse_hashes
 from ._publication_inventory import parse_inventory as parse_inventory
@@ -61,7 +64,7 @@ _REVIEWED_TEST_FIXTURE_DELTAS: Final = {
             "0cb3a5a649fd99a7d71f06049944b6dc6d2ad5f8c015c7ec3dc19c82ff02fa6d", 43935, "100644"
         ),
         FileIdentity(
-            "662b9230b7d07569f1a5f49d3013b2702daf3c191accb0ebb2e3d4eeaf97abf1", 55589, "100644"
+            "8294a8fdea6b09f0761349b6876585ce039703f1aa6415961f701c84efbd1141", 55951, "100644"
         ),
     ),
     "tests/test_docs_hydration.py": (

@@ -130,15 +130,34 @@ def _validate_package_publication_bytes(root: Path, original_bytes: bytes) -> No
     )
 
 
+def _measurement_source_package(root: Path) -> tuple[bytes, str]:
+    """The declared measurement source's package bytes and their recorded digest."""
+    declaration = read_json(root / "data/publication_derivative.json")
+    commit = t.hash_string(declaration.get("measurement_commit"), 40)
+    original = publication_source_bytes(root, commit, "pyproject.toml")
+    return original, hashlib.sha256(original).hexdigest()
+
+
+def measurement_source_binding(root: Path, current: dict[str, str]) -> dict[str, str]:
+    """Return the execution inventory with the package entry pinned to the measurement source.
+
+    Publication URLs change the raw package digest, not measured values: the
+    bridge authenticates the original package bytes and admits only a URL-only
+    delta in the live file. Every other entry tracks the live tree, so a changed
+    lock, model or corpus still requires a fresh measurement. This is the
+    binding ``validate_publication_execution_binding`` accepts.
+    """
+    _, package = _measurement_source_package(root)
+    return {**current, "pyproject.toml": package}
+
+
 def validate_publication_execution_binding(
     root: Path, recorded: dict[str, str], current: dict[str, str]
 ) -> None:
     """Authenticate the original package bytes before admitting URL-only equivalence."""
-    declaration = read_json(root / "data/publication_derivative.json")
-    commit = t.hash_string(declaration.get("measurement_commit"), 40)
-    original = publication_source_bytes(root, commit, "pyproject.toml")
+    original, package = _measurement_source_package(root)
     t.require(
-        recorded.get("pyproject.toml") == hashlib.sha256(original).hexdigest(),
+        recorded.get("pyproject.toml") == package,
         "recorded package hash differs from original measurement source",
     )
     t.require(

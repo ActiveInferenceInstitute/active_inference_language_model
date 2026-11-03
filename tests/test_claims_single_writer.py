@@ -46,6 +46,7 @@ from pathlib import Path
 import pytest
 
 from ailm._publication_inventory import (
+    measurement_source_binding,
     publication_source_bytes,
     validate_publication_execution_binding,
 )
@@ -474,11 +475,13 @@ def _connected_report_bytes(report: dict) -> bytes:
 def _connected_replay_preimage(root: Path, ledger_bytes: bytes, report_bytes: bytes) -> dict:
     """Authenticate the original, then predict current provenance before any replay.
 
-    Publication URLs change the raw package digest, not measured values. Only the
-    temporary replay ledger gets those two predetermined provenance values. The
-    complete current inventory and the original package blob are authenticated by
-    the same strict bridge used by publication readers; no replay output is an
-    input to this prediction.
+    Publication URLs change the raw package digest, not measured values. The
+    recorded package entry therefore stays pinned to the measurement source while
+    every other entry tracks the live tree, which is what the publication bridge
+    requires. Only the temporary replay ledger gets those two predetermined
+    provenance values. The complete current inventory and the original package
+    blob are authenticated by the same strict bridge used by publication readers;
+    no replay output is an input to this prediction.
     """
     declaration = json.loads((root / "data/publication_derivative.json").read_bytes())
     assert hashlib.sha256(ledger_bytes).hexdigest() == declaration["inputs"]["data/claims.json"], (
@@ -501,10 +504,11 @@ def _connected_replay_preimage(root: Path, ledger_bytes: bytes, report_bytes: by
     current = canonical_execution_binding(root)
     validate_publication_execution_binding(root, recorded, current)
 
+    predicted = measurement_source_binding(root, current)
     expected_report = deepcopy(report)
-    expected_report["execution_binding"] = current
+    expected_report["execution_binding"] = predicted
     expected_report["execution_sha256"] = hashlib.sha256(
-        _connected_report_bytes(current)
+        _connected_report_bytes(predicted)
     ).hexdigest()
     expected = deepcopy(ledger)
     for label, value in (
@@ -580,18 +584,21 @@ def test_connected_replay_preimage_preserves_original_metadata_identity(connecte
     assert _connected_replay_preimage(root, json.dumps(ledger).encode(), report) == ledger
 
 
-def test_connected_replay_preimage_predicts_only_publication_hashes(connected_replay_source):
+def test_connected_replay_preimage_keeps_the_url_only_delta_out_of_the_recorded_hashes(
+    connected_replay_source,
+):
+    """The live package URL delta is not a measurement change, so nothing moves.
+
+    The fixture's report already records the pinned package entry and its live
+    ``pyproject.toml`` carries the repository's URL-only delta. The preimage predicts
+    the recorder's own recorded binding, which is that same record; a prediction that
+    moved a provenance hash here would mean the recorder and the publication bridge
+    had drifted apart.
+    """
     root, ledger, report, _ = connected_replay_source
     before = deepcopy(ledger)
     expected = _connected_replay_preimage(root, json.dumps(ledger).encode(), report)
-    changed = {
-        label for label in ledger["claims"] if expected["claims"][label] != ledger["claims"][label]
-    }
-    assert changed == {"connected_gum_execution_sha256", "connected_gum_report_sha256"}
-    for label in changed:
-        assert {k: v for k, v in expected["claims"][label].items() if k != "value"} == {
-            k: v for k, v in ledger["claims"][label].items() if k != "value"
-        }
+    assert expected == ledger
     assert ledger == before
 
 
@@ -607,7 +614,7 @@ sys.path.insert(0, str(Path(sys.argv[1]) / 'scripts'))
 import record_connected_gum_claims as recorder
 root = Path(sys.argv[2])
 report = json.loads(sys.stdin.buffer.read())
-report['execution_binding'] = recorder.execution_binding(root)
+report['execution_binding'] = recorder.recorded_binding(root)
 report['execution_sha256'] = hashlib.sha256(recorder._json_bytes(report['execution_binding'])).hexdigest()
 print(json.dumps({
     'execution': report['execution_sha256'],

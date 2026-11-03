@@ -1698,7 +1698,7 @@
     "gnn/models/L6_narrative.gnn.md": "5d87426eb2d6ed0eb65079ce9498224bbb4e5480c550da15389b578b77e1394d",
     "pyproject.toml": "d5a78054b8b0ad44a11d67d2ed0accd1a2a6acfeda2401e4f40d38ceb5fea353",
     "scripts/_artifact_io.py": "f87c8d73b879bedb14828dbda43da6906b27b895ca3ca2381a37db4560393f8b",
-    "scripts/record_connected_gum_claims.py": "56ff9d8acfd135d19272fd6a75f1d1bf0113253e7eb0f6334dc65255872f2f16",
+    "scripts/record_connected_gum_claims.py": "f0d8096af7d5f9fb3a5026fff02e3ab3283fc65a6873981899046ffe59ada3a4",
     "src/ailm/__init__.py": "5df7a711329b1a8d9191c4ae900235aa44792bd538c4dcdfeaea518f06e47423",
     "src/ailm/cases.py": "0373f419360e81f4c426df3d834b079b8ea00ff335e666f9de58e06ba98de80d",
     "src/ailm/claims.py": "23196cb762d0c8cc25093d8d4b845e22d1b18a99cdff4bf0c1071364882598df",
@@ -1746,7 +1746,7 @@
     "src/ailm/verification/__init__.py": "e093f12b7a85f212bf61ed330cc5a6763fd0a8d1063cbddd560fac3cdeef00bc",
     "src/ailm/verification/connected_provenance.py": "6c96cd0e090c032eaa3218b5a6131c449a33632bc3cf968444c50166d5bd8f51",
     "src/ailm/verification/oracle.py": "323808c6dbf96f848a5259ff2f381b828dd65218e37264d26750c3f626971cea",
-    "uv.lock": "f50e89d2ae308408c9b25bfc07a50cad2dfee90531c17f52077f0c76630a8777",
+    "uv.lock": "c2fb1d2fdd4179e6a58206b0fae5fa7e393f7fb481239da9f5bf34aaef969ca5",
     "vendor/brown_clause_word_counts.json": "3f061df8fb36103db6eb52e9232bd9efb6bb9de04db6bddee422e740fdae7e63",
     "vendor/brown_counts.json": "778e2b31740b417e2cc3829e4919a5e4d8f9a180a18695474ad05060d1f5f660",
     "vendor/brown_heldout_stream.json": "749b0ed11c00504247985a759eb466fe78408dffd9cd600f815ffb3ca1f39723",
@@ -1762,7 +1762,7 @@
     "vendor/ud_ewt_clause_counts.json": "e3fe327068149fbc64144d8fda4a8befe7ea4dc5a32393d0a79ab071f92a71d3",
     "vendor/ud_ewt_narrative_counts.json": "11e7b49ce27d61a173de8ac296212fd801095612d312f694c875cca91c185133"
   },
-  "execution_sha256": "0cd3b86fd81face210db6d06dbb07435b44c4fa5ca82aa83b1c48d531f76389d",
+  "execution_sha256": "eb30ae0ae1f33944663ecfc47a723d52208224a0b532ac2c7d68d52b66f1c4c5",
   "full_stream_word_loss_status": "infinite_oov",
   "input_manifest_sha256": "ca5f0e69d07c3328ec23f9dec6647b71a05cd3ba2e56483fd812cae4e80cf2e0",
   "protocol_sha256": "c2ad1ee3b9aa285b5ef80ff29895665e959748bb9a90e94d1890ff18c7b2578d",
@@ -1782,6 +1782,6 @@
     "inferactively-pymdp": "1.0.4",
     "jax": "0.4.38",
     "numpy": "2.3.5",
-    "python": "3.12.13"
+    "python": "3.12.15"
   }
 }

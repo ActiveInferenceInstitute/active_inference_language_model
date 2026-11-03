@@ -881,7 +881,10 @@ revision inspected for this provenance record.
   `ailm.verification.connected_provenance.canonical_execution_binding` authenticates
   the complete source/model-input inventory; the figure reader also checks the
   ordered document population against the frozen raw input. An updated hash is
-  not a substitute for re-executing a changed measurement.
+  not a substitute for re-executing a changed measurement. The recorded package
+  entry stays pinned to the measurement source while every other entry tracks the
+  live tree: publication URLs change the raw package digest, not measured values,
+  so the live file is admitted only for a URL-only delta.
 - **Interpretation:** the named-channel ablation keeps observed spelling and the
   train-fitted postword UPOS encoder. The [connected contract](../design/connected_runtime.md#recorded-connected-evaluation)
   and [results](../manuscript/04_results.md#sec:connected_gum) preserve the aggregate

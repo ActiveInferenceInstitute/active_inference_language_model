@@ -15448,7 +15448,7 @@
       "status": "descriptive"
     },
     "connected_gum_execution_sha256": {
-      "value": "0cd3b86fd81face210db6d06dbb07435b44c4fa5ca82aa83b1c48d531f76389d",
+      "value": "eb30ae0ae1f33944663ecfc47a723d52208224a0b532ac2c7d68d52b66f1c4c5",
       "run_id": "connected_gum_unexamined_v1",
       "source": "scripts/record_connected_gum_claims.py",
       "status": "descriptive"
@@ -15460,7 +15460,7 @@
       "status": "descriptive"
     },
     "connected_gum_report_sha256": {
-      "value": "045d953dd1d46227e1d4e3d484479c50c947f485514b820f3f82a24cd90c5255",
+      "value": "ce31e58b324d5b5af1b1f6edc02ecd800bff42f22515e2779ac5a58ceaf9dacb",
       "run_id": "connected_gum_unexamined_v1",
       "source": "scripts/record_connected_gum_claims.py",
       "status": "descriptive"
