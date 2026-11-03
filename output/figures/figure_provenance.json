@@ -14,7 +14,7 @@
   },
   "manuscript_variables": {
     "path": "output/data/manuscript_variables.json",
-    "sha256": "b0ccb3c8253e12bb446a81ada8556317e4cb2eefa9c355b7204ff347babc3b67"
+    "sha256": "f0a420f360510a7fbe90589acd0ec5e5cc2ad9441d040bf9617da25c32febdbd"
   },
   "shared_sources": [
     {
@@ -53,7 +53,7 @@
     },
     {
       "path": "src/ailm/_publication_inventory.py",
-      "sha256": "e556e3f82972cac97b60754c6d47eca1ed202de5c815f42bde20ab1944edbd3e"
+      "sha256": "fc615fedb8bf98d55dda98a13e85d2cb86fed0f1d145250a6dc0b6246c9a5661"
     },
     {
       "path": "src/ailm/_publication_proof.py",
@@ -573,7 +573,7 @@
     },
     {
       "path": "src/ailm/publication_derivative.py",
-      "sha256": "d036660e4f9d42658009968749110c6bea8fef786894187f689adc370fe5c61f"
+      "sha256": "0290c24b9a1b72140876f759a7bc543a7983217ac84a705aa7cb65da3be68a41"
     },
     {
       "path": "src/ailm/reference_presentation.py",
@@ -647,7 +647,7 @@
     },
     {
       "path": "data/claims.json",
-      "sha256": "bff62ef7f356dcdf21a4c42d4d80edb798413ff86cffe868da518756a2732456"
+      "sha256": "fa6702ff6f9dce1f0d43260fda42369975001a29ab47f9c3d309b45c67d02732"
     },
     {
       "path": "data/confirmatory/ud_ewt_test_case_counts.json",
