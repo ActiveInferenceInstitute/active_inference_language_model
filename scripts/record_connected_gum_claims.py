@@ -43,6 +43,7 @@ from ailm.levels.connected_evaluation import (  # noqa: E402
     document_uncertainty,
     evaluate_documents,
 )
+from ailm.publication_derivative import measurement_source_binding  # noqa: E402
 from ailm.verification.connected_provenance import (  # noqa: E402
     ExecutionBindingError,
     canonical_execution_binding,
@@ -58,6 +59,16 @@ def execution_binding(root: Path) -> dict[str, str]:
         return canonical_execution_binding(root)
     except ExecutionBindingError as error:
         raise GumProtocolError(str(error)) from error
+
+
+def recorded_binding(root: Path) -> dict[str, str]:
+    """The binding the report records: canonical inputs, package at the measurement source.
+
+    The publication bridge authenticates the original package bytes and admits only a
+    URL-only delta in the live file, so the recorded package entry is the measurement
+    source's digest while every other entry is the live environment.
+    """
+    return measurement_source_binding(root, execution_binding(root))
 
 
 def _json_bytes(payload: dict) -> bytes:
@@ -188,8 +199,9 @@ def main(argv: list[str] | None = None) -> int:
         if override
         else PROJECT_ROOT / "output" / "reports" / "connected_gum.json"
     )
+    recorded = recorded_binding(PROJECT_ROOT)
     values = publish_measurement(
-        tuple(pairs), before, load_ledger(PROJECT_ROOT), report, population
+        tuple(pairs), recorded, load_ledger(PROJECT_ROOT), report, population
     )
     print(json.dumps({"report": str(report), "claims": values}, sort_keys=True), flush=True)
     return 0
