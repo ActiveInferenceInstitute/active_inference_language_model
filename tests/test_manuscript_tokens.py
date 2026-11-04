@@ -134,7 +134,7 @@ def test_epoch_default_helper_has_a_fixed_point_under_render_only_commits(tmp_pa
         _ensure_source_date_epoch({}, project_root=bare)
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_plain_generator_cli_defaults_to_the_audited_input_epoch(tmp_path):
     """The bare CLI, with no ``SOURCE_DATE_EPOCH``, stamps the audited input epoch.
 

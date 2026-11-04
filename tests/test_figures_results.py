@@ -1146,7 +1146,7 @@ def test_orchestrator_discovery_is_deterministically_ordered() -> None:
     assert first == [(g.module, g.name) for g in orchestrator.discover_generators()]
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_orchestrator_lists_all_owned_figures() -> None:
     result = _run_script("--list")
     assert result.returncode == 0, result.stderr
@@ -1154,7 +1154,7 @@ def test_orchestrator_lists_all_owned_figures() -> None:
         assert name in result.stderr, f"{name} was not discovered by the orchestrator"
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_orchestrator_generates_a_selected_figure(tmp_path: Path) -> None:
     result = _run_script("--only", "perplexity_ladder", "--output-dir", str(tmp_path))
     assert result.returncode == 0, result.stderr
@@ -1164,7 +1164,7 @@ def test_orchestrator_generates_a_selected_figure(tmp_path: Path) -> None:
     assert written.exists() and written.parent == tmp_path
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_orchestrator_generates_a_whole_module(tmp_path: Path) -> None:
     result = _run_script("--only", "gates", "--output-dir", str(tmp_path))
     assert result.returncode == 0, result.stderr
@@ -1172,7 +1172,7 @@ def test_orchestrator_generates_a_whole_module(tmp_path: Path) -> None:
     assert printed == ["gate_taxonomy.png", "subsample_bias.png"]
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_orchestrator_fails_on_an_unknown_figure(tmp_path: Path) -> None:
     result = _run_script("--only", "not_a_figure", "--output-dir", str(tmp_path))
     assert result.returncode != 0

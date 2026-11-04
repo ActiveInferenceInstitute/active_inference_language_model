@@ -101,10 +101,25 @@ under `[tool.coverage.report]` cannot fire. Adding `--no-cov` to a command that 
 `--cov` is what keeps a single-file run from failing on the floor rather than on the
 test. Run the full `--cov=ailm` suite (the pyproject floor applies) before declaring anything done.
 
-**60-second per-test timeout** (`pytest-timeout`, signal method). `decode_positions`
-runs at ~4.3 ms/position, so a full-split pymdp pass would blow it. That constraint is
-*why* full-set statistics go through `ailm.verification.oracle` after
-`verify_decoder_equivalence` proves zero disagreements.
+**Timeouts are budgeted, not inherited.** `pyproject.toml` sets the per-test
+default (`pytest-timeout`, signal method). A module may raise it only for a
+reason it can name, and **no override may exceed 900 seconds** — a quarter of
+the hosted step's 3600-second budget — because a test allowed to run for half a
+job is a licence to blow the job it runs inside. Where an override wraps a
+subprocess with its own timeout, the outer bound must exceed the inner one and
+both are capped. `tests/test_release_orchestration.py` enforces the ceiling,
+fails on a new oversized declaration, and carries a planted declaration as its
+negative control.
+
+Overrides are not free headroom: every one in the suite as of this writing is
+at least an order of magnitude above the measured cost of the test it protects,
+which is the point at which a timeout stops describing the test and starts
+describing how long a wedge may last.
+
+`decode_positions` runs at ~4.3 ms/position, so a full-split pymdp pass would
+blow the default. That constraint is *why* full-set statistics go through
+`ailm.verification.oracle` after `verify_decoder_equivalence` proves zero
+disagreements.
 
 `test_pymdp_smoke.py` has a scoped 300-second limit for real dependency imports
 and initial JAX compilation. Fresh-process failures reproduced the default-limit

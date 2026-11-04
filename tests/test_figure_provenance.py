@@ -72,7 +72,7 @@ def _generate(
     )
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_provenance_records_the_pinned_real_stack(tmp_path: Path) -> None:
     result = _generate(tmp_path, "letter_transition")
     assert result.returncode == 0, result.stderr[-2000:]
@@ -150,7 +150,7 @@ def test_provenance_records_the_pinned_real_stack(tmp_path: Path) -> None:
     assert set(merged["figures"]) >= {"letter_transition", "wiring_comparison"}
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_selective_build_refuses_stale_manuscript_input_before_touching_outputs(
     tmp_path: Path,
 ) -> None:
@@ -179,7 +179,7 @@ def test_selective_build_refuses_stale_manuscript_input_before_touching_outputs(
     assert receipt.read_bytes() == previous_receipt
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_selective_build_refuses_mutated_png_before_touching_outputs(tmp_path: Path) -> None:
     """NEGATIVE CONTROL: output bytes are authenticated, not merely named."""
     project_root = tmp_path / "project"
@@ -203,7 +203,7 @@ def test_selective_build_refuses_mutated_png_before_touching_outputs(tmp_path: P
     assert receipt.read_bytes() == receipt_before
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_selective_build_refuses_planted_source_digest_before_touching_outputs(
     tmp_path: Path,
 ) -> None:
@@ -231,7 +231,7 @@ def test_selective_build_refuses_planted_source_digest_before_touching_outputs(
     assert receipt.read_bytes() == planted_receipt
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_selective_build_refuses_planted_shared_source_digest(tmp_path: Path) -> None:
     """NEGATIVE CONTROL: shared save/layout/style code is receipt-bound too."""
     project_root = tmp_path / "project"
@@ -257,7 +257,7 @@ def test_selective_build_refuses_planted_shared_source_digest(tmp_path: Path) ->
     assert receipt.read_bytes() == planted_receipt
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_canonical_input_symlink_is_rejected_without_publication(tmp_path: Path) -> None:
     """NEGATIVE CONTROL: descriptor hashing must not follow a real symlink."""
     project_root = tmp_path / "project"
@@ -276,7 +276,7 @@ def test_canonical_input_symlink_is_rejected_without_publication(tmp_path: Path)
     assert not output_dir.exists()
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_generator_failure_publishes_neither_png_nor_receipt(tmp_path: Path) -> None:
     """NEGATIVE CONTROL: a real missing-token failure never crosses the stage."""
     project_root = tmp_path / "project"
@@ -295,7 +295,7 @@ def test_generator_failure_publishes_neither_png_nor_receipt(tmp_path: Path) -> 
     assert not (output_dir / "figure_provenance.json").exists()
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_selective_build_refuses_malformed_provenance_before_touching_png(
     tmp_path: Path,
 ) -> None:
@@ -315,7 +315,7 @@ def test_selective_build_refuses_malformed_provenance_before_touching_png(
     assert receipt.read_bytes() == previous_receipt
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_selective_build_refuses_the_retired_v2_receipt_contract(tmp_path: Path) -> None:
     """NEGATIVE CONTROL: the expanded v3 contract cannot reinterpret a v2 receipt."""
     receipt = tmp_path / "figure_provenance.json"
@@ -331,7 +331,7 @@ def test_selective_build_refuses_the_retired_v2_receipt_contract(tmp_path: Path)
     assert not (tmp_path / "hierarchy.png").exists()
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_selective_build_refuses_to_relabel_another_numeric_environment(
     tmp_path: Path,
 ) -> None:
@@ -411,7 +411,7 @@ def _copy_isolated_figure_runtime(destination: Path) -> Path:
     return destination / "scripts" / SCRIPT.name
 
 
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_selective_build_refuses_real_code_and_input_mutations(tmp_path: Path) -> None:
     """NEGATIVE CONTROL: untouched PNGs cannot inherit changed dependency bytes."""
     isolated_root = tmp_path / "isolated-runtime"

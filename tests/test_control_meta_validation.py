@@ -206,7 +206,12 @@ def test_planted():
     assert "contains no non-constant assertion" in errors
 
 
-@pytest.mark.timeout(1920)
+#: The nested run boots a clean interpreter and decodes the registered controls
+#: from scratch, so it costs minutes. Both bounds stay finite and comfortably
+#: inside the hosted step budget: the subprocess is capped below the mark that
+#: wraps it, so a wedged child is reported as a subprocess timeout rather than as
+#: a hung test, and neither number is large enough to consume the step.
+@pytest.mark.timeout(900)
 def test_registered_negative_controls_execute_and_do_not_skip(tmp_path):
     """Run every declared control through pytest and inspect its exact receipt."""
     nodeids = [f"tests/{ctrl['file']}::{ctrl['name']}" for ctrl in NEGATIVE_CONTROLS]
@@ -225,7 +230,7 @@ def test_registered_negative_controls_execute_and_do_not_skip(tmp_path):
         check=False,
         capture_output=True,
         text=True,
-        timeout=960,
+        timeout=720,
     )
     output = completed.stdout + completed.stderr
     assert completed.returncode == 0, output

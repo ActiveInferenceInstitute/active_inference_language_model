@@ -2432,7 +2432,7 @@ class TestASecondRunAppendsInsteadOfCollidingWithTheFirst:
     is that a second run no longer asks it to overwrite anything.
     """
 
-    @pytest.mark.timeout(960)
+    @pytest.mark.timeout(900)
     def test_a_divergent_second_run_appends_under_its_own_tags(
         self, tmp_path: Path, local_http_server
     ) -> None:
@@ -2467,7 +2467,7 @@ class TestASecondRunAppendsInsteadOfCollidingWithTheFirst:
         replies = sorted(str(reply["response"]) for _key, _payload, reply in store.entries())
         assert replies == ["first", "first", "second", "second"]
 
-    @pytest.mark.timeout(960)
+    @pytest.mark.timeout(900)
     def test_the_store_still_refuses_a_divergent_reply_on_one_runs_own_key(
         self, tmp_path: Path, local_http_server
     ) -> None:

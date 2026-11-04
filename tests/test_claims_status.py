@@ -169,7 +169,7 @@ def _registration_provenance_defects(payload: dict) -> list[str]:
     return defects
 
 
-@pytest.mark.timeout(1800)
+@pytest.mark.timeout(900)
 @pytest.mark.publication_context
 def test_registration_provenance_is_bound_to_git_history() -> None:
     payload = json.loads(REGISTRATION_PROVENANCE.read_text(encoding="utf-8"))

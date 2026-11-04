@@ -729,7 +729,7 @@ def test_connected_replay_no_op_preserves_all_claim_fields(connected_replay_sour
 # no-op on replay, and shrinking a measurement to fit a clock is the trade this
 # project has already refused twice. This test is marked ``recorder_replay`` and is
 # excluded from the release gate's quick profile, so the cost lands on the full suite.
-@pytest.mark.timeout(7200)
+@pytest.mark.timeout(900)
 @pytest.mark.recorder_replay
 def test_rerunning_the_recorders_is_a_no_op(tmp_path: Path):
     """The authenticated replay preimage must equal what the recorders produce.

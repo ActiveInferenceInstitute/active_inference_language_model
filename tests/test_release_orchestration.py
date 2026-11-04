@@ -313,7 +313,7 @@ def _build_profiles_in_sidecar(template: Path):
     return json.loads(result.stdout)["quick"], json.loads(result.stdout)["full"]
 
 
-@pytest.mark.timeout(960)
+@pytest.mark.timeout(900)
 def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatch):
     # The pytest process itself may have been launched through `uv run`; and
     # uv-built venvs name sys.executable "python3" while the sidecar pins
@@ -791,7 +791,7 @@ def test_distribution_artifact_receipt_parser_is_live_and_fail_closed():
         module._distribution_artifacts_from_output(stdout, expected_source_date_epoch="1787361436")
 
 
-@pytest.mark.timeout(960)
+@pytest.mark.timeout(900)
 def test_full_profile_uses_exact_template_render_then_validation(tmp_path, monkeypatch):
     # In-process under a uv-launched pytest: scrub the marker (environment
     # isolation). build_steps runs inside the real sidecar python because the
@@ -1280,7 +1280,7 @@ def test_startup_audit_rejects_symlinked_pth_and_venv_components(tmp_path):
     assert any("not a real directory" in error for error in routed_state["errors"])
 
 
-@pytest.mark.timeout(960)
+@pytest.mark.timeout(900)
 def test_controlled_python_bootstrap_runs_pinned_modules_without_site_startup(
     tmp_path, monkeypatch
 ):
@@ -2891,7 +2891,7 @@ def _warming_ledger_payload(values: dict[str, object]) -> dict[str, object]:
     }
 
 
-@pytest.mark.timeout(960)
+@pytest.mark.timeout(900)
 def test_the_warming_runbook_preflights_before_it_spends_hours():
     """A run that fails on the third model after two hours should have failed at once.
 
@@ -3819,7 +3819,7 @@ def test_derivative_classification_uses_command_role_and_script_target(tmp_path,
             module._publication_step_evidence(step)
 
 
-@pytest.mark.timeout(1500)
+@pytest.mark.timeout(900)
 def test_derivative_cli_execution_consumes_real_proof_and_tracks_child_coverage(tmp_path):
     """Execute the reviewed full selfproof when the derivative release supplies it.
 
@@ -4313,3 +4313,64 @@ def test_quick_context_filter_has_real_collection_controls(tmp_path):
         leaked = collect(broken_expression)
         assert leaked > {portable}
         assert leaked - {portable} <= contexts
+
+
+#: No single test may be allowed to consume a large share of the hosted step's
+#: 3600-second budget. A generous per-test allowance converts a wedge into a
+#: silent half-hour: the run still ends in a timeout, but only after most of the
+#: job is gone. The ceiling is enforced rather than documented, because the last
+#: one (1800 s) was neither.
+MAX_PER_TEST_TIMEOUT_SECONDS = 900
+
+
+def _pytest_timeout_allowances(source: str) -> list[int]:
+    """Return every integer declared by a ``pytest.mark.timeout(...)`` call."""
+    import ast
+
+    values: list[int] = []
+    for node in ast.walk(ast.parse(source)):
+        if not isinstance(node, ast.Call) or not node.args:
+            continue
+        dotted: list[str] = []
+        target = node.func
+        while isinstance(target, ast.Attribute):
+            dotted.append(target.attr)
+            target = target.value
+        if not isinstance(target, ast.Name):
+            continue
+        dotted.append(target.id)
+        if list(reversed(dotted)) != ["pytest", "mark", "timeout"]:
+            continue
+        argument = node.args[0]
+        if isinstance(argument, ast.Constant) and isinstance(argument.value, int):
+            values.append(int(argument.value))
+    return values
+
+
+def test_no_per_test_timeout_allowance_exceeds_the_declared_ceiling():
+    """Every per-test allowance stays well inside the hosted step budget."""
+    allowances: dict[str, list[int]] = {}
+    for path in sorted((PROJECT_ROOT / "tests").glob("*.py")):
+        source = path.read_text(encoding="utf-8")
+        if "mark.timeout" not in source:
+            continue
+        values = _pytest_timeout_allowances(source)
+        if values:
+            allowances[path.name] = values
+    oversized = {
+        name: [value for value in values if value > MAX_PER_TEST_TIMEOUT_SECONDS]
+        for name, values in allowances.items()
+    }
+    assert {name: values for name, values in oversized.items() if values} == {}
+    # Non-vacuity: the scan must see the allowances in force, not an empty set.
+    assert len(allowances) >= 5, allowances
+    assert max(allowances["test_wheel_resources.py"]) == MAX_PER_TEST_TIMEOUT_SECONDS
+    assert allowances["test_stage2_gate.py"] == [900]
+    assert allowances["test_control_meta_validation.py"] == [900]
+
+
+def test_timeout_ceiling_scan_sees_a_planted_oversized_declaration():
+    """NEGATIVE CONTROL: the scanner must find an 1800-second allowance."""
+    planted = "import pytest\npytestmark = pytest.mark.timeout(1800)\n"
+    assert _pytest_timeout_allowances(planted) == [1800]
+    assert max(_pytest_timeout_allowances(planted)) > MAX_PER_TEST_TIMEOUT_SECONDS

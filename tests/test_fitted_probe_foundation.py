@@ -406,7 +406,7 @@ def _run_script(args: list[str]) -> subprocess.CompletedProcess[str]:
 
 
 class TestScript:
-    @pytest.mark.timeout(1920)
+    @pytest.mark.timeout(900)
     def test_letter_fixture_end_to_end_and_immutability(self, tmp_path: Path) -> None:
         stream_path = tmp_path / "stream.txt"
         stream_path.write_text(synthetic_letter_stream(3, 600), encoding="utf-8")
@@ -442,7 +442,7 @@ class TestScript:
         assert second.returncode == 2
         assert "refusing to overwrite" in second.stderr
 
-    @pytest.mark.timeout(1920)
+    @pytest.mark.timeout(900)
     def test_letter_full_corpus_gate_refuses(self, tmp_path: Path) -> None:
         result = _run_script(
             [
@@ -459,7 +459,7 @@ class TestScript:
         assert result.returncode == 2
         assert "gated" in result.stderr
 
-    @pytest.mark.timeout(1920)
+    @pytest.mark.timeout(900)
     def test_letter_below_gap_refuses_at_cli(self, tmp_path: Path) -> None:
         stream_path = tmp_path / "stream.txt"
         stream_path.write_text(synthetic_letter_stream(5, 600), encoding="utf-8")
@@ -480,7 +480,7 @@ class TestScript:
         assert result.returncode == 2
         assert "seam invariant refused" in result.stderr
 
-    @pytest.mark.timeout(1920)
+    @pytest.mark.timeout(900)
     def test_letter_exact_gap_runs_end_to_end(self, tmp_path: Path) -> None:
         stream_path = tmp_path / "stream.txt"
         stream_path.write_text(synthetic_letter_stream(6, 600), encoding="utf-8")
@@ -502,7 +502,7 @@ class TestScript:
         report = json.loads(result.stdout)
         assert report["verified_files"] == 3
 
-    @pytest.mark.timeout(1920)
+    @pytest.mark.timeout(900)
     def test_g2p_real_vendored_source(self, tmp_path: Path) -> None:
         result = _run_script(
             [
