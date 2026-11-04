@@ -2644,9 +2644,39 @@ def _execute_steps(
             f"({result['duration_seconds']}s) -> {result['log']}",
             flush=True,
         )
+        if result["exit_code"] != 0:
+            _echo_failure_tail(step, result)
         if result["exit_code"] != 0 and not keep_going:
             break
     return results
+
+
+def _echo_failure_tail(step: Step, result: Mapping[str, object]) -> None:
+    """Echo a bounded tail of a failed step's output to this process's stderr.
+
+    The receipt already records ``stdout_tail`` and ``stderr_tail``, but those live
+    only in the uploaded artifact: the hosted job log otherwise shows a single
+    summary line and nothing about what the step was doing. A step killed by its own
+    watchdog is the case that matters most, because its artifact may never be
+    published at all. Forty lines are enough to name the last test or command, and
+    each line is truncated so a single long traceback cannot flood the log.
+    """
+    line_limit = 40
+    character_limit = 200
+    for stream, label in (("stdout_tail", "stdout"), ("stderr_tail", "stderr")):
+        text = str(result.get(stream) or "")
+        lines = [line for line in text.splitlines() if line.strip()]
+        if not lines:
+            continue
+        tail = lines[-line_limit:]
+        print(
+            f"--- last {len(tail)} non-empty line(s) of {label} from "
+            f"{step.name} (full output in {result['log']}) ---",
+            file=sys.stderr,
+            flush=True,
+        )
+        for line in tail:
+            print(line[:character_limit], file=sys.stderr, flush=True)
 
 
 def _atomic_write_text(path: Path, content: str) -> None:

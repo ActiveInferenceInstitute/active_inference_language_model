@@ -878,6 +878,43 @@ def test_step_runner_records_a_real_success_and_failure(tmp_path):
     assert (tmp_path / "failure.log").is_file()
 
 
+def test_timed_out_step_echoes_its_tail_to_the_job_log(tmp_path, capsys):
+    """A timeout must leave its evidence in the log a reader actually opens.
+
+    The receipt already carries ``stdout_tail``, but that lives in the uploaded
+    artifact: the job log previously showed one summary line, which is why a
+    red run sat undiagnosed for a day. The echo is the fix, so it is asserted
+    against the stream the job log captures rather than against the artifact.
+    """
+    module = _module()
+    step = module.Step(
+        "echoes-tail",
+        (
+            sys.executable,
+            "-u",
+            "-c",
+            "import time; print('first-marker'); print('last-marker'); time.sleep(30)",
+        ),
+        1,
+    )
+    steps = module._execute_steps(
+        (step,),
+        tmp_path,
+        environment={"PATH": os.environ["PATH"]},
+        keep_going=False,
+    )
+    assert len(steps) == 1
+    result = steps[0]
+    assert result["timed_out"] is True
+    assert result["exit_code"] == 124
+    assert "Timed out after 1 seconds." in result["stderr_tail"]
+    captured = capsys.readouterr()
+    assert "first-marker" in captured.err, "the echoed tail must reach the job log"
+    assert "last-marker" in captured.err, "the last line before the kill must survive"
+    assert "echoes-tail" in captured.err, "the echo must name the step"
+    assert str(tmp_path) in captured.err, "the echo must point at the full log"
+
+
 def test_step_runner_records_missing_executable_and_requested_cwd(tmp_path):
     module = _module()
     working = tmp_path / "working"
