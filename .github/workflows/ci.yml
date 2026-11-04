@@ -109,7 +109,8 @@ jobs:
         env:
           AILM_REQUIRE_GNN_INTEROP: "1"
         run: |
-          export AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.0.3 && pwd)"
+          AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.0.3 && pwd)"
+          export AILM_GNN_UPSTREAM
           .venv/bin/python scripts/verify_gnn_release.py
           .venv/bin/python -m pytest tests/test_gnn_conformance.py -q --no-cov
 
