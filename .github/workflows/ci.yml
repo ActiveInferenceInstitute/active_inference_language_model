@@ -68,7 +68,7 @@ jobs:
           path: output/reports/
 
   gnn-interop:
-    name: gnn conformance (pinned v5.0.3)
+    name: gnn conformance (pinned)
     # The upstream parser is an optional extra in ordinary development, so the
     # quick profile skips these checks. This job provisions the pinned release
     # checkout and the gnn-interop extra and then requires them: under
