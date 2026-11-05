@@ -274,4 +274,5 @@ auxiliaries. Quick deselects these explicit prerequisites. Full selects both
 groups and requires their assertions to pass; missing inputs remain failures.
 The four end-to-end measurement gates carry `measurement_gate`: quick deselects
 them and the hosted `measurement gate` job runs the same portable subset of those
-files serially, with its own receipt and watchdog.
+files serially, with its own receipt and watchdog. The wheel-build and real-socket
+contract files carry `contract_gate` and run in the hosted `contract gate` job.

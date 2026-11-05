@@ -122,6 +122,63 @@ jobs:
           name: measurement-release-receipt
           path: output/reports/
 
+  contract:
+    name: contract gate
+    # The two slowest self-contained non-measurement files move here: wheel
+    # builds in subprocesses and real-socket retry waits. The 2026-11-04
+    # full-suite duration profile attributed 270.8 s to them in-suite; this
+    # profile's first local run measured 168.6 s for the same 117 tests. The
+    # 2100 s step watchdog is set against the slower 325.5 s hosted projection
+    # (15.5% of the budget). This job has its own receipt and its own check row,
+    # so a wheel build cannot consume the quick step's budget. Deliberately not
+    # a ruleset requirement.
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install uv and Python
+        id: setup_uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.0"
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Expose pinned uv to the release verifier
+        env:
+          RELEASE_UV_BINARY: ${{ steps.setup_uv.outputs.uv-path }}
+        run: |
+          test -x "$RELEASE_UV_BINARY"
+          mkdir -p "${HOME}/.local/bin"
+          test ! -e "${HOME}/.local/bin/uv"
+          test ! -L "${HOME}/.local/bin/uv"
+          ln -s "$RELEASE_UV_BINARY" "${HOME}/.local/bin/uv"
+          "${HOME}/.local/bin/uv" --version
+
+      - name: Install Pandoc and ripgrep for the portable documentation and formal checks
+        run: |
+          brew install pandoc ripgrep
+          pandoc --version
+          rg --version
+
+      - name: Sync locked environment
+        run: uv sync --locked --extra dev
+
+      - name: Run contract receipt
+        run: .venv/bin/python -I -S scripts/verify_release.py contract
+
+      - name: Upload receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: contract-release-receipt
+          path: output/reports/
+
   gnn-interop:
     name: gnn conformance (pinned)
     # The upstream parser is an optional extra in ordinary development, so the

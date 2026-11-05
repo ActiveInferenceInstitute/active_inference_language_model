@@ -32,6 +32,11 @@ from ailm.resources import (
 )
 from scripts.verify_release import DISTRIBUTION_MARKER
 
+# Building and installing wheels in subprocesses is a contract gate, not a quick
+# check: the quick budget must not be set by wheel builds. The contract profile
+# runs this file in its own hosted job with its own receipt and watchdog.
+pytestmark = pytest.mark.contract_gate
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 #: The declared package version, read from pyproject.toml so the synthetic archive
 #: member names below track a release bump instead of pinning a stale version string.
