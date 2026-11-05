@@ -19,6 +19,11 @@ from ailm.gates import AUDITED_GATE_IDS, GateVerdict
 
 
 def pytest_configure(config: pytest.Config) -> None:
+    # Population-selection markers are registered here, beside the two context
+    # markers, rather than in pyproject.toml: the connected publication
+    # execution binding pins the package file and admits URL-only changes, so a
+    # selection line there would invalidate a recorded measurement.
+
     config.addinivalue_line(
         "markers",
         "publication_context: requires retained private publication history, raw inputs, or original-source proofs; mandatory in full",
@@ -26,6 +31,10 @@ def pytest_configure(config: pytest.Config) -> None:
     config.addinivalue_line(
         "markers",
         "template_context: requires the configured renderer checkout or its staged manuscript auxiliaries; mandatory in full",
+    )
+    config.addinivalue_line(
+        "markers",
+        "measurement_gate: slow end-to-end measurement gates; the measurement profile runs them in their own hosted job",
     )
 
 

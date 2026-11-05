@@ -858,6 +858,18 @@ def _coverage_gate_argument(root: Path = PROJECT_ROOT) -> str:
     return f"--cov-fail-under={_coverage_floor(root)}"
 
 
+#: The markers quick deselects because its checkout does not carry the inputs
+#: they need (the publication template, the ignored raw corpora, the CUDA
+#: plugin). The measurement profile runs the marked subset of *exactly* this
+#: selection: the split moves tests out of quick without widening what any
+#: hosted job provisions. The rest of the marked files stay full-only, where
+#: they ran before the split.
+_QUICK_TEST_EXCLUSIONS = (
+    "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
+    "and not publication_context and not template_context"
+)
+
+
 def build_steps(
     profile: str,
     *,
@@ -968,8 +980,7 @@ def build_steps(
                     "-n",
                     str(_quick_test_workers()),
                     "-m",
-                    "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
-                    "and not publication_context and not template_context",
+                    _QUICK_TEST_EXCLUSIONS + " and not measurement_gate",
                 ),
                 3600,
                 depends_on=("environment-compatibility", "web-page"),
@@ -979,6 +990,40 @@ def build_steps(
                 _controlled_python_argv("script", "scripts/audit_gates.py", "--limit", "400"),
                 1800,
                 depends_on=("environment-compatibility",),
+            ),
+        )
+    if profile == "measurement":
+        # The measurement gates are the slowest end-to-end files in the suite
+        # (measured at 903.9 s of 2338 s of quick test time). They run here, in
+        # their own job with their own receipt and a 2100 s watchdog, so the
+        # quick step keeps the margin the split exists to buy. Serial on
+        # purpose: the 903.9 s figure was measured with -n 1, and these files
+        # spawn their own interpreters, so parallel workers would make the
+        # budget projection a different measurement.
+        #
+        # The selection repeats quick's exclusions. The four files hold 638
+        # marked tests, but 78 of them need publication inputs or the ignored
+        # raw corpora that the quick and measurement checkouts do not carry (77
+        # publication_context, 1 raw_corpus_regeneration). They ran only in the
+        # full profile before the split and still do; widening this job to 638
+        # would make a hosted job provision inputs it never had.
+        return common + (
+            Step(
+                "tests-measurement",
+                _controlled_python_argv(
+                    "module",
+                    "pytest",
+                    "tests/",
+                    "-q",
+                    "--no-cov",
+                    "-n",
+                    "1",
+                    "-m",
+                    _QUICK_TEST_EXCLUSIONS + " and measurement_gate",
+                ),
+                2100,
+                depends_on=("environment-compatibility", "web-page"),
+                forbid_pytest_skips=True,
             ),
         )
     if profile == "full":
@@ -2190,7 +2235,7 @@ def _template_input_refusal(
 def _toolchain_refusal(profile: str, toolchain: Mapping[str, object]) -> str | None:
     """Explain which profile-required external executable is unusable."""
 
-    required = ("git", "uv") if profile == "quick" else ("git", "uv", "lake", "qpdf")
+    required = ("git", "uv") if profile != "full" else ("git", "uv", "lake", "qpdf")
     tools = toolchain.get("tools")
     if not isinstance(tools, Mapping):
         return "release toolchain inventory is malformed"
@@ -2919,7 +2964,7 @@ def run_profile(
             "fingerprint": None,
             "inputs": [],
             "locator_error": (
-                "not required by quick profile"
+                "not required by this profile"
                 if not raw_inputs_required
                 else "not captured because a release prerequisite was refused"
             ),
@@ -3113,7 +3158,7 @@ def run_profile(
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("profile", choices=("quick", "full"))
+    parser.add_argument("profile", choices=("quick", "measurement", "full"))
     parser.add_argument("--receipt", type=Path, default=DEFAULT_RECEIPT)
     parser.add_argument(
         "--publication-derivative",

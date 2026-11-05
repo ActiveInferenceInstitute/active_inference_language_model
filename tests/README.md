@@ -272,3 +272,6 @@ tests require retained private Git history, raw corpus sources or original-sourc
 proofs; `template_context` tests require the configured renderer or staged render
 auxiliaries. Quick deselects these explicit prerequisites. Full selects both
 groups and requires their assertions to pass; missing inputs remain failures.
+The four end-to-end measurement gates carry `measurement_gate`: quick deselects
+them and the hosted `measurement gate` job runs the same portable subset of those
+files serially, with its own receipt and watchdog.

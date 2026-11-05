@@ -82,7 +82,7 @@ _SKIP_NO_ARTIFACT = pytest.mark.skipif(
     reason="vendor/brown_word_counts.json absent; run scripts/generate_word_counts.py",
 )
 
-pytestmark = _SKIP_NO_ARTIFACT
+pytestmark = [_SKIP_NO_ARTIFACT, pytest.mark.measurement_gate]
 
 
 @pytest.fixture(scope="module")

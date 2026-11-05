@@ -170,7 +170,10 @@ step takes no coverage; the
 `full` profile is intentionally serial, since its receipt parser expects exactly
 one coverage TOTAL row and its recorder replay shares one ledger lock. With
 `--cov`, the workers combine coverage automatically and the pyproject floor
-still applies.
+still applies. The `measurement` profile runs the four `measurement_gate` files
+serially in the hosted `measurement gate` job, with its own receipt and
+watchdog, so the quick step's budget is not set by the slowest end-to-end
+measurement files; that job is not a ruleset requirement.
 
 ### Inspect every skip; do not trust a fixed census
 
@@ -183,7 +186,7 @@ it rejects skips, that profile also sets `AILM_RELEASE_MANDATORY_ENVIRONMENT=1`
 for its full pytest step: tests that would otherwise skip on an environment gap
 (the upstream GNN checkout and its `gnn-interop` extra, an unserved Ollama probe)
 fail instead and name what is missing. The CUDA-only tests under the
-`requires_cuda12` marker are deselected by both profiles; run them with
+`requires_cuda12` marker are deselected by every profile; run them with
 `.venv/bin/python -m pytest -m requires_cuda12` on a CUDA host.
 
 Tests that deliberately query the user's Ollama process are disabled unless

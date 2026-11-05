@@ -135,6 +135,6 @@ exact tools they audited.
   markers: [`pyproject.toml`](../../pyproject.toml).
 - The release-only uv configuration: [`release-uv.toml`](../../release-uv.toml).
 - Paper metadata and render policy: [`docs/manuscript/config.yaml`](../manuscript/config.yaml).
-- The quick and full profiles, what each needs, and the interpreter rule:
+- The quick, measurement, and full profiles, what each needs, and the interpreter rule:
   [`guides/quickstart.md`](../guides/quickstart.md) and
   [`method/release_checklist.md`](../method/release_checklist.md).
