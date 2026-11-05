@@ -105,7 +105,7 @@ test. Run the full `--cov=ailm` suite (the pyproject floor applies) before decla
 default (`pytest-timeout`, signal method). A module may raise it only for a
 reason it can name, and **no override may exceed 900 seconds** — a quarter of
 the hosted step's 3600-second budget — because a test allowed to run for half a
-job is a licence to blow the job it runs inside. Where an override wraps a
+job is a license to blow the job it runs inside. Where an override wraps a
 subprocess with its own timeout, the outer bound must exceed the inner one and
 both are capped. `tests/test_release_orchestration.py` enforces the ceiling,
 fails on a new oversized declaration, and carries a planted declaration as its

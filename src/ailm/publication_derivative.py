@@ -64,7 +64,7 @@ _REVIEWED_TEST_FIXTURE_DELTAS: Final = {
             "0cb3a5a649fd99a7d71f06049944b6dc6d2ad5f8c015c7ec3dc19c82ff02fa6d", 43935, "100644"
         ),
         FileIdentity(
-            "8294a8fdea6b09f0761349b6876585ce039703f1aa6415961f701c84efbd1141", 55951, "100644"
+            "53c66c82515d4f24b1942da09a00a86af166b3232a9f003e5ac07eae4549c602", 55950, "100644"
         ),
     ),
     "tests/test_docs_hydration.py": (
