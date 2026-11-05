@@ -117,7 +117,7 @@ def test_nested_scripts_are_collected_and_flagged(tmp_path: Path):
     assert _assert_statements(clean) == []
 
 
-@pytest.mark.timeout(1920)
+@pytest.mark.timeout(900)
 def test_gate_calibration_check_survives_optimized_bytecode():
     """The gate-vacuity check must still raise under `python -O`.
 
@@ -141,7 +141,7 @@ def test_gate_calibration_check_survives_optimized_bytecode():
         cwd=REPO_ROOT,
         capture_output=True,
         text=True,
-        timeout=960,
+        timeout=600,
     )
     assert result.returncode == 0, result.stderr
     assert "RAISED" in result.stdout, (
@@ -149,7 +149,7 @@ def test_gate_calibration_check_survives_optimized_bytecode():
     )
 
 
-@pytest.mark.timeout(1920)
+@pytest.mark.timeout(900)
 def test_corrupt_count_guard_survives_optimized_bytecode():
     """A malformed corpus count must not become a negative probability under ``-O``.
 
@@ -173,7 +173,7 @@ def test_corrupt_count_guard_survives_optimized_bytecode():
         cwd=REPO_ROOT,
         capture_output=True,
         text=True,
-        timeout=960,
+        timeout=600,
     )
     assert result.returncode == 0, result.stderr
     assert "RAISED" in result.stdout, "negative phone counts reached matrix normalization under -O"

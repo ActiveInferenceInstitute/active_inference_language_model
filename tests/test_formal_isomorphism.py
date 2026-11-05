@@ -920,7 +920,7 @@ def test_module_theorem_counts_refuse_colliding_paths():
 
 
 @_NEEDS_LAKE
-@pytest.mark.timeout(1200)
+@pytest.mark.timeout(900)
 def test_failed_lean_report_preserves_the_published_report(tmp_path):
     # A real Lean error in the report step must not truncate an earlier receipt.
     formal = tmp_path / "formal"
@@ -993,7 +993,7 @@ def _run_writer(formal: Path, bin_dir: Path) -> subprocess.CompletedProcess[str]
     )
 
 
-@pytest.mark.timeout(960)
+@pytest.mark.timeout(900)
 def test_a_missing_rg_is_a_missing_tool_refused_before_any_work(tmp_path):
     """Missing ripgrep must read as a missing tool, never as an empty report (S19)."""
     formal, report, bin_dir = _writer_fixture(tmp_path)
@@ -1010,7 +1010,7 @@ def test_a_missing_rg_is_a_missing_tool_refused_before_any_work(tmp_path):
     assert report.read_text() == "previous verified report control\n"
 
 
-@pytest.mark.timeout(960)
+@pytest.mark.timeout(900)
 def test_a_failing_rg_is_a_tool_failure_not_vacuity(tmp_path):
     """An rg that runs and fails must be reported with its status, not as vacuity (S19)."""
     formal, report, bin_dir = _writer_fixture(tmp_path)
@@ -1028,7 +1028,7 @@ def test_a_failing_rg_is_a_tool_failure_not_vacuity(tmp_path):
     assert not list(formal.glob("axiom_report.*.txt")), "the staged temp must not survive"
 
 
-@pytest.mark.timeout(960)
+@pytest.mark.timeout(900)
 def test_zero_verdicts_from_a_working_rg_still_refuse_as_vacuity(tmp_path):
     """The genuine vacuity refusal keeps its meaning and its exit once rg is working."""
     formal, report, bin_dir = _writer_fixture(tmp_path)

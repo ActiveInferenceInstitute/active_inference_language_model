@@ -722,7 +722,7 @@ def test_the_server_module_refuses_to_be_run_directly():
 # ── LAZY STARTUP BOUNDARY ────────────────────────────────────────────────────
 
 
-@pytest.mark.timeout(960)
+@pytest.mark.timeout(900)
 def test_importing_the_entry_point_loads_no_numerical_engine():
     """`import ailm.dashboard.__main__` must not pull numpy, jax or pymdp.
 
@@ -756,7 +756,7 @@ def test_importing_the_entry_point_loads_no_numerical_engine():
     assert "entry-point boundary holds" in result.stdout
 
 
-@pytest.mark.timeout(960)
+@pytest.mark.timeout(900)
 def test_public_api_resolves_the_original_callables():
     """The lazy facade must return the real function objects, nothing else.
 
@@ -798,7 +798,7 @@ def test_public_api_resolves_the_original_callables():
     assert "public api resolves originals" in result.stdout
 
 
-@pytest.mark.timeout(960)
+@pytest.mark.timeout(900)
 def test_static_config_and_auth_serve_before_any_numerical_import():
     """A fresh process answers page, credential and config without the engine.
 

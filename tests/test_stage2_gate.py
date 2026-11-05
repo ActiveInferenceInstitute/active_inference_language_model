@@ -461,16 +461,15 @@ def _mis_normalized_emission(emission: np.ndarray) -> np.ndarray:
 
 #: Stage 2 decodes the full held-out G2P set through both pymdp and the oracle,
 #: so its module fixtures cost minutes rather than seconds and that cost is
-#: charged to whichever test requests them first. Under the suite-wide 60s
-#: default those tests error whenever the machine is busy, and the error reads as
-#: a broken gate rather than as a clock — this module produced eleven such errors
-#: in one run while a benchmark census saturated the machine. This is the fifth
-#: place in this project where a default sized for computation was inherited by a
-#: test whose cost is a corpus, a live server, or a fleet of subprocesses. The
-#: ceiling stays finite so a genuinely wedged decode still fails, and the
-#: evaluation set is left alone: shrinking it to fit a clock would weaken the
-#: very margin this module exists to establish.
-pytestmark = pytest.mark.timeout(1800)
+#: charged to whichever test requests them first. Under a default sized for
+#: computation those tests error whenever the machine is busy, and the error reads
+#: as a broken gate rather than as a clock — this module produced eleven such
+#: errors in one run while a benchmark census saturated the machine. The ceiling
+#: is raised for that measured cost and stays finite, well inside the hosted
+#: step's budget, so a genuinely wedged decode still fails; the evaluation set is
+#: left alone, because shrinking it to fit a clock would weaken the very margin
+#: this module exists to establish.
+pytestmark = pytest.mark.timeout(900)
 
 
 @pytest.fixture(scope="module")

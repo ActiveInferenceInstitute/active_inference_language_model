@@ -465,7 +465,7 @@ def test_the_planted_shift_is_the_development_effect() -> None:
 
 
 @pytest.mark.skipif(not VENV_PYTHON.exists(), reason="project interpreter absent")
-@pytest.mark.timeout(1800)
+@pytest.mark.timeout(900)
 def test_the_recorder_is_idempotent(tmp_path: Path) -> None:
     """Two consecutive runs against one ledger leave identical claims.
 

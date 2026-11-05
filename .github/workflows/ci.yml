@@ -68,7 +68,7 @@ jobs:
           path: output/reports/
 
   gnn-interop:
-    name: gnn conformance (pinned v5.0.3)
+    name: gnn conformance (pinned)
     # The upstream parser is an optional extra in ordinary development, so the
     # quick profile skips these checks. This job provisions the pinned release
     # checkout and the gnn-interop extra and then requires them: under
@@ -109,7 +109,8 @@ jobs:
         env:
           AILM_REQUIRE_GNN_INTEROP: "1"
         run: |
-          export AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.0.3 && pwd)"
+          AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.0.3 && pwd)"
+          export AILM_GNN_UPSTREAM
           .venv/bin/python scripts/verify_gnn_release.py
           .venv/bin/python -m pytest tests/test_gnn_conformance.py -q --no-cov
 
