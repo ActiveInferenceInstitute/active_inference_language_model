@@ -129,6 +129,14 @@ population with `--collect-only`, compares it against the unmarked four-file col
 requires the excluded remainder to be exactly the tests carrying those two input-requiring
 markers, so a drifting count fails the suite rather than the hosted run.
 
+**The two slowest self-contained contract files do not run in the quick profile either.** `test_wheel_resources.py`
+and `test_openrouter_client_contracts.py` carry `pytestmark = pytest.mark.contract_gate` and are selected by the
+`contract` profile in their own hosted job (`contract gate`, 2100 s watchdog, own receipt). They contribute
+**117** tests (38 + 79), so quick falls from **9,169** to **9,052**. The 9,169 is the 9,168 the post-merge
+receipt measured plus the one orchestration test this change adds. Both files keep their per-test timeouts:
+the wheel build's 900 s allowance and the client's real retry waits. `test_release_orchestration.py` collects
+the 117 and requires the marked set to be exactly the quick set, so a drifting count fails the suite.
+
 `decode_positions` runs at ~4.3 ms/position, so a full-split pymdp pass would
 blow the default. That constraint is *why* full-set statistics go through
 `ailm.verification.oracle` after `verify_decoder_equivalence` proves zero

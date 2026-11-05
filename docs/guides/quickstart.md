@@ -173,7 +173,9 @@ one coverage TOTAL row and its recorder replay shares one ledger lock. With
 still applies. The `measurement` profile runs the four `measurement_gate` files
 serially in the hosted `measurement gate` job, with its own receipt and
 watchdog, so the quick step's budget is not set by the slowest end-to-end
-measurement files; that job is not a ruleset requirement.
+measurement files; the `contract` profile runs the two `contract_gate` files
+(wheel builds and real-socket retries) in its own hosted job for the same
+reason. Neither job is a ruleset requirement.
 
 ### Inspect every skip; do not trust a fixed census
 
