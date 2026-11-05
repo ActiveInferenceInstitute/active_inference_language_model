@@ -31,6 +31,11 @@ from ailm.benchmarks.openrouter_budget import (
 )
 from ailm.call_cache import CallCache
 
+# Real-socket boundary contracts against the loopback server, including real
+# retry backoff waits; the contract profile runs this file in its own hosted job
+# so the quick budget is not set by socket timeouts.
+pytestmark = pytest.mark.contract_gate
+
 #: The path segment the loopback server answers under. OpenRouter's real
 #: endpoint is a full URL rather than a base-plus-path split like Ollama's, so
 #: every test builds ``local_http_server.base_url + _CHAT_PATH`` and queues

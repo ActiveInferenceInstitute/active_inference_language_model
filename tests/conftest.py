@@ -36,6 +36,10 @@ def pytest_configure(config: pytest.Config) -> None:
         "markers",
         "measurement_gate: slow end-to-end measurement gates; the measurement profile runs them in their own hosted job",
     )
+    config.addinivalue_line(
+        "markers",
+        "contract_gate: slow wheel and real-socket contract files; the contract profile runs them in their own hosted job",
+    )
 
 
 def read_gate_audit_reports(root: Path) -> dict[str, dict[str, Any]]:
