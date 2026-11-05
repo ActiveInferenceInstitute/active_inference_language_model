@@ -469,7 +469,7 @@ def _mis_normalized_emission(emission: np.ndarray) -> np.ndarray:
 #: step's budget, so a genuinely wedged decode still fails; the evaluation set is
 #: left alone, because shrinking it to fit a clock would weaken the very margin
 #: this module exists to establish.
-pytestmark = pytest.mark.timeout(900)
+pytestmark = [pytest.mark.timeout(900), pytest.mark.measurement_gate]
 
 
 @pytest.fixture(scope="module")

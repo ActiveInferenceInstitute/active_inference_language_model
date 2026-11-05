@@ -24,6 +24,10 @@ from ailm.gates import AUDITED_GATE_IDS, GateId
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
+# Re-executing every registered negative control in clean interpreters is a
+# measurement gate, not a quick check; the measurement profile owns it.
+pytestmark = pytest.mark.measurement_gate
+
 
 # ── 1. NEGATIVE CONTROL REGISTRY ──────────────────────────────────────────────
 

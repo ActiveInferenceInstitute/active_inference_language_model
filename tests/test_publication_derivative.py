@@ -26,6 +26,11 @@ from ailm import publication_derivative as derivative
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# The quick profile must stay inside its one-hour budget; this file's real Git
+# object and subprocess controls are the largest single cost in it. The
+# measurement profile selects this mark in its own job with its own watchdog.
+pytestmark = pytest.mark.measurement_gate
+
 _REVIEWED_FIXTURE_PATHS = (
     "tests/test_claims_single_writer.py",
     "tests/test_docs_hydration.py",
