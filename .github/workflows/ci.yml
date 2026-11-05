@@ -125,11 +125,13 @@ jobs:
   contract:
     name: contract gate
     # The two slowest self-contained non-measurement files move here: wheel
-    # builds in subprocesses and real-socket retry waits, measured at
-    # 270.8 s serially and projected 325.5 s hosted. This job has its own
-    # watchdog (2100 s step inside a 45-minute job), its own receipt and its
-    # own check row, so a wheel build cannot consume the quick step's budget.
-    # Deliberately not a ruleset requirement.
+    # builds in subprocesses and real-socket retry waits. The 2026-11-04
+    # full-suite duration profile attributed 270.8 s to them in-suite; this
+    # profile's first local run measured 168.6 s for the same 117 tests. The
+    # 2100 s step watchdog is set against the slower 325.5 s hosted projection
+    # (15.5% of the budget). This job has its own receipt and its own check row,
+    # so a wheel build cannot consume the quick step's budget. Deliberately not
+    # a ruleset requirement.
     runs-on: macos-latest
     timeout-minutes: 45
     steps:

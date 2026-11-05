@@ -1030,12 +1030,16 @@ def build_steps(
     if profile == "contract":
         # The two contract files are the slowest self-contained non-measurement
         # files in the suite: wheel builds in subprocesses and real-socket retry
-        # waits, measured at 135.7 + 135.1 = 270.8 s serially (325.5 s projected
-        # hosted). They run here, in their own job with their own receipt and a
-        # 2100 s watchdog, so the quick budget is not set by a wheel build.
-        # Serial: the wheel file spawns its own interpreters and the client
-        # tests share a loopback server, so parallel workers would measure a
-        # different thing.
+        # waits. Two measurements disagree by 38% on the same host at different
+        # loads: the 2026-11-04 full-suite duration profile attributed 135.7 +
+        # 135.1 = 270.8 s to them in-suite, and this profile's own first local run
+        # measured 168.6 s for the same 117 tests standalone. The 2100 s watchdog
+        # is set against the slower figure, 325.5 s hosted (270.8 x 1.202), which
+        # is 15.5% of the budget; the receipt's own first reading replaces both.
+        # They run here, in their own job with their own receipt and watchdog, so
+        # the quick budget is not set by a wheel build. Serial: the wheel file
+        # spawns its own interpreters and the client tests share a loopback
+        # server, so parallel workers would measure a different thing.
         return common + (
             Step(
                 "tests-contract",
