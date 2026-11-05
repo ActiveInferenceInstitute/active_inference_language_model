@@ -155,9 +155,8 @@ filterwarnings = [
 markers = [
     "recorder_replay: slow acceptance replay of every claims recorder against an isolated ledger",
     "raw_corpus_regeneration: opt-in byte-for-byte replay requiring ignored raw corpora",
-    "requires_cuda12: requires the cuda12 extra (jax[cuda12]==0.4.38 plugin set); deselected by every verify_release profile; run `pytest -m requires_cuda12` on a CUDA host. See docs/troubleshooting.md CUDA section",
+    "requires_cuda12: requires the cuda12 extra (jax[cuda12]==0.4.38 plugin set); deselected by both verify_release profiles; run `pytest -m requires_cuda12` on a CUDA host. See docs/troubleshooting.md CUDA section",
     "slow_demo: builds a real pymdp Agent (ailm.demo); fast once JAX is warm, but pays its one-time cold compile cost the first time in a fresh environment",
-    "measurement_gate: slow end-to-end measurement gates moved out of the quick population; selected by the measurement profile with its own job, receipt, and watchdog",
 ]
 
 [tool.coverage.run]
