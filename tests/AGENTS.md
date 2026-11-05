@@ -116,6 +116,19 @@ at least an order of magnitude above the measured cost of the test it protects,
 which is the point at which a timeout stops describing the test and starts
 describing how long a wedge may last.
 
+**The slowest four files do not run in the quick profile.** `test_publication_derivative.py`,
+`test_stage2_gate.py`, `test_control_meta_validation.py`, and `test_stage3_gate.py` carry
+`pytestmark = pytest.mark.measurement_gate` and are selected by the `measurement` profile in their own
+hosted job (`measurement gate`, 2100 s watchdog, own receipt). The four files hold **638** marked
+tests; the job runs the **560** that quick ran, repeating quick's exclusions, because the other
+**78** (77 `publication_context`, 1 `raw_corpus_regeneration`) need publication inputs or the ignored
+raw corpora and stay full-only. The quick population is **9,168 collected tests**, down from
+**9,728** by exactly **560**. The 9,728 is the 9,727 the `7800dcf` receipt measured plus the one
+orchestration test the check below adds; `test_release_orchestration.py` collects the moved
+population with `--collect-only`, compares it against the unmarked four-file collection, and
+requires the excluded remainder to be exactly the tests carrying those two input-requiring
+markers, so a drifting count fails the suite rather than the hosted run.
+
 `decode_positions` runs at ~4.3 ms/position, so a full-split pymdp pass would
 blow the default. That constraint is *why* full-set statistics go through
 `ailm.verification.oracle` after `verify_decoder_equivalence` proves zero

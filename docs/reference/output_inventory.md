@@ -171,7 +171,7 @@ both to the same builders and refuses an undeclared third interface.
 | `rendered_provenance.json` | template render/validation | Source, resolved, evidence, and rendered digests for every consumed manuscript file |
 | `validation_report.json` | template Stage 04 | Machine-readable publication validation; `validation_report.md` is an ignored human-readable projection when emitted |
 | `connected_gum.json` | `scripts/record_connected_gum_claims.py` | Frozen-population paired document results, OOV coverage, uncertainty and complete canonical execution binding; the connected figure authenticates it against the ledger and current bound sources |
-| `release-receipt.json` | `scripts/verify_release.py` | The quick/full transaction, repository/toolchain snapshots, steps, test/coverage evidence, final-state equality, and publication-acceptance verdict |
+| `release-receipt.json` | `scripts/verify_release.py` | The quick, measurement, or full transaction, repository/toolchain snapshots, steps, test/coverage evidence, final-state equality, and publication-acceptance verdict |
 | `logs/` | `scripts/verify_release.py` | Ignored stdout/stderr per release step under `logs/<run_id>/`; each execution retains separate evidence |
 
 This is the first thing to open when a render fails. It localizes the failure to a

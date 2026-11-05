@@ -222,7 +222,10 @@ profile in `scripts/verify_release.py` runs its test step on up to four workers,
 half the host's cores (it takes no coverage, so the receipt's single-TOTAL-row
 rule does not apply, and a three-core hosted runner stays serial); the
 `full` profile stays serial because its receipt parser expects exactly one
-coverage TOTAL row and its recorder replay shares one ledger lock.
+coverage TOTAL row and its recorder replay shares one ledger lock. The
+`measurement` profile runs the slow end-to-end measurement files serially in the
+hosted `measurement gate` job, which has its own receipt and watchdog and is not
+a ruleset requirement.
 
 ```bash
 # Parallel development loop. Use -n 4 instead of -n auto when other pytest fleets
