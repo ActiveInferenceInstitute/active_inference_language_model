@@ -299,6 +299,7 @@ def _build_profiles_in_sidecar(template: Path):
         "    ]\n"
         "payload = {'quick': enc(m.build_steps('quick')), "
         "'measurement': enc(m.build_steps('measurement')), "
+        "'contract': enc(m.build_steps('contract')), "
         "'full': enc(m.build_steps('full', template_root=template))}\n"
         "print(json.dumps(payload))\n"
     )
@@ -314,6 +315,7 @@ def _build_profiles_in_sidecar(template: Path):
     return (
         json.loads(result.stdout)["quick"],
         json.loads(result.stdout)["measurement"],
+        json.loads(result.stdout)["contract"],
         json.loads(result.stdout)["full"],
     )
 
@@ -330,15 +332,17 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     module = _module()
     template = tmp_path / "template"
     _init_template_repository(template)
-    quick, measurement, full = _build_profiles_in_sidecar(template)
+    quick, measurement, contract, full = _build_profiles_in_sidecar(template)
     expected_python = str(PROJECT_ROOT / ".venv" / "bin" / "python")
     assert _project_python_probe() == expected_python
     quick_names = [step["name"] for step in quick]
     measurement_names = [step["name"] for step in measurement]
+    contract_names = [step["name"] for step in contract]
     full_names = [step["name"] for step in full]
     assert (
         quick_names[:6]
         == measurement_names[:6]
+        == contract_names[:6]
         == full_names[:6]
         == [
             "lock",
@@ -351,6 +355,7 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     )
     assert "tests-quick" in quick_names
     assert "tests-measurement" in measurement_names
+    assert "tests-contract" in contract_names
     assert "tests-full" in full_names
     assert quick_names.index("web-model") < quick_names.index("web-page")
     assert quick_names.index("web-page") < quick_names.index("tests-quick")
@@ -465,7 +470,8 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     )
     assert tests_measurement["argv"][tests_measurement["argv"].index("-m") + 1] == (
         "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
-        "and not publication_context and not template_context and measurement_gate"
+        "and not publication_context and not template_context "
+        "and not contract_gate and measurement_gate"
     ), (
         "the measurement step must run the marked subset of exactly the population "
         "quick ran; repeating quick's exclusions keeps the 78 tests that need "
@@ -476,9 +482,28 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
         "a measurement gate that skips on an absent vendored artifact would report "
         "green without measuring anything"
     )
+    assert contract_names[:8] == quick_names[:8]
+    assert contract_names[8:] == ["tests-contract"]
+    tests_contract = contract[8]
+    assert tests_contract["depends_on"] == ["environment-compatibility", "web-page"]
+    assert tests_contract["argv"][tests_contract["argv"].index("-n") + 1] == "1", (
+        "the contract budget was measured serially; the wheel file spawns its own "
+        "interpreters and the client tests share a loopback server"
+    )
+    assert tests_contract["argv"][tests_contract["argv"].index("-m") + 1] == (
+        "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
+        "and not publication_context and not template_context "
+        "and not measurement_gate and contract_gate"
+    )
+    assert tests_contract["forbid_skips"] is True, (
+        "a contract file that skips on a missing uv would report green without building a wheel"
+    )
     assert "not measurement_gate" in next(
         " ".join(step["argv"]) for step in quick if step["name"] == "tests-quick"
     ), "the quick profile would keep paying for the measurement gates it moved out"
+    assert "not contract_gate" in next(
+        " ".join(step["argv"]) for step in quick if step["name"] == "tests-quick"
+    ), "the quick profile would keep paying for the wheel and socket contracts it moved out"
     raw_replay = next(step for step in full if step["name"] == "raw-corpus-reproducibility")
     assert raw_replay["env_ov"] == [["AILM_RUN_RAW_CORPUS_REGENERATION", "1"]]
     assert raw_replay["forbid_skips"] is True
@@ -568,7 +593,8 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     assert "-n" not in tests_full["argv"]
     assert tests_quick["argv"][-1] == (
         "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
-        "and not publication_context and not template_context and not measurement_gate"
+        "and not publication_context and not template_context "
+        "and not measurement_gate and not contract_gate"
     )
     assert tests_full["argv"][tests_full["argv"].index("-m") + 1] == (
         "not raw_corpus_regeneration and not requires_cuda12"
@@ -1445,7 +1471,7 @@ def test_uv_run_marker_is_refused_even_with_the_exact_interpreter(tmp_path):
 
 
 def test_hosted_ci_uses_the_project_interpreter_and_does_not_fake_full_acceptance():
-    """CI is quick-only because its checkout lacks two full-profile inputs."""
+    """Hosted CI runs the three portable profiles; full needs local inputs."""
 
     workflow = CI_WORKFLOW.read_text(encoding="utf-8")
     assert _ci_release_contract_violations(workflow) == []
@@ -1457,11 +1483,17 @@ def test_hosted_ci_uses_the_project_interpreter_and_does_not_fake_full_acceptanc
     assert workflow.count(".venv/bin/python -I -S scripts/verify_release.py measurement") == 1, (
         "the measurement gate must run through the isolated project interpreter exactly once"
     )
+    assert jobs["contract"]["name"] == "contract gate"
+    assert jobs["contract"]["timeout-minutes"] == 45
+    assert workflow.count(".venv/bin/python -I -S scripts/verify_release.py contract") == 1, (
+        "the contract gate must run through the isolated project interpreter exactly once"
+    )
     assert {
         jobs["quick"].get("name", "quick"),
         jobs["gnn-interop"]["name"],
         jobs["measurement"]["name"],
-    } == {"quick", "gnn conformance (pinned)", "measurement gate"}, (
+        jobs["contract"]["name"],
+    } == {"quick", "gnn conformance (pinned)", "measurement gate", "contract gate"}, (
         "the check-row names are the expected set; a renamed job is a different check"
     )
     assert workflow.index("run: uv sync --locked --extra dev") < workflow.index(
@@ -4284,19 +4316,25 @@ def test_quick_worker_count_follows_the_host_and_stays_bounded():
 def test_quick_context_filter_has_real_collection_controls(tmp_path):
     template = tmp_path / "template"
     _init_template_repository(template)
-    quick, measurement, full = _build_profiles_in_sidecar(template)
+    quick, measurement, contract, full = _build_profiles_in_sidecar(template)
     quick_step = next(step for step in quick if step["name"] == "tests-quick")
     measurement_step = next(step for step in measurement if step["name"] == "tests-measurement")
+    contract_step = next(step for step in contract if step["name"] == "tests-contract")
     full_step = next(step for step in full if step["name"] == "tests-full")
     quick_expression = quick_step["argv"][quick_step["argv"].index("-m") + 1]
     measurement_expression = measurement_step["argv"][measurement_step["argv"].index("-m") + 1]
+    contract_expression = contract_step["argv"][contract_step["argv"].index("-m") + 1]
     full_expression = full_step["argv"][full_step["argv"].index("-m") + 1]
-    assert "not measurement_gate" in quick_expression
-    assert measurement_expression == quick_expression.replace(
-        "and not measurement_gate", "and measurement_gate"
-    ), (
+    shared = " and ".join(quick_expression.split(" and ")[:-2])
+    assert quick_expression == shared + " and not measurement_gate and not contract_gate"
+    assert measurement_expression == shared + " and not contract_gate and measurement_gate", (
         "the measurement profile must select the marked subset of exactly quick's "
-        "population, so it repeats every exclusion quick makes"
+        "population, so it repeats every input exclusion quick makes and excludes "
+        "the other hosted profile's mark"
+    )
+    assert contract_expression == shared + " and not measurement_gate and contract_gate", (
+        "the contract profile must select the marked subset of exactly quick's "
+        "population and exclude the other hosted profile's mark"
     )
     selectors = [
         "tests/test_claims_status.py::test_registration_provenance_is_bound_to_git_history",
@@ -4440,6 +4478,72 @@ def test_measurement_gate_selects_exactly_the_moved_population():
     assert len(marked) > len(selected), (
         "the file-level mark must cover the whole file, including the "
         "publication_context tests the quick profile already deselected"
+    )
+
+
+def test_contract_gate_selects_exactly_the_moved_contract_population():
+    """The two contract files carry the mark and contribute 117 quick tests.
+
+    Quick falls from 9,169 to 9,052 with this split (38 wheel-resource tests and
+    79 real-socket client tests); 9,169 is the 9,168 the post-merge receipt
+    measured plus the one orchestration test this change adds. The unmarked
+    collection is the control: the mark selects the population, and every marked
+    test stays inside the hosted population, so no contract test needs an input
+    the job does not carry.
+    """
+
+    files = (
+        "tests/test_wheel_resources.py",
+        "tests/test_openrouter_client_contracts.py",
+    )
+    quick_inside = (
+        "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
+        "and not publication_context and not template_context and not measurement_gate"
+    )
+
+    def collect(expression: str) -> set[str]:
+        child = subprocess.run(
+            [
+                str(PROJECT_ROOT / ".venv/bin/python"),
+                "-B",
+                "-m",
+                "pytest",
+                "--collect-only",
+                "-q",
+                "-o",
+                "addopts=",
+                "--no-cov",
+                "-m",
+                expression,
+                *files,
+            ],
+            cwd=PROJECT_ROOT,
+            stdin=subprocess.DEVNULL,
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=300,
+        )
+        assert child.returncode in (0, 5), child.stdout + child.stderr  # 5 = deselected to empty
+        return {
+            line for line in child.stdout.splitlines() if line.startswith("tests/") and "::" in line
+        }
+
+    selected = collect("contract_gate and " + quick_inside)
+    assert len(selected) == 117, (len(selected), sorted(selected)[:3])
+    marked = collect("contract_gate")
+    assert marked == selected, (
+        "every marked test in these files must stay inside the hosted population; "
+        "a remainder would mean a contract test needs inputs the job does not carry"
+    )
+    unmarked = collect(quick_inside)
+    assert unmarked == selected, (
+        "the moved population changed; update the 117 count and the PR's collection "
+        "receipt together rather than silently widening the split"
+    )
+    assert collect("measurement_gate") == set(), (
+        "the contract files must not also be measurement gates, or two hosted jobs "
+        "would run the same tests"
     )
 
 

@@ -858,13 +858,14 @@ def _coverage_gate_argument(root: Path = PROJECT_ROOT) -> str:
     return f"--cov-fail-under={_coverage_floor(root)}"
 
 
-#: The markers quick deselects because its checkout does not carry the inputs
-#: they need (the publication template, the ignored raw corpora, the CUDA
-#: plugin). The measurement profile runs the marked subset of *exactly* this
-#: selection: the split moves tests out of quick without widening what any
-#: hosted job provisions. The rest of the marked files stay full-only, where
-#: they ran before the split.
-_QUICK_TEST_EXCLUSIONS = (
+#: The input-based markers every hosted profile deselects: their checkouts carry
+#: neither the publication template, the ignored raw corpora, nor the CUDA
+#: plugin. The three hosted profiles divide the remaining suite by mark --
+#: quick runs the portable surface, measurement runs the end-to-end measurement
+#: gates, contract runs the wheel and real-socket contract files -- so a marked
+#: test runs in exactly one hosted job. The rest of the marked files stay
+#: full-only, where they ran before either split.
+_HOSTED_TEST_EXCLUSIONS = (
     "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
     "and not publication_context and not template_context"
 )
@@ -980,7 +981,7 @@ def build_steps(
                     "-n",
                     str(_quick_test_workers()),
                     "-m",
-                    _QUICK_TEST_EXCLUSIONS + " and not measurement_gate",
+                    _HOSTED_TEST_EXCLUSIONS + " and not measurement_gate and not contract_gate",
                 ),
                 3600,
                 depends_on=("environment-compatibility", "web-page"),
@@ -1019,7 +1020,35 @@ def build_steps(
                     "-n",
                     "1",
                     "-m",
-                    _QUICK_TEST_EXCLUSIONS + " and measurement_gate",
+                    _HOSTED_TEST_EXCLUSIONS + " and not contract_gate and measurement_gate",
+                ),
+                2100,
+                depends_on=("environment-compatibility", "web-page"),
+                forbid_pytest_skips=True,
+            ),
+        )
+    if profile == "contract":
+        # The two contract files are the slowest self-contained non-measurement
+        # files in the suite: wheel builds in subprocesses and real-socket retry
+        # waits, measured at 135.7 + 135.1 = 270.8 s serially (325.5 s projected
+        # hosted). They run here, in their own job with their own receipt and a
+        # 2100 s watchdog, so the quick budget is not set by a wheel build.
+        # Serial: the wheel file spawns its own interpreters and the client
+        # tests share a loopback server, so parallel workers would measure a
+        # different thing.
+        return common + (
+            Step(
+                "tests-contract",
+                _controlled_python_argv(
+                    "module",
+                    "pytest",
+                    "tests/",
+                    "-q",
+                    "--no-cov",
+                    "-n",
+                    "1",
+                    "-m",
+                    _HOSTED_TEST_EXCLUSIONS + " and not measurement_gate and contract_gate",
                 ),
                 2100,
                 depends_on=("environment-compatibility", "web-page"),
@@ -3158,7 +3187,7 @@ def run_profile(
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("profile", choices=("quick", "measurement", "full"))
+    parser.add_argument("profile", choices=("quick", "measurement", "contract", "full"))
     parser.add_argument("--receipt", type=Path, default=DEFAULT_RECEIPT)
     parser.add_argument(
         "--publication-derivative",
