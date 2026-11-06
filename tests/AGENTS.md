@@ -101,6 +101,15 @@ under `[tool.coverage.report]` cannot fire. Adding `--no-cov` to a command that 
 `--cov` is what keeps a single-file run from failing on the floor rather than on the
 test. Run the full `--cov=ailm` suite (the pyproject floor applies) before declaring anything done.
 
+**No hosted job evaluates that floor.** `quick`, `measurement` and `contract` all
+pass `--no-cov`; only the release `full` profile's coverage step carries
+`--cov`/`--cov-fail-under`. Issue #13 records the boundary, and
+`test_release_orchestration.py` fails if a hosted profile starts asking for
+coverage without the measured budget and receipt that would answer it. The
+boundary is stated here rather than beside `fail_under` in `pyproject.toml`
+because the publication artifact contract compares that file byte-for-byte, so a
+comment there cannot ship.
+
 **Timeouts are budgeted, not inherited.** `pyproject.toml` sets the per-test
 default (`pytest-timeout`, signal method). A module may raise it only for a
 reason it can name, and **no override may exceed 900 seconds** — a quarter of
