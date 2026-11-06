@@ -4606,3 +4606,33 @@ def test_timeout_ceiling_scan_sees_a_planted_oversized_declaration():
     planted = "import pytest\npytestmark = pytest.mark.timeout(1800)\n"
     assert _pytest_timeout_allowances(planted) == [1800]
     assert max(_pytest_timeout_allowances(planted)) > MAX_PER_TEST_TIMEOUT_SECONDS
+
+
+def test_the_coverage_floor_is_declared_once_and_no_hosted_profile_measures_it():
+    """The floor is enforced by the release run, never by a hosted job.
+
+    Issue #13 records the boundary. The statement lives in documentation rather
+    than a ``pyproject.toml`` comment because the publication artifact contract
+    compares that file byte-for-byte, so a comment there cannot ship. This test
+    fails the moment a hosted profile starts asking for coverage, which is the
+    point: a hosted coverage job must arrive with its own measured budget and
+    receipt, not as a silently unread flag.
+    """
+    module = _module()
+    ledger = json.loads((PROJECT_ROOT / "data/claims.json").read_text(encoding="utf-8"))
+    floor = module._coverage_floor(PROJECT_ROOT)
+    assert floor == ledger["claims"]["stage0_coverage_floor_pct"]["value"]
+    assert module._coverage_gate_argument(PROJECT_ROOT) == f"--cov-fail-under={floor}"
+
+    hosted = ("quick", "measurement", "contract")
+    for profile in hosted:
+        pytest_steps = [step for step in module.build_steps(profile) if module._is_pytest_step(step)]
+        # Non-vacuity: each hosted profile does run pytest, and it declines coverage.
+        assert pytest_steps, profile
+        for step in pytest_steps:
+            assert "--no-cov" in step.argv, (profile, step.name)
+            assert not any(argument.startswith("--cov") for argument in step.argv), (
+                profile,
+                step.name,
+                step.argv,
+            )

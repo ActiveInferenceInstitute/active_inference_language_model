@@ -25,7 +25,7 @@ level structure, and `docs/design/architecture.md` for the design rationale.
 | **No learned embeddings** | Implemented semantics uses named discrete pymdp states and kernels; no DisCoCat meaning functor is claimed |
 | **Every claim tagged** `claim:<label>` | Backed by `data/claims.json` entry from a measured run |
 | **Every gate has positive AND negative control** | `GateVacuousError` if negative control passes |
-| **claim:stage0_coverage_floor_pct% test coverage minimum** | Enforced by `pyproject.toml` |
+| **claim:stage0_coverage_floor_pct% test coverage minimum** | Declared by `pyproject.toml`; evaluated only by the `full` profile's coverage step, not by hosted CI |
 | **39 canonical ARPAbet phonemes** | Strict; comment stripping required — see `cmudict.py` |
 | **`CaseRole.GEN` is linguistic Genitive** | The source also has core model-role `CORE_GENITIVE` and a distinct novel `NOVEL_GENERATIVE`; both source labels are `[GEN]`, so scoped serialization is mandatory |
 | **`A_dependencies` explicit** | Each modality must name the factors it observes; at L3 the spelling likelihood depends on both word and position, while the two `B` transitions remain separate |
