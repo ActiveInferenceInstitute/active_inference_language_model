@@ -137,6 +137,12 @@ receipt measured plus the one orchestration test this change adds. Both files ke
 the wheel build's 900 s allowance and the client's real retry waits. `test_release_orchestration.py` collects
 the 117 and requires the marked set to be exactly the quick set, so a drifting count fails the suite.
 
+The provenance guard adds three collected quick tests: its own two
+(`test_figure_provenance_guard.py`) and one new parameter of
+`test_gates_survive_assertion_stripping.py`, which parametrizes over every
+script in `scripts/`. The quick population is therefore **9,055**; the 9,052
+above is the contract split's derivation, retained rather than rewritten.
+
 `decode_positions` runs at ~4.3 ms/position, so a full-split pymdp pass would
 blow the default. That constraint is *why* full-set statistics go through
 `ailm.verification.oracle` after `verify_decoder_equivalence` proves zero

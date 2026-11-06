@@ -241,6 +241,21 @@ own receipt and watchdog and neither is a ruleset requirement.
 With `--cov`, xdist workers combine coverage automatically and the pyproject floor
 still applies.
 
+**A change under `src/ailm/` invalidates the committed figure receipt.** The v3
+receipt at `output/figures/figure_provenance.json` pins the SHA-256 of every
+Python module under `src/ailm`, so a source edit is a two-part change whose second
+part lives in a file the editor has no reason to open. Run this before pushing a
+branch that touches `src/ailm/`:
+
+```bash
+.venv/bin/python -I -S scripts/verify_figure_provenance.py --commit HEAD
+```
+
+It reads the receipt and the source blobs **from the commit**, not the working
+tree, and exits non-zero naming the path when the inventory or a digest
+disagrees. `githooks/pre-push` runs it for every pushed commit; install it once
+per checkout with `git config core.hooksPath githooks`.
+
 ---
 
 ## Source Layout
