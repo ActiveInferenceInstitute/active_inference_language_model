@@ -1,0 +1,28 @@
+#!/bin/sh
+# Refuse a push whose committed figure provenance no longer matches its sources.
+#
+# The v3 receipt at output/figures/figure_provenance.json pins the SHA-256 of
+# every Python module under src/ailm. Editing one of those modules is a two-part
+# change whose second part lives in a file the editor has no reason to open, so
+# this hook checks each pushed commit rather than trusting the working tree.
+#
+# Install once per checkout:
+#
+#     git config core.hooksPath githooks
+set -eu
+root=$(git rev-parse --show-toplevel)
+python="$root/.venv/bin/python"
+if [ ! -x "$python" ]; then
+    echo "pre-push: no project interpreter at $python; run uv sync" >&2
+    exit 1
+fi
+status=0
+while read -r local_ref local_sha remote_ref remote_sha; do
+    case "$local_sha" in
+        0000000000000000000000000000000000000000) continue ;;
+    esac
+    if ! "$python" -I -S "$root/scripts/verify_figure_provenance.py" --commit "$local_sha"; then
+        status=1
+    fi
+done
+exit "$status"
