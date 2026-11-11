@@ -11,6 +11,7 @@ repo:
     objects, with a gate-audit method binding every number to a recorded run.'
 institute:
   category: research-software
+  maturity: wip
   steward: Active Inference Institute
 ecosystem:
   relations:
@@ -56,7 +57,7 @@ artifacts:
 provenance:
   license: Mixed (MIT code, CC-BY-SA-4.0 content; see LICENSE)
   citation:
-    doi: 10.5281/zenodo.22409419.svg
+    doi: 10.5281/zenodo.22409419
     text: Active Inference Institute — active_inference_language_model.
 instituteos:
   tags:
