@@ -1,0 +1,87 @@
+# AII sidecar — InstituteOS metadata. Schema: aii_platform.aii_sidecar
+meta:
+  sidecar_version: 1.2.1
+  updated: '2026-11-10'
+repo:
+  name: active_inference_language_model
+  slug: active-inference-language-model
+  full_name: ActiveInferenceInstitute/active_inference_language_model
+  description: 'AILM: an explicit discrete language stack, levels L1 through L6, declared
+    in Generalized Notation Notation (GNN) and conformance-checked against pymdp Agent
+    objects, with a gate-audit method binding every number to a recorded run.'
+institute:
+  category: research-software
+  steward: Active Inference Institute
+ecosystem:
+  relations:
+  - repo: ActiveInferenceInstitute/InstituteOS
+    relation: referenced-by
+    note: Federated via the InstituteOS .aii manifest.
+  - repo: ActiveInferenceInstitute/Active_Inference_Ontology
+    note: Uses Active Inference Ontology terms.
+  - repo: ActiveInferenceInstitute/pymdp
+    relation: depends-on
+    note: Consumes the pymdp active-inference library.
+  links:
+    website: https://www.activeinference.org
+    github: https://github.com/ActiveInferenceInstitute/active_inference_language_model
+artifacts:
+- path: README.md
+  kind: doc
+  description: Repository overview.
+- path: src
+  kind: code
+  description: Source tree.
+- path: pyproject.toml
+  kind: code
+  description: Python package config.
+- path: LICENSE
+  kind: doc
+  description: License.
+- path: AGENTS.md
+  kind: doc
+  description: Agent guidance.
+- path: CITATION.cff
+  kind: citation
+  description: Machine-readable citation metadata.
+- path: tests
+  kind: test
+  description: Test suite.
+- path: docs
+  kind: doc
+  description: Documentation tree.
+- path: CHANGELOG.md
+  kind: doc
+  description: Changelog.
+provenance:
+  license: Mixed (MIT code, CC-BY-SA-4.0 content; see LICENSE)
+  citation:
+    doi: 10.5281/zenodo.22409419.svg
+    text: Active Inference Institute — active_inference_language_model.
+instituteos:
+  tags:
+  - language-model
+  - gnn
+  - pymdp
+  - discrete-inference
+capabilities:
+- python-package
+- tested
+- documentation
+- dataset
+- gnn
+- manuscript-publication
+- doi
+- ci
+- citation
+tasks:
+  test:
+    cmd: python -m pytest
+    description: Run the test suite.
+docs:
+- README.md
+- AGENTS.md
+- docs/INTEGRATION.md
+- docs/README.md
+- docs/AGENTS.md
+schema: aii-sidecar/v1

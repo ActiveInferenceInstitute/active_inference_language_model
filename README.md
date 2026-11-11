@@ -569,3 +569,11 @@ the vendored data, not from AILM's own code. See [`LICENSE`](LICENSE) for the
 exact per-component terms, the full component table, and the commercial-use
 boundary, and [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for upstream
 attribution.
+
+## InstituteOS sidecar
+
+This repository carries a committed [`.aii/`](.aii/README.md) sidecar with curated
+InstituteOS metadata (`aii-sidecar/v1`): category, maturity, ecosystem relations,
+key artifacts, provenance, and portable tasks. It is read by
+[InstituteOS](https://github.com/ActiveInferenceInstitute/InstituteOS) tooling and
+does not affect the project's build or runtime.
