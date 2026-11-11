@@ -176,6 +176,15 @@ can be about.
 | [`../scripts/verify_release.py`](../scripts/verify_release.py) | The release-profile runner, invoked only as `.venv/bin/python -I -S scripts/verify_release.py` so neither caller nor venv Python startup code can precede the release boundary. `quick` is the developer loop — environment, format, lint, typing, every test except recorder replay and raw-corpus regeneration, and a bounded gate audit. `full` proves locked package builds, authenticated raw-corpus regeneration, source/configuration/model/call bindings for every network-excluded recorder, live external-call cache replay, full coverage, gate/formal checks, source-generated prose and figures, and the validated final PDF. It refuses unsafe Git index flags and dirty inputs unless the development-only dirty override is explicit; that override can never yield `publication_acceptance`. Sidecar Python steps use a controlled no-`site` import bootstrap, subprocesses use a fixed executable path and explicit environment allowlist, and the receipt binds command evidence plus Python-startup, external-tool, Git, cache, corpus, package, and template identities. Guarded by `tests/test_release_orchestration.py` |
 | [`../tests/`](../tests/) | The gates |
 | [`../formal/`](../formal/) | The Lean 4 proofs and their generated ledger bridge — see [`formal.md`](formal.md) |
+| [`../CONTRIBUTING.md`](../CONTRIBUTING.md) | Contribution workflow, local development, and the checks expected before a pull request |
+| [`../SECURITY.md`](../SECURITY.md) | Vulnerability-reporting policy |
+| [`../CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md) | Community code of conduct |
+| [`../CITATION.cff`](../CITATION.cff) | Machine-readable citation metadata |
+| [`../LICENSE`](../LICENSE) | Licence terms: MIT for code, CC-BY-SA-4.0 for content |
+| [`../THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md) | Third-party material and licence notices |
+| [`../SOURCE_DISTRIBUTION.md`](../SOURCE_DISTRIBUTION.md) | What the public source distribution includes and excludes |
+| [`../.aii/README.md`](../.aii/README.md) | InstituteOS sidecar: curated institutional metadata and its validation |
+| [`../HANDOFF.md`](../HANDOFF.md), [`../ISA.md`](../ISA.md) | Historical planning records; not current status sources |
 
 ## Manuscript source files
 
