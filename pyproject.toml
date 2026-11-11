@@ -35,7 +35,7 @@ dependencies = [
     "jaxlib==0.4.38",
     # NumPy 2.4 stubs use Python 3.12-only type-alias syntax; retain the
     # package's declared Python 3.11 support until that floor is raised.
-    "numpy>=1.24,<2.4",
+    "numpy>=1.24,<2.5",
     "scipy>=1.10",
     "requests>=2.28",
     "nltk>=3.8",
@@ -58,13 +58,13 @@ ailm-demo = "ailm.demo:main"
 
 [project.optional-dependencies]
 dev = [
-    "hatchling==1.32.0",
-    "mypy==2.2.0",
-    "pytest==9.1.1",
+    "hatchling==1.33.0",
+    "mypy==2.4.1",
+    "pytest==9.2.0",
     "pytest-cov==7.1.0",
     "pytest-timeout==2.4.0",
     "pytest-xdist==3.8.0",
-    "ruff==0.15.20",
+    "ruff==0.17.3",
 ]
 cuda12 = ["jax[cuda12]==0.4.38"]
 
@@ -79,24 +79,24 @@ gnn-interop = [
 
 [dependency-groups]
 dev = [
-    "hatchling==1.32.0",
-    "mypy==2.2.0",
-    "pytest==9.1.1",
+    "hatchling==1.33.0",
+    "mypy==2.4.1",
+    "pytest==9.2.0",
     "pytest-cov==7.1.0",
     "pytest-timeout==2.4.0",
     "pytest-xdist==3.8.0",
-    "ruff==0.15.20",
+    "ruff==0.17.3",
 ]
 
 [build-system]
-requires = ["hatchling==1.32.0"]
+requires = ["hatchling==1.33.0"]
 build-backend = "hatchling.build"
 
 [tool.uv]
 # PEP 517 build requirements are resolved separately from runtime packages.
 # Constrain the backend even for isolated consumers; publication acceptance
 # additionally builds offline without isolation from the locked dev environment.
-build-constraint-dependencies = ["hatchling==1.32.0"]
+build-constraint-dependencies = ["hatchling==1.33.0"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ailm"]
