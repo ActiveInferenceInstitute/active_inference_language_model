@@ -60,19 +60,25 @@ slot becomes a named violation instead of a slightly different number.
 ## Upstream release
 
 [`upstream.json`](upstream.json) pins the public
-[GNN v5.0.3 release](https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation/releases/tag/v5.0.3)
-to commit `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`. This is an optional parser
+[GNN v5.1.0 release](https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation/releases/tag/v5.1.0)
+to commit `75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf`. This is an optional parser
 interoperability dependency, separate from AILM's own strict reader and model.
 Use an isolated checkout so ongoing upstream development cannot silently change
 the parser used for release verification:
 
 ```bash
-git clone --depth 1 --branch v5.0.3 https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation.git ../ailm-gnn-v5.0.3
-export AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.0.3 && pwd)"
+git clone --depth 1 --branch v5.1.0 https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation.git ../ailm-gnn-v5.1.0
+export AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.1.0 && pwd)"
 uv sync --locked --extra gnn-interop
+PYTHONPATH="$AILM_GNN_UPSTREAM/src" .venv/bin/python -m gnn.importers check --repo .
 .venv/bin/python scripts/verify_gnn_release.py
 .venv/bin/python -m pytest tests/test_gnn_conformance.py -q --no-cov
 ```
+
+The pin is read by `gnn.importers` from that release, the one reader the GNN–FEP
+workflow group binds every consumer to; `v5.1.0` is the first pin here that ships
+it. `scripts/fetch_gnn_upstream.py` materializes the same agreement into the
+ignored `refs/gnn-upstream/checkout` for the `gnn` arm.
 
 Set `AILM_REQUIRE_GNN_INTEROP=1` to turn a missing checkout or a missing
 `psutil` into a failure that names the gap instead of a skip; the hosted

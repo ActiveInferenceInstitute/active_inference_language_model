@@ -1,4 +1,9 @@
-"""Verify the pinned upstream GNN release offline, without importing its parser."""
+"""Verify the pinned upstream GNN release offline, without importing its parser.
+
+The pin is read by ``gnn.importers`` — the reader the pinned release ships, which
+is the same reader the conformance arm runs — and the selected checkout is then
+held against Git objects: HEAD, the tag ref, and every source byte under ``src/``.
+"""
 
 from __future__ import annotations
 
@@ -11,7 +16,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from ailm.verification.upstream_gnn import (  # noqa: E402
     UpstreamReleaseError,
-    load_release_pin,
+    load_importer_pin,
     selected_upstream_root,
     verify_release_checkout,
 )
@@ -19,9 +24,9 @@ from ailm.verification.upstream_gnn import (  # noqa: E402
 
 def main() -> int:
     try:
-        evidence = verify_release_checkout(
-            selected_upstream_root(ROOT), load_release_pin(ROOT / "gnn/upstream.json")
-        )
+        root = selected_upstream_root(ROOT)
+        pin = load_importer_pin(ROOT / "gnn/upstream.json", checkout_root=root)
+        evidence = verify_release_checkout(root, pin)
     except (OSError, UpstreamReleaseError) as error:
         print(f"GNN release verification refused: {error}", file=sys.stderr)
         return 1

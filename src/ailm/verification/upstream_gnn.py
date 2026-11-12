@@ -1,13 +1,19 @@
-"""Offline custody of the released upstream parser used by interoperability tests."""
+"""Offline custody of the released upstream parser used by interoperability tests.
+
+The pin itself is read by ``gnn.importers``, the reader the pinned release ships;
+:func:`load_importer_pin` imports that reader from the checkout and adapts its
+normalized result. What remains here is custody: which checkout is selected, and
+whether its HEAD, tag ref and every source byte still equal the pinned commit.
+"""
 
 from __future__ import annotations
 
 import hashlib
 import json
 import os
-import re
 import stat
 import subprocess
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -16,17 +22,10 @@ class UpstreamReleaseError(ValueError):
     """The selected checkout does not supply the pinned release's source bytes."""
 
 
-#: Identity fields this reader consumes from a pin.
-PIN_IDENTITY_KEYS = frozenset({"repository", "tag", "commit"})
-
-#: Canonical importer-pin fields that document the pin itself. They are
-#: validated and then dropped: the release identity is what the custody check
-#: compares against Git objects, and these fields carry no source claim.
-PIN_DECLARATION_KEYS = frozenset({"schema", "recorded"})
-
-#: The one pin schema this reader understands. A pin declaring anything else is
-#: refused rather than read under guessed semantics.
-PIN_SCHEMA = "gnn-importer-pin/v1"
+#: Where the conformance arm materializes the pinned release. The path carries
+#: no tag, so a pin bump replaces one cache entry instead of leaving a family of
+#: release directories behind, and no consumer has to read the pin to find it.
+CHECKOUT_RELATIVE_PATH = "refs/gnn-upstream/checkout"
 
 
 @dataclass(frozen=True)
@@ -36,51 +35,54 @@ class UpstreamRelease:
     commit: str
 
 
-def load_release_pin(path: Path) -> UpstreamRelease:
-    """Read the authored release identity, refusing ambiguous or malformed pins.
+def load_importer_pin(path: Path, *, checkout_root: Path) -> UpstreamRelease:
+    """Read the pin with the reader the pinned release ships.
 
-    The pin declares the canonical importer schema (``schema``
-    ``gnn-importer-pin/v1``) and the date it was recorded. Both fields are
-    validated and then dropped; they document the pin, while the release
-    identity is what the custody check compares against Git objects. A pin that
-    predates them, or that declares an unrecognized schema, is read or refused
-    explicitly rather than interpreted by guess.
+    ``gnn.importers.read_pin`` is the estate's only pin reader: it decides which
+    key holds the revision, which shapes are acceptable, and what the schema
+    means. This function adds nothing to those decisions; it imports that reader
+    from the checkout the pin names and converts its normalized result into the
+    identity the custody check compares against Git objects.
     """
 
-    def unique(pairs: list[tuple[str, object]]) -> dict[str, object]:
-        result: dict[str, object] = {}
-        for key, value in pairs:
-            if key in result:
-                raise UpstreamReleaseError(f"duplicate upstream pin field: {key}")
-            result[key] = value
-        return result
-
+    source = (checkout_root / "src").resolve()
+    if not source.is_dir():
+        raise UpstreamReleaseError(f"{checkout_root} has no src directory to read the pin with")
+    module_path = source / "gnn" / "importers.py"
+    if not module_path.is_file():
+        raise UpstreamReleaseError(
+            f"the checkout at {checkout_root} does not ship gnn.importers: {module_path} is absent"
+        )
+    if str(source) not in sys.path:
+        sys.path.insert(0, str(source))
     try:
-        data = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique)
-    except (OSError, UnicodeError, json.JSONDecodeError) as error:
-        raise UpstreamReleaseError(f"cannot read upstream release pin: {error}") from error
-    if not isinstance(data, dict) or not PIN_IDENTITY_KEYS <= set(data):
-        raise UpstreamReleaseError("upstream pin must name repository, tag and commit only")
-    unknown = set(data) - PIN_IDENTITY_KEYS - PIN_DECLARATION_KEYS
-    if unknown:
+        from gnn.importers import PinError, read_pin
+    except ImportError as error:
         raise UpstreamReleaseError(
-            "upstream pin has unrecognized fields: " + ", ".join(sorted(unknown))
-        )
-    if not all(isinstance(value, str) for value in data.values()):
-        raise UpstreamReleaseError("upstream pin fields must be strings")
-    if "schema" in data and data["schema"] != PIN_SCHEMA:
+            f"the checkout at {checkout_root} does not ship a usable gnn.importers: {error}"
+        ) from error
+    reader = Path(sys.modules["gnn.importers"].__file__ or "").resolve()
+    if source not in reader.parents:
         raise UpstreamReleaseError(
-            f"upstream pin declares schema {data['schema']!r}, not {PIN_SCHEMA!r}"
+            f"the pin reader already imported from {reader} is not the one in {checkout_root}"
         )
-    if "recorded" in data and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", data["recorded"]):
-        raise UpstreamReleaseError("upstream pin recorded date must be YYYY-MM-DD")
-    if not data["repository"].startswith("https://github.com/"):
-        raise UpstreamReleaseError("upstream repository must be an HTTPS GitHub URL")
-    if not re.fullmatch(r"v\d+\.\d+\.\d+", data["tag"]):
-        raise UpstreamReleaseError("upstream tag must name a stable version")
-    if not re.fullmatch(r"[0-9a-f]{40}", data["commit"]):
-        raise UpstreamReleaseError("upstream commit must be a complete Git object identity")
-    return UpstreamRelease(repository=data["repository"], tag=data["tag"], commit=data["commit"])
+    try:
+        pin = read_pin(path)
+    except PinError as error:
+        raise UpstreamReleaseError(str(error)) from error
+    if pin.tag is None:
+        raise UpstreamReleaseError(f"{path}: the pin records no release tag to verify")
+    return UpstreamRelease(
+        repository=pin.repository or "",
+        tag=pin.tag,
+        commit=pin.commit,
+    )
+
+
+def checkout_head(root: Path) -> str:
+    """Return the commit the selected checkout has checked out."""
+
+    return _git(root, "rev-parse", "HEAD").decode().strip()
 
 
 def upstream_candidates(project: Path) -> tuple[Path, ...]:

@@ -111,7 +111,11 @@ candidate before delivery. This does not authorize a tag, push or deposition.
   commit and source bytes before interoperability tests import the parser.
   The fixture repeats that check after use. Without an explicit selection,
   durable sibling discovery applies; a moving sibling head still fails the pin.
-  See [`gnn/README.md`](../../gnn/README.md#upstream-release) for setup.
+  The `gnn` arm (`scripts/verify_release.py gnn`) additionally runs the estate's
+  one pin reader from the checkout it verified —
+  `python -m gnn.importers check --repo .` — so the pin, the pointer and every
+  `*.gnn.md` are read by the pinned release rather than by a copy in this
+  repository. See [`gnn/README.md`](../../gnn/README.md#upstream-release) for setup.
 
 ## The sequence
 

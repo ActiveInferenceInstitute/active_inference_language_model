@@ -11,6 +11,23 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ## [Unreleased]
 
+### Changed
+
+- The upstream GNN pin moves from `v5.0.3`
+  (`8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`) to `v5.1.0`
+  (`75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf`), the first release that ships
+  `src/gnn/importers.py`. The pin is now read by that shipped reader:
+  `src/ailm/verification/upstream_gnn.py` no longer decides the pin's schema,
+  fields, tag or commit — it imports `gnn.importers.read_pin` from the pinned
+  checkout and keeps custody, and the `gnn` arm runs
+  `python -m gnn.importers check --repo .` against the pinned parser. The
+  materialized checkout is `refs/gnn-upstream/checkout`, which carries no tag,
+  so a pin bump replaces one cache entry, and it holds only the release's `src/`
+  so the pinned release's own specifications cannot enter this repository's
+  count. The two local pin consumers (`scripts/fetch_gnn_upstream.py` and
+  `scripts/verify_gnn_release.py`) now read the pin through that reader, and
+  `scripts/verify_release.py` names the checkout without reading the pin at all.
+
 ### Added
 
 - A standalone requirement gate for the upstream GNN interoperability checks:

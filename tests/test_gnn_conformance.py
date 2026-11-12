@@ -123,7 +123,7 @@ from ailm.verification.upstream_gnn import (
     default_upstream_root as _default_upstream_root,
 )
 from ailm.verification.upstream_gnn import (
-    load_release_pin,
+    load_importer_pin,
     selected_upstream_root,
     upstream_candidates,
     verify_release_checkout,
@@ -2367,7 +2367,7 @@ def upstream_results(tmp_path_factory):
     if not _UPSTREAM_RUNNABLE:
         yield None
         return
-    pin = load_release_pin(PROJECT_ROOT / "gnn/upstream.json")
+    pin = load_importer_pin(PROJECT_ROOT / "gnn/upstream.json", checkout_root=UPSTREAM_ROOT)
     identity = verify_release_checkout(UPSTREAM_ROOT, pin)
     cache_prefix = tmp_path_factory.mktemp("gnn-release-bytecode")
     code = """
