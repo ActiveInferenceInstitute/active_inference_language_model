@@ -13,10 +13,10 @@ when a recorded arm or step no longer exists in the runner's own inventory.
 
 | Arm | What it gates | Measured | Before (s) | After (s) | Tests passed |
 | --- | --- | --- | --- | --- | --- |
-| `lint` | format and lint | yes | 0.3 | 0.5 | — |
+| `lint` | format and lint | yes | 0.3 | 0.4 | — |
 | `types` | static typing | yes | 0.3 | 0.5 | — |
-| `docs` | documentation index, links, and hydration | yes | — | 4.4 | 104 |
-| `quick` | fast tests | yes | — | 574.0 | 8923 |
+| `docs` | documentation index, links, and hydration | yes | — | 3.2 | 104 |
+| `quick` | fast tests | yes | — | 298.7 | 8923 |
 | `measurement` | end-to-end measurement tests | yes | — | 921.3 | 560 |
 | `contract` | wheel and real-socket contract tests | yes | — | 174.3 | 117 |
 | `gnn` | pinned upstream GNN conformance | yes | — | 14.3 | 276 |
@@ -24,19 +24,17 @@ when a recorded arm or step no longer exists in the runner's own inventory.
 
 Before column: the steps each arm owns, projected from the pre-split quick receipt `output/reports/before-quick-warm.json` (9 recorded steps, 383.3 total). An arm whose steps were not separable there shows `—`; its own work is unchanged by the split. No whole-profile total is compared, because the baseline run stopped at a failing step and therefore recorded a different step set.
 
-The test step itself: 381.3 s before the split, 531.9 s and 8923 passed after it, with the documentation file the `docs` arm now owns excluded from the second run.
-
 ## Per-step wall time
 
 ### `lint`
 
 | Step | Status | Wall time (s) | Tests passed |
 | --- | --- | --- | --- |
-| `lock` | passed | 0.0 | — |
+| `lock` | passed | 0.1 | — |
 | `environment` | passed | 0.0 | — |
-| `environment-compatibility` | passed | 0.1 | — |
+| `environment-compatibility` | passed | 0.0 | — |
 | `format` | passed | 0.2 | — |
-| `lint` | passed | 0.2 | — |
+| `lint` | passed | 0.1 | — |
 
 ### `types`
 
@@ -54,24 +52,24 @@ The test step itself: 381.3 s before the split, 531.9 s and 8923 passed after it
 | `lock` | passed | 0.0 | — |
 | `environment` | passed | 0.0 | — |
 | `environment-compatibility` | passed | 0.0 | — |
-| `docs-links` | passed | 3.8 | 104 |
-| `docs-hydrate` | passed | 0.3 | — |
+| `docs-links` | passed | 2.6 | 104 |
+| `docs-hydrate` | passed | 0.4 | — |
 | `docs-hydrate-check` | passed | 0.2 | — |
 
 ### `quick`
 
 | Step | Status | Wall time (s) | Tests passed |
 | --- | --- | --- | --- |
-| `lock` | passed | 0.0 | — |
+| `lock` | passed | 0.1 | — |
 | `environment` | passed | 0.0 | — |
-| `environment-compatibility` | passed | 0.1 | — |
-| `format` | passed | 0.2 | — |
-| `lint` | passed | 0.2 | — |
+| `environment-compatibility` | passed | 0.0 | — |
+| `format` | passed | 0.1 | — |
+| `lint` | passed | 0.1 | — |
 | `types` | passed | 0.3 | — |
-| `web-model` | passed | 1.8 | — |
-| `web-page` | passed | 0.2 | — |
-| `tests-quick` | passed | 531.9 | 8923 |
-| `gate-audit-bounded` | passed | 39.3 | — |
+| `web-model` | passed | 1.5 | — |
+| `web-page` | passed | 0.1 | — |
+| `tests-quick` | passed | 274.8 | 8923 |
+| `gate-audit-bounded` | passed | 21.6 | — |
 
 ### `measurement`
 
