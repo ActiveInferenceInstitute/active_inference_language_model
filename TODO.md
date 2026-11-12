@@ -40,6 +40,98 @@ alternatives — and is not an agent's to take.
 
 ## Medium
 
+- [ ] **Land the `inferactively-pymdp` 1.0.5 pin — blocked; the measurement epoch
+  cannot be re-established on this workstation.** Branch `chore/pymdp-1.0.5`
+  (commit `787319a`) carries the pin, a re-resolved `uv.lock`, the prose/agents
+  edits, and *hand-substituted* copies of `data/claims.json`,
+  `output/data/manuscript_variables.json` and `output/manuscript/*.md`. Those
+  three generated artefacts are not producer output and must be discarded, not
+  merged. Nothing is merged; the measurement commit is **not** re-pointed and
+  `data/publication_derivative.json` is **not** edited.
+
+  Binding rules confirmed in the source (quoted from
+  `src/ailm/_publication_inventory.py`):
+  `_validate_package_publication_bytes` (line 127) refuses unless the live
+  parsed TOML equals the measurement commit's TOML after `pop("urls")` —
+  `"numerical/source/input configuration changed outside publication URLs"`;
+  `validate_publication_execution_binding` (line 163) refuses unless
+  `set(recorded) == set(current)` and every non-`pyproject.toml` entry is equal —
+  `"connected report execution inventory is incomplete or changed"`.
+
+  Measured state, taken 2026-11-12 on this machine (pymdp 1.0.5 installed,
+  `uv lock --check` clean):
+
+  | Stage | Command | Result |
+  |---|---|---|
+  | core re-record | `scripts/orchestrate_claim_recorders.py core` | reached 18/39 recorders, then **stopped** at `scripts/record_heldout_stream_claims.py` (an earlier, overlapping run died on the single-writer lock at `scripts/record_clause_channel_claims.py`) |
+  | network bindings | `scripts/verify_network_claim_bindings.py` | **refused** |
+  | hosted synthetic | `scripts/record_synthetic_benchmark_claims.py` | **refused** |
+  | hosted in-context | `scripts/record_incontext_benchmark_claims.py` | **refused** (held the same ledger lock / same key requirement) |
+  | ollama probes | `scripts/warm_call_cache.py --check` | **refused** |
+  | logprob drift | `scripts/record_logprob_drift_claims.py` | **refused** |
+  | figures | `scripts/generate_figures.py` | 38/39 staged; **failed** `connected_core` |
+  | manuscript vars | `scripts/z_generate_manuscript_variables.py` | **refused** |
+  | web model/page | `scripts/export_web_model.py`, `build_web_ailm.py` | passed (92 KB, 116 KB) |
+  | full profile | `scripts/verify_release.py full --list` | **refused** at release inventory |
+
+  Exact messages:
+
+  - `network claim binding verification failed: network recorder
+    scripts/record_aligned_g2p_probe_claims.py has no binding receipt at
+    cache/network_claim_bindings/record_aligned_g2p_probe_claims.json; the
+    machine-specific call store is absent from this checkout, so its claims
+    cannot be validated until the recorder is run against a prepared store`
+  - `ValueError: OPENROUTER_API_KEY is not set; the OpenRouter transport cannot
+    make scored calls without it` (synthetic and in-context producers)
+  - `logprob drift requires a current external-producer receipt`
+    (`ailm.replay_provenance.NetworkClaimBindingError`)
+  - `Cannot start: - the server does not have every declared probe:
+    \`ollama pull gemma3:4b\`, \`ollama pull qwen2.5:3b\`,
+    \`ollama pull smollm:1.7b-base-v0.2-q4_K_M\``
+  - `recorder refused: another recorder run (pid 76000) holds
+    /private/tmp/ailm-measure/data/.claims-recorder.lock. The ledger is
+    single-writer — two overlapping runs lose one of the two results.`
+    (first core run, at `record_clause_channel_claims.py`)
+  - `FileNotFoundError: The pinned NLTK Brown brown.zip is unavailable. Fetch
+    the immutable source
+    https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/corpora/brown.zip
+    and pass --source-zip PATH or set AILM_BROWN_SOURCE_ZIP.` (core, at
+    `record_heldout_stream_claims.py` → `generate_heldout_stream.py:66`)
+  - `ailm.value_formatting.ManuscriptVariableError: connected report execution
+    inventory is incomplete or changed` (figures, `connected_core`)
+  - `ERROR: no template checkout was discovered; could not locate the template
+    repo root providing the 'infrastructure' package. Set TEMPLATE_REPO_ROOT to
+    your template checkout.` (manuscript variables, and `full --list`:
+    `release inventory error: could not locate the template checkout required
+    for publication`)
+  - `$AILM_PUBLICATION_CONTRACT` is unset and no reviewed contract file exists
+    in the tree; `data/publication_derivative.json` alone refuses with
+    `DerivativeError: external reviewed contract: missing/unknown fields`.
+
+  What is missing, and who can supply it:
+
+  1. **The memoized call store** `cache/bench_calls.jsonl` plus the five
+     `cache/network_claim_bindings/*.json` receipts. Only the machine that ran
+     the original 1.0.4 measurement holds them; they cannot be re-recorded here
+     because two of the five recorders are hosted (`OPENROUTER_API_KEY`) and the
+     three local probes above are not installed. Held by the release operator
+     whose workstation ran the 1.0.4 acquisition.
+  2. **`AILM_BROWN_SOURCE_ZIP`** — the pinned `brown.zip` from the nltk_data
+     commit above; any operator can fetch it, but it is an input the checkout
+     does not carry.
+  3. **A `docxology/template` checkout** providing `infrastructure` — needed by
+     manuscript variables, `full`, and every render step. Held by the template
+     maintainer.
+  4. **`$AILM_PUBLICATION_CONTRACT`** — a reviewed external derivative contract
+     with a review path and digest, produced by the independent reviewer; it
+     cannot be authored here, and it is not the right instrument for a *model*
+     change anyway.
+
+  The correct route is therefore an acquisition run on the machine that holds
+  the store, with the hosted credential and all three probes present: `core`,
+  then `network`, then `aggregate`, then a fresh derivative freeze and the
+  `full` profile. Only after that run may the `9f8842d…` literals move.
+
 - [ ] **Take the cold-start release verification through a complete run.** Bounded
   release fixtures, lazy imports, shared figure construction, and scoped
   full-model timeout allowances now have focused passing checks; the complete
