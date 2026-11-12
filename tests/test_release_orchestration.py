@@ -29,6 +29,7 @@ import scripts.warm_call_cache as canonical_warmer
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SCRIPT = PROJECT_ROOT / "scripts" / "verify_release.py"
 CI_WORKFLOW = PROJECT_ROOT / ".github" / "workflows" / "ci.yml"
+CI_ACTIONS_DIR = PROJECT_ROOT / ".github" / "actions"
 APPROVED_CI_ACTIONS = {
     "actions/checkout": "3d3c42e5aac5ba805825da76410c181273ba90b1",
     "astral-sh/setup-uv": "68559e99cc807c1eb7e9238fd43a15bba460eec2",
@@ -172,6 +173,40 @@ def _release_environment(**overrides: object) -> dict[str, str]:
     return env
 
 
+#: The one command each hosted job runs, keyed by the arm it owns. Every arm is a
+#: profile of the release runner, so the hosted string and the local string are
+#: the same string; a job that ran a hand-written copy of a step would be a
+#: second definition of the gate.
+CI_ARMS = {
+    "lint": "lint",
+    "types": "types",
+    "docs": "docs",
+    "quick": "quick",
+    "measurement": "measurement",
+    "contract": "contract",
+    "gnn": "gnn",
+}
+
+#: The one place the hosted environment is defined. Every arm job uses it, and
+#: no job runs a sync of its own.
+SETUP_ACTION = "./.github/actions/setup-ailm"
+
+
+def _uses_steps(document: object) -> list[dict[str, object]]:
+    """Every mapping in a loaded workflow or action that names a ``uses`` target."""
+
+    found: list[dict[str, object]] = []
+    if isinstance(document, dict):
+        if isinstance(document.get("uses"), str):
+            found.append(document)
+        for value in document.values():
+            found.extend(_uses_steps(value))
+    elif isinstance(document, list):
+        for value in document:
+            found.extend(_uses_steps(value))
+    return found
+
+
 def _ci_release_contract_violations(source: str) -> list[str]:
     """Return high-signal hosted-CI release-policy violations."""
 
@@ -193,26 +228,37 @@ def _ci_release_contract_violations(source: str) -> list[str]:
     if any("permissions" in job for job in jobs.values() if isinstance(job, dict)):
         violations.append("job-permissions-override")
 
-    for step in steps:
-        if "uses" not in step:
-            continue
-        uses = str(step["uses"])
-        match = re.fullmatch(r"([^@]+)@([0-9a-f]{40})", uses)
-        if match is None:
-            violations.append(f"action-not-full-sha:{uses}")
-            continue
-        action, revision = match.groups()
-        if APPROVED_CI_ACTIONS.get(action) != revision:
-            violations.append(f"action-not-approved:{uses}")
-        if (
-            action == "actions/checkout"
-            and step.get("with", {}).get("persist-credentials") is not False
-        ):
-            violations.append("checkout-persists-credentials")
+    # Every `uses:` in the workflow and in this repository's own composite
+    # actions must name a full commit. A local action is pinned by the commit
+    # that contains it, so it carries no revision of its own; it must exist.
+    documents: list[object] = [workflow]
+    for action_file in sorted(CI_ACTIONS_DIR.glob("*/action.yml")):
+        try:
+            documents.append(yaml.safe_load(action_file.read_text(encoding="utf-8")))
+        except yaml.YAMLError:
+            violations.append(f"invalid-action-yaml:{action_file.parent.name}")
+    for document in documents:
+        for step in _uses_steps(document):
+            uses = str(step["uses"])
+            if uses.startswith("./"):
+                if not (PROJECT_ROOT / uses).is_dir():
+                    violations.append(f"local-action-missing:{uses}")
+                continue
+            match = re.fullmatch(r"([^@]+)@([0-9a-f]{40})", uses)
+            if match is None:
+                violations.append(f"action-not-full-sha:{uses}")
+                continue
+            action, revision = match.groups()
+            if APPROVED_CI_ACTIONS.get(action) != revision:
+                violations.append(f"action-not-approved:{uses}")
+            if (
+                action == "actions/checkout"
+                and step.get("with", {}).get("persist-credentials") is not False
+            ):
+                violations.append("checkout-persists-credentials")
 
     if any(re.search(r"\$\{\{\s*github\.event(?:\.|\s*\}\})", command) for command in run_commands):
         violations.append("event-expression-in-run")
-
     if any("uv run" in command for command in run_commands):
         violations.append("uv-run-sidecar")
     if any(re.search(r"verify_release\.py\s+full(?:\s|$)", command) for command in run_commands):
@@ -223,9 +269,34 @@ def _ci_release_contract_violations(source: str) -> list[str]:
         for command in run_commands
     ):
         violations.append("release-python-not-isolated")
-    expected_quick = ".venv/bin/python -I -S scripts/verify_release.py quick"
-    if run_commands.count(expected_quick) != 1:
-        violations.append("explicit-project-python-quick")
+
+    # One job per arm, one occurrence per arm, and one definition of the
+    # environment: a second sync in a job is the duplication this split removed.
+    for arm, profile in CI_ARMS.items():
+        expected = f".venv/bin/python -I -S scripts/verify_release.py {profile}"
+        if run_commands.count(expected) != 1:
+            violations.append(f"arm-not-run-once:{arm}")
+    if any("uv sync" in command for command in run_commands):
+        violations.append("duplicated-environment-setup")
+    for job_name, job in jobs.items():
+        if not isinstance(job, dict):
+            continue
+        job_steps = [step for step in job.get("steps", ()) if isinstance(step, dict)]
+        setup_positions = [
+            index for index, step in enumerate(job_steps) if step.get("uses") == SETUP_ACTION
+        ]
+        arm_positions = [
+            index
+            for index, step in enumerate(job_steps)
+            if "run" in step and "verify_release.py" in str(step["run"])
+        ]
+        if not arm_positions:
+            continue
+        if len(setup_positions) != 1:
+            violations.append(f"arm-job-without-one-setup:{job_name}")
+        elif setup_positions[0] > min(arm_positions):
+            violations.append(f"setup-after-arm:{job_name}")
+
     for prerequisite in (
         "external-call cache",
         "Ollama server",
@@ -297,10 +368,9 @@ def _build_profiles_in_sidecar(template: Path):
         "        }\n"
         "        for s in steps\n"
         "    ]\n"
-        "payload = {'quick': enc(m.build_steps('quick')), "
-        "'measurement': enc(m.build_steps('measurement')), "
-        "'contract': enc(m.build_steps('contract')), "
-        "'full': enc(m.build_steps('full', template_root=template))}\n"
+        "payload = {name: enc(m.build_steps(name)) for name in "
+        "('lint', 'types', 'docs', 'quick', 'measurement', 'contract', 'gnn')}\n"
+        "payload['full'] = enc(m.build_steps('full', template_root=template))\n"
         "print(json.dumps(payload))\n"
     )
     result = subprocess.run(
@@ -312,12 +382,7 @@ def _build_profiles_in_sidecar(template: Path):
         timeout=480,
     )
     assert result.returncode == 0, result.stderr
-    return (
-        json.loads(result.stdout)["quick"],
-        json.loads(result.stdout)["measurement"],
-        json.loads(result.stdout)["contract"],
-        json.loads(result.stdout)["full"],
-    )
+    return json.loads(result.stdout)
 
 
 @pytest.mark.timeout(900)
@@ -332,26 +397,58 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     module = _module()
     template = tmp_path / "template"
     _init_template_repository(template)
-    quick, measurement, contract, full = _build_profiles_in_sidecar(template)
+    profiles = _build_profiles_in_sidecar(template)
+    lint = profiles["lint"]
+    types_arm = profiles["types"]
+    docs = profiles["docs"]
+    quick = profiles["quick"]
+    measurement = profiles["measurement"]
+    contract = profiles["contract"]
+    gnn = profiles["gnn"]
+    full = profiles["full"]
     expected_python = str(PROJECT_ROOT / ".venv" / "bin" / "python")
     assert _project_python_probe() == expected_python
     quick_names = [step["name"] for step in quick]
+    lint_names = [step["name"] for step in lint]
+    types_names = [step["name"] for step in types_arm]
+    docs_names = [step["name"] for step in docs]
     measurement_names = [step["name"] for step in measurement]
     contract_names = [step["name"] for step in contract]
+    gnn_names = [step["name"] for step in gnn]
     full_names = [step["name"] for step in full]
-    assert (
-        quick_names[:6]
-        == measurement_names[:6]
-        == contract_names[:6]
-        == full_names[:6]
-        == [
-            "lock",
-            "environment",
-            "environment-compatibility",
-            "format",
-            "lint",
-            "types",
-        ]
+    environment_prefix = ["lock", "environment", "environment-compatibility"]
+    static_names = ["format", "lint", "types"]
+    web_steps_names = ["web-model", "web-page"]
+    # One arm per job: the static checks belong to the lint and types arms, and
+    # each test slice owns the environment plus the generated web artifacts and
+    # nothing else. A slice that repeated the static steps would gate the same
+    # bytes on a second runner, which is what this split removed.
+    assert quick_names == [
+        *environment_prefix,
+        *static_names,
+        *web_steps_names,
+        "tests-quick",
+        "gate-audit-bounded",
+    ]
+    assert full_names[:8] == [*environment_prefix, *static_names, *web_steps_names]
+    assert lint_names == [*environment_prefix, "format", "lint"]
+    assert types_names == [*environment_prefix, "types"]
+    assert docs_names == [
+        *environment_prefix,
+        "docs-links",
+        "docs-hydrate",
+        "docs-hydrate-check",
+    ]
+    assert measurement_names == [*environment_prefix, *web_steps_names, "tests-measurement"]
+    assert contract_names == [*environment_prefix, *web_steps_names, "tests-contract"]
+    assert gnn_names == [
+        *environment_prefix,
+        "gnn-upstream-checkout",
+        "gnn-upstream-release",
+        "gnn-conformance",
+    ]
+    assert not {"format", "lint", "types"} & set(measurement_names + contract_names), (
+        "a test slice repeated a static check the lint and types arms already run"
     )
     assert "tests-quick" in quick_names
     assert "tests-measurement" in measurement_names
@@ -459,9 +556,7 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     assert "not requires_cuda12" in next(
         " ".join(step["argv"]) for step in quick if step["name"] == "tests-quick"
     ), "the CUDA-only tests skip deterministically on a CPU host; both profiles deselect them"
-    assert measurement_names[:8] == quick_names[:8]
-    assert measurement_names[8:] == ["tests-measurement"]
-    tests_measurement = measurement[8]
+    tests_measurement = next(step for step in measurement if step["name"] == "tests-measurement")
     assert tests_measurement["depends_on"] == ["environment-compatibility", "web-page"]
     assert "-n" in tests_measurement["argv"]
     assert tests_measurement["argv"][tests_measurement["argv"].index("-n") + 1] == "1", (
@@ -482,9 +577,7 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
         "a measurement gate that skips on an absent vendored artifact would report "
         "green without measuring anything"
     )
-    assert contract_names[:8] == quick_names[:8]
-    assert contract_names[8:] == ["tests-contract"]
-    tests_contract = contract[8]
+    tests_contract = next(step for step in contract if step["name"] == "tests-contract")
     assert tests_contract["depends_on"] == ["environment-compatibility", "web-page"]
     assert tests_contract["argv"][tests_contract["argv"].index("-n") + 1] == "1", (
         "the contract budget was measured serially; the wheel file spawns its own "
@@ -504,6 +597,27 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     assert "not contract_gate" in next(
         " ".join(step["argv"]) for step in quick if step["name"] == "tests-quick"
     ), "the quick profile would keep paying for the wheel and socket contracts it moved out"
+    assert "--ignore=tests/test_documentation.py" in next(
+        step["argv"] for step in quick if step["name"] == "tests-quick"
+    ), "the docs arm owns the documentation checks; quick must not collect them twice"
+    docs_links = next(step for step in docs if step["name"] == "docs-links")
+    assert "tests/test_documentation.py" in docs_links["argv"]
+    assert docs_links["forbid_skips"] is True, (
+        "a documentation check that skipped would report green without reading the index"
+    )
+    docs_check = next(step for step in docs if step["name"] == "docs-hydrate-check")
+    assert "--check" in docs_check["argv"]
+    assert docs_check["depends_on"] == ["docs-hydrate"]
+    gnn_environment = next(step for step in gnn if step["name"] == "environment")
+    assert "gnn-interop" in gnn_environment["argv"], (
+        "the conformance arm must check the environment that supplies the upstream parser"
+    )
+    conformance = next(step for step in gnn if step["name"] == "gnn-conformance")
+    assert conformance["forbid_skips"] is True, (
+        "a conformance run that skipped on a missing checkout would claim GNN conformance"
+    )
+    assert ["AILM_REQUIRE_GNN_INTEROP", "1"] in conformance["env_ov"]
+    assert any(name == "AILM_GNN_UPSTREAM" for name, _value in conformance["env_ov"])
     raw_replay = next(step for step in full if step["name"] == "raw-corpus-reproducibility")
     assert raw_replay["env_ov"] == [["AILM_RUN_RAW_CORPUS_REGENERATION", "1"]]
     assert raw_replay["forbid_skips"] is True
@@ -595,6 +709,9 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
         "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
         "and not publication_context and not template_context "
         "and not measurement_gate and not contract_gate"
+    )
+    assert "--ignore=tests/test_documentation.py" in tests_quick["argv"], (
+        "the docs arm owns the documentation checks; quick must not collect them again"
     )
     assert tests_full["argv"][tests_full["argv"].index("-m") + 1] == (
         "not raw_corpus_regeneration and not requires_cuda12"
@@ -1470,8 +1587,8 @@ def test_uv_run_marker_is_refused_even_with_the_exact_interpreter(tmp_path):
     assert receipt["publication_acceptance"] is False
 
 
-def test_hosted_ci_uses_the_project_interpreter_and_does_not_fake_full_acceptance():
-    """Hosted CI runs the three portable profiles; full needs local inputs."""
+def test_hosted_ci_runs_one_command_per_arm_and_does_not_fake_full_acceptance():
+    """Hosted CI runs the seven portable arms; full needs local inputs."""
 
     workflow = CI_WORKFLOW.read_text(encoding="utf-8")
     assert _ci_release_contract_violations(workflow) == []
@@ -1480,25 +1597,38 @@ def test_hosted_ci_uses_the_project_interpreter_and_does_not_fake_full_acceptanc
     jobs = yaml.safe_load(workflow)["jobs"]
     assert jobs["measurement"]["name"] == "measurement gate"
     assert jobs["measurement"]["timeout-minutes"] == 45
-    assert workflow.count(".venv/bin/python -I -S scripts/verify_release.py measurement") == 1, (
-        "the measurement gate must run through the isolated project interpreter exactly once"
-    )
     assert jobs["contract"]["name"] == "contract gate"
     assert jobs["contract"]["timeout-minutes"] == 45
-    assert workflow.count(".venv/bin/python -I -S scripts/verify_release.py contract") == 1, (
-        "the contract gate must run through the isolated project interpreter exactly once"
-    )
     assert {
+        jobs["lint"]["name"],
+        jobs["types"]["name"],
+        jobs["docs"]["name"],
         jobs["quick"].get("name", "quick"),
         jobs["gnn-interop"]["name"],
         jobs["measurement"]["name"],
         jobs["contract"]["name"],
-    } == {"quick", "gnn conformance (pinned)", "measurement gate", "contract gate"}, (
-        "the check-row names are the expected set; a renamed job is a different check"
-    )
-    assert workflow.index("run: uv sync --locked --extra dev") < workflow.index(
-        "run: .venv/bin/python -I -S scripts/verify_release.py quick"
-    )
+    } == {
+        "lint",
+        "types",
+        "docs",
+        "quick",
+        "gnn conformance (pinned)",
+        "measurement gate",
+        "contract gate",
+    }, "the check-row names are the expected set; a renamed job is a different check"
+    for arm, profile in CI_ARMS.items():
+        expected = f".venv/bin/python -I -S scripts/verify_release.py {profile}"
+        assert workflow.count(expected) == 1, (
+            f"the {arm} arm must run through the isolated project interpreter exactly once"
+        )
+    # The environment is defined once, in the composite action, and every arm
+    # job uses it before it runs its arm.
+    setup = (PROJECT_ROOT / SETUP_ACTION / "action.yml").read_text(encoding="utf-8")
+    assert "uv sync --locked" in setup
+    assert "uv sync" not in workflow
+    for job_name, job in jobs.items():
+        uses = [step.get("uses") for step in job["steps"] if isinstance(step, dict)]
+        assert SETUP_ACTION in uses, f"{job_name} does not use the shared setup action"
     for prerequisite in (
         "external-call cache",
         "Ollama server",
@@ -1509,10 +1639,10 @@ def test_hosted_ci_uses_the_project_interpreter_and_does_not_fake_full_acceptanc
     ):
         assert prerequisite in workflow
 
-    # NEGATIVE CONTROLS: both historical CI defects must make the policy fail.
+    # NEGATIVE CONTROLS: every historical CI defect must make the policy fail.
     wrong_python = workflow.replace(
-        "run: .venv/bin/python -I -S scripts/verify_release.py quick",
-        "run: uv run --locked python scripts/verify_release.py quick",
+        "run: .venv/bin/python -I -S scripts/verify_release.py lint",
+        "run: uv run --locked python scripts/verify_release.py lint",
     )
     assert "uv-run-sidecar" in _ci_release_contract_violations(wrong_python)
     nonisolated_python = workflow.replace(".venv/bin/python -I -S", ".venv/bin/python -I")
@@ -1522,6 +1652,18 @@ def test_hosted_ci_uses_the_project_interpreter_and_does_not_fake_full_acceptanc
         + "\n  full:\n    steps:\n      - run: .venv/bin/python -I -S scripts/verify_release.py full\n"
     )
     assert "hosted-full-without-local-inputs" in _ci_release_contract_violations(false_full)
+    duplicated_arm = workflow.replace(
+        "      - name: Run the types arm\n        run: .venv/bin/python -I -S scripts/verify_release.py types",
+        "      - name: Run the types arm\n        run: .venv/bin/python -I -S scripts/verify_release.py types\n"
+        "      - name: Run it again\n        run: .venv/bin/python -I -S scripts/verify_release.py types",
+    )
+    assert "arm-not-run-once:types" in _ci_release_contract_violations(duplicated_arm)
+    duplicated_setup = workflow.replace(
+        "      - name: Run the lint arm",
+        "      - name: Sync again\n        run: uv sync --locked --extra dev\n"
+        "      - name: Run the lint arm",
+    )
+    assert "duplicated-environment-setup" in _ci_release_contract_violations(duplicated_setup)
     undocumented_live_input = workflow.replace("Ollama server", "model service")
     assert "missing-full-prerequisite:Ollama server" in _ci_release_contract_violations(
         undocumented_live_input
@@ -1541,7 +1683,7 @@ def test_hosted_ci_uses_the_project_interpreter_and_does_not_fake_full_acceptanc
     )
     assert "checkout-persists-credentials" in _ci_release_contract_violations(persisted_credentials)
     event_in_shell = workflow.replace(
-        "run: .venv/bin/python -I -S scripts/verify_release.py quick",
+        "run: .venv/bin/python -I -S scripts/verify_release.py lint",
         "run: echo '${{ github.event.pull_request.title }}'",
     )
     assert "event-expression-in-run" in _ci_release_contract_violations(event_in_shell)
@@ -4316,7 +4458,11 @@ def test_quick_worker_count_follows_the_host_and_stays_bounded():
 def test_quick_context_filter_has_real_collection_controls(tmp_path):
     template = tmp_path / "template"
     _init_template_repository(template)
-    quick, measurement, contract, full = _build_profiles_in_sidecar(template)
+    profiles = _build_profiles_in_sidecar(template)
+    quick = profiles["quick"]
+    measurement = profiles["measurement"]
+    contract = profiles["contract"]
+    full = profiles["full"]
     quick_step = next(step for step in quick if step["name"] == "tests-quick")
     measurement_step = next(step for step in measurement if step["name"] == "tests-measurement")
     contract_step = next(step for step in contract if step["name"] == "tests-contract")
@@ -4365,7 +4511,7 @@ def test_quick_context_filter_has_real_collection_controls(tmp_path):
         "tests/test_supporting_package.py::test_complete_relocated_package_and_production_mutations",
         "tests/test_supporting_package.py::test_production_cli_delivers_and_checks_both_editions_and_actual_consumers",
     ]
-    portable = "tests/test_documentation.py::test_runtime_vendor_inventory_has_one_code_owned_source_of_truth"
+    portable = "tests/test_claims_discipline.py::test_prose_file_set_is_non_empty"
 
     def collect(expression):
         child = subprocess.run(

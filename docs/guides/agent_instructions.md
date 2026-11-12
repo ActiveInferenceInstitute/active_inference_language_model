@@ -58,6 +58,24 @@ The canonical interpreter is the project's own `.venv`. Everything below assumes
 cd "$(git rev-parse --show-toplevel)"   # the repository root
 ```
 
+### Gate arms
+
+Every gate is one arm of the single entry point, and the hosted job runs the same
+string. Run the arm that owns what you changed instead of the whole runner:
+
+```bash
+.venv/bin/python -I -S scripts/verify_release.py lint    # ruff format --check and ruff check
+.venv/bin/python -I -S scripts/verify_release.py types   # mypy
+.venv/bin/python -I -S scripts/verify_release.py docs    # documentation index, links, hydration
+.venv/bin/python -I -S scripts/verify_release.py quick   # the developer loop
+```
+
+`measurement`, `contract`, `gnn`, and `full` are the remaining arms; the table in
+[`quickstart.md`](quickstart.md#the-gate-arms) says what each one owns, and
+[`../_generated/gate_arms.md`](../_generated/gate_arms.md) records the measured
+wall time. An arm never repeats another's work: format, lint, and typing live in
+`lint` and `types` only.
+
 ### Tests
 
 ```bash

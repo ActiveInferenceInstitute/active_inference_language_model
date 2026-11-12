@@ -276,3 +276,6 @@ The four end-to-end measurement gates carry `measurement_gate`: quick deselects
 them and the hosted `measurement gate` job runs the same portable subset of those
 files serially, with its own receipt and watchdog. The wheel-build and real-socket
 contract files carry `contract_gate` and run in the hosted `contract gate` job.
+`tests/test_documentation.py` carries `documentation` and runs in the hosted `docs`
+arm, which also regenerates and re-checks the hydrated mirror; quick deselects that
+marker, so a check that reads the documentation tree runs in exactly one job.

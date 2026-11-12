@@ -452,8 +452,12 @@ workstation's inputs described below:
 ```
 
 `quick` is the developer loop and tolerates a dirty worktree; it runs the
-static checks, the generated web interface, every portable test, and a bounded
-gate audit, and it is what hosted CI runs. `full` is
+generated web interface, every portable test, and a bounded gate audit. The
+static checks are their own arms — `lint` and `types` — and the documentation
+checks are the `docs` arm, so no arm repeats another's work; hosted CI runs one
+job per arm with these exact strings, and
+[`docs/_generated/gate_arms.md`](docs/_generated/gate_arms.md) records each arm's
+measured wall time. `full` is
 publication acceptance: it requires clean tracked, staged, and untracked input
 state, runs every check from the lock file through the validated PDF under the
 claim:stage0_coverage_floor_pct% branch-coverage floor, and writes one receipt,
