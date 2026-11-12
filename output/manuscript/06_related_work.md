@@ -40,7 +40,7 @@ identified separately in [@tbl:level_score_paths]. The
 consequence is a hard constraint the rest of the design has to satisfy: whatever a
 level does, it must be expressible as `A`, `B`, `C`, `D` over a discrete factor,
 because there is no escape hatch. Where pymdp's numerical behavior matters it is
-noted explicitly — version 1.0.4 runs on JAX [@jax2018] with float32 defaults, so
+noted explicitly — version 1.0.5 runs on JAX [@jax2018] with float32 defaults, so
 analytic anchors are compared with tolerance rather than for equality.
 
 ### Prior Language Simulations and the Bounded Natural-Corpus Search

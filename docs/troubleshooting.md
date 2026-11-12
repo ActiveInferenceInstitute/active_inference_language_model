@@ -36,7 +36,7 @@ Nothing in the day-to-day loop requires it.
 
 **Symptom.** Tests fail with import errors, missing `pymdp.agent.Agent`
 signatures, or assertion failures on matrix shapes that pass under the documented
-command. Or: pymdp reports version 0.0.7.1 rather than the pinned 1.0.4.
+command. Or: pymdp reports version 0.0.7.1 rather than the pinned 1.0.5.
 
 **Cause.** `uv run pytest` asks uv to run *a program named pytest*, which can
 resolve to a system or shim `pytest` outside the project environment — a different
@@ -547,7 +547,7 @@ one machine and errors on another.
 with an array slice (`B_f[..., u_f]`). Later JAX releases changed behavior on
 that path. This repository's environment of record is therefore the exact
 `jax==0.4.38` / `jaxlib==0.4.38` pair declared in `pyproject.toml`, alongside
-`inferactively-pymdp==1.0.4`; a compatible version range is not the contract.
+`inferactively-pymdp==1.0.5`; a compatible version range is not the contract.
 
 **Fix.** Do not let `uv sync` upgrade JAX past the pin. `pyproject.toml` declares the
 combined-lock extra `cuda12 = ["jax[cuda12]==0.4.38"]`, so on a CUDA machine (linux x86_64)

@@ -72,7 +72,7 @@ with `pkgutil` rather than reading the barrel. Import from the concrete module.
 record the measurement with the matching `scripts/record_stage*_claims.py`.
 
 **Historical pymdp warning.** The `JAX array is being set as static` warning
-was observed before the pinned 1.0.4 line; it is not a current expected warning.
+was observed before the pinned 1.0.5 line; it is not a current expected warning.
 Existing narrow call-site filters remain (see
 `scripts/audit_gates.py`). Do not silence it globally — a blanket
 `warnings.filterwarnings("ignore")` in library code would hide real ones.

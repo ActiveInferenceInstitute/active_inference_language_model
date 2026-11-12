@@ -32,7 +32,7 @@ authors acts on it.
 
 ## Pinned environment and interpreter identity
 
-The project pins `inferactively-pymdp` 1.0.4, which runs on JAX
+The project pins `inferactively-pymdp` 1.0.5, which runs on JAX
 [@jax2018], and is
 installed with `uv sync --locked` from `pyproject.toml` and the committed `uv.lock`. All
 project commands then address `.venv/bin/python` explicitly.
@@ -339,7 +339,7 @@ out in [@sec:lean].
 
 ## Deterministic build epoch and figures
 
-This document was rendered at 2026-10-30T22:22:22Z from version
+This document was rendered at 2026-11-12T16:34:26Z from version
 1.0.0. The timestamp honors `SOURCE_DATE_EPOCH`; when it is omitted,
 the manuscript orchestrator derives the epoch of the last audited commit that
 touched an input outside the regenerable `output/` tree, so the build stamp

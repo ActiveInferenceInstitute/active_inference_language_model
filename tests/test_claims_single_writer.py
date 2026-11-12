@@ -650,9 +650,9 @@ def test_connected_replay_preimage_refuses_changed_inputs(connected_replay_sourc
         path.rename(path.with_suffix(".retained"))
     elif mutation == "non-url":
         content = path.read_bytes()
-        assert b"inferactively-pymdp==1.0.4" in content
+        assert b"inferactively-pymdp==1.0.5" in content
         path.write_bytes(
-            content.replace(b"inferactively-pymdp==1.0.4", b"inferactively-pymdp==1.0.3")
+            content.replace(b"inferactively-pymdp==1.0.5", b"inferactively-pymdp==1.0.4")
         )
     else:
         path.write_bytes(b"changed metadata control input\n")

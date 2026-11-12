@@ -324,9 +324,9 @@ def test_public_orphan_source_refuses_non_url_configuration_change(tmp_path: Pat
     root, recorded, current = _portable_checkout(tmp_path)
     package = root / "pyproject.toml"
     before = package.read_bytes()
-    assert b"inferactively-pymdp==1.0.4" in before
+    assert b"inferactively-pymdp==1.0.5" in before
     package.write_bytes(
-        before.replace(b"inferactively-pymdp==1.0.4", b"inferactively-pymdp==1.0.3")
+        before.replace(b"inferactively-pymdp==1.0.5", b"inferactively-pymdp==1.0.4")
     )
     current["pyproject.toml"] = file_hash(package)
     with pytest.raises(DerivativeError, match="outside publication URLs"):

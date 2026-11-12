@@ -67,7 +67,7 @@ straddle.
 
 ## Constraints
 
-- pymdp 1.0.4 is the only generative model. No mocks, no mocking framework; all
+- pymdp 1.0.5 is the only generative model. No mocks, no mocking framework; all
   tests use real pymdp and real corpora.
 - `src/ailm/` imports no `infrastructure` (template layer contract).
   `src/ailm/verification/` additionally imports no pymdp — its value is independence.
@@ -88,7 +88,7 @@ straddle.
 
 ## Dependencies
 
-- `inferactively-pymdp==1.0.4` — the generative engine.
+- `inferactively-pymdp==1.0.5` — the generative engine.
 - Brown corpus (NLTK) → `vendor/brown_counts.json`; CMU Pronouncing Dictionary →
   `vendor/cmudict_counts.json`. Both committed, both byte-identical on
   regeneration, both checksum-enforced.

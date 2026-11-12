@@ -7432,7 +7432,7 @@
       "status": "descriptive"
     },
     "env_pymdp_version": {
-      "value": "1.0.4",
+      "value": "1.0.5",
       "run_id": "stage0_inventory",
       "source": "scripts/record_stage0_claims.py",
       "status": "descriptive"

@@ -26,10 +26,10 @@ classifiers = [
 
 dependencies = [
     "cycler>=0.11",
-    "inferactively-pymdp==1.0.4",
+    "inferactively-pymdp==1.0.5",
     # Keep the pymdp-verified JAX line exact. The CUDA extra below uses JAX's
     # plugin-based install, so CPU and CUDA environments resolve from one lock.
-    # pymdp 1.0.4 declares jax<0.11.1,>=0.3.4 (1.0.3 declared unbounded >=0.3.4);
+    # pymdp 1.0.5 declares jax>=0.3.4 unbounded (1.0.4 capped it at <0.11.1);
     # 0.4.38 still satisfies the upstream range and is what the suite is verified on.
     "jax==0.4.38",
     "jaxlib==0.4.38",

@@ -43,7 +43,7 @@ because they differed between pymdp 1.0.1 and 1.0.3 and reports which one worked
 signature-negotiating wrapper there would let a version mismatch produce numbers
 nobody could reproduce.
 
-**Do not unpin `inferactively-pymdp==1.0.4`** without re-running every stage gate and
+**Do not unpin `inferactively-pymdp==1.0.5`** without re-running every stage gate and
 re-recording every affected claim. There is no second backend, so a version bump is a
 model change.
 
@@ -97,6 +97,6 @@ raise SystemExit(0 if r['all_passed'] else 1)
 .venv/bin/python -c "
 import importlib.metadata as m
 v = m.version('inferactively-pymdp'); print(v)
-assert v == '1.0.4', f'pymdp {v} != pinned 1.0.4 — re-run every stage gate'
+assert v == '1.0.5', f'pymdp {v} != pinned 1.0.5 — re-run every stage gate'
 "
 ```

@@ -34,7 +34,7 @@ cost.
 |---|---|
 | **No mocks** — no `MagicMock`, `unittest.mock`, `mocker.patch` | Every test runs real pymdp against real vendored corpora. A mocked `Agent` makes the project's central claim false while the suite stays green |
 | **No transformers, no neural networks, no learned embeddings** | The generative engine is pymdp, entirely; stochastic-kernel composition is implemented, but no DisCoCat meaning functor is claimed |
-| **`infer_parameters` for learning** — never `update_A` / `update_B` | pymdp 1.0.4's API |
+| **`infer_parameters` for learning** — never `update_A` / `update_B` | pymdp 1.0.5's API |
 | **`update_empirical_prior` is within-level temporal recursion only** | It is the second half of filtering inside one agent, never a channel between levels. The connected runtime transports messages on explicit event clocks; historical isolated channel experiments retain their own populations and outcomes. `docs/hierarchy.md` governs |
 | **Sequence dynamics in the transition `B`; emission in `A`** | The inverse is anti-informative and pymdp validates it anyway |
 | **`A_dependencies` factorization** | Without it the word-level `A` is physically impossible to store |

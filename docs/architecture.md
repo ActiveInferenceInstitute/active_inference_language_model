@@ -423,7 +423,7 @@ form distinguishes them.
 | `unittest.mock`, `MagicMock`, `mocker.patch` anywhere in `tests/` | Mock tests pass while the model is wrong — they test call signatures, not inference | Real pymdp, real vendored corpora, `tmp_path` for I/O |
 | A number typed into figure-plotting code | Exactly as fabricated as a number typed into prose, and considerably harder to notice | Read it from `output/data/manuscript_variables.json` via `ailm.figures._common` |
 | A number typed into prose | Drifts silently from the measurement | Record it with a `scripts/record_stage*_claims.py` run and reference it as a tag |
-| `update_A` / `update_B` | Not the pymdp 1.0.4 learning API | `infer_parameters` |
+| `update_A` / `update_B` | Not the pymdp 1.0.5 learning API | `infer_parameters` |
 | A flat joint transition over word identity × position | Quadratic in the joint state count and physically impractical at that scale | Separate word and position factors with separate `B` transitions; `A_dependencies=[[0, 1]]` accurately retains both inputs to the spelling likelihood |
 | A runtime clamp that shrinks figure text to fit | Converts an overflowing label into an unreadable one and reports success | `assert_legible` against the produced figure — fail the build |
 | Starting Stage N+1 before Stage N's gate passes | The whole point of the staged build | Pass the gate, and audit that the gate could have failed |

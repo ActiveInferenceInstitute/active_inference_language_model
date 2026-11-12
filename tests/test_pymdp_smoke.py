@@ -193,7 +193,7 @@ class TestAllSmokeTests:
             f"Stage 0 blocked: pymdp smoke tests failed.\n"
             f"Failed tests: {list(failed.keys())}\n"
             f"Details: {failed}\n"
-            f"Check pymdp version (expected 1.0.4) and API surface."
+            f"Check pymdp version (expected 1.0.5) and API surface."
         )
 
     def test_smoke_result_is_dict(self):

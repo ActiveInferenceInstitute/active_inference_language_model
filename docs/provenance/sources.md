@@ -894,7 +894,7 @@ revision inspected for this provenance record.
 ## pymdp
 
 - **Package:** `inferactively-pymdp`
-- **Version pinned:** 1.0.4
+- **Version pinned:** 1.0.5
 - **Repository:** https://github.com/infer-actively/pymdp
 - **Role:** The ONLY generative model in AILM
 - **License:** MIT

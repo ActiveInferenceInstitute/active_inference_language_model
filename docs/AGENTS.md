@@ -96,7 +96,7 @@ each look authoritative and disagree.
 5. **Do not restate a measured result in two places.** If a number belongs to a
    result, it lives in the ledger and is referenced by tag. If a claim is
    qualitative, say it once and cross-link.
-6. **Version identifiers are not measurements.** `pymdp 1.0.4` and `Python 3.12`
+6. **Version identifiers are not measurements.** `pymdp 1.0.5` and `Python 3.12`
    are configuration identifiers that live in
    [`../pyproject.toml`](../pyproject.toml) and `.python-version`; quoting them is
    correct. Document the coverage floor with its recorded claim tag. A perplexity,

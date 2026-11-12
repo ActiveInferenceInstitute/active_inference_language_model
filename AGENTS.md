@@ -321,7 +321,7 @@ Regenerate this table from `[project].dependencies` and the `dev` group in
 
 | Library | Role | Version |
 |---------|------|---------|
-| `inferactively-pymdp` | The ONLY generative model | ==1.0.4 |
+| `inferactively-pymdp` | The ONLY generative model | ==1.0.5 |
 | `jax`, `jaxlib` | pymdp's array backend; the pymdp-verified line is pinned exactly | ==0.4.38 |
 | `numpy` | Array math | ≥1.24,<2.4 |
 | `scipy` | `scipy.stats.binomtest` — the exact binomial behind every McNemar test | ≥1.10 |
