@@ -16,6 +16,19 @@ class UpstreamReleaseError(ValueError):
     """The selected checkout does not supply the pinned release's source bytes."""
 
 
+#: Identity fields this reader consumes from a pin.
+PIN_IDENTITY_KEYS = frozenset({"repository", "tag", "commit"})
+
+#: Canonical importer-pin fields that document the pin itself. They are
+#: validated and then dropped: the release identity is what the custody check
+#: compares against Git objects, and these fields carry no source claim.
+PIN_DECLARATION_KEYS = frozenset({"schema", "recorded"})
+
+#: The one pin schema this reader understands. A pin declaring anything else is
+#: refused rather than read under guessed semantics.
+PIN_SCHEMA = "gnn-importer-pin/v1"
+
+
 @dataclass(frozen=True)
 class UpstreamRelease:
     repository: str
@@ -24,7 +37,15 @@ class UpstreamRelease:
 
 
 def load_release_pin(path: Path) -> UpstreamRelease:
-    """Read the authored release identity, refusing ambiguous or malformed pins."""
+    """Read the authored release identity, refusing ambiguous or malformed pins.
+
+    The pin declares the canonical importer schema (``schema``
+    ``gnn-importer-pin/v1``) and the date it was recorded. Both fields are
+    validated and then dropped; they document the pin, while the release
+    identity is what the custody check compares against Git objects. A pin that
+    predates them, or that declares an unrecognized schema, is read or refused
+    explicitly rather than interpreted by guess.
+    """
 
     def unique(pairs: list[tuple[str, object]]) -> dict[str, object]:
         result: dict[str, object] = {}
@@ -38,17 +59,30 @@ def load_release_pin(path: Path) -> UpstreamRelease:
         data = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique)
     except (OSError, UnicodeError, json.JSONDecodeError) as error:
         raise UpstreamReleaseError(f"cannot read upstream release pin: {error}") from error
-    if not isinstance(data, dict) or set(data) != {"repository", "tag", "commit"}:
+    if not isinstance(data, dict) or not PIN_IDENTITY_KEYS <= set(data):
         raise UpstreamReleaseError("upstream pin must name repository, tag and commit only")
+    unknown = set(data) - PIN_IDENTITY_KEYS - PIN_DECLARATION_KEYS
+    if unknown:
+        raise UpstreamReleaseError(
+            "upstream pin has unrecognized fields: " + ", ".join(sorted(unknown))
+        )
     if not all(isinstance(value, str) for value in data.values()):
         raise UpstreamReleaseError("upstream pin fields must be strings")
+    if "schema" in data and data["schema"] != PIN_SCHEMA:
+        raise UpstreamReleaseError(
+            f"upstream pin declares schema {data['schema']!r}, not {PIN_SCHEMA!r}"
+        )
+    if "recorded" in data and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", data["recorded"]):
+        raise UpstreamReleaseError("upstream pin recorded date must be YYYY-MM-DD")
     if not data["repository"].startswith("https://github.com/"):
         raise UpstreamReleaseError("upstream repository must be an HTTPS GitHub URL")
     if not re.fullmatch(r"v\d+\.\d+\.\d+", data["tag"]):
         raise UpstreamReleaseError("upstream tag must name a stable version")
     if not re.fullmatch(r"[0-9a-f]{40}", data["commit"]):
         raise UpstreamReleaseError("upstream commit must be a complete Git object identity")
-    return UpstreamRelease(**data)
+    return UpstreamRelease(
+        repository=data["repository"], tag=data["tag"], commit=data["commit"]
+    )
 
 
 def upstream_candidates(project: Path) -> tuple[Path, ...]:
