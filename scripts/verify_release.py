@@ -820,13 +820,14 @@ def _resolve_template_root(project_root: Path | None = None) -> Path:
 
 
 def _gnn_upstream_checkout(root: Path = PROJECT_ROOT) -> Path:
-    """Return the ignored checkout the conformance arm materializes and reads."""
+    """Return the ignored checkout the conformance arm materializes and reads.
 
-    payload = json.loads((root / "gnn" / "upstream.json").read_text(encoding="utf-8"))
-    tag = payload.get("tag")
-    if not isinstance(tag, str) or not tag:
-        raise RuntimeError("gnn/upstream.json declares no release tag")
-    return root / "refs" / "gnn-upstream" / tag
+    The path carries no tag, so the runner can name the checkout it expects
+    without reading the pin: the pin's reader is the released ``gnn.importers``,
+    which the checkout itself supplies.
+    """
+
+    return root / "refs" / "gnn-upstream" / "checkout"
 
 
 def _coverage_floor(root: Path = PROJECT_ROOT) -> int:
@@ -1143,10 +1144,11 @@ def build_steps(
     if profile == "gnn":
         # The pinned upstream parser is materialized from gnn/upstream.json into
         # the ignored refs/ tree, so the arm is the same command locally and in
-        # the hosted job and never writes beside the checkout. Both consumers
-        # read the same selection, and the conformance step requires it: under
-        # AILM_REQUIRE_GNN_INTEROP a missing prerequisite fails instead of
-        # skipping, which is what keeps "expressed in GNN" enforced.
+        # the hosted job and never writes beside the checkout. The pin is read by
+        # the released gnn.importers from that checkout, not by a copy here, and
+        # the conformance step requires the selection: under AILM_REQUIRE_GNN_INTEROP
+        # a missing prerequisite fails instead of skipping, which is what keeps
+        # "expressed in GNN" enforced.
         gnn_checkout = str(_gnn_upstream_checkout())
         return environment_steps + (
             Step(
@@ -1163,12 +1165,33 @@ def build_steps(
                 environment_overrides=(("AILM_GNN_UPSTREAM", gnn_checkout),),
             ),
             Step(
+                "gnn-importer-check",
+                # The estate's one pin reader, run against the pinned parser: the
+                # released checkout supplies gnn.importers on PYTHONPATH, so the
+                # pin, the pointer and every *.gnn.md are read by the revision the
+                # pin names rather than by a copy in this repository.
+                (
+                    _project_python(),
+                    "-m",
+                    "gnn.importers",
+                    "check",
+                    "--repo",
+                    ".",
+                ),
+                300,
+                depends_on=("gnn-upstream-release",),
+                environment_overrides=(
+                    ("PYTHONPATH", str(Path(gnn_checkout) / "src")),
+                    ("PYTHONDONTWRITEBYTECODE", "1"),
+                ),
+            ),
+            Step(
                 "gnn-conformance",
                 _controlled_python_argv(
                     "module", "pytest", "tests/test_gnn_conformance.py", "-q", "--no-cov"
                 ),
                 1800,
-                depends_on=("gnn-upstream-release",),
+                depends_on=("gnn-importer-check",),
                 environment_overrides=(
                     ("AILM_GNN_UPSTREAM", gnn_checkout),
                     ("AILM_REQUIRE_GNN_INTEROP", "1"),

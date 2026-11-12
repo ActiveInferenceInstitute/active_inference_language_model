@@ -159,6 +159,7 @@ Forward-looking guidance on how to *specify* a gate is a separate document:
 | [140](#140--publication-metadata-alignment-institute-release-destination-2026-10-14) | PUBLICATION METADATA ALIGNMENT: Institute release destination (2026-10-14) |
 | [141](#141--release-preparation-pinned-gnn-interoperability-and-dashboard-interruption-2026-10-26) | RELEASE PREPARATION: pinned GNN interoperability and dashboard interruption (2026-10-26) |
 | [142](#142--custody-refresh-the-upstream-gnn-pin-moves-to-v503-with-a-standalone-interop-requirement-gate-2026-11-01) | CUSTODY REFRESH: the upstream GNN pin moves to v5.0.3, with a standalone interop requirement gate (2026-11-01) |
+| [143](#143--cutover-the-upstream-gnn-pin-moves-to-v510-and-the-interim-pin-reader-is-retired-2026-11-12) | CUTOVER: the upstream GNN pin moves to v5.1.0 and the interim pin reader is retired (2026-11-12) |
 
 ---
 
@@ -9557,3 +9558,61 @@ the same two commands a maintainer runs locally — the release verifier, then t
 conformance file — so a release whose interoperability cannot be established
 fails in CI instead of reporting a green suite with less evidence behind it.
 
+## 143 — CUTOVER: the upstream GNN pin moves to v5.1.0 and the interim pin reader is retired (2026-11-12)
+
+**The decision.** AILM's upstream GNN pin moves from `v5.0.3`
+(`8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`) to `v5.1.0`
+(`75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf`), and the pin is read by the reader
+that release ships — `gnn.importers.read_pin` — rather than by a reader in this
+repository.
+
+`v5.1.0` is the first release containing `src/gnn/importers.py`, which
+`Generalized_Notation_Notation`'s `docs/workflows/gnn-fep.md` binds all
+twenty-two downstream consumers to for three concerns: reading an upstream pin,
+validating the pin together with `.github/GNN.md`, and validating the
+`*.gnn.md` specifications under it. Until that release existed, the contract
+required each member to keep its own reader behind its own `gnn` arm and to
+merge no cutover; advancing the pin and deleting the local reader are therefore
+one change, not two.
+
+**What moved.** `src/ailm/verification/upstream_gnn.py` no longer reads the pin:
+its schema, field, date, tag and commit decisions are deleted, and
+`load_importer_pin` imports `gnn.importers.read_pin` from the checkout the pin
+names and adapts its normalized result. What the module keeps is custody —
+which checkout is selected, and whether its HEAD, tag ref, source inventory and
+every source byte still equal the pinned commit — which is AILM's own concern
+and not one of the three the contract unifies. The `gnn` arm gains
+`gnn-importer-check`, which runs `python -m gnn.importers check --repo .` with
+the verified checkout's `src` on `PYTHONPATH`, so the pin, the pointer and all
+twenty-six `*.gnn.md` files are read by the pinned parser.
+
+**Two consequences worth naming.** The materialized checkout moved from
+`refs/gnn-upstream/<tag>` to `refs/gnn-upstream/checkout`: without a tag in the
+path, a pin bump replaces one cache entry instead of accreting release
+directories, and `scripts/verify_release.py` can name the checkout the arm will
+read without reading the pin at all (it previously parsed `gnn/upstream.json`
+with `json` to build `AILM_GNN_UPSTREAM`). The clone is also sparse and filtered
+to `src/`: a full checkout carries the upstream's own `*.gnn.md` files, which
+made this repository's specification count a function of the pinned release
+(twenty-seven instead of twenty-six).
+
+**A bootstrap that is not a reader.** A checkout has to exist before its own
+reader can be imported, so `scripts/fetch_gnn_upstream.py` reads exactly the two
+strings a clone needs — the repository URL and the release tag — when there is
+no checkout yet, and nothing else. The pinned reader re-reads the same file
+immediately afterwards and the custody check refuses unless HEAD, the tag ref
+and every source byte agree with what it says, so a misread coordinate cannot
+survive the step.
+
+**Evidence.** The `gnn` arm passed end to end —
+`gnn-upstream-checkout` (7.8 s, 1234 source files, tree
+`a98d80f069fd7001ccddff3b045b4e94b1088613`), `gnn-upstream-release`,
+`gnn-importer-check` (`pin: gnn/upstream.json -> v5.1.0 @ 75c834bd85 (schema
+gnn-importer-pin/v1)`, `specs: 26`, `verdict: ok`) and `gnn-conformance` — and
+`tests/test_gnn_release.py` keeps the custody controls.
+
+**Manuscript variables.** This repository's manuscript producer
+(`scripts/z_generate_manuscript_variables.py`) derives no `gnn_*` variables and
+never read the pin inline, so there is nothing to replace there;
+`gnn.importers.importer_variables` becomes the source the day a GNN release
+statement enters the prose.

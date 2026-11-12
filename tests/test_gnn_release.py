@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 from dataclasses import replace
 from pathlib import Path
@@ -13,8 +14,10 @@ import pytest
 from ailm.verification.upstream_gnn import (
     UpstreamRelease,
     UpstreamReleaseError,
-    load_release_pin,
+    default_upstream_root,
+    load_importer_pin,
     selected_upstream_root,
+    upstream_candidates,
     verify_release_checkout,
 )
 
@@ -155,78 +158,44 @@ def test_release_without_parser_is_refused(release):
         verify_release_checkout(root, altered)
 
 
-def test_pin_round_trips_the_release_identity(release, tmp_path):
-    _, pin = release
-    path = tmp_path / "pin.json"
-    path.write_text(
-        json.dumps({"repository": pin.repository, "tag": pin.tag, "commit": pin.commit})
-    )
-    assert load_release_pin(path) == pin
+def test_the_shipped_pin_is_read_by_the_released_reader():
+    """The pin's reader is the one the pinned release ships, not a copy here."""
 
-
-@pytest.mark.parametrize(
-    "payload",
-    [
-        "[]",
-        "{",
-        '{"tag":"v1.0.0","tag":"v1.0.1"}',
-        '{"repository":1,"tag":"v1.0.0","commit":"a"}',
-        '{"repository":"http://example.org","tag":"v1.0.0","commit":"a"}',
-        '{"repository":"https://github.com/a/b","tag":"main","commit":"a"}',
-        '{"repository":"https://github.com/a/b","tag":"v1.0.0","commit":"short"}',
-    ],
-)
-def test_malformed_or_ambiguous_pin_is_refused(tmp_path, payload):
-    path = tmp_path / "pin.json"
-    path.write_text(payload)
-    with pytest.raises(UpstreamReleaseError):
-        load_release_pin(path)
-
-
-def test_canonical_pin_declaration_is_read_and_dropped(release, tmp_path):
-    """The canonical importer schema adds two documented fields, no identity."""
-    _, pin = release
-    path = tmp_path / "pin.json"
-    path.write_text(
-        json.dumps(
-            {
-                "schema": "gnn-importer-pin/v1",
-                "repository": pin.repository,
-                "tag": pin.tag,
-                "commit": pin.commit,
-                "recorded": "2026-11-12",
-            }
-        )
-    )
-    assert load_release_pin(path) == pin
-
-
-def test_the_shipped_pin_declares_the_canonical_schema():
-    """The committed pin is what CI reads, so it must pass this reader."""
-    pin = load_release_pin(Path(__file__).resolve().parent.parent / "gnn/upstream.json")
+    project = Path(__file__).resolve().parent.parent
+    checkout = default_upstream_root(upstream_candidates(project))
+    if not (checkout / "src/gnn/importers.py").is_file():
+        pytest.skip(f"no checkout at {checkout} ships gnn.importers")
+    pin = load_importer_pin(project / "gnn/upstream.json", checkout_root=checkout)
     assert pin.repository.endswith("Generalized_Notation_Notation")
+    assert re.fullmatch(r"v\d+\.\d+\.\d+", pin.tag)
+    assert re.fullmatch(r"[0-9a-f]{40}", pin.commit)
 
 
-@pytest.mark.parametrize(
-    "extra",
-    [
-        {"schema": "gnn-importer-pin/v2"},
-        {"recorded": "12/11/2026"},
-        {"spec_files": []},
-    ],
-)
-def test_unknown_declarations_are_refused(release, tmp_path, extra):
-    _, pin = release
-    payload = {"repository": pin.repository, "tag": pin.tag, "commit": pin.commit} | extra
+def test_a_checkout_without_the_reader_is_refused(tmp_path):
+    project = Path(__file__).resolve().parent.parent
+    checkout = tmp_path / "checkout"
+    (checkout / "src/gnn").mkdir(parents=True)
+    with pytest.raises(UpstreamReleaseError, match="does not ship gnn.importers"):
+        load_importer_pin(project / "gnn/upstream.json", checkout_root=checkout)
+
+
+def test_a_checkout_without_sources_is_refused(tmp_path):
+    project = Path(__file__).resolve().parent.parent
+    with pytest.raises(UpstreamReleaseError, match="has no src directory"):
+        load_importer_pin(project / "gnn/upstream.json", checkout_root=tmp_path / "absent")
+
+
+def test_a_pin_without_a_tag_cannot_be_verified(tmp_path):
+    """The released reader accepts a tagless pin; custody cannot verify one."""
+
+    project = Path(__file__).resolve().parent.parent
+    checkout = default_upstream_root(upstream_candidates(project))
+    if not (checkout / "src/gnn/importers.py").is_file():
+        pytest.skip(f"no checkout at {checkout} ships gnn.importers")
     path = tmp_path / "pin.json"
-    path.write_text(json.dumps(payload))
-    with pytest.raises(UpstreamReleaseError):
-        load_release_pin(path)
-
-
-def test_missing_pin_is_a_refusal(tmp_path):
-    with pytest.raises(UpstreamReleaseError, match="cannot read"):
-        load_release_pin(tmp_path / "absent")
+    path.write_text(json.dumps({"commit": "0" * 40}), encoding="utf-8")
+    with pytest.raises(UpstreamReleaseError, match="records no release tag"):
+        load_importer_pin(path, checkout_root=checkout)
 
 
 def test_explicit_upstream_selection_is_final(tmp_path, monkeypatch):

@@ -444,6 +444,7 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
         *environment_prefix,
         "gnn-upstream-checkout",
         "gnn-upstream-release",
+        "gnn-importer-check",
         "gnn-conformance",
     ]
     assert not {"format", "lint", "types"} & set(
@@ -617,6 +618,17 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     )
     assert ["AILM_REQUIRE_GNN_INTEROP", "1"] in conformance["env_ov"]
     assert any(name == "AILM_GNN_UPSTREAM" for name, _value in conformance["env_ov"])
+    importer_check = next(step for step in gnn if step["name"] == "gnn-importer-check")
+    assert importer_check["argv"][1:] == ["-m", "gnn.importers", "check", "--repo", "."], (
+        "the arm must call the released reader, not a copy carried in this repository"
+    )
+    assert importer_check["depends_on"] == ["gnn-upstream-release"], (
+        "the reader runs against the checkout only after its source bytes are verified"
+    )
+    assert importer_check["env_ov"] == [
+        ["PYTHONPATH", str(PROJECT_ROOT / "refs" / "gnn-upstream" / "checkout" / "src")],
+        ["PYTHONDONTWRITEBYTECODE", "1"],
+    ], "the reader is imported from the pinned checkout, which is the environment the arm builds"
     raw_replay = next(step for step in full if step["name"] == "raw-corpus-reproducibility")
     assert raw_replay["env_ov"] == [["AILM_RUN_RAW_CORPUS_REGENERATION", "1"]]
     assert raw_replay["forbid_skips"] is True

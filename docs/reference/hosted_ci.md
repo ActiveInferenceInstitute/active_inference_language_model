@@ -63,12 +63,22 @@ reader comparing repositories should not assume a shared setup action is in play
 
 The canonical pin is [`../../gnn/upstream.json`](../../gnn/upstream.json), schema
 `gnn-importer-pin/v1`: repository
-`ActiveInferenceInstitute/Generalized_Notation_Notation`, tag `v5.0.3`, commit
-`8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`. The `gnn` arm materializes that tag
-with `scripts/fetch_gnn_upstream.py` into the Git-ignored
-`refs/gnn-upstream/v5.0.3`, refuses a checkout whose HEAD, tag ref or source bytes
-disagree with the pin, and then runs `scripts/verify_gnn_release.py` followed by
-`tests/test_gnn_conformance.py`.
+`ActiveInferenceInstitute/Generalized_Notation_Notation`, tag `v5.1.0`, commit
+`75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf`. The `gnn` arm materializes that
+release's `src/` with `scripts/fetch_gnn_upstream.py` into the Git-ignored
+`refs/gnn-upstream/checkout`, refuses a checkout whose HEAD, tag ref or source
+bytes disagree with the pin, and then runs three steps in order:
+`gnn-importer-check` — `python -m gnn.importers check --repo .`, the estate's one
+pin reader, imported from the checkout just verified — then
+`scripts/verify_gnn_release.py`, then `tests/test_gnn_conformance.py`.
+
+The reader is the release's own, not a copy: `v5.1.0` is the first pin in this
+repository that contains `src/gnn/importers.py`, so the interim reader in
+`src/ailm/verification/upstream_gnn.py` — which decided the pin's shape, schema,
+tag and commit for itself up to `v5.0.3`
+(`8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`) — is gone. That module keeps only
+custody: which checkout is selected, and whether its bytes still equal the pinned
+commit.
 
 [`../../.github/GNN.md`](../../.github/GNN.md) is the pointer that records what the
 conformance step parses: the nine specs under `gnn/models/`, the declarations it
