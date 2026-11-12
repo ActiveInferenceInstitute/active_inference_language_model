@@ -183,6 +183,47 @@ def test_malformed_or_ambiguous_pin_is_refused(tmp_path, payload):
         load_release_pin(path)
 
 
+def test_canonical_pin_declaration_is_read_and_dropped(release, tmp_path):
+    """The canonical importer schema adds two documented fields, no identity."""
+    _, pin = release
+    path = tmp_path / "pin.json"
+    path.write_text(
+        json.dumps(
+            {
+                "schema": "gnn-importer-pin/v1",
+                "repository": pin.repository,
+                "tag": pin.tag,
+                "commit": pin.commit,
+                "recorded": "2026-11-12",
+            }
+        )
+    )
+    assert load_release_pin(path) == pin
+
+
+def test_the_shipped_pin_declares_the_canonical_schema():
+    """The committed pin is what CI reads, so it must pass this reader."""
+    pin = load_release_pin(Path(__file__).resolve().parent.parent / "gnn/upstream.json")
+    assert pin.repository.endswith("Generalized_Notation_Notation")
+
+
+@pytest.mark.parametrize(
+    "extra",
+    [
+        {"schema": "gnn-importer-pin/v2"},
+        {"recorded": "12/11/2026"},
+        {"spec_files": []},
+    ],
+)
+def test_unknown_declarations_are_refused(release, tmp_path, extra):
+    _, pin = release
+    payload = {"repository": pin.repository, "tag": pin.tag, "commit": pin.commit} | extra
+    path = tmp_path / "pin.json"
+    path.write_text(json.dumps(payload))
+    with pytest.raises(UpstreamReleaseError):
+        load_release_pin(path)
+
+
 def test_missing_pin_is_a_refusal(tmp_path):
     with pytest.raises(UpstreamReleaseError, match="cannot read"):
         load_release_pin(tmp_path / "absent")
