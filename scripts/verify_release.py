@@ -877,11 +877,12 @@ def _coverage_gate_argument(root: Path = PROJECT_ROOT) -> str:
 
 #: The input-based markers every hosted profile deselects: their checkouts carry
 #: neither the publication template, the ignored raw corpora, nor the CUDA
-#: plugin. The three hosted profiles divide the remaining suite by mark --
-#: quick runs the portable surface, measurement runs the end-to-end measurement
-#: gates, contract runs the wheel and real-socket contract files -- so a marked
-#: test runs in exactly one hosted job. The rest of the marked files stay
-#: full-only, where they ran before either split.
+#: plugin. The hosted test arms divide the remaining suite by mark -- quick runs
+#: the portable surface, measurement runs the end-to-end measurement gates, and
+#: contract runs the wheel and real-socket contract files -- and quick also
+#: ignores the documentation file the docs arm owns by path, so a marked test
+#: runs in exactly one hosted job. The rest of the marked files stay full-only,
+#: where they ran before the splits.
 _HOSTED_TEST_EXCLUSIONS = (
     "not recorder_replay and not raw_corpus_regeneration and not requires_cuda12 "
     "and not publication_context and not template_context"

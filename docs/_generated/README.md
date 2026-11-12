@@ -17,6 +17,12 @@ passed. It is not a claim about a different machine, a different load, or a
 different commit, and it is not a result: the recorded numbers in
 [`../../data/claims.json`](../../data/claims.json) are the results.
 
+A single run per arm is an observation, not a speed comparison. The quick test
+step varied by more than a third between two runs of the same tree on the same
+host while this document was introduced, so read the before column as "the steps
+this arm now owns, as they were measured inside the pre-split runner", not as a
+controlled experiment.
+
 The `--check` mode enforces two things that a hand-written page cannot: the
 Markdown is exactly what the committed record renders, and every arm and step it
 names still exists in `.venv/bin/python -I -S scripts/verify_release.py --list`.

@@ -11,16 +11,20 @@ when a recorded arm or step no longer exists in the runner's own inventory.
 - Every arm is one profile of `.venv/bin/python -I -S scripts/verify_release.py`;
   the same command runs locally and in the hosted job that owns the arm.
 
-| Arm | What it gates | Command | Measured | Total wall time (s) | Tests passed |
+| Arm | What it gates | Measured | Before (s) | After (s) | Tests passed |
 | --- | --- | --- | --- | --- | --- |
-| `lint` | format and lint | `.venv/bin/python -I -S scripts/verify_release.py lint` | yes | 0.6 | — |
-| `types` | static typing | `.venv/bin/python -I -S scripts/verify_release.py types` | yes | 0.6 | — |
-| `docs` | documentation index, links, and hydration | `.venv/bin/python -I -S scripts/verify_release.py docs` | yes | 9.3 | 103 |
-| `quick` | fast tests | `.venv/bin/python -I -S scripts/verify_release.py quick` | yes | 796.9 | — |
-| `measurement` | end-to-end measurement tests | `.venv/bin/python -I -S scripts/verify_release.py measurement` | no | — | — |
-| `contract` | wheel and real-socket contract tests | `.venv/bin/python -I -S scripts/verify_release.py contract` | no | — | — |
-| `gnn` | pinned upstream GNN conformance | `.venv/bin/python -I -S scripts/verify_release.py gnn` | no | — | — |
-| `full` | publication acceptance | `.venv/bin/python -I -S scripts/verify_release.py full` | no | — | — |
+| `lint` | format and lint | yes | 0.3 | 0.5 | — |
+| `types` | static typing | yes | 0.3 | 0.5 | — |
+| `docs` | documentation index, links, and hydration | yes | — | 4.4 | 104 |
+| `quick` | fast tests | yes | — | 574.0 | 8923 |
+| `measurement` | end-to-end measurement tests | yes | — | 921.3 | 560 |
+| `contract` | wheel and real-socket contract tests | yes | — | 174.3 | 117 |
+| `gnn` | pinned upstream GNN conformance | yes | — | 14.3 | 276 |
+| `full` | publication acceptance | no | — | — | — |
+
+Before column: the steps each arm owns, projected from the pre-split quick receipt `output/reports/before-quick-warm.json` (9 recorded steps, 383.3 total). An arm whose steps were not separable there shows `—`; its own work is unchanged by the split. No whole-profile total is compared, because the baseline run stopped at a failing step and therefore recorded a different step set.
+
+The test step itself: 381.3 s before the split, 531.9 s and 8923 passed after it, with the documentation file the `docs` arm now owns excluded from the second run.
 
 ## Per-step wall time
 
@@ -30,18 +34,18 @@ when a recorded arm or step no longer exists in the runner's own inventory.
 | --- | --- | --- | --- |
 | `lock` | passed | 0.0 | — |
 | `environment` | passed | 0.0 | — |
-| `environment-compatibility` | passed | 0.0 | — |
-| `format` | passed | 0.4 | — |
+| `environment-compatibility` | passed | 0.1 | — |
+| `format` | passed | 0.2 | — |
 | `lint` | passed | 0.2 | — |
 
 ### `types`
 
 | Step | Status | Wall time (s) | Tests passed |
 | --- | --- | --- | --- |
-| `lock` | passed | 0.0 | — |
+| `lock` | passed | 0.1 | — |
 | `environment` | passed | 0.0 | — |
 | `environment-compatibility` | passed | 0.0 | — |
-| `types` | passed | 0.5 | — |
+| `types` | passed | 0.4 | — |
 
 ### `docs`
 
@@ -50,41 +54,61 @@ when a recorded arm or step no longer exists in the runner's own inventory.
 | `lock` | passed | 0.0 | — |
 | `environment` | passed | 0.0 | — |
 | `environment-compatibility` | passed | 0.0 | — |
-| `docs-links` | passed | 8.5 | 103 |
-| `docs-hydrate` | passed | 0.5 | — |
+| `docs-links` | passed | 3.8 | 104 |
+| `docs-hydrate` | passed | 0.3 | — |
 | `docs-hydrate-check` | passed | 0.2 | — |
 
 ### `quick`
 
-the run did not succeed; see its receipt
+| Step | Status | Wall time (s) | Tests passed |
+| --- | --- | --- | --- |
+| `lock` | passed | 0.0 | — |
+| `environment` | passed | 0.0 | — |
+| `environment-compatibility` | passed | 0.1 | — |
+| `format` | passed | 0.2 | — |
+| `lint` | passed | 0.2 | — |
+| `types` | passed | 0.3 | — |
+| `web-model` | passed | 1.8 | — |
+| `web-page` | passed | 0.2 | — |
+| `tests-quick` | passed | 531.9 | 8923 |
+| `gate-audit-bounded` | passed | 39.3 | — |
+
+### `measurement`
 
 | Step | Status | Wall time (s) | Tests passed |
 | --- | --- | --- | --- |
 | `lock` | passed | 0.0 | — |
 | `environment` | passed | 0.0 | — |
 | `environment-compatibility` | passed | 0.0 | — |
-| `format` | passed | 0.1 | — |
-| `lint` | passed | 0.2 | — |
-| `types` | passed | 0.6 | — |
-| `web-model` | passed | 4.3 | — |
-| `web-page` | passed | 0.3 | — |
-| `tests-quick` | failed | 791.5 | — |
-
-### `measurement`
-
-No step was measured. no receipt in the supplied directory
+| `web-model` | passed | 3.0 | — |
+| `web-page` | passed | 0.1 | — |
+| `tests-measurement` | passed | 918.1 | 560 |
 
 ### `contract`
 
-No step was measured. no receipt in the supplied directory
+| Step | Status | Wall time (s) | Tests passed |
+| --- | --- | --- | --- |
+| `lock` | passed | 0.1 | — |
+| `environment` | passed | 0.1 | — |
+| `environment-compatibility` | passed | 0.1 | — |
+| `web-model` | passed | 2.5 | — |
+| `web-page` | passed | 0.2 | — |
+| `tests-contract` | passed | 171.5 | 117 |
 
 ### `gnn`
 
-No step was measured. no receipt in the supplied directory
+| Step | Status | Wall time (s) | Tests passed |
+| --- | --- | --- | --- |
+| `lock` | passed | 0.0 | — |
+| `environment` | passed | 0.0 | — |
+| `environment-compatibility` | passed | 0.0 | — |
+| `gnn-upstream-checkout` | passed | 4.9 | — |
+| `gnn-upstream-release` | passed | 0.6 | — |
+| `gnn-conformance` | passed | 8.7 | 276 |
 
 ### `full`
 
-No step was measured. no receipt in the supplied directory
+No step was measured. refused before any step: template publication prerequisite failed: could not locate the template checkout required for publication; set TEMPLATE_REPO_ROOT to its exact root
 
 ## Refresh
 
