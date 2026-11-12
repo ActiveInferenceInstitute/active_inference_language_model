@@ -19,7 +19,7 @@ Requires a running Ollama server, or a warmed call cache. Run from the project r
 ```python
 from ailm.benchmarks import PROBE_DISPLAY_NAMES, PROBE_MODEL_TAGS, ollama_available
 
-print(PROBE_MODEL_TAGS)     # {'gemma3': 'gemma3:4b', 'qwen25': ..., 'smollm': ...}
+print(PROBE_MODEL_TAGS)  # {'gemma3': 'gemma3:4b', 'qwen25': ..., 'smollm': ...}
 print(PROBE_DISPLAY_NAMES)  # ledger suffix -> reader-facing name
 print(ollama_available(PROBE_MODEL_TAGS["gemma3"]))  # False with no server running
 ```

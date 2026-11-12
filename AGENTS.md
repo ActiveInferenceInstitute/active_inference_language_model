@@ -317,20 +317,20 @@ Regenerate this table from `[project].dependencies` and the `dev` group in
 |---------|------|---------|
 | `inferactively-pymdp` | The ONLY generative model | ==1.0.4 |
 | `jax`, `jaxlib` | pymdp's array backend; the pymdp-verified line is pinned exactly | ==0.4.38 |
-| `numpy` | Array math | ≥1.24,<2.4 |
+| `numpy` | Array math | ≥1.24,<2.5 |
 | `scipy` | `scipy.stats.binomtest` — the exact binomial behind every McNemar test | ≥1.10 |
 | `requests` | CMUdict / UD EWT download | ≥2.28 |
 | `nltk` | Brown corpus access for the vendored count generators | ≥3.8 |
 | `pyyaml` | Reads `docs/manuscript/config.yaml` for the `META_*` tokens | ≥6.0 |
 | `matplotlib` | Figure generation; declared rather than inherited from pymdp | ≥3.7 |
 | `cycler` | Figure palette cycling | ≥0.11 |
-| `hatchling` | Exact, locked wheel and sdist build backend | ==1.32.0 |
-| `pytest` | Test runner | ==9.1.1 |
+| `hatchling` | Exact, locked wheel and sdist build backend | ==1.33.0 |
+| `pytest` | Test runner | ==9.2.0 |
 | `pytest-cov` | Coverage | ==7.1.0 |
 | `pytest-timeout` | The per-test 300 s bound in `pyproject.toml` | ==2.4.0 |
 | `pytest-xdist` | Parallel test workers for the dev loop and the `quick` profile's test step; the suite default and the `full` profile stay serial | ==3.8.0 |
-| `mypy` | Typing gate over all of `src/ailm`, figures included (no package is excluded) | ==2.2.0 |
-| `ruff` | Lint and format gate | ==0.15.20 |
+| `mypy` | Typing gate over all of `src/ailm`, figures included (no package is excluded) | ==2.4.1 |
+| `ruff` | Lint and format gate | ==0.17.3 |
 
 Optional extras: `cuda12` (the CUDA JAX plugin) and `gnn-interop` (`psutil`; it
 exists only to enable the upstream GNN parser interoperability test, which skips

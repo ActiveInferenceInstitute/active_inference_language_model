@@ -33,8 +33,10 @@ dependencies = [
     # 0.4.38 still satisfies the upstream range and is what the suite is verified on.
     "jax==0.4.38",
     "jaxlib==0.4.38",
-    # NumPy 2.4 stubs use Python 3.12-only type-alias syntax; retain the
-    # package's declared Python 3.11 support until that floor is raised.
+    # NumPy 2.4 is admitted rather than capped out: 2.4.6 supports Python
+    # 3.11-3.14 upstream, mypy 2.4.1 parses its stubs under --python-version
+    # 3.11 as well as 3.12, and the pinned jax 0.4.38 line is verified on it
+    # (tests/test_pymdp_smoke.py and the quick profile's typing and test steps).
     "numpy>=1.24,<2.5",
     "scipy>=1.10",
     "requests>=2.28",
