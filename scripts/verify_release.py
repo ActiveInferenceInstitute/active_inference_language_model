@@ -826,6 +826,13 @@ def _coverage_floor(root: Path = PROJECT_ROOT) -> int:
     publishes the same key as ``claim:stage0_coverage_floor_pct``, and pytest-cov
     applies it whenever ``--cov`` is passed, so the release step spells the value
     out only so the receipt shows which gate ran; it is never a second copy.
+
+    Only the ``full`` profile passes ``--cov``; ``quick``, ``measurement`` and
+    ``contract`` pass ``--no-cov``, so a hosted run never evaluates the floor.
+    That boundary is deliberate and documented rather than annotated here: the
+    publication artifact contract compares ``pyproject.toml`` byte-for-byte, so a
+    comment beside ``fail_under`` cannot ship. A hosted coverage job is admitted
+    only with its own measured duration and receipt.
     """
     pyproject = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))
     try:
