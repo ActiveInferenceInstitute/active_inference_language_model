@@ -180,8 +180,8 @@ can be about.
 | [`../SECURITY.md`](../SECURITY.md) | Vulnerability-reporting policy |
 | [`../CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md) | Community code of conduct |
 | [`../CITATION.cff`](../CITATION.cff) | Machine-readable citation metadata |
-| [`../LICENSE`](../LICENSE) | Licence terms: MIT for code, CC-BY-SA-4.0 for content |
-| [`../THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md) | Third-party material and licence notices |
+| [`../LICENSE`](../LICENSE) | License terms: MIT for code, CC-BY-SA-4.0 for content |
+| [`../THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md) | Third-party material and license notices |
 | [`../SOURCE_DISTRIBUTION.md`](../SOURCE_DISTRIBUTION.md) | What the public source distribution includes and excludes |
 | [`../.aii/README.md`](../.aii/README.md) | InstituteOS sidecar: curated institutional metadata and its validation |
 | [`../HANDOFF.md`](../HANDOFF.md), [`../ISA.md`](../ISA.md) | Historical planning records; not current status sources |
