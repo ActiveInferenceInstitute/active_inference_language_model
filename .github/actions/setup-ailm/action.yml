@@ -1,0 +1,64 @@
+name: Set up the AILM gate environment
+description: >-
+  One definition of the environment every gate arm shares: the pinned uv and
+  Python, the pinned uv on the release verifier's search path, the optional
+  documentation tools an arm needs, and the locked sync. Each hosted job runs one
+  arm, so this action is the only place setup is written down.
+
+inputs:
+  extras:
+    description: Space-separated uv extras to sync, for example "dev" or "dev gnn-interop".
+    required: false
+    default: dev
+  tools:
+    description: >-
+      Space-separated Homebrew formulae the arm needs, for example "pandoc
+      ripgrep". Empty installs nothing.
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Install uv and Python
+      id: setup_uv
+      uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      with:
+        version: "0.12.0"
+        python-version: "3.12"
+        enable-cache: true
+        cache-dependency-glob: uv.lock
+
+    - name: Expose the pinned uv to the release verifier
+      shell: bash
+      env:
+        RELEASE_UV_BINARY: ${{ steps.setup_uv.outputs.uv-path }}
+      run: |
+        test -x "$RELEASE_UV_BINARY"
+        mkdir -p "${HOME}/.local/bin"
+        test ! -e "${HOME}/.local/bin/uv"
+        test ! -L "${HOME}/.local/bin/uv"
+        ln -s "$RELEASE_UV_BINARY" "${HOME}/.local/bin/uv"
+        "${HOME}/.local/bin/uv" --version
+
+    - name: Install the arm's external tools
+      if: inputs.tools != ''
+      shell: bash
+      env:
+        AILM_GATE_TOOLS: ${{ inputs.tools }}
+      run: |
+        # shellcheck disable=SC2086 # the input is a deliberate word list
+        brew install ${AILM_GATE_TOOLS}
+        # shellcheck disable=SC2086
+        for tool in ${AILM_GATE_TOOLS}; do "${tool}" --version; done
+
+    - name: Sync the locked environment
+      shell: bash
+      env:
+        AILM_GATE_EXTRAS: ${{ inputs.extras }}
+      run: |
+        arguments=()
+        for extra in ${AILM_GATE_EXTRAS}; do
+          arguments+=(--extra "$extra")
+        done
+        uv sync --locked "${arguments[@]}"

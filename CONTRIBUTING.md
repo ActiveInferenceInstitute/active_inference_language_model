@@ -34,12 +34,17 @@ gates were measured against:
 .venv/bin/python -m pytest tests/ -v --cov=ailm --cov-report=term-missing
 ```
 
-Lint and format with Ruff:
+Lint, format, and type-check through the gate arms, because each arm is the same
+command hosted CI runs:
 
 ```bash
-.venv/bin/python -m ruff check .
-.venv/bin/python -m ruff format --check .
+.venv/bin/python -I -S scripts/verify_release.py lint    # ruff format --check and ruff check
+.venv/bin/python -I -S scripts/verify_release.py types   # mypy
 ```
+
+`docs`, `quick`, `measurement`, `contract`, `gnn`, and `full` are the other arms;
+[`docs/guides/quickstart.md`](docs/guides/quickstart.md#the-gate-arms) says what
+each one owns.
 
 ## The no-mocks policy
 

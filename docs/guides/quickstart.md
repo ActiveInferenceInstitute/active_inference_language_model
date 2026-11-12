@@ -222,6 +222,29 @@ The release runner also replaces any inherited `SOURCE_DATE_EPOCH` with the
 audited source epoch recorded in the receipt; caller state cannot silently change its build
 metadata.
 
+### The gate arms
+
+One entry point runs every gate, and each arm is a profile you can run on its
+own. The string is the same one the hosted job runs.
+
+| Arm | Command | What it owns |
+| --- | --- | --- |
+| lint | `.venv/bin/python -I -S scripts/verify_release.py lint` | `ruff format --check` and `ruff check` over `src`, `scripts` and `tests` |
+| types | `.venv/bin/python -I -S scripts/verify_release.py types` | `mypy` over `src/ailm` and the typed release scripts |
+| docs | `.venv/bin/python -I -S scripts/verify_release.py docs` | The documentation index and its relative links, then the hydrated mirror |
+| quick | `.venv/bin/python -I -S scripts/verify_release.py quick` | The developer loop: environment, generated web artifacts, the portable suite, a bounded gate audit |
+| measurement | `.venv/bin/python -I -S scripts/verify_release.py measurement` | The `measurement_gate` files, serially |
+| contract | `.venv/bin/python -I -S scripts/verify_release.py contract` | The `contract_gate` files (wheel builds, real-socket retries), serially |
+| gnn | `.venv/bin/python -I -S scripts/verify_release.py gnn` | The pinned upstream GNN release and its conformance suite; sync `--extra gnn-interop` first |
+| full | `.venv/bin/python -I -S scripts/verify_release.py full` | Publication acceptance; needs the release workstation's inputs |
+
+No arm repeats another's work. The static checks are `lint` and `types`, the
+documentation tests are `docs` (which is why `quick` passes
+`--ignore=tests/test_documentation.py`), and the `measurement` and `contract` slices
+take only the environment and the generated web artifacts. Measured wall time per arm is in
+[`../_generated/gate_arms.md`](../_generated/gate_arms.md); the mapping from arm to
+hosted check row is in [`../reference/hosted_ci.md`](../reference/hosted_ci.md).
+
 ## 3. Run the gates
 
 The stage gates are the point of the project — each stage has a falsifiable

@@ -1,0 +1,260 @@
+{
+  "arms": [
+    {
+      "arm": "lint",
+      "command": ".venv/bin/python -I -S scripts/verify_release.py lint",
+      "description": "format and lint",
+      "measured": true,
+      "note": "",
+      "profile": "lint",
+      "pytest_passed": null,
+      "receipt": "output/reports/lint.json",
+      "refusal": null,
+      "steps": [
+        {
+          "duration_seconds": 0.019,
+          "name": "lock",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.028,
+          "name": "environment",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.022,
+          "name": "environment-compatibility",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.382,
+          "name": "format",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.188,
+          "name": "lint",
+          "pytest_passed": null,
+          "status": "passed"
+        }
+      ],
+      "success": true,
+      "total_seconds": 0.639
+    },
+    {
+      "arm": "types",
+      "command": ".venv/bin/python -I -S scripts/verify_release.py types",
+      "description": "static typing",
+      "measured": true,
+      "note": "",
+      "profile": "types",
+      "pytest_passed": null,
+      "receipt": "output/reports/types.json",
+      "refusal": null,
+      "steps": [
+        {
+          "duration_seconds": 0.02,
+          "name": "lock",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.025,
+          "name": "environment",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.04,
+          "name": "environment-compatibility",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.522,
+          "name": "types",
+          "pytest_passed": null,
+          "status": "passed"
+        }
+      ],
+      "success": true,
+      "total_seconds": 0.607
+    },
+    {
+      "arm": "docs",
+      "command": ".venv/bin/python -I -S scripts/verify_release.py docs",
+      "description": "documentation index, links, and hydration",
+      "measured": true,
+      "note": "",
+      "profile": "docs",
+      "pytest_passed": 103,
+      "receipt": "output/reports/docs.json",
+      "refusal": null,
+      "steps": [
+        {
+          "duration_seconds": 0.028,
+          "name": "lock",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.029,
+          "name": "environment",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.021,
+          "name": "environment-compatibility",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 8.466,
+          "name": "docs-links",
+          "pytest_passed": 103,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.465,
+          "name": "docs-hydrate",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.243,
+          "name": "docs-hydrate-check",
+          "pytest_passed": null,
+          "status": "passed"
+        }
+      ],
+      "success": true,
+      "total_seconds": 9.252
+    },
+    {
+      "arm": "quick",
+      "command": ".venv/bin/python -I -S scripts/verify_release.py quick",
+      "description": "fast tests",
+      "measured": true,
+      "note": "the run did not succeed; see its receipt",
+      "profile": "quick",
+      "pytest_passed": null,
+      "receipt": "output/reports/quick.json",
+      "refusal": null,
+      "steps": [
+        {
+          "duration_seconds": 0.026,
+          "name": "lock",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.025,
+          "name": "environment",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.02,
+          "name": "environment-compatibility",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.142,
+          "name": "format",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.169,
+          "name": "lint",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.592,
+          "name": "types",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 4.255,
+          "name": "web-model",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 0.252,
+          "name": "web-page",
+          "pytest_passed": null,
+          "status": "passed"
+        },
+        {
+          "duration_seconds": 791.455,
+          "name": "tests-quick",
+          "pytest_passed": null,
+          "status": "failed"
+        }
+      ],
+      "success": false,
+      "total_seconds": 796.936
+    },
+    {
+      "arm": "measurement",
+      "command": ".venv/bin/python -I -S scripts/verify_release.py measurement",
+      "description": "end-to-end measurement tests",
+      "measured": false,
+      "note": "no receipt in the supplied directory",
+      "profile": "measurement",
+      "pytest_passed": null,
+      "receipt": "output/reports/measurement.json",
+      "steps": [],
+      "total_seconds": null
+    },
+    {
+      "arm": "contract",
+      "command": ".venv/bin/python -I -S scripts/verify_release.py contract",
+      "description": "wheel and real-socket contract tests",
+      "measured": false,
+      "note": "no receipt in the supplied directory",
+      "profile": "contract",
+      "pytest_passed": null,
+      "receipt": "output/reports/contract.json",
+      "steps": [],
+      "total_seconds": null
+    },
+    {
+      "arm": "gnn",
+      "command": ".venv/bin/python -I -S scripts/verify_release.py gnn",
+      "description": "pinned upstream GNN conformance",
+      "measured": false,
+      "note": "no receipt in the supplied directory",
+      "profile": "gnn",
+      "pytest_passed": null,
+      "receipt": "output/reports/gnn.json",
+      "steps": [],
+      "total_seconds": null
+    },
+    {
+      "arm": "full",
+      "command": ".venv/bin/python -I -S scripts/verify_release.py full",
+      "description": "publication acceptance",
+      "measured": false,
+      "note": "no receipt in the supplied directory",
+      "profile": "full",
+      "pytest_passed": null,
+      "receipt": "output/reports/full.json",
+      "steps": [],
+      "total_seconds": null
+    }
+  ],
+  "host": "darwin-arm64",
+  "interpreter": "python 3.12.13",
+  "recorded": "2026-11-12",
+  "schema": "ailm-gate-arms/v1"
+}

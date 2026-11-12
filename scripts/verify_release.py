@@ -819,6 +819,16 @@ def _resolve_template_root(project_root: Path | None = None) -> Path:
     )
 
 
+def _gnn_upstream_checkout(root: Path = PROJECT_ROOT) -> Path:
+    """Return the ignored checkout the conformance arm materializes and reads."""
+
+    payload = json.loads((root / "gnn" / "upstream.json").read_text(encoding="utf-8"))
+    tag = payload.get("tag")
+    if not isinstance(tag, str) or not tag:
+        raise RuntimeError("gnn/upstream.json declares no release tag")
+    return root / "refs" / "gnn-upstream" / tag
+
+
 def _coverage_floor(root: Path = PROJECT_ROOT) -> int:
     """Return the branch-coverage floor declared once in ``pyproject.toml``.
 
@@ -893,9 +903,10 @@ def build_steps(
     uv = _tool_path(resolved_toolchain, "uv")
     lake = _tool_path(resolved_toolchain, "lake")
     qpdf = _tool_path(resolved_toolchain, "qpdf")
-    # Full requires the upstream GNN parser; quick checks the base environment.
-    environment_extras = ("--extra", "gnn-interop") if profile == "full" else ()
-    common = (
+    # The GNN conformance arm and the full release both need the upstream parser
+    # extra; every other arm checks the base environment.
+    environment_extras = ("--extra", "gnn-interop") if profile in {"full", "gnn"} else ()
+    environment_steps = (
         Step("lock", (uv, "lock", "--check"), 120),
         Step(
             "environment",
@@ -917,45 +928,49 @@ def build_steps(
             120,
             depends_on=("environment",),
         ),
-        Step(
-            "format",
-            _controlled_python_argv(
-                "module", "ruff", "format", "--check", "src", "scripts", "tests"
-            ),
-            120,
-            depends_on=("environment-compatibility",),
+    )
+    # The static checks are their own arms. Each one runs in exactly one hosted
+    # job, so the measurement and contract test slices do not repeat them: a
+    # second copy would gate the same bytes again on a second runner.
+    format_step = Step(
+        "format",
+        _controlled_python_argv("module", "ruff", "format", "--check", "src", "scripts", "tests"),
+        120,
+        depends_on=("environment-compatibility",),
+    )
+    lint_step = Step(
+        "lint",
+        _controlled_python_argv("module", "ruff", "check", "src", "scripts", "tests"),
+        120,
+        depends_on=("environment-compatibility",),
+    )
+    types_step = Step(
+        "types",
+        _controlled_python_argv(
+            "module",
+            "mypy",
+            "--explicit-package-bases",
+            "src/ailm",
+            "scripts/verify_release.py",
+            "scripts/verify_network_claim_bindings.py",
+            "scripts/verify_publication_derivative.py",
+            "scripts/_publication_execution.py",
+            "scripts/_publication_bootstrap.py",
+            "scripts/_publication_artists.py",
+            "scripts/_publication_controls.py",
+            "scripts/_publication_snapshot.py",
+            "scripts/orchestrate_claim_recorders.py",
+            "scripts/warm_call_cache.py",
+            "scripts/record_external_benchmark_claims.py",
+            "scripts/record_synthetic_benchmark_claims.py",
+            "scripts/record_incontext_benchmark_claims.py",
+            "scripts/record_logprob_drift_claims.py",
         ),
-        Step(
-            "lint",
-            _controlled_python_argv("module", "ruff", "check", "src", "scripts", "tests"),
-            120,
-            depends_on=("environment-compatibility",),
-        ),
-        Step(
-            "types",
-            _controlled_python_argv(
-                "module",
-                "mypy",
-                "--explicit-package-bases",
-                "src/ailm",
-                "scripts/verify_release.py",
-                "scripts/verify_network_claim_bindings.py",
-                "scripts/verify_publication_derivative.py",
-                "scripts/_publication_execution.py",
-                "scripts/_publication_bootstrap.py",
-                "scripts/_publication_artists.py",
-                "scripts/_publication_controls.py",
-                "scripts/_publication_snapshot.py",
-                "scripts/orchestrate_claim_recorders.py",
-                "scripts/warm_call_cache.py",
-                "scripts/record_external_benchmark_claims.py",
-                "scripts/record_synthetic_benchmark_claims.py",
-                "scripts/record_incontext_benchmark_claims.py",
-                "scripts/record_logprob_drift_claims.py",
-            ),
-            1800,
-            depends_on=("environment-compatibility",),
-        ),
+        1800,
+        depends_on=("environment-compatibility",),
+    )
+    static_steps = (format_step, lint_step, types_step)
+    web_steps = (
         Step(
             "web-model",
             _controlled_python_argv("script", "scripts/export_web_model.py"),
@@ -969,6 +984,7 @@ def build_steps(
             depends_on=("web-model",),
         ),
     )
+    common = environment_steps + static_steps + web_steps
     if profile == "quick":
         return common + (
             # xdist workers: the quick step runs without coverage, so the
@@ -987,6 +1003,11 @@ def build_steps(
                     "--no-cov",
                     "-n",
                     str(_quick_test_workers()),
+                    # The documentation checks are the docs arm; ignoring the file
+                    # here keeps one hosted job per check without adding a pytest
+                    # marker, which would change pyproject.toml and therefore the
+                    # recorded publication configuration.
+                    "--ignore=tests/test_documentation.py",
                     "-m",
                     _HOSTED_TEST_EXCLUSIONS + " and not measurement_gate and not contract_gate",
                 ),
@@ -1015,24 +1036,28 @@ def build_steps(
         # publication_context, 1 raw_corpus_regeneration). They ran only in the
         # full profile before the split and still do; widening this job to 638
         # would make a hosted job provision inputs it never had.
-        return common + (
-            Step(
-                "tests-measurement",
-                _controlled_python_argv(
-                    "module",
-                    "pytest",
-                    "tests/",
-                    "-q",
-                    "--no-cov",
-                    "-n",
-                    "1",
-                    "-m",
-                    _HOSTED_TEST_EXCLUSIONS + " and not contract_gate and measurement_gate",
+        return (
+            environment_steps
+            + web_steps
+            + (
+                Step(
+                    "tests-measurement",
+                    _controlled_python_argv(
+                        "module",
+                        "pytest",
+                        "tests/",
+                        "-q",
+                        "--no-cov",
+                        "-n",
+                        "1",
+                        "-m",
+                        _HOSTED_TEST_EXCLUSIONS + " and not contract_gate and measurement_gate",
+                    ),
+                    2100,
+                    depends_on=("environment-compatibility", "web-page"),
+                    forbid_pytest_skips=True,
                 ),
-                2100,
-                depends_on=("environment-compatibility", "web-page"),
-                forbid_pytest_skips=True,
-            ),
+            )
         )
     if profile == "contract":
         # The two contract files are the slowest self-contained non-measurement
@@ -1047,22 +1072,98 @@ def build_steps(
         # the quick budget is not set by a wheel build. Serial: the wheel file
         # spawns its own interpreters and the client tests share a loopback
         # server, so parallel workers would measure a different thing.
-        return common + (
-            Step(
-                "tests-contract",
-                _controlled_python_argv(
-                    "module",
-                    "pytest",
-                    "tests/",
-                    "-q",
-                    "--no-cov",
-                    "-n",
-                    "1",
-                    "-m",
-                    _HOSTED_TEST_EXCLUSIONS + " and not measurement_gate and contract_gate",
+        return (
+            environment_steps
+            + web_steps
+            + (
+                Step(
+                    "tests-contract",
+                    _controlled_python_argv(
+                        "module",
+                        "pytest",
+                        "tests/",
+                        "-q",
+                        "--no-cov",
+                        "-n",
+                        "1",
+                        "-m",
+                        _HOSTED_TEST_EXCLUSIONS + " and not measurement_gate and contract_gate",
+                    ),
+                    2100,
+                    depends_on=("environment-compatibility", "web-page"),
+                    forbid_pytest_skips=True,
                 ),
-                2100,
-                depends_on=("environment-compatibility", "web-page"),
+            )
+        )
+    if profile == "lint":
+        # Format and lint only. The types arm owns mypy and the test arms own
+        # everything that imports the package, so this arm is the shortest
+        # possible answer to "would the hosted lint row pass".
+        return environment_steps + (format_step, lint_step)
+    if profile == "types":
+        return environment_steps + (types_step,)
+    if profile == "docs":
+        # The documentation arm. The portable protocol bundle is generated from
+        # the template renderer's output, so that phase stays a full-profile
+        # step; this arm owns the index and relative-link checks and the
+        # hydrated mirror, which is ignored output and is therefore regenerated
+        # here before it is checked.
+        return environment_steps + (
+            Step(
+                "docs-links",
+                _controlled_python_argv(
+                    "module", "pytest", "tests/test_documentation.py", "-q", "--no-cov"
+                ),
+                900,
+                depends_on=("environment-compatibility",),
+                forbid_pytest_skips=True,
+            ),
+            Step(
+                "docs-hydrate",
+                _controlled_python_argv("script", "scripts/z_render_docs.py"),
+                300,
+                depends_on=("environment-compatibility",),
+            ),
+            Step(
+                "docs-hydrate-check",
+                _controlled_python_argv("script", "scripts/z_render_docs.py", "--check"),
+                300,
+                depends_on=("docs-hydrate",),
+            ),
+        )
+    if profile == "gnn":
+        # The pinned upstream parser is materialized from gnn/upstream.json into
+        # the ignored refs/ tree, so the arm is the same command locally and in
+        # the hosted job and never writes beside the checkout. Both consumers
+        # read the same selection, and the conformance step requires it: under
+        # AILM_REQUIRE_GNN_INTEROP a missing prerequisite fails instead of
+        # skipping, which is what keeps "expressed in GNN" enforced.
+        gnn_checkout = str(_gnn_upstream_checkout())
+        return environment_steps + (
+            Step(
+                "gnn-upstream-checkout",
+                _controlled_python_argv("script", "scripts/fetch_gnn_upstream.py"),
+                600,
+                depends_on=("environment-compatibility",),
+            ),
+            Step(
+                "gnn-upstream-release",
+                _controlled_python_argv("script", "scripts/verify_gnn_release.py"),
+                300,
+                depends_on=("gnn-upstream-checkout",),
+                environment_overrides=(("AILM_GNN_UPSTREAM", gnn_checkout),),
+            ),
+            Step(
+                "gnn-conformance",
+                _controlled_python_argv(
+                    "module", "pytest", "tests/test_gnn_conformance.py", "-q", "--no-cov"
+                ),
+                1800,
+                depends_on=("gnn-upstream-release",),
+                environment_overrides=(
+                    ("AILM_GNN_UPSTREAM", gnn_checkout),
+                    ("AILM_REQUIRE_GNN_INTEROP", "1"),
+                ),
                 forbid_pytest_skips=True,
             ),
         )
@@ -3198,7 +3299,10 @@ def run_profile(
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("profile", choices=("quick", "measurement", "contract", "full"))
+    parser.add_argument(
+        "profile",
+        choices=("lint", "types", "docs", "quick", "measurement", "contract", "gnn", "full"),
+    )
     parser.add_argument("--receipt", type=Path, default=DEFAULT_RECEIPT)
     parser.add_argument(
         "--publication-derivative",

@@ -128,9 +128,9 @@ Select the frozen derivative route above for publication-only repairs.
 
    ```bash
    uv sync --locked
-   .venv/bin/python -m ruff check --no-cache src scripts tests
-   .venv/bin/python -m ruff format --check --no-cache src scripts tests
-   .venv/bin/python -m mypy
+   .venv/bin/python -I -S scripts/verify_release.py lint
+   .venv/bin/python -I -S scripts/verify_release.py types
+   .venv/bin/python -I -S scripts/verify_release.py docs
    .venv/bin/python -I -S scripts/verify_release.py quick
    ```
 

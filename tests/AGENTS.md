@@ -146,6 +146,13 @@ receipt measured plus the one orchestration test this change adds. Both files ke
 the wheel build's 900 s allowance and the client's real retry waits. `test_release_orchestration.py` collects
 the 117 and requires the marked set to be exactly the quick set, so a drifting count fails the suite.
 
+**The documentation gates are their own arm.** `test_documentation.py` is selected
+by name by the `docs` profile in the hosted `docs` job, which runs the index and
+relative-link checks and then regenerates and re-checks the hydrated mirror. Quick
+passes `--ignore=tests/test_documentation.py` rather than a pytest marker: the file
+selection keeps the checks in one job, and a new marker would mean editing
+`pyproject.toml`, whose bytes are part of the recorded publication configuration.
+
 The provenance guard adds three collected quick tests: its own two
 (`test_figure_provenance_guard.py`) and one new parameter of
 `test_gates_survive_assertion_stripping.py`, which parametrizes over every

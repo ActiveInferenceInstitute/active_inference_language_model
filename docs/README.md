@@ -8,6 +8,12 @@ Each section heading below names who it's for — newcomer, contributor, auditor
 or researcher — so you can find the file for your question without reading the
 whole index.
 
+The flat list of every long-lived document, one row per file and sorted by
+path, is [`documentation-index.md`](documentation-index.md). This page is the
+hub: it groups the same documents by the question you are asking. Generated
+documents live under [`_generated/`](_generated/README.md), which names the
+script that refreshes each one.
+
 ## Current entry points
 
 | Need | Start with | Scope |
@@ -116,6 +122,18 @@ The mechanics of writing prose, generating numbers, and cutting a release.
 | [`rendering_pipeline.md`](method/rendering_pipeline.md) | The token flow — claims ledger → `{{TOKEN}}` map → injected manuscript → Pandoc/XeLaTeX — plus the `TEMPLATE_REPO_ROOT` requirement that a symlinked sidecar creates |
 | [`release_checklist.md`](method/release_checklist.md) | The release-day sequence: gates, authenticated recorder re-execution, Lean bridge, token map, figures, version bump, full-profile acceptance, tag, deposit; what blocks a release and who clears it |
 
+## Gates and CI (contributor) — the arms, their host, and their numbers
+
+One entry point runs every gate: `.venv/bin/python -I -S scripts/verify_release.py <arm>`.
+Each arm is a profile and the hosted job runs the same string.
+
+| File | What it is for |
+|---|---|
+| [`reference/hosted_ci.md`](reference/hosted_ci.md) | The check row each arm owns, the pinned actions and revisions, the GNN pin file and its schema, and why `full` is not a hosted arm |
+| [`_generated/gate_arms.md`](_generated/gate_arms.md) | Measured wall time per arm, rendered from the release receipts by [`../scripts/generate_gate_arm_report.py`](../scripts/generate_gate_arm_report.py) |
+| [`_generated/README.md`](_generated/README.md) | Policy for generated documents and the script that refreshes each |
+| [`documentation-index.md`](documentation-index.md) | The flat index of every long-lived document |
+
 ## Proposed protocols (researcher/contributor, mixed status)
 
 | File | What it is for |
@@ -173,7 +191,7 @@ can be about.
 | [`../pyproject.toml`](../pyproject.toml) | Dependency pins, pytest options, the coverage floor |
 | [`../src/ailm/`](../src/ailm/) | All logic. Per-package `README.md` and `AGENTS.md` live beside the code |
 | [`../scripts/`](../scripts/) | Orchestrators and evidence writers; new reusable computation belongs in `src/ailm/`, while audited recorder-local estimands remain explicit migration debt. [`scripts/README.md`](../scripts/README.md) gives the running order |
-| [`../scripts/verify_release.py`](../scripts/verify_release.py) | The release-profile runner, invoked only as `.venv/bin/python -I -S scripts/verify_release.py` so neither caller nor venv Python startup code can precede the release boundary. `quick` is the developer loop — environment, format, lint, typing, every test except recorder replay and raw-corpus regeneration, and a bounded gate audit. `full` proves locked package builds, authenticated raw-corpus regeneration, source/configuration/model/call bindings for every network-excluded recorder, live external-call cache replay, full coverage, gate/formal checks, source-generated prose and figures, and the validated final PDF. It refuses unsafe Git index flags and dirty inputs unless the development-only dirty override is explicit; that override can never yield `publication_acceptance`. Sidecar Python steps use a controlled no-`site` import bootstrap, subprocesses use a fixed executable path and explicit environment allowlist, and the receipt binds command evidence plus Python-startup, external-tool, Git, cache, corpus, package, and template identities. Guarded by `tests/test_release_orchestration.py` |
+| [`../scripts/verify_release.py`](../scripts/verify_release.py) | The one gate entry point, invoked only as `.venv/bin/python -I -S scripts/verify_release.py <arm>` so neither caller nor venv Python startup code can precede the release boundary. Each arm is a profile you can run alone: `lint`, `types`, `docs` (the documentation index, its relative links, and the hydrated mirror), `quick` (the developer loop — environment, generated web artifacts, the portable test suite, and a bounded gate audit), `measurement`, `contract`, `gnn` (pinned upstream conformance), and `full` (publication acceptance, which proves locked package builds, authenticated raw-corpus regeneration, source/configuration/model/call bindings for every network-excluded recorder, live external-call cache replay, full coverage, gate/formal checks, source-generated prose and figures, and the validated final PDF). The hosted jobs run the same strings — see [`reference/hosted_ci.md`](reference/hosted_ci.md) — and [`_generated/gate_arms.md`](_generated/gate_arms.md) records each arm's measured wall time. It refuses unsafe Git index flags and dirty inputs unless the development-only dirty override is explicit; that override can never yield `publication_acceptance`. Sidecar Python steps use a controlled no-`site` import bootstrap, subprocesses use a fixed executable path and explicit environment allowlist, and the receipt binds command evidence plus Python-startup, external-tool, Git, cache, corpus, package, and template identities. Guarded by `tests/test_release_orchestration.py` |
 | [`../tests/`](../tests/) | The gates |
 | [`../formal/`](../formal/) | The Lean 4 proofs and their generated ledger bridge — see [`formal.md`](formal.md) |
 | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) | Contribution workflow, local development, and the checks expected before a pull request |

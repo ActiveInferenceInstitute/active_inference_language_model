@@ -526,6 +526,44 @@ def test_the_index_reaches_the_documents_that_live_beside_the_code():
         )
 
 
+def _flat_index_missing(index: Path, docs: Path) -> list[Path]:
+    """Documents under ``docs`` that ``index`` does not link."""
+
+    resolved = {
+        (index.parent / target.split("#")[0]).resolve()
+        for _, target in _links(index)
+        if target and not target.startswith(("http", "mailto"))
+    }
+    return [
+        path
+        for path in _markdown_files(docs)
+        if path.name != index.name and path.resolve() not in resolved
+    ]
+
+
+def test_the_flat_index_lists_every_document_under_docs():
+    """The hub reaches every document by question; the flat index by path.
+
+    A file the hub reaches only from a grouped table is hard to find for a
+    reader who knows the path and not the question, and a flat index that misses
+    a file is worse than none: it reads as the complete list.
+    """
+    index = DOCS / "documentation-index.md"
+    assert index.is_file(), "the flat documentation index is missing"
+    missing = [path.relative_to(REPO_ROOT) for path in _flat_index_missing(index, DOCS)]
+    assert not missing, f"documents the flat index does not list: {missing}"
+
+
+def test_flat_index_coverage_check_detects_an_unlisted_document(tmp_path):
+    """POSITIVE CONTROL: a document nobody lists must be reported, not tolerated."""
+
+    index = tmp_path / "documentation-index.md"
+    (tmp_path / "listed.md").write_text("# Listed\n", encoding="utf-8")
+    (tmp_path / "unlisted.md").write_text("# Unlisted\n", encoding="utf-8")
+    index.write_text("[Listed](listed.md)\n", encoding="utf-8")
+    assert [path.name for path in _flat_index_missing(index, tmp_path)] == ["unlisted.md"]
+
+
 def test_no_markdown_link_has_an_empty_label():
     """`[](target)` renders as nothing at all — a link with no handle.
 

@@ -12,7 +12,94 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# One job per arm. Every arm is a profile of scripts/verify_release.py, so the
+# hosted command and the local command are the same string; no job repeats a
+# command another job already runs (format, lint, typing, the documentation
+# checks, and the test selections are each owned by exactly one arm), and the
+# environment every arm needs is defined once in .github/actions/setup-ailm.
+#
+# Hosted CI deliberately stops at these arms. Full publication acceptance
+# consumes the ignored, machine-local external-call cache, rechecks a sample
+# against a reachable Ollama server serving every declared probe, and uses an
+# exact clean docxology/template checkout routed to this sidecar. It then requires
+# Lean, TeX, qpdf, Pandoc, and the template validator. A hosted job without those
+# inputs can only fail or skip; neither result is publication evidence. Run the
+# documented full command from a prepared release workstation.
+
 jobs:
+  lint:
+    name: lint
+    # Format and lint only; the typing arm owns mypy.
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up the gate environment
+        uses: ./.github/actions/setup-ailm
+
+      - name: Run the lint arm
+        run: .venv/bin/python -I -S scripts/verify_release.py lint
+
+      - name: Upload receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lint-release-receipt
+          path: output/reports/
+
+  types:
+    name: types
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up the gate environment
+        uses: ./.github/actions/setup-ailm
+
+      - name: Run the types arm
+        run: .venv/bin/python -I -S scripts/verify_release.py types
+
+      - name: Upload receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: types-release-receipt
+          path: output/reports/
+
+  docs:
+    name: docs
+    # The documentation index, its relative links, and the hydrated mirror. The
+    # portable protocol bundle needs the template renderer's output, so it stays
+    # a full-profile step rather than a hosted one.
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up the gate environment
+        uses: ./.github/actions/setup-ailm
+
+      - name: Run the docs arm
+        run: .venv/bin/python -I -S scripts/verify_release.py docs
+
+      - name: Upload receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: docs-release-receipt
+          path: output/reports/
+
   quick:
     # The recorded numeric environment is macOS on arm64 (the env_machine and
     # env_platform claims in data/claims.json). The suite asserts the live
@@ -28,34 +115,12 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install uv and Python
-        id: setup_uv
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      - name: Set up the gate environment
+        uses: ./.github/actions/setup-ailm
         with:
-          version: "0.12.0"
-          python-version: "3.12"
-          enable-cache: true
-          cache-dependency-glob: uv.lock
-
-      - name: Expose pinned uv to the release verifier
-        env:
-          RELEASE_UV_BINARY: ${{ steps.setup_uv.outputs.uv-path }}
-        run: |
-          test -x "$RELEASE_UV_BINARY"
-          mkdir -p "${HOME}/.local/bin"
-          test ! -e "${HOME}/.local/bin/uv"
-          test ! -L "${HOME}/.local/bin/uv"
-          ln -s "$RELEASE_UV_BINARY" "${HOME}/.local/bin/uv"
-          "${HOME}/.local/bin/uv" --version
-
-      - name: Install Pandoc and ripgrep for the portable documentation and formal checks
-        run: |
-          brew install pandoc ripgrep
-          pandoc --version
-          rg --version
-
-      - name: Sync locked environment
-        run: uv sync --locked --extra dev
+          # Pandoc and ripgrep: the portable suite's destination proofs and the
+          # formal vacuity control shell out to the real tools.
+          tools: pandoc ripgrep
 
       - name: Run quick receipt
         run: .venv/bin/python -I -S scripts/verify_release.py quick
@@ -74,7 +139,9 @@ jobs:
     # watchdog (2100 s step inside a 45-minute job), its own receipt, and its
     # own check row, so a wedge in a measurement gate cannot consume the quick
     # step's budget. The job is deliberately not a ruleset requirement: the
-    # owner decided quick and measurement stay unrequired on 2026-11-05.
+    # owner decided quick and measurement stay unrequired on 2026-11-05. It runs
+    # no format, lint, or typing step: the lint and types arms own those, and a
+    # second copy here would gate the same bytes twice.
     runs-on: macos-latest
     timeout-minutes: 45
     steps:
@@ -83,34 +150,8 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install uv and Python
-        id: setup_uv
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
-        with:
-          version: "0.12.0"
-          python-version: "3.12"
-          enable-cache: true
-          cache-dependency-glob: uv.lock
-
-      - name: Expose pinned uv to the release verifier
-        env:
-          RELEASE_UV_BINARY: ${{ steps.setup_uv.outputs.uv-path }}
-        run: |
-          test -x "$RELEASE_UV_BINARY"
-          mkdir -p "${HOME}/.local/bin"
-          test ! -e "${HOME}/.local/bin/uv"
-          test ! -L "${HOME}/.local/bin/uv"
-          ln -s "$RELEASE_UV_BINARY" "${HOME}/.local/bin/uv"
-          "${HOME}/.local/bin/uv" --version
-
-      - name: Install Pandoc and ripgrep for the portable documentation and formal checks
-        run: |
-          brew install pandoc ripgrep
-          pandoc --version
-          rg --version
-
-      - name: Sync locked environment
-        run: uv sync --locked --extra dev
+      - name: Set up the gate environment
+        uses: ./.github/actions/setup-ailm
 
       - name: Run measurement receipt
         run: .venv/bin/python -I -S scripts/verify_release.py measurement
@@ -131,7 +172,7 @@ jobs:
     # 2100 s step watchdog is set against the slower 325.5 s hosted projection
     # (15.5% of the budget). This job has its own receipt and its own check row,
     # so a wheel build cannot consume the quick step's budget. Deliberately not
-    # a ruleset requirement.
+    # a ruleset requirement, and it runs no format, lint, or typing step.
     runs-on: macos-latest
     timeout-minutes: 45
     steps:
@@ -140,34 +181,8 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install uv and Python
-        id: setup_uv
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
-        with:
-          version: "0.12.0"
-          python-version: "3.12"
-          enable-cache: true
-          cache-dependency-glob: uv.lock
-
-      - name: Expose pinned uv to the release verifier
-        env:
-          RELEASE_UV_BINARY: ${{ steps.setup_uv.outputs.uv-path }}
-        run: |
-          test -x "$RELEASE_UV_BINARY"
-          mkdir -p "${HOME}/.local/bin"
-          test ! -e "${HOME}/.local/bin/uv"
-          test ! -L "${HOME}/.local/bin/uv"
-          ln -s "$RELEASE_UV_BINARY" "${HOME}/.local/bin/uv"
-          "${HOME}/.local/bin/uv" --version
-
-      - name: Install Pandoc and ripgrep for the portable documentation and formal checks
-        run: |
-          brew install pandoc ripgrep
-          pandoc --version
-          rg --version
-
-      - name: Sync locked environment
-        run: uv sync --locked --extra dev
+      - name: Set up the gate environment
+        uses: ./.github/actions/setup-ailm
 
       - name: Run contract receipt
         run: .venv/bin/python -I -S scripts/verify_release.py contract
@@ -182,10 +197,13 @@ jobs:
   gnn-interop:
     name: gnn conformance (pinned)
     # The upstream parser is an optional extra in ordinary development, so the
-    # quick profile skips these checks. This job provisions the pinned release
+    # quick profile skips these checks. This arm provisions the pinned release
     # checkout and the gnn-interop extra and then requires them: under
     # AILM_REQUIRE_GNN_INTEROP a missing prerequisite fails instead of skipping,
     # which is what keeps "expressed in GNN" enforced rather than only asserted.
+    # The checkout is materialized by scripts/fetch_gnn_upstream.py from
+    # gnn/upstream.json into the ignored refs/ tree, the same command a local run
+    # uses; see .github/GNN.md for what the conformance step parses.
     runs-on: macos-latest
     timeout-minutes: 60
     steps:
@@ -194,42 +212,17 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install uv and Python
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      - name: Set up the gate environment with the interop extra
+        uses: ./.github/actions/setup-ailm
         with:
-          version: "0.12.0"
-          python-version: "3.12"
-          enable-cache: true
-          cache-dependency-glob: uv.lock
+          extras: dev gnn-interop
 
-      - name: Check out the pinned upstream GNN release
-        run: |
-          set -euo pipefail
-          PIN=gnn/upstream.json
-          PY=$(uv python find --no-project 3.12)
-          REPO=$("$PY" -c "import json;print(json.load(open('$PIN'))['repository'])")
-          TAG=$("$PY" -c "import json;print(json.load(open('$PIN'))['tag'])")
-          COMMIT=$("$PY" -c "import json;print(json.load(open('$PIN'))['commit'])")
-          # The checkout follows gnn/upstream.json; a pin bump re-points it.
-          git clone --depth 1 --branch "$TAG" "$REPO" ../ailm-gnn-v5.0.3
-          test "$(git -C ../ailm-gnn-v5.0.3 rev-parse HEAD)" = "$COMMIT"
+      - name: Run the GNN conformance arm
+        run: .venv/bin/python -I -S scripts/verify_release.py gnn
 
-      - name: Sync the locked environment with the interop extra
-        run: uv sync --locked --extra dev --extra gnn-interop
-
-      - name: Verify and require the pinned upstream release
-        env:
-          AILM_REQUIRE_GNN_INTEROP: "1"
-        run: |
-          AILM_GNN_UPSTREAM="$(cd ../ailm-gnn-v5.0.3 && pwd)"
-          export AILM_GNN_UPSTREAM
-          .venv/bin/python scripts/verify_gnn_release.py
-          .venv/bin/python -m pytest tests/test_gnn_conformance.py -q --no-cov
-
-# Hosted CI deliberately stops at the quick profile. Full publication acceptance
-# consumes the ignored, machine-local external-call cache, rechecks a sample
-# against a reachable Ollama server serving every declared probe, and uses an
-# exact clean docxology/template checkout routed to this sidecar. It then requires
-# Lean, TeX, qpdf, Pandoc, and the template validator. A hosted job without those
-# inputs can only fail or skip; neither result is publication evidence. Run the
-# documented full command from a prepared release workstation.
+      - name: Upload receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: gnn-release-receipt
+          path: output/reports/

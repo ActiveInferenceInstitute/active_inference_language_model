@@ -226,7 +226,13 @@ coverage TOTAL row and its recorder replay shares one ledger lock. The
 `measurement` profile runs the slow end-to-end measurement files serially in the
 hosted `measurement gate` job, and the `contract` profile runs the wheel-build and
 real-socket contract files serially in the hosted `contract gate` job; each has its
-own receipt and watchdog and neither is a ruleset requirement.
+own receipt and watchdog and neither is a ruleset requirement. Every profile is an
+arm you can run alone — `lint`, `types`, `docs`, `quick`, `measurement`,
+`contract`, `gnn`, `full` — and each hosted job runs exactly one of them, so the
+static checks and the documentation tests are not repeated across jobs. The arm
+table is in [`docs/reference/hosted_ci.md`](docs/reference/hosted_ci.md) and the
+measured wall time per arm is in
+[`docs/_generated/gate_arms.md`](docs/_generated/gate_arms.md).
 
 ```bash
 # Parallel development loop. Use -n 4 instead of -n auto when other pytest fleets

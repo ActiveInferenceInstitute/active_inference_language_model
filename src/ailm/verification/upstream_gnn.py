@@ -80,9 +80,7 @@ def load_release_pin(path: Path) -> UpstreamRelease:
         raise UpstreamReleaseError("upstream tag must name a stable version")
     if not re.fullmatch(r"[0-9a-f]{40}", data["commit"]):
         raise UpstreamReleaseError("upstream commit must be a complete Git object identity")
-    return UpstreamRelease(
-        repository=data["repository"], tag=data["tag"], commit=data["commit"]
-    )
+    return UpstreamRelease(repository=data["repository"], tag=data["tag"], commit=data["commit"])
 
 
 def upstream_candidates(project: Path) -> tuple[Path, ...]:
