@@ -67,10 +67,10 @@ meaning of its states.
 
 The input corpus digest begins `cd96a285e733`, the local
 protocol digest begins `c2ad1ee3b9aa`, and the
-execution-input digest begins `eb30ae0ae1f3`.
+execution-input digest begins `0cd3b86fd81f`.
 `scripts/record_connected_gum_claims.py` records the complete source/input binding,
 per-document paired summaries, exclusions and environment alongside the ledger;
-the report digest begins `ce31e58b324d`. Reproduction
+the report digest begins `045d953dd1d4`. Reproduction
 requires these exact inputs rather than a moving upstream treebank.
 
 
