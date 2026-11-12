@@ -12,38 +12,38 @@
       "refusal": null,
       "steps": [
         {
-          "duration_seconds": 0.024,
+          "duration_seconds": 0.067,
           "name": "lock",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.029,
+          "duration_seconds": 0.036,
           "name": "environment",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.066,
+          "duration_seconds": 0.021,
           "name": "environment-compatibility",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.18,
+          "duration_seconds": 0.186,
           "name": "format",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.17,
+          "duration_seconds": 0.135,
           "name": "lint",
           "pytest_passed": null,
           "status": "passed"
         }
       ],
       "success": true,
-      "total_seconds": 0.469
+      "total_seconds": 0.445
     },
     {
       "arm": "types",
@@ -96,44 +96,44 @@
       "refusal": null,
       "steps": [
         {
-          "duration_seconds": 0.025,
+          "duration_seconds": 0.019,
           "name": "lock",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.027,
+          "duration_seconds": 0.023,
           "name": "environment",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.023,
+          "duration_seconds": 0.016,
           "name": "environment-compatibility",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 3.843,
+          "duration_seconds": 2.613,
           "name": "docs-links",
           "pytest_passed": 104,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.324,
+          "duration_seconds": 0.358,
           "name": "docs-hydrate",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.206,
+          "duration_seconds": 0.197,
           "name": "docs-hydrate-check",
           "pytest_passed": null,
           "status": "passed"
         }
       ],
       "success": true,
-      "total_seconds": 4.448
+      "total_seconds": 3.226
     },
     {
       "arm": "quick",
@@ -147,68 +147,68 @@
       "refusal": null,
       "steps": [
         {
-          "duration_seconds": 0.025,
+          "duration_seconds": 0.08,
           "name": "lock",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.034,
+          "duration_seconds": 0.028,
           "name": "environment",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.079,
+          "duration_seconds": 0.018,
           "name": "environment-compatibility",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.169,
+          "duration_seconds": 0.126,
           "name": "format",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.16,
+          "duration_seconds": 0.128,
           "name": "lint",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.35,
+          "duration_seconds": 0.273,
           "name": "types",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 1.785,
+          "duration_seconds": 1.498,
           "name": "web-model",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.163,
+          "duration_seconds": 0.13,
           "name": "web-page",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 531.885,
+          "duration_seconds": 274.79,
           "name": "tests-quick",
           "pytest_passed": 8923,
           "status": "passed"
         },
         {
-          "duration_seconds": 39.317,
+          "duration_seconds": 21.607,
           "name": "gate-audit-bounded",
           "pytest_passed": null,
           "status": "passed"
         }
       ],
       "success": true,
-      "total_seconds": 573.967
+      "total_seconds": 298.678
     },
     {
       "arm": "measurement",
@@ -383,10 +383,6 @@
     },
     "receipt": "output/reports/before-quick-warm.json",
     "recorded_steps": 9,
-    "tests_quick": {
-      "passed": null,
-      "seconds": 381.261
-    },
     "total_seconds": 383.306
   },
   "host": "darwin-arm64",

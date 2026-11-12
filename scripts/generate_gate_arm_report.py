@@ -184,7 +184,6 @@ def _baseline(receipt: Path) -> dict[str, object] | None:
     durations = {str(step["name"]): float(step["duration_seconds"]) for step in steps}
     if not durations:
         return None
-    tests_quick = next((step for step in steps if step["name"] == "tests-quick"), None)
     return {
         "receipt": (
             str(receipt.relative_to(ROOT)) if receipt.is_relative_to(ROOT) else str(receipt)
@@ -196,14 +195,6 @@ def _baseline(receipt: Path) -> dict[str, object] | None:
             for arm, names in _BASELINE_PROJECTION.items()
             if all(name in durations for name in names)
         },
-        "tests_quick": (
-            {
-                "seconds": round(float(tests_quick["duration_seconds"]), 3),
-                "passed": tests_quick.get("pytest_passed"),
-            }
-            if tests_quick is not None
-            else None
-        ),
     }
 
 
@@ -253,32 +244,6 @@ def render(record: dict[str, object]) -> str:
             "failing step and therefore recorded a different step set."
         )
         lines.append("")
-        tests_quick = baseline.get("tests_quick")
-        after_tests = next(
-            (
-                step
-                for arm in arms
-                if arm["arm"] == "quick"
-                for step in arm["steps"]
-                if step["name"] == "tests-quick"
-            ),
-            None,
-        )
-        if tests_quick and after_tests is not None:
-            # A receipt records a pass count only for a step that exited zero, so
-            # the before count is absent when the baseline run stopped on a
-            # failure. Saying "None passed" would read as zero.
-            before_count = (
-                "" if tests_quick["passed"] is None else f" and {tests_quick['passed']} passed"
-            )
-            lines.append(
-                f"The test step itself: {_seconds(tests_quick['seconds'])} s"
-                f"{before_count} before the split, "
-                f"{_seconds(after_tests['duration_seconds'])} s and "
-                f"{after_tests['pytest_passed']} passed after it, with the documentation "
-                "file the `docs` arm now owns excluded from the second run."
-            )
-            lines.append("")
     lines.append("## Per-step wall time")
     lines.append("")
     for arm in arms:
