@@ -29,8 +29,9 @@ no local run reproduced is not evidence.
 
 Each arm runs in exactly one job, and no job repeats another's command: format,
 lint and typing are the `lint` and `types` rows only, the documentation tests are
-the `docs` row only, and the `measurement` and `contract` profiles carry no static
-step. The environment all of them need is defined once, in
+the `docs` row only, and the `quick`, `measurement` and `contract` profiles carry
+no static step. `full` does re-run them, because publication acceptance is one
+receipt over one tree rather than a set of independent rows. The environment all of them need is defined once, in
 [`../../.github/actions/setup-ailm/action.yml`](../../.github/actions/setup-ailm/action.yml):
 the pinned uv and Python, the pinned uv on the release verifier's search path, the
 optional Homebrew tools an arm shells out to, and the locked sync. Only the `quick`

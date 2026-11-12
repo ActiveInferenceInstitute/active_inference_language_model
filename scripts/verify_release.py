@@ -987,40 +987,48 @@ def build_steps(
     )
     common = environment_steps + static_steps + web_steps
     if profile == "quick":
-        return common + (
-            # xdist workers: the quick step runs without coverage, so the
-            # receipt's single-TOTAL-row rule does not apply, and the portable
-            # selection is parallel-safe (the recorder replay, which shares one
-            # ledger lock, is excluded here and runs serially in full). The
-            # count follows the host's cores, capped so a shared workstation
-            # stays bounded and a small hosted runner stays serial.
-            Step(
-                "tests-quick",
-                _controlled_python_argv(
-                    "module",
-                    "pytest",
-                    "tests/",
-                    "-q",
-                    "--no-cov",
-                    "-n",
-                    str(_quick_test_workers()),
-                    # The documentation checks are the docs arm; ignoring the file
-                    # here keeps one hosted job per check without adding a pytest
-                    # marker, which would change pyproject.toml and therefore the
-                    # recorded publication configuration.
-                    "--ignore=tests/test_documentation.py",
-                    "-m",
-                    _HOSTED_TEST_EXCLUSIONS + " and not measurement_gate and not contract_gate",
+        # The static checks are the lint and types arms and the documentation
+        # checks are the docs arm, so quick does not repeat them: a hosted job
+        # runs them once, in the job that owns them. Full keeps static_steps
+        # because publication acceptance re-checks everything in one receipt.
+        return (
+            environment_steps
+            + web_steps
+            + (
+                # xdist workers: the quick step runs without coverage, so the
+                # receipt's single-TOTAL-row rule does not apply, and the portable
+                # selection is parallel-safe (the recorder replay, which shares one
+                # ledger lock, is excluded here and runs serially in full). The
+                # count follows the host's cores, capped so a shared workstation
+                # stays bounded and a small hosted runner stays serial.
+                Step(
+                    "tests-quick",
+                    _controlled_python_argv(
+                        "module",
+                        "pytest",
+                        "tests/",
+                        "-q",
+                        "--no-cov",
+                        "-n",
+                        str(_quick_test_workers()),
+                        # The documentation checks are the docs arm; ignoring the file
+                        # here keeps one hosted job per check without adding a pytest
+                        # marker, which would change pyproject.toml and therefore the
+                        # recorded publication configuration.
+                        "--ignore=tests/test_documentation.py",
+                        "-m",
+                        _HOSTED_TEST_EXCLUSIONS + " and not measurement_gate and not contract_gate",
+                    ),
+                    3600,
+                    depends_on=("environment-compatibility", "web-page"),
                 ),
-                3600,
-                depends_on=("environment-compatibility", "web-page"),
-            ),
-            Step(
-                "gate-audit-bounded",
-                _controlled_python_argv("script", "scripts/audit_gates.py", "--limit", "400"),
-                1800,
-                depends_on=("environment-compatibility",),
-            ),
+                Step(
+                    "gate-audit-bounded",
+                    _controlled_python_argv("script", "scripts/audit_gates.py", "--limit", "400"),
+                    1800,
+                    depends_on=("environment-compatibility",),
+                ),
+            )
         )
     if profile == "measurement":
         # The measurement gates are the slowest end-to-end files in the suite

@@ -13,16 +13,16 @@ when a recorded arm or step no longer exists in the runner's own inventory.
 
 | Arm | What it gates | Measured | Before (s) | After (s) | Tests passed |
 | --- | --- | --- | --- | --- | --- |
-| `lint` | format and lint | yes | 0.3 | 0.4 | — |
-| `types` | static typing | yes | 0.3 | 0.5 | — |
+| `lint` | format and lint | yes | 0.3 | 0.3 | — |
+| `types` | static typing | yes | 0.3 | 0.3 | — |
 | `docs` | documentation index, links, and hydration | yes | — | 3.2 | 104 |
-| `quick` | fast tests | yes | — | 298.7 | 8923 |
+| `quick` | fast tests | yes | — | 297.1 | 8923 |
 | `measurement` | end-to-end measurement tests | yes | — | 921.3 | 560 |
 | `contract` | wheel and real-socket contract tests | yes | — | 174.3 | 117 |
 | `gnn` | pinned upstream GNN conformance | yes | — | 14.3 | 276 |
 | `full` | publication acceptance | no | — | — | — |
 
-Before column: the steps each arm owns, projected from the pre-split quick receipt `output/reports/before-quick-warm.json` (9 recorded steps, 383.3 total). An arm whose steps were not separable there shows `—`; its own work is unchanged by the split. No whole-profile total is compared, because the baseline run stopped at a failing step and therefore recorded a different step set.
+Before column: the steps each arm owns, projected from the pre-split quick receipt `output/reports/before-quick-warm.json` (9 recorded steps, 383.3 total). An arm whose steps were not separable there shows `—`. The quick arm's own work also lost the static steps that the lint and types arms now own, so its total is not comparable with the pre-split run either. No whole-profile total is compared: the baseline run stopped at a failing step and therefore recorded a different step set.
 
 ## Per-step wall time
 
@@ -30,20 +30,20 @@ Before column: the steps each arm owns, projected from the pre-split quick recei
 
 | Step | Status | Wall time (s) | Tests passed |
 | --- | --- | --- | --- |
-| `lock` | passed | 0.1 | — |
+| `lock` | passed | 0.0 | — |
 | `environment` | passed | 0.0 | — |
 | `environment-compatibility` | passed | 0.0 | — |
-| `format` | passed | 0.2 | — |
+| `format` | passed | 0.1 | — |
 | `lint` | passed | 0.1 | — |
 
 ### `types`
 
 | Step | Status | Wall time (s) | Tests passed |
 | --- | --- | --- | --- |
-| `lock` | passed | 0.1 | — |
+| `lock` | passed | 0.0 | — |
 | `environment` | passed | 0.0 | — |
 | `environment-compatibility` | passed | 0.0 | — |
-| `types` | passed | 0.4 | — |
+| `types` | passed | 0.2 | — |
 
 ### `docs`
 
@@ -60,16 +60,13 @@ Before column: the steps each arm owns, projected from the pre-split quick recei
 
 | Step | Status | Wall time (s) | Tests passed |
 | --- | --- | --- | --- |
-| `lock` | passed | 0.1 | — |
+| `lock` | passed | 0.0 | — |
 | `environment` | passed | 0.0 | — |
 | `environment-compatibility` | passed | 0.0 | — |
-| `format` | passed | 0.1 | — |
-| `lint` | passed | 0.1 | — |
-| `types` | passed | 0.3 | — |
-| `web-model` | passed | 1.5 | — |
+| `web-model` | passed | 1.4 | — |
 | `web-page` | passed | 0.1 | — |
-| `tests-quick` | passed | 274.8 | 8923 |
-| `gate-audit-bounded` | passed | 21.6 | — |
+| `tests-quick` | passed | 272.2 | 8923 |
+| `gate-audit-bounded` | passed | 23.2 | — |
 
 ### `measurement`
 

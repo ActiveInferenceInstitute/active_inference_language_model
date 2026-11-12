@@ -239,9 +239,11 @@ def render(record: dict[str, object]) -> str:
             "Before column: the steps each arm owns, projected from the pre-split quick "
             f"receipt `{baseline['receipt']}` ({baseline['recorded_steps']} recorded steps, "
             f"{_seconds(baseline['total_seconds'])} total). An arm whose steps were not "
-            "separable there shows `—`; its own work is unchanged by the split. No "
-            "whole-profile total is compared, because the baseline run stopped at a "
-            "failing step and therefore recorded a different step set."
+            "separable there shows `—`. The quick arm's own work also lost the "
+            "static steps that the lint and types arms now own, so its total is not "
+            "comparable with the pre-split run either. No whole-profile total is "
+            "compared: the baseline run stopped at a failing step and therefore "
+            "recorded a different step set."
         )
         lines.append("")
     lines.append("## Per-step wall time")
