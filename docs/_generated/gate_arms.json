@@ -12,38 +12,38 @@
       "refusal": null,
       "steps": [
         {
-          "duration_seconds": 0.067,
+          "duration_seconds": 0.018,
           "name": "lock",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.036,
+          "duration_seconds": 0.028,
           "name": "environment",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.021,
+          "duration_seconds": 0.02,
           "name": "environment-compatibility",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.186,
+          "duration_seconds": 0.124,
           "name": "format",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.135,
+          "duration_seconds": 0.125,
           "name": "lint",
           "pytest_passed": null,
           "status": "passed"
         }
       ],
       "success": true,
-      "total_seconds": 0.445
+      "total_seconds": 0.315
     },
     {
       "arm": "types",
@@ -57,32 +57,32 @@
       "refusal": null,
       "steps": [
         {
-          "duration_seconds": 0.064,
+          "duration_seconds": 0.019,
           "name": "lock",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.03,
+          "duration_seconds": 0.022,
           "name": "environment",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.024,
+          "duration_seconds": 0.028,
           "name": "environment-compatibility",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.36,
+          "duration_seconds": 0.228,
           "name": "types",
           "pytest_passed": null,
           "status": "passed"
         }
       ],
       "success": true,
-      "total_seconds": 0.478
+      "total_seconds": 0.297
     },
     {
       "arm": "docs",
@@ -147,68 +147,50 @@
       "refusal": null,
       "steps": [
         {
-          "duration_seconds": 0.08,
+          "duration_seconds": 0.042,
           "name": "lock",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.028,
+          "duration_seconds": 0.021,
           "name": "environment",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.018,
+          "duration_seconds": 0.016,
           "name": "environment-compatibility",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.126,
-          "name": "format",
-          "pytest_passed": null,
-          "status": "passed"
-        },
-        {
-          "duration_seconds": 0.128,
-          "name": "lint",
-          "pytest_passed": null,
-          "status": "passed"
-        },
-        {
-          "duration_seconds": 0.273,
-          "name": "types",
-          "pytest_passed": null,
-          "status": "passed"
-        },
-        {
-          "duration_seconds": 1.498,
+          "duration_seconds": 1.428,
           "name": "web-model",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 0.13,
+          "duration_seconds": 0.124,
           "name": "web-page",
           "pytest_passed": null,
           "status": "passed"
         },
         {
-          "duration_seconds": 274.79,
+          "duration_seconds": 272.248,
           "name": "tests-quick",
           "pytest_passed": 8923,
           "status": "passed"
         },
         {
-          "duration_seconds": 21.607,
+          "duration_seconds": 23.197,
           "name": "gate-audit-bounded",
           "pytest_passed": null,
           "status": "passed"
         }
       ],
       "success": true,
-      "total_seconds": 298.678
+      "total_seconds": 297.076
     },
     {
       "arm": "measurement",

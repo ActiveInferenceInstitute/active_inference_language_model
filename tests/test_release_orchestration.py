@@ -425,7 +425,6 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     # bytes on a second runner, which is what this split removed.
     assert quick_names == [
         *environment_prefix,
-        *static_names,
         *web_steps_names,
         "tests-quick",
         "gate-audit-bounded",
@@ -447,9 +446,9 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
         "gnn-upstream-release",
         "gnn-conformance",
     ]
-    assert not {"format", "lint", "types"} & set(measurement_names + contract_names), (
-        "a test slice repeated a static check the lint and types arms already run"
-    )
+    assert not {"format", "lint", "types"} & set(
+        measurement_names + contract_names + quick_names
+    ), "the lint and types arms own the static checks; no other arm may repeat them"
     assert "tests-quick" in quick_names
     assert "tests-measurement" in measurement_names
     assert "tests-contract" in contract_names
@@ -4001,7 +4000,7 @@ def test_fresh_exit_zero_derivative_cannot_launch_descendant_without_proof(tmp_p
 
 def test_real_typing_step_lists_derivative_source_without_executing_proof(tmp_path):
     module = _module()
-    common_typing = next(step for step in module.build_steps("quick") if step.name == "types")
+    common_typing = next(step for step in module.build_steps("types") if step.name == "types")
     steps = module._publication_derivative_steps(
         (common_typing,), tmp_path / "unused-contract.json", tmp_path / "proofs"
     )

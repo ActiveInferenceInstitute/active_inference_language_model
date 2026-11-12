@@ -240,8 +240,9 @@ own. The string is the same one the hosted job runs.
 
 No arm repeats another's work. The static checks are `lint` and `types`, the
 documentation tests are `docs` (which is why `quick` passes
-`--ignore=tests/test_documentation.py`), and the `measurement` and `contract` slices
-take only the environment and the generated web artifacts. Measured wall time per arm is in
+`--ignore=tests/test_documentation.py`), and `quick`, `measurement` and `contract`
+take only the environment and the generated web artifacts. `full` re-runs every
+static check on purpose: publication acceptance is one receipt over one tree. Measured wall time per arm is in
 [`../_generated/gate_arms.md`](../_generated/gate_arms.md); the mapping from arm to
 hosted check row is in [`../reference/hosted_ci.md`](../reference/hosted_ci.md).
 
