@@ -160,6 +160,7 @@ Forward-looking guidance on how to *specify* a gate is a separate document:
 | [141](#141--release-preparation-pinned-gnn-interoperability-and-dashboard-interruption-2026-10-26) | RELEASE PREPARATION: pinned GNN interoperability and dashboard interruption (2026-10-26) |
 | [142](#142--custody-refresh-the-upstream-gnn-pin-moves-to-v503-with-a-standalone-interop-requirement-gate-2026-11-01) | CUSTODY REFRESH: the upstream GNN pin moves to v5.0.3, with a standalone interop requirement gate (2026-11-01) |
 | [143](#143--cutover-the-upstream-gnn-pin-moves-to-v510-and-the-interim-pin-reader-is-retired-2026-11-12) | CUTOVER: the upstream GNN pin moves to v5.1.0 and the interim pin reader is retired (2026-11-12) |
+| [144](#144--proposal-narrow-the-connected-gum-execution-binding-without-erasing-its-measurement-boundary-2026-11-13) | PROPOSAL: narrow the connected-GUM execution binding without erasing its measurement boundary (2026-11-13) |
 
 ---
 
@@ -9616,3 +9617,111 @@ gnn-importer-pin/v1)`, `specs: 26`, `verdict: ok`) and `gnn-conformance` — and
 never read the pin inline, so there is nothing to replace there;
 `gnn.importers.importer_variables` becomes the source the day a GNN release
 statement enters the prose.
+
+## 144 — PROPOSAL: narrow the connected-GUM execution binding without erasing its measurement boundary (2026-11-13)
+
+**Status.** **Not yet adopted.** This records the connected-GUM proposal in
+`TODO.md`, not an implementation or a retrospective relaxation. Existing receipts
+stay valid under their existing rules until adoption and a workstation re-bind.
+No binding, measurement, receipt, fixture or test changes with this entry.
+
+**The problem, and the three bindings.** The open queue identifies three places
+where a measurement freezes bytes it does not execute: network-claim receipts
+hash the whole `src/ailm` tree; the retained connected-GUM report binds a
+directory-selected execution inventory; and the publication derivative pins two
+reviewed test fixtures byte-for-byte. Their proposed replacements are,
+respectively, each recorder's executed import closure, the connected replay's
+actual modules and relevant package fields, and parsed test inventories.
+These are three evidence-rule changes, not one permission to refresh hashes.
+This entry addresses only the second; neither other binding is relaxed here.
+
+**What the connected binding currently refuses.** Both the retained
+`output/reports/connected_gum.json` and a fresh call to
+`canonical_execution_binding` enumerate 76 inputs, including `pyproject.toml`
+and `uv.lock`. Discovery includes whole directories of level, corpus and GNN
+modules, specifications and vendor JSON, rather than an observed import closure.
+`src/ailm/_publication_inventory.py`'s
+`validate_publication_execution_binding` (definition at line 154) requires
+`set(recorded) == set(current)` and matching digests for every entry except
+`pyproject.toml`. That exception is not a dependency exception:
+`_validate_package_publication_bytes` (definition at line 114) parses the
+measurement-source and live TOML, removes only `project.urls` from both, and
+requires everything remaining to be equal. A dependency bump therefore fails
+the package comparison as well as the lock comparison; even an unrelated lint
+configuration edit fails the package comparison.
+
+**Isolation evidence, with its limits.** The earlier reported isolation reverted
+only `pyproject.toml` and `uv.lock` on the bump branch: 19 failed / 437 passed /
+6 errors became 1 failed / 458 passed / 3 errors, with the residual reported
+on unmodified main too. Those are that run's totals, not a new receipt.
+A fresh check of `test_connected_publication_metadata.py`,
+`test_claims_single_writer.py`, `test_figures_connected.py` and
+`test_figure_layout.py` on `fa53fe0` instead collected 463 cases: 21 failed /
+439 passed / 3 errors became 4 failed / 459 passed / no errors when only those
+two files were restored from main `1089895`. Two remaining failures were the
+bump branch's own assertions that its pin was still 1.0.5; the others were a
+ledger-preimage mismatch and a vacuous sentinel scan. On an unmodified main
+worktree the sentinel failure reproduced, while the recorder replay skipped
+because that worktree had no project venv. The mechanism is reproduced; the
+earlier exact totals are not independently reproduced by this later selection.
+Neither isolation is evidence that the new dependency preserves the scores.
+
+**The proposed narrowing.** Bind the connected report to the modules its full
+replay actually loads, resolved by import rather than directory membership,
+together with the authenticated data, specifications and other inputs it reads.
+Replace the whole-file package comparison with a canonical parsed projection of
+the dependency and build fields of `pyproject.toml`: dependency declarations,
+optional dependency declarations, the Python requirement and the build-system
+table. The applying change must enumerate that projection and demonstrate its
+consumption and refusal controls; an incidental import trace alone cannot prove
+that an unexercised conditional import is irrelevant.
+
+**What survives, and what does not.** Changes to executed source, authenticated
+population, model inputs, dependency declarations or build requirements must
+still refuse the old binding. Keep the resolved `uv.lock` bound: this proposal
+does not authorize ignoring a dependency resolution change. Report and claim
+digests, document identities, scoring protocol, uncertainty calculation and
+the single-writer discipline remain unchanged. Comments, formatting and
+unconsumed lint, type, test or coverage configuration would cease to force a
+connected scoring replay. Whole-file identity and directory-wide refusal are
+therefore deliberately lost, not preserved by another name. In particular,
+this is not a way to admit the pymdp 1.0.5 bump without new evidence.
+
+**Risk.** A dependency change could alter numerics without the record noticing
+if the narrowed boundary missed a transitive dependency, conditional import,
+plugin or build-time influence. Parsed declarations alone do not identify the
+installed numerical stack. Retaining the lock, checking the actual imported
+closure and installed versions, and mutation controls for dependency and build
+fields are necessary guards, not a proof of numerical equivalence. A newly
+loaded module must invalidate an incomplete inventory rather than silently
+enlarge an old receipt.
+
+**The workstation re-bind.** Adoption requires a separately reviewed applying
+change and a clean prepared workstation holding the authenticated GUM inputs
+and original publication evidence. Preserve the old report, ledger and receipts;
+establish the new closure and package projection with deliberate refusal
+controls, then run `.venv/bin/python scripts/record_connected_gum_claims.py`
+over the complete frozen population in the locked environment. Its
+`--validate-only` mode authenticates inputs but does not score and cannot
+substitute for that replay. Retain the actual before/after inventory,
+environment and per-document results; let the recorder write the new report
+and its `connected_gum_*` execution, runtime and report hashes under the ledger
+lock. Compare the numerical results, investigate any movement, then exercise
+the connected provenance, metadata, replay, figure and layout consumers and
+obtain fresh publication acceptance for the candidate. Do not hand-edit the
+report's inventory or its ledger hashes to make a reader accept it. The other
+two bindings still require their own decisions and workstation re-binds.
+
+**Known complications, not exemptions.** The declared measurement commit
+`9f8842d93c9d3c463589fb6fae45087e7b2048a5` is not an object in this clone
+(`git cat-file -t` refuses). The declaration's `data/claims.json` input digest is
+`feea2a9d332ad65fb2b595a419d16fdad15f758edd6c575c996155b58b7eec83`;
+main `1089895` hashes to
+`fa6702ff6f9dce1f0d43260fda42369975001a29ab47f9c3d309b45c67d02732`,
+and the bump branch `fa53fe0` to
+`4dafd821353c8ca7701f1e59ee80eb75c877c5c67cce68c45118cdd61728b5ee`.
+Neither matches. The applying operator must recover and authenticate the
+measurement source and reconcile the ledger preimage before claiming a
+successful re-bind; missing custody is not permission to repoint the measurement
+commit or regenerate the declaration. Decisions 140 and 141 remain the record
+of the existing publication boundary.

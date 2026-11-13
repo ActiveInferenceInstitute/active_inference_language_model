@@ -189,6 +189,9 @@ alternatives — and is not an agent's to take.
   parsed test inventory rather than their bytes. Each is an evidence-rule change
   that needs its own decision entry and a re-bind on the workstation, and the
   existing receipts stay valid until then.
+  Decision [144](docs/decisions.md#144--proposal-narrow-the-connected-gum-execution-binding-without-erasing-its-measurement-boundary-2026-11-13)
+  records the connected-GUM proposal, **not yet adopted**; its workstation
+  re-bind and the other two decision entries remain outstanding.
 
 ## Major
 
