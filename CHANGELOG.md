@@ -30,6 +30,11 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ### Added
 
+- Decision 144 records the proposed connected-GUM execution-binding narrowing,
+  its preserved dependency boundary, custody complications and required
+  workstation replay. It is not adopted; existing bindings and receipts are
+  unchanged.
+
 - A standalone requirement gate for the upstream GNN interoperability checks:
   `AILM_REQUIRE_GNN_INTEROP=1` converts a missing checkout or a missing
   `gnn-interop` extra from a clean skip into a failure, and a hosted
