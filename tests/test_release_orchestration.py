@@ -185,6 +185,7 @@ CI_ARMS = {
     "measurement": "measurement",
     "contract": "contract",
     "gnn": "gnn",
+    "provenance": "provenance",
 }
 
 #: The one place the hosted environment is defined. Every arm job uses it, and
@@ -369,7 +370,7 @@ def _build_profiles_in_sidecar(template: Path):
         "        for s in steps\n"
         "    ]\n"
         "payload = {name: enc(m.build_steps(name)) for name in "
-        "('lint', 'types', 'docs', 'quick', 'measurement', 'contract', 'gnn')}\n"
+        "('lint', 'types', 'docs', 'quick', 'measurement', 'contract', 'gnn', 'provenance')}\n"
         "payload['full'] = enc(m.build_steps('full', template_root=template))\n"
         "print(json.dumps(payload))\n"
     )
@@ -405,6 +406,7 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
     measurement = profiles["measurement"]
     contract = profiles["contract"]
     gnn = profiles["gnn"]
+    provenance = profiles["provenance"]
     full = profiles["full"]
     expected_python = str(PROJECT_ROOT / ".venv" / "bin" / "python")
     assert _project_python_probe() == expected_python
@@ -447,6 +449,20 @@ def test_profiles_have_distinct_bounded_acceptance_surfaces(tmp_path, monkeypatc
         "gnn-importer-check",
         "gnn-conformance",
     ]
+    # The provenance arm is the one published-tree currency test (issue #12),
+    # through the controlled interpreter, with skips refused: a skipped currency
+    # check would be a green row that checked nothing.
+    assert [step["name"] for step in provenance] == [*environment_prefix, "tests-provenance"]
+    provenance_step = provenance[-1]
+    assert provenance_step["forbid_skips"] is True
+    assert provenance_step["depends_on"] == ["environment-compatibility"]
+    assert provenance_step["argv"][-4:] == [
+        "pytest",
+        "tests/test_manuscript_tokens.py::test_real_resolved_tree_is_exactly_current",
+        "-q",
+        "--no-cov",
+    ]
+    assert "-m" not in provenance_step["argv"], "a marker filter could deselect the node"
     assert not {"format", "lint", "types"} & set(
         measurement_names + contract_names + quick_names
     ), "the lint and types arms own the static checks; no other arm may repeat them"
@@ -1599,7 +1615,7 @@ def test_uv_run_marker_is_refused_even_with_the_exact_interpreter(tmp_path):
 
 
 def test_hosted_ci_runs_one_command_per_arm_and_does_not_fake_full_acceptance():
-    """Hosted CI runs the seven portable arms; full needs local inputs."""
+    """Hosted CI runs the eight portable arms; full needs local inputs."""
 
     workflow = CI_WORKFLOW.read_text(encoding="utf-8")
     assert _ci_release_contract_violations(workflow) == []
@@ -1618,6 +1634,7 @@ def test_hosted_ci_runs_one_command_per_arm_and_does_not_fake_full_acceptance():
         jobs["gnn-interop"]["name"],
         jobs["measurement"]["name"],
         jobs["contract"]["name"],
+        jobs["provenance"]["name"],
     } == {
         "lint",
         "types",
@@ -1626,7 +1643,22 @@ def test_hosted_ci_runs_one_command_per_arm_and_does_not_fake_full_acceptance():
         "gnn conformance (pinned)",
         "measurement gate",
         "contract gate",
+        "published output current",
     }, "the check-row names are the expected set; a renamed job is a different check"
+    # Issue #12: the provenance row runs on pushes to main only, because a pull
+    # request moves the input epoch it would be checked against, and it reads
+    # that epoch from full history, which a shallow checkout would graft away.
+    provenance_job = jobs["provenance"]
+    assert provenance_job["if"] == "github.event_name == 'push'"
+    provenance_checkout = next(
+        step
+        for step in provenance_job["steps"]
+        if str(step.get("uses", "")).startswith("actions/checkout@")
+    )
+    assert provenance_checkout["with"]["fetch-depth"] == 0
+    assert all("if" not in job for name, job in jobs.items() if name != "provenance"), (
+        "only the provenance row is event-conditional"
+    )
     for arm, profile in CI_ARMS.items():
         expected = f".venv/bin/python -I -S scripts/verify_release.py {profile}"
         assert workflow.count(expected) == 1, (

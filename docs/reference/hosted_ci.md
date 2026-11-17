@@ -26,6 +26,18 @@ no local run reproduced is not evidence.
 | `measurement gate` | `measurement` | `measurement` | The `measurement_gate` files, serially, under their own watchdog |
 | `contract gate` | `contract` | `contract` | The `contract_gate` files (wheel builds, real-socket retries), serially |
 | `gnn conformance (pinned)` | `gnn-interop` | `gnn` | The pinned upstream GNN release and `tests/test_gnn_conformance.py` under `AILM_REQUIRE_GNN_INTEROP=1` |
+| `published output current` | `provenance` | `provenance` | `test_real_resolved_tree_is_exactly_current` alone, on pushes to `main` only, from a full-depth checkout |
+
+The `provenance` row exists because the committed output went stale without any
+row noticing (issue #12): the test that catches it is `template_context`, which
+every other hosted slice excludes. The published variables carry the committer
+time of the last commit that touched a path outside `output/`, so every source
+change makes the committed output stale until an output-only refresh commit lands
+after it. A pull request therefore cannot pass this check against itself, and the
+row runs on pushes to `main` only; a red row there means "refresh the published
+output", and stays red until that output-only commit lands. Merge the refresh as
+its own pull request, after every source change it covers, so a squash cannot
+fold a source path into it and move the epoch again.
 
 Each arm runs in exactly one job, and no job repeats another's command: format,
 lint and typing are the `lint` and `types` rows only, the documentation tests are

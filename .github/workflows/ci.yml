@@ -226,3 +226,36 @@ jobs:
         with:
           name: gnn-release-receipt
           path: output/reports/
+
+  provenance:
+    name: published output current
+    # The committed resolved manuscript must equal a fresh resolution at the
+    # audited input-commit epoch: the committer time of the last commit that
+    # touched a non-output path (issue #12). Every source change moves that
+    # epoch, so a pull request is always "stale" against itself and this job
+    # runs only on pushes to main. A red row here means the published output
+    # needs an output-only refresh commit after the source change, not that the
+    # source change was wrong. The epoch is read from history, so the checkout
+    # is full depth; a shallow graft would report its own commit as the epoch.
+    if: github.event_name == 'push'
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up the gate environment
+        uses: ./.github/actions/setup-ailm
+
+      - name: Run the provenance arm
+        run: .venv/bin/python -I -S scripts/verify_release.py provenance
+
+      - name: Upload receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: provenance-release-receipt
+          path: output/reports/
