@@ -1230,6 +1230,9 @@ def test_publication_directory_refuses_absent_paths_and_real_symlinks(tmp_path):
 
 
 @pytest.mark.template_context
+# Three real provider CLI renders in subprocesses: 317 s on a loaded Darwin arm64
+# host against the v5.2 template provider, past the suite's 300 s default.
+@pytest.mark.timeout(900)
 def test_production_cli_delivers_and_checks_both_editions_and_actual_consumers(tmp_path):
     """Use an isolated real source tree and subprocess; no imported globals change."""
     project = tmp_path / "project"
