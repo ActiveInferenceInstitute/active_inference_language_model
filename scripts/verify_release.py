@@ -890,6 +890,11 @@ _HOSTED_TEST_EXCLUSIONS = (
 )
 
 
+#: The one test the provenance arm runs: the committed resolved manuscript tree
+#: equals a fresh resolution at the audited input-commit epoch (issue #12).
+PROVENANCE_TEST_NODE = "tests/test_manuscript_tokens.py::test_real_resolved_tree_is_exactly_current"
+
+
 def build_steps(
     profile: str,
     *,
@@ -1104,6 +1109,32 @@ def build_steps(
                     forbid_pytest_skips=True,
                 ),
             )
+        )
+    if profile == "provenance":
+        # The published-tree currency check, alone (issue #12). The resolved
+        # manuscript variables carry the committer time of the last commit that
+        # touched a non-output path, so every source change makes the committed
+        # output stale until an output-only refresh lands after it. The test is
+        # template_context because it asserts publication output, which is why
+        # the hosted test slices exclude it; it needs neither the template nor a
+        # render, only the committed tree and full history, so it is its own arm
+        # rather than a silent full-only check. It runs on pushes to main, where
+        # a red row means "refresh the published output", never on pull requests,
+        # which by construction move the epoch they would be checked against.
+        return environment_steps + (
+            Step(
+                "tests-provenance",
+                _controlled_python_argv(
+                    "module",
+                    "pytest",
+                    PROVENANCE_TEST_NODE,
+                    "-q",
+                    "--no-cov",
+                ),
+                300,
+                depends_on=("environment-compatibility",),
+                forbid_pytest_skips=True,
+            ),
         )
     if profile == "lint":
         # Format and lint only. The types arm owns mypy and the test arms own
@@ -3333,7 +3364,17 @@ def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "profile",
-        choices=("lint", "types", "docs", "quick", "measurement", "contract", "gnn", "full"),
+        choices=(
+            "lint",
+            "types",
+            "docs",
+            "quick",
+            "measurement",
+            "contract",
+            "gnn",
+            "provenance",
+            "full",
+        ),
     )
     parser.add_argument("--receipt", type=Path, default=DEFAULT_RECEIPT)
     parser.add_argument(

@@ -236,6 +236,7 @@ own. The string is the same one the hosted job runs.
 | measurement | `.venv/bin/python -I -S scripts/verify_release.py measurement` | The `measurement_gate` files, serially |
 | contract | `.venv/bin/python -I -S scripts/verify_release.py contract` | The `contract_gate` files (wheel builds, real-socket retries), serially |
 | gnn | `.venv/bin/python -I -S scripts/verify_release.py gnn` | The pinned upstream GNN release and its conformance suite; sync `--extra gnn-interop` first |
+| provenance | `.venv/bin/python -I -S scripts/verify_release.py provenance` | The committed resolved manuscript equals a fresh resolution at the audited input-commit epoch; red after any source change until an output-only refresh lands |
 | full | `.venv/bin/python -I -S scripts/verify_release.py full` | Publication acceptance; needs the release workstation's inputs |
 
 No arm repeats another's work. The static checks are `lint` and `types`, the
