@@ -1,3 +1,7 @@
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-0-start-->
+```
+
 # Abstract {#sec:abstract}
 
 Language offers a testbed for cognitive models that connect uncertain perception,
@@ -42,11 +46,19 @@ integration with them remains a proposal.
 The release repository is
 <https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model>.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-0-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-1-start-->
+```
 
 # Language and Cognition Through Explicit Active Inference {#sec:introduction}
 
@@ -553,11 +565,19 @@ steps this record opens rather than closes — including where an explicit
 system built this way and a learned one might call each other — as proposals
 to be built and measured, never as results reported here.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-1-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-2-start-->
+```
 
 # Generative Models of Linguistic Belief and Action {#sec:background}
 
@@ -888,11 +908,19 @@ original threshold was vacuous on gold morphology and above every measured,
 exceedable comparator on the derived oracle. Decision 16 records the historical
 `UNREACHABLE` wording; decision 75 corrects it to `ABOVE_REFERENCE`.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-2-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-3-start-->
+```
 
 # Model Construction, Conditional Coupling, and Falsifiable Verification {#sec:methods}
 
@@ -933,7 +961,7 @@ solid whose gate audit no longer passes, a status contradicting
 `scripts/audit_gates.py`, a badge drawn for a stage that audits more than one
 gate without naming which, or a symbol count disagreeing with the code
 constants would each falsify this figure, and the counts are imported rather
-than typed so the last cannot drift silently.](../figures/hierarchy.png){#fig:hierarchy width=90%}
+than typed so the last cannot drift silently.](../../output/figures/hierarchy.png){#fig:hierarchy width=90%}
 
 The case-level observation is a universal part-of-speech (UPOS) tag from UD
 annotation [@marneffe2021universal]. The speech interface handles ARPAbet
@@ -1091,10 +1119,10 @@ plots L1→L2B and L3→L2B, the measured channels that share a receiver;
 [@sec:hierarchy] reports all seven registered interventions. `docs/gnn_composition.md`
 works through representational, structural, and planned composition at length.
 
-![One level from GNN specification to running agent. The spec's `StateSpaceBlock`, `InitialParameterization`, and `ActInfOntologyAnnotation` fix the dimensions and the role of every slot; the builder functions construct the matrices; `pymdp` receives them; and `ailm.gnn.assert_conforms` closes the loop by checking the live agent's shapes and role assignments back against the declaration. The spec does not generate the builders — both are written by hand, as the panel's own footer states. Two things bind them rather than one: the closing conformance arrow drawn here, and `ailm.spec_agent.build_agent_from_spec`, which constructs every shipped level from its spec and registered artifacts and agrees with the builder bit-identically (decision 20, described in the text but not drawn on this panel). Dimensions shown are read from `gnn/models/L2b_grapheme_to_phoneme.gnn.md` when the figure is generated. A declared dimension on the panel that disagreed with that file, or a live agent whose shapes or slot roles contradicted the declaration while the closing arrow still reported conformance, would each falsify this figure.](../figures/gnn_pipeline.png){#fig:gnn_pipeline width=95%}
+![One level from GNN specification to running agent. The spec's `StateSpaceBlock`, `InitialParameterization`, and `ActInfOntologyAnnotation` fix the dimensions and the role of every slot; the builder functions construct the matrices; `pymdp` receives them; and `ailm.gnn.assert_conforms` closes the loop by checking the live agent's shapes and role assignments back against the declaration. The spec does not generate the builders — both are written by hand, as the panel's own footer states. Two things bind them rather than one: the closing conformance arrow drawn here, and `ailm.spec_agent.build_agent_from_spec`, which constructs every shipped level from its spec and registered artifacts and agrees with the builder bit-identically (decision 20, described in the text but not drawn on this panel). Dimensions shown are read from `gnn/models/L2b_grapheme_to_phoneme.gnn.md` when the figure is generated. A declared dimension on the panel that disagreed with that file, or a live agent whose shapes or slot roles contradicted the declaration while the closing arrow still reported conformance, would each falsify this figure.](../../output/figures/gnn_pipeline.png){#fig:gnn_pipeline width=95%}
 
 ![The Part-A models in detail. The alphabet identity joins L2B to L1 as a plain connector along which nothing flows; the full 6-level stack and each gate's audited verdict are drawn in [@fig:hierarchy]. 7 receiver interventions are registered — 5 measured: harmful L1→L2B coupling, helpful L3→L2B predictive lexical messaging, the L3→L1g generation preference, the L6→L5 clause-`D` intervention, and a helpful privileged punctuation-type-oracle→L3 word-`D` intervention that falsified its predicted harm, the last not an L5-output channel — and two further case-word seams, of which the bridge — the case level's own role posterior marginalized into the L3 word prior — is now measured as an exploratory prior-only influence sweep on the development population (decision 121, reported in [@sec:case_word_sweep]), while its privileged-oracle diagnostic remains a registered structural inlet whose evaluation records nothing. [@sec:hierarchy] reports all seven registered interventions. The independently measured upper experiments are not a cascade. [@fig:channel_comparison] plots the channels that share the L2B receiver. These historical standalone score paths exchange no further beliefs; the
-connected runtime is evaluated separately in [@sec:connected_gum]. This caption is falsified by a channel effect that disagrees with its recorded value, by a belief exchange where none is drawn, by attribution of the oracle arm to L5 output, or by evidence that the independent experiments were executed as one path.](../figures/composition.png){#fig:composition width=95%}
+connected runtime is evaluated separately in [@sec:connected_gum]. This caption is falsified by a channel effect that disagrees with its recorded value, by a belief exchange where none is drawn, by attribution of the oracle arm to L5 output, or by evidence that the independent experiments were executed as one path.](../../output/figures/composition.png){#fig:composition width=95%}
 
 `update_empirical_prior` is within-level machinery. Every call site in `src/`,
 outside the `pymdp` API smoke probes, pushes a level's own posterior through
@@ -1147,7 +1175,7 @@ L6's separately reported descriptive filter does execute it, but measures
 sequential prediction from the Agent's inferred prior rather than the registered
 known-position conditional.
 
-![One symbol, one inference cycle at a single AILM level. The emission `A` enters twice — once to score the observation against the prior and once in the predictive read-off where per-symbol perplexity is accumulated — while the transition `B` enters once, to push the posterior forward into the next position's prior. A missing emission contribution, a transition applied before rather than after the update, or a predictive score that disagreed with the displayed recurrence would falsify this panel.](../figures/inference_cycle.png){#fig:inference_cycle width=95%}
+![One symbol, one inference cycle at a single AILM level. The emission `A` enters twice — once to score the observation against the prior and once in the predictive read-off where per-symbol perplexity is accumulated — while the transition `B` enters once, to push the posterior forward into the next position's prior. A missing emission contribution, a transition applied before rather than after the update, or a predictive score that disagreed with the displayed recurrence would falsify this panel.](../../output/figures/inference_cycle.png){#fig:inference_cycle width=95%}
 
 Locating $\mathbf{A}$ and $\mathbf{B}$ in that cycle explains why their placement is not
 interchangeable, and why getting it wrong produces a model that runs.
@@ -1179,7 +1207,7 @@ reported separately, does not resolve how much type signal the case sequences
 carry. The
 sentence is verified at build time against the Stage 3 vocabulary and Stage 4
 tag alphabet; a sentence that leaves either fails the build rather than being
-silently substituted.](../figures/belief_dynamics.png){#fig:belief_dynamics width=98%}
+silently substituted.](../../output/figures/belief_dynamics.png){#fig:belief_dynamics width=98%}
 
 ### Transition statistics and emission semantics
 
@@ -1213,7 +1241,7 @@ actually held to. [@fig:wiring_comparison]
 puts the transition and emission placements side by side; `docs/decisions.md` records the measurement
 and the named mis-wirings it generalizes to.
 
-![The same learned bigram matrix in the transition slot (left, the shipped agent) and the emission slot (right, the mis-wiring). Both are column-stochastic and both pass `pymdp` validation; the right placement produces a posterior over the *preceding* symbol and measures 27.2499 perplexity, the left measures 11.9215. A bar chart beneath ranks both wirings against the uniform comparator, the context-free unigram and the empirical order-1 optimum. A transpose, non-stochastic matrix, or placement that made the two panels indistinguishable would falsify the comparison.](../figures/wiring_comparison.png){#fig:wiring_comparison width=90%}
+![The same learned bigram matrix in the transition slot (left, the shipped agent) and the emission slot (right, the mis-wiring). Both are column-stochastic and both pass `pymdp` validation; the right placement produces a posterior over the *preceding* symbol and measures 27.2499 perplexity, the left measures 11.9215. A bar chart beneath ranks both wirings against the uniform comparator, the context-free unigram and the empirical order-1 optimum. A transpose, non-stochastic matrix, or placement that made the two panels indistinguishable would falsify the comparison.](../../output/figures/wiring_comparison.png){#fig:wiring_comparison width=90%}
 
 Two consequences shape the rest of the system. First, orientation must be
 asserted by index, not inferred from a passing validator. The gate tests pin
@@ -1597,7 +1625,7 @@ beats the baseline, and that the shipped model does, the latter reported as the
 audit's `OUTCOME` line and, where the margin is small, backed by a paired test
 rather than by a bare number.
 
-![**What to see: every gate in this project is placed on one number line between a trivial baseline and a typed comparator, so a vacuous, unreachable, or otherwise mis-specified threshold shows up as a defect at a visible position rather than as a pass/fail label alone.** The gate taxonomy on a number line: the trivial baseline and the typed comparator bracket the region in which a threshold is bracketed. A threshold on the baseline side is vacuous (Stage 2B's row); one beyond the comparator is unreachable when the comparator is a model-class bound (Stage 1's row) and above-reference when it is an exceedable reference; both defects in this project are labeled at their measured positions, and the retained case-only clause ablation is drawn as a third measured row at its own. That row is the figure's only non-passing one and its only one whose typed comparator loses to its own bar: the type oracle scores worse than the type-free baseline, so no threshold could discriminate between them, the bracketed region does not exist on that row, and the figure draws neither it nor a width for it. Its gate is its baseline rather than a retired declaration, so the two coincide on one marker rather than being drawn twice. The bracketed zone on each row that has one states its own endpoints and width, because a shaded region says a band exists and only a number says how much room a threshold ever had inside it. Each measured row also states the population it was scored on with its unit, the corpus it was fitted on, and the exact test with its p where the row's verdict rests on one, or that no paired per-item test attaches to that measure where it does not. A threshold classified as bracketed while lying outside that region, either defect marker plotted on the wrong side of its comparator, a passing row's shipped model outside the band the panel draws it inside, a paired test covering more pairs than its row has units, a bracketed band drawn on a row whose comparator does not beat its baseline, or a recorded outcome that disagrees with the model-against-bar arithmetic would falsify this panel.](../figures/gate_taxonomy.png){#fig:gate_taxonomy width=85%}
+![**What to see: every gate in this project is placed on one number line between a trivial baseline and a typed comparator, so a vacuous, unreachable, or otherwise mis-specified threshold shows up as a defect at a visible position rather than as a pass/fail label alone.** The gate taxonomy on a number line: the trivial baseline and the typed comparator bracket the region in which a threshold is bracketed. A threshold on the baseline side is vacuous (Stage 2B's row); one beyond the comparator is unreachable when the comparator is a model-class bound (Stage 1's row) and above-reference when it is an exceedable reference; both defects in this project are labeled at their measured positions, and the retained case-only clause ablation is drawn as a third measured row at its own. That row is the figure's only non-passing one and its only one whose typed comparator loses to its own bar: the type oracle scores worse than the type-free baseline, so no threshold could discriminate between them, the bracketed region does not exist on that row, and the figure draws neither it nor a width for it. Its gate is its baseline rather than a retired declaration, so the two coincide on one marker rather than being drawn twice. The bracketed zone on each row that has one states its own endpoints and width, because a shaded region says a band exists and only a number says how much room a threshold ever had inside it. Each measured row also states the population it was scored on with its unit, the corpus it was fitted on, and the exact test with its p where the row's verdict rests on one, or that no paired per-item test attaches to that measure where it does not. A threshold classified as bracketed while lying outside that region, either defect marker plotted on the wrong side of its comparator, a passing row's shipped model outside the band the panel draws it inside, a paired test covering more pairs than its row has units, a bracketed band drawn on a row whose comparator does not beat its baseline, or a recorded outcome that disagrees with the model-against-bar arithmetic would falsify this panel.](../../output/figures/gate_taxonomy.png){#fig:gate_taxonomy width=85%}
 
 [@fig:gate_taxonomy] is the same statement drawn once per gate. The useful property
 of the picture is that it makes the two defects visibly symmetric — one threshold
@@ -1661,7 +1689,7 @@ text.
 emission to the identity, since observing a letter reveals the letter state
 exactly. [@fig:letter_transition] shows the result.
 
-![The Level 1 transition `B`, a square matrix over the letter alphabet with entries $p(\text{next} \mid \text{current})$ on a log color scale, estimated from 5,856,736 Brown corpus bigram tokens. Columns index the current letter and rows the next letter; the visible structure — the vowel band, the `q`-to-`u` near-determinism, the space column's broad spread — is the entire learned content of the level. A row/column reversal, a non-column-stochastic matrix, or a matrix whose entries did not match the trained transition would falsify the panel.](../figures/letter_transition.png){#fig:letter_transition width=80%}
+![The Level 1 transition `B`, a square matrix over the letter alphabet with entries $p(\text{next} \mid \text{current})$ on a log color scale, estimated from 5,856,736 Brown corpus bigram tokens. Columns index the current letter and rows the next letter; the visible structure — the vowel band, the `q`-to-`u` near-determinism, the space column's broad spread — is the entire learned content of the level. A row/column reversal, a non-column-stochastic matrix, or a matrix whose entries did not match the trained transition would falsify the panel.](../../output/figures/letter_transition.png){#fig:letter_transition width=80%}
 
 Every entry of that matrix is a named conditional probability, and the whole of
 the level's behavior is a lookup in it. There is nothing else in the level to
@@ -1773,7 +1801,7 @@ letter mass spread flat across the alphabet, so that the co-index statistic
 carried no information at all — would falsify the caption's reading of the left
 panel, and the peak cells printed beneath the panels are re-derived from the
 matrices on every build, so the figure refuses to draw numbers the model does
-not contain.](../figures/phoneme_matrices.png){#fig:phoneme_matrices width=95%}
+not contain.](../../output/figures/phoneme_matrices.png){#fig:phoneme_matrices width=95%}
 
 #### Alignment restriction and excluded corpus coverage
 
@@ -1900,7 +1928,7 @@ quantity. Every cell is a conditional probability a reader can check against
 the word's spelling; a top-row panel with two marks in one column, a shift off
 the sub-diagonal, or a prior head disagreeing with Brown frequency order would
 each falsify the corresponding structural
-claim.](../figures/word_matrices.png){#fig:word_matrices width=94%}
+claim.](../../output/figures/word_matrices.png){#fig:word_matrices width=94%}
 
 ![The induced trie, measured rather than asserted: how many of the
 2000 vocabulary words remain consistent with a prefix, per
@@ -1909,7 +1937,7 @@ median), with one worked example annotated prefix by prefix. Support *growing*
 with prefix length anywhere would falsify the induced-trie correspondence, and
 the data function refuses to draw rather than show it. Support collapsing over
 the short prefixes displayed is the mechanism behind the lexical channel of
-[@sec:hierarchy].](../figures/trie_narrowing.png){#fig:trie_narrowing width=92%}
+[@sec:hierarchy].](../../output/figures/trie_narrowing.png){#fig:trie_narrowing width=92%}
 
 The factorization is also cheaper by an order of magnitude for the same
 vocabulary and the same coverage, because it spends states on words rather than
@@ -2100,7 +2128,7 @@ INS), pronouns on NOM, and sentences overwhelmingly open in NOM. Any cell
 disagreeing with a hand count of the training pairs — or a column failing to
 sum to one — would falsify the corresponding builder, and the annotated values
 make that check possible by
-eye.](../figures/case_matrices.png){#fig:case_matrices width=98%}
+eye.](../../output/figures/case_matrices.png){#fig:case_matrices width=98%}
 
 ### Gold and derived case populations
 
@@ -3153,11 +3181,19 @@ detection because a smaller hypothetical effect was unresolvable. The
 amendment that corrected this is recorded in the same decision entry, before
 any result of this arm was written to the ledger.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-3-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-4-start-->
+```
 
 # Connected and Component Results Under Their Registered Comparators {#sec:results}
 
@@ -3228,10 +3264,10 @@ meaning of its states.
 
 The input corpus digest begins `cd96a285e733`, the local
 protocol digest begins `c2ad1ee3b9aa`, and the
-execution-input digest begins `0cd3b86fd81f`.
+execution-input digest begins `eb30ae0ae1f3`.
 `scripts/record_connected_gum_claims.py` records the complete source/input binding,
 per-document paired summaries, exclusions and environment alongside the ledger;
-the report digest begins `045d953dd1d4`. Reproduction
+the report digest begins `ce31e58b324d`. Reproduction
 requires these exact inputs rather than a moving upstream treebank.
 
 
@@ -3251,7 +3287,7 @@ frozen report and execution inputs, then replays the registered statistic.
 This is a consistency check, not an independent oracle or new measurement.
 Neither a globally exact posterior nor individual channel effects are claimed.
 A wrong channel direction, omitted shared observation, changed population, or
-mean/interval inconsistent with the bound report falsifies this caption.](../figures/connected_core.png){#fig:connected_core width=100%}
+mean/interval inconsistent with the bound report falsifies this caption.](../../output/figures/connected_core.png){#fig:connected_core width=100%}
 
 ## Historical component gate outcomes and their scoring routes
 
@@ -3442,7 +3478,7 @@ optimum — not the
 interval between uniform and model — is the space in which a bigram model can
 distinguish itself.
 
-![Perplexity comparators for both built levels, each on its own level's evaluation stream: uniform, context-free unigram, the trained bigram agent, and the empirical order-1 optimum on that stream. The two panels are separate populations and the panel does not compare them to each other — the Stage 1 letter panel is measured on held-out prose, while the Stage 2 phoneme panel is measured in-sample over the full dictionary, on the same pronunciations that trained the transition matrix ([@sec:limitations]), so the two ladders are not comparable as generalization claims. Each panel therefore states the population it was scored over and its unit beneath its own title, because two panels on one shared axis otherwise invite a rung-for-rung reading their populations do not support. The order-1 conditional-entropy floor is named on the canvas with its value rather than only in this caption, and its rule stops short of the panel edge so the label sits clear of it. The model-to-optimum gap is the remaining headroom at this order; the uniform-to-unigram gap is available to a model with no context at all. A missing comparator, a non-monotone ladder where the recorded identities require ordering, a model-to-optimum gap inconsistent with the ledger, or a panel drawn over an empty population would falsify this panel.](../figures/perplexity_ladder.png){#fig:perplexity_ladder width=85%}
+![Perplexity comparators for both built levels, each on its own level's evaluation stream: uniform, context-free unigram, the trained bigram agent, and the empirical order-1 optimum on that stream. The two panels are separate populations and the panel does not compare them to each other — the Stage 1 letter panel is measured on held-out prose, while the Stage 2 phoneme panel is measured in-sample over the full dictionary, on the same pronunciations that trained the transition matrix ([@sec:limitations]), so the two ladders are not comparable as generalization claims. Each panel therefore states the population it was scored over and its unit beneath its own title, because two panels on one shared axis otherwise invite a rung-for-rung reading their populations do not support. The order-1 conditional-entropy floor is named on the canvas with its value rather than only in this caption, and its rule stops short of the panel edge so the label sits clear of it. The model-to-optimum gap is the remaining headroom at this order; the uniform-to-unigram gap is available to a model with no context at all. A missing comparator, a non-monotone ladder where the recorded identities require ordering, a model-to-optimum gap inconsistent with the ledger, or a panel drawn over an empty population would falsify this panel.](../../output/figures/perplexity_ladder.png){#fig:perplexity_ladder width=85%}
 
 3.5755 bits per character sits in the range of published
 estimates of English letter entropy at low context order. @shannon1951 measures
@@ -3729,7 +3765,7 @@ are observed and phones inferred through a learned emission.
 
 : Position-aligned letter-to-phone accuracy over 42,820 held-out positions from 6484 test words, trained on 25,936 length-matched pairs. The gate compares the context-free lookup with forward filtering: a margin of 0.546 points, established by the paired test of [@eq:mcnemar] rather than by the difference of the aggregates. The smoothing and Viterbi rows are headroom the online architecture deliberately does not claim — see [@sec:limitations]. {#tbl:g2p_accuracy}
 
-![**What to see: the letter-to-phone decoder beats a context-free per-letter lookup table by a thin but paired-significant margin, while the whole-word smoothing and Viterbi references shown alongside it are unreachable headroom the streaming architecture does not claim.** Position-aligned letter-to-phone accuracy on the Stage 2 held-out split — 42,820 aligned phone positions across 6484 words. The context-free per-letter baseline, the fitted filtering model scored over the full set by the NumPy oracle after a bounded pymdp check with 0 decision disagreements, and the forward–backward smoothing reference; the Viterbi reference is tabulated in [@tbl:g2p_accuracy] rather than plotted. Panel A is drawn at full scale and panel B repeats the same three bars on a truncated axis so the margin is visible; the dotted rule marks the uniform-guess comparator and the box reports the paired McNemar counts. The gate margin is the small step from baseline to filtering; the larger step to the whole-word references requires access the streaming architecture does not have, which is why they are references rather than ceilings: they are not upper bounds on what a same-information model could reach. A missing decoder, a filtering value that disagreed with the live-Agent check, or a whole-word reference below the corresponding causal decoder would falsify this panel. Each decoder bar carries a descriptive 95% Wilson interval [@wilson1927] derived at render time from its recorded accuracy and the 42,820-position held-out denominator both decoders were scored on — the recorder pairs them position-for-position for the McNemar counts, so one denominator serves both bars — stated per the decision-101 convention on that population, in percentage points of position accuracy. The two marginal intervals can overlap even where the paired test separates the decoders, which is why the margin is read from the McNemar box rather than off the bars; the whole-word references draw bare, being references the streaming architecture does not claim rather than arms of the paired comparison. ](../figures/g2p_accuracy.png){#fig:g2p_accuracy width=85%}
+![**What to see: the letter-to-phone decoder beats a context-free per-letter lookup table by a thin but paired-significant margin, while the whole-word smoothing and Viterbi references shown alongside it are unreachable headroom the streaming architecture does not claim.** Position-aligned letter-to-phone accuracy on the Stage 2 held-out split — 42,820 aligned phone positions across 6484 words. The context-free per-letter baseline, the fitted filtering model scored over the full set by the NumPy oracle after a bounded pymdp check with 0 decision disagreements, and the forward–backward smoothing reference; the Viterbi reference is tabulated in [@tbl:g2p_accuracy] rather than plotted. Panel A is drawn at full scale and panel B repeats the same three bars on a truncated axis so the margin is visible; the dotted rule marks the uniform-guess comparator and the box reports the paired McNemar counts. The gate margin is the small step from baseline to filtering; the larger step to the whole-word references requires access the streaming architecture does not have, which is why they are references rather than ceilings: they are not upper bounds on what a same-information model could reach. A missing decoder, a filtering value that disagreed with the live-Agent check, or a whole-word reference below the corresponding causal decoder would falsify this panel. Each decoder bar carries a descriptive 95% Wilson interval [@wilson1927] derived at render time from its recorded accuracy and the 42,820-position held-out denominator both decoders were scored on — the recorder pairs them position-for-position for the McNemar counts, so one denominator serves both bars — stated per the decision-101 convention on that population, in percentage points of position accuracy. The two marginal intervals can overlap even where the paired test separates the decoders, which is why the margin is read from the McNemar box rather than off the bars; the whole-word references draw bare, being references the streaming architecture does not claim rather than arms of the paired comparison. ](../../output/figures/g2p_accuracy.png){#fig:g2p_accuracy width=85%}
 
 The margin in [@tbl:g2p_accuracy] is thin by construction, not by accident. The
 length-matched training subset is biased toward transparent orthography, where the
@@ -3760,7 +3796,7 @@ directions. [@fig:case_both_defects] puts the two side by side;
 [@sec:case_gate] works through why one threshold can be simultaneously vacuous
 and above-reference.
 
-![Stage 4's single declared threshold against both populations. On the committed gold-morphology split every measured predictor — majority class, context-free bar and fitted sequence model — lands on the *same* value; the threshold is therefore cleared by a constant predictor and is VACUOUS. That equality is an empirical result of this fitted transition and split, not a consequence of the one-tag observation alphabet. On the derived oracle the threshold sits above every measured comparator — all of them exceedable, so the verdict is ABOVE_REFERENCE rather than an impossibility claim. Only the population differs. If the two populations were merged, if the constant predictor did not match the gold bar, or if the derived-oracle verdict crossed the declared threshold, this panel would be falsified.](../figures/case_both_defects.png){#fig:case_both_defects width=92%}
+![Stage 4's single declared threshold against both populations. On the committed gold-morphology split every measured predictor — majority class, context-free bar and fitted sequence model — lands on the *same* value; the threshold is therefore cleared by a constant predictor and is VACUOUS. That equality is an empirical result of this fitted transition and split, not a consequence of the one-tag observation alphabet. On the derived oracle the threshold sits above every measured comparator — all of them exceedable, so the verdict is ABOVE_REFERENCE rather than an impossibility claim. Only the population differs. If the two populations were merged, if the constant predictor did not match the gold bar, or if the derived-oracle verdict crossed the declared threshold, this panel would be falsified.](../../output/figures/case_both_defects.png){#fig:case_both_defects width=92%}
 
 ### The gold population cannot carry a gate {#sec:gold_population}
 
@@ -4195,7 +4231,7 @@ where the mixture wins decisively and classification reaches
 99.5%. A left-panel mixture or privileged
 reference bar *below* the type-free bar, or a right panel without the decisive gap
 would each contradict the recorded finding; so would either paired interval
-ceasing to span zero. The data function refuses to draw in every such case.](../figures/clause_null.png){#fig:clause_null width=97%}
+ceasing to span zero. The data function refuses to draw in every such case.](../../output/figures/clause_null.png){#fig:clause_null width=97%}
 
 
 ![What each upper-level score is, and what kind of evidence backs it. Left: the Stage 4 case-role
@@ -4217,7 +4253,7 @@ through pymdp's inference path. Any of the following would falsify this panel: a
 disagreement count other than the stated zero, an L4 comparison that stops short of the scored
 population, a live-filter score inconsistent with its recorded
 improvement, the two L6 estimand deltas collapsing onto one another, or the Stage 4 agreement
-leaving the majority share its annotation requires.](../figures/inference_evidence.png){#fig:inference_evidence width=95%}
+leaving the majority share its annotation requires.](../../output/figures/inference_evidence.png){#fig:inference_evidence width=95%}
 
 ### Canonical widened model: development-only gain over the type-free chain {#sec:clause_widened}
 
@@ -4519,7 +4555,7 @@ the dashed static prior that the $\alpha = 0$ anchor reproduces exactly, with
 the scrambled-message control (×) landing away from the real opening-tercile
 message. Bars hugging the dashed line, or the × coinciding with the opening
 bar, would each falsify the intervention demonstration, and the data function
-refuses to draw in either case.](../figures/narrative_channel.png){#fig:narrative_channel width=97%}
+refuses to draw in either case.](../../output/figures/narrative_channel.png){#fig:narrative_channel width=97%}
 
 ```{=latex}
 \csname @ifclassloaded\endcsname{beamer}{}{\Needspace{24\baselineskip}}
@@ -4744,7 +4780,7 @@ question of whether a threshold sits between a baseline and a ceiling. This one
 additionally requires that a free parameter be neither too small nor too large,
 and the U-shape is what demonstrates the requirement rather than asserting it. [@fig:generation_samples] shows the sampled strings at each setting.
 
-![Distance to the true word distribution against policy precision. Both extremes generate badly for opposite reasons: at low precision the policy posterior becomes the habit and the model *is* the sampling baseline, while on the shipped artifact high precision follows a greedy conditional-prefix path whose distinct-word count collapses to 1. That path need not be the globally most probable word in another lexicon. The optimum is interior, which is what gives this measured gate a failure mode in two directions. A boundary optimum, a monotonic curve, or a high-precision distribution that retained the full support would falsify this panel.](../figures/generation_sweep.png){#fig:generation_sweep width=90%}
+![Distance to the true word distribution against policy precision. Both extremes generate badly for opposite reasons: at low precision the policy posterior becomes the habit and the model *is* the sampling baseline, while on the shipped artifact high precision follows a greedy conditional-prefix path whose distinct-word count collapses to 1. That path need not be the globally most probable word in another lexicon. The optimum is interior, which is what gives this measured gate a failure mode in two directions. A boundary optimum, a monotonic curve, or a high-precision distribution that retained the full support would falsify this panel.](../../output/figures/generation_sweep.png){#fig:generation_sweep width=90%}
 
 ### What the distance metric does not catch, and how a degenerate generator beats it
 
@@ -4774,7 +4810,7 @@ form of the metric that could not be the gate. The panel refuses to draw if
 the regenerated columns contradict the recorded sweep: a degenerate column
 with more distinct words than the shipped one, or a shipped column below the
 baseline's membership rate, would each falsify the sweep's
-reading.](../figures/generation_samples.png){#fig:generation_samples width=98%}
+reading.](../../output/figures/generation_samples.png){#fig:generation_samples width=98%}
 
 ## Helpful and harmful cross-level interventions
 
@@ -4812,7 +4848,7 @@ not an optimum: it does not distinguish an interior peak from a plateau, and
 the reversal the defective lookup had shown at weight 0.9
 was an artifact of matching the wrong context.
 
-![The composition result, with the registered lexical prediction drawn on the evidence and the earlier coupling sweep shown as its motivating contrast. Both sweeps are measured on the same 42,820 held-out receiver positions, and both are linear mixtures anchored at the uncoupled decode at weight zero. They do not hold insertion site fixed: coupling folds into the observation likelihood over phones, whereas the lexical message mixes into the phone predictive. The lexical message rises to a plateau whose sample argmax is interior and does not reverse at the highest tested weight; the letter predictive declines monotonically. Every lexical point now carries an exact conditional paired interval, derived at render time from that weight's own recorded discordant counts over the shared denominator, so the plateau's overlapping intervals show on the figure what this caption asserts about the argmax rather than asking the reader to take it on the point estimates alone. The bands show the registered lexical *interior optimum* class, which the corrected sweep's argmax satisfies without distinguishing it from a plateau, and the already-observed coupling class. The generator recomputes both shape verdicts from recorded sweep claims and refuses to draw a contradictory band. The coupling curve's intermediate segment is schematic between recorded endpoints; its full-mixing collapse is 16.922% against the uncoupled 70.801%. A harmful series extending past its last recorded anchor, an endpoint unequal to a recorded measurement, prose calling both curves prospective, or a drawn point whose estimate does not reproduce from its own counts over the recorded denominator would falsify this panel's account. The shape is evidence for a working hypothesis, not a universal law.](../figures/channel_comparison.png){#fig:channel_comparison width=92%}
+![The composition result, with the registered lexical prediction drawn on the evidence and the earlier coupling sweep shown as its motivating contrast. Both sweeps are measured on the same 42,820 held-out receiver positions, and both are linear mixtures anchored at the uncoupled decode at weight zero. They do not hold insertion site fixed: coupling folds into the observation likelihood over phones, whereas the lexical message mixes into the phone predictive. The lexical message rises to a plateau whose sample argmax is interior and does not reverse at the highest tested weight; the letter predictive declines monotonically. Every lexical point now carries an exact conditional paired interval, derived at render time from that weight's own recorded discordant counts over the shared denominator, so the plateau's overlapping intervals show on the figure what this caption asserts about the argmax rather than asking the reader to take it on the point estimates alone. The bands show the registered lexical *interior optimum* class, which the corrected sweep's argmax satisfies without distinguishing it from a plateau, and the already-observed coupling class. The generator recomputes both shape verdicts from recorded sweep claims and refuses to draw a contradictory band. The coupling curve's intermediate segment is schematic between recorded endpoints; its full-mixing collapse is 16.922% against the uncoupled 70.801%. A harmful series extending past its last recorded anchor, an endpoint unequal to a recorded measurement, prose calling both curves prospective, or a drawn point whose estimate does not reproduce from its own counts over the recorded denominator would falsify this panel's account. The shape is evidence for a working hypothesis, not a universal law.](../../output/figures/channel_comparison.png){#fig:channel_comparison width=92%}
 
 ```{=latex}
 \csname @ifclassloaded\endcsname{beamer}{}{\clearpage}
@@ -4980,7 +5016,7 @@ confirmatory one, and the two units are not interchangeable: the clustered
 estimand prices the bridge per word-level emission, the mean per scored
 token.
 
-![The case-word bridge's influence sweep across the shipped mixing-weight grid, on the EWT-dev development population. The solid series is the recorded mean per-token log-gain of the mixed L3 word prior against the bit-identical zero-weight anchor; the bracketed series is the whole-document clustered per-emission effect with its 95% document-clustered interval at each weight; the dotted series is the scrambled-word negative control. The vertical rule marks the recorded best weight. Development evidence under a fresh registration, never confirmatory; the scored population is 3001 tokens in 64 documents, expanding to 14,449 clustered emissions. The caption is falsified by a plotted value disagreeing with its recorded token, by an interval drawn around the per-token mean rather than the per-emission clustered effect, by the anchor point drawn away from exactly zero on any series, or by the recorded best weight failing to lie on the drawn grid.](../figures/case_word_sweep.png){#fig:case_word_sweep width=75%}
+![The case-word bridge's influence sweep across the shipped mixing-weight grid, on the EWT-dev development population. The solid series is the recorded mean per-token log-gain of the mixed L3 word prior against the bit-identical zero-weight anchor; the bracketed series is the whole-document clustered per-emission effect with its 95% document-clustered interval at each weight; the dotted series is the scrambled-word negative control. The vertical rule marks the recorded best weight. Development evidence under a fresh registration, never confirmatory; the scored population is 3001 tokens in 64 documents, expanding to 14,449 clustered emissions. The caption is falsified by a plotted value disagreeing with its recorded token, by an interval drawn around the per-token mean rather than the per-emission clustered effect, by the anchor point drawn away from exactly zero on any series, or by the recorded best weight failing to lie on the drawn grid.](../../output/figures/case_word_sweep.png){#fig:case_word_sweep width=75%}
 
 The sweep's scope warnings are the registration's own and travel with the
 result. The scored documents are the EWT dev population already scored for
@@ -5091,7 +5127,7 @@ counts are sparse and the prior dominates. A tight diagonal in the right panel
 would mean the left one measured nothing. The matrices are the recorder's own
 saved artifact, and the panel refuses to draw if their deviations disagree
 with the recorded
-claims.](../figures/learning_agreement.png){#fig:learning_agreement width=95%}
+claims.](../../output/figures/learning_agreement.png){#fig:learning_agreement width=95%}
 
 Nothing above claims learning *helps*: agreement with counting is a
 correctness anchor for the mechanism. The version that is a real
@@ -5159,7 +5195,7 @@ can access there; by [@eq:signal_captured], with the optimum taken on the scored
 passage itself, it is 57.3%. [@fig:information_ceiling] draws that budget directly in nats, with the
 declared threshold placed outside the achievable region.
 
-![The Level 1 information budget in nats. The declared 2-nat-over-uniform target lies beyond the conditional-entropy ceiling of the training distribution, so it is unreachable at this model order on that population regardless of implementation quality; [@eq:heldout_bound] shows it is unreachable on the held-out evaluation passage too, using that passage's transition entropy plus its fixed initial-prediction loss on the all-position denominator rather than extrapolating from training. A ceiling at or below the declared target, or a gain that did not equal the uniform cross-entropy minus the applicable all-position floor, would falsify this panel.](../figures/information_ceiling.png){#fig:information_ceiling width=85%}
+![The Level 1 information budget in nats. The declared 2-nat-over-uniform target lies beyond the conditional-entropy ceiling of the training distribution, so it is unreachable at this model order on that population regardless of implementation quality; [@eq:heldout_bound] shows it is unreachable on the held-out evaluation passage too, using that passage's transition entropy plus its fixed initial-prediction loss on the all-position denominator rather than extrapolating from training. A ceiling at or below the declared target, or a gain that did not equal the uniform cross-entropy minus the applicable all-position floor, would falsify this panel.](../../output/figures/information_ceiling.png){#fig:information_ceiling width=85%}
 
 ## Confirmatory replication on the held-back split
 
@@ -5297,11 +5333,19 @@ inventory compliance — whether a system will emit a space at all — and the
 contrast that survives restriction to alphabetic targets, not the raw census
 margin, is the finding.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-4-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-5-start-->
+```
 
 # Interpretation, External-Validity Limits, and Unmeasured Extensions {#sec:discussion}
 
@@ -5326,7 +5370,7 @@ value and verdict is read from the committed gate audit and each verdict is
 re-derived from its own row before drawing, so an edited report refuses to
 render rather than drawing a stale number. The normalization is a summary for
 orientation, not a new estimand: the per-level results and their intervals in
-[@sec:results] remain the evidence.](../figures/level_gate_summary.png){#fig:level_gate_summary width=95%}
+[@sec:results] remain the evidence.](../../output/figures/level_gate_summary.png){#fig:level_gate_summary width=95%}
 
 ## Limitations that follow from deliberate architectural choices {#sec:limitations}
 
@@ -6093,11 +6137,19 @@ point would start a new exploratory record. This agenda specifies what would
 make the next claims worth believing; it supplies no new empirical result,
 human validation, paid-model acquisition or commitment to clinical deployment.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-5-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-6-start-->
+```
 
 # Related Work: Active Inference, Finite-State Language, and Evaluation {#sec:related}
 
@@ -6870,11 +6922,19 @@ model uses context — rather than to establish superiority over the strongest
 non-neural alternative. The stronger left-context lookup audit in [@sec:results]
 shows why those are different claims.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-6-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-7-start-->
+```
 
 # Source-Bound Reproduction, Deterministic Builds, and Availability {#sec:reproducibility}
 
@@ -7050,7 +7110,7 @@ descriptive; replay supplies no new held-back replication.
 | Manuscript variables | `.venv/bin/python scripts/z_generate_manuscript_variables.py` | `output/data/manuscript_variables.json` and the resolved manuscript tree; every mutable scientific/configuration value is injected here before any dependent figure or render |
 | Hydrate and check repository documentation | `.venv/bin/python scripts/z_render_docs.py && .venv/bin/python scripts/z_render_docs.py --check` | The resolved documentation mirror, checked against authored sources and current claim values |
 | Figures | `MPLBACKEND=Agg .venv/bin/python scripts/generate_figures.py` | Every PNG referenced in this manuscript |
-| Publish the figure registry | `.venv/bin/python scripts/generate_figure_registry.py` (add `--check` to build and validate without writing) | `../figures/figure_registry.json`, built by the template's own `infrastructure.documentation` builder from the provenance receipt and this manuscript's own figure captions |
+| Publish the figure registry | `.venv/bin/python scripts/generate_figure_registry.py` (add `--check` to build and validate without writing) | `output/figures/figure_registry.json`, built by the template's own `infrastructure.documentation` builder from the provenance receipt and this manuscript's own figure captions |
 | Generate and check the cover | `MPLBACKEND=Agg .venv/bin/python scripts/generate_cover.py && MPLBACKEND=Agg .venv/bin/python scripts/generate_cover.py --check` | The current cover and its content-bound freshness receipt, required before rendering |
 | Export the web model | `.venv/bin/python scripts/export_web_model.py` | The ignored local model payload required by the clean full suite |
 | Build the web page | `.venv/bin/python scripts/build_web_ailm.py` | The ignored standalone local page required by the clean full suite |
@@ -7160,7 +7220,7 @@ cold-start or speech-device evidence. The original raster, capture metadata and
 served-asset digests are retained under `data/dashboard_capture/`; figure
 provenance binds these inputs and the framing generator. Altered pixels or
 source assets inconsistent with those bindings would falsify the capture's
-provenance and cause the generator to refuse.](../figures/dashboard_observation.png){#fig:dashboard_observation width=100%}
+provenance and cause the generator to refuse.](../../output/figures/dashboard_observation.png){#fig:dashboard_observation width=100%}
 
 ## Variable injection and source provenance
 
@@ -7217,7 +7277,7 @@ out in [@sec:lean].
 
 ## Deterministic build epoch and figures
 
-This document was rendered at 2026-10-30T22:22:22Z from version
+This document was rendered at 2026-11-17T20:09:00Z from version
 1.0.0. The timestamp honors `SOURCE_DATE_EPOCH`; when it is omitted,
 the manuscript orchestrator derives the epoch of the last audited commit that
 touched an input outside the regenerable `output/` tree, so the build stamp
@@ -7281,11 +7341,19 @@ any kind. The author has no competing interests to declare.
 [@sec:limitations] states what that single-author position means for the
 gate-audit method's own evidence.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-7-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-8-start-->
+```
 
 # Established Findings and the Next Independent Tests {#sec:conclusion}
 
@@ -7540,11 +7608,19 @@ is answerable to the same discipline that kept this project's own fitted-probe
 proposal from certifying its own circularity. None of that is claimed to have
 happened. It is what the method this paper reports is for.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-8-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-9-start-->
+```
 
 # Supplement A: Gate Audits, Mutation Controls, and Held-Back Replication {#sec:audit_trails}
 
@@ -7768,7 +7844,7 @@ pairs: it could have detected the smallest effect this project treats as
 interesting. Its effect size and exact interval are recorded with the remaining
 primary paired effects in [@tbl:multiplicity_family].
 
-![Prefix, stride[::5], stride[::3], and full held-out rows are compared in two panels: the G2P margin and its paired-test p-value. The prefix overstates the effect; the same-sized stride[::5] lands near the full-set margin but cannot establish it; stride[::3] is larger and closer but remains below the declared significance criterion; only the full set does both. The prefix-versus-stride[::5] pair holds size fixed and isolates selection; the stride-versus-full pair holds selection fixed and isolates size. A prefix that did not differ from the full estimate, a stride that was not representative, or a full-set bar that changed the recorded direction would falsify this panel.](../figures/subsample_bias.png){#fig:subsample_bias width=85%}
+![Prefix, stride[::5], stride[::3], and full held-out rows are compared in two panels: the G2P margin and its paired-test p-value. The prefix overstates the effect; the same-sized stride[::5] lands near the full-set margin but cannot establish it; stride[::3] is larger and closer but remains below the declared significance criterion; only the full set does both. The prefix-versus-stride[::5] pair holds size fixed and isolates selection; the stride-versus-full pair holds selection fixed and isolates size. A prefix that did not differ from the full estimate, a stride that was not representative, or a full-set bar that changed the recorded direction would falsify this panel.](../../output/figures/subsample_bias.png){#fig:subsample_bias width=85%}
 
 [@fig:subsample_bias] shows why neither subsample is an acceptable evaluation. The
 resolution was not to shrink the claim or inflate the sample, but to remove the
@@ -8139,7 +8215,7 @@ case for: the letter-bigram bar does not catch it. [@fig:word_miswirings] shows 
 four finite-score mis-wirings beside the correct construction, and which of them the bar
 catches.
 
-![The four finite-perplexity Stage 3 mis-wirings against the letter-bigram bar, on a log axis because the time-reversed emission is 24 times the bar, or 1.4 orders of magnitude worse. The analytic-infinite end-of-word arm is omitted because no log axis can carry it ([@tbl:word_miswirings]). The shipped model is drawn as the top bar for scale and is not one of the mis-wirings counted here. Every bar ending left of the dashed line clears it — 3 of the 4 shown do, including a prior whose frequency ranking is reversed so the rarest words are predicted most confidently. The bar is a necessary condition, never a sufficient one. A changed number of wiring variants, a bar drawn at the wrong comparator, or a reversal of the time-reversed ordering would falsify this panel.](../figures/word_miswirings.png){#fig:word_miswirings width=92%}
+![The four finite-perplexity Stage 3 mis-wirings against the letter-bigram bar, on a log axis because the time-reversed emission is 24 times the bar, or 1.4 orders of magnitude worse. The analytic-infinite end-of-word arm is omitted because no log axis can carry it ([@tbl:word_miswirings]). The shipped model is drawn as the top bar for scale and is not one of the mis-wirings counted here. Every bar ending left of the dashed line clears it — 3 of the 4 shown do, including a prior whose frequency ranking is reversed so the rarest words are predicted most confidently. The bar is a necessary condition, never a sufficient one. A changed number of wiring variants, a bar drawn at the wrong comparator, or a reversal of the time-reversed ordering would falsify this panel.](../../output/figures/word_miswirings.png){#fig:word_miswirings width=92%}
 
 ### The closed form scales to every length-eligible training type
 
@@ -8203,7 +8279,7 @@ its recorded pair, or if numeric coverage and perplexity fail to rise together.
 Curve-crossing is deliberately *not* offered as a falsifier: on nested
 frequency-ranked prefixes of a Zipfian corpus these curves cannot cross, so a
 reader should treat their separation as arithmetic rather than as
-evidence.](../figures/scaling_ladder.png){#fig:scaling_ladder width=98%}
+evidence.](../../output/figures/scaling_ladder.png){#fig:scaling_ladder width=98%}
 
 The gate stays bracketed at every rung: no rung has the comparator at or below
 the model.
@@ -8309,7 +8385,7 @@ the recorder refuses a second pass.
 
 : The four EWT members of the frozen significance family, each scored once against the whole held-back `en_ewt-ud-test.conllu` split under decision 111, with parameters read unchanged from the development fits. "Favored" counts units where only the model is right (Stages 4 and 5) or where the phase model has the lower loss (Stage 6); "Opposed" counts the reverse. The frozen per-test threshold is 0.000625; Holm's step-down is computed over the same 16-member family. A member with no discordant pair has p fixed at its maximum by construction and is not shown rather than shown absent. {#tbl:confirmatory}
 
-![The held-back replication and its registered controls (decisions 111 and 115). Top: exact two-sided p-values for the 4 scored members, development beside held-back, against the frozen threshold 0.000625 and each member's Holm threshold over the 16-member family. The p-axis is truncated at a fixed floor rather than stretched to the smallest measured value: a p below the floor is drawn as a left-pointing triangle pinned at the floor, with its exact magnitude given in that row's own label, so the threshold, both Holm thresholds and the cluster of p-values near one keep real resolution instead of being compressed by a handful of near-machine-epsilon values. Open diamonds mark the registered positive and negative controls; rows with no discordant pair are labeled not computable. Middle: favored and opposed discordant pairs, with discordant/evaluated counts, units, and document counts. Bottom: separate rows for Level 6's held-back primary 95% interval, held-back family-corrected 99.9375% interval, and development primary interval. Only the held-back primary excludes zero. The held-back minimum detectable effect, 0.005726 nats, exceeds the development effect 0.0051. The figure refuses to draw if recorded verdicts or computability flags contradict the plotted quantities, discordant counts disagree with their populations, controls fall on the wrong side of the threshold, or exclusion flags disagree with interval bounds.](../figures/confirmatory_replication.png){#fig:confirmatory_replication width=95%}
+![The held-back replication and its registered controls (decisions 111 and 115). Top: exact two-sided p-values for the 4 scored members, development beside held-back, against the frozen threshold 0.000625 and each member's Holm threshold over the 16-member family. The p-axis is truncated at a fixed floor rather than stretched to the smallest measured value: a p below the floor is drawn as a left-pointing triangle pinned at the floor, with its exact magnitude given in that row's own label, so the threshold, both Holm thresholds and the cluster of p-values near one keep real resolution instead of being compressed by a handful of near-machine-epsilon values. Open diamonds mark the registered positive and negative controls; rows with no discordant pair are labeled not computable. Middle: favored and opposed discordant pairs, with discordant/evaluated counts, units, and document counts. Bottom: separate rows for Level 6's held-back primary 95% interval, held-back family-corrected 99.9375% interval, and development primary interval. Only the held-back primary excludes zero. The held-back minimum detectable effect, 0.005726 nats, exceeds the development effect 0.0051. The figure refuses to draw if recorded verdicts or computability flags contradict the plotted quantities, discordant counts disagree with their populations, controls fall on the wrong side of the threshold, or exclusion flags disagree with interval bounds.](../../output/figures/confirmatory_replication.png){#fig:confirmatory_replication width=95%}
 
 ### Stage 4 on the derived population, against the per-tag argmax baseline
 
@@ -8404,11 +8480,19 @@ is nominally favorable but crosses neither corrected threshold, while its
 document-clustered log-loss interval spans zero. Neither was allowed to stand in
 for the other.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-9-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-10-start-->
+```
 
 # Supplement B: Channel Factorial and Proper-Loss Re-Scoring {#sec:channel_factorial}
 
@@ -8721,11 +8805,19 @@ log loss ([@sec:clause_word_channel]), while the generation channel (scored on
 total-variation distance and lexicon membership) and the L6→L5 prior intervention
 remain off this axis and would each need their own construction to join it.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-10-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-11-start-->
+```
 
 # Supplement C: Exact Computational and Memory Costs {#sec:complexity}
 
@@ -8846,7 +8938,7 @@ system's per-symbol cost divided by its own context-free term, so no constant of
 either system enters. AILM's line is flat by construction — no term of
 [@eq:step_cost] mentions how much text precedes the scored symbol — and a
 dependence on it appearing there would falsify the
-panel.](../figures/complexity_ops.png){#fig:complexity_ops width=98%}
+panel.](../../output/figures/complexity_ops.png){#fig:complexity_ops width=98%}
 
 ## Factored storage and the remaining joint-emission cost {#sec:complexity_factored}
 
@@ -8985,7 +9077,7 @@ budget at the recorded cap of about 17,320 words. The
 trie-node encoding is drawn as the level it sits at, recomputed from its
 recorded node count: a node count and a size claim that stop agreeing would
 falsify it, as would a measured point off either curve or a cap off the
-curve–budget intersection.](../figures/complexity_memory.png){#fig:complexity_memory width=98%}
+curve–budget intersection.](../../output/figures/complexity_memory.png){#fig:complexity_memory width=98%}
 
 ## Computational costs and fixed historical context {#sec:complexity_versus}
 
@@ -9084,11 +9176,19 @@ forms, and the spec-derived memory prices are three independent derivations
 bound together by exact equality, and `scripts/record_complexity_claims.py`
 re-derives all of them on every run.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-11-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-12-start-->
+```
 
 # Supplement D: Non-Comparative Reference Probes on the Same Next-Symbol Tasks {#sec:external_benchmarks}
 
@@ -9940,7 +10040,7 @@ every gate it was pre-registered to clear. The context-free
 pronunciation-bigram comparator is recorded descriptively: it is the
 pronunciation-only bar, not a spelling arm, and it never gates anything.
 
-![Position accuracy of the P2 stipulated aligned spelling-to-pronunciation comparator arms, each bar the recorded position accuracy of one arm with a 95% Wilson interval derived at render time on the arm's own denominator (360 scored positions of 60 test words). The dashed rule is the analytic uniform floor (1 of 39), a reference and not a measured arm, so it carries no interval. The panel title's tie statement is the recorder's recorded boolean rendered through the derived tie-word token, and no other verdict is drawn. The caption is falsified by a bar whose plotted value disagrees with its recorded token, by an interval not derived from the recorded denominator beside its own accuracy, by a floor rule drawn as a bar, or by any control drawn at or above the native bar while the recorded geometry that cleared the pre-registered refusal still holds.](../figures/aligned_g2p.png){#fig:aligned_g2p_arms width=75%}
+![Position accuracy of the P2 stipulated aligned spelling-to-pronunciation comparator arms, each bar the recorded position accuracy of one arm with a 95% Wilson interval derived at render time on the arm's own denominator (360 scored positions of 60 test words). The dashed rule is the analytic uniform floor (1 of 39), a reference and not a measured arm, so it carries no interval. The panel title's tie statement is the recorder's recorded boolean rendered through the derived tie-word token, and no other verdict is drawn. The caption is falsified by a bar whose plotted value disagrees with its recorded token, by an interval not derived from the recorded denominator beside its own accuracy, by a floor rule drawn as a bar, or by any control drawn at or above the native bar while the recorded geometry that cleared the pre-registered refusal still holds.](../../output/figures/aligned_g2p.png){#fig:aligned_g2p_arms width=75%}
 
 **Closure, and what stays open.** The queue item this protocol answered asked
 for an aligned pronunciation design; the recorded evaluation — artifact,
@@ -10113,7 +10213,7 @@ run recorded 0 scored cache hits and
 At the recorded family-corrected threshold, gemma3 run: no treatment rung separated from the no-demonstration arm; no treatment rung separated from its deranged control; qwen25 run: no treatment rung separated from the no-demonstration arm; no treatment rung separated from its deranged control; smollm run: no treatment rung separated from the no-demonstration arm; no treatment rung separated from its deranged control. The deranged control was descriptively ahead in 0 of 12 nonzero-rung probe cells. This bounds only the declared prompt format and grid; it does not remove the fitted-versus-unfitted opportunity asymmetry. The sweep itself is drawn in
 [@fig:incontext_sweep].
 
-![Separate run cohorts of `meta-llama/llama-3.3-70b-instruct` through provider route `groq`, scored against the number of labeled single-transition continuation examples supplied, with the character-level multiset-matched derangement control built from the same examples. The comparator and uniform floor are reference levels, not series. Each full-scale panel retains both arms and reference levels; its inset enlarges the same treatment/control intervals on a shared narrower vertical scale, with the enlarged region outlined in the parent. The title is generated from the validated family outcomes rather than typed from an earlier run. This panel would be falsified by a plotted cell not matching its recorded token, by a rung or registered probe omitted from the figure, by a treatment/control prompt mismatch beyond the derangement, or by a title that disagrees with the corrected paired contrasts.](../figures/incontext_sweep.png){#fig:incontext_sweep width=88%}
+![Separate run cohorts of `meta-llama/llama-3.3-70b-instruct` through provider route `groq`, scored against the number of labeled single-transition continuation examples supplied, with the character-level multiset-matched derangement control built from the same examples. The comparator and uniform floor are reference levels, not series. Each full-scale panel retains both arms and reference levels; its inset enlarges the same treatment/control intervals on a shared narrower vertical scale, with the enlarged region outlined in the parent. The title is generated from the validated family outcomes rather than typed from an earlier run. This panel would be falsified by a plotted cell not matching its recorded token, by a rung or registered probe omitted from the figure, by a treatment/control prompt mismatch beyond the derangement, or by a title that disagrees with the corrected paired contrasts.](../../output/figures/incontext_sweep.png){#fig:incontext_sweep width=88%}
 
 In the article PDF, enlarged views of [@fig:incontext_sweep] retain both
 percent-accuracy axes and reference lines. Blue circles show labeled transitions;
@@ -10126,17 +10226,17 @@ legend and generated outcome headline.
 \noindent\begin{minipage}{\linewidth}
 \centering
 \textit{Blue circles: shown transitions; orange squares: deranged.}\par\smallskip
-\includegraphics[viewport=0bp 0bp 383.4bp 318.6bp,clip,width=0.86\linewidth,alt={Enlarged gemma3 run panel from the preceding in-context sweep; blue circles are labeled transitions and orange squares are deranged examples. Full scale, reference lines, and interval inset are retained.}]{../figures/incontext_sweep.png}
+\includegraphics[viewport=0bp 0bp 383.4bp 318.6bp,clip,width=0.86\linewidth,alt={Enlarged gemma3 run panel from the preceding in-context sweep; blue circles are labeled transitions and orange squares are deranged examples. Full scale, reference lines, and interval inset are retained.}]{../../output/figures/incontext_sweep.png}
 \end{minipage}\par\medskip
 \noindent\begin{minipage}{\linewidth}
 \centering
 \textit{Blue circles: shown transitions; orange squares: deranged.}\par\smallskip
-\includegraphics[viewport=383.4bp 0bp 754.2bp 318.6bp,clip,width=0.86\linewidth,alt={Enlarged qwen25 run panel from the preceding in-context sweep; blue circles are labeled transitions and orange squares are deranged examples. Full scale, reference lines, and interval inset are retained.}]{../figures/incontext_sweep.png}
+\includegraphics[viewport=383.4bp 0bp 754.2bp 318.6bp,clip,width=0.86\linewidth,alt={Enlarged qwen25 run panel from the preceding in-context sweep; blue circles are labeled transitions and orange squares are deranged examples. Full scale, reference lines, and interval inset are retained.}]{../../output/figures/incontext_sweep.png}
 \end{minipage}\par\medskip
 \noindent\begin{minipage}{\linewidth}
 \centering
 \textit{Blue circles: shown transitions; orange squares: deranged.}\par\smallskip
-\includegraphics[viewport=754.2bp 0bp 1137.6bp 318.6bp,clip,width=0.86\linewidth,alt={Enlarged smollm run panel from the preceding in-context sweep; blue circles are labeled transitions and orange squares are deranged examples. Full scale, reference lines, and interval inset are retained.}]{../figures/incontext_sweep.png}
+\includegraphics[viewport=754.2bp 0bp 1137.6bp 318.6bp,clip,width=0.86\linewidth,alt={Enlarged smollm run panel from the preceding in-context sweep; blue circles are labeled transitions and orange squares are deranged examples. Full scale, reference lines, and interval inset are retained.}]{../../output/figures/incontext_sweep.png}
 \end{minipage}\par\medskip
 }
 \endgroup
@@ -10431,7 +10531,7 @@ divergences against the threshold on a log axis, the size of the rule-decided
 part of a published number, the candidate cost of reaching the located floor,
 and a captured-mass ruler carrying both floors beside the measured probes.
 
-![**What to see: a calibration floor an external benchmark declared by argument, not measurement, is relocated here by direct computation — it sits far from the declared value, showing the original floor was not conservative.** Locating the captured-mass floor offline. Population: AILM's own order-one letter transition columns at 200 deterministically subsampled held-out letter positions (seed 20,260,807, 10 bins), each truncated to the smallest top-k reaching each of 96 target captured masses from 0.05 to 1 over the 30-symbol inventory and reconstructed under both completion rules; no model call and no network. Top left: each metric's signed rule difference against mean captured mass, with the rule-versus-rule total variation on the right axis. Every grid point is drawn as its own marker rather than smoothed. Top right: the same two divergences in absolute value on a log axis against the declared threshold 0.01, with the span a first-crossing locator would have certified shaded. Middle: candidates per position needed to reach each captured mass, against the server cap of 20, with the share of positions individually over that cap on the right axis. Bottom: the declared floor 0.5, the located floor 0.9913050462092039, both first crossings and every measured probe on one captured-mass axis. (At the declared floor the two completion rules differ by 0.027279486311722168 in expected calibration error, against AILM's own recorded 0.06525983583459523 — stated here in prose rather than as a fifth panel; see the paragraph above.) The per-grid-point series is not in the ledger, so the figure recomputes the sweep from the recorder's own offline functions on the recorder's own recorded parameters, and refuses to draw if any re-derived summary contradicts its recorded claim. Any of the following would falsify this panel: a located floor, first crossing, identity value, candidate cost or divergence that disagrees with its recorded token; a signed gap crossing zero a number of times other than the recorded sign-change count; a divergence drawn as a smooth interpolation rather than at the swept grid points; a probe marker for a system the live calibration arm did not record; or the identity point at total capture failing to reduce both completion rules to the same column.](../figures/calibration_floor.png){#fig:calibration_floor width=98%}
+![**What to see: a calibration floor an external benchmark declared by argument, not measurement, is relocated here by direct computation — it sits far from the declared value, showing the original floor was not conservative.** Locating the captured-mass floor offline. Population: AILM's own order-one letter transition columns at 200 deterministically subsampled held-out letter positions (seed 20,260,807, 10 bins), each truncated to the smallest top-k reaching each of 96 target captured masses from 0.05 to 1 over the 30-symbol inventory and reconstructed under both completion rules; no model call and no network. Top left: each metric's signed rule difference against mean captured mass, with the rule-versus-rule total variation on the right axis. Every grid point is drawn as its own marker rather than smoothed. Top right: the same two divergences in absolute value on a log axis against the declared threshold 0.01, with the span a first-crossing locator would have certified shaded. Middle: candidates per position needed to reach each captured mass, against the server cap of 20, with the share of positions individually over that cap on the right axis. Bottom: the declared floor 0.5, the located floor 0.9913050462092039, both first crossings and every measured probe on one captured-mass axis. (At the declared floor the two completion rules differ by 0.027279486311722168 in expected calibration error, against AILM's own recorded 0.06525983583459523 — stated here in prose rather than as a fifth panel; see the paragraph above.) The per-grid-point series is not in the ledger, so the figure recomputes the sweep from the recorder's own offline functions on the recorder's own recorded parameters, and refuses to draw if any re-derived summary contradicts its recorded claim. Any of the following would falsify this panel: a located floor, first crossing, identity value, candidate cost or divergence that disagrees with its recorded token; a signed gap crossing zero a number of times other than the recorded sign-change count; a divergence drawn as a smooth interpolation rather than at the swept grid points; a probe marker for a system the live calibration arm did not record; or the identity point at total capture failing to reduce both completion rules to the same column.](../../output/figures/calibration_floor.png){#fig:calibration_floor width=98%}
 
 The sweep also carries an identity control, and it is what makes the rest of
 these numbers a measurement of the shipped code. At the top of the grid the
@@ -10556,7 +10656,7 @@ before any position is scored. These are determinism replications and not
 estimates of sampling variance; there is no sampling variance to estimate under
 greedy decoding.
 
-![**What to see: AILM and several externally served zero-shot models are scored on the same next-symbol positions, but this is a reference frame rather than a leaderboard — no panel here ranks the systems against each other.** Same-position reference probes; no panel is a ranking. The top row shows accuracy on the letter, phoneme, and G2P tasks with 95% Wilson proportion intervals on the declared denominator (7952 letter positions, 400 phoneme positions, and for G2P the aligned phone positions of 400 words rather than the word count itself); paired probe-minus-AILM differences with exact conditional intervals, where the G2P group is the exact-match contrast rather than the position accuracy; and letter accuracy at the 40- and 160-character prefix windows and on alphabetic-gold positions. The bottom row includes separate run cohorts of `meta-llama/llama-3.3-70b-instruct` through provider route `groq` on the stipulated letter and phone chains; these labels do not identify the local weights shown in the other panels. The stipulated panel shows each bar group against its own uniform floor (3.85% letters, 2.56% phones). The other bottom panels show letter-task expected calibration error and Brier score scaled by their respective theoretical maxima for the systems the direct dual-rule gate admits, with the withheld probes named in-panel rather than drawn (decision 93), and G2P position accuracy stratified by gold phone count. The prefix-window and phone-count panels carry Wilson intervals on their own denominators: the scored positions of each letter arm, and the gold phone positions of each bucket (584, 1727, and 309). The G2P position panels are not single-rule readings: the comparator uses strict positional alignment and each probe uses Levenshtein alignment, which is why the section reports separate readings. Invalid answers are scored wrong and never dropped, and there is no top-k series because the endpoint returns a single answer per call. Any of the following would falsify this panel: a bar not matching the recorded tokens once the calibration panel's worst-case scaling is undone; an interval not matching the paired or Wilson tokens; an AILM context bar that differs between the prefix windows; a sampled-position count that has changed; a figure that silently includes a model the recorders did not register; a withheld system drawn as a calibration bar; a G2P position bar drawn from an alignment token other than the one this caption assigns its system; or a line connecting the external models as a trend.](../figures/external_benchmarks.png){#fig:external_benchmarks width=98%}
+![**What to see: AILM and several externally served zero-shot models are scored on the same next-symbol positions, but this is a reference frame rather than a leaderboard — no panel here ranks the systems against each other.** Same-position reference probes; no panel is a ranking. The top row shows accuracy on the letter, phoneme, and G2P tasks with 95% Wilson proportion intervals on the declared denominator (7952 letter positions, 400 phoneme positions, and for G2P the aligned phone positions of 400 words rather than the word count itself); paired probe-minus-AILM differences with exact conditional intervals, where the G2P group is the exact-match contrast rather than the position accuracy; and letter accuracy at the 40- and 160-character prefix windows and on alphabetic-gold positions. The bottom row includes separate run cohorts of `meta-llama/llama-3.3-70b-instruct` through provider route `groq` on the stipulated letter and phone chains; these labels do not identify the local weights shown in the other panels. The stipulated panel shows each bar group against its own uniform floor (3.85% letters, 2.56% phones). The other bottom panels show letter-task expected calibration error and Brier score scaled by their respective theoretical maxima for the systems the direct dual-rule gate admits, with the withheld probes named in-panel rather than drawn (decision 93), and G2P position accuracy stratified by gold phone count. The prefix-window and phone-count panels carry Wilson intervals on their own denominators: the scored positions of each letter arm, and the gold phone positions of each bucket (584, 1727, and 309). The G2P position panels are not single-rule readings: the comparator uses strict positional alignment and each probe uses Levenshtein alignment, which is why the section reports separate readings. Invalid answers are scored wrong and never dropped, and there is no top-k series because the endpoint returns a single answer per call. Any of the following would falsify this panel: a bar not matching the recorded tokens once the calibration panel's worst-case scaling is undone; an interval not matching the paired or Wilson tokens; an AILM context bar that differs between the prefix windows; a sampled-position count that has changed; a figure that silently includes a model the recorders did not register; a withheld system drawn as a calibration bar; a G2P position bar drawn from an alignment token other than the one this caption assigns its system; or a line connecting the external models as a trend.](../../output/figures/external_benchmarks.png){#fig:external_benchmarks width=98%}
 
 In the article PDF, enlarged views reproduce the panels of
 [@fig:external_benchmarks] from the same image, grouped to retain their
@@ -10571,14 +10671,14 @@ named in their legends.
 \begin{landscape}
 \centering
 \textbf{Same-position accuracy and paired probe-minus-AILM differences}\par\medskip
-\includegraphics[viewport=0bp 351.72bp 799.2bp 655.92bp,clip,width=0.98\linewidth,alt={Enlarged same-position accuracy and paired probe-minus-ailm differences panels from the preceding external reference-probe overview, retaining original headlines, axes, intervals, and legends.}]{../figures/external_benchmarks.png}
+\includegraphics[viewport=0bp 351.72bp 799.2bp 655.92bp,clip,width=0.98\linewidth,alt={Enlarged same-position accuracy and paired probe-minus-ailm differences panels from the preceding external reference-probe overview, retaining original headlines, axes, intervals, and legends.}]{../../output/figures/external_benchmarks.png}
 \clearpage
 \textbf{Position accuracy by word length and letter-task calibration}\par\medskip
-\includegraphics[viewport=0bp 0bp 799.2bp 342.72bp,clip,width=0.98\linewidth,alt={Enlarged position accuracy by word length and letter-task calibration panels from the preceding external reference-probe overview, retaining original headlines, axes, intervals, and legends.}]{../figures/external_benchmarks.png}
+\includegraphics[viewport=0bp 0bp 799.2bp 342.72bp,clip,width=0.98\linewidth,alt={Enlarged position accuracy by word length and letter-task calibration panels from the preceding external reference-probe overview, retaining original headlines, axes, intervals, and legends.}]{../../output/figures/external_benchmarks.png}
 \clearpage
 \textbf{Letter-task variants and hosted stipulated-language runs}\par\medskip
-\includegraphics[viewport=799.2bp 351.72bp 1202.4bp 655.92bp,clip,width=0.49\linewidth,alt={Enlarged letter-task variants panel from the preceding external reference-probe overview, retaining its original headline, axes, intervals, and legend.}]{../figures/external_benchmarks.png}
-\includegraphics[viewport=799.2bp 0bp 1202.4bp 346.32bp,clip,width=0.49\linewidth,alt={Enlarged hosted stipulated-letter and phone runs panel from the preceding external reference-probe overview, retaining its original headline, axes, intervals, and legend.}]{../figures/external_benchmarks.png}
+\includegraphics[viewport=799.2bp 351.72bp 1202.4bp 655.92bp,clip,width=0.49\linewidth,alt={Enlarged letter-task variants panel from the preceding external reference-probe overview, retaining its original headline, axes, intervals, and legend.}]{../../output/figures/external_benchmarks.png}
+\includegraphics[viewport=799.2bp 0bp 1202.4bp 346.32bp,clip,width=0.49\linewidth,alt={Enlarged hosted stipulated-letter and phone runs panel from the preceding external reference-probe overview, retaining its original headline, axes, intervals, and legend.}]{../../output/figures/external_benchmarks.png}
 \end{landscape}
 }
 \endgroup
@@ -10799,11 +10899,19 @@ these positions, under this protocol, with these prompts, these are the numbers.
 No arm of it orders the participating systems as language models, and this manuscript
 makes no such ordering anywhere.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-12-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-13-start-->
+```
 
 # Supplement E: Machine-Checked Lean Proofs and Their Scope {#sec:lean}
 
@@ -10867,11 +10975,19 @@ The connected runtime's conditional-update checks and GUM comparison do not
 acquire a theorem of global posterior correctness from this layer. The Lean
 results retain the specific statements and measurement bindings listed above.
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-13-end-->
+```
+
 
 
 ---
 
 
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-14-start-->
+```
 
 # Supplement F: Paired Tests, Multiplicity, and Null Bounds {#sec:statistics}
 
@@ -11592,7 +11708,7 @@ set it is the dual of, if the Bonferroni survivors are not a subset of Holm's,
 if a survivor list disagrees with its recorded count or names a label outside
 the declared family, if a discordant count exceeds the population it is drawn
 from, or if the protocol maps a different number of members to a completed
-confirmatory population than the ledger counts as scored.](../figures/multiplicity_forest.png){#fig:multiplicity_forest width=95%}
+confirmatory population than the ledger counts as scored.](../../output/figures/multiplicity_forest.png){#fig:multiplicity_forest width=95%}
 
 | Paired effect | Discordant pairs | Favored share | Exact 95% interval | Power at share 0.55 |
 |---|---|---|---|---|
@@ -11826,7 +11942,7 @@ cannot answer by itself: not how wide each bound is, but whether the arm that
 produced it could ever have supported an equivalence claim. Most could not, at
 any outcome, and that is a property of the arm rather than of the result.
 
-![**What to see: no arm in this project is reported as "no effect" — every null and near-null is drawn instead as a bounded interval, so a reader can tell a tight bound from an inconclusive one at a glance.** Every null and near-null in the project, drawn as a bounded effect. Top: the arms measured on an accuracy difference, each with its exact conditional 95% paired interval, its discordant pair count over the population that produced it with that population's unit, and whether a cluster-robust re-analysis covers the same arm or none was recorded; the dashed line is no difference, and the established lexical high-weight contrast is drawn there for scale as the Stage 2 contrast is in the middle panel. Middle: the directional-share arms, with the familywise-established Stage 2 G2P contrast drawn beside the Stage 6 near-null as the live positive control. Bottom: the same arms against the pairs each produced, on a log axis, with the shaded region marking arms that cannot support an equivalence claim at any outcome because they never produced enough discordant pairs — the point being that a bounded null and an unresolvable one look identical in a table and different here. Every value is derived at render time from recorded counts by the function that produced the recorded external-benchmark bounds. The nested-token punctuation-oracle intervention is excluded because its valid interval resamples whole documents. A drawn interval that disagrees with its recorded endpoints, an arm placed inside the shaded region while its interval is narrow enough to exclude the declared smallest interesting effect, an established contrast drawn as though it were a null, or a cluster count that does not partition the population it claims to cover would each falsify this panel. A bound stated over an unnamed unit cannot be judged wide or narrow, which is why each row names its own.](../figures/null_bounds.png){#fig:null_bounds width=95%}
+![**What to see: no arm in this project is reported as "no effect" — every null and near-null is drawn instead as a bounded interval, so a reader can tell a tight bound from an inconclusive one at a glance.** Every null and near-null in the project, drawn as a bounded effect. Top: the arms measured on an accuracy difference, each with its exact conditional 95% paired interval, its discordant pair count over the population that produced it with that population's unit, and whether a cluster-robust re-analysis covers the same arm or none was recorded; the dashed line is no difference, and the established lexical high-weight contrast is drawn there for scale as the Stage 2 contrast is in the middle panel. Middle: the directional-share arms, with the familywise-established Stage 2 G2P contrast drawn beside the Stage 6 near-null as the live positive control. Bottom: the same arms against the pairs each produced, on a log axis, with the shaded region marking arms that cannot support an equivalence claim at any outcome because they never produced enough discordant pairs — the point being that a bounded null and an unresolvable one look identical in a table and different here. Every value is derived at render time from recorded counts by the function that produced the recorded external-benchmark bounds. The nested-token punctuation-oracle intervention is excluded because its valid interval resamples whole documents. A drawn interval that disagrees with its recorded endpoints, an arm placed inside the shaded region while its interval is narrow enough to exclude the declared smallest interesting effect, an established contrast drawn as though it were a null, or a cluster count that does not partition the population it claims to cover would each falsify this panel. A bound stated over an unnamed unit cannot be judged wide or narrow, which is why each row names its own.](../../output/figures/null_bounds.png){#fig:null_bounds width=95%}
 
 ### Nominal equivalence and the effect of correction
 
@@ -12030,10 +12146,22 @@ by reporting something other than what it believes, a property that for an
 external probe attaches only to the reconstructed distribution
 ([@sec:external_benchmarks]).
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-14-end-->
+```
+
 
 
 ---
 
 
 
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-15-start-->
+```
+
 # References {#sec:references}
+
+```{=html}
+<!--template-web-source-b671e7c7c2d535313b10c21556102db2dc2eb1493d3935c19b3499f491ceb3e9-15-end-->
+```

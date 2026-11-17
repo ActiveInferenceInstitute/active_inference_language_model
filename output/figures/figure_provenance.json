@@ -1,7 +1,7 @@
 {
   "schema": "ailm-figure-provenance-v3",
   "environment": {
-    "python": "3.12.13",
+    "python": "3.12.15",
     "jax": "0.4.38",
     "jaxlib": "0.4.38",
     "jax_backend": "cpu",
@@ -14,7 +14,7 @@
   },
   "manuscript_variables": {
     "path": "output/data/manuscript_variables.json",
-    "sha256": "f0a420f360510a7fbe90589acd0ec5e5cc2ad9441d040bf9617da25c32febdbd"
+    "sha256": "0c87129984eeebb0722929d4231758b5a4e4d444c79e460c040e1a5c6e5562ba"
   },
   "shared_sources": [
     {

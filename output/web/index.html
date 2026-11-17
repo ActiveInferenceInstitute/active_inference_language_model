@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc 3.12.1" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Daniel Ari Friedman" />
   <title>Active Inference Language Model: A Fully Explicit Discrete
@@ -37,27 +37,6 @@ Language System and a Gate-Audit Method</title>
       }
       h1 {
         font-size: 1.8em;
-      }
-    }
-    @media print {
-      html {
-        color-scheme: light only;
-      }
-      html, body, pre, code {
-        background-color: transparent;
-      }
-      body, a, a:visited, blockquote {
-        color: black;
-      }
-      pre, code {
-        padding: 0;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
       }
     }
     p {
@@ -165,6 +144,12 @@ Language System and a Gate-Audit Method</title>
       text-decoration: none;
     }
     span.smallcaps{font-variant: small-caps;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
     div.columns{display: flex; gap: 1.5em;}
     div.column{flex: auto;}
     @media screen {
@@ -265,6 +250,26 @@ Language System and a Gate-Audit Method</title>
     }
     div.csl-indent {
       margin-left: 2em;
+    }@media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
     }  </style>
   <script data-template-mathjax-config>
 window.MathJax = window.MathJax || {};
@@ -274,11 +279,74 @@ window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
 });
 var templateMathOutput = window.MathJax.output || {};
 window.MathJax.output = Object.assign({}, templateMathOutput, {
-  displayOverflow: "linebreak",
+  displayOverflow: "scroll",
   linebreaks: Object.assign({}, templateMathOutput.linebreaks, {
-    inline: true,
+    inline: false,
     width: "100%",
     lineleading: 0.5
+  })
+});
+var templateMathOptions = window.MathJax.options || {};
+window.MathJax.options = Object.assign({}, templateMathOptions, {
+  renderActions: Object.assign({}, templateMathOptions.renderActions, {
+    // Use the documented find action/MathItem extension point. MathJax 4.0.0's
+    // default finder spreads every DOM text run into push() arguments, exceeding
+    // the browser argument stack on large books even with very little math.
+    find: [10, function (doc) {
+      if (doc.processed.isSet("findMath")) return;
+      var adaptor = doc.adaptor;
+      adaptor.document = doc.document;
+      var containers = adaptor.getElements(
+        doc.options.elements || [adaptor.body(doc.document)], doc.document
+      );
+      // Retain the pinned HTMLDocument.findPosition source offsets/order
+      // (MathJax-src 4.0.0, ts/handlers/html/HTMLDocument.ts, Apache-2.0).
+      function position(nodes, item, location, delim) {
+        var parts = nodes[item.n];
+        var index = location.n;
+        var order = item.n;
+        var increment = 1 / (parts.length || 1);
+        for (var part of parts) {
+          if (index <= part[1] && adaptor.kind(part[0]) === "#text") {
+            return {i: order, node: part[0], n: Math.max(index, 0), delim: delim};
+          }
+          index -= part[1];
+          order += increment;
+        }
+        return {node: null, n: 0, delim: delim};
+      }
+      for (var jax of doc.inputJax) {
+        var list = new doc.options.MathList();
+        if (jax.processStrings) {
+          var strings = [];
+          var nodes = [];
+          for (var container of containers) {
+            var found = doc.domStrings.find(container);
+            // Append individually: neither DOM size nor expression count becomes
+            // a function argument count. Keep the scanner's complete run mapping.
+            for (var string of found[0]) strings.push(string);
+            for (var nodeList of found[1]) nodes.push(nodeList);
+          }
+          for (var item of jax.findMath(strings)) {
+            list.push(new doc.options.MathItem(
+              item.math, jax, item.display,
+              position(nodes, item, item.start, item.open),
+              position(nodes, item, item.end, item.close)
+            ));
+          }
+        } else {
+          for (var container of containers) {
+            for (var item of jax.findMath(container)) {
+              list.push(new doc.options.MathItem(
+                item.math, jax, item.display, item.start, item.end
+              ));
+            }
+          }
+        }
+        doc.math.merge(list);
+      }
+      doc.processed.set("findMath");
+    }, "", false]
   })
 });
 window.normalizeTemplateMathJaxAria = function () {
@@ -305,8 +373,8 @@ window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
         .then(async function () {
           var width = document.documentElement.clientWidth;
           try {
-            // MathJax 4 MathItem.STATE.METRICS = 110. The default RERENDER
-            // state retains old container metrics and cannot reflow on zoom.
+            // MathJax 4 MathItem.STATE.METRICS = 110. Restart from metrics
+            // after a viewport change rather than retaining old container widths.
             await window.MathJax.startup.document.rerenderPromise(110);
             window.normalizeTemplateMathJaxAria();
             window.templateMathJaxReflowError = null;
@@ -391,7 +459,14 @@ pre > code.sourceCode > span {
   white-space: pre-wrap;
   word-break: break-word;
 }
-mjx-container[display="true"] { max-width: 100%; overflow: visible; }
+.math.inline {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0;
+  overflow-x: auto;
+  vertical-align: middle;
+}
+mjx-container[display="true"] { max-width: 100%; overflow-x: auto; }
 .table-scroll {
   max-width: 100%;
   overflow-x: auto;
@@ -402,15 +477,13 @@ mjx-container[display="true"] { max-width: 100%; overflow: visible; }
   outline: 3px solid var(--brand-1);
   outline-offset: 3px;
 }
-.table-scroll > table { margin-block: 0; min-width: 100%; width: max-content; }
+.table-scroll > table { margin-block: 0; display: table; min-width: 100%; width: 100%; }
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 html {
   max-width: 100%;
-  overflow-x: hidden;
-  overflow-x: clip;
 }
 
 body {
@@ -423,8 +496,6 @@ body {
   background-color: #f8f8f8;
   color: #1a1a1a;
   overflow-wrap: break-word;
-  overflow-x: hidden;
-  overflow-x: clip;
 }
 
 main,
@@ -508,6 +579,9 @@ pre {
 }
 
 pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
   overflow-wrap: inherit;
   white-space: inherit;
   word-break: inherit;
@@ -560,8 +634,9 @@ table {
 
 .table-scroll > table {
   margin-block: 0;
+  display: table;
   min-width: 100%;
-  width: max-content;
+  width: 100%;
 }
 
 figure {
@@ -578,6 +653,15 @@ th, td {
 th {
   background-color: #1f6f8b;
   color: white;
+}
+
+/* Preserve a complete inline-code header within the table's scroll region. */
+th code {
+  color: inherit;
+  background-color: transparent;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 img {
@@ -639,10 +723,18 @@ a:focus-visible {
   font-size: 1.1em;
 }
 
+.math.inline {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0;
+  overflow-x: auto;
+  vertical-align: middle;
+}
+
 mjx-container[display="true"] {
   display: block;
   max-width: 100%;
-  overflow: visible;
+  overflow-x: auto;
   padding-bottom: 0.25rem;
 }
 
@@ -693,10 +785,6 @@ mjx-container[display="true"] {
 @media (min-width: 1000px) {
   /* Wide figure links stay within the viewport but extend beyond the prose
      column. Do not clip their labels at the narrower body boundary. */
-  body {
-    overflow-x: visible;
-  }
-
   .figure-full-size-link {
     left: 50%;
     max-width: none;
@@ -720,6 +808,7 @@ mjx-container[display="true"] {
 }
 
 </style>
+<script data-template-source-font-loader src="assets/source-web-fonts.js"></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -1779,11 +1868,12 @@ id="toc-statistical-choices-and-rejected-alternatives"><span
 class="toc-section-number">15.4</span> Statistical choices and rejected
 alternatives</a></li>
 </ul></li>
-<li><a href="#sec:references"
-id="toc-sec:references">References</a></li>
+<li><a href="#sec:references" id="toc-sec:references"><span
+class="toc-section-number">16</span> References</a></li>
 </ul>
 </nav>
 <main id="main-content" tabindex="-1">
+
 <h1 data-number="1" id="sec:abstract"><span
 class="header-section-number">1</span> Abstract</h1>
 <p>Language offers a testbed for cognitive models that connect uncertain
@@ -1830,7 +1920,9 @@ proposal.</p>
 <p>The release repository is <a
 href="https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model"
 class="uri">https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model</a>.</p>
+
 <hr />
+
 <h1 data-number="2" id="sec:introduction"><span
 class="header-section-number">2</span> Language and Cognition Through
 Explicit Active Inference</h1>
@@ -2477,7 +2569,9 @@ href="#sec:future">6.4</a> gathers the next steps this record opens
 rather than closes — including where an explicit system built this way
 and a learned one might call each other — as proposals to be built and
 measured, never as results reported here.</p>
+
 <hr />
+
 <h1 data-number="3" id="sec:background"><span
 class="header-section-number">3</span> Generative Models of Linguistic
 Belief and Action</h1>
@@ -3066,7 +3160,9 @@ was vacuous on gold morphology and above every measured, exceedable
 comparator on the derived oracle. Decision 16 records the historical
 <code>UNREACHABLE</code> wording; decision 75 corrects it to
 <code>ABOVE_REFERENCE</code>.</p>
+
 <hr />
+
 <h1 data-number="4" id="sec:methods"><span
 class="header-section-number">4</span> Model Construction, Conditional
 Coupling, and Falsifiable Verification</h1>
@@ -3669,7 +3765,8 @@ href="#fig:wiring_comparison">6</a> puts the transition and emission
 placements side by side; <code>docs/decisions.md</code> records the
 measurement and the named mis-wirings it generalizes to.</p>
 <figure id="fig:wiring_comparison">
-<a class="figure-full-size-link" href="../figures/wiring_comparison.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 6, The same learned bigram matrix in the transition slot"><img src="../figures/wiring_comparison.png" style="width:90.0%"
+<a class="figure-full-size-link" href="../figures/wiring_comparison.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 6, The same learned bigram matrix in the transition slot"><img src="../figures/wiring_comparison.png"
+style="width:90.0%"
 alt="The same learned bigram matrix shown twice, once in the transition slot as shipped and once in the emission slot as mis-wired, each labeled with its measured perplexity, above one bar chart ranking both against the comparators." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 6: The same learned bigram matrix
 in the transition slot (left, the shipped agent) and the emission slot
@@ -4331,7 +4428,8 @@ that matrix in the transition slot and sets the emission to the
 identity, since observing a letter reveals the letter state exactly.
 fig. <a href="#fig:letter_transition">8</a> shows the result.</p>
 <figure id="fig:letter_transition">
-<a class="figure-full-size-link" href="../figures/letter_transition.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 8, The Level 1 transition B , a square matrix over the letter alphabet with entries…"><img src="../figures/letter_transition.png" style="width:80.0%"
+<a class="figure-full-size-link" href="../figures/letter_transition.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 8, The Level 1 transition B , a square matrix over the letter alphabet with entries…"><img src="../figures/letter_transition.png"
+style="width:80.0%"
 alt="The Level 1 letter transition matrix as a square heatmap on a log color scale, next symbol against current symbol." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 8: The Level 1 transition
 <code>B</code>, a square matrix over the letter alphabet with entries
@@ -6099,7 +6197,9 @@ made the development-sized plant a gate, which would have refused a
 detection because a smaller hypothetical effect was unresolvable. The
 amendment that corrected this is recorded in the same decision entry,
 before any result of this arm was written to the ledger.</p>
+
 <hr />
+
 <h1 data-number="5" id="sec:results"><span
 class="header-section-number">5</span> Connected and Component Results
 Under Their Registered Comparators</h1>
@@ -6223,11 +6323,11 @@ identify a contribution from each channel or validate the linguistic
 meaning of its states.</p>
 <p>The input corpus digest begins <code>cd96a285e733</code>, the local
 protocol digest begins <code>c2ad1ee3b9aa</code>, and the
-execution-input digest begins <code>0cd3b86fd81f</code>.
+execution-input digest begins <code>eb30ae0ae1f3</code>.
 <code>scripts/record_connected_gum_claims.py</code> records the complete
 source/input binding, per-document paired summaries, exclusions and
 environment alongside the ledger; the report digest begins
-<code>045d953dd1d4</code>. Reproduction requires these exact inputs
+<code>ce31e58b324d</code>. Reproduction requires these exact inputs
 rather than a moving upstream treebank.</p>
 <figure id="fig:connected_core">
 <a class="figure-full-size-link" href="../figures/connected_core.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 13, Connected conditional schedule and paired GUM result."><img src="../figures/connected_core.png" style="width:100.0%"
@@ -6548,7 +6648,8 @@ empirical order-1 optimum and far from uniform, and the interval between
 unigram and optimum — not the interval between uniform and model — is
 the space in which a bigram model can distinguish itself.</p>
 <figure id="fig:perplexity_ladder">
-<a class="figure-full-size-link" href="../figures/perplexity_ladder.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 14, Perplexity comparators for both built levels, each on its own level’s evaluation stream…"><img src="../figures/perplexity_ladder.png" style="width:85.0%"
+<a class="figure-full-size-link" href="../figures/perplexity_ladder.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 14, Perplexity comparators for both built levels, each on its own level’s evaluation stream…"><img src="../figures/perplexity_ladder.png"
+style="width:85.0%"
 alt="Two panels of perplexity comparators, letters and phonemes, each showing uniform, context-free unigram, the trained agent, and the empirical first-order optimum on that level&#x27;s own stream." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 14: Perplexity comparators for
 both built levels, each on its own level’s evaluation stream: uniform,
@@ -7095,7 +7196,8 @@ the two side by side; sec. <a href="#sec:case_gate">10.1.5</a> works
 through why one threshold can be simultaneously vacuous and
 above-reference.</p>
 <figure id="fig:case_both_defects">
-<a class="figure-full-size-link" href="../figures/case_both_defects.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 16, Stage 4’s single declared threshold against both populations."><img src="../figures/case_both_defects.png" style="width:92.0%"
+<a class="figure-full-size-link" href="../figures/case_both_defects.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 16, Stage 4’s single declared threshold against both populations."><img src="../figures/case_both_defects.png"
+style="width:92.0%"
 alt="A number line placing Stage 4&#x27;s single declared threshold against two evaluation populations, showing it lands in a different verdict region on each." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 16: Stage 4’s single declared
 threshold against both populations. On the committed gold-morphology
@@ -7620,7 +7722,8 @@ either paired interval ceasing to span zero. The data function refuses
 to draw in every such case.</figcaption>
 </figure>
 <figure id="fig:inference_evidence">
-<a class="figure-full-size-link" href="../figures/inference_evidence.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 18, What each upper-level score is, and what kind of evidence backs it."><img src="../figures/inference_evidence.png" style="width:95.0%"
+<a class="figure-full-size-link" href="../figures/inference_evidence.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 18, What each upper-level score is, and what kind of evidence backs it."><img src="../figures/inference_evidence.png"
+style="width:95.0%"
 alt="Three panels labeling each upper-level score by its evidence kind: a numpy filter checked against pymdp on a prefix, a closed-form mixture with a recorded zero-disagreement pymdp equivalence on a bounded slice, and a conditional table beside the live pymdp filter score it must not be conflated with." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 18: What each upper-level score
 is, and what kind of evidence backs it. Left: the Stage 4 case-role
@@ -7963,7 +8066,8 @@ distinction, not a proof of it. fig. <a
 href="#fig:narrative_channel">19</a> shows the intervention’s measured
 effect.</p>
 <figure id="fig:narrative_channel">
-<a class="figure-full-size-link" href="../figures/narrative_channel.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 19, Stage 6’s two preregistered experiments."><img src="../figures/narrative_channel.png" style="width:97.0%"
+<a class="figure-full-size-link" href="../figures/narrative_channel.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 19, Stage 6’s two preregistered experiments."><img src="../figures/narrative_channel.png"
+style="width:97.0%"
 alt="Stage 6&#x27;s two registered predictions drawn against their measured outcomes on the document-position channel." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 19: Stage 6’s two preregistered
 experiments. Left: held-out observed-position type log-loss, the
@@ -8296,7 +8400,8 @@ mis-wirings that clear their bar: a guard’s blind spots are part of its
 specification, and a project that reports only what its checks catch is
 reporting half of what it knows.</p>
 <figure id="fig:generation_samples">
-<a class="figure-full-size-link" href="../figures/generation_samples.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 21, What the three regimes actually write."><img src="../figures/generation_samples.png" style="width:98.0%"
+<a class="figure-full-size-link" href="../figures/generation_samples.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 21, What the three regimes actually write."><img src="../figures/generation_samples.png"
+style="width:98.0%"
 alt="Sample text generated under three regimes, printed side by side so the difference between them is legible as text rather than asserted." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 21: What the three regimes
 actually write. Real output regenerated at draw time from a fixed seed
@@ -8399,7 +8504,8 @@ it does not distinguish an interior peak from a plateau, and the
 reversal the defective lookup had shown at weight 0.9 was an artifact of
 matching the wrong context.</p>
 <figure id="fig:channel_comparison">
-<a class="figure-full-size-link" href="../figures/channel_comparison.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 22, The composition result, with the registered lexical prediction drawn on the evidence"><img src="../figures/channel_comparison.png" style="width:92.0%"
+<a class="figure-full-size-link" href="../figures/channel_comparison.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 22, The composition result, with the registered lexical prediction drawn on the evidence"><img src="../figures/channel_comparison.png"
+style="width:92.0%"
 alt="Measured cross-level channel outcomes drawn against their registered predictions, so the pre-registered sign sits on the same axis as the result." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 22: The composition result, with
 the registered lexical prediction drawn on the evidence and the earlier
@@ -8700,7 +8806,8 @@ learned matrix an estimator of nothing the ledger describes. fig. <a
 href="#fig:learning_agreement">24</a> plots the agreement and its
 mismatched-prior control.</p>
 <figure id="fig:learning_agreement">
-<a class="figure-full-size-link" href="../figures/learning_agreement.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 24, Every transition cell, learned against counted, log–log."><img src="../figures/learning_agreement.png" style="width:95.0%"
+<a class="figure-full-size-link" href="../figures/learning_agreement.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 24, Every transition cell, learned against counted, log–log."><img src="../figures/learning_agreement.png"
+style="width:95.0%"
 alt="A log-log scatter of every transition cell, the learned value against the counted value, against the identity line." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 24: Every transition cell, learned
 against counted, log–log. Left: matched priors (<span
@@ -8811,7 +8918,8 @@ href="#fig:information_ceiling">25</a> draws that budget directly in
 nats, with the declared threshold placed outside the achievable
 region.</p>
 <figure id="fig:information_ceiling">
-<a class="figure-full-size-link" href="../figures/information_ceiling.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 25, The Level 1 information budget in nats."><img src="../figures/information_ceiling.png" style="width:85.0%"
+<a class="figure-full-size-link" href="../figures/information_ceiling.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 25, The Level 1 information budget in nats."><img src="../figures/information_ceiling.png"
+style="width:85.0%"
 alt="The Level 1 information budget in nats, showing the declared gate target sitting outside the band the first-order model class can reach." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 25: The Level 1 information budget
 in nats. The declared 2-nat-over-uniform target lies beyond the
@@ -8975,7 +9083,9 @@ the comparator’s raw letter-census margin is mostly inventory compliance
 — whether a system will emit a space at all — and the contrast that
 survives restriction to alphabetic targets, not the raw census margin,
 is the finding.</p>
+
 <hr />
+
 <h1 data-number="6" id="sec:discussion"><span
 class="header-section-number">6</span> Interpretation, External-Validity
 Limits, and Unmeasured Extensions</h1>
@@ -8992,7 +9102,8 @@ level-specific results in six units can see in one place how far each
 shipped model went and what kind of comparator bounds that
 placement.</p>
 <figure id="fig:level_gate_summary">
-<a class="figure-full-size-link" href="../figures/level_gate_summary.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 26, What to see: how far each built level’s shipped model moved from its own trivial baseline"><img src="../figures/level_gate_summary.png" style="width:95.0%"
+<a class="figure-full-size-link" href="../figures/level_gate_summary.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 26, What to see: how far each built level’s shipped model moved from its own trivial baseline"><img src="../figures/level_gate_summary.png"
+style="width:95.0%"
 alt="A horizontal chart with one row per discrete level, each showing where its shipped model landed between that level&#x27;s own trivial baseline and its own achievable ceiling, with the audited placement verdict and the baseline, model and ceiling numbers labeled on the row." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 26: <strong>What to see:</strong>
 how far each built level’s shipped model moved from its own trivial
@@ -9897,7 +10008,9 @@ a new exploratory record. This agenda specifies what would make the next
 claims worth believing; it supplies no new empirical result, human
 validation, paid-model acquisition or commitment to clinical
 deployment.</p>
+
 <hr />
+
 <h1 data-number="7" id="sec:related"><span
 class="header-section-number">7</span> Related Work: Active Inference,
 Finite-State Language, and Evaluation</h1>
@@ -10927,7 +11040,9 @@ make one claim falsifiable — that the model uses context — rather than
 to establish superiority over the strongest non-neural alternative. The
 stronger left-context lookup audit in sec. <a href="#sec:results">5</a>
 shows why those are different claims.</p>
+
 <hr />
+
 <h1 data-number="8" id="sec:reproducibility"><span
 class="header-section-number">8</span> Source-Bound Reproduction,
 Deterministic Builds, and Availability</h1>
@@ -11313,7 +11428,7 @@ and current claim values</td>
 <td>Publish the figure registry</td>
 <td><code>.venv/bin/python scripts/generate_figure_registry.py</code>
 (add <code>--check</code> to build and validate without writing)</td>
-<td><code>../figures/figure_registry.json</code>, built by the
+<td><code>output/figures/figure_registry.json</code>, built by the
 template’s own <code>infrastructure.documentation</code> builder from
 the provenance receipt and this manuscript’s own figure captions</td>
 </tr>
@@ -11513,7 +11628,8 @@ constitute an end-to-end reply-generation cascade. The matrix explorer
 provides a separate inspection surface. These interfaces support
 inspection; they do not add an evaluation population to the results.</p>
 <figure id="fig:dashboard_observation">
-<a class="figure-full-size-link" href="../figures/dashboard_observation.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 27, Authentic browser capture of a warm local dashboard interaction."><img src="../figures/dashboard_observation.png" style="width:100.0%"
+<a class="figure-full-size-link" href="../figures/dashboard_observation.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 27, Authentic browser capture of a warm local dashboard interaction."><img src="../figures/dashboard_observation.png"
+style="width:100.0%"
 alt="Actual dark-themed dashboard with input and trajectory controls, a chat turn, and a separately labeled lexical policy reply. The visible interface explains that input-analysis levels do not form an end-to-end reply-generation cascade." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 27: Authentic browser capture of a
 warm local dashboard interaction. The input controls and trajectory
@@ -11596,7 +11712,7 @@ are set out in sec. <a href="#sec:lean">14</a>.</p>
 <h2 data-number="8.6" id="deterministic-build-epoch-and-figures"><span
 class="header-section-number">8.6</span> Deterministic build epoch and
 figures</h2>
-<p>This document was rendered at 2026-10-30T22:22:22Z from version
+<p>This document was rendered at 2026-11-17T20:09:00Z from version
 1.0.0. The timestamp honors <code>SOURCE_DATE_EPOCH</code>; when it is
 omitted, the manuscript orchestrator derives the epoch of the last
 audited commit that touched an input outside the regenerable
@@ -11658,7 +11774,9 @@ declare.</p>
 <p>sec. <a href="#sec:limitations">6.1</a> states what that
 single-author position means for the gate-audit method’s own
 evidence.</p>
+
 <hr />
+
 <h1 data-number="9" id="sec:conclusion"><span
 class="header-section-number">9</span> Established Findings and the Next
 Independent Tests</h1>
@@ -11928,7 +12046,9 @@ answerable to the same discipline that kept this project’s own
 fitted-probe proposal from certifying its own circularity. None of that
 is claimed to have happened. It is what the method this paper reports is
 for.</p>
+
 <hr />
+
 <h1 data-number="10" id="sec:audit_trails"><span
 class="header-section-number">10</span> Supplement A: Gate Audits,
 Mutation Controls, and Held-Back Replication</h1>
@@ -13152,7 +13272,8 @@ absent.</caption>
 </tbody>
 </table></div>
 <figure id="fig:confirmatory_replication">
-<a class="figure-full-size-link" href="../figures/confirmatory_replication.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 31, The held-back replication and its registered controls (decisions 111 and 115)."><img src="../figures/confirmatory_replication.png" style="width:95.0%"
+<a class="figure-full-size-link" href="../figures/confirmatory_replication.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 31, The held-back replication and its registered controls (decisions 111 and 115)."><img src="../figures/confirmatory_replication.png"
+style="width:95.0%"
 alt="Three panels on the held-back replication: each scored member&#x27;s exact p on a log axis beside its development counterpart, against the frozen and Holm thresholds, with a verdict badge and the registered controls; the discordant counts each population produced; and the Level 6 clustered improvement on both populations, with primary and corrected intervals." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 31: The held-back replication and
 its registered controls (decisions 111 and 115). Top: exact two-sided
@@ -13271,7 +13392,9 @@ distinction: its sentence-sign statistic is nominally favorable but
 crosses neither corrected threshold, while its document-clustered
 log-loss interval spans zero. Neither was allowed to stand in for the
 other.</p>
+
 <hr />
+
 <h1 data-number="11" id="sec:channel_factorial"><span
 class="header-section-number">11</span> Supplement B: Channel Factorial
 and Proper-Loss Re-Scoring</h1>
@@ -13732,7 +13855,9 @@ href="#sec:clause_word_channel">5.10.3</a>), while the generation
 channel (scored on total-variation distance and lexicon membership) and
 the L6→L5 prior intervention remain off this axis and would each need
 their own construction to join it.</p>
+
 <hr />
+
 <h1 data-number="12" id="sec:complexity"><span
 class="header-section-number">12</span> Supplement C: Exact
 Computational and Memory Costs</h1>
@@ -14074,7 +14199,8 @@ could hold. The obstacle recorded here is that <code>pymdp</code> is a
 dense-array interface; the decision is a choice of <em>host</em>, not a
 finding that explicit structure is inherently expensive.</p>
 <figure id="fig:complexity_memory">
-<a class="figure-full-size-link" href="../figures/complexity_memory.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 33, Memory, exactly."><img src="../figures/complexity_memory.png" style="width:98.0%"
+<a class="figure-full-size-link" href="../figures/complexity_memory.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 33, Memory, exactly."><img src="../figures/complexity_memory.png"
+style="width:98.0%"
 alt="Measured parameter bytes per level as bars, each with the closed-form value its declared shape predicts, beside transition memory against vocabulary size for the dense and factored forms against the instantiation budget." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 33: Memory, exactly. Left: each
 live agent’s parameter bytes — the sum of every array in <span
@@ -14210,7 +14336,9 @@ closed forms, and the spec-derived memory prices are three independent
 derivations bound together by exact equality, and
 <code>scripts/record_complexity_claims.py</code> re-derives all of them
 on every run.</p>
+
 <hr />
+
 <h1 data-number="13" id="sec:external_benchmarks"><span
 class="header-section-number">13</span> Supplement D: Non-Comparative
 Reference Probes on the Same Next-Symbol Tasks</h1>
@@ -16206,7 +16334,8 @@ log axis, the size of the rule-decided part of a published number, the
 candidate cost of reaching the located floor, and a captured-mass ruler
 carrying both floors beside the measured probes.</p>
 <figure id="fig:calibration_floor">
-<a class="figure-full-size-link" href="../figures/calibration_floor.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 36, What to see: a calibration floor an external benchmark declared by argument, not…"><img src="../figures/calibration_floor.png" style="width:98.0%"
+<a class="figure-full-size-link" href="../figures/calibration_floor.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 36, What to see: a calibration floor an external benchmark declared by argument, not…"><img src="../figures/calibration_floor.png"
+style="width:98.0%"
 alt="A five-panel offline sweep locating the captured-mass floor, plotting signed and absolute divergence between the two completion rules against captured mass, with the declared and located floors marked." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 36: <strong>What to see: a
 calibration floor an external benchmark declared by argument, not
@@ -16381,7 +16510,8 @@ warm-up call before any position is scored. These are determinism
 replications and not estimates of sampling variance; there is no
 sampling variance to estimate under greedy decoding.</p>
 <figure id="fig:external_benchmarks">
-<a class="figure-full-size-link" href="../figures/external_benchmarks.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 37, What to see: AILM and several externally served zero-shot models are scored on the same…"><img src="../figures/external_benchmarks.png" style="width:98.0%"
+<a class="figure-full-size-link" href="../figures/external_benchmarks.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 37, What to see: AILM and several externally served zero-shot models are scored on the same…"><img src="../figures/external_benchmarks.png"
+style="width:98.0%"
 alt="A six-panel comparison of AILM against the complete registered probe set on letter, phoneme and letter-to-phone tasks, with proportion intervals, paired differences, and calibration scores. The stipulated letter and phone panel uses separate run cohorts of one hosted model, each chain against its own uniform floor." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 37: <strong>What to see: AILM and
 several externally served zero-shot models are scored on the same
@@ -16679,7 +16809,9 @@ such: on these positions, under this protocol, with these prompts, these
 are the numbers. No arm of it orders the participating systems as
 language models, and this manuscript makes no such ordering
 anywhere.</p>
+
 <hr />
+
 <h1 data-number="14" id="sec:lean"><span
 class="header-section-number">14</span> Supplement E: Machine-Checked
 Lean Proofs and Their Scope</h1>
@@ -16755,7 +16887,9 @@ rejection probabilities is assumed, not proved.</p>
 do not acquire a theorem of global posterior correctness from this
 layer. The Lean results retain the specific statements and measurement
 bindings listed above.</p>
+
 <hr />
+
 <h1 data-number="15" id="sec:statistics"><span
 class="header-section-number">15</span> Supplement F: Paired Tests,
 Multiplicity, and Null Bounds</h1>
@@ -17644,7 +17778,8 @@ Bonferroni, Holm, and collapsed-family thresholds — while tbl. <a
 href="#tbl:multiplicity_family">36</a> below remains the exact-value
 record.</p>
 <figure id="fig:multiplicity_forest">
-<a class="figure-full-size-link" href="../figures/multiplicity_forest.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 38, What to see: each declared significance test is drawn with both its uncorrected"><img src="../figures/multiplicity_forest.png" style="width:95.0%"
+<a class="figure-full-size-link" href="../figures/multiplicity_forest.png" target="_blank" rel="noopener" aria-label="Open full-size Figure 38, What to see: each declared significance test is drawn with both its uncorrected"><img src="../figures/multiplicity_forest.png"
+style="width:95.0%"
 alt="A forest plot of the four primary paired effects on the discordant win-share scale, with nested marginal and family-corrected intervals and the structural null at one half, beside a column stating each row&#x27;s population, clustering, corrected verdict, Holm verdict and replication status, above a strip placing the Stage 6 sign-test p values between the Bonferroni and Holm thresholds." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 38: <strong>What to see: each
 declared significance test is drawn with both its uncorrected and its
@@ -18389,8 +18524,12 @@ likelihood — which is the property that a system cannot improve its
 number by reporting something other than what it believes, a property
 that for an external probe attaches only to the reconstructed
 distribution (sec. <a href="#sec:external_benchmarks">13</a>).</p>
+
 <hr />
-<h1 class="unnumbered" id="sec:references">References</h1>
+
+<h1 data-number="16" id="sec:references"><span
+class="header-section-number">16</span> References</h1>
+
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="list">
 <div id="ref-agresti2001exact" class="csl-entry" role="listitem">
@@ -18591,7 +18730,7 @@ Meeting of the Association for Computational Linguistics (Volume 1: Long
 Papers)</em>, 1383–92.
 </div>
 <div id="ref-dunn1961multiple" class="csl-entry" role="listitem">
-Dunn, Olive Jean. 1961. <span>“Multiple Comparisons Among Means.”</span>
+Dunn, Olive Jean. 1961. <span>“Multiple Comparisons among Means.”</span>
 <em>Journal of the American Statistical Association</em> 56 (293):
 52–64. <a
 href="https://doi.org/10.1080/01621459.1961.10482090">https://doi.org/10.1080/01621459.1961.10482090</a>.
@@ -18850,7 +18989,7 @@ href="https://doi.org/10.2307/411709">https://doi.org/10.2307/411709</a>.
 </div>
 <div id="ref-lari1990estimation" class="csl-entry" role="listitem">
 Lari, K., and S. J. Young. 1990. <span>“The Estimation of Stochastic
-Context-Free Grammars Using the Inside-Outside Algorithm.”</span>
+Context-Free Grammars Using the inside-Outside Algorithm.”</span>
 <em>Computer Speech and Language</em> 4 (1): 35–56. <a
 href="https://doi.org/10.1016/0885-2308(90)90022-X">https://doi.org/10.1016/0885-2308(90)90022-X</a>.
 </div>
@@ -18898,7 +19037,7 @@ href="https://doi.org/10.5334/joc.18">https://doi.org/10.5334/joc.18</a>.
 </div>
 <div id="ref-mcnemar1947" class="csl-entry" role="listitem">
 McNemar, Quinn. 1947. <span>“Note on the Sampling Error of the
-Difference Between Correlated Proportions or Percentages.”</span>
+Difference between Correlated Proportions or Percentages.”</span>
 <em>Psychometrika</em> 12 (2): 153–57. <a
 href="https://doi.org/10.1007/BF02295996">https://doi.org/10.1007/BF02295996</a>.
 </div>
@@ -18929,7 +19068,7 @@ Intelligence</em>, 2901–7.
 </div>
 <div id="ref-newcombe1998paired" class="csl-entry" role="listitem">
 Newcombe, Robert G. 1998. <span>“Improved Confidence Intervals for the
-Difference Between Binomial Proportions Based on Paired Data.”</span>
+Difference between Binomial Proportions Based on Paired Data.”</span>
 <em>Statistics in Medicine</em> 17 (22): 2635–50. <a
 href="https://www.eiti.uottawa.ca/~nat/Courses/csi5388/Newcombe.1998.pdf">https://www.eiti.uottawa.ca/~nat/Courses/csi5388/Newcombe.1998.pdf</a>.
 </div>
@@ -19086,7 +19225,7 @@ href="https://doi.org/10.1016/j.jmp.2021.102632">https://doi.org/10.1016/j.jmp.2
 <div id="ref-tinker2025curiosity" class="csl-entry" role="listitem">
 Tinker, Theodore Jerome, Kenji Doya, and Jun Tani. 2025.
 <em>Curiosity-Driven Development of Action and Language in Robots
-Through Self-Exploration</em>. <a
+through Self-Exploration</em>. <a
 href="https://doi.org/10.48550/arXiv.2510.05013">https://doi.org/10.48550/arXiv.2510.05013</a>.
 </div>
 <div id="ref-vaicenavicien2019evaluating" class="csl-entry"
@@ -19106,7 +19245,7 @@ Information Processing Systems 30 (NeurIPS)</em>.
 role="listitem">
 Vijayaraghavan, Prasanna, Jeffrey Frederic Queisser, Sergio Verduzco
 Flores, and Jun Tani. 2024. <em>Development of Compositionality and
-Generalization Through Interactive Learning of Language and Action of
+Generalization through Interactive Learning of Language and Action of
 Robots</em>. <a
 href="https://doi.org/10.48550/arXiv.2403.19995">https://doi.org/10.48550/arXiv.2403.19995</a>.
 </div>
@@ -19154,7 +19293,7 @@ href="https://doi.org/10.1007/s10579-016-9343-x">https://doi.org/10.1007/s10579-
 </div>
 <div id="ref-zhao2021calibrate" class="csl-entry" role="listitem">
 Zhao, Tony Z., Eric Wallace, Shi Feng, Dan Klein, and Sameer Singh.
-2021. <span>“Calibrate Before Use: Improving Few-Shot Performance of
+2021. <span>“Calibrate before Use: Improving Few-Shot Performance of
 Language Models.”</span> <em>Proceedings of the 38th International
 Conference on Machine Learning (ICML)</em>, Proceedings of machine
 learning research, vol. 139: 12697–706. <a
