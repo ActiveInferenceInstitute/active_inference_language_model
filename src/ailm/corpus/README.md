@@ -57,9 +57,9 @@ moving branch name; downloads through that URL are digest-checked before caching
 ```python
 from ailm.corpus.cmudict import assert_full_inventory, build_phoneme_inventory, load_cmudict
 
-d = load_cmudict(download=False)               # checkout vendor/ or installed user cache
-inventory = build_phoneme_inventory(d)         # stress digits stripped
-assert_full_inventory(inventory)               # raises unless exactly the canonical set
+d = load_cmudict(download=False)  # checkout vendor/ or installed user cache
+inventory = build_phoneme_inventory(d)  # stress digits stripped
+assert_full_inventory(inventory)  # raises unless exactly the canonical set
 ```
 
 Both raw loaders also accept a `url=` keyword for an internal mirror. An explicit

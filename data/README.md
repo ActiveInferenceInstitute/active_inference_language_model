@@ -159,8 +159,12 @@ substitute for an immutable prior record.
 from ailm.claims import load_ledger
 
 ledger = load_ledger(PROJECT_ROOT)
-ledger.record("phoneme_count_39", len(CANONICAL_ARPABET),
-              run_id="stage0_inventory", source="scripts/record_stage0_claims.py")
+ledger.record(
+    "phoneme_count_39",
+    len(CANONICAL_ARPABET),
+    run_id="stage0_inventory",
+    source="scripts/record_stage0_claims.py",
+)
 ```
 
 **Out** — two forms, and they are not interchangeable:

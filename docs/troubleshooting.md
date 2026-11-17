@@ -546,11 +546,11 @@ one machine and errors on another.
 **Cause.** pymdp 1.0.3's and 1.0.4's `update_empirical_prior` vmaps over `B` and indexes it
 with an array slice (`B_f[..., u_f]`). Later JAX releases changed behavior on
 that path. This repository's environment of record is therefore the exact
-`jax==0.4.38` / `jaxlib==0.4.38` pair declared in `pyproject.toml`, alongside
+`jax==0.10.2` / `jaxlib==0.10.2` pair declared in `pyproject.toml`, alongside
 `inferactively-pymdp==1.0.4`; a compatible version range is not the contract.
 
 **Fix.** Do not let `uv sync` upgrade JAX past the pin. `pyproject.toml` declares the
-combined-lock extra `cuda12 = ["jax[cuda12]==0.4.38"]`, so on a CUDA machine (linux x86_64)
+combined-lock extra `cuda12 = ["jax[cuda12]==0.10.2"]`, so on a CUDA machine (linux x86_64)
 one command installs the plugin set from the project's own metadata:
 
 ```bash
@@ -597,7 +597,7 @@ probe exercised only L1 (claim:stage0_letter_alphabet_size letter states) and L2
 (claim:phoneme_count_39 phoneme states), both small enough that
 per-step dispatch overhead dominates and inference is *slower* on the GPU. The
 float64 numpy oracle is the project's reference and Metal has no float64 at all.
-CPU with the locked `jax==0.4.38` therefore remains the only environment of
+CPU with the locked `jax==0.10.2` therefore remains the only environment of
 record; treat Metal as a curiosity that happens to pass the two tested levels,
 not as a supported profile. L3's word factor already has
 claim:stage3_vocab_size states × claim:complexity_l3_position_states positions

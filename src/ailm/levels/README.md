@@ -86,7 +86,10 @@ they are separate experiments and do not establish an end-to-end cascade.
 
 ```python
 from ailm.levels.letter import (
-    build_letter_agent, build_letter_transition, compute_perplexity, load_brown_counts,
+    build_letter_agent,
+    build_letter_transition,
+    compute_perplexity,
+    load_brown_counts,
 )
 
 agent = build_letter_agent(build_letter_transition(load_brown_counts()))
@@ -95,8 +98,13 @@ print(compute_perplexity(agent, "the quick brown fox jumps over the lazy dog."))
 
 ```python
 from ailm.levels.phoneme import (
-    build_g2p_agent, build_g2p_emission, build_g2p_start, build_g2p_transition,
-    decode_phonemes, g2p_split, load_phoneme_counts,
+    build_g2p_agent,
+    build_g2p_emission,
+    build_g2p_start,
+    build_g2p_transition,
+    decode_phonemes,
+    g2p_split,
+    load_phoneme_counts,
 )
 
 train, test = g2p_split(load_phoneme_counts())

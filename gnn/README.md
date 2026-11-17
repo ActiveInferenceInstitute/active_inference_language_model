@@ -121,9 +121,9 @@ name would bind a conformance check to the wrong model.
 ```python
 from ailm.gnn import discover_models, load_spec, parse_model_id, spec_path
 
-discover_models()                    # {GnnModelId: Path}, in hierarchy order
-load_spec("L3_word@frozen_position") # load a mutation that exists on disk
-parse_model_id("L3_word@x").base     # -> L3_word
+discover_models()  # {GnnModelId: Path}, in hierarchy order
+load_spec("L3_word@frozen_position")  # load a mutation that exists on disk
+parse_model_id("L3_word@x").base  # -> L3_word
 ```
 
 `tests/test_gnn_registry.py` enforces the layout **default-deny**: every
