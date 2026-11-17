@@ -157,7 +157,14 @@ def render_supporting_protocol_html(
         source = staged / "docs" / "extension_protocols.md"
         source.parent.mkdir()
         source.write_bytes(hydrated_source.read_bytes())
-        renderer = WebRenderer(RenderingConfig(web_dir=str(staged / "html")))
+        # The staged ``docs/`` directory is the provider's manuscript root, so the
+        # page is a direct (unhashed) section: ``docs__extension_protocols.html``.
+        # Template providers from v5.2 append a source-path digest to the name of
+        # any page outside the configured manuscript directory; earlier providers
+        # ignore the setting here, so both produce the registered filename.
+        renderer = WebRenderer(
+            RenderingConfig(web_dir=str(staged / "html"), manuscript_dir=str(source.parent))
+        )
         page = renderer.render(source)
         if page.name != Path(PROTOCOL_SUPPORTING_HTML).name:
             raise RuntimeError("supporting protocol renderer changed the registered filename")
@@ -207,12 +214,17 @@ def render_supporting_protocol_html(
         data_source.parent.mkdir()
         data_text = context["context/docs/reference/data_statement.md"].decode("utf-8")
         data_source.write_text(data_text, encoding="utf-8")
-        data_page = renderer.render(data_source)
+        # Its own directory is its provider root too, so it stays the direct
+        # section ``reference__data_statement.html`` rather than a digest name.
+        data_renderer = WebRenderer(
+            RenderingConfig(web_dir=str(staged / "html"), manuscript_dir=str(data_source.parent))
+        )
+        data_page = data_renderer.render(data_source)
         data_id = heading_id(HtmlInventory(data_page.read_text(encoding="utf-8")), DATA_SECTION)
         data_source.write_text(
             source_view_markdown(data_text, DATA_SECTION, data_id), encoding="utf-8"
         )
-        data_page = renderer.render(data_source)
+        data_page = data_renderer.render(data_source)
         data_page.write_text(
             style_source_view_html(data_page.read_text(encoding="utf-8")), encoding="utf-8"
         )
