@@ -45,7 +45,7 @@ alternatives — and is not an agent's to take.
   (commit `787319a`) carries the pin, a re-resolved `uv.lock`, the prose/agents
   edits, and *hand-substituted* copies of `data/claims.json`,
   `output/data/manuscript_variables.json` and `output/manuscript/*.md`. Those
-  three generated artefacts are not producer output and must be discarded, not
+  three generated artifacts are not producer output and must be discarded, not
   merged. Nothing is merged; the measurement commit is **not** re-pointed and
   `data/publication_derivative.json` is **not** edited.
 
