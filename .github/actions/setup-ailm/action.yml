@@ -49,8 +49,16 @@ runs:
       run: |
         # shellcheck disable=SC2086 # the input is a deliberate word list
         brew install ${AILM_GATE_TOOLS}
+        # A formula and the executable it installs need not share a name:
+        # Homebrew's ripgrep installs `rg`, so probe the installed binary.
         # shellcheck disable=SC2086
-        for tool in ${AILM_GATE_TOOLS}; do "${tool}" --version; done
+        for formula in ${AILM_GATE_TOOLS}; do
+          case "${formula}" in
+            ripgrep) binary=rg ;;
+            *) binary="${formula}" ;;
+          esac
+          "${binary}" --version
+        done
 
     - name: Sync the locked environment
       shell: bash
