@@ -19,8 +19,11 @@ unguarded source of architectural truth.
 from ailm.claims import load_ledger
 from ailm.control import ControlHarness
 from ailm.levels.phoneme import (
-    build_phone_transition, build_phone_unigram,
-    build_phoneme_agent, compute_phoneme_perplexity, load_phoneme_counts,
+    build_phone_transition,
+    build_phone_unigram,
+    build_phoneme_agent,
+    compute_phoneme_perplexity,
+    load_phoneme_counts,
 )
 
 counts = load_phoneme_counts()

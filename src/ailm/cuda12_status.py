@@ -1,7 +1,7 @@
 """Runtime status probe for the optional ``cuda12`` dependency extra.
 
-``pyproject.toml`` declares ``cuda12 = ["jax[cuda12]==0.4.38"]`` so a single
-``uv sync --extra cuda12`` (or ``pip install "jax[cuda12]==0.4.38"``) turns on
+``pyproject.toml`` declares ``cuda12 = ["jax[cuda12]==0.10.2"]`` so a single
+``uv sync --extra cuda12`` (or ``pip install "jax[cuda12]==0.10.2"``) turns on
 GPU support on linux x86_64 without touching CPU-only environments. Until
 2026-08-26 nothing at runtime referenced that extra; this module is the first
 opt-in runtime touchpoint. It never imports CUDA packages unconditionally:
@@ -13,12 +13,13 @@ from __future__ import annotations
 import importlib.metadata
 from typing import Any
 
-EXPECTED_PLUGIN_VERSION = "0.4.38"
+EXPECTED_PLUGIN_VERSION = "0.10.2"
 
 _CUDA_DISTRIBUTIONS = (
     "jax-cuda12-plugin",
     "jax-cuda12-pjrt",
     "nvidia-cublas-cu12",
+    "nvidia-cuda-cccl-cu12",
     "nvidia-cuda-cupti-cu12",
     "nvidia-cuda-nvcc-cu12",
     "nvidia-cuda-nvrtc-cu12",
@@ -29,6 +30,7 @@ _CUDA_DISTRIBUTIONS = (
     "nvidia-cusparse-cu12",
     "nvidia-nccl-cu12",
     "nvidia-nvjitlink-cu12",
+    "nvidia-nvshmem-cu12",
 )
 
 
@@ -46,7 +48,7 @@ def cuda12_status() -> dict[str, Any]:
     Returns a structured dict:
 
     - ``extra_installed``: every known cuda12 distribution importable/metadata-visible
-    - ``plugin_version_match``: plugin/pjrt versions equal the 0.4.38 environment pin
+    - ``plugin_version_match``: plugin/pjrt versions equal the 0.10.2 environment pin
       (None when not installed)
     - ``missing``: distributions from the measured lock closure that are absent
     - ``components``: per-distribution installed version map (None = absent)

@@ -254,8 +254,10 @@ from ailm.control import ControlHarness
 harness = ControlHarness("stage3_word_gate")
 harness.assert_gate_is_live(good_value=model, bad_value=mis_wired, direction="lower_is_better")
 harness.verify_negative_control_fails(
-    metric_fn=perplexity_of, broken_input=mis_wired_agent,
-    threshold=baseline, direction="lower_is_better",
+    metric_fn=perplexity_of,
+    broken_input=mis_wired_agent,
+    threshold=baseline,
+    direction="lower_is_better",
 )
 ```
 

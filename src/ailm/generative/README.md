@@ -26,7 +26,7 @@ from ailm.generative.smoke import run_all_smoke_tests
 
 results = run_all_smoke_tests()
 assert results["all_passed"], results
-print(results["a_dependencies_shape"]["A0_shape"])   # (1, 5, 4)
+print(results["a_dependencies_shape"]["A0_shape"])  # (1, 5, 4)
 print(results["empirical_prior_coupling"]["call_signature"])
 ```
 

@@ -475,8 +475,8 @@ def test_installed_wheel_embeds_exact_artifacts_and_default_loaders_work(
 
     pyproject = tomllib.loads((PROJECT_ROOT / "pyproject.toml").read_text())
     source_metadata = pyproject["project"]
-    assert pyproject["build-system"]["requires"] == ["hatchling==1.32.0"]
-    assert "hatchling==1.32.0" in pyproject["dependency-groups"]["dev"]
+    assert pyproject["build-system"]["requires"] == ["hatchling==1.33.0"]
+    assert "hatchling==1.33.0" in pyproject["dependency-groups"]["dev"]
     assert pyproject["tool"]["hatch"]["build"]["targets"]["sdist"]["only-include"] == [
         "src/ailm",
         "vendor",

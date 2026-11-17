@@ -22,7 +22,7 @@ _KEEP_ASSERT_REWRITE_ORDER_EXPLICIT = pytest.register_assert_rewrite
 def pytest_configure(config):
     config.addinivalue_line(
         "markers",
-        "requires_cuda12: requires the cuda12 extra (jax[cuda12]==0.4.38 plugin set); "
+        "requires_cuda12: requires the cuda12 extra (jax[cuda12]==0.10.2 plugin set); "
         "opt in with -m requires_cuda12. See docs/troubleshooting.md CUDA section",
     )
 
@@ -39,10 +39,10 @@ def test_cuda12_status_report_structure_on_cpu_only() -> None:
         "import_error",
         "backend",
     }
-    assert status["expected_plugin_version"] == EXPECTED_PLUGIN_VERSION == "0.4.38"
+    assert status["expected_plugin_version"] == EXPECTED_PLUGIN_VERSION == "0.10.2"
     # This machine has no CUDA wheels installed: absence must be visible.
     if not status["extra_installed"]:
-        assert len(status["missing"]) == 13
+        assert len(status["missing"]) == 15
         assert "jax-cuda12-plugin" in status["missing"]
         assert all(v is None for v in status["components"].values())
     else:
@@ -78,13 +78,13 @@ requires_cuda12_env = pytest.mark.skipif(
 class TestLiveCuda12Environment:
     """Opt-in: only meaningful after installing the cuda12 extra."""
 
-    def test_all_thirteen_components_present(self) -> None:
+    def test_all_fifteen_components_present(self) -> None:
         assert not cuda12_status()["missing"]
 
     def test_plugin_versions_match_environment_pin(self) -> None:
         status = cuda12_status()
         assert status["plugin_version_match"] is True
-        assert status["components"]["jax-cuda12-plugin"] == "0.4.38"
+        assert status["components"]["jax-cuda12-plugin"] == "0.10.2"
 
     def test_plugin_imports_cleanly(self) -> None:
         assert cuda12_status()["import_error"] is None
