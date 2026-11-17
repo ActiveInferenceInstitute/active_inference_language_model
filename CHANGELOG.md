@@ -11,6 +11,13 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
 
 ## [Unreleased]
 
+### Fixed
+
+- The shared hosted setup action (`.github/actions/setup-ailm`) now probes the
+  executable each Homebrew formula installs rather than the formula's name, so
+  the `quick` arm's `tools: pandoc ripgrep` checks `rg --version` instead of
+  failing on a nonexistent `ripgrep` command.
+
 ### Changed
 
 - The upstream GNN pin moves from `v5.0.3`
