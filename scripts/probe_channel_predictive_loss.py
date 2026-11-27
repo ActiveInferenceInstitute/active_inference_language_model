@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Probe proper predictive loss across the L1 -> L2B channel, and the value inequality.
 
-Scoped in `docs/research_queue.md` (cross-cutting hierarchy section):
+Scoped in `docs/method/research_queue.md` (cross-cutting hierarchy section):
 
 **Which cell this is.** Decision 46 tabulates four coupling cells; this probe
 measures **letter@evidence** — the L1 message mixed linearly into the G2P
@@ -17,7 +17,7 @@ cell; it needs its own construction.
    ``loss = -log q_t(true target)``, where ``q_t`` is the G2P filter's posterior
    over phones at position ``t`` and the true target is the gold phone. Accuracy
    is not a proper scoring rule, so the two axes can in principle disagree in
-   sign; ``docs/research_queue.md`` makes that disagreement the falsifier for
+   sign; ``docs/method/research_queue.md`` makes that disagreement the falsifier for
    sec:hierarchy's monotone-decline diagnostic. Both axes are therefore computed
    in the same pass over the same positions, so no position-set mismatch can
    manufacture or hide a disagreement.
@@ -141,7 +141,7 @@ def proper_predictive_loss(
 
     Accuracy comes back from the same pass, over the same positions, so the two
     axes can be compared without any possibility of a position-set mismatch —
-    which is the comparison ``docs/research_queue.md`` asks for.
+    which is the comparison ``docs/method/research_queue.md`` asks for.
     """
     total = 0.0
     positions = 0
@@ -168,7 +168,7 @@ def uncoupled_reference(
 ) -> tuple[float, bool, float]:
     """Loss from an independent recursion with no mixing, and the void check.
 
-    ``docs/research_queue.md`` voids this arm unless ``alpha = 0`` is the
+    ``docs/method/research_queue.md`` voids this arm unless ``alpha = 0`` is the
     uncoupled decode. Verifying that against ``_soft_forward(alpha=0)`` alone
     would be circular — the short circuit under test lives inside the function
     doing the testing — so the plain hard-evidence filter is written out longhand
@@ -251,7 +251,7 @@ def compute_l1_l2b_predictive_loss(
     if positions < MIN_POSITIONS:
         raise ValueError(f"only {positions} positions survived alignment; need {MIN_POSITIONS}")
 
-    # Void condition from docs/research_queue.md: if alpha = 0 is not the
+    # Void condition from docs/method/research_queue.md: if alpha = 0 is not the
     # uncoupled decode, the whole comparison is against the wrong anchor.
     reference, anchor_matches_uncoupled, _ = uncoupled_reference(
         letter_matrices, g2p_matrices, evaluation

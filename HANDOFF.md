@@ -3,7 +3,7 @@
 > **ARCHIVED HISTORICAL SNAPSHOT (2026-08-21).** This file predates the completed
 > external-audit response. It is retained for provenance, not as a current
 > handoff or verification receipt. Start with `README.md`, `AGENTS.md`, the
-> current `docs/decisions.md`, and `output/reports/release-receipt.json`; the
+> current `docs/provenance/decisions.md`, and `output/reports/release-receipt.json`; the
 > `CHANGELOG.md` entry "the external audit, answered in kind (2026-08-20)"
 > explains the transition from this snapshot.
 
@@ -63,12 +63,12 @@ it with a worse one that happens to score higher.
 | Unaudited | Stage 7 speech only — re-scoped: the declared gate measures Whisper/TTS; the boundary interface contract is tested (`tests/test_speech_boundary.py`) |
 | Gate classifier | one source of truth: `src/ailm/gates.py` (`GateVerdict`, `classify_gate`), imported by BOTH `scripts/audit_gates.py` and `src/ailm/figures/gates.py` — resolves the `handoff/reports/NEVILLE_PROXY_REVIEW.md` L5 two-copies drift |
 | Statistics | `src/ailm/statistics.py::SIGNIFICANCE_FAMILY` is the source of truth: claim:stat_family_size members, claim:stat_family_survivor_count fixed-Bonferroni survivors, and claim:stat_holm_survivor_count Holm survivors. Named, machine-checked exclusions carry no threshold-crossing inference. |
-| Formal layer | `formal/` uses a pinned, dependency-free Lean toolchain. Current counts are claim-backed: claim:formal_theorem_count named theorems and claim:formal_example_count witness examples, with claim:formal_theory_theorem_count theory theorems, claim:formal_instance_theorem_count ledger-instance theorems, and claim:formal_axioms_beyond_core axiom beyond Lean's core set. `formal/AILM/LedgerData.lean` is generated from `data/claims.json` and held by a byte-identity test; see `docs/formal.md` and re-run the build before relying on it. |
+| Formal layer | `formal/` uses a pinned, dependency-free Lean toolchain. Current counts are claim-backed: claim:formal_theorem_count named theorems and claim:formal_example_count witness examples, with claim:formal_theory_theorem_count theory theorems, claim:formal_instance_theorem_count ledger-instance theorems, and claim:formal_axioms_beyond_core axiom beyond Lean's core set. `formal/AILM/LedgerData.lean` is generated from `data/claims.json` and held by a byte-identity test; see `docs/reference/lean.md` and re-run the build before relying on it. |
 | Release verification | `scripts/verify_release.py` (quick/full profiles) emits `output/reports/release-receipt.json`; CI at `.github/workflows/ci.yml` |
 
 Environment note: the suite is JAX-version-sensitive. Use the project's pinned
 lock and `.venv`; `pyproject.toml` and `uv.lock`, not this historical snapshot,
-own the current version. See `docs/troubleshooting.md` § "JAX version changes
+own the current version. See `docs/guides/troubleshooting.md` § "JAX version changes
 float results or breaks pymdp" before changing the backend.
 
 Run `scripts/audit_gates.py` and the full release profile before relying on any
@@ -183,7 +183,7 @@ bar at 255 on a linear axis produced a 37,000-pixel canvas.
 *What makes these models hierarchical, intelligent and relevant?*
 
 There is a **working criterion with a pre-registered development-population
-result** ([`docs/decisions.md`](docs/decisions.md) entries 18–19). It is not an
+result** ([`docs/provenance/decisions.md`](docs/provenance/decisions.md) entries 18–19). It is not an
 untouched-population confirmation:
 
 > Working hypothesis, bounded by the independently measured channels: an inter-level
@@ -209,7 +209,7 @@ claim-strength vocabulary it is not ordinary confirmation on untouched data.
 Each outcome and its controls remain recorded in its decision entry.
 
 **Keep pre-registering.** Write the prediction, and what would withdraw the
-principle, into `docs/decisions.md` *before* the measurement runs. A principle
+principle, into `docs/provenance/decisions.md` *before* the measurement runs. A principle
 only ever fitted to results already in hand explains nothing, and post-hoc
 rationalisation is indistinguishable from insight in the write-up.
 

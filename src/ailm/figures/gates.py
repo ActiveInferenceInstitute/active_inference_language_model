@@ -21,7 +21,7 @@ the word initials the full set covers, and reports a margin several times the tr
 few is a recorded number the panel reads, not a list of letters typed into the caption,
 which a re-run at another truncation size would silently falsify. Shrinking the eval is
 not the fix either: a representative stride of the same size is underpowered, and only
-the full held-out set reaches significance. Evidence: ``docs/decisions.md``.
+the full held-out set reaches significance. Evidence: ``docs/provenance/decisions.md``.
 
 Determinism
 -----------
@@ -158,7 +158,7 @@ def _verdict_patch_style(verdict: str, *, alpha: float = 0.18) -> dict[str, Any]
 #: all four measured fields out of the ledger through the ``*_token`` names below.
 #: Only the row's metadata — its key, its drawn labels, its prose detail, and its
 #: color role — lives here. The rows are re-runnable through
-#: ``scripts/audit_gates.py --limit`` and are described in ``docs/decisions.md``.
+#: ``scripts/audit_gates.py --limit`` and are described in ``docs/provenance/decisions.md``.
 #:
 #: The labels name the *selection rule*, not the sample size: the prefix and the
 #: matched stride are both truncated to ``record_subsample_claims.py``'s

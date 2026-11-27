@@ -192,7 +192,7 @@ the Part-A models side by side with the alphabet identity that joins L2B to L1
 — the composition seam the rest of the stack repeats. The full
 {{BUILT_LEVEL_COUNT}}-level stack is drawn in [@fig:hierarchy], and [@fig:channel_comparison]
 plots L1→L2B and L3→L2B, the measured channels that share a receiver;
-[@sec:hierarchy] reports all {{CHANNEL_COUNT_WORD}} registered interventions. `docs/gnn_composition.md`
+[@sec:hierarchy] reports all {{CHANNEL_COUNT_WORD}} registered interventions. `docs/reference/gnn_composition.md`
 works through representational, structural, and planned composition at length.
 
 ![One level from GNN specification to running agent. The spec's `StateSpaceBlock`, `InitialParameterization`, and `ActInfOntologyAnnotation` fix the dimensions and the role of every slot; the builder functions construct the matrices; `pymdp` receives them; and `ailm.gnn.assert_conforms` closes the loop by checking the live agent's shapes and role assignments back against the declaration. The spec does not generate the builders — both are written by hand, as the panel's own footer states. Two things bind them rather than one: the closing conformance arrow drawn here, and `ailm.spec_agent.build_agent_from_spec`, which constructs every shipped level from its spec and registered artifacts and agrees with the builder bit-identically (decision 20, described in the text but not drawn on this panel). Dimensions shown are read from `gnn/models/L2b_grapheme_to_phoneme.gnn.md` when the figure is generated. A declared dimension on the panel that disagreed with that file, or a live agent whose shapes or slot roles contradicted the declaration while the closing arrow still reported conformance, would each falsify this figure.](../../output/figures/gnn_pipeline.png){#fig:gnn_pipeline width=95%}
@@ -310,7 +310,7 @@ uniform baseline of {{STAGE1_UNIFORM_BASELINE}}, and anti-informative enough to
 fall well short of the context-free unigram bar at
 {{STAGE1_UNIGRAM_BASELINE}}, which is the comparator the negative control is
 actually held to. [@fig:wiring_comparison]
-puts the transition and emission placements side by side; `docs/decisions.md` records the measurement
+puts the transition and emission placements side by side; `docs/provenance/decisions.md` records the measurement
 and the named mis-wirings it generalizes to.
 
 ![The same learned bigram matrix in the transition slot (left, the shipped agent) and the emission slot (right, the mis-wiring). Both are column-stochastic and both pass `pymdp` validation; the right placement produces a posterior over the *preceding* symbol and measures {{STAGE1_ANTI_INFORMATIVE_PERPLEXITY}} perplexity, the left measures {{STAGE1_LETTER_PERPLEXITY}}. A bar chart beneath ranks both wirings against the uniform comparator, the context-free unigram and the empirical order-1 optimum. A transpose, non-stochastic matrix, or placement that made the two panels indistinguishable would falsify the comparison.](../../output/figures/wiring_comparison.png){#fig:wiring_comparison width=90%}
@@ -1418,7 +1418,7 @@ $B[\text{next}, \text{current}]$ orientation a non-decreasing position puts
 mass *on and below* the diagonal. This project's own first draft stated the
 invariant with the wrong triangle — decision 1's orientation trap arriving in
 prose rather than in a matrix. The error surfaced only because the number was
-recorded rather than asserted (`docs/decisions.md` entry 26).
+recorded rather than asserted (`docs/provenance/decisions.md` entry 26).
 
 The directional recognition prediction and the prior-intervention anchors are
 recorded in decision {{DECISION_NARRATIVE_REFERENCE}}. This development-session
@@ -1583,7 +1583,7 @@ connected runtime. The executable contract is `docs/design/connected_runtime.md`
 
 One of the two case-word seams carries a measured estimand as well. The
 L4→L3 case-word bridge's influence sweep was registered before it ran
-(`docs/decisions.md` entry {{DECISION_CASE_WORD_SWEEP}}): the estimand is the
+(`docs/provenance/decisions.md` entry {{DECISION_CASE_WORD_SWEEP}}): the estimand is the
 per-token log-gain of the L3 word prior under the case-word inlet against the
 bit-identical zero-weight anchor, over the case-word artifact's test
 documents, restricted to lowercase exact-string matches against the Stage 3

@@ -24,8 +24,8 @@ audit history.
 | [Connected runtime](#connected-development-runtime) | Raw or explicitly UPOS-conditioned input, timed cross-level messages, local conditional references and a separate GUM comparison |
 | [Standalone level scores](#what-is-shipped-level-by-level) | Historical stage estimands, including exact/NumPy scorers and their stated live-agent agreement checks |
 | [Historical intervention seams](#the-relationship-between-levels--stated-precisely) | Individually measured effects; they are not substitutes for the connected evaluation |
-| [Generation](design/generation_problem.md) | The measured standalone L3→L1g law and the bounded connected next-word policy path remain distinct |
-| [Browser inspection](../src/ailm/dashboard/README.md) and [speech boundary](design/speech_boundary.md) | Separate demonstrator and symbol interface, not new connected-model measurements |
+| [Generation](generation_problem.md) | The measured standalone L3→L1g law and the bounded connected next-word policy path remain distinct |
+| [Browser inspection](../../src/ailm/dashboard/README.md) and [speech boundary](speech_boundary.md) | Separate demonstrator and symbol interface, not new connected-model measurements |
 
 ## Current models and evaluation scopes
 
@@ -357,7 +357,7 @@ the current spelling. Prefix-conditioned word beliefs then affect phone and
 letter predictions. Completed-token case evidence updates the widened clause
 agent; completed-sentence type beliefs update document position for the next
 sentence. Each call starts a new document; word and sentence boundaries reset
-the level states specified in the [runtime contract](design/connected_runtime.md).
+the level states specified in the [runtime contract](connected_runtime.md).
 The named-channel-disabled comparator retains the same observed spelling and
 train-fitted postword UPOS encoder; it disables the named connections rather
 than isolating every representation. OOV tokens remain in the character stream
@@ -373,7 +373,7 @@ is an engineering setting. The locally frozen GUM comparison reports
 claim:connected_gum_document_mean_gain nats of equal-document normalized-character
 gain, with interval [claim:connected_gum_document_ci_low,
 claim:connected_gum_document_ci_high]. Its full vocabulary/OOV accounting and
-local prospective scope are in the [results](manuscript/04_results.md#sec:connected_gum). It does not change the estimands or qualified verdicts of
+local prospective scope are in the [results](../manuscript/04_results.md#sec:connected_gum). It does not change the estimands or qualified verdicts of
 the historical stage gates. The code and controls are in `tests/test_connected.py`.
 
 ---
@@ -389,7 +389,7 @@ disagreed with this file, and its current state.
 | `docs/manuscript/08_conclusion.md` | "Two levels ... three of its five levels do not exist" | **FIXED** — now enumerates the built levels and qualifies the later-stage outcomes |
 | `docs/manuscript/03_methods.md` | Architecture table shows only L1-L2 | **FIXED 2026-08-04** — `tbl:level_stack` now extends through L6 (03_methods.md:30-31) |
 | `AGENTS.md` | Stage table shows Stages 3-6 "NOT STARTED" | **UPDATED 2026-07-31** — all stages now reflect built state |
-| `docs/hierarchy.md` (this file) | "Three pymdp agents exist"; "L3 and above: nothing" | **UPDATED 2026-07-31** — full 8-column table, generation, channels |
+| `docs/design/hierarchy.md` (this file) | "Three pymdp agents exist"; "L3 and above: nothing" | **UPDATED 2026-07-31** — full 8-column table, generation, channels |
 
 Terminology, so the collision stops recurring:
 
@@ -426,4 +426,4 @@ Terminology, so the collision stops recurring:
 | Why sequence statistics belong in `B` | `src/ailm/levels/AGENTS.md`, `docs/manuscript/03_methods.md` |
 | Design rationale aligned to the shipped six-level structure | `docs/design/architecture.md` |
 | Stage gate audit classifications | `scripts/audit_gates.py`, `docs/manuscript/03_methods.md` (taxonomy), `docs/manuscript/04_results.md` (outcomes) |
-| Module ownership and imports | `docs/architecture.md` |
+| Module ownership and imports | `docs/development/code-architecture.md` |

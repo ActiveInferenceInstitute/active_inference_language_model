@@ -963,12 +963,12 @@
       "mode": "100644",
       "sha256": "132e3058c56133dde05b40a447cd56d9df660a3f8027e7837276f1335918470e"
     },
-    "docs/architecture.md": {
+    "docs/development/code-architecture.md": {
       "bytes": 60700,
       "mode": "100644",
       "sha256": "d31fe18061ef9a37b15bc8b053fb14bd6c96b474187ccbff50b5c5e13a77ebef"
     },
-    "docs/decisions.md": {
+    "docs/provenance/decisions.md": {
       "bytes": 609784,
       "mode": "100644",
       "sha256": "266bbc784dd2cb0cf1eccf3a2cc2da964ecc59d68a45ea8c772d9b599c57cd1d"
@@ -1033,27 +1033,27 @@
       "mode": "100644",
       "sha256": "c4f3e2750fc24868d2836435283ebaaef679e52ec6b66d232e7a995ad39e27d7"
     },
-    "docs/development_history.md": {
+    "docs/provenance/development_history.md": {
       "bytes": 148668,
       "mode": "100644",
       "sha256": "94eb2640aabcd5f95cdde6a59f1ec03d676284877779712436469e445887e2a7"
     },
-    "docs/extension_protocols.md": {
+    "docs/reference/extension_protocols.md": {
       "bytes": 65339,
       "mode": "100644",
       "sha256": "13253473c49ec0a1a4f70d8ad179ab0d9df963ea348c968fefed2374b343fe68"
     },
-    "docs/formal.md": {
+    "docs/reference/lean.md": {
       "bytes": 23096,
       "mode": "100644",
       "sha256": "52e23a86c38831762ccda61148a8b1b98d73457d7b33de1b7c461f4e7f6bc943"
     },
-    "docs/gate_design.md": {
+    "docs/development/gate_design.md": {
       "bytes": 29642,
       "mode": "100644",
       "sha256": "b16647b977559267ed2715734750ee08e664357301a4973462def34e477091cc"
     },
-    "docs/gnn_composition.md": {
+    "docs/reference/gnn_composition.md": {
       "bytes": 31850,
       "mode": "100644",
       "sha256": "9e85225b24eff52e6d1a6e2ddc4ec8d29cd427bf92813482f72516f429ec134f"
@@ -1083,7 +1083,7 @@
       "mode": "100644",
       "sha256": "6db123fad1fded5715989bdbffb94d344370c3ea3733a5602ab45912b203ce13"
     },
-    "docs/hierarchy.md": {
+    "docs/design/hierarchy.md": {
       "bytes": 28259,
       "mode": "100644",
       "sha256": "6f48a5c9ea140cfc7058fc383c96b8e888462ea0a56f523be77a30ec25ec52a9"
@@ -1273,22 +1273,22 @@
       "mode": "100644",
       "sha256": "4d17b2eeca7adfd80282c1bcd15dd56aec593652b3245c76c78684463c71270e"
     },
-    "docs/research_queue.md": {
+    "docs/method/research_queue.md": {
       "bytes": 151341,
       "mode": "100644",
       "sha256": "866ef551ace89f217ecde28e3690041d0d25147fa4e156d324b0004283136346"
     },
-    "docs/syntax_guide.md": {
+    "docs/reference/syntax_guide.md": {
       "bytes": 29126,
       "mode": "100644",
       "sha256": "e57b828e364627c49883de4ab1ba819c00fdc667d857716ab89b1b84c41f4b42"
     },
-    "docs/testing_philosophy.md": {
+    "docs/development/testing_philosophy.md": {
       "bytes": 24835,
       "mode": "100644",
       "sha256": "dce0f7570fe24756d69cc503c1730fb7ef09ea3f1f9391173fb3b8cb2ecc1e16"
     },
-    "docs/troubleshooting.md": {
+    "docs/guides/troubleshooting.md": {
       "bytes": 26284,
       "mode": "100644",
       "sha256": "ecea05e6cf075ad49d769f30aa2ead28ed0008807df20124fc2f7d054305ca01"
@@ -4518,7 +4518,7 @@
       "current": "174447e7bc531b7ff8ea9ab7b906c3457da2f97b4ffbdb17f62fae98d8acf3b1",
       "original": "352e56d21f1aebe2c3014eadec246b7fc0005b8b732bb594f9b0e75f4825e873"
     },
-    "docs/extension_protocols.md": {
+    "docs/reference/extension_protocols.md": {
       "current": "35448d75d272422d617d305e4e17f34a7c3a316f8bce4c0c89ad15b59f297815",
       "original": "13253473c49ec0a1a4f70d8ad179ab0d9df963ea348c968fefed2374b343fe68"
     },

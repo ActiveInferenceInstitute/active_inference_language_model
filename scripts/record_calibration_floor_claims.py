@@ -9,7 +9,7 @@ sound — below some captured mass the completion rule rather than the model
 decides the reported number — but one half was argued, never located. The three
 measured probes sit at roughly 0.07, 0.86 and 1.00 captured mass, so the live
 protocol measures nothing between about 12% and 98% and cannot say where the
-transition happens. ``docs/decisions.md`` entry 30 and the calibration
+transition happens. ``docs/provenance/decisions.md`` entry 30 and the calibration
 subsection of ``docs/manuscript/98_supplement_external_benchmarks.md`` both state the
 floor as a principled choice.
 

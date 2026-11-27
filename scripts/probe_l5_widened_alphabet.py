@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Probe Level 5 alphabet widening with distinguished VERB and AUX symbols.
 
-Scoped in `docs/research_queue.md` (Level 5 section):
+Scoped in `docs/method/research_queue.md` (Level 5 section):
 The shipped case-role projection's privileged type-label value is a
 privileged-label receiver-sensitivity reference, not a ceiling or hard bound.
 This probe asks whether widening that projection with surface-ordered VERB and

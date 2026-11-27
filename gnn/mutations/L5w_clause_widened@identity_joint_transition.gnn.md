@@ -18,7 +18,7 @@ AILM Widened Clause Level
 
 ## ModelAnnotation
 
-The widened-observation arm of Level 5 (docs/decisions.md entry 112): a
+The widened-observation arm of Level 5 (docs/provenance/decisions.md entry 112): a
 two-component mixture of Markov chains over the WIDENED alphabet, embedded as a
 single hidden factor over the joint (sentence type × widened symbol) space —
 2 types × 10 symbols = 20 states, type-major order.

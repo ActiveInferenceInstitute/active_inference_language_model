@@ -40,7 +40,7 @@ the context-free baseline is only a *necessary* condition — at least one mis-w
 emission clears that bar. So both halves are verified numerically against
 closed-form oracles, :mod:`ailm.gnn` checks each live agent against its GNN spec,
 and the comparator is the context-free :func:`per_letter_argmax_baseline`, never
-uniform. Evidence for all of it: ``docs/decisions.md``.
+uniform. Evidence for all of it: ``docs/provenance/decisions.md``.
 
 Arithmetic is float32 (JAX's default), so analytic anchors land within about 2e-7
 relative — compare with a tolerance, never for equality.
@@ -362,7 +362,7 @@ def compute_phoneme_perplexity(
 
     This is an all-positions, smoothed perplexity. The transitions-only
     conditional-entropy floor is a different quantity over a different position
-    set, so the two are not comparable — see ``docs/decisions.md``.
+    set, so the two are not comparable — see ``docs/provenance/decisions.md``.
 
     Zero scorable positions: a documented refusal, not an error
     ----------------------------------------------------------
@@ -441,7 +441,7 @@ def full_corpus_perplexity(counts: dict) -> tuple[float, int]:
     subset, which is biased toward short, transparent-orthography words and
     flatters the model. Walking the whole dictionary through pymdp instead is
     exact but costs one ``infer_states`` call per phone position, far too slow for
-    a gate. See ``docs/decisions.md``.
+    a gate. See ``docs/provenance/decisions.md``.
 
     The closed form removes both problems. With the prior reset at every word
     boundary, position 0 of each word is scored under the start prior ``D`` and
@@ -956,7 +956,7 @@ def _iter_pairs(
     Subsampling is an evenly spaced **stride** — every kth pair — never a prefix
     and never random: the vendored ``g2p_pairs`` list is sorted alphabetically, so
     a prefix is reproducible but not representative, and it overstates the G2P
-    margin. See ``docs/decisions.md``.
+    margin. See ``docs/provenance/decisions.md``.
 
     Two decoders given the same ``limit`` see exactly the same positions in the
     same order, so paired comparisons remain valid.
@@ -1027,7 +1027,7 @@ def per_letter_argmax_baseline(
 
     This is the comparator every context-aware decoder must beat. Uniform-random
     and majority-phone comparators are crippled — this lookup table is the honest
-    baseline. See ``docs/decisions.md``.
+    baseline. See ``docs/provenance/decisions.md``.
 
     Ties are broken by sorted phone name so the mapping is deterministic.
 
@@ -1096,7 +1096,7 @@ def decode_positions(
     is what lets the gate run McNemar's test on the discordant pairs — the
     filtering margin over the context-free bar is a fraction of a point, so an
     unpaired comparison of two aggregate accuracies cannot establish it. See
-    ``docs/decisions.md``.
+    ``docs/provenance/decisions.md``.
 
     Cost is one ``infer_states`` plus one ``update_empirical_prior`` per position,
     so the full test split takes minutes. Use ``limit`` to bound a test run; the

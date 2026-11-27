@@ -41,7 +41,7 @@ be reading its own answer key, reaching near-perfect agreement while measuring
 nothing. This trap is more dangerous than any mis-wiring below it: every earlier
 one made a model visibly worse, whereas this one makes it excellent, so there is
 no numeric signature to notice and the guard has to be structural. See
-docs/decisions.md entry 15.
+docs/provenance/decisions.md entry 15.
 
 Agreement, not accuracy. Only NOM/ACC/GEN are morphologically marked in English;
 claim:stage4_cases_without_morphology of the eight roles have no morphological

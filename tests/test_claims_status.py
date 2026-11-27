@@ -109,11 +109,11 @@ def _registration_provenance_defects(payload: dict) -> list[str]:
         if exists.returncode != 0:
             defects.append(f"decision {decision} missing registration commit")
             continue
-        registered_text = _git("show", f"{registration}:docs/decisions.md")
+        registered_text = _git("show", f"{registration}:docs/provenance/decisions.md")
         if registered_text.returncode != 0 or f"## {decision} " not in registered_text.stdout:
             defects.append(f"decision {decision} absent from registration commit")
         registration_artifact = record.get("registration_artifact")
-        if registration_artifact != "docs/decisions.md":
+        if registration_artifact != "docs/provenance/decisions.md":
             defects.append(f"decision {decision} registration artifact")
         first_registration = _git(
             "log",
@@ -123,7 +123,7 @@ def _registration_provenance_defects(payload: dict) -> list[str]:
             f"## {decision} —",
             "--format=%H",
             "--",
-            "docs/decisions.md",
+            "docs/provenance/decisions.md",
         )
         first_registration_commit = (
             first_registration.stdout.splitlines()[0]
@@ -185,7 +185,7 @@ def test_same_commit_protocols_are_not_titled_preregistrations() -> None:
     """Same-commit intent is prospective, but its Git chronology is not prior."""
 
     payload = json.loads(REGISTRATION_PROVENANCE.read_text(encoding="utf-8"))["protocols"]
-    decisions = (PROJECT_ROOT / "docs" / "decisions.md").read_text(encoding="utf-8")
+    decisions = (PROJECT_ROOT / "docs" / "provenance/decisions.md").read_text(encoding="utf-8")
     for decision in ("18", "46", "51", "73", "74", "77", "78"):
         assert payload[decision]["temporal_class"] == (
             "prospective_in_session_not_independently_timestamped"
@@ -488,7 +488,7 @@ def test_no_module_records_confirmatory_without_citing_a_decision():
     offenders = _confirmatory_without_citation(_status_guard_scan_set())
     assert offenders == [], (
         f"{offenders} mention 'confirmatory' but their module docstrings cite no "
-        f"docs/decisions.md entry (pattern: 'decision N' / 'entry N'). A "
+        f"docs/provenance/decisions.md entry (pattern: 'decision N' / 'entry N'). A "
         f"confirmatory status is a claim about pre-registration; cite the entry "
         f"or use exploratory/descriptive."
     )
@@ -510,7 +510,7 @@ def test_the_confirmatory_guard_fires_on_a_planted_violation(tmp_path):
     """POSITIVE CONTROL half 2: the classifier itself, on planted modules."""
     cited = tmp_path / "cited.py"
     cited.write_text(
-        '"""Pre-registered in docs/decisions.md entry 12."""\nSTATUS = "confirmatory"\n',
+        '"""Pre-registered in docs/provenance/decisions.md entry 12."""\nSTATUS = "confirmatory"\n',
         encoding="utf-8",
     )
     uncited = tmp_path / "uncited.py"

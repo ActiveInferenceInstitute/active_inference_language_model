@@ -6,7 +6,7 @@ Thin orchestrator. All computation lives in ``ailm.levels.word`` and
 pymdp agent and the closed form agree before trusting either, and writes the
 ledger. It is the single writer for its main Stage 3 namespace; the separately
 scoped ``stage3_oov_*`` denominator analysis has its own recorder. Tests verify
-these values and must never overwrite them (``docs/decisions.md`` entry 10).
+these values and must never overwrite them (``docs/provenance/decisions.md`` entry 10).
 
 What it establishes, in order:
 
@@ -15,7 +15,7 @@ What it establishes, in order:
 3. The path identity — the pymdp agent's emission-path probability against the
    closed-form word unigram — which is what licenses computing the full-set
    statistics in closed form at all (the oracle-equivalence pattern,
-   ``docs/gate_design.md``).
+   ``docs/development/gate_design.md``).
 4. The mis-wirings, including the three that beat the bar while being wrong.
 
 Usage

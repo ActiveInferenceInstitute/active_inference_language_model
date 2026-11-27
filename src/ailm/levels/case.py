@@ -20,7 +20,7 @@ The observation is the **UPOS tag only**. Never ``deprel``, never
 so a model observing them would be reading its own answer key: agreement would
 approach perfection and would measure nothing at all. This is the sharpest trap at
 this level, because nothing about such a model would look broken — it would
-simply be excellent. ``docs/decisions.md`` entry 16 records it, and
+simply be excellent. ``docs/provenance/decisions.md`` entry 16 records it, and
 ``tests/test_stage4_gate.py::test_the_observation_never_carries_the_label_source``
 enforces it.
 
@@ -442,7 +442,7 @@ def build_case_emission(
 
     Normalized over the **observation** axis for each case, so ``A[:, c]`` sums
     to 1. A matrix summing to 1 along the other axis is the transposed model and
-    pymdp accepts it, which is the Stage 2 lesson (``docs/decisions.md`` entry 1).
+    pymdp accepts it, which is the Stage 2 lesson (``docs/provenance/decisions.md`` entry 1).
     """
     smoothing = (
         config.emission_smoothing if config.emission_smoothing is not None else config.smoothing

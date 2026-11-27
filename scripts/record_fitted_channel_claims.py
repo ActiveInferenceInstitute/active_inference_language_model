@@ -18,7 +18,7 @@ evidence the fit generalized; a large dev gain beside a small test gain would be
 evidence it did not, and reporting only the second would hide which happened.
 
 The protocol and its scoring rule are prospectively specified in
-docs/decisions.md entry 49. That entry and this recorder first appear in the
+docs/provenance/decisions.md entry 49. That entry and this recorder first appear in the
 same commit, so the held-out score is exploratory rather than independently
 preregistered or confirmatory (see scripts/assign_claim_status.py and
 data/registration_provenance.json).

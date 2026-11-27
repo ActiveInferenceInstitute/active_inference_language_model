@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Probe Level 4 on morphologically case-marking Universal Dependencies properties.
 
-Scoped in `docs/research_queue.md` (Level 4 section):
+Scoped in `docs/method/research_queue.md` (Level 4 section):
 In English EWT, Level 4 has no observation that is both admissible and informative:
 - On the GOLD population (100% PRON, alphabet size 1), H(case | UPOS) is 0 and
   the context-free bar is identical to the sequence model (0 discordant pairs).

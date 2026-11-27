@@ -1,7 +1,7 @@
 # AGENTS.md — Active Inference Language Model
 
 Operational reference for AI agents and contributors working in this repository.
-See `README.md` for the project overview, `docs/hierarchy.md` for the governing
+See `README.md` for the project overview, `docs/design/hierarchy.md` for the governing
 level structure, and `docs/design/architecture.md` for the design rationale.
 
 ---
@@ -11,7 +11,7 @@ level structure, and `docs/design/architecture.md` for the design rationale.
 - **Project:** `active_inference_language_model` (AILM)
 - **Repository root:** the checkout root. A maintainer may route a `docxology/template` checkout to this standalone repository through the local-only symlink `projects/working/active_inference_language_model/`; every command in this tree runs from the repository root unless it says otherwise
 - **Publication repository:** `https://github.com/ActiveInferenceInstitute/Active_Inference_Language_Model` hosts the versioned publication source. Every commit, tag and release for this project belongs in that repository; a maintainer's separate private working copy is outside the published workflow. Never commit this project's work into the template checkout that supplies its render pipeline, and committing to another repository, or changing remotes, requires explicit authorization.
-- **Picking this project up:** start with the governing [`docs/hierarchy.md`](docs/hierarchy.md) and the chronological [`docs/decisions.md`](docs/decisions.md). `HANDOFF.md` and `ISA.md` are historical planning records, not current status sources
+- **Picking this project up:** start with the governing [`docs/design/hierarchy.md`](docs/design/hierarchy.md) and the chronological [`docs/provenance/decisions.md`](docs/provenance/decisions.md). `HANDOFF.md` and `ISA.md` are historical planning records, not current status sources
 - **Current stage:** Stage 6 (Stages 0–6 implemented; the six linguistic levels are L1–L6. Stage 5's canonical gate is the widened-observation clause arm of decision 112, promoted by decision 114: it passes as a development-session specification and has no held-back replication, while the case-only arm it displaced is a retained ablation whose gate stays non-passing with its paired privileged-label gain unresolved. Stage 6's clustered primary spans zero on the development population and excludes zero on the held-back split under decision 115, at the development coverage and not at the family-corrected one; four EWT members of the frozen significance family were rescored once on the held-back test split under decision 111 with two crossing and two yielding no discordant pair, and the Stage 7 speech boundary contract is enforced.)
 
 ---
@@ -29,12 +29,12 @@ level structure, and `docs/design/architecture.md` for the design rationale.
 | **39 canonical ARPAbet phonemes** | Strict; comment stripping required — see `cmudict.py` |
 | **`CaseRole.GEN` is linguistic Genitive** | The source also has core model-role `CORE_GENITIVE` and a distinct novel `NOVEL_GENERATIVE`; both source labels are `[GEN]`, so scoped serialization is mandatory |
 | **`A_dependencies` explicit** | Each modality must name the factors it observes; at L3 the spelling likelihood depends on both word and position, while the two `B` transitions remain separate |
-| **`update_empirical_prior` is within-level temporal recursion** | NOT a channel between levels — `docs/hierarchy.md` governs. Learning is `infer_parameters`, never `update_A` |
-| **`formal/AILM/LedgerData.lean` is generated, never hand-edited** | `scripts/generate_lean_ledger.py` is its only writer; `tests/test_formal_isomorphism.py` requires byte-identical regeneration. See `docs/formal.md` |
+| **`update_empirical_prior` is within-level temporal recursion** | NOT a channel between levels — `docs/design/hierarchy.md` governs. Learning is `infer_parameters`, never `update_A` |
+| **`formal/AILM/LedgerData.lean` is generated, never hand-edited** | `scripts/generate_lean_ledger.py` is its only writer; `tests/test_formal_isomorphism.py` requires byte-identical regeneration. See `docs/reference/lean.md` |
 
 **Machine-checked layer:** the gate taxonomy, sweep-shape predicates, filtering
 correction, and Bonferroni arithmetic are proved in Lean 4 under `formal/` —
-[`docs/formal.md`](docs/formal.md) for what is and is not formalized, the
+[`docs/reference/lean.md`](docs/reference/lean.md) for what is and is not formalized, the
 Lean ↔ equation ↔ Python ↔ test isomorphism, and the regenerate/re-record
 commands. Changing a recorded value that the Lean reads means
 `scripts/generate_lean_ledger.py` **then** `scripts/record_formal_claims.py`.
@@ -70,7 +70,7 @@ result that followed. The one partition nothing had scored, the UD EWT test
 split, was spent under decision 111 on the four family members computed on
 EWT populations, and touched once more under decision 115 for the separately
 registered Stage 6 document-level estimand; the other twelve members remain development-population
-inference. See `docs/decisions.md` for the full chronology. This is a
+inference. See `docs/provenance/decisions.md` for the full chronology. This is a
 methodological defect, not a design choice.
 
 ### Stage 1 gate restatement (2026-07-29)
@@ -113,7 +113,7 @@ claim:stage3_bigram_baseline, clearing 500 by claim:stage3_declared_gate_slack
 times. It also named a corpus this project does not have — the full PTB is
 LDC-licensed and `nltk` ships only a small sample. Stage 3 is measured on Brown, already
 vendored and checksummed. The gate is now the letter-bigram bar on identical
-positions; see [`docs/decisions.md`](docs/decisions.md) entry 14.
+positions; see [`docs/provenance/decisions.md`](docs/provenance/decisions.md) entry 14.
 
 **The Stage 3 lesson, and it sharpens the Stage 2 one.** Five mis-wirings were
 built and scored; *three of five* clear the restated bar, including one that
@@ -267,7 +267,7 @@ per checkout with `git config core.hooksPath githooks`.
 ## Source Layout
 
 Top-level shape only. **The module inventory is owned by one file** —
-[`docs/architecture.md`](docs/architecture.md)'s package map states what each
+[`docs/development/code-architecture.md`](docs/development/code-architecture.md)'s package map states what each
 module owns, its principal dependencies, and which test exercises it; its import
 contract separately states the enforced dependency boundaries. Duplicating a
 tree here is how it goes stale, so this section deliberately stops at the

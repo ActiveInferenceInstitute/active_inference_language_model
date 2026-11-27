@@ -36,7 +36,7 @@
   "document_identity_source": "# newdoc id comments from the authenticated CoNLL-U source",
   "document_identity_sha256": "4b6f9aad219953cad57290fb1f40d2614ae93736143c90c06acb96b3aea8ef56",
   "case_label_source": "ailm.cases derived heuristic \u2014 a research claim, not ground truth (decisions 16 and 84); the widened arm inherits its label uncertainty on the eight case symbols, while the two added symbols are UD UPOS tags and carry the corpus's own annotation uncertainty instead",
-  "registered_in": "docs/decisions.md entry 112 \u2014 a development-session specification, not a confirmatory registration"
+  "registered_in": "docs/provenance/decisions.md entry 112 \u2014 a development-session specification, not a confirmatory registration"
  },
  "splits": {
   "train": [

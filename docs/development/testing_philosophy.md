@@ -28,7 +28,7 @@ one of those, generalized.
 
 `MagicMock`, `unittest.mock`, `mocker.patch`, and any other framework that
 substitutes a fake for a real dependency are prohibited. This is a hard invariant
-(see [`../AGENTS.md`](../AGENTS.md)), not a preference.
+(see [`../AGENTS.md`](../../AGENTS.md)), not a preference.
 
 The reason is specific to what AILM claims. The project's entire thesis is that
 the generative engine is **real pymdp** — a mocked `Agent` would let the suite
@@ -41,15 +41,15 @@ What replaces mocks:
 
 | Need | Pattern used here |
 |---|---|
-| Corpus data without network access | Vendored deterministic artifacts (`vendor/brown_counts.json`, `vendor/cmudict_counts.json`), regeneration verified byte-identical, checksums enforced by [`../tests/test_provenance_checksums.py`](../tests/test_provenance_checksums.py) |
-| A small, inspectable corpus | Hand-built count dicts (`_counts_from_sequences` in [`../tests/test_phoneme_full_corpus.py`](../tests/test_phoneme_full_corpus.py)) whose exact positions are known on paper |
+| Corpus data without network access | Vendored deterministic artifacts (`vendor/brown_counts.json`, `vendor/cmudict_counts.json`), regeneration verified byte-identical, checksums enforced by [`../tests/test_provenance_checksums.py`](../../tests/test_provenance_checksums.py) |
+| A small, inspectable corpus | Hand-built count dicts (`_counts_from_sequences` in [`../tests/test_phoneme_full_corpus.py`](../../tests/test_phoneme_full_corpus.py)) whose exact positions are known on paper |
 | Checking pymdp's arithmetic | An independent numpy oracle, never a stubbed return value |
 | Files and directories | Real `tmp_path` files |
 | Figures | Real matplotlib renders, inspected in display coordinates |
 
 A checksum documented in prose and never compared against the artifact is worse
 than no checksum, because it licenses the belief that the input was pinned. That
-is why the provenance hashes in [`provenance/sources.md`](provenance/sources.md)
+is why the provenance hashes in [`provenance/sources.md`](../provenance/sources.md)
 are enforced by a test rather than trusted.
 
 ---
@@ -65,7 +65,7 @@ model** lands on the wrong side.
 - **Negative control** — the same measurement, run on a deliberately broken
   input or a deliberately mis-wired agent, must **fail**.
 
-[`../src/ailm/control.py`](../src/ailm/control.py) makes this explicit:
+[`../src/ailm/control.py`](../../src/ailm/control.py) makes this explicit:
 
 ```python
 from ailm.control import ControlHarness
@@ -117,7 +117,7 @@ machinery itself is unfalsified.
 
 ## GateVacuousError
 
-`GateVacuousError` ([`../src/ailm/control.py`](../src/ailm/control.py)) is raised
+`GateVacuousError` ([`../src/ailm/control.py`](../../src/ailm/control.py)) is raised
 when the negative control **passes** — the broken model was not detected. It is
 deliberately an exception and not a warning, because the correct response is to
 block the stage, not to note a concern.
@@ -153,7 +153,7 @@ real ledger never had it.
 The scanner worked. The discipline it was supposed to enforce did not exist,
 because nothing ever pointed the scanner at the shipped tree.
 
-The fix is [`../tests/test_claims_discipline.py`](../tests/test_claims_discipline.py),
+The fix is [`../tests/test_claims_discipline.py`](../../tests/test_claims_discipline.py),
 and its structure is the pattern to copy:
 
 | Test | Role |
@@ -198,7 +198,7 @@ claim:stage1_letter_perplexity for correct wiring.
 
 What caught it was a hand-rolled numpy Markov chain that disagreed with pymdp's
 perplexity materially. That instrument was a scratch script.
-It is now [`../src/ailm/verification/oracle.py`](../src/ailm/verification/oracle.py):
+It is now [`../src/ailm/verification/oracle.py`](../../src/ailm/verification/oracle.py):
 `forward_filter`, `forward_backward`, `viterbi`, `sequence_perplexity`,
 `markov_chain_perplexity` — a tested module so every level can be checked the
 same way instead of the instrument being rebuilt ad hoc.
@@ -215,7 +215,7 @@ Three rules govern it:
    column-stochastic; `start` is the distribution over `state_0` *before* any
    observation, so the predictive distribution at `t = 0` is `start` itself.
 3. **The oracle is itself tested against closed forms**, not against pymdp.
-   [`../tests/test_oracle.py`](../tests/test_oracle.py) anchors it on analytically
+   [`../tests/test_oracle.py`](../../tests/test_oracle.py) anchors it on analytically
    derivable cases: a uniform transition must give exactly the inventory size, a
    deterministic chain exactly 1. Otherwise the two implementations could be
    self-consistently wrong together.
@@ -273,7 +273,7 @@ A transposed matrix still sums to 1 along *some* axis. So
 wired backwards.
 
 Two assertions are needed, and both are in
-[`../tests/test_stage2_gate.py`](../tests/test_stage2_gate.py):
+[`../tests/test_stage2_gate.py`](../../tests/test_stage2_gate.py):
 
 1. **An explicit index assertion.** A deliberately lopsided count must land in
    `B[0, next, current, 0]` and *not* its transpose. Build a count dict with one
@@ -305,7 +305,7 @@ illegibility. A clamp is not a floor.
 
 Font size alone is a partially vacuous legibility gate, though: a 10 pt label is
 not legible if another 10 pt label sits on top of it.
-[`../tests/test_figure_layout.py`](../tests/test_figure_layout.py) closes that
+[`../tests/test_figure_layout.py`](../../tests/test_figure_layout.py) closes that
 hole by measuring rendered **display coordinates** — what a reader sees rather
 than what the code intended — and checking for overlapping and clipped text.
 
@@ -339,7 +339,7 @@ defect as prose with a typed-in number, with a longer feedback loop.
 - **JAX defaults to float32.** Exact analytic anchors land within roughly 1e-7
   relative: the uniform-transition case measures 38.999998, not 39. Compare with
   a tolerance, never for equality. `FLOAT32_REL = 1e-6` in
-  [`../tests/test_phoneme_full_corpus.py`](../tests/test_phoneme_full_corpus.py)
+  [`../tests/test_phoneme_full_corpus.py`](../../tests/test_phoneme_full_corpus.py)
   is the documented bound, with the reasoning attached: asserting tighter than
   the arithmetic can deliver produces a test that fails on correct code.
 - **Splits are positional, not seeded.** The G2P train/test split is by sorted
@@ -379,7 +379,7 @@ MPLBACKEND=Agg .venv/bin/python -m pytest tests/test_figure_layout.py -q
 
 Never use bare `uv run pytest` in this sidecar: it can resolve to a system
 pytest with the wrong Python and the wrong pymdp. See
-[`troubleshooting.md`](troubleshooting.md#bare-uv-run-pytest-resolves-to-the-wrong-python-and-a-different-pymdp).
+[`troubleshooting.md`](../guides/troubleshooting.md#bare-uv-run-pytest-resolves-to-the-wrong-python-and-a-different-pymdp).
 
 **An exit code alone is not evidence of executed tests.** Confirm a nonzero
 executed-test count and the coverage result when requested. Pytest normally
@@ -429,7 +429,7 @@ Canonical synthetic and in-context scored calls require fresh hosted replies;
 local audit and drift checks also have live-call requirements. Offline replay
 validates stored evidence where allowed; it does not repeat those observations.
 An interrupted canonical fresh-call run cannot be completed by relabeling cached
-cells. Preserve its scope and follow [the release procedure](method/release_checklist.md)
+cells. Preserve its scope and follow [the release procedure](../method/release_checklist.md)
 for a new authorized run.
 
 ---
@@ -457,11 +457,11 @@ for a new authorized run.
 - [`gate_design.md`](gate_design.md) — the VACUOUS / UNREACHABLE /
   ABOVE_REFERENCE / UNAUDITED / BRACKETED_BOUND / BRACKETED_REFERENCE taxonomy
   and the pre-build checklist
-- [`syntax_guide.md`](syntax_guide.md) — the claims ledger and `{{TOKEN}}` protocol
-- [`troubleshooting.md`](troubleshooting.md) — interpreter, timeout, and figure failure modes
-- [`design/stage2_g2p.md`](design/stage2_g2p.md) — the guards that pin Level 2's orientation
-- [`../src/ailm/control.py`](../src/ailm/control.py) — `ControlHarness`, `GateVacuousError`
-- [`../src/ailm/verification/oracle.py`](../src/ailm/verification/oracle.py) — the independent instrument
+- [`syntax_guide.md`](../reference/syntax_guide.md) — the claims ledger and `{{TOKEN}}` protocol
+- [`troubleshooting.md`](../guides/troubleshooting.md) — interpreter, timeout, and figure failure modes
+- [`design/stage2_g2p.md`](../design/stage2_g2p.md) — the guards that pin Level 2's orientation
+- [`../src/ailm/control.py`](../../src/ailm/control.py) — `ControlHarness`, `GateVacuousError`
+- [`../src/ailm/verification/oracle.py`](../../src/ailm/verification/oracle.py) — the independent instrument
 
 The `quick` release profile is the portable checkout check. Tests marked
 `publication_context` require retained private history/raw-source proof, and

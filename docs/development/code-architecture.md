@@ -6,19 +6,19 @@ module owns which invariant.
 **This is not the scientific architecture.** The level hierarchy — what the hidden
 factors are, what `A`/`B`/`C`/`D` mean at each level, why L3 uses word identity
 × position rather than explicit trie-node states, and which scores use live
-inference — is governed by [`hierarchy.md`](hierarchy.md).
-[`design/architecture.md`](design/architecture.md) records the design rationale.
+inference — is governed by [`hierarchy.md`](../design/hierarchy.md).
+[`design/architecture.md`](../design/architecture.md) records the design rationale.
 The split is deliberate:
 
 - Moving a function, adding a module, or changing an import edits **this** file.
-- Changing what a matrix *means* edits **[`design/architecture.md`](design/architecture.md)**.
+- Changing what a matrix *means* edits **[`design/architecture.md`](../design/architecture.md)**.
 
 A change that does both needs both files edited, and the two must agree.
 
 ## Runtime and evidence boundaries
 
 The connected Python API and `scripts/run_connected_ailm.py` execute the causal
-schedule owned by `ailm.levels.connected`; the [runtime contract](design/connected_runtime.md)
+schedule owned by `ailm.levels.connected`; the [runtime contract](../design/connected_runtime.md)
 defines its observations, resets and message semantics. Individual level builders,
 historical scorers and `ailm.dashboard` retain their separate responsibilities.
 The browser dashboard is not a front end for this connected API.
@@ -88,7 +88,7 @@ artifacts so no test touches the network; `data/claims.json` is the ledger while
 `data/registration_provenance.json` preserve non-measurement evidence;
 `docs/manuscript/` holds the authored sections; `output/` is entirely regenerable,
 with a committed stable-publication allowlist and ignored transient render
-products (see [`output_conventions.md`](reference/output_conventions.md)).
+products (see [`output_conventions.md`](../reference/output_conventions.md)).
 
 ## Package map
 
@@ -109,7 +109,7 @@ AST/fresh-process tests.
 | `ailm/levels/connected_types.py` | Typed raw/structured observations, channel interventions and trace/result contracts | numpy, stdlib | `tests/test_connected.py` |
 | `ailm/levels/connected_builder.py` | Assemble GNN-built agents and train-only bridge kernels for connected execution | `ailm.spec_agent`, `ailm.corpus.case_word`, level loaders | `tests/test_connected.py`, `tests/test_wheel_resources.py` |
 | `ailm/levels/connected.py` | Causal multirate conditional inference, channel interventions and live-policy next-word generation | pymdp, numpy, connected contracts and model | `tests/test_connected.py`, `tests/test_wheel_resources.py` |
-| `ailm/levels/coupling.py` | The L1→L2B soft-observation channel and its sweep: `couple_letter_to_phoneme`, `coupled_positions` / `uncoupled_positions`, `sweep_alpha`, `validate_alpha_grid`, `mcnemar`. Ships gated off at `alpha = 0` — a **recorded negative result**, not an omission (`docs/decisions.md` entry 9, `docs/hierarchy.md`) | numpy, scipy, `ailm.levels.phoneme`, `ailm.verification.oracle` | `tests/test_coupling.py`, `scripts/record_coupling_claims.py`, `scripts/record_channel_predictive_loss_claims.py` (the same channel on the receiver's proper predictive loss, decision 59) |
+| `ailm/levels/coupling.py` | The L1→L2B soft-observation channel and its sweep: `couple_letter_to_phoneme`, `coupled_positions` / `uncoupled_positions`, `sweep_alpha`, `validate_alpha_grid`, `mcnemar`. Ships gated off at `alpha = 0` — a **recorded negative result**, not an omission (`docs/provenance/decisions.md` entry 9, `docs/design/hierarchy.md`) | numpy, scipy, `ailm.levels.phoneme`, `ailm.verification.oracle` | `tests/test_coupling.py`, `scripts/record_coupling_claims.py`, `scripts/record_channel_predictive_loss_claims.py` (the same channel on the receiver's proper predictive loss, decision 59) |
 | `ailm/levels/word.py` | The Stage 3 word level: a two-factor (word identity × position) single-modality model over a bounded lexicon. Its full score uses an exact path identity; a sampled live-pymdp walk verifies that identity | pymdp, jax, numpy, `ailm.config` | `tests/test_stage3_gate.py`, `tests/test_generation.py` |
 | `ailm/levels/case.py` | The Stage 4 case level: a single-factor model over the syntactic case roles (UD-derived), observing UPOS only. The full score is a NumPy forward filter; the live-pymdp recursion is compared with it at every held-out position and the agreement is recorded (`scripts/record_pymdp_equivalence_claims.py`, decision 94). Observing `deprel` or `feats[Case]` here is the circularity trap of decision 15 | pymdp, jax, numpy, `ailm.cases`, `ailm.config` | `tests/test_stage4_gate.py`, `tests/test_pymdp_inference_equivalence.py` |
 | `ailm/levels/case_czech.py` | The Czech arm of Level 4 (decision 77, exploratory): a duck-typed artifact over UD Czech-PDTC that reuses `ailm.levels.case`'s builders unmodified, scoring the same model against claim:stage4_czech_label_source_morphology_pct% morphological `feats[Case]` labels — the only population where this level reports *accuracy* (`czech_case_accuracy`) rather than agreement | `ailm.levels.case` | `tests/test_czech_case.py`, `scripts/record_czech_case_claims.py`, `scripts/generate_czech_case_counts.py` |
@@ -289,7 +289,7 @@ rather than borrowing a helper, and the figure modules do their own deterministi
 PNG writing. The single point where `infrastructure` legitimately enters is
 `scripts/z_generate_manuscript_variables.py`, which imports
 `infrastructure.rendering.manuscript_injection` *after* resolving the template root
-— see [`rendering_pipeline.md`](method/rendering_pipeline.md).
+— see [`rendering_pipeline.md`](../method/rendering_pipeline.md).
 
 **The rule is a boundary, not a wall: scripts may import `infrastructure`, and
 two do.** `scripts/z_generate_manuscript_variables.py` imports
@@ -336,7 +336,7 @@ boundary. That fix is template-side and benefits every sidecar project.
 `ARTIFACT_MANIFEST_EMPTY` was the decision. The check binds its report to a
 manifest of the *committed* output tree, and this project ignored `output/`
 outright, so the manifest was empty and the check could not run.
-[`output_conventions.md`](reference/output_conventions.md) now tracks a curated set of
+[`output_conventions.md`](../reference/output_conventions.md) now tracks a curated set of
 publication surfaces — manuscript, figures, combined PDF, web, report JSONs,
 variable map — while slides, `bench_raw` and LaTeX intermediates
 stay ignored. The position that changed is which artifacts ship, not the rule
@@ -452,7 +452,7 @@ form distinguishes them.
    must be listed there, so a gap surfaces as one diagnosable failure rather than a
    bare `KeyError`.
 6. **Add figures** in `src/ailm/figures/`, reading their numbers from the token map,
-   and register them in [`output_inventory.md`](reference/output_inventory.md).
+   and register them in [`output_inventory.md`](../reference/output_inventory.md).
 7. **Show the interpretability claim on this level rather than asserting it.** The
    project's central claim is that asking why the model predicted a symbol is
    answered by naming a column and reading it, and a claim of that shape is only
@@ -463,13 +463,13 @@ form distinguishes them.
    recorded numbers still describe the matrix the level actually builds. A new
    level with a readable parameter should carry the same pair.
 8. **Update both architecture documents** — this file for the new module, and
-   [`design/architecture.md`](design/architecture.md) for what the level means.
+   [`design/architecture.md`](../design/architecture.md) for what the level means.
 
 ## Cross-references
 
-- [`design/architecture.md`](design/architecture.md) — the scientific architecture
-- [`rendering_pipeline.md`](method/rendering_pipeline.md) — how numbers reach the page
+- [`design/architecture.md`](../design/architecture.md) — the scientific architecture
+- [`rendering_pipeline.md`](../method/rendering_pipeline.md) — how numbers reach the page
 - [`gate_design.md`](gate_design.md) — vacuity and reachability
 - [`testing_philosophy.md`](testing_philosophy.md) — controls, and what green means
-- [`output_conventions.md`](reference/output_conventions.md) — the regenerable boundary
-- [`../AGENTS.md`](../AGENTS.md) — project invariants and stage gate table
+- [`output_conventions.md`](../reference/output_conventions.md) — the regenerable boundary
+- [`../AGENTS.md`](../../AGENTS.md) — project invariants and stage gate table

@@ -7,7 +7,7 @@ each word token with the sentence type (declarative / interrogative, from the
 sentence-final punctuation) of the sentence it appears in, so a clause-derived
 word statistic — ``P(word | sentence type)`` — can be estimated on a train
 split and applied to held-out tokens. This is the bridge corpus the clause ->
-word intervention (``docs/decisions.md`` entries 27 and 89) is measured on: the receiver is
+word intervention (``docs/provenance/decisions.md`` entries 27 and 89) is measured on: the receiver is
 the word level (Stage 3, Brown vocabulary), the message is a clause-typed word
 distribution.
 

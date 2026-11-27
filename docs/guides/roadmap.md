@@ -3,8 +3,8 @@
 What AILM does today is stated in [`../../README.md`](../../README.md); what it
 does not yet do, and might do next, is stated here. This page is forward-looking
 by design and carries no result. Every status claim below is a pointer into
-[`../../TODO.md`](../../TODO.md), [`../extension_protocols.md`](../extension_protocols.md),
-or [`../decisions.md`](../decisions.md) — where this page and any of those three
+[`../../TODO.md`](../../TODO.md), [`../extension_protocols.md`](../reference/extension_protocols.md),
+or [`../decisions.md`](../provenance/decisions.md) — where this page and any of those three
 disagree, they govern and this page is a defect to be fixed. Nothing here is a
 `claim:` tag, and nothing here should ever become one without first landing a
 recorder, a gate, and a control, the same way every shipped level did.
@@ -18,7 +18,7 @@ recorder, a gate, and a control, the same way every shipped level did.
 
 ## Near-term: the open protocols
 
-[`../extension_protocols.md`](../extension_protocols.md) answers the open
+[`../extension_protocols.md`](../reference/extension_protocols.md) answers the open
 Major items in [`../../TODO.md`](../../TODO.md) with protocol designs P1–P3.
 Read the current status at the top of that protocol document separately from
 its preserved proposal sections. The fitted probe remains unmeasured; its data
@@ -26,14 +26,14 @@ foundation and compute pilot are distinct from a trained scored arm. Aligned
 pronunciation and case-word measurements have been recorded. Their source-bound
 receipts and ledger entries govern completion, not the age of a proposal table.
 The connected runtime and GUM comparison are also implemented, as described in
-[the hierarchy](../hierarchy.md); they do not retroactively turn isolated seam
+[the hierarchy](../design/hierarchy.md); they do not retroactively turn isolated seam
 experiments into end-to-end evidence.
 
 | Protocol | Open TODO item | What is landed | What remains, and its gate |
 |---|---|---|---|
-| **P1** — a fitted external probe arm ([extension_protocols.md §2](../extension_protocols.md#2-protocol-p1--a-fitted-external-probe-arm)) | "Equal opportunity to fit the task" — today's external-probe comparison gives AILM's own decoders a fitted comparator while the served probes answer zero-shot, which the paper's own fairness table records as failing in every arm | The offline data/identity foundation: streaming exact-census objective, the diagnostic carve behind its declared seam, write-once receipts, the separate fitted-probe registry, the stride-aliasing refutation, and the warm-up compute-gate measurement | The fit pipeline itself — the LoRA fit and its declared controls, fuse/convert/serve, and the fitted recorder and its claims — gated by scoring the fitted arm under the same proper-loss discipline every other channel in this repository already uses, once the external model infrastructure (checkpoint downloads, local serving toolchain, and a license decision) that protocol assigns to its own grant is in place |
-| **P2** — stipulated aligned spelling-to-pronunciation, design B ([extension_protocols.md §3](../extension_protocols.md#3-protocol-p2--stipulated-aligned-spelling-to-pronunciation-design-b)) | Extend the stipulated-artifact design (already shipped for the phone chain) to aligned pronunciation | The pair-structured stipulated artifact with digest-bound provenance, the native comparator (the shipped letter-to-phone decoder refit on the stipulated train pairs), and the offline evaluator with its English-transfer, broken-correspondence, and uniform-floor controls; the comparator arm and the zero-shot probe arms are implemented and registered | Recorded probe evidence must pass its current receipt and semantic replay checks. Any new demonstration arm requires a prospective protocol; the artifact is never called contamination-free |
-| **P3** — the L4→L3 `P(word \| case role)` bridge ([extension_protocols.md §4](../extension_protocols.md#4-protocol-p3--the-l4l3-pword--case-role-bridge-account)) | The end-to-end top-down cascade was blocked on data provenance: no label/split/observation account existed for a case-role-to-word message | The account itself — the label-construction/split/observation artifact, the registry entries, the L3 inlet/executor, the fixed model-sender estimand, and an exploratory influence sweep on the development population | Any *performance* claim: it still needs its own specified population, comparator, controls, and uncertainty analysis before it is more than the exploratory sweep already on record. Cost is large and the value is uncertain by design — the uncertainty is the reason this remains open rather than closed |
+| **P1** — a fitted external probe arm ([extension_protocols.md §2](../reference/extension_protocols.md#2-protocol-p1--a-fitted-external-probe-arm)) | "Equal opportunity to fit the task" — today's external-probe comparison gives AILM's own decoders a fitted comparator while the served probes answer zero-shot, which the paper's own fairness table records as failing in every arm | The offline data/identity foundation: streaming exact-census objective, the diagnostic carve behind its declared seam, write-once receipts, the separate fitted-probe registry, the stride-aliasing refutation, and the warm-up compute-gate measurement | The fit pipeline itself — the LoRA fit and its declared controls, fuse/convert/serve, and the fitted recorder and its claims — gated by scoring the fitted arm under the same proper-loss discipline every other channel in this repository already uses, once the external model infrastructure (checkpoint downloads, local serving toolchain, and a license decision) that protocol assigns to its own grant is in place |
+| **P2** — stipulated aligned spelling-to-pronunciation, design B ([extension_protocols.md §3](../reference/extension_protocols.md#3-protocol-p2--stipulated-aligned-spelling-to-pronunciation-design-b)) | Extend the stipulated-artifact design (already shipped for the phone chain) to aligned pronunciation | The pair-structured stipulated artifact with digest-bound provenance, the native comparator (the shipped letter-to-phone decoder refit on the stipulated train pairs), and the offline evaluator with its English-transfer, broken-correspondence, and uniform-floor controls; the comparator arm and the zero-shot probe arms are implemented and registered | Recorded probe evidence must pass its current receipt and semantic replay checks. Any new demonstration arm requires a prospective protocol; the artifact is never called contamination-free |
+| **P3** — the L4→L3 `P(word \| case role)` bridge ([extension_protocols.md §4](../reference/extension_protocols.md#4-protocol-p3--the-l4l3-pword--case-role-bridge-account)) | The end-to-end top-down cascade was blocked on data provenance: no label/split/observation account existed for a case-role-to-word message | The account itself — the label-construction/split/observation artifact, the registry entries, the L3 inlet/executor, the fixed model-sender estimand, and an exploratory influence sweep on the development population | Any *performance* claim: it still needs its own specified population, comparator, controls, and uncertainty analysis before it is more than the exploratory sweep already on record. Cost is large and the value is uncertain by design — the uncertainty is the reason this remains open rather than closed |
 
 None of the rows above authorizes rebuilding anything
 [`../../TODO.md`](../../TODO.md) has already rejected. Read its **Rejected, with
@@ -52,7 +52,7 @@ Every shipped level is declared in [Generalized Notation
 Notation](../../gnn/README.md) (GNN), the Active Inference Institute's
 structured notation for generative models, and every declaration is
 conformance-checked against its live `pymdp` agent
-([`../gnn_composition.md`](../gnn_composition.md)). What that checks today is
+([`../gnn_composition.md`](../reference/gnn_composition.md)). What that checks today is
 internal: AILM's own parser reads a spec, AILM's own conformance checker
 compares the spec's `StateSpaceBlock`, `InitialParameterization`, and
 `ActInfOntologyAnnotation` block against the array shapes and role bindings of
@@ -163,7 +163,7 @@ it needs a specified LLM-facing calling contract around the existing
 definition of what "the caller used AILM's trace" means, and a receiver-side
 measurement of whether that use changes the caller's own scored output — the
 same "declared sender, receiver's own proper loss" method
-[`../hierarchy.md`](../hierarchy.md#two-senses-of-channel-in-this-codebase)
+[`../hierarchy.md`](../design/hierarchy.md#two-senses-of-channel-in-this-codebase)
 already applies to every internal channel, not a new one invented for this
 case.
 
@@ -176,7 +176,7 @@ is blended into a receiver's prior, likelihood, or preference at a named slot,
 at a swept mixing weight, and then scored at the receiver under the receiver's
 own proper loss against the unmixed anchor — never assumed to help, and
 sometimes measured harmful
-([`../hierarchy.md`](../hierarchy.md#two-senses-of-channel-in-this-codebase)).
+([`../hierarchy.md`](../design/hierarchy.md#two-senses-of-channel-in-this-codebase)).
 The connected runtime separately fixes its named channel schedule and compares
 it against channel interventions; those results are not a retuned sweep.
 The proposed extension is the same design with an external LLM standing in as
@@ -231,11 +231,11 @@ positive/negative-control disciplines it describes apply to every direction on
 this page exactly as they apply to the six shipped levels.
 
 - **The open protocols (P1–P3).** Read
-  [`../extension_protocols.md`](../extension_protocols.md) in full, including
-  its [ownership-grant boundaries](../extension_protocols.md#5-ownership-grant-boundaries-and-what-this-milestone-did-not-do),
+  [`../extension_protocols.md`](../reference/extension_protocols.md) in full, including
+  its [ownership-grant boundaries](../reference/extension_protocols.md#5-ownership-grant-boundaries-and-what-this-milestone-did-not-do),
   before picking up a partition; each protocol's remaining work is
   execution-sequenced, not independent tasks to grab in any order. Check
-  [`../decisions.md`](../decisions.md) and `../../TODO.md`'s Rejected section
+  [`../decisions.md`](../provenance/decisions.md) and `../../TODO.md`'s Rejected section
   before re-proposing a design that history already refuted.
 - **GNN interoperability.** Start at [`../../gnn/AGENTS.md`](../../gnn/AGENTS.md)
   and [`../../gnn/SPEC.md`](../../gnn/SPEC.md) for the notation's contract, then
@@ -251,7 +251,7 @@ this page exactly as they apply to the six shipped levels.
   auditing the gate before the level exists.
 - **LLM↔AILM composition proposals.** These are named directions, not open
   tickets. Before drafting a design, read `../../TODO.md`'s Rejected section
-  and [`../hierarchy.md`'s "Two senses of channel"](../hierarchy.md#two-senses-of-channel-in-this-codebase)
+  and [`../hierarchy.md`'s "Two senses of channel"](../design/hierarchy.md#two-senses-of-channel-in-this-codebase)
   in full, and write down the receiver's task and comparator — and confirm the
   task does not reduce to predicting the sender — before proposing any code.
   A design that skips this step will be asked to restate it, not built around

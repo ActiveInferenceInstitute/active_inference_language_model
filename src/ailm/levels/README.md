@@ -79,7 +79,7 @@ claim:coupling_alpha0_identity_diffs observed differences. The best nonzero arm
 on the recorded grid has a margin of claim:coupling_margin_pts percentage points
 against that default, with paired McNemar p = claim:coupling_mcnemar_p. This
 outcome concerns the recorded protocol and grid. The other measured receiver
-interventions are described in [the hierarchy guide](../../../docs/hierarchy.md);
+interventions are described in [the hierarchy guide](../../../docs/design/hierarchy.md);
 they are separate experiments and do not establish an end-to-end cascade.
 
 ## Quick start

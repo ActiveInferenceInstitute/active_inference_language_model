@@ -55,7 +55,7 @@ is not the only difference and the result is measuring something else.
 permutation, so the preference keeps its entropy and loses only its meaning. It
 must do *worse* than the real channel. Replacing ``C`` with uniform instead would
 confound content with entropy, which is why the reversal is the stronger control
-(the same argument as ``docs/decisions.md`` entry 9).
+(the same argument as ``docs/provenance/decisions.md`` entry 9).
 """
 
 from __future__ import annotations
@@ -494,13 +494,13 @@ def lexicon_preference(
 
     Given the letters emitted so far in the current word, the word level's
     posterior is supported on the vocabulary words carrying that prefix — the
-    trie node (``docs/decisions.md`` entry 13). Marginalizing that posterior over
+    trie node (``docs/provenance/decisions.md`` entry 13). Marginalizing that posterior over
     each word's next letter gives a distribution over what should come next, and
     its log is the letter level's ``C``.
 
     This is the first real inter-level message in AILM. The one built previously
     ran the other way, from letters into phonemes, and measured harmful
-    (``docs/decisions.md`` entry 9); the reason it failed does not apply here.
+    (``docs/provenance/decisions.md`` entry 9); the reason it failed does not apply here.
     That channel carried *less* information than the observation it competed
     with. This one carries information the letter level does not have at all: the
     lexicon.
@@ -576,7 +576,7 @@ def efe_policy_posterior(
     Computed in closed form rather than through ``agent.infer_policies`` so that
     the two can be checked against each other — the oracle-equivalence pattern
     this project applies to every other numeric claim
-    (``docs/gate_design.md``). ``tests/test_generation.py`` asserts they agree.
+    (``docs/development/gate_design.md``). ``tests/test_generation.py`` asserts they agree.
 
     With a deterministic controllable ``B`` and an identity ``A``, taking action
     ``k`` from any state yields observation ``k`` with certainty. The expected

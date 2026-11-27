@@ -92,7 +92,7 @@ REQUIRED_MODELS: tuple[str, ...] = (
 #: so they share this regression obligation even though their matrices are
 #: deliberately broken negative controls.
 GNN_EVIDENCE_PROSE: tuple[Path, ...] = (
-    PROJECT_ROOT / "docs" / "gnn_composition.md",
+    PROJECT_ROOT / "docs" / "reference/gnn_composition.md",
     PROJECT_ROOT / "gnn" / "README.md",
     PROJECT_ROOT / "gnn" / "AGENTS.md",
     spec_path("L5_clause"),
@@ -331,7 +331,7 @@ def test_l6_mutation_annotation_preserves_current_evidence_boundaries():
 
 
 def test_composition_doc_separates_historical_interventions_from_connected_execution():
-    raw = (PROJECT_ROOT / "docs" / "gnn_composition.md").read_text(encoding="utf-8")
+    raw = (PROJECT_ROOT / "docs" / "reference/gnn_composition.md").read_text(encoding="utf-8")
     for seam in (
         "L1 → L2B",
         "L3 → L2B",

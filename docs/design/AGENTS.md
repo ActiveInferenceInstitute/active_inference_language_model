@@ -8,17 +8,17 @@ Operating rules for the design-decision records. The file-by-file index is
 
 One decision per file. Each records a choice that could reasonably have gone the
 other way, names the rejected alternative, and says what the choice costs. These
-are the **scientific** architecture; [`../architecture.md`](../architecture.md) is
+are the **scientific** architecture; [`../architecture.md`](../development/code-architecture.md) is
 the **code** architecture, and they are deliberately different documents.
 
 ## Ownership boundary
 
 | Concern | Owner |
 | --- | --- |
-| Which score paths run live inference, and the governing level structure | [`../hierarchy.md`](../hierarchy.md) — it wins on any disagreement |
-| The chronological record of when a decision was taken or restated | [`../decisions.md`](../decisions.md) |
+| Which score paths run live inference, and the governing level structure | [`../hierarchy.md`](hierarchy.md) — it wins on any disagreement |
+| The chronological record of when a decision was taken or restated | [`../decisions.md`](../provenance/decisions.md) |
 | Every measured number cited here | [`../../data/claims.json`](../../data/claims.json), reached by `claim:` tag |
-| Module ownership, import direction, forbidden patterns | [`../architecture.md`](../architecture.md) |
+| Module ownership, import direction, forbidden patterns | [`../architecture.md`](../development/code-architecture.md) |
 | Symbol-to-meaning | [`../notation.md`](../reference/notation.md) |
 | Equation-to-code-to-test | [`../formalism_map.md`](../reference/formalism_map.md) |
 
@@ -52,7 +52,7 @@ and design decisions" table in the same change.
 3. State what the choice costs. A design record with no cost section is advocacy.
 4. Link the code that implements it and the test that exercises it.
 5. If the decision has a dated chronology, put the chronology in
-   [`../decisions.md`](../decisions.md) and link to the entry rather than
+   [`../decisions.md`](../provenance/decisions.md) and link to the entry rather than
    duplicating it.
 
 ## Verification
@@ -82,6 +82,6 @@ print('UNBACKED:', sorted(set(load_ledger(Path('.')).scan_prose(*files))))
 - [`README.md`](README.md) — the decision index
 - [`../AGENTS.md`](../AGENTS.md) — how `docs/` is gated, and the ownership split
 - [`../README.md`](../README.md) — the full documentation index
-- [`../hierarchy.md`](../hierarchy.md) — the governing level structure
-- [`../decisions.md`](../decisions.md) — the chronological record
+- [`../hierarchy.md`](hierarchy.md) — the governing level structure
+- [`../decisions.md`](../provenance/decisions.md) — the chronological record
 - [`../../AGENTS.md`](../../AGENTS.md) — project invariants and stage gates

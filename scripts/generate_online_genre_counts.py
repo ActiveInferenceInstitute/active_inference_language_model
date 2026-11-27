@@ -3,7 +3,7 @@
 
 Writes ``vendor/brown_online_drift.json``: the letter streams for the two
 Brown genres that form the **non-stationary** learning regime of
-``docs/decisions.md`` entry 28 — government (pre-drift distribution) and
+``docs/provenance/decisions.md`` entry 28 — government (pre-drift distribution) and
 romance (post-drift distribution). Each genre contributes a *learn* stream and
 a held-out *evaluate* stream, split by sentence-index parity so the two are
 disjoint, and each is normalized to the Stage 1 letter alphabet.

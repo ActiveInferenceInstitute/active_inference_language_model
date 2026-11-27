@@ -2,14 +2,14 @@
 
 Every project-specific term a newcomer meets, alphabetically, each pointing to
 the file or source that defines it. Definitions are derived from the code and
-from the canonical docs — [`hierarchy.md`](../hierarchy.md),
-[`gate_design.md`](../gate_design.md), [`syntax_guide.md`](../syntax_guide.md),
+from the canonical docs — [`hierarchy.md`](../design/hierarchy.md),
+[`gate_design.md`](../development/gate_design.md), [`syntax_guide.md`](syntax_guide.md),
 [`method/release_checklist.md`](../method/release_checklist.md), and
 [`notation.md`](notation.md) — never invented. It carries no result numbers; for
 those, follow each entry's link.
 
 If a term isn't here, check [`notation.md`](notation.md) for symbols and
-equation-table entries, or [`../decisions.md`](../decisions.md) for the
+equation-table entries, or [`../decisions.md`](../provenance/decisions.md) for the
 reasoning behind a specific choice.
 
 ---
@@ -22,7 +22,7 @@ or [`PRIVILEGED_ORACLE`](#privileged_oracle)) that also fails it. The bar sits
 above that comparator, so no impossibility claim follows — a different model in
 the admissible class could still clear it. Defined in
 [`../../src/ailm/gates.py`](../../src/ailm/gates.py) (`classify_gate`); see the
-taxonomy table in [`gate_design.md`](../gate_design.md#the-typed-gate-verdict-taxonomy).
+taxonomy table in [`gate_design.md`](../development/gate_design.md#the-typed-gate-verdict-taxonomy).
 
 ### Active inference
 
@@ -41,7 +41,7 @@ models and are not a verdict on active inference as a general framework. See
 [`../manuscript/01_introduction.md`](../manuscript/01_introduction.md) § *Belief
 updating, action selection and the scope of each result*,
 [`../manuscript/02_background.md`](../manuscript/02_background.md), and the
-code-level score paths of [`../hierarchy.md`](../hierarchy.md).
+code-level score paths of [`../hierarchy.md`](../design/hierarchy.md).
 
 ### `ANALYTIC_BOUND`
 
@@ -59,7 +59,7 @@ for a sequence level, a context-free per-observation lookup table for a level
 that infers a hidden alphabet). One of the two measurements — with the
 [ceiling](#ceiling--comparator) — that a [gate](#gate) needs before its
 [verdict](#gate-verdict) means anything. See
-[`gate_design.md` § Uniform is a crippled comparator](../gate_design.md#uniform-is-a-crippled-comparator).
+[`gate_design.md` § Uniform is a crippled comparator](../development/gate_design.md#uniform-is-a-crippled-comparator).
 
 ### `BRACKETED_BOUND`
 
@@ -86,7 +86,7 @@ decode for a classification metric. Every ceiling carries a declared
 [`ComparatorType`](#comparator--comparatortype) — the classification is fail-closed, so a
 measured ceiling with an undeclared type is refused rather than silently
 treated as a bound. See [`gate_design.md` § How to compute an information
-ceiling](../gate_design.md#how-to-compute-an-information-ceiling) and
+ceiling](../development/gate_design.md#how-to-compute-an-information-ceiling) and
 [`../../src/ailm/gates.py`](../../src/ailm/gates.py).
 
 ### Channel
@@ -100,7 +100,7 @@ with their own populations. The connected runtime separately executes named
 channels on a causal multirate schedule; an intervention there is not the same
 estimand as an isolated historical sweep. See
 [`hierarchy.md` § Two senses of "channel" in this
-codebase](../hierarchy.md#two-senses-of-channel-in-this-codebase).
+codebase](../design/hierarchy.md#two-senses-of-channel-in-this-codebase).
 
 ### Claim
 
@@ -119,7 +119,7 @@ is not substituted; it is a verifiable pointer that a test checks against the
 [claims ledger](#claims-ledger), so the source stays auditable while a
 hydrated, human-readable mirror is written separately. Contrast with
 [`{{TOKEN}}`](#token-hydration), the manuscript's substituted form. See
-[`syntax_guide.md` § The two mechanisms](../syntax_guide.md#the-two-mechanisms).
+[`syntax_guide.md` § The two mechanisms](syntax_guide.md#the-two-mechanisms).
 
 ### Claims ledger
 
@@ -184,7 +184,7 @@ way out). Those acoustic adapters are not implemented by the symbol contract. AI
 draws an explicit interface contract at this boundary rather than modeling
 speech itself: DSP sits outside the level stack. See
 [`../design/speech_boundary.md`](../design/speech_boundary.md) and
-[`../architecture.md`](../architecture.md).
+[`../architecture.md`](../development/code-architecture.md).
 
 ### Expected free energy (EFE)
 
@@ -209,7 +209,7 @@ over which evaluation set, in which direction), a [comparator](#ceiling--compara
 (what a model lacking the claimed mechanism would score), and a threshold (the
 value separating pass from fail). Missing any part makes the claim
 unfalsifiable. See [`gate_design.md` § What a gate
-is](../gate_design.md#what-a-gate-is).
+is](../development/gate_design.md#what-a-gate-is).
 
 ### Gate verdict
 
@@ -221,7 +221,7 @@ glossary). The single classifier is `classify_gate` in
 [`../../src/ailm/gates.py`](../../src/ailm/gates.py); gate *placement* and
 model *outcome* (whether the shipped model passes) are reported separately and
 must not be conflated. See
-[`gate_design.md` § The typed gate-verdict taxonomy](../gate_design.md#the-typed-gate-verdict-taxonomy).
+[`gate_design.md` § The typed gate-verdict taxonomy](../development/gate_design.md#the-typed-gate-verdict-taxonomy).
 
 ### `GateVacuousError`
 
@@ -230,7 +230,7 @@ was not caught by the assertion meant to catch it. It exists so that a test
 which cannot fail is treated as no test at all, rather than being weakened
 quietly until it stops raising. Defined in
 [`../../src/ailm/control.py`](../../src/ailm/control.py); see
-[`testing_philosophy.md` § GateVacuousError](../testing_philosophy.md#gatevacuouserror).
+[`testing_philosophy.md` § GateVacuousError](../development/testing_philosophy.md#gatevacuouserror).
 
 ### GNN
 
@@ -248,7 +248,7 @@ code; AILM’s local spec construction and conformance do not use that upstream
 renderer, whose extension to AILM's own specs is tracked in
 [`guides/roadmap.md`](../guides/roadmap.md#gnn-interoperability-from-parses-like-to-renders-like)
 as proposed, not shipped. See [`../../gnn/README.md`](../../gnn/README.md) and
-[`../gnn_composition.md`](../gnn_composition.md).
+[`../gnn_composition.md`](gnn_composition.md).
 
 ### Habit
 
@@ -269,7 +269,7 @@ result can be replicated on genuinely new data rather than re-reading the
 population it was designed against. Not every corpus has one: for some members every
 partition was already used during development, which is recorded
 explicitly rather than assumed. See
-[`../decisions.md` § 79](../decisions.md#79--pre-registration-the-confirmatory-replication-protocol-with-an-honest-census-of-what-can-still-be-held-back).
+[`../decisions.md` § 79](../provenance/decisions.md#79--pre-registration-the-confirmatory-replication-protocol-with-an-honest-census-of-what-can-still-be-held-back).
 
 ### Intervention
 
@@ -280,19 +280,19 @@ word distribution blended into a word-level prior. Historical interventions
 were measured individually; the connected runtime executes a separately
 specified schedule. Neither existence nor type correctness of a route establishes
 that it improves predictive loss. See
-[`hierarchy.md` § Top-down intervention inventory](../hierarchy.md#two-senses-of-channel-in-this-codebase).
+[`hierarchy.md` § Top-down intervention inventory](../design/hierarchy.md#two-senses-of-channel-in-this-codebase).
 
 ### L1 — Letters
 
 The first level: hidden state and observation are both the current letter,
 transitioning through a Brown-corpus letter bigram. See the level table in
-[`hierarchy.md`](../hierarchy.md#what-is-shipped-level-by-level).
+[`hierarchy.md`](../design/hierarchy.md#what-is-shipped-level-by-level).
 
 ### L2A — Phonemes
 
 The phoneme-sequence level: hidden state and observation are both the current
 phone, transitioning through a CMUdict phone bigram. See
-[`hierarchy.md`](../hierarchy.md#what-is-shipped-level-by-level).
+[`hierarchy.md`](../design/hierarchy.md#what-is-shipped-level-by-level).
 
 ### L2B — G2P
 
@@ -300,14 +300,14 @@ The letter-to-phone (grapheme-to-phoneme) level: the hidden factor is drawn
 from the phone inventory while the observation is the current letter, making
 its emission matrix an instance of [a shared alphabet](#shared-alphabet) with
 L1. Also called Stage 2B in the stage-gate table. See
-[`hierarchy.md` § L2B ← L1](../hierarchy.md#l2b--l1-cross-representation-inference-inside-one-agent).
+[`hierarchy.md` § L2B ← L1](../design/hierarchy.md#l2b--l1-cross-representation-inference-inside-one-agent).
 
 ### L3 — Words
 
 The word level: the hidden factor is word identity crossed with within-word
 position, observing each letter or an end-of-word symbol through a
 deterministic spelling emission. See
-[`hierarchy.md`](../hierarchy.md#what-is-shipped-level-by-level).
+[`hierarchy.md`](../design/hierarchy.md#what-is-shipped-level-by-level).
 
 ### L4 — Cases
 
@@ -315,7 +315,7 @@ The syntactic case level: the hidden factor is a case role, observed only
 through Universal Dependencies part-of-speech (`UPOS`) tags — never the
 dependency relation or the morphological case feature, both of which are
 withheld from the model and used only by the evaluation oracle. See
-[`hierarchy.md`](../hierarchy.md#what-is-shipped-level-by-level) and
+[`hierarchy.md`](../design/hierarchy.md#what-is-shipped-level-by-level) and
 [`notation.md` § Special observations](notation.md#special-observations).
 
 ### L5 — Clauses
@@ -323,14 +323,14 @@ withheld from the model and used only by the evaluation oracle. See
 The clause level: the hidden factor is a joint sentence type crossed with a
 widened symbol (a case role, or a verb/auxiliary marker), observed through
 that widened symbol. See
-[`hierarchy.md`](../hierarchy.md#what-is-shipped-level-by-level).
+[`hierarchy.md`](../design/hierarchy.md#what-is-shipped-level-by-level).
 
 ### L6 — Narrative
 
 The narrative level: the hidden factor is a document-position tercile
 ("phase" in code), observed through sentence type, and intervening on the
 clause level's prior. See
-[`hierarchy.md`](../hierarchy.md#what-is-shipped-level-by-level).
+[`hierarchy.md`](../design/hierarchy.md#what-is-shipped-level-by-level).
 
 ### Margin
 
@@ -367,7 +367,7 @@ A test run against a deliberately broken model or input, required to show
 that a gate's assertion can actually *fail* — without one, a metric that
 cannot tell good from bad is unfalsifiable in the direction that matters most.
 See [`testing_philosophy.md` § Every gate needs a positive AND a negative
-control](../testing_philosophy.md#every-gate-needs-a-positive-and-a-negative-control)
+control](../development/testing_philosophy.md#every-gate-needs-a-positive-and-a-negative-control)
 and [`GateVacuousError`](#gatevacuouserror).
 
 ### Ontology annotation
@@ -416,7 +416,7 @@ share only the word. See [`notation.md`](notation.md) and
 A test proving that a detector or gate *can* fire at all — for example, a
 planted fake `claim:` tag that a scanner must flag. Paired with a
 [negative control](#negative-control) so both directions of the check are
-exercised. See [`testing_philosophy.md`](../testing_philosophy.md).
+exercised. See [`testing_philosophy.md`](../development/testing_philosophy.md).
 
 ### `PRIVILEGED_ORACLE`
 
@@ -486,8 +486,8 @@ distribution, or message travels along it. L2B is the shipped example — its
 hidden factor is drawn from the phone inventory and its observation modality is
 drawn from the letter alphabet, so its emission matrix links two alphabets of
 different sizes inside one agent. Defined in
-[`gnn_composition.md` § 4.1](../gnn_composition.md#41-representational-composition--a-shared-alphabet);
-see also [`hierarchy.md` § L2B ← L1](../hierarchy.md#l2b--l1-cross-representation-inference-inside-one-agent).
+[`gnn_composition.md` § 4.1](gnn_composition.md#41-representational-composition--a-shared-alphabet);
+see also [`hierarchy.md` § L2B ← L1](../design/hierarchy.md#l2b--l1-cross-representation-inference-inside-one-agent).
 
 ### Stage N
 
@@ -508,7 +508,7 @@ rendered number is read out of the ledger on every build rather than typed by
 hand. A token naming no ledger entry fails the render. Contrast with the
 [`claim:` tag](#claim-tag), used everywhere outside the manuscript. See
 [`syntax_guide.md` § Rule 1: token = ledger label,
-uppercased](../syntax_guide.md#rule-1-token--ledger-label-uppercased).
+uppercased](syntax_guide.md#rule-1-token--ledger-label-uppercased).
 
 ### `UNAUDITED`
 

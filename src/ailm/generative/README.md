@@ -14,7 +14,7 @@ Stage 5.
 | --- | --- | --- |
 | `make_two_factor_agent()` | a minimal 2-factor / 2-modality `Agent` constructs with `A_dependencies=[[0],[1]]` | the factorization primitive the whole hierarchy rests on |
 | `verify_a_dependencies_shape(agent)` | `agent.A[m]` is **3-D** `(batch, n_obs_m, n_states_for_m)`, not 4-D+ | a flat joint `A` at the word level is physically impossible to store |
-| `verify_empirical_prior_coupling(agent)` | `update_empirical_prior` exists and is callable | it is the second half of the filtering recursion — a level's own posterior pushed through its own `B` to form its next prior. Within-level and temporal, never a channel between levels; see `docs/hierarchy.md` |
+| `verify_empirical_prior_coupling(agent)` | `update_empirical_prior` exists and is callable | it is the second half of the filtering recursion — a level's own posterior pushed through its own `B` to form its next prior. Within-level and temporal, never a channel between levels; see `docs/design/hierarchy.md` |
 | `verify_no_update_a_method(agent)` | `update_A` / `update_B` do **not** exist; `infer_parameters` does | learning goes through `infer_parameters`; code written against `update_A` targets an API that isn't there |
 | `verify_infer_policies_output(agent)` | `infer_policies(qs)` returns a 2-tuple `(q_pi, neg_efe)` | generation is policy selection over next-symbol commitments scored by G(π) |
 | `run_all_smoke_tests()` | all of the above, aggregated into `all_passed` | the Stage 0 gate reads this one boolean |

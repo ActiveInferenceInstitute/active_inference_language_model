@@ -754,7 +754,7 @@ when the labels are ground truth? — was answerable only on a language that
 marks case morphologically on nominals. Its population, comparator, endpoint,
 and refusal rules were prospectively specified within the same development
 session before the sequence-model score, after feasibility and development-set
-inspection (`docs/decisions.md` entry {{DECISION_CZECH_CASE_PROTOCOL}}). That
+inspection (`docs/provenance/decisions.md` entry {{DECISION_CZECH_CASE_PROTOCOL}}). That
 specification was not independently timestamped in an immutable prior artifact,
 so it is not a preregistration. **The result is exploratory**: the project's
 confirmatory family was frozen before this arm existed, neither of its p-values
@@ -1764,7 +1764,7 @@ endpoints; no equivalence or near-null classification is inferred from it.
 ### Case-word influence sweep on the development population {#sec:case_word_sweep}
 
 The case-word bridge's registered influence sweep
-(`docs/decisions.md` entry {{DECISION_CASE_WORD_SWEEP}}; estimand and controls
+(`docs/provenance/decisions.md` entry {{DECISION_CASE_WORD_SWEEP}}; estimand and controls
 in [@sec:hierarchy]) is the second intervention on the L3 word prior that was
 specified before it ran, and the first in which the sender is the case
 level's own posterior rather than a privileged reference. The receiver side

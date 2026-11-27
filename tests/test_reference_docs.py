@@ -97,7 +97,7 @@ def _verify_protocol_links(source: str, target_html: str) -> None:
 
 
 def test_protocol_consumers_target_real_markdown_ids_and_break_when_removed():
-    target = (ROOT / "docs/extension_protocols.md").read_text()
+    target = (ROOT / "docs/reference/extension_protocols.md").read_text()
     html = _html(target)
     for rel in [
         "docs/manuscript/05_discussion.md",
@@ -202,7 +202,7 @@ def test_whole_protocol_page_and_actual_pdf_destinations_survive_relocation(tmp_
 
     values = generate_manuscript_variables(ROOT)
     claims = json.loads((ROOT / "data/claims.json").read_text())["claims"]
-    canonical = (ROOT / "docs/extension_protocols.md").read_text()
+    canonical = (ROOT / "docs/reference/extension_protocols.md").read_text()
     hydrated = tmp_path / "extension_protocols.md"
     hydrated.write_text(
         hydrate(canonical, claims, reference_variables=_load_reference_variables(ROOT))

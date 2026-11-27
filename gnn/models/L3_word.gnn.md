@@ -52,7 +52,7 @@ a bar of claim:stage3_bigram_baseline. What pins the level down is the
 closed-form path identity — the probability the model assigns to a word's full
 emission path must equal that word's unigram probability, to
 claim:stage3_path_identity_max_abs_err — together with the per-axis structural
-declarations below. See docs/decisions.md entries 13 and 14.
+declarations below. See docs/provenance/decisions.md entries 13 and 14.
 
 Why this is not a trie over states. The design document specifies words as paths
 through a letter-phoneme trie. A dense pymdp transition over trie nodes is

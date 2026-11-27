@@ -136,7 +136,7 @@ def validate_study_design_provenance(provenance: object) -> dict[str, object]:
     Calling a protocol ``preregistered`` is permitted only when the record
     names an independently timestamped, content-addressed artifact committed
     before measurement.  This makes the word depend on evidence rather than on
-    an editable heading in ``docs/decisions.md``.  Decision 77 deliberately
+    an editable heading in ``docs/provenance/decisions.md``.  Decision 77 deliberately
     takes the other valid branch: a prospective development-session
     specification with no independent prior artifact.
 

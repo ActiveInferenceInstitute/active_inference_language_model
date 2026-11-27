@@ -66,4 +66,4 @@ diagnostic count the test requires moves with it.
 - [`../README.md`](../README.md) — the layer's full guide
 - [`../AGENTS.md`](../AGENTS.md) — layer-wide operating rules
 - [`../AILM/AGENTS.md`](../AILM/AGENTS.md) — the library these statements are refuted against
-- [`../../docs/testing_philosophy.md`](../../docs/testing_philosophy.md) — why every gate here carries a control
+- [`../../docs/testing_philosophy.md`](../../docs/development/testing_philosophy.md) — why every gate here carries a control

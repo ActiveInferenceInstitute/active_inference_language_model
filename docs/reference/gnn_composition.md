@@ -1,13 +1,13 @@
 # How the GNN-specified levels compose, and how they do inference
 
-The canonical [GeneralizedNotationNotation](../gnn/README.md) specs under
+The canonical [GeneralizedNotationNotation](../../gnn/README.md) specs under
 `gnn/models/` cover L1–L6, including separate phone-sequence and letter-to-phone
 models, the canonical widened-observation clause model and its retained case-only
 ablation, plus the L1g letter-generation variant. Their inventory is bound to live
 `pymdp.agent.Agent` objects by `SPEC_NAMES` in
-[`../tests/test_gnn_conformance.py`](../tests/test_gnn_conformance.py). Its
+[`../tests/test_gnn_conformance.py`](../../tests/test_gnn_conformance.py). Its
 default-deny directory check requires the covered set to equal the canonical
-specs on disk, and [`../tests/test_spec_agent.py`](../tests/test_spec_agent.py)
+specs on disk, and [`../tests/test_spec_agent.py`](../../tests/test_spec_agent.py)
 separately requires every spec-built Agent to be bit-identical to its
 builder-built counterpart.
 
@@ -21,10 +21,10 @@ The original stage scorers and recorded intervention experiments retain their
 own populations and estimands. The connected development runtime additionally
 executes a causal schedule of messages through GNN-built agents. Its observation
 access, clocks, resets, train-only kernels and conditional reference are specified
-in the [connected runtime contract](design/connected_runtime.md), with the
-[governing hierarchy](hierarchy.md#connected-development-runtime) stating the
+in the [connected runtime contract](../design/connected_runtime.md), with the
+[governing hierarchy](../design/hierarchy.md#connected-development-runtime) stating the
 scientific boundary. This is local conditional inference with explicit timing,
-not a single global joint posterior. The [locally frozen GUM comparison](manuscript/04_results.md#sec:connected_gum)
+not a single global joint posterior. The [locally frozen GUM comparison](../manuscript/04_results.md#sec:connected_gum)
 provides separate population-specific character-loss evidence; it does not
 establish general performance, finite full-stream word loss or generation quality.
 
@@ -42,7 +42,7 @@ temporal recursion: it takes a level's own posterior at position `t` and produce
 that same level's prior for position `t+1`. It never crosses a level boundary.
 
 A real Level 1 to Level 2 soft-observation channel *was* implemented
-([`../src/ailm/levels/coupling.py`](../src/ailm/levels/coupling.py)) and measured
+([`../src/ailm/levels/coupling.py`](../../src/ailm/levels/coupling.py)) and measured
 **harmful** — a margin of claim:coupling_margin_pts points, McNemar
 p = claim:coupling_mcnemar_p, recorded support flag
 claim:coupling_supported. It ships gated off. The cause is structural rather than
@@ -50,7 +50,7 @@ a wiring defect: at position `t` the position-aligned letter-to-phone (G2P)
 level *already observes* letter `t`,
 while the L1 predictive is a function of letters `0..t-1` only, so mixing the L1
 message in substitutes weak evidence for a certainty. The full measurement and
-its controls are [`decisions.md` entry 9](decisions.md#9--inter-level-soft-observation-coupling-is-a-recorded-negative-result).
+its controls are [`decisions.md` entry 9](../provenance/decisions.md#9--inter-level-soft-observation-coupling-is-a-recorded-negative-result).
 
 What genuinely composes is set out in [§4](#4-how-the-levels-compose). Shared
 alphabets and shared spec grammar are static relationships; the historical
@@ -68,10 +68,10 @@ ontology block naming the semantic *role* of every matrix. AILM accepts exactly
 the canonical thirteen sections, in canonical order; anything else is a parse
 error rather than an extension, because a misspelled `## ModelParamaters` would
 otherwise silently take the dimensions with it. The enforced subset and its
-limits are [`../gnn/SPEC.md`](../gnn/SPEC.md).
+limits are [`../gnn/SPEC.md`](../../gnn/SPEC.md).
 
 Five sections carry load. The excerpts below are the real ones from
-[`../gnn/models/L2b_grapheme_to_phoneme.gnn.md`](../gnn/models/L2b_grapheme_to_phoneme.gnn.md), the L2B grapheme-to-phoneme level.
+[`../gnn/models/L2b_grapheme_to_phoneme.gnn.md`](../../gnn/models/L2b_grapheme_to_phoneme.gnn.md), the L2B grapheme-to-phoneme level.
 
 ### `StateSpaceBlock` — every variable and its dimensions
 
@@ -119,7 +119,7 @@ C=Zeros(30)
 Only four forms are accepted: `Identity(n)`, `Uniform(n)`, `Zeros(n)` and
 `Learned(k=v, ...)`. Learned entries are **not inlined**. A 30-by-39 probability
 table is a derived artifact reproduced byte-identically by its generator
-([`../scripts/generate_phoneme_counts.py`](../scripts/generate_phoneme_counts.py)
+([`../scripts/generate_phoneme_counts.py`](../../scripts/generate_phoneme_counts.py)
 from `vendor/cmudict_counts.json`); a copy inside the spec would be a second
 source of truth, and the copy is the one that drifts.
 
@@ -150,7 +150,7 @@ claiming a role pin nothing, so ambiguity is itself a violation.
 Declaring `B=TransitionMatrix` is what turns "the learned bigram is in the wrong
 slot" from a slightly different number into a named violation. Both slots accept
 a column-stochastic matrix, so pymdp's own validation is indifferent between
-them; see [`decisions.md` entry 1](decisions.md#1--learned-sequence-dynamics-go-in-b-the-emission-is-a).
+them; see [`decisions.md` entry 1](../provenance/decisions.md#1--learned-sequence-dynamics-go-in-b-the-emission-is-a).
 
 ### `ModelParameters` — the sizes both sides must agree on
 
@@ -176,11 +176,11 @@ Agent used by the recorded measurements, while
 `ailm.spec_agent.build_agent_from_spec` constructs an Agent from the declaration
 through a default-deny registry of permitted `Learned(...)` provenances. Both
 paths call the same low-level matrix builders, and
-[`../tests/test_spec_agent.py`](../tests/test_spec_agent.py) requires their slot
+[`../tests/test_spec_agent.py`](../../tests/test_spec_agent.py) requires their slot
 arrays to match in shape, dtype and bytes before the spec-built path can stand in
 for the historical builder.
 
-The independent guard remains [`../src/ailm/gnn/`](../src/ailm/gnn): it is
+The independent guard remains [`../src/ailm/gnn/`](../../src/ailm/gnn): it is
 stdlib plus NumPy and never imports the construction adapter, pymdp, JAX, or the
 upstream pipeline. It parses the declaration and checks the already-constructed
 live object. Keeping construction in `ailm.spec_agent` and conformance in
@@ -216,14 +216,14 @@ returns the arrays as well as their shapes — the structural-form checks
 the letter level the correct and the historically swapped wirings have identical
 shapes.
 
-[`../tests/test_gnn_conformance.py`](../tests/test_gnn_conformance.py) runs this
+[`../tests/test_gnn_conformance.py`](../../tests/test_gnn_conformance.py) runs this
 for every registered spec against agents built for real from the vendored artifacts.
 Its deliberate negative controls include an A/B-swapped letter agent, an inverted
 39-by-30 G2P emission, contradictory declarations, mutated dimensions and the
 per-level mutation specs; each must be **rejected**, with the test asserting on
 the reported violation rather than accepting an unrelated exception.
 
-[`../tests/test_spec_agent.py`](../tests/test_spec_agent.py) then exercises the
+[`../tests/test_spec_agent.py`](../../tests/test_spec_agent.py) then exercises the
 other direction for every registered spec: build from the spec, compare byte-for-byte with
 the canonical builder, and refuse an unregistered generator, an altered
 provenance argument, or a registered provenance attached to the wrong ontology
@@ -231,7 +231,7 @@ role. Conformance establishes declared structure; bit identity establishes that
 the two construction paths currently denote the same fitted model. Neither test
 by itself validates a reported perplexity or accuracy.
 
-`fig:gnn_pipeline` ([`../src/ailm/figures/composition.py`](../src/ailm/figures/composition.py))
+`fig:gnn_pipeline` ([`../src/ailm/figures/composition.py`](../../src/ailm/figures/composition.py))
 draws the builder-and-conformance path, with the closing arrow drawn back to the
 spec; the newer spec-construction path is documented above rather than added to
 that panel. Its declared
@@ -241,7 +241,7 @@ cannot show a declaration the file does not carry.
 > One rule governs step 7 failing: **never edit a spec to make a conformance test
 > pass.** Either the code changed intentionally, in which case the spec is
 > updated deliberately, or the code changed by accident, in which case the spec
-> just caught it. [`../gnn/AGENTS.md`](../gnn/AGENTS.md) is the contract.
+> just caught it. [`../gnn/AGENTS.md`](../../gnn/AGENTS.md) is the contract.
 
 ---
 
@@ -270,7 +270,7 @@ unigram; at L1 it is uniform. L2A and L2B reset to `D` at the start of **every**
 word, because their corpus is a word list and there is no bigram across the
 boundary. L1 does not reset: its corpus is running text, where the transition
 across a space is a real letter bigram (space is one of the thirty symbols). See
-[`decisions.md` entry 7](decisions.md#7--level-1-does-not-reset-the-prior-per-word-l2a-and-l2b-do).
+[`decisions.md` entry 7](../provenance/decisions.md#7--level-1-does-not-reset-the-prior-per-word-l2a-and-l2b-do).
 
 **Step 1 — the predictive read-off. `A` enters.**
 
@@ -344,7 +344,7 @@ Decoding is **filtering, not smoothing**: position `t` conditions on symbols
 `1..t` only, never on what follows. Smoothing and Viterbi use the whole word and
 are reported as privileged headroom references, not as what this model does and
 not as hard bounds on a same-information model
-([`decisions.md` entry 8](decisions.md#8--filtering-not-smoothing)).
+([`decisions.md` entry 8](../provenance/decisions.md#8--filtering-not-smoothing)).
 
 ---
 
@@ -390,7 +390,7 @@ the policy prior `E`. One parser reads every registered model file and one check
 its live Agent without a per-level exception list.
 
 This is a real, usable property today, and it is what
-[`../tests/test_gnn_conformance.py`](../tests/test_gnn_conformance.py) exploits:
+[`../tests/test_gnn_conformance.py`](../../tests/test_gnn_conformance.py) exploits:
 the same `assert_conforms(spec, **describe_shapes(agent))` call covers every
 level. `TestUpstreamInteroperability` additionally parses every registered file with
 the real upstream Markdown parser and requires both readers to extract the same
@@ -481,8 +481,8 @@ non-vacuous; a scrambled-message control fixes entropy and removes only meaning;
 and `validate_alpha_grid` raises `GateVacuousError` unless the grid contains
 `0.0` plus at least three distinct positive values, so "no alpha beat the
 baseline" cannot come from a sweep that collapsed to a point.
-[`../tests/test_coupling.py`](../tests/test_coupling.py) is where those live;
-[`decisions.md` entry 9](decisions.md#9--inter-level-soft-observation-coupling-is-a-recorded-negative-result)
+[`../tests/test_coupling.py`](../../tests/test_coupling.py) is where those live;
+[`decisions.md` entry 9](../provenance/decisions.md#9--inter-level-soft-observation-coupling-is-a-recorded-negative-result)
 is the record.
 
 **A coupling form that adds an *independent* channel is not what was measured
@@ -529,15 +529,15 @@ settings, and declared distribution constraints. It does not establish that a
 fitted conditional distribution estimates the intended population. A
 spec-conformant agent can still hold a badly estimated matrix. That is what the gates, the independent
 numpy oracle and the context-free comparators are for
-([`gate_design.md`](gate_design.md), [`testing_philosophy.md`](testing_philosophy.md)).
+([`gate_design.md`](../development/gate_design.md), [`testing_philosophy.md`](../development/testing_philosophy.md)).
 
 ---
 
 ## 6. Reading the figures
 
 The historical spec and independent-component figures are generated by
-[`../src/ailm/figures/composition.py`](../src/ailm/figures/composition.py) and
-checked by [`../tests/test_figures_composition.py`](../tests/test_figures_composition.py).
+[`../src/ailm/figures/composition.py`](../../src/ailm/figures/composition.py) and
+checked by [`../tests/test_figures_composition.py`](../../tests/test_figures_composition.py).
 
 | Label | What it shows |
 |---|---|
@@ -545,16 +545,16 @@ checked by [`../tests/test_figures_composition.py`](../tests/test_figures_compos
 | `fig:composition` | The three Part-A models side by side; the shared-alphabet identity between L1's state space and L2B's observation space, drawn without an arrowhead; the crossed-out default inter-agent channel and the separately measured harmful coupling result |
 
 The separate `fig:connected_core`, generated by
-[`ailm.figures.connected`](../src/ailm/figures/connected.py), depicts the current
+[`ailm.figures.connected`](../../src/ailm/figures/connected.py), depicts the current
 runtime channels from the typed channel contract and the report-bound GUM paired
 character-loss result. Its encoder annotation discloses what both arms retain;
 the aggregate gain is not assigned to individual arrows. The figure reader
 refuses incomplete execution bindings, changed document populations and
 inconsistent claims. Its controls are in
-[`test_figures_connected.py`](../tests/test_figures_connected.py).
+[`test_figures_connected.py`](../../tests/test_figures_connected.py).
 
 Beyond the project-wide layout and legibility gates
-([`../tests/test_figure_layout.py`](../tests/test_figure_layout.py)),
+([`../tests/test_figure_layout.py`](../../tests/test_figure_layout.py)),
 `fig:composition` carries a **content** gate: the rendered text is scanned for
 the vocabulary of inter-agent messaging, and every occurrence must be a denial.
 A positive control plants an offending line on the real figure and requires the
@@ -566,10 +566,10 @@ argued at its call site rather than left to the reader.
 
 ## Read next
 
-- [`../gnn/README.md`](../gnn/README.md) — what GNN is and why AILM carries specs
-- [`../gnn/SPEC.md`](../gnn/SPEC.md) — exactly what the checker enforces, and exactly what it does not
-- [`../gnn/AGENTS.md`](../gnn/AGENTS.md) — the contract; read before editing any spec
-- [`decisions.md`](decisions.md) — every decision behind the numbers cited here
-- [`design/architecture.md`](design/architecture.md) — the scientific architecture: per-level `A`/`B`/`C`/`D`, why words are paths, the scale arithmetic
-- [`architecture.md`](architecture.md) — the code architecture: what may import what
-- [`output_inventory.md`](reference/output_inventory.md) — every generated artifact, with its label and generator
+- [`../gnn/README.md`](../../gnn/README.md) — what GNN is and why AILM carries specs
+- [`../gnn/SPEC.md`](../../gnn/SPEC.md) — exactly what the checker enforces, and exactly what it does not
+- [`../gnn/AGENTS.md`](../../gnn/AGENTS.md) — the contract; read before editing any spec
+- [`decisions.md`](../provenance/decisions.md) — every decision behind the numbers cited here
+- [`design/architecture.md`](../design/architecture.md) — the scientific architecture: per-level `A`/`B`/`C`/`D`, why words are paths, the scale arithmetic
+- [`architecture.md`](../development/code-architecture.md) — the code architecture: what may import what
+- [`output_inventory.md`](output_inventory.md) — every generated artifact, with its label and generator

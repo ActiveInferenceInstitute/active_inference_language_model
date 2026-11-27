@@ -28,7 +28,7 @@ Several of these formalisms are additionally **machine-checked** in Lean 4 under
 `formal/` — `eq:gate_satisfies`, `eq:gate_verdict`, the correction half of
 `eq:filtering`, the Bonferroni arithmetic, and the Holm step-down comparison
 behind it — with the Lean ↔ equation ↔
-Python ↔ test correspondence tabulated in [`formal.md`](../formal.md). A Lean proof
+Python ↔ test correspondence tabulated in [`formal.md`](lean.md). A Lean proof
 does not change any row's status here: this file is about whether the *shipped
 code* computes the equation, which is a different question from whether the
 equation's logical content is proved.
@@ -113,7 +113,7 @@ inputs; stage-specific controls bind the remaining direct sites.
 
 The manuscript previously displayed the continuity-corrected $\chi^2$ approximation
 here instead. That is recorded in
-[`decisions.md` entry 12](../decisions.md#12--the-paired-test-is-mcnemars-exact-test-not-the-chi-square-approximation),
+[`decisions.md` entry 12](../provenance/decisions.md#12--the-paired-test-is-mcnemars-exact-test-not-the-chi-square-approximation),
 with the reason the exact form is the right choice.
 
 ## Scope notes: what is exercised, and what remains scaffold
@@ -312,5 +312,5 @@ rg -n 'chi2|chisquare|abs\(b - c\)|abs\(b-c\)' src scripts tests --glob '*.py'
 
 Numbers referenced here are ledger labels resolved from
 [`data/claims.json`](../../data/claims.json); see
-[`testing_philosophy.md`](../testing_philosophy.md) for the claims discipline that
+[`testing_philosophy.md`](../development/testing_philosophy.md) for the claims discipline that
 forbids hand-typing them.

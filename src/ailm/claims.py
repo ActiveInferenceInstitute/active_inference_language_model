@@ -129,7 +129,7 @@ _SCHEMA = "ailm-claims-v2"
 #: - ``confirmatory``: a prediction whose registration commit strictly predates
 #:   its outcome commit per ``data/registration_provenance.json`` and that was
 #:   scored under its registered rule. A PRE-REGISTRATION heading in
-#:   docs/decisions.md is not sufficient: the commit order is the operative
+#:   docs/provenance/decisions.md is not sufficient: the commit order is the operative
 #:   rule, and it is machine-checked against Git history.
 #: - ``exploratory``: test-selected sweep results and subsample arms — anything
 #:   whose headline was chosen on the evidence it is reported on.

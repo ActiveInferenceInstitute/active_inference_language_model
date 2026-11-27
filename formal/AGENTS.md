@@ -120,6 +120,6 @@ desynchronise the Lean from the measurements.
 ## See Also
 
 - [`README.md`](README.md) — the full guide, the isomorphism table, and the scope list
-- [`../docs/formal.md`](../docs/formal.md) — what is and is not formalized, from the documentation side
+- [`../docs/formal.md`](../docs/reference/lean.md) — what is and is not formalized, from the documentation side
 - [`../docs/formalism_map.md`](../docs/reference/formalism_map.md) — every labeled equation mapped to code and test
 - [`../AGENTS.md`](../AGENTS.md) — project invariants, including the generated-file rule for `LedgerData.lean`

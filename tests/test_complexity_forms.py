@@ -122,7 +122,7 @@ def _memory_bytes_without_the_policy_prior(
     single-action recognition levels where it is one float32. Omitting it
     leaves the form four bytes short at each of those levels — small enough to
     look like rounding, and the same omission at a level with a real action
-    set is the whole ``E`` array (``docs/decisions.md`` entry 21).
+    set is the whole ``E`` array (``docs/provenance/decisions.md`` entry 21).
 
     Written as a delta from the true form so the ONLY difference between them
     is the named term.

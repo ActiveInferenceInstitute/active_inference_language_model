@@ -193,7 +193,7 @@ def build_artifact(test_every: int = TEST_EVERY) -> dict:
                 "uncertainty instead"
             ),
             "registered_in": (
-                "docs/decisions.md entry 112 — a development-session "
+                "docs/provenance/decisions.md entry 112 — a development-session "
                 "specification, not a confirmatory registration"
             ),
         },

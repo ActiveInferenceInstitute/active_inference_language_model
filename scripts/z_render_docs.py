@@ -983,7 +983,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         supporting_dir = Path(PROTOCOL_SUPPORTING_HTML).parent
         status = render_supporting_protocol_html(
-            args.output_dir / "docs" / "extension_protocols.md",
+            args.output_dir / "docs" / "reference/extension_protocols.md",
             PROJECT_ROOT / "output" / "pdf" / supporting_dir,
             check_only=args.check,
             additional_output_dirs=(PROJECT_ROOT / "output" / "web" / supporting_dir,),

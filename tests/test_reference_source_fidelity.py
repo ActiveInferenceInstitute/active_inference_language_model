@@ -566,7 +566,7 @@ _CURRENT_ATTRIBUTION_PATHS = (
     PROJECT_ROOT / "AGENTS.md",
     PROJECT_ROOT / "src" / "ailm" / "cases.py",
     PROJECT_ROOT / "src" / "ailm" / "AGENTS.md",
-    PROJECT_ROOT / "docs" / "architecture.md",
+    PROJECT_ROOT / "docs" / "development/code-architecture.md",
     PROJECT_ROOT / "docs" / "design" / "cerebrum_mapping.md",
     PROJECT_ROOT / "docs" / "design" / "generation_problem.md",
     PROJECT_ROOT / "docs" / "design" / "no_embeddings.md",

@@ -143,7 +143,7 @@ PRIMARY_NONSIGNIFICANCE_ALPHA = 0.05
 #: registered. Decision 112 (prediction 1 and falsifier 1) requires the arm's
 #: type-oracle gain to be positive and to fall "inside the interval the probe
 #: registered"; the registration quotes that interval — the probe's own 99%
-#: bootstrap CI — at the widened item of ``docs/research_queue.md`` as
+#: bootstrap CI — at the widened item of ``docs/method/research_queue.md`` as
 #: ``[+0.039, +0.321]`` nats/sentence. Those committed endpoints are the
 #: registration's own three-decimal quoting of the probe's bootstrap interval:
 #: the same entry's original evidence line (commit 3162b61) recorded the

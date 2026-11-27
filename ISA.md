@@ -9,11 +9,11 @@ stage_total: 7
 # ISA — Active Inference Language Model
 
 Historical acceptance-contract record for what *done* was specified to mean.
-Current scientific status is governed by [`docs/hierarchy.md`](docs/hierarchy.md)
-and the chronology in [`docs/decisions.md`](docs/decisions.md). Every criterion
+Current scientific status is governed by [`docs/design/hierarchy.md`](docs/design/hierarchy.md)
+and the chronology in [`docs/provenance/decisions.md`](docs/provenance/decisions.md). Every criterion
 below names a probe that could falsify it; a criterion with no such probe is not a criterion.
 Working queue lives in [`TODO.md`](TODO.md), decision evidence in
-[`docs/decisions.md`](docs/decisions.md), and the archived 2026-08-21 cold-start
+[`docs/provenance/decisions.md`](docs/provenance/decisions.md), and the archived 2026-08-21 cold-start
 snapshot in [`HANDOFF.md`](HANDOFF.md), which is provenance rather than a current
 handoff.
 
@@ -48,7 +48,7 @@ Stage 6 is built and audited; Stage 7 remains an enforced speech-interface
 boundary rather than a seventh linguistic model. The apparatus that was specified-but-unexercised —
 `eq:efe`, `C`, the policy space — is exercised by
 `gnn/models/L1g_letter_generation.gnn.md` and `src/ailm/generation.py`. See
-`docs/decisions.md` entry 17 for the gate and the two failure modes it must
+`docs/provenance/decisions.md` entry 17 for the gate and the two failure modes it must
 straddle.
 
 ## Principles
@@ -83,7 +83,7 @@ straddle.
 - Commits go to the sidecar repository only, never to the template repo.
 - Prospectively, Stage N+1 may not begin until Stage N's gate passes with a
   baseline and a live negative control. The historical build did not
-  consistently follow that rule; the audit chronology in `docs/decisions.md`
+  consistently follow that rule; the audit chronology in `docs/provenance/decisions.md`
   governs what was retroactively re-certified.
 
 ## Dependencies
@@ -172,7 +172,7 @@ All criteria below are met; probes named. (Stages 0–6 built and audited; Stage
 
 - [x] ISC-40: The project has a **criterion** for when an inter-level channel
       helps, not merely a list of channels that did and did not — the
-      novel-information criterion, `docs/decisions.md` entry 18.
+      novel-information criterion, `docs/provenance/decisions.md` entry 18.
 - [x] ISC-41: That criterion made a **pre-registered prediction** which was
       recorded before the measurement and then met on the development
       population: a lexical message into L2B helps by
@@ -537,7 +537,7 @@ oracle is proven first and the oracle stands in.
 
 ## Decisions
 
-Full evidence in [`docs/decisions.md`](docs/decisions.md). Standing decisions:
+Full evidence in [`docs/provenance/decisions.md`](docs/provenance/decisions.md). Standing decisions:
 learned dynamics in `B`; context-free comparator not uniform; thresholds derived
 not borrowed; eval subsampling by even stride; thin margins by paired test; Part A
 over the full dictionary in closed form; filtering not smoothing; recorders write

@@ -120,7 +120,7 @@ def verify_empirical_prior_coupling(agent: Any) -> dict[str, Any]:
 
     It is the second half of the filtering recursion: an agent's own posterior
     pushed through its own B to form the prior for its next symbol. Within-level
-    and temporal, never a channel between levels — see ``docs/hierarchy.md``.
+    and temporal, never a channel between levels — see ``docs/design/hierarchy.md``.
 
     Tries multiple call signatures (the API varied between 1.0.1 and 1.0.3; the 1.0.3 form carries into 1.0.4).
 

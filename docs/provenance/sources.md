@@ -247,7 +247,7 @@ revision inspected for this provenance record.
   small sample under research terms, so a number reported against "PTB" would have
   named a corpus this project does not have. Stage 3 is measured on Brown, which
   is already vendored, checksummed and byte-reproducible, and is the corpus
-  Level 1 trains on. See `docs/decisions.md` entry 14.
+  Level 1 trains on. See `docs/provenance/decisions.md` entry 14.
 - **Access:** not used
 
 ### Brown Corpus (in use — Stage 1)
@@ -435,7 +435,7 @@ revision inspected for this provenance record.
 ### Widened clause arm — `data/widened/` (Stage 5w, decision 112)
 
 - **Role:** all inputs to the widened-observation clause arm registered in
-  `docs/decisions.md` entry 112 — one entry per typed sentence: the sentence
+  `docs/provenance/decisions.md` entry 112 — one entry per typed sentence: the sentence
   type and its **widened** observation sequence, the derived case roles plus one
   distinguished symbol per `VERB` and per `AUX` token in surface order. It is a
   separately preserved artifact beside the case-only ablation. Decision 114
@@ -505,7 +505,7 @@ revision inspected for this provenance record.
   fields — a model observing them would be reading its own answer key and would
   score near-perfectly while measuring nothing. The artifact records this
   restriction in its own `provenance.observation` field. See
-  `docs/decisions.md` entry 15
+  `docs/provenance/decisions.md` entry 15
 - **Two populations, never merged:** `gold` is UD `feats[Case]`, real English
   morphology, claim:stage4_gold_cases_present of 8 case roles; `derived` adds the
   `deprel` / token-level adposition heuristic to reach all 8. A score against
@@ -606,7 +606,7 @@ revision inspected for this provenance record.
   ability to measure the model, and the distinction is the point
 - **Custom lexicons:** `scripts/generate_word_counts.py --lexicon PATH` accepts
   one `word[<TAB>frequency]` per line. A lexicon supplied *without* frequencies
-  yields a uniform word prior, which `docs/decisions.md` entry 14 records as one
+  yields a uniform word prior, which `docs/provenance/decisions.md` entry 14 records as one
   of the mis-wirings that beats the accuracy bar while being wrong — so the
   generator warns rather than accepting it silently. Evaluation always uses
   held-out Brown restricted to what the lexicon covers, never the lexicon itself
@@ -614,7 +614,7 @@ revision inspected for this provenance record.
 ### Brown derived artifact — `vendor/brown_clause_word_counts.json` (entry 27, typed oracle -> word prior)
 
 - **Role:** the bridge corpus for the privileged punctuation-type-oracle → L3
-  word-prior intervention (`docs/decisions.md` entries 27, 88, and 89). One entry
+  word-prior intervention (`docs/provenance/decisions.md` entries 27, 88, and 89). One entry
   per **typed** sentence whose words
   are restricted to the Stage 3 word vocabulary, pairing each word token with
   the sentence type (declarative / interrogative, from sentence-final
@@ -638,7 +638,7 @@ revision inspected for this provenance record.
 ### Brown genre-drift derived artifact — `vendor/brown_online_drift.json` (entry 28, online learning)
 
 - **Role:** the non-stationary letter stream for the online-vs-frozen learning
-  experiment (`docs/decisions.md` entry 28). Two Brown genres whose
+  experiment (`docs/provenance/decisions.md` entry 28). Two Brown genres whose
   letter-bigram transition statistics genuinely differ — government (pre-drift)
   and romance (post-drift), total-variation distance measured by P1, not
   asserted — each contributing a learn stream and a held-out evaluate stream

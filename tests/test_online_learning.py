@@ -2,7 +2,7 @@
 
 What this file is for
 ---------------------
-``docs/decisions.md`` entry 28 pre-registered the W2 increment where learning
+``docs/provenance/decisions.md`` entry 28 pre-registered the W2 increment where learning
 could earn its way in: on a drifted (non-stationary) letter-bigram stream, an
 agent that keeps learning should track the drift that a frozen (non-learning)
 control cannot. The pre-registered predictions:
@@ -212,7 +212,7 @@ def test_online_confirmed_flag_is_set(streams):
     assert entry is not None, "online_confirmed absent; run the recorder"
     assert int(entry["value"]) == 1, (
         "The recorded online_confirmed flag is not 1; the outcome entry in "
-        "docs/decisions.md must match the measurement."
+        "docs/provenance/decisions.md must match the measurement."
     )
     assert r["online_beats_frozen"], "numpy re-derivation contradicts P2"
 

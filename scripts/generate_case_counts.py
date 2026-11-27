@@ -25,7 +25,7 @@ What the observation deliberately excludes
 Each token is recorded as its **UPOS tag only**. Not ``deprel``, and not
 ``feats[Case]`` — those are the fields the oracle *derives its labels from*, so a
 model observing them would be reading the answer. The resulting agreement would
-be near-perfect and would measure nothing. See ``docs/decisions.md`` entry 16.
+be near-perfect and would measure nothing. See ``docs/provenance/decisions.md`` entry 16.
 
 Document boundary and determinism
 ---------------------------------

@@ -245,7 +245,7 @@ def _shared_provenance(document_ids: list[str]) -> dict[str, Any]:
         "license": "CC BY-SA 4.0",
         **UD_EWT_TEST_SOURCE_METADATA,
         "population": REGISTERED_POPULATION,
-        "registration": "docs/decisions.md entry 111",
+        "registration": "docs/provenance/decisions.md entry 111",
         "stride_applied": False,
         "split": (
             "none: the whole authenticated corpus is the evaluation population, "

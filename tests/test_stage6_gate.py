@@ -63,7 +63,7 @@ def test_stage6_current_surfaces_do_not_claim_an_unmeasured_power_result() -> No
         Path(__file__),
         PROJECT_ROOT / "docs" / "manuscript" / "03_methods.md",
         PROJECT_ROOT / "docs" / "manuscript" / "04_results.md",
-        PROJECT_ROOT / "docs" / "decisions.md",
+        PROJECT_ROOT / "docs" / "provenance/decisions.md",
     )
     surfaces = {path: path.read_text(encoding="utf-8") for path in paths}
     assert _stage6_power_wording_defects(surfaces) == []

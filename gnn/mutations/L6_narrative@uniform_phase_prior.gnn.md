@@ -163,7 +163,7 @@ tests/test_gnn_conformance.py and locally by tests/test_stage6_gate.py. The
 registered observed-position score, the non-confirmatory document-clustered
 primary analysis, the distinct descriptive live-Agent score, and the
 independent L6→L5 D-prior intervention are recorded separately; chronology and
-outcome are in docs/decisions.md entries 25–26 and their audit correction.
+outcome are in docs/provenance/decisions.md entries 25–26 and their audit correction.
 
 ## Signature
 

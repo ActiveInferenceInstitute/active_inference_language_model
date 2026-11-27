@@ -2,7 +2,7 @@
 
 What this file is for
 ---------------------
-``docs/decisions.md`` entry 27 pre-registered what it called the **clause ->
+``docs/provenance/decisions.md`` entry 27 pre-registered what it called the **clause ->
 word** channel as
 a falsification test of the first clause of the novel-information criterion: a
 message helps iff it is novel to the receiver and the receiver's likelihood is
@@ -130,7 +130,7 @@ def test_harm_was_not_confirmed(sweep, model):
         "The recorded finding is that the clause->word message does NOT "
         "confirm the predicted harm. If the measure has drifted so the best "
         "weight no longer improves the predictive, the outcome entry in "
-        "docs/decisions.md entry 27 and the manuscript must be updated to "
+        "docs/provenance/decisions.md entry 27 and the manuscript must be updated to "
         "match the new measurement — not the other way around."
     )
 

@@ -1,12 +1,12 @@
 # The formal layer
 
 Selected mathematical properties used by AILM are machine-checked in Lean 4 under
-[`../formal/`](../formal). This file is the docs-tree entry point: what is
+[`../formal/`](../../formal). This file is the docs-tree entry point: what is
 formalized, how it binds to the claims ledger, the commands that regenerate and
 re-record it, and — at least as important — what is deliberately outside its
 scope.
 
-[`../formal/README.md`](../formal/README.md) is the in-tree companion and stays
+[`../formal/README.md`](../../formal/README.md) is the in-tree companion and stays
 authoritative on the build mechanics: why every computed fact in the tree is an
 order comparison rather than an arithmetic one, why `Rat` does not kernel-reduce
 without Mathlib, the placeholder-scan naming constraint, and the per-theorem
@@ -15,7 +15,7 @@ something, that one wins — it lives next to the code it describes.
 
 The Lean results do not verify the connected runtime's full execution schedule,
 soft-observation message semantics, learned arrays or GUM performance. The
-[connected contract](design/connected_runtime.md#connections-and-numerical-meaning)
+[connected contract](../design/connected_runtime.md#connections-and-numerical-meaning)
 uses independent numerical references for conditional updates; those tests are
 separate from the theorems enumerated here. Neither layer proves a globally
 exact joint posterior or general language competence.
@@ -42,21 +42,21 @@ is *not* proved (below) is as much of it as the list of what is.
 
 | Module | Manuscript object | Content |
 |---|---|---|
-| [`AILM/GateVerdict.lean`](../formal/AILM/GateVerdict.lean) | `eq:gate_satisfies`, `eq:gate_verdict` | The strict audit relation vs the inclusive declared relation, and the comparator-typed VACUOUS / UNREACHABLE / ABOVE_REFERENCE / UNAUDITED / BRACKETED_BOUND / BRACKETED_REFERENCE classification, with `unreachable_requires_bound` proving impossibility verdicts need a bound-typed comparator |
-| [`AILM/SweepShape.lean`](../formal/AILM/SweepShape.lean) | the shape classes of `sec:hierarchy` | `InteriorOptimum`, `NoInteriorGain`, `MonotoneDecline` and their exclusion relations |
-| [`AILM/Filtering.lean`](../formal/AILM/Filtering.lean) | `eq:filtering` (both halves), `eq:forward_recursion` | Correction: normalizing an unnormalized evidence vector yields a distribution — under a hypothesis that is shown to be load-bearing. Prediction: a column-stochastic transition maps the simplex into itself, so the predicted prior is again a distribution |
-| [`AILM/Bonferroni.lean`](../formal/AILM/Bonferroni.lean) | the correction behind `tbl:multiplicity_family` | The union-bound *arithmetic*, and only the arithmetic |
-| [`AILM/Holm.lean`](../formal/AILM/Holm.lean) | the Holm paragraph of `98_supplement_statistics.md` | Holm's rank-`i` bar `α/(m-i+1)` is never stricter than Bonferroni's `α/m`, is nondecreasing in the rank, and coincides with it at rank 1; on a sorted family the step-down walk rejects every member the fixed bar rejects, and on a synthetic witness it rejects strictly more. Rejection-count arithmetic, and only that |
-| [`AILM/PairedDifference.lean`](../formal/AILM/PairedDifference.lean) | `eq:paired_difference` of `98_supplement_statistics.md` | The two forms the manuscript writes for the paired difference `δ` agree — the share-weighted `(2s − 1)(b + c)/n`, with `s = c/(b + c)`, equals `(c − b)/n` — and the statistic's sign and zero behavior are pinned, on a nonempty discordant set. Arithmetic on the definition only: no sampling distribution, interval coverage, or McNemar-test validity |
-| [`AILM/LedgerData.lean`](../formal/AILM/LedgerData.lean) | the recorded values | GENERATED from `data/claims.json`; no theorems, only literals |
-| [`AILM/Instances.lean`](../formal/AILM/Instances.lean) | `tbl:gate_audit`, `tbl:unaudited_gates`, `tbl:lexical_channel` | The recorded values run through the theory above |
-| [`Controls/MustFail.lean`](../formal/Controls/MustFail.lean) | — | Four false statements that **must not compile**, one of them false on *recorded* data |
+| [`AILM/GateVerdict.lean`](../../formal/AILM/GateVerdict.lean) | `eq:gate_satisfies`, `eq:gate_verdict` | The strict audit relation vs the inclusive declared relation, and the comparator-typed VACUOUS / UNREACHABLE / ABOVE_REFERENCE / UNAUDITED / BRACKETED_BOUND / BRACKETED_REFERENCE classification, with `unreachable_requires_bound` proving impossibility verdicts need a bound-typed comparator |
+| [`AILM/SweepShape.lean`](../../formal/AILM/SweepShape.lean) | the shape classes of `sec:hierarchy` | `InteriorOptimum`, `NoInteriorGain`, `MonotoneDecline` and their exclusion relations |
+| [`AILM/Filtering.lean`](../../formal/AILM/Filtering.lean) | `eq:filtering` (both halves), `eq:forward_recursion` | Correction: normalizing an unnormalized evidence vector yields a distribution — under a hypothesis that is shown to be load-bearing. Prediction: a column-stochastic transition maps the simplex into itself, so the predicted prior is again a distribution |
+| [`AILM/Bonferroni.lean`](../../formal/AILM/Bonferroni.lean) | the correction behind `tbl:multiplicity_family` | The union-bound *arithmetic*, and only the arithmetic |
+| [`AILM/Holm.lean`](../../formal/AILM/Holm.lean) | the Holm paragraph of `98_supplement_statistics.md` | Holm's rank-`i` bar `α/(m-i+1)` is never stricter than Bonferroni's `α/m`, is nondecreasing in the rank, and coincides with it at rank 1; on a sorted family the step-down walk rejects every member the fixed bar rejects, and on a synthetic witness it rejects strictly more. Rejection-count arithmetic, and only that |
+| [`AILM/PairedDifference.lean`](../../formal/AILM/PairedDifference.lean) | `eq:paired_difference` of `98_supplement_statistics.md` | The two forms the manuscript writes for the paired difference `δ` agree — the share-weighted `(2s − 1)(b + c)/n`, with `s = c/(b + c)`, equals `(c − b)/n` — and the statistic's sign and zero behavior are pinned, on a nonempty discordant set. Arithmetic on the definition only: no sampling distribution, interval coverage, or McNemar-test validity |
+| [`AILM/LedgerData.lean`](../../formal/AILM/LedgerData.lean) | the recorded values | GENERATED from `data/claims.json`; no theorems, only literals |
+| [`AILM/Instances.lean`](../../formal/AILM/Instances.lean) | `tbl:gate_audit`, `tbl:unaudited_gates`, `tbl:lexical_channel` | The recorded values run through the theory above |
+| [`Controls/MustFail.lean`](../../formal/Controls/MustFail.lean) | — | Four false statements that **must not compile**, one of them false on *recorded* data |
 
 Recorded totals, from a real build: claim:formal_theorem_count named theorems and
 claim:formal_example_count witness examples, claim:formal_axiom_report_verdicts
 verdicts in the axiom report, claim:formal_native_decide_uses uses of
 `native_decide`. These are ledger entries written by
-[`../scripts/record_formal_claims.py`](../scripts/record_formal_claims.py), not
+[`../scripts/record_formal_claims.py`](../../scripts/record_formal_claims.py), not
 counts typed into this table.
 
 ## The isomorphism
@@ -69,17 +69,17 @@ project does not run — and this table is where that would be visible.
 
 | Lean declaration | Manuscript object | Python source of truth | Exercising test |
 |---|---|---|---|
-| `GateVerdict.passes`, `satisfies`, `passes_iff_satisfies_and_ne` | `eq:gate_satisfies` | `gate_passes` — [`gates.py`](../src/ailm/gates.py) | [`test_gates.py`](../tests/test_gates.py) |
-| `GateVerdict.classify`, `bracketed_iff`, `vacuous_iff`, `unreachable_of_bound_fails`, `above_reference_of_reference_fails`, `unreachable_requires_bound`, `above_reference_requires_exceedable`, `no_co_fire`, `degenerate_no_gate` | `eq:gate_verdict`, comparator typing, gate-soundness definition | `classify_gate` — [`gates.py`](../src/ailm/gates.py), imported by both [`audit_gates.py`](../scripts/audit_gates.py) and [`figures/gates.py`](../src/ailm/figures/gates.py) | [`test_gates.py`](../tests/test_gates.py) |
-| `SweepShape.InteriorOptimum`, `NoInteriorGain`, `MonotoneDecline`, `interior_excludes_no_gain`, `interior_excludes_monotone` | `sec:hierarchy` shape classes (decisions 18–19) | `sweep_lexical_alpha` — [`lexical_channel.py`](../src/ailm/levels/lexical_channel.py); `sweep_alpha` — [`coupling.py`](../src/ailm/levels/coupling.py) | [`test_lexical_channel.py`](../tests/test_lexical_channel.py), [`test_coupling.py`](../tests/test_coupling.py) |
-| `Filtering.normalize`, `sum_div`, `normalize_sum`, `normalize_nonneg`, `normalize_isDistribution` | `eq:filtering` correction half, `eq:forward_recursion` | `forward_filter` — [`oracle.py`](../src/ailm/verification/oracle.py), the `emission[obs_t, :] * pred_t / Z_t` step | [`test_oracle.py`](../tests/test_oracle.py) |
-| `Filtering.predict`, `predict_length`, `predict_sum`, `predict_nonneg`, `predict_isDistribution` | `eq:filtering` prediction half, `eq:forward_recursion` | `forward_filter` — [`oracle.py`](../src/ailm/verification/oracle.py), the `transition @ pred` step over a column-stochastic `transition` | [`test_oracle.py`](../tests/test_oracle.py) |
-| `Bonferroni.bonferroniThreshold`, `sum_le_length_mul`, `bonferroni_union_bound`, `bonferroni_union_bound_div`, `bonferroni_threshold_scales` | `tbl:multiplicity_family` | [`statistics.py`](../src/ailm/statistics.py); family assembled by `record_statistical_claims.py` | [`test_statistics.py`](../tests/test_statistics.py) |
-| `Holm.holmThreshold`, `bonferroni_le_holm_threshold`, `holm_threshold_monotone_in_rank`, `holm_rank_one_is_bonferroni`, `stepDownCount`, `holm_rejects_every_bonferroni_rejection` | the Holm paragraph of `98_supplement_statistics.md` | `holm_step_down` in [`statistics.py`](../src/ailm/statistics.py) | [`test_statistics.py`](../tests/test_statistics.py); the witness counts are re-run through the real procedure by [`test_formal_isomorphism.py`](../tests/test_formal_isomorphism.py) |
-| `PairedDifference.pairedDelta`, `discordantShare`, `pairedDelta_discordant_form`, `pairedDelta_pos`, `pairedDelta_neg`, `pairedDelta_zero` | `eq:paired_difference` of `98_supplement_statistics.md` | `paired_difference_interval` in [`statistics.py`](../src/ailm/statistics.py); the derived-bound convention is `paired_difference_bound_from_counts` in [`_stats.py`](../src/ailm/manuscript_variables/_stats.py) | [`test_statistics.py`](../tests/test_statistics.py) (`TestDerivedPairedBound`) |
-| `LedgerData.*` | the recorded values | GENERATED by [`generate_lean_ledger.py`](../scripts/generate_lean_ledger.py) from `data/claims.json` | [`test_formal_isomorphism.py`](../tests/test_formal_isomorphism.py) |
-| `Instances.*` | `tbl:gate_audit`, `tbl:unaudited_gates`, `tbl:lexical_channel` | the stage recorders; re-derived independently by [`audit_gates.py`](../scripts/audit_gates.py) | [`test_formal_isomorphism.py`](../tests/test_formal_isomorphism.py) |
-| `Controls/MustFail.lean` | — | `verify_negative_control_fails` — [`control.py`](../src/ailm/control.py) | `test_the_negative_control_does_not_compile` |
+| `GateVerdict.passes`, `satisfies`, `passes_iff_satisfies_and_ne` | `eq:gate_satisfies` | `gate_passes` — [`gates.py`](../../src/ailm/gates.py) | [`test_gates.py`](../../tests/test_gates.py) |
+| `GateVerdict.classify`, `bracketed_iff`, `vacuous_iff`, `unreachable_of_bound_fails`, `above_reference_of_reference_fails`, `unreachable_requires_bound`, `above_reference_requires_exceedable`, `no_co_fire`, `degenerate_no_gate` | `eq:gate_verdict`, comparator typing, gate-soundness definition | `classify_gate` — [`gates.py`](../../src/ailm/gates.py), imported by both [`audit_gates.py`](../../scripts/audit_gates.py) and [`figures/gates.py`](../../src/ailm/figures/gates.py) | [`test_gates.py`](../../tests/test_gates.py) |
+| `SweepShape.InteriorOptimum`, `NoInteriorGain`, `MonotoneDecline`, `interior_excludes_no_gain`, `interior_excludes_monotone` | `sec:hierarchy` shape classes (decisions 18–19) | `sweep_lexical_alpha` — [`lexical_channel.py`](../../src/ailm/levels/lexical_channel.py); `sweep_alpha` — [`coupling.py`](../../src/ailm/levels/coupling.py) | [`test_lexical_channel.py`](../../tests/test_lexical_channel.py), [`test_coupling.py`](../../tests/test_coupling.py) |
+| `Filtering.normalize`, `sum_div`, `normalize_sum`, `normalize_nonneg`, `normalize_isDistribution` | `eq:filtering` correction half, `eq:forward_recursion` | `forward_filter` — [`oracle.py`](../../src/ailm/verification/oracle.py), the `emission[obs_t, :] * pred_t / Z_t` step | [`test_oracle.py`](../../tests/test_oracle.py) |
+| `Filtering.predict`, `predict_length`, `predict_sum`, `predict_nonneg`, `predict_isDistribution` | `eq:filtering` prediction half, `eq:forward_recursion` | `forward_filter` — [`oracle.py`](../../src/ailm/verification/oracle.py), the `transition @ pred` step over a column-stochastic `transition` | [`test_oracle.py`](../../tests/test_oracle.py) |
+| `Bonferroni.bonferroniThreshold`, `sum_le_length_mul`, `bonferroni_union_bound`, `bonferroni_union_bound_div`, `bonferroni_threshold_scales` | `tbl:multiplicity_family` | [`statistics.py`](../../src/ailm/statistics.py); family assembled by `record_statistical_claims.py` | [`test_statistics.py`](../../tests/test_statistics.py) |
+| `Holm.holmThreshold`, `bonferroni_le_holm_threshold`, `holm_threshold_monotone_in_rank`, `holm_rank_one_is_bonferroni`, `stepDownCount`, `holm_rejects_every_bonferroni_rejection` | the Holm paragraph of `98_supplement_statistics.md` | `holm_step_down` in [`statistics.py`](../../src/ailm/statistics.py) | [`test_statistics.py`](../../tests/test_statistics.py); the witness counts are re-run through the real procedure by [`test_formal_isomorphism.py`](../../tests/test_formal_isomorphism.py) |
+| `PairedDifference.pairedDelta`, `discordantShare`, `pairedDelta_discordant_form`, `pairedDelta_pos`, `pairedDelta_neg`, `pairedDelta_zero` | `eq:paired_difference` of `98_supplement_statistics.md` | `paired_difference_interval` in [`statistics.py`](../../src/ailm/statistics.py); the derived-bound convention is `paired_difference_bound_from_counts` in [`_stats.py`](../../src/ailm/manuscript_variables/_stats.py) | [`test_statistics.py`](../../tests/test_statistics.py) (`TestDerivedPairedBound`) |
+| `LedgerData.*` | the recorded values | GENERATED by [`generate_lean_ledger.py`](../../scripts/generate_lean_ledger.py) from `data/claims.json` | [`test_formal_isomorphism.py`](../../tests/test_formal_isomorphism.py) |
+| `Instances.*` | `tbl:gate_audit`, `tbl:unaudited_gates`, `tbl:lexical_channel` | the stage recorders; re-derived independently by [`audit_gates.py`](../../scripts/audit_gates.py) | [`test_formal_isomorphism.py`](../../tests/test_formal_isomorphism.py) |
+| `Controls/MustFail.lean` | — | `verify_negative_control_fails` — [`control.py`](../../src/ailm/control.py) | `test_the_negative_control_does_not_compile` |
 
 Read the `SweepShape` row carefully. Lean proves the two pre-registered classes
 are mutually exclusive. It does **not** prove either class was correctly measured,
@@ -89,7 +89,7 @@ novelty. See the scope list.
 ## How to build it
 
 The toolchain is `elan`-managed and pinned in
-[`../formal/lean-toolchain`](../formal/lean-toolchain). `lakefile.toml` declares
+[`../formal/lean-toolchain`](../../formal/lean-toolchain). `lakefile.toml` declares
 **no dependencies** — not even Mathlib — so there is no version resolution, no
 cache download, and `lake build` runs offline. Everything is proved against plain
 Lean 4 core (`List`, `Rat`, `Decidable`).
@@ -105,7 +105,7 @@ The mutation-control test checks the rejection text as well as the exit status,
 so an unrelated path, import, parse, or toolchain error cannot satisfy it. The
 placeholder tests scan a non-empty recursive `formal/AILM/` inventory and anchor
 the pattern to word boundaries on purpose;
-[`../formal/README.md`](../formal/README.md) explains both, and why a lexical scan
+[`../formal/README.md`](../../formal/README.md) explains both, and why a lexical scan
 is necessary but not sufficient.
 
 ## Regeneration and recording
@@ -141,7 +141,7 @@ stale numbers.
 ## The honesty doctrine, and what each rule cost
 
 Every rule below was earned by a defect this project or its siblings shipped.
-They are enforced by [`../tests/test_formal_isomorphism.py`](../tests/test_formal_isomorphism.py)
+They are enforced by [`../tests/test_formal_isomorphism.py`](../../tests/test_formal_isomorphism.py)
 and by `record_formal_claims.py`, not by convention.
 
 - **Zero `sorry` / `admit`, checked twice.** A word-boundary grep *and* the axiom
@@ -188,7 +188,7 @@ and by `record_formal_claims.py`, not by convention.
 ## The ledger bridge
 
 Exactly one module holds measured values —
-[`AILM/LedgerData.lean`](../formal/AILM/LedgerData.lean) — and it is generated.
+[`AILM/LedgerData.lean`](../../formal/AILM/LedgerData.lean) — and it is generated.
 Every literal in the five theory modules is a *synthetic witness* chosen for its
 shape, and every witness block says so in place. There is no third kind of
 number, and **no ledger value is ever hand-typed into Lean.**
@@ -205,7 +205,7 @@ value.
 The conversion is exact by construction: `data/claims.json` is parsed with
 `parse_float=str`, so the source is the decimal *text*, which becomes a
 `Fraction`, is reduced, and is emitted as `lit n d`. `lit`
-([`AILM/Core.lean`](../formal/AILM/Core.lean), the tree's only literal
+([`AILM/Core.lean`](../../formal/AILM/Core.lean), the tree's only literal
 constructor) is built on `Rat.mk'`
 with a `Nat.Coprime` field discharged by `decide`, so an unreduced fraction is a
 **compile error** rather than a silently wrong number. No floats, no rounding, no
@@ -250,7 +250,7 @@ did has been corrected.
 
 Naming these is load-bearing. A formal layer that stays quiet about its
 boundaries invites a reader to assume it covers more than it does. The full list
-with per-item reasoning is in [`../formal/README.md`](../formal/README.md); the
+with per-item reasoning is in [`../formal/README.md`](../../formal/README.md); the
 summary and the *kinds* are here.
 
 - **Familywise error control.** `Bonferroni.lean` proves arithmetic: if each
@@ -259,7 +259,7 @@ summary and the *kinds* are here.
   step to "the probability of at least one false rejection is at most α" is
   Boole's inequality applied to the rejection events, and it is **assumed**.
   Citing this module as establishing FWER control would be exactly the
-  necessary-is-not-sufficient defect [`gate_design.md`](gate_design.md) diagnoses
+  necessary-is-not-sufficient defect [`gate_design.md`](../development/gate_design.md) diagnoses
   elsewhere.
 - **Familywise error control for Holm, and Holm's stopping rule.** `Holm.lean`
   inherits the exclusion above and adds one of its own. It proves that Holm's
@@ -329,13 +329,13 @@ have.
 
 ## See also
 
-- [`../formal/README.md`](../formal/README.md) — the in-tree reference: `Rat`
+- [`../formal/README.md`](../../formal/README.md) — the in-tree reference: `Rat`
   reduction behavior, the axiom policy in full, the placeholder-scan naming
   constraint, the per-theorem falsifier convention
-- [`gate_design.md`](gate_design.md) — the gate taxonomy the Lean transcribes
-- [`testing_philosophy.md`](testing_philosophy.md) — what a green suite is
+- [`gate_design.md`](../development/gate_design.md) — the gate taxonomy the Lean transcribes
+- [`testing_philosophy.md`](../development/testing_philosophy.md) — what a green suite is
   allowed to mean, which is the same argument one layer down
-- [`formalism_map.md`](reference/formalism_map.md) — every labeled equation mapped to the
+- [`formalism_map.md`](formalism_map.md) — every labeled equation mapped to the
   code that computes it and the test that exercises it
-- [`../manuscript/07_reproducibility.md`](manuscript/07_reproducibility.md) —
+- [`../manuscript/07_reproducibility.md`](../manuscript/07_reproducibility.md) —
   the manuscript's account of this layer, written against ledger tokens

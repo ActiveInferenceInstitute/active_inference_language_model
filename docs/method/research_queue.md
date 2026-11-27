@@ -1,17 +1,17 @@
 # Research queue — Levels 3 to 6 and the hierarchy
 
 **Provenance.** The original proposals come from a five-direction deep scoping run
-(2026-08-14). Each direction's agent read `docs/decisions.md`,
-`docs/gate_design.md` and the level's code and manuscript section, and was
+(2026-08-14). Each direction's agent read `docs/provenance/decisions.md`,
+`docs/development/gate_design.md` and the level's code and manuscript section, and was
 required to supply a comparator, a falsifier, and an explicit statement of what
 the proposal *cannot* resolve.
 
 **Current navigation.** This is a historical proposal archive, not the active
-implementation inventory. The [connected runtime](design/connected_runtime.md)
+implementation inventory. The [connected runtime](../design/connected_runtime.md)
 and its separate locally frozen GUM evaluation now exist; proposals below that
 assume no connected execution retain their historical context. Current work is
-tracked in [TODO.md](../TODO.md), and current scientific scope is governed by
-[hierarchy.md](hierarchy.md).
+tracked in [TODO.md](../../TODO.md), and current scientific scope is governed by
+[hierarchy.md](../design/hierarchy.md).
 
 **Current corrections govern the historical proposal text below.** Stage 5's
 `stage5_privileged_label_gain_pct` is a privileged-label sensitivity
@@ -29,13 +29,13 @@ Any item that treats `clause_word_eval_tokens` as independent pairs is likewise
 superseded: decision 89 makes whole Brown documents the uncertainty unit for
 the privileged oracle intervention. The historical token counts below are not
 current power or significance evidence. That vocabulary is not current project
-status; [`hierarchy.md`](hierarchy.md) and amended decisions 24-26 govern.
+status; [`hierarchy.md`](../design/hierarchy.md) and amended decisions 24-26 govern.
 
 **The adversarial export is retired.** Its rows were truncated and do not retain
 the complete supporting evidence; the historical labels below cannot establish
 current verdicts or completion counts. The intact proposals and inline completion
 notes remain useful context, but unchecked boxes here are not an executable work
-queue. [`../TODO.md`](../TODO.md), [`hierarchy.md`](hierarchy.md), and the amended
+queue. [`../TODO.md`](../../TODO.md), [`hierarchy.md`](../design/hierarchy.md), and the amended
 decision record govern current work and scientific status.
 
 **Examples that already shipped.** The Stage 4 label-provenance stratification
@@ -93,7 +93,7 @@ through the GNN, shape, and live-agent routes.
 
   - **Done, then strengthened.** `scripts/probe_pymdp_sparse.py` reproduces the blocking sites, copies the installed package, applies the exact generated three-site candidate patch, and measures 0.000e+00 equivalence in a fresh process importing that copy. It no longer replaces pymdp functions at runtime. Every prose site states the boundary (no sparse path is reachable through the public `Agent` API) and the positive half the paper previously omitted, that the contraction machinery exists. `tests/test_pymdp_sparse.py` pins the fact and refuses any unqualified denial reappearing; `tests/test_upstream_pymdp_bundle.py` structurally rejects a planted runtime dependency replacement.
 - [x] **Record sparse B as considered and DECLINED for the shipped Stage 3 representation, with the measured numbers, so it is not rebuilt** *(cost small, value medium)*
-  - Build: A `docs/decisions.md` entry in the shape of decision 54 — no level, no ledger namespace, no recorded null arm — stating that sparse B was built, measured, proved exactly equivalent, and declined for the shipped level, with the byte table and the re-runnable probe as its evidence. Plus a `TODO.md` line under 'Rejected, with reasons, so they are not rebuilt'.
+  - Build: A `docs/provenance/decisions.md` entry in the shape of decision 54 — no level, no ledger namespace, no recorded null arm — stating that sparse B was built, measured, proved exactly equivalent, and declined for the shipped level, with the byte table and the re-runnable probe as its evidence. Plus a `TODO.md` line under 'Rejected, with reasons, so they are not rebuilt'.
   - Comparator: The strongest thing that does not adopt sparsity is the shipped dense level at V=2000, whose entire agent is 19,465,200 bytes — 19 MB. Sparsity saves 16 MB on a level nothing is memory-constrained by, at the shipped default. There is no operating point at which the shipped configuration needs this.
   - Falsifier: This declines on cost, so it is refuted by a queued consumer appearing. The specific condition: any Level-3 variant in which B[0] is not the identity — a learned within-word transition, an open-vocabulary UNK state, a morphemic segmentation — loses the path-probability identity, loses the closed form, and must run the agent, at which point V² stops being decorative and the decline is wrong. Today there is no such consumer: the morphemic level is already rejected in TODO.md, and the queued receiver-order item (case-role trigram, decision-bounded at 0.13%) lives at 8 states.
   - Evidence: Adoption cost, all of it in this project's most heavily reconciled machinery: `complexity_l3_memory_bytes` = 19,465,200 is currently reconciled three independent ways — the GNN spec route (`spec_memory_bytes_theory`), the shape route (`agent_memory_bytes_from_shape`), and the live agent's `nbytes`, required to agree to the byte (decision 21). A sparse shipped level re-derives all three, needs a sparsity declaration in `gnn/models/L3_word.gnn.md`, re-opens decision 20's bit-identity gate and `tests/test_spec_agent.py`, and rewrites `MAX_AGENT_VOCAB_BYTES` and `test_build_word_agent_rejects_an_oversized_vocabulary`. Benefit at the shipped configuration: 16 MB. Benefit to any recorded language number: zero.
@@ -334,7 +334,7 @@ outcome.
   - Cannot resolve: It does not supply the correct decomposition of a channel's value — it establishes only that the proposed one is blind to a transformation the receiver is not. It also cannot distinguish 'the quantity is wrong' from 'this estimator of it is biased', which is why both arms are estimated rather than argued, and a finite-sample gap would leave the theoretical point intact but unmeasured.
 
 - [ ] **A receiver-sensitivity pre-check, required before any channel is built** *(cost small, value high)*
-  - Build: A gate in the shape docs/gate_design.md requires, applied to channels rather than levels, from two measurements obtainable with zero channel code: (i) the receiver's ORACLE sensitivity — run the receiver twice on its own held-out set, once with the true value of the sender's latent supplied and once without, recording the paired discordant-pair count and the loss gap; (ii) the eval set's size. Threshold: the arm must project at least minimum_discordant_pairs_for_equivalence() = 420 pairs at the declared reference share of 0.55 — decision 38's own 'could this have resolved at any outcome' criterion, moved before the build instead of applied as a post-hoc archiving rule. Retrospectively validated against all five built channels, then computed forward for every seam with an index correspondence in the shipped code, including the two seams that would connect L4.
+  - Build: A gate in the shape docs/development/gate_design.md requires, applied to channels rather than levels, from two measurements obtainable with zero channel code: (i) the receiver's ORACLE sensitivity — run the receiver twice on its own held-out set, once with the true value of the sender's latent supplied and once without, recording the paired discordant-pair count and the loss gap; (ii) the eval set's size. Threshold: the arm must project at least minimum_discordant_pairs_for_equivalence() = 420 pairs at the declared reference share of 0.55 — decision 38's own 'could this have resolved at any outcome' criterion, moved before the build instead of applied as a post-hoc archiving rule. Retrospectively validated against all five built channels, then computed forward for every seam with an index correspondence in the shipped code, including the two seams that would connect L4.
   - Comparator: No pre-check — build the channel and read its sign, which is current practice and which produced the L6->L5 arm. The comparator is not weak: it is what the project actually does.
   - Falsifier: If the pre-check would have vetoed any channel later measured as a resolvable result, it kills findings and must be withdrawn. It must clear L3->L2B (2,341 discordant pairs), L1->L2B (547, a familywise-confirmed harm), and L5->L3 (144,094 paired tokens), and must veto L6->L5 (b=0, c=2). Failing to reproduce those four verdicts makes it a threshold fitted to a story. Gate classification is itself falsifiable on recorded numbers: 420 sits strictly between 2 and 547, so the gate is BRACKETED rather than VACUOUS or UNREACHABLE, and any future channel measured above the threshold that still cannot resolve refutes the threshold's derivation.
   - Evidence: .venv/bin/python -c 'from ailm.statistics import minimum_discordant_pairs_for_equivalence; print(...)' returns 420. stage5_mcnemar_b 0 / stage5_mcnemar_c 2. stat_lexical_discordant_n 2341; stat_coupling_harm_discordant_n 547; clause_word_eval_tokens 144094. TODO.md already states the governing fact: 'The chain is receiver-limited, so improving senders is wasted.'
@@ -484,7 +484,7 @@ literal ellipsis, so none retains enough evidence to support or govern a verdict
 It is preserved only to disclose that the attack pass occurred. Do not infer task
 status from it. The complete proposal bodies and their inline completion notes
 above remain readable; current status is governed by `TODO.md`,
-[`hierarchy.md`](hierarchy.md), and the amended decision record.
+[`hierarchy.md`](../design/hierarchy.md), and the amended decision record.
 
 
 ### Truncated historical label: Refuted — do not rebuild (11)
@@ -495,17 +495,17 @@ above remain readable; current status is governed by `TODO.md`,
 
 - **Close the annotation seam: L4 observes UPOS realized by L3, not read from the treebank** — This is the case-oracle trap in a new costume, and I ran it. The item's load-bearing premise is that 'a UPOS-valued message is a coarsening of what L4 already observes and therefore cannot leak beyond it'. It is not a coarsening. I fit P(UPOS|word) by argmax on the train split and rebuilt Stage 4 with the inferred tag replacing the gold field: the observation alphabet GROWS from 12 to 16 symbols (the tagger emits...
 
-- **Run the decision-42 Fillmore subject-selection arm in the only configuration that meets its own registered bar** — The arm is not the external check decision 42 registered, and its falsifier cannot discriminate its two branches. Decision 42 (docs/decisions.md:2858) rules out circularity for the derived CONTROL on the ground that UD_DEPREL_TO_CASE maps nsubj to NOM, and treats the MODEL path as external because deprel sits in FORBIDDEN_OBSERVATIONS. That reasoning covers the observation and not the training target. Measured on...
+- **Run the decision-42 Fillmore subject-selection arm in the only configuration that meets its own registered bar** — The arm is not the external check decision 42 registered, and its falsifier cannot discriminate its two branches. Decision 42 (docs/provenance/decisions.md:2858) rules out circularity for the derived CONTROL on the ground that UD_DEPREL_TO_CASE maps nsubj to NOM, and treats the MODEL path as external because deprel sits in FORBIDDEN_OBSERVATIONS. That reasoning covers the observation and not the training target. Measured on...
 
 - **Separate the class-imbalance failure from the null on the classification axis** — Its numbers all reproduce, and it still fails on axis (a): its lead falsifier cannot fire, and its rank-signal bar is not distinguishable from noise at this sample size.  (a) THE FALSIFIER CANNOT FIRE. 'If a train-fitted threshold does not lift held-out interrogative recall above zero, the imbalance reading is wrong and the 0.0% is informational rather than procedural.' A threshold fitted to maximize balanced...
 
-- **A mood-based type inventory, scoped with its circularity hazard priced in advance** — It excludes the required comparator by name, its remaining comparator is a model that already loses to its own baseline, and it builds a new arm at the exact sample size the same section is archiving an arm for.  (b) IT NAMES THE WRONG COMPARATOR, AND EXCLUDES THE RIGHT ONE. The item opens its comparator field with 'Not the type-free chain.' Decision 2 (docs/decisions.md:147) is the standing rule that the...
+- **A mood-based type inventory, scoped with its circularity hazard priced in advance** — It excludes the required comparator by name, its remaining comparator is a model that already loses to its own baseline, and it builds a new arm at the exact sample size the same section is archiving an arm for.  (b) IT NAMES THE WRONG COMPARATOR, AND EXCLUDES THE RIGHT ONE. The item opens its comparator field with 'Not the type-free chain.' Decision 2 (docs/provenance/decisions.md:147) is the standing rule that the...
 
 - **GUM rather than RST-DT or PDTB for 'phase beats position', with a mandatory leak audit** — This is the case-oracle trap in a new costume, with a mitigation the project has already rejected by name, and it is receiver-limited and power-limited before it starts. Axis (c): the outcome variable is punctuation-derived ('?' vs '.'), and the RST relations the phase feature would be built from — question-answer, solutionhood — are annotated partly from that same surface cue. The item's own answer is a leak...
 
 - **Re-record decision 26's P2 channel numbers under whichever construct survives, and register that the bigger shift is not an improvement** — Its falsifier cannot fire, and the half that would have had value is already shipped. Axis (a), primary falsifier: 'the alpha=0 identity anchor fails to reproduce the clause prior byte-for-byte under the new construct.' src/ailm/levels/narrative.py:249 computes blended = (1.0 - alpha) * clause_models['type_prior'] + alpha * message, so at alpha = 0 the message term is annihilated for ANY construct whatsoever. The...
 
-- **The channel value ladder: 'novel AND consequential' as a pre-registered inequality** — Three defects, any one fatal. (1) NOT NEW: the three terms are already implemented and recorded at one seam. scripts/probe_channel_predictive_loss.py:28-41 defines realized / readable / sensitivity verbatim and states the inequality 'realized <= sensitivity'; decision 59 (docs/decisions.md:3977-4038) records it; the ledger carries channel_proper_loss_best_realized_nats=-0.035174,...
+- **The channel value ladder: 'novel AND consequential' as a pre-registered inequality** — Three defects, any one fatal. (1) NOT NEW: the three terms are already implemented and recorded at one seam. scripts/probe_channel_predictive_loss.py:28-41 defines realized / readable / sensitivity verbatim and states the inequality 'realized <= sensitivity'; decision 59 (docs/provenance/decisions.md:3977-4038) records it; the ledger carries channel_proper_loss_best_realized_nats=-0.035174,...
 
 - **The exact joint-inference ceiling at the L3/L2B seam** — Its circularity guard is VACUOUS on shipped data, and its headline is not a ceiling. Computed against the shipped artifact: ailm.levels.phoneme.g2p_split partitions CMUdict by WORD TYPE (index i is TEST iff i % test_every == 0), giving 25,936 train types and 6,484 test types with intersection exactly 0 and 42,820 test letters (= lexical_eval_positions). So 'the recorder refuses to run if any held-out word appears...
 
@@ -543,7 +543,7 @@ above remain readable; current status is governed by `TODO.md`,
 
 - **Score Level 4 on a case-marking treebank, which is the only change that gives the level ground truth** — Survives every axis. (a) Its falsifier fires at both outcomes: the pre-build veto is on H(case|UPOS) and the arm's own falsifier is a two-sided comparison against the context-free bar, so a null is a clean negative result rather than a non-event. (b) Comparator is the identical context-free argmax P(case|UPOS) table on the identical held-out positions — decision 2's strongest non-sequence predictor, not a...
 
-- **Stratify the Stage 4 gate by which oracle path assigned each label** — This historical synopsis describes the retired sentence-stride artifact and no longer reproduces the current vendored bytes. The control itself survives and was rerun on the document-disjoint population; the current tokenized results are in [the manuscript table](manuscript/04_results.md#tbl:case_oracle_paths), and decision 85 records exact before/after values.
+- **Stratify the Stage 4 gate by which oracle path assigned each label** — This historical synopsis describes the retired sentence-stride artifact and no longer reproduces the current vendored bytes. The control itself survives and was rerun on the document-disjoint population; the current tokenized results are in [the manuscript table](../manuscript/04_results.md#tbl:case_oracle_paths), and decision 85 records exact before/after values.
 
 - **Record the null's bound: the analytic cap, the order ladder, and a CI on the oracle gain** — This historical synopsis describes the retired sentence-stride population. Decision 85 now re-derives its before arm and the current document-disjoint after arm; the current whole-document interval remains unresolved, but the point changes sign and the fitted reference no longer clears the bar. The order ladder must be rerun on the corrected population before use.
 
@@ -564,7 +564,7 @@ above remain readable; current status is governed by `TODO.md`,
 
 - **Kill the trigram receiver before it is built, and correct the TODO's headline Level 5 item** — The kill is correct and I closed its own stated residual risk; two of its three build components are wrong or already done.  THE KILL SURVIVES, AND MORE STRONGLY THAN WRITTEN. The item names its honest residual risk explicitly: 'it cannot rule out that ... a smoothing constant swept rather than fixed at add-1 could behave differently.' I ran that sweep. Held-out type-oracle gain at k = 0.01 / 0.05 / 0.1 / 0.25 /...
 
-- **Apply decision 38's criterion to the two Stage 5 axes separately, and archive the classification arm** — Right conclusion, retired authority, and premature by its own argument.  WRONG AUTHORITY (g). The item is built end to end on decision 38's criterion. Decision 43 (docs/decisions.md:2912-2983) recomputed that criterion at the census, found that applying it literally 'archives the phoneme and G2P arms — the two arms whose contrasts are the most decisively significant', called that 'absurd', replaced the criterion,...
+- **Apply decision 38's criterion to the two Stage 5 axes separately, and archive the classification arm** — Right conclusion, retired authority, and premature by its own argument.  WRONG AUTHORITY (g). The item is built end to end on decision 38's criterion. Decision 43 (docs/provenance/decisions.md:2912-2983) recomputed that criterion at the census, found that applying it literally 'archives the phoneme and G2P arms — the two arms whose contrasts are the most decisively significant', called that 'absurd', replaced the criterion,...
 
 - **Falsification-control ladder: the registered recognition test is passed by models that must fail it** — Every measurement reproduces exactly, but the headline is false as written and must be narrowed. The item's own falsifier — 'a control that must fail the registered test does fail it' — FIRES against the actually-enforced gate: scripts/audit_gates.py:631 sets Stage 6's threshold to the type-unigram mean log-loss with lower_is_better=True, and tests/test_stage6_gate.py:68 asserts mean_delta > 0.0. The scrambled...
 

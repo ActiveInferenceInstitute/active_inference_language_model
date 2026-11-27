@@ -14,7 +14,7 @@ AI agents) to, and this file only summarizes it.
    `update_A`/`update_B`).
 2. Read [`docs/guides/forking_guide.md`](docs/guides/forking_guide.md) if you are adding a
    new level or extending an existing one — it is a checklist, not prose.
-3. Check [`docs/decisions.md`](docs/decisions.md) before re-proposing
+3. Check [`docs/provenance/decisions.md`](docs/provenance/decisions.md) before re-proposing
    something that was already tried and measured; the rationale for why it
    was rejected or restated is recorded there, not just the outcome.
 
@@ -52,7 +52,7 @@ each one owns.
 framework are prohibited in this repository's tests. The project's central
 claim is that the generative engine is real `pymdp`; a mocked `Agent` would
 let the suite stay green while that claim became false. See
-[`docs/testing_philosophy.md`](docs/testing_philosophy.md) for what replaces
+[`docs/development/testing_philosophy.md`](docs/development/testing_philosophy.md) for what replaces
 mocks (real fixtures, small real corpora, oracle cross-checks).
 
 ## The claims-ledger discipline
@@ -69,7 +69,7 @@ suite (`tests/test_claims_discipline.py`) rejects it. See
 A stage gate that only ever ran on synthetic input, or that never had a
 mis-wired variant to catch, constrains nothing. `ailm.control.ControlHarness`
 and `GateVacuousError` exist to make a vacuous gate fail loudly instead of
-passing silently. See [`docs/gate_design.md`](docs/gate_design.md).
+passing silently. See [`docs/development/gate_design.md`](docs/development/gate_design.md).
 
 ## Reporting issues
 

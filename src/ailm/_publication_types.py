@@ -87,8 +87,8 @@ SUPPORT_PATHS = (
     "data/publication_derivative.json",
     "data/publication_sources.json",
     "data/README.md",
-    "docs/publication_derivative.md",
-    "docs/architecture.md",
+    "docs/method/publication_derivative.md",
+    "docs/development/code-architecture.md",
     "docs/README.md",
     "scripts/README.md",
     # R13: exact reviewed interface and metadata support; original model stays pinned.
@@ -131,24 +131,24 @@ SUPPORT_PATHS = (
     # R17: independently reviewed current-guidance repairs, each hash-bound.
     "docs/design/connected_runtime.md",
     "CHANGELOG.md",
-    "docs/formal.md",
+    "docs/reference/lean.md",
     "docs/manuscript/MANUSCRIPT_STATUS.md",
     "docs/manuscript/AGENTS.md",
     "docs/guides/faq.md",
     "docs/guides/forking_guide.md",
-    "docs/troubleshooting.md",
-    "docs/gate_design.md",
+    "docs/guides/troubleshooting.md",
+    "docs/development/gate_design.md",
     "docs/reference/glossary.md",
     "docs/method/release_checklist.md",
     "docs/guides/quickstart.md",
     "docs/reference/output_conventions.md",
     "docs/reference/output_inventory.md",
-    "docs/syntax_guide.md",
+    "docs/reference/syntax_guide.md",
     "docs/reference/notation.md",
     "src/ailm/levels/README.md",
     "src/ailm/README.md",
     "src/AGENTS.md",
-    "docs/decisions.md",
+    "docs/provenance/decisions.md",
     # R19: exact reviewed manual rendering guidance.
     "docs/method/rendering_pipeline.md",
     # R21: exact reviewed decision-index oracle repair; numerical sources stay pinned.
@@ -173,7 +173,7 @@ SUPPORT_PATHS = (
     "tests/test_checkout_completeness.py",
     "tests/test_claims_status.py",
     "tests/README.md",
-    "docs/testing_philosophy.md",
+    "docs/development/testing_philosophy.md",
     "output/reports/connected_gum.json",
 )
 
@@ -199,7 +199,7 @@ PUBLICATION_PATHS = (
     "docs/manuscript/98_supplement_audit_trails.md",
     "README.md",
     "docs/design/cerebrum_mapping.md",
-    "docs/extension_protocols.md",
+    "docs/reference/extension_protocols.md",
     "docs/provenance/sources.md",
     "docs/reference/formalism_map.md",
 )

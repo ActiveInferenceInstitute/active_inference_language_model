@@ -82,7 +82,7 @@ def test_current_surfaces_do_not_reinstate_a_power_or_negligibility_claim() -> N
     surfaces = (
         PROJECT_ROOT / "ISA.md",
         PROJECT_ROOT / "README.md",
-        PROJECT_ROOT / "docs" / "decisions.md",
+        PROJECT_ROOT / "docs" / "provenance/decisions.md",
         PROJECT_ROOT / "docs" / "manuscript" / "03_methods.md",
         PROJECT_ROOT / "docs" / "manuscript" / "04_results.md",
         Path(__file__),

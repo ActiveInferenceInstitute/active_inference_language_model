@@ -14,19 +14,19 @@ listed here is a defect: `tests/test_documentation.py` fails on it.
 | --- | --- |
 | [`README.md`](README.md) | Documentation hub: entry points by audience, grouped by question |
 | [`AGENTS.md`](AGENTS.md) | How to work inside `docs/`: what is gated, who owns what, how to verify a change |
-| [`architecture.md`](architecture.md) | Code architecture: package map, module ownership, import contract |
-| [`decisions.md`](decisions.md) | Append-only chronology of the decisions behind every recorded number |
-| [`development_history.md`](development_history.md) | Pre-1.0.0 changelog history; historical, not a current API statement |
-| [`extension_protocols.md`](extension_protocols.md) | The three proposed extension protocols and their per-protocol status |
-| [`formal.md`](formal.md) | The Lean 4 layer: what is machine-checked and what is deliberately not |
-| [`gate_design.md`](gate_design.md) | Comparator-typed gate taxonomy and what an impossibility claim requires |
-| [`gnn_composition.md`](gnn_composition.md) | GNN composition declarations and conformance |
-| [`hierarchy.md`](hierarchy.md) | The governing level structure; wins on any disagreement |
-| [`publication_derivative.md`](publication_derivative.md) | Two-source publication attestation and its isolated replay |
-| [`research_queue.md`](research_queue.md) | Exploratory proposals with their builds, comparators and falsifiers |
-| [`syntax_guide.md`](syntax_guide.md) | The `{{TOKEN}}` and `claim:<label>` numeric protocols |
-| [`testing_philosophy.md`](testing_philosophy.md) | What a green suite is allowed to mean here |
-| [`troubleshooting.md`](troubleshooting.md) | Symptom → cause → fix |
+| [`architecture.md`](development/code-architecture.md) | Code architecture: package map, module ownership, import contract |
+| [`decisions.md`](provenance/decisions.md) | Append-only chronology of the decisions behind every recorded number |
+| [`development_history.md`](provenance/development_history.md) | Pre-1.0.0 changelog history; historical, not a current API statement |
+| [`extension_protocols.md`](reference/extension_protocols.md) | The three proposed extension protocols and their per-protocol status |
+| [`formal.md`](reference/lean.md) | The Lean 4 layer: what is machine-checked and what is deliberately not |
+| [`gate_design.md`](development/gate_design.md) | Comparator-typed gate taxonomy and what an impossibility claim requires |
+| [`gnn_composition.md`](reference/gnn_composition.md) | GNN composition declarations and conformance |
+| [`hierarchy.md`](design/hierarchy.md) | The governing level structure; wins on any disagreement |
+| [`publication_derivative.md`](method/publication_derivative.md) | Two-source publication attestation and its isolated replay |
+| [`research_queue.md`](method/research_queue.md) | Exploratory proposals with their builds, comparators and falsifiers |
+| [`syntax_guide.md`](reference/syntax_guide.md) | The `{{TOKEN}}` and `claim:<label>` numeric protocols |
+| [`testing_philosophy.md`](development/testing_philosophy.md) | What a green suite is allowed to mean here |
+| [`troubleshooting.md`](guides/troubleshooting.md) | Symptom → cause → fix |
 | [`_generated/README.md`](_generated/README.md) | Policy for generated documents and the script that refreshes each |
 | [`_generated/gate_arms.md`](_generated/gate_arms.md) | Measured wall time per gate arm, rendered from release receipts |
 | [`design/README.md`](design/README.md) | Index of the decision records, with the decision each one records |

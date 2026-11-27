@@ -2,18 +2,18 @@
 
 The scientific rationale behind AILM's models: why each level is shaped the way it
 is, and what the rejected alternative was. The **code** architecture is a different
-document, [`../architecture.md`](../architecture.md); confusing the two produces two
+document, [`../architecture.md`](../development/code-architecture.md); confusing the two produces two
 files that each look authoritative and disagree.
 
 The governing description of the level structure is
-[`../hierarchy.md`](../hierarchy.md). Where a design file disagrees with it,
+[`../hierarchy.md`](hierarchy.md). Where a design file disagrees with it,
 `hierarchy.md` wins.
 
 ## Quick start
 
 Reading order for someone new to the models:
 
-1. [`../hierarchy.md`](../hierarchy.md) — current model paths and the scope of each result
+1. [`../hierarchy.md`](hierarchy.md) — current model paths and the scope of each result
 2. [`connected_runtime.md`](connected_runtime.md) — the connected API/CLI, causal schedule and evidence limits
 3. [`architecture.md`](architecture.md) — per-level A/B/C/D and the retained standalone designs
 4. the per-stage file for whichever level you are about to change

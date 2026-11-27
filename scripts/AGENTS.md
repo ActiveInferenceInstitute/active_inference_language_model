@@ -41,7 +41,7 @@ importers, each after resolving the template root:
   rather than reimplemented.
 
 This is a deliberate, documented deviation from any one-importer rule —
-`docs/architecture.md` ("`src/` must never import `infrastructure`") is the
+`docs/development/code-architecture.md` ("`src/` must never import `infrastructure`") is the
 authoritative statement, and
 `tests/test_figure_registry.py::test_nothing_under_src_imports_infrastructure`
 enforces the `src/ailm/` side of the line. Adding a third importer requires a
@@ -124,7 +124,7 @@ the shared call is why the audit and the published figure cannot disagree. Resto
 local copy of the classification to either caller reintroduces the drift hazard the delegation removed. A
 change to how a threshold is classified belongs in `src/ailm/gates.py`, which
 `tests/test_gates.py` pins and the Lean layer binds through
-`GateVerdict.classify` (see `docs/formal.md`).
+`GateVerdict.classify` (see `docs/reference/lean.md`).
 
 **Do not delete an `UNAUDITED_STAGES` row to make the output look clean.** The one
 remaining row is Stage 7's "Whisper → phoneme → TTS round trip", which measures

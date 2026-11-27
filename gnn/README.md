@@ -297,7 +297,7 @@ a failure. "Expressed in GNN" is therefore demonstrated, not asserted.
 
 ## Read next
 
-- [`../docs/gnn_composition.md`](../docs/gnn_composition.md) — the long form:
+- [`../docs/gnn_composition.md`](../docs/reference/gnn_composition.md) — the long form:
   what each section contributes, how a spec becomes a running agent, what one
   step of inference computes and which matrix enters where, and — stated
   precisely, because it is easy to overclaim — in what sense the levels

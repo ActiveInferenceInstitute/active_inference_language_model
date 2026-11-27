@@ -49,7 +49,7 @@ recorders:
   descriptive: its registered primary estimand was document-level mean log loss,
   whose interval spans zero, while the sign test can pass for a worse scrambled
   model. Plans outside the confirmatory list stay at their mechanical tier.
-  A PRE-REGISTRATION heading in ``docs/decisions.md`` does not promote by
+  A PRE-REGISTRATION heading in ``docs/provenance/decisions.md`` does not promote by
   itself: the operative rule is that the registration commit strictly predates
   the outcome commit per ``data/registration_provenance.json``. Entries 25 and
   27 satisfy that rule and remain at their mechanical tier because their
@@ -129,11 +129,11 @@ STATUS_BY_SOURCE: dict[str, str] = {
     # Closed-form arithmetic: operation and byte counts, never timings.
     "scripts/record_complexity_claims.py": "analytic",
     # Protocol P2's stipulated aligned spelling-to-pronunciation comparator
-    # arm (docs/extension_protocols.md §3.4): a development-session offline
+    # arm (docs/reference/extension_protocols.md §3.4): a development-session offline
     # measurement on the frozen artifact — exploratory by protocol, never
     # confirmatory, whatever the gates' outcome.
     "scripts/record_aligned_g2p_comparator_claims.py": "exploratory",
-    # Protocol P2's zero-shot probe arms (docs/extension_protocols.md §3.4):
+    # Protocol P2's zero-shot probe arms (docs/reference/extension_protocols.md §3.4):
     # reported descriptively under declared families per §3.5, never
     # confirmatory — listed explicitly rather than left to the default.
     "scripts/record_aligned_g2p_probe_claims.py": "descriptive",

@@ -502,7 +502,7 @@ def test_the_encoded_interval_is_the_registered_interval():
     """The constant encodes decision 112's band exactly as registered.
 
     The registration quotes the probe's 99% bootstrap CI as ``[+0.039, +0.321]``
-    nats/sentence at the widened item of ``docs/research_queue.md``, and
+    nats/sentence at the widened item of ``docs/method/research_queue.md``, and
     decision 112 registers that interval by reference ("the interval the probe
     registered"). The same entry's original evidence line (commit 3162b61)
     recorded the endpoints to four decimals as ``[+0.0394, +0.3209]``, computed

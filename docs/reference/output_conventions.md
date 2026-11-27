@@ -306,7 +306,7 @@ the next hydration.
 
 1. Put reusable computation in `src/ailm/` and orchestration/artifact writing in
    its owning `scripts/` command. Bounded recorder-specific estimands follow the
-   documented ownership contract in [architecture.md](../architecture.md).
+   documented ownership contract in [architecture.md](../development/code-architecture.md).
    Read measured values from authenticated inputs; do not type them in.
 2. Give it a fixed, predictable filename under the right `output/` subdirectory.
 3. Add a test. For a figure, the legibility and canvas-overflow assertions in
@@ -316,11 +316,11 @@ the next hydration.
 4. Register it in [`output_inventory.md`](output_inventory.md) with its label and
    generator.
 5. Reference it from the manuscript using the cross-reference conventions in
-   [`syntax_guide.md`](../syntax_guide.md).
+   [`syntax_guide.md`](syntax_guide.md).
 
 ## Cross-references
 
 - [`output_inventory.md`](output_inventory.md) — the concrete artifact list
 - [`rendering_pipeline.md`](../method/rendering_pipeline.md) — how the token map is built and why a missing claim aborts the render
 - [`provenance/sources.md`](../provenance/sources.md) — the committed, checksummed corpus artifacts
-- [`architecture.md`](../architecture.md) — which module may write which artifact
+- [`architecture.md`](../development/code-architecture.md) — which module may write which artifact

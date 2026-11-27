@@ -5,7 +5,7 @@ Thin orchestrator. Computation lives in ``ailm.levels.clause_channel``; this
 script sequences the measurements, applies the pre-registered refusal guards,
 and writes the ledger. Single writer for every ``clause_word_*`` label.
 
-The pre-registration (``docs/decisions.md`` entry 27) predicted that mixing a
+The pre-registration (``docs/provenance/decisions.md`` entry 27) predicted that mixing a
 clause-derived word statistic into the word prior **harms** the held-out
 predictive, with a monotone decline (no interior optimum). The recorder holds
 itself to the same standards a positive would: it refuses to record unless the

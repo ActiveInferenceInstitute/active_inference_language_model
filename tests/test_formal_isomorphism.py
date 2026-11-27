@@ -72,7 +72,7 @@ AXIOM_REPORT = FORMAL_DIR / "axiom_report.txt"
 LEDGER = PROJECT_ROOT / "data" / "claims.json"
 GENERATOR = PROJECT_ROOT / "scripts" / "generate_lean_ledger.py"
 MUST_FAIL = FORMAL_DIR / "Controls" / "MustFail.lean"
-FORMAL_DOC = PROJECT_ROOT / "docs" / "formal.md"
+FORMAL_DOC = PROJECT_ROOT / "docs" / "reference/lean.md"
 FORMAL_README = FORMAL_DIR / "README.md"
 
 TOOLCHAIN_FILE = FORMAL_DIR / "lean-toolchain"

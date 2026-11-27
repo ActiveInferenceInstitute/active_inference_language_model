@@ -6,7 +6,7 @@ script loads the vendored Brown genre drift artifact, runs the online
 experiment once, applies the three pre-registered refusal guards, and writes
 the ledger. Single writer for every ``online_*`` label.
 
-The three guards are the pre-registered clauses of ``docs/decisions.md`` entry
+The three guards are the pre-registered clauses of ``docs/provenance/decisions.md`` entry
 28:
 
 1. **P1 (the drift is real)** — the frozen matrix's held-out perplexity

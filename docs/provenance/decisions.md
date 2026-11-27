@@ -12,7 +12,7 @@ This file is where development history lives. The code keeps at most one
 sentence of rationale per decision plus a pointer here, which is enough to stop
 an innocent revert without turning a module docstring into a changelog.
 Forward-looking guidance on how to *specify* a gate is a separate document:
-[`gate_design.md`](gate_design.md).
+[`gate_design.md`](../development/gate_design.md).
 
 | # | Decision |
 |---|---|
@@ -1044,7 +1044,7 @@ distinction is the one entry 9 already named.
 
 **Correction (2026-09-05).** The measurement this entry's prediction was tested against was taken through a defective backoff lookup; entry 110 records the defect, the corrected rule, and the re-recorded outcome. The prediction's first half (the channel helps) held under the correction and held more strongly; its second half (an interior optimum as the signature of novelty) is not supported by the corrected sweep, which helps at every tested weight and does not distinguish its interior argmax from a plateau. Nothing below is edited; it is the record of what was predicted.
 
-**Provenance correction (2026-09-01).** This entry, `scripts/record_lexical_channel_claims.py`, `src/ailm/levels/lexical_channel.py`, the recorded sweep and entry 19 first enter Git history in the same commit (`bc070dea6a475f238b68092f0cceafbc3ad8b548`). The prediction below was written before the sweep ran, and the text preserves that order, but no independently timestamped immutable artifact establishes it outside the session. Under the terminology rule of `data/registration_provenance.json`, the channel is therefore *prospectively specified in-session*, not pre-registered; protocol `"18"` is inventoried there as a same-commit specification with `confirmatory_status_eligible=false`, and the manuscript, README and `docs/hierarchy.md` now say so in the same words. No measurement changes.
+**Provenance correction (2026-09-01).** This entry, `scripts/record_lexical_channel_claims.py`, `src/ailm/levels/lexical_channel.py`, the recorded sweep and entry 19 first enter Git history in the same commit (`bc070dea6a475f238b68092f0cceafbc3ad8b548`). The prediction below was written before the sweep ran, and the text preserves that order, but no independently timestamped immutable artifact establishes it outside the session. Under the terminology rule of `data/registration_provenance.json`, the channel is therefore *prospectively specified in-session*, not pre-registered; protocol `"18"` is inventoried there as a same-commit specification with `confirmatory_status_eligible=false`, and the manuscript, README and `docs/design/hierarchy.md` now say so in the same words. No measurement changes.
 
 **The question this entry exists to answer.** AILM is a *hierarchy*, and the
 central research question is what makes one. Four levels are built, and two
@@ -1641,7 +1641,7 @@ with questions more often than it continues with them.
    opening phase, is EXACTLY the unmodified prior at α = 0 (the identity
    anchor, byte-for-byte), and a scrambled control (phases permuted) produces
    a different shift than the real message. This is the proven top-down
-   mechanism of `docs/decisions.md` entry 17, applied one level up.
+   mechanism of `docs/provenance/decisions.md` entry 17, applied one level up.
 3. **P3 (receiver-sensitivity reference).** The privileged sentence-type arm at
    Stage 5 records how sensitive the fitted receiver is to selecting a
    type-specific chain. Its gain is claim:stage5_privileged_label_gain_pct percent. That
@@ -1735,7 +1735,7 @@ to fresh executions.
 ## 27 — PRE-REGISTRATION: the clause → word channel is predicted to harm (falsification of the first clause)
 
 **Status: prediction recorded BEFORE any measurement.** The manuscript already
-states this prediction textually ([`docs/manuscript/03_methods.md`](manuscript/03_methods.md),
+states this prediction textually ([`docs/manuscript/03_methods.md`](../manuscript/03_methods.md),
 the cheapest remaining falsification test of the first clause); this entry
 makes it the formal pre-registration in the decision record, so an outcome entry
 may confirm it, refute it, or withdraw the clause — but may not rewrite this one.
@@ -1868,7 +1868,7 @@ not a fresh confirmatory population.
 ## 28 — PRE-REGISTRATION: online learning on non-stationary text beats a frozen control that must lose
 
 **Status: prediction recorded BEFORE the measurement.** W2 open half
-([`TODO.md`](../TODO.md)): decisions 22–23 established that pymdp
+([`TODO.md`](../../TODO.md)): decisions 22–23 established that pymdp
 `infer_parameters` is conjugate counting under *observed* states on a stationary
 held-out stream — a correctness anchor, not a capability. This entry
 pre-registers the increment where learning could actually *earn* its way in: an
@@ -4318,7 +4318,7 @@ numbered sections only — `docs/manuscript/SYNTAX.md` carries a worked example
 pointing at `name.png`, and including it made the builder claim a file that
 cannot exist.
 
-**The import boundary held.** `docs/architecture.md` forbids `src/ailm/` from
+**The import boundary held.** `docs/development/code-architecture.md` forbids `src/ailm/` from
 importing `infrastructure`, and it still does not: the publisher is a script,
 resolving the template root exactly as
 `scripts/z_generate_manuscript_variables.py` does, and a test asserts no module
@@ -4905,7 +4905,7 @@ independence to a reused split. Stage 6 moves from *nominally significant* to
 
 ## 72 — a caption is not an image alternative
 
-**The convention was wrong on its own terms.** `docs/syntax_guide.md` said
+**The convention was wrong on its own terms.** `docs/reference/syntax_guide.md` said
 captions "appear in the PDF and as alt text in HTML", so no figure carried a
 separate alternative. But a caption in this paper names the population, the
 provenance and the falsification condition; several run past three hundred
@@ -5338,7 +5338,7 @@ confirmatory status. These claims remain analytic or descriptive; the exact
 commit identity is checked from `data/registration_provenance.json`.
 
 **Context.** The adversarial pass on the research queue's epistemic-generation
-item returned BUILD_MODIFIED (docs/research_queue.md, "Epistemic generation").
+item returned BUILD_MODIFIED (docs/method/research_queue.md, "Epistemic generation").
 The item proposes a generative agent whose hidden factor is word identity, so
 that "information gain is nonzero by construction", and expects the epistemic
 term to then do work in policy selection. The skeptic's derivation says it
@@ -5430,7 +5430,7 @@ recorded by machinery that can report a nonzero.
 instances and a negative control. The manuscript extension this entry licenses
 is in `docs/manuscript/08_generation.md`; the queue item's verdict
 (BUILD_MODIFIED) and what was built instead are recorded at
-`docs/research_queue.md`.
+`docs/method/research_queue.md`.
 
 ## 77 (outcome) — the margin survives on real case morphology
 
@@ -6392,7 +6392,7 @@ unchanged: L4 remains the NumPy forward filter and L5 the closed-form mixture.
 The recorded agreement is posterior agreement between the live Agent and the
 filter over the full held-out set, which licenses attributing those scores to
 the model the Agent stores. It is not score equivalence for the L5 headline
-mixture estimand, and the manuscript, `docs/hierarchy.md`, the README and the
+mixture estimand, and the manuscript, `docs/design/hierarchy.md`, the README and the
 architecture documents now say so in the same words, replacing the earlier
 "bounded"/"matrix conformance only" wording that contradicted entry 92.
 
@@ -6402,8 +6402,8 @@ through `REQUIRED_CLAIMS`, with the L4 count and the L5 deviation added to
 
 ## 95 — The generator samples the closed-form policy posterior; its agreement with infer_policies is recorded (2026-09-01)
 
-**What was wrong.** README, `docs/hierarchy.md`, `docs/formalism_map.md`,
-`docs/gnn_composition.md` and `docs/design/generation_problem.md` all said that
+**What was wrong.** README, `docs/design/hierarchy.md`, `docs/formalism_map.md`,
+`docs/reference/gnn_composition.md` and `docs/design/generation_problem.md` all said that
 `infer_policies` selects the next letter during generation. It never has.
 `generate_by_policy_selection` samples every action from `efe_policy_posterior`,
 a closed form over `gamma`, `C` and `E` that is fast enough to run thousands of
@@ -6607,14 +6607,14 @@ table) and paired with a planted-failure companion.
 
 ## 99 — Registration provenance inventories protocols 18, 25 and 27; confirmatory means registration commit before outcome commit (2026-09-01)
 
-**What was wrong.** `README.md`, `docs/hierarchy.md`, `08_conclusion.md` and
+**What was wrong.** `README.md`, `docs/design/hierarchy.md`, `08_conclusion.md` and
 `09_hierarchy.md` called the L3→L2B lexical channel "pre-registered", and
 entry 18 was titled "a pre-registered test", although entry 18, its recorder
 `scripts/record_lexical_channel_claims.py`, the sweep and entry 19 first enter
 Git history in one commit (`bc070dea6a475f238b68092f0cceafbc3ad8b548`); the
 same wording was emitted from `scripts/generate_lean_ledger.py` into
 `formal/AILM/LedgerData.lean`. `src/ailm/claims.py` defined `confirmatory` as
-"a docs/decisions.md PRE-REGISTRATION entry", which several such headings
+"a docs/provenance/decisions.md PRE-REGISTRATION entry", which several such headings
 outside the confirmatory set contradict, and `scripts/assign_claim_status.py`
 listed "preregistration-titled entries 22-23, 27, 28 and 36", wrong in both
 directions (entry 23 is titled CONFIRMED; entries 25, 38 and 42 carry the
@@ -6655,7 +6655,7 @@ double-headed arrow from the letter level to the document-position level under
 a label that describes only the letter-to-phoneme alphabet identity — the arrow
 kept the geometry of a retired "adjacent levels are coupled" claim after the
 label was corrected, so the picture still asserted a level-spanning cascade
-that `docs/hierarchy.md` rules out. In the same figure the Stage-column
+that `docs/design/hierarchy.md` rules out. In the same figure the Stage-column
 verdicts ran past the table border and the footnote printed through the Stage
 0 band, and no gate could see it: `assert_within_canvas` checks the canvas
 edge and the layout sweep checks text on text, so text crossing a *border*
@@ -7181,7 +7181,7 @@ placeholder tactic and no `native_decide`. `tests/test_formal_isomorphism.py`
 pins the Holm module, runs its synthetic witness family through the real
 `holm_step_down` in `src/ailm/statistics.py` and requires the same rejection
 counts and per-rank bars, and still requires `Controls/MustFail.lean` not to
-compile. The docs-tree companion is `docs/formal.md`.
+compile. The docs-tree companion is `docs/reference/lean.md`.
 
 ## 110 — The lexical channel's backoff matched the wrong context; corrected to the documented longest-suffix rule, every dependent arm re-recorded (2026-09-05)
 
@@ -7601,7 +7601,7 @@ The recorder writes nothing if any of these fails.
 ### The predictions
 
 Transcribed from `scripts/probe_l5_widened_alphabet.py` and its recorded re-run in
-`docs/research_queue.md`, as directions and relations rather than as typed
+`docs/method/research_queue.md`, as directions and relations rather than as typed
 quantities. The probe writes nothing to the ledger; these are the numbers this arm
 must reproduce, and the registered interval is the probe's own.
 
@@ -8262,7 +8262,7 @@ that unmeasured prompt interventions have no effect.
 
 **Status: registration recorded BEFORE any run.** Protocol P3's partition 3
 
-([`docs/extension_protocols.md`](extension_protocols.md) §4.5) sequences the
+([`docs/reference/extension_protocols.md`](../reference/extension_protocols.md) §4.5) sequences the
 
 influence sweep behind partitions 1–2 and behind this registration. No
 
@@ -8274,7 +8274,7 @@ frozen artifacts, with the derivation shown, in the
 
 `_phone_comparator_refusals` pattern of
 
-[`scripts/record_synthetic_benchmark_claims.py`](../scripts/record_synthetic_benchmark_claims.py).
+[`scripts/record_synthetic_benchmark_claims.py`](../../scripts/record_synthetic_benchmark_claims.py).
 
 The real sender's own log-gain was never consulted and is not stated here: a
 

@@ -10,7 +10,7 @@ zero-shot probe arms are recorded, and P1's warm-up compute gate is measured
 (decision 122), while P1's fit pipeline itself has not run. Those values live
 in `data/claims.json` and are reported in the manuscript, not here; the
 sections below are the protocols as proposed. This file is deliberately *outside*
-[`design/`](design/) — that directory holds adopted past-tense decision
+[`design/`](../design/) — that directory holds adopted past-tense decision
 records, and the measured arms remain governed by their own sequenced
 registrations. No experiment may be marked complete on the strength of this
 file. Proposal-era present/future tense in the detailed protocol sections is
@@ -22,17 +22,17 @@ Its raw-text path derives a delayed lexical UPOS observation from word beliefs;
 P3’s earlier fixed-UPOS role-to-word influence estimand remains distinct. The
 connected GUM comparison uses a frozen population and fixed channel setting,
 not a retroactive claim that P3’s development sweep improved a whole pipeline.
-See [the connected contract](design/connected_runtime.md) and
-[the GUM data scope](reference/data_statement.md#universal-dependencies-english-gum--connected-evaluation).
+See [the connected contract](../design/connected_runtime.md) and
+[the GUM data scope](data_statement.md#universal-dependencies-english-gum--connected-evaluation).
 
 The local registry described in §1 is not the identity of today’s hosted
 synthetic/in-context model. Those recorders disclose the configured hosted model
 and retain cohort suffixes for protocol accounting. Current loader, context,
 endpoint and budget contracts live in the
-[benchmark package guide](../src/ailm/benchmarks/README.md); the dated metadata
+[benchmark package guide](../../src/ailm/benchmarks/README.md); the dated metadata
 below cannot override them.
 
-It responds to the three open Major items in [`../TODO.md`](../TODO.md):
+It responds to the three open Major items in [`../TODO.md`](../../TODO.md):
 
 | TODO item | Protocol here | Short form |
 |---|---|---|
@@ -131,7 +131,7 @@ scoring:
   re-prompted. One uncached warm-up precedes scoring (`harness.py` line 361).
 
 The supplement's fairness table
-([`manuscript/98_supplement_external_benchmarks.md`](manuscript/98_supplement_external_benchmarks.md),
+([`manuscript/98_supplement_external_benchmarks.md`](../manuscript/98_supplement_external_benchmarks.md),
 "What a comparison would need") records that the condition **"Both systems have
 the same opportunity to fit the task"** holds in no arm as run. The in-context
 arm supplies labeled transitions through the prompt and measures that bounded
@@ -221,7 +221,7 @@ boundary, not a gap:
 - calibration-only relabeling or output-rule changes (the response contract,
   parser, and inventory are byte-identical to the shipped arms);
 - supplying AILM's fitted column (the permanently rejected circularity —
-  [`../TODO.md`](../TODO.md) "Rejected, with reasons");
+  [`../TODO.md`](../../TODO.md) "Rejected, with reasons");
 - a new classical comparator standing in for the probe (the S2 erratum's Design A
   is a different work item and closes nothing here).
 
@@ -276,8 +276,8 @@ Identity requirements (all implementation-time, all digested):
 1. Fitted-registry entries (above) — never `SERVED_PROBES` entries.
 2. Upstream revision pin: HF repo id + commit sha256 recorded *before* the fit,
    in a new provenance record under the vendored-artifact discipline
-   ([`provenance/sources.md`](provenance/sources.md) entry with digests; see
-   [`provenance/AGENTS.md`](provenance/AGENTS.md) for the regeneration contract).
+   ([`provenance/sources.md`](../provenance/sources.md) entry with digests; see
+   [`provenance/AGENTS.md`](../provenance/AGENTS.md) for the regeneration contract).
 3. Adapter artifact: config (rank, layers, schedule) + learned weights +
    training-loss curve, written once, digested, never overwritten
    (`synthetic_protocol.py`'s frozen-contract discipline is the template).
@@ -363,8 +363,8 @@ and the comparison remains a reference frame, not a competitiveness claim.
 ### 2.6 Controls (gate liveness, leakage, lineage, legitimate outcomes)
 
 The project's own rule: no gate without a live positive *and* negative control
-(`GateVacuousError` discipline in [`../docs/gate_design.md`](gate_design.md)
-and [`testing_philosophy.md`](testing_philosophy.md)). P1's controls, with
+(`GateVacuousError` discipline in [`../docs/gate_design.md`](../development/gate_design.md)
+and [`testing_philosophy.md`](../development/testing_philosophy.md)). P1's controls, with
 tolerances, seeds, and margins fixed before fitting:
 
 - **C1 — fit-consumption check (declared tolerance and seeds).** On the
@@ -428,7 +428,7 @@ fitting arm can fail the bar it was built for.
 ### 2.7 Expected files, dependencies, feasibility (estimates)
 
 Original proposed file layout (not a current module inventory). The implemented
-foundation is indexed in [its package README](../src/ailm/benchmarks/fitted/README.md);
+foundation is indexed in [its package README](../../src/ailm/benchmarks/fitted/README.md);
 this table preserves the proposed remaining trainer/export boundaries:
 
 | Proposed file | Owns |
@@ -444,7 +444,7 @@ this table preserves the proposed remaining trainer/export boundaries:
 
 The import contract is respected: the new package touches the *probe* side
 only, imports no pymdp, and adds nothing to any level build or gate
-([`architecture.md`](architecture.md) — the probe package is already outside the
+([`architecture.md`](../development/code-architecture.md) — the probe package is already outside the
 pymdp stack by design).
 
 Original proposed fitting dependencies. Availability and versions must be
@@ -595,7 +595,7 @@ correspondence {letter -> phone, complete over the letter inventory},
 splits {train: [(spelling, phone_string)], test: [(spelling, phone_string)]}
 ```
 
-Registered in [`provenance/sources.md`](provenance/sources.md) with its sha256
+Registered in [`provenance/sources.md`](../provenance/sources.md) with its sha256
 and enforced by `tests/test_provenance_checksums.py`, exactly like the two
 existing synthetic artifacts (`32b00fa2…` and `319b3926…` are the current
 precedents recorded there).
@@ -749,7 +749,7 @@ must not be read as today’s implementation inventory.
    (`src/ailm/cases.py::UD_DEPREL_TO_CASE`), or `adposition_token`
    (`src/ailm/cases.py::ADPOSITION_TO_CASE`, labeling the adposition token
    itself — no head-transfer rule, per
-   [`../src/ailm/corpus/AGENTS.md`](../src/ailm/corpus/AGENTS.md)). Assignment
+   [`../src/ailm/corpus/AGENTS.md`](../../src/ailm/corpus/AGENTS.md)). Assignment
    reuses `src/ailm/corpus/ud.py::case_oracle_assignment` unchanged. Derived
    labels remain *agreement, not accuracy* wherever quoted.
 2. **Split.** The same document-stride split construction as the existing case
@@ -912,7 +912,7 @@ and its estimand registration is written; the posterior-constant choice
 ## 5. Ownership, grant boundaries, and what this milestone did not do
 
 At the original drafting milestone, the written scope was this file and its index row in
-[`README.md`](README.md). Subsequent implementation and measurement were assigned separately. The
+[`README.md`](../README.md). Subsequent implementation and measurement were assigned separately. The
 partition table records those boundaries; it is not a new approval requirement
 for work already authorized in the active session. No Git writes, no stashes, no environment mutation, no
 production recorder run, no training or download occurred. The dirty main work
@@ -940,7 +940,7 @@ main-text split) are explicitly out of scope here and remain the author's.
 - Vendor artifact schemas and digests re-checked on disk; the EWT dev conllu
   digest matched its recorded `source_sha256`.
 - All `claim:` tags used in this file were checked against
-  [`../data/claims.json`](../data/claims.json) before writing; no tag here is
+  [`../data/claims.json`](../../data/claims.json) before writing; no tag here is
   an illustration, and no measured number is stated without either a verified
   tag, an artifact field in inline code, or an explicit estimate marker.
 - Revision E1R (this file's second state): applied every supported finding

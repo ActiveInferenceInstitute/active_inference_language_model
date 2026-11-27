@@ -531,7 +531,7 @@ def test_each_artifact_declares_the_registered_population_and_no_stride(level: s
     provenance = json.loads(path.read_text(encoding="utf-8"))["provenance"]
     assert provenance["population"] == "ud_ewt_test"
     assert provenance["stride_applied"] is False
-    assert provenance["registration"] == "docs/decisions.md entry 111"
+    assert provenance["registration"] == "docs/provenance/decisions.md entry 111"
     assert provenance["source_url"].endswith("en_ewt-ud-test.conllu")
 
 

@@ -533,7 +533,7 @@ def word_path_logprob(
     ``tests/test_stage3_gate.py::test_path_probability_equals_the_word_unigram``
     is between two independent derivations rather than one implementation
     agreeing with itself. Three of the five mis-wirings enumerated in
-    ``docs/decisions.md`` entry 14 still beat the level's accuracy bar; all three
+    ``docs/provenance/decisions.md`` entry 14 still beat the level's accuracy bar; all three
     change the word prior, so all three fail *this*.
 
     Args:

@@ -193,7 +193,7 @@ CLI-owned architecture as a static site with embedded source snapshots. It is
 an ignored inspection aid, not model execution evidence or a publication
 receipt. Follow `groma agent-instructions` before scanning or curating; preserve
 curated ownership and authenticate embedded source bytes after source changes.
-Read source/model responsibilities from [architecture.md](../architecture.md).
+Read source/model responsibilities from [architecture.md](../development/code-architecture.md).
 
 ## Generated upstream candidate — `output/upstream_pymdp_pr/`
 
@@ -228,8 +228,8 @@ carries a `run_id`, `source`, value, and epistemic status.
 
 - [`output_conventions.md`](output_conventions.md) — regeneration order, determinism, the hand-editing trap
 - [`rendering_pipeline.md`](../method/rendering_pipeline.md) — how the token map and the injected manuscript are produced
-- [`syntax_guide.md`](../syntax_guide.md) — how to reference a figure label from the manuscript
-- [`architecture.md`](../architecture.md) — which module owns which generator
+- [`syntax_guide.md`](syntax_guide.md) — how to reference a figure label from the manuscript
+- [`architecture.md`](../development/code-architecture.md) — which module owns which generator
 
 ## `output/docs/` — the hydrated documentation mirror
 

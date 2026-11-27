@@ -4,8 +4,8 @@ All notable changes to AILM are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). Semantic versioning.
 
 The full decision-by-decision development record predating this release lives
-in [`docs/development_history.md`](docs/development_history.md); the numbered
-rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
+in [`docs/provenance/development_history.md`](docs/provenance/development_history.md); the numbered
+rationale behind each decision is in [`docs/provenance/decisions.md`](docs/provenance/decisions.md).
 
 ---
 
@@ -101,7 +101,7 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   `f6c996c7d0ca16e0f120314fc0c30257e3353d54`, and every file under `src/`
   checked against its Git blob, giving `source_sha256`
   `89b075c60f9437b4e64abd2dc680c863def8b89a8b8c8fd35e69888cd7f562cd`. See
-  [`docs/decisions.md`](docs/decisions.md) entry 142.
+  [`docs/provenance/decisions.md`](docs/provenance/decisions.md) entry 142.
 
 - Every conformance suite constructs the typed `LiveConformanceInputs`
   record directly instead of splatting keyword arguments into
@@ -292,12 +292,12 @@ rationale behind each decision is in [`docs/decisions.md`](docs/decisions.md).
   ablation's type-free bar instead of a closed-form mixture score.
 - The wheel-resource test pins its build interpreter, so a user-level uv
   Python pin cannot redirect the locked offline source-distribution rebuild.
-- `docs/troubleshooting.md` links `AGENTS.md` inside the repository.
+- `docs/guides/troubleshooting.md` links `AGENTS.md` inside the repository.
 - Documentation brought in line with the tree: five network recorders, the
   configured per-test timeout, run-scoped cache namespaces, the
   `fig:case_word_sweep` row of the figure registry, a token instead of a
   spelled count in the methods' channel sentence, and the P2 probe-arm status
-  in `TODO.md`, `docs/README.md` and `docs/extension_protocols.md`.
+  in `TODO.md`, `docs/README.md` and `docs/reference/extension_protocols.md`.
 
 ## [1.0.0] — 2026-09-27
 
@@ -333,7 +333,7 @@ trivial baseline, a typed comparator, and deliberately broken variants.
   rather than an assumed message-passing channel.
 - A confirmatory replication protocol: a frozen family of pre-registered
   comparisons re-scored exactly once against a held-back split, recorded in
-  [`docs/decisions.md`](docs/decisions.md).
+  [`docs/provenance/decisions.md`](docs/provenance/decisions.md).
 
 ### Changed
 
@@ -348,8 +348,8 @@ trivial baseline, a typed comparator, and deliberately broken variants.
 
 - Numerous restated stage gates, corrected populations, and re-scoped
   declarations are recorded as corrections in
-  [`docs/decisions.md`](docs/decisions.md) rather than retired silently; the
+  [`docs/provenance/decisions.md`](docs/provenance/decisions.md) rather than retired silently; the
   displaced value is never deleted, only superseded in place.
 
-See [`docs/development_history.md`](docs/development_history.md) for the
+See [`docs/provenance/development_history.md`](docs/provenance/development_history.md) for the
 complete pre-release history this section summarizes.

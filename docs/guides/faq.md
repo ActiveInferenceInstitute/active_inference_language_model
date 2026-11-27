@@ -1,7 +1,7 @@
 # FAQ
 
 Design questions, answered without flattering the project. For failures rather
-than questions, see [`troubleshooting.md`](../troubleshooting.md).
+than questions, see [`troubleshooting.md`](troubleshooting.md).
 
 ---
 
@@ -42,7 +42,7 @@ what a bigram model has always achieved. The letter-to-phone level
 lookup table by claim:stage2_g2p_margin_pts percentage points, on a
 subset of CMUdict chosen for tractability. L3-L6 have recorded gate outcomes;
 L7 is an interface contract. Details are in
-[`../docs/decisions.md`](../decisions.md).
+[`../docs/decisions.md`](../provenance/decisions.md).
 
 What it *is* for:
 
@@ -69,7 +69,7 @@ What it *is* for:
    (the control harness, the implementation-independent reference decoder — the
    oracle — the claims ledger,
    `scripts/audit_gates.py`) transfers to any project that reports numbers. See
-   [`gate_design.md`](../gate_design.md).
+   [`gate_design.md`](../development/gate_design.md).
 
 Anyone reading a perplexity or accuracy figure here as a competitive result has
 been misled, and the prose is at fault. See
@@ -147,7 +147,7 @@ procedure to come back non-significant on two identical predictors.
 The margin being small is why the statistics are careful, not a reason to shop
 for a friendlier evaluation set. That shopping is exactly what produced the third
 defect: see
-[`gate_design.md`](../gate_design.md#defect-3--reproducible-is-not-representative).
+[`gate_design.md`](../development/gate_design.md#defect-3--reproducible-is-not-representative).
 
 ## Why filtering rather than smoothing, if smoothing scores better?
 
@@ -168,7 +168,7 @@ smoothing and gate it as a separate, offline capability.
 ## Why is the gate against the unigram baseline rather than uniform?
 
 Because uniform is a crippled comparator (see
-[`gate_design.md#uniform-is-a-crippled-comparator`](../gate_design.md#uniform-is-a-crippled-comparator)):
+[`gate_design.md#uniform-is-a-crippled-comparator`](../development/gate_design.md#uniform-is-a-crippled-comparator)):
 a model can beat uniform while using no context at all. The uniform figures
 (claim:stage1_uniform_baseline, claim:stage2_phoneme_uniform_baseline) are scale
 markers, not bars.
@@ -230,12 +230,12 @@ gate and has no held-back replication; the retained case-only ablation remains
 non-passing. Stage 6's document-clustered primary interval spans zero on its
 development population and excludes zero on the separately registered held-back
 population at the declared, but not family-corrected, coverage. Stage 7 remains a
-speech boundary contract. The [governing hierarchy](../hierarchy.md) identifies
+speech boundary contract. The [governing hierarchy](../design/hierarchy.md) identifies
 each scorer and the separate connected runtime; these outcomes are not evidence
 of fluent or speech-ready language generation.
 
 Audit before building additional levels; the checklist is in
-[`gate_design.md`](../gate_design.md#pre-build-checklist).
+[`gate_design.md`](../development/gate_design.md#pre-build-checklist).
 
 ## Why is the case oracle "agreement" and not "accuracy"?
 
@@ -266,7 +266,7 @@ cd "$(git rev-parse --show-toplevel)"   # the repository root
 .venv/bin/python -m json.tool data/claims.json
 ```
 
-Mechanics in [`syntax_guide.md`](../syntax_guide.md).
+Mechanics in [`syntax_guide.md`](../reference/syntax_guide.md).
 
 ## Is the claims ledger not overkill for a research prototype?
 
@@ -308,8 +308,8 @@ number changes with every stage.
 
 ## See also
 
-- [`gate_design.md`](../gate_design.md) — the taxonomy and the three defects
-- [`testing_philosophy.md`](../testing_philosophy.md) — controls and oracle cross-checks
+- [`gate_design.md`](../development/gate_design.md) — the taxonomy and the three defects
+- [`testing_philosophy.md`](../development/testing_philosophy.md) — controls and oracle cross-checks
 - [`design/stage2_g2p.md`](../design/stage2_g2p.md) — the alignment decision in full
 - [`design/architecture.md`](../design/architecture.md) — the level hierarchy
 - [`../README.md`](../../README.md) — scope statement and stage roadmap

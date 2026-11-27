@@ -20,7 +20,7 @@ are the ones with a test behind them; everything after is craft.
 Every quantitative statement resolves from the claims ledger. In `docs/manuscript/`
 that means a `{{TOKEN}}`; in `docs/`, `README.md`, `AGENTS.md`, `CHANGELOG.md`,
 and `src/` docstrings it means a `claim:<label>` tag. See
-[`syntax_guide.md`](../syntax_guide.md) for the mechanics.
+[`syntax_guide.md`](../reference/syntax_guide.md) for the mechanics.
 
 | | |
 |---|---|
@@ -104,7 +104,7 @@ retroactively make that sequence prospective.
 
 Name the arm and population before its verdict. The canonical widened Stage 5
 arm and its retained case-only ablation differ; Stage 6’s development and
-held-back document analyses differ. The [hierarchy](../hierarchy.md) owns those
+held-back document analyses differ. The [hierarchy](../design/hierarchy.md) owns those
 current distinctions. The connected runtime is implemented and separately
 measured, but conditional oracle agreement is not a global posterior proof,
 finite in-vocabulary word loss is not full-stream word loss, and a bounded
@@ -165,7 +165,7 @@ phonemes). A *stage* is a build step with a gate (Stage 2 = the phoneme level's
 gate). L1–L6 are the linguistic levels; Stage 0 is infrastructure and Stage 7
 is an external speech boundary. Stage 2 covers the L2A phoneme-sequence and
 L2B aligned-decoding paths. Document-position terciles belong to L6. Use the
-[governing level table](../hierarchy.md) when naming a path.
+[governing level table](../design/hierarchy.md) when naming a path.
 
 ---
 
@@ -289,7 +289,7 @@ still required for clauses 1 and 2, which resist mechanical checking.
 
 ## Cross-references
 
-- [`syntax_guide.md`](../syntax_guide.md) — `{{TOKEN}}` and `claim:` mechanics, crossref syntax
-- [`testing_philosophy.md`](../testing_philosophy.md) — the tests that enforce the honesty rules
-- [`gate_design.md`](../gate_design.md) — why rules 2, 3, and 5 exist
+- [`syntax_guide.md`](../reference/syntax_guide.md) — `{{TOKEN}}` and `claim:` mechanics, crossref syntax
+- [`testing_philosophy.md`](../development/testing_philosophy.md) — the tests that enforce the honesty rules
+- [`gate_design.md`](../development/gate_design.md) — why rules 2, 3, and 5 exist
 - [`agent_instructions.md`](../guides/agent_instructions.md) — the operational contract

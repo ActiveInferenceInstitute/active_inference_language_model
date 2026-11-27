@@ -187,7 +187,7 @@ _ISO_DATE_RE = re.compile(r"(?:19|20)\d{2}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[
 
 def _decision_ids(project_root: Path) -> frozenset[int]:
     """Decision numbers present in the canonical decision log."""
-    path = project_root / "docs" / "decisions.md"
+    path = project_root / "docs" / "provenance/decisions.md"
     if not path.is_file():
         raise InvalidLiteralVariableError(
             f"decision-backed literal variables require the decision log: {path}"
@@ -210,7 +210,7 @@ def _validate_literal_value(
         if value not in decisions:
             raise InvalidLiteralVariableError(
                 f"literal variable {name!r} points to absent decision {value} in "
-                f"{project_root / 'docs' / 'decisions.md'}"
+                f"{project_root / 'docs' / 'provenance/decisions.md'}"
             )
     else:  # pragma: no cover - exact registry comparison guards this branch
         raise InvalidLiteralVariableError(f"literal variable {name!r} has no semantic schema")

@@ -16,7 +16,7 @@ to tell which part is which.
 The pair is also what shows the declared ">=60%" gate carrying two
 population-dependent defects — vacuous on gold, above-reference on derived.
 That is the Stage 4 finding, and it only exists because both are measured
-(``docs/decisions.md`` entries 16 and 75).
+(``docs/provenance/decisions.md`` entries 16 and 75).
 
 Usage
 -----
@@ -66,7 +66,7 @@ def _stronger_decodes(artifact, emission, transition, start) -> dict[str, float]
 
     These are strictly more powerful *inference procedures* over the same
     generative model, so they are the natural ceiling candidates for a
-    classification metric (``docs/gate_design.md``). Reported as variants rather
+    classification metric (``docs/development/gate_design.md``). Reported as variants rather
     than assumed to bound filtering — at this level they do not, and saying so
     is the honest reading.
     """

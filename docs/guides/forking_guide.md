@@ -4,7 +4,7 @@ The prospective procedure for building Stage N of the hierarchy. It is written
 as a sequence because the order is load-bearing: **the gate is audited before
 the level is built**, and every step after that assumes the previous one
 produced a number rather than an intention. The historical Stage 1-4 build did
-not consistently follow this order; [`decisions.md`](../decisions.md) records the
+not consistently follow this order; [`decisions.md`](../provenance/decisions.md) records the
 retroactive repairs.
 
 The canonical widened-observation Stage 5 arm passes its development-session
@@ -12,7 +12,7 @@ gate and has no held-back replication; the retained case-only ablation remains
 non-passing. Stage 6's document-clustered primary interval spans zero on its
 development population and excludes zero on the separately registered held-back
 population at the declared, but not family-corrected, coverage. Stage 7 remains a
-speech boundary contract. The [governing hierarchy](../hierarchy.md) identifies
+speech boundary contract. The [governing hierarchy](../design/hierarchy.md) identifies
 each scorer and the separate connected runtime; these outcomes are not evidence
 of fluent or speech-ready language generation.
 
@@ -56,7 +56,7 @@ an afternoon, before any agent existed.
 ## Step 0 — audit the gate BEFORE building
 
 Work through the pre-build checklist in
-[`gate_design.md`](../gate_design.md#pre-build-checklist). The
+[`gate_design.md`](../development/gate_design.md#pre-build-checklist). The
 irreducible core:
 
 1. **Check the corpus carries the annotation the metric needs.** List the fields.
@@ -205,7 +205,7 @@ uses bounded decision agreement before computing full-set statistics with its
 oracle, and refuses recording when that agreement fails. A bounded check does
 not prove global equivalence on every possible input or posterior value.
 See
-[`gate_design.md`](../gate_design.md#when-the-full-set-is-too-slow-oracle-equivalence)
+[`gate_design.md`](../development/gate_design.md#when-the-full-set-is-too-slow-oracle-equivalence)
 and `verify_decoder_equivalence` in
 [`../scripts/record_stage2_claims.py`](../../scripts/record_stage2_claims.py).
 
@@ -335,7 +335,7 @@ MPLBACKEND=Agg .venv/bin/python -m pytest tests/test_figure_layout.py -q
 ```
 
 Register the new label in
-[`syntax_guide.md`](../syntax_guide.md#figure-label-registry).
+[`syntax_guide.md`](../reference/syntax_guide.md#figure-label-registry).
 
 ---
 
@@ -402,7 +402,7 @@ the tree internally inconsistent in a way no single test catches.
 - [ ] eval-set size, ceiling, and any materially different subsample figure recorded as claims
 - [ ] `REQUIRED_CLAIMS` extended in `src/ailm/required_claims.py`
 - [ ] `audit_stageN()` added to `scripts/audit_gates.py`, `UNAUDITED_STAGES` row removed
-- [ ] figures added, registered in [`syntax_guide.md`](../syntax_guide.md), passing the layout sweep
+- [ ] figures added, registered in [`syntax_guide.md`](../reference/syntax_guide.md), passing the layout sweep
 - [ ] `docs/design/stageN_*.md` for any decision with a cost
 - [ ] gate tables updated in `AGENTS.md` and `README.md`
 - [ ] `CHANGELOG.md` section, with any restatement written as a correction
@@ -413,9 +413,9 @@ the tree internally inconsistent in a way no single test catches.
 
 ## Cross-references
 
-- [`gate_design.md`](../gate_design.md) — Step 0 in full, plus the per-stage hazards for 3–7
-- [`testing_philosophy.md`](../testing_philosophy.md) — Step 4 in full
-- [`syntax_guide.md`](../syntax_guide.md) — Steps 5–7 mechanics
+- [`gate_design.md`](../development/gate_design.md) — Step 0 in full, plus the per-stage hazards for 3–7
+- [`testing_philosophy.md`](../development/testing_philosophy.md) — Step 4 in full
+- [`syntax_guide.md`](../reference/syntax_guide.md) — Steps 5–7 mechanics
 - [`style_guide.md`](../method/style_guide.md) — prose and layer boundaries
 - [`agent_instructions.md`](agent_instructions.md) — invariants, commands, verification checklist
 - [`design/architecture.md`](../design/architecture.md) — where each level sits and what its matrices are

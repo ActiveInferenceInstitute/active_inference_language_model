@@ -1,7 +1,7 @@
 # TODO — the open queue
 
 Only open work lives here. Completed work is in `CHANGELOG.md`; every scientific
-outcome, including every negative and null result, is in `docs/decisions.md` and
+outcome, including every negative and null result, is in `docs/provenance/decisions.md` and
 stays there permanently. An item that is finished is deleted from this file
 rather than ticked, because a queue of ticked boxes stops being a queue.
 
@@ -34,7 +34,7 @@ alternatives — and is not an agent's to take.
 
 - [ ] **Decide how much rationale stays inline in code** (*principal's call*).
   The question is open rather than answered: docstrings and comments carry
-  argument that `docs/decisions.md` also carries, and nothing yet says which
+  argument that `docs/provenance/decisions.md` also carries, and nothing yet says which
   copy wins when the two drift. Record the answer as a decision entry, then
   apply it in one pass rather than moving prose case by case.
 
@@ -189,7 +189,7 @@ alternatives — and is not an agent's to take.
   parsed test inventory rather than their bytes. Each is an evidence-rule change
   that needs its own decision entry and a re-bind on the workstation, and the
   existing receipts stay valid until then.
-  Decision [144](docs/decisions.md#144--proposal-narrow-the-connected-gum-execution-binding-without-erasing-its-measurement-boundary-2026-11-13)
+  Decision [144](docs/provenance/decisions.md#144--proposal-narrow-the-connected-gum-execution-binding-without-erasing-its-measurement-boundary-2026-11-13)
   records the connected-GUM proposal, **not yet adopted**; its workstation
   re-bind and the other two decision entries remain outstanding.
 
@@ -197,7 +197,7 @@ alternatives — and is not an agent's to take.
 
 - [ ] **Equal opportunity to fit the task.** The supplement's fairness table
   records this condition as holding nowhere. Protocol P1
-  (`docs/extension_protocols.md` §2) is written and its offline data/identity
+  (`docs/reference/extension_protocols.md` §2) is written and its offline data/identity
   foundation is implemented and fixture-tested: the streaming exact-census
   objective, the diagnostic carve behind a declared seam, write-once receipts,
   the separate `FITTED_PROBES` registry, and the stride-aliasing refutation
@@ -214,7 +214,7 @@ alternatives — and is not an agent's to take.
   (upstream checkpoint downloads, the mlx-lm/llama.cpp toolchain, local
   serving), plus the gemma3 gated-license question.
 
-  The historical proposals in `docs/research_queue.md` do not supply this
+  The historical proposals in `docs/method/research_queue.md` do not supply this
   fitted-probe design. That queue is exploratory history, and its truncated
   adversarial export does not establish current task status.
 
@@ -289,10 +289,10 @@ returning in a new costume.
 - **Taking a Mathlib dependency for the Lean layer.** Principal's decision: the
   offline dependency-free build is kept, and the `Real`-requiring items are
   *declined* rather than deferred. See `formal/README.md`.
-- **Eleven items from `docs/research_queue.md`**, refuted under adversarial review
+- **Eleven items from `docs/method/research_queue.md`**, refuted under adversarial review
   and listed there with the reason each fails.
 
-## Levels 3 to 6 and the hierarchy — see docs/research_queue.md
+## Levels 3 to 6 and the hierarchy — see docs/method/research_queue.md
 
 That file preserves historical proposals and inline completion notes. Its
 adversarial export is retired because the rows and supporting evidence were

@@ -307,7 +307,7 @@ class TestCompositionIsHonest:
                 f"agent-to-agent inference: {offenders}. The levels do not "
                 "exchange beliefs — update_empirical_prior is used only for "
                 "within-level temporal recursion, and the one channel that was "
-                "built measured harmful. See docs/decisions.md entry 9."
+                "built measured harmful. See docs/provenance/decisions.md entry 9."
             )
         finally:
             plt.close(fig)
