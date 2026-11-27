@@ -74,11 +74,20 @@ cd "$TEMPLATE_REPO_ROOT"
 uv run --locked python scripts/pipeline/stage_03_render.py --project working/active_inference_language_model
 ```
 
-The renderer invokes `scripts/z_generate_manuscript_variables.py` itself before
-assembling, using the project's own `.venv` and passing `TEMPLATE_REPO_ROOT`, so the
-hydration step above is a check rather than a prerequisite. It reads
-`output/manuscript/` when that directory contains Markdown, which is why editing
-`output/manuscript/*.md` directly is always wrong — the next hydration overwrites it.
+The template normally invokes `scripts/z_generate_manuscript_variables.py` before
+assembly. If its runtime admission requires a newer Python than AILM's own locked
+environment, hydrate explicitly from the AILM root:
+
+```bash
+TEMPLATE_REPO_ROOT="$AILM_TEMPLATE_ROOT" .venv/bin/python scripts/z_generate_manuscript_variables.py
+! rg -n -F '{{' output/manuscript/
+cd "$AILM_TEMPLATE_ROOT"
+uv run --locked python scripts/pipeline/stage_03_render.py \
+  --project working/active_inference_language_model --skip-manuscript-hydration
+```
+
+Run the render command after hydration succeeds. The renderer consumes the generated
+Markdown in `output/manuscript/`. Edit the authored sections here to change the paper.
 
 Read the resulting PDF before believing it. A single pass can leave `??` in place of
 cross-references, and mangled math inside a theorem environment does not show up in
