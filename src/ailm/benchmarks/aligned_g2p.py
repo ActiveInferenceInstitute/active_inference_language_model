@@ -1,7 +1,7 @@
 """Stipulated aligned spelling-to-pronunciation artifact (protocol P2, design B).
 
 This module implements the pair-structured stipulated artifact of
-``docs/extension_protocols.md`` §3 (frozen copy:
+``docs/reference/extension_protocols.md`` §3 (frozen copy:
 ``output/reports/omp-dispatch-20260908/evidence/extensions-E1R-frozen/``):
 a seeded per-letter correspondence ``T`` from the 26 lowercase letters onto a
 fixed subset of the canonical 39-phone ARPAbet inventory, spelling words cut

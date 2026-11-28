@@ -265,7 +265,7 @@ def test_membership_is_green_by_construction_and_so_is_not_the_gate(habit, artif
     generator would have passed it perfectly.
 
     If this test ever fails because membership stopped being saturated, the
-    finding changed and ``docs/decisions.md`` entry 17 needs revisiting. It is
+    finding changed and ``docs/provenance/decisions.md`` entry 17 needs revisiting. It is
     not a license to promote membership to the gate.
     """
     for gamma in (0.5, 1.0, 16.0):

@@ -2,7 +2,7 @@
 
 What this file is for
 ---------------------
-``docs/decisions.md`` entry 18 states a criterion for when an inter-level message
+``docs/provenance/decisions.md`` entry 18 states a criterion for when an inter-level message
 helps — it must carry information the receiver does not already have — and
 derives a prediction *before* measuring. Entry 19 records that the prediction
 held. These tests keep both the result and the controls that make it evidence.

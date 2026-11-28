@@ -1,6 +1,6 @@
 """Latent-state G2P emission learning experiment (decision 29).
 
-Controlled design (pre-registered in ``docs/decisions.md`` entry 29): the
+Controlled design (pre-registered in ``docs/provenance/decisions.md`` entry 29): the
 phone states are unobserved, so this is deliberately NOT an entry-22-style
 conjugate-agreement test. pymdp's own filtering loop produces the marginal
 beliefs that ``infer_parameters(..., learn_A=True)`` consumes, and the held-out

@@ -19,7 +19,7 @@ type, and the type posterior is the marginal over blocks.
 
 What the measurement found — read this before extending the level
 -----------------------------------------------------------------
-The Stage 5 gate is **non-passing and unresolved** (``docs/decisions.md``
+The Stage 5 gate is **non-passing and unresolved** (``docs/provenance/decisions.md``
 entry 83). On this UD EWT split at bigram order, the privileged
 type-*oracle* reference has a small negative point estimate against the type-free
 chain, and its document-clustered bootstrap intervals span zero in nats per

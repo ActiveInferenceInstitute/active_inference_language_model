@@ -63,7 +63,7 @@ recorded label or remove unsupported numerical precision.
 | Path | Owner |
 |---|---|
 | `README.md`, `AGENTS.md` | This directory's index and its own operating rules |
-| `architecture.md`, `hierarchy.md`, `formal.md`, `gnn_composition.md`, `gate_design.md`, `testing_philosophy.md`, `syntax_guide.md`, `extension_protocols.md`, `troubleshooting.md`, `decisions.md`, `development_history.md`, `research_queue.md` | Governing references, kept at root because each is the file its topic's other members point back to. `hierarchy.md` wins on any disagreement about level structure and live score paths; `decisions.md` is append-only chronology; `research_queue.md` is exploratory and outside the bare-number scan |
+| `development/`, `design/hierarchy.md`, `reference/`, `guides/troubleshooting.md`, `provenance/`, `method/research_queue.md` | Governing references are grouped by topic. `design/hierarchy.md` defines the level structure and live score paths. `provenance/decisions.md` preserves the append-only chronology. `method/research_queue.md` remains exploratory and outside the bare-number scan. |
 | `guides/*.md` | Task-oriented reading: `quickstart.md`, `agent_instructions.md` (the canonical command reference), `forking_guide.md`, `faq.md`, `roadmap.md`. Change these when a rule, a convention, or the first-run sequence changes |
 | `reference/*.md` | Consult-as-needed: `glossary.md`, `notation.md`, `formalism_map.md`, `output_conventions.md`, `output_inventory.md`, `data_statement.md`. Change these when the code layout, the token flow, the artifact set, or a corpus's generalizability changes. `glossary.md` carries no result numbers — link to the file that has them instead of retyping one |
 | `method/*.md` | The mechanics: `style_guide.md`, `rendering_pipeline.md`, `release_checklist.md` |
@@ -71,7 +71,7 @@ recorded label or remove unsupported numerical precision.
 | `manuscript/` | Publication source, governed by [`manuscript/AGENTS.md`](manuscript/AGENTS.md). Use backed variable tokens for measured quantities, preserve the layer contract, and regenerate through the documented rendering pipeline. Claim tags remain subject to the repository-wide validity scan |
 | `provenance/sources.md` | Corpora, licenses, vendored artifacts, checksums, derivation biases. [`provenance/README.md`](provenance/README.md) is its section map and [`provenance/AGENTS.md`](provenance/AGENTS.md) the regeneration contract |
 
-The split matters for one reason in particular: [`architecture.md`](architecture.md)
+The split matters for one reason in particular: [`architecture.md`](development/code-architecture.md)
 is the **code** architecture and [`design/architecture.md`](design/architecture.md)
 is the **scientific** architecture. Moving a module edits the first. Changing what
 a matrix means edits the second. Editing the wrong one produces two documents that
@@ -141,6 +141,6 @@ instead of a bare failure, which is what you need while fixing it.
 
 - [`README.md`](README.md) — the categorized index of every document
 - [`quickstart.md`](guides/quickstart.md) — interpreter rule, gate commands, render command
-- [`architecture.md`](architecture.md) — module ownership and the import contract
+- [`architecture.md`](development/code-architecture.md) — module ownership and the import contract
 - [`../AGENTS.md`](../AGENTS.md) — project-level invariants and stage gates
 - [`../tests/test_claims_discipline.py`](../tests/test_claims_discipline.py) — the gate that reads this directory

@@ -5,7 +5,7 @@ census counts, the positional diagnostic carve, and the experimental native
 comparator's refit counts. All builders are pure functions of their declared
 inputs; nothing here downloads, trains, or touches the network.
 
-Contracts implemented (see ``docs/extension_protocols.md`` §2.2):
+Contracts implemented (see ``docs/reference/extension_protocols.md`` §2.2):
 
 - **Streaming exact census** — one supervised target per declared position;
   the instance list preserves positional order so the diagnostic carve is

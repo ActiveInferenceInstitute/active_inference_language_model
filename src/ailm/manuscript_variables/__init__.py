@@ -34,7 +34,7 @@ project), so ``SOURCE_DATE_EPOCH`` is read directly for reproducible build
 stamps.
 
 The rationale for the recorder/verifier split, and for refusing to fall back to a
-default value, is in ``docs/decisions.md``.
+default value, is in ``docs/provenance/decisions.md``.
 """
 
 from __future__ import annotations

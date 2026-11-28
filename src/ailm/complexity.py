@@ -302,7 +302,7 @@ def word_path_ops_theory(n_tokens: int) -> OpCount:
     """Scoring cost of the Stage 3 closed form: Θ(1) per token.
 
     The factorization makes both transitions and the emission deterministic, so
-    a token's path probability *is* its prior mass (``docs/decisions.md`` entry
+    a token's path probability *is* its prior mass (``docs/provenance/decisions.md`` entry
     13): one logarithm and one accumulate per token, independent of the
     vocabulary size. This is the payoff the dense-joint counterfactual in
     :func:`dense_joint_transition_bytes` prices.
@@ -453,7 +453,7 @@ def agent_memory_bytes_from_shape(
     each factor's states, and the policy prior ``E`` pymdp materialises for
     every agent — one scalar at the single-action recognition levels, which is
     the term whose omission once left the reconciliation four bytes short at
-    every level (``docs/decisions.md`` entry 21).
+    every level (``docs/provenance/decisions.md`` entry 21).
 
     The product and the sum are the whole factorization argument in one line:
     factoring moves the transition from ``(∏ₚ Sₚ)²`` to ``∑ₚ Sₚ²`` and leaves

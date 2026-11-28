@@ -1,6 +1,6 @@
 """Dedicated controls for the stipulated aligned spelling-to-pronunciation arm.
 
-Protocol P2 of ``docs/extension_protocols.md`` §3. Every control runs real
+Protocol P2 of ``docs/reference/extension_protocols.md`` §3. Every control runs real
 generation, real files, and real engine execution under ``tmp_path`` — no
 mocks, no network, no Lean build, no claim writes. The negative controls plant
 corruption into real artifact bytes and require the validator to refuse for

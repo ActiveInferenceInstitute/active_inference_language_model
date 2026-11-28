@@ -43,7 +43,7 @@ cross-level interventions. A connected development runtime now executes live
 GNN-built agents with explicit message timing and conditional next-word generation;
 its corpus comparison is reported separately from the historical stage scores. Gate outcomes,
 the paper, and the decision log are linked throughout this document; start
-with [`docs/hierarchy.md`](docs/hierarchy.md) if you want the governing
+with [`docs/design/hierarchy.md`](docs/design/hierarchy.md) if you want the governing
 description, [`docs/guides/quickstart.md`](docs/guides/quickstart.md) if you want a
 running checkout, or [`docs/README.md`](docs/README.md#start-here) for a short
 start-here path by audience (newcomer, reviewer, contributor), with a
@@ -81,7 +81,7 @@ measured receiver interventions, not assumed messages: `update_empirical_prior` 
 within-level temporal recursion at every call site, while each reported
 receiver intervention is a recorded experiment. The measured interventions are:
 L1 letters → L2B letter-to-phone is significantly
-harmful (`docs/decisions.md` entry 9), the lexical L3 → L2B message helps at every
+harmful (`docs/provenance/decisions.md` entry 9), the lexical L3 → L2B message helps at every
 tested weight, with an interior argmax the sweep does not distinguish from a
 plateau (entries 19 and 110), the document-position (tercile) → clause
 prior intervention (`narrative` in code) is measured (entry 26),
@@ -95,7 +95,7 @@ into a document-to-letter cascade. Generation by policy selection
 under expected free energy G(π) is built at L1g with L3 lexical preferences; the
 policy posterior is computed in closed form (`efe_policy_posterior`) and
 verified against `agent.infer_policies`, with the agreement recorded — see
-`docs/decisions.md` entries 17 and 95 and the status list below.
+`docs/provenance/decisions.md` entries 17 and 95 and the status list below.
 
 The connected runtime uses `ailm.levels.connected.ConnectedRuntime` with
 `load_connected_model()` from `ailm.levels.connected_builder`. `infer_text()`
@@ -198,7 +198,7 @@ gate table in [`AGENTS.md`](AGENTS.md#stage-gates) carries the per-stage
 verdict. The original Stage 1-4 gates were restated after those levels had been
 built or measured, and later stage declarations were re-scoped during audit; the
 chronology is in [`AGENTS.md`](AGENTS.md) and
-[`docs/decisions.md`](docs/decisions.md).
+[`docs/provenance/decisions.md`](docs/provenance/decisions.md).
 
 1. `ailm.cases` — the core `CaseRole` inventory; scoped core and novel `CerebrumFunctionRole` values; the exact CEREBRUM tuple; an explicitly AILM-owned pymdp heuristic; source-structured case formulations; and a fail-closed scalar NOM/ACC scaffold
 2. `ailm.claims` — `ClaimsLedger`: verifies `claim:<label>` provenance and detects high-signal bare quantitative prose
@@ -252,9 +252,9 @@ model. The named factors and A/B/C/D arrays give parameter-level explicitness
 and structural traceability, not a general claim of mechanistic
 interpretability; which score paths run live pymdp filtering and which use an
 identified exact or NumPy computation is stated in
-[`docs/hierarchy.md`](docs/hierarchy.md), which governs. The paper is authored in
+[`docs/design/hierarchy.md`](docs/design/hierarchy.md), which governs. The paper is authored in
 `docs/manuscript/` and rendered to `output/pdf/`; the decisions log is
-[`docs/decisions.md`](docs/decisions.md); the operating reference for
+[`docs/provenance/decisions.md`](docs/provenance/decisions.md); the operating reference for
 contributors and agents is [`AGENTS.md`](AGENTS.md).
 
 ---
@@ -361,7 +361,7 @@ The identical two calls are also reachable as a Python API, with no CLI, in
 ```
 
 Both entry points call the same functions in `ailm.demo` — see
-[`docs/architecture.md`](docs/architecture.md#package-map) for the module row
+[`docs/development/code-architecture.md`](docs/development/code-architecture.md#package-map) for the module row
 and [`docs/guides/quickstart.md`](docs/guides/quickstart.md) for the full
 clone-to-rendered-paper path.
 
@@ -381,7 +381,7 @@ clone-to-rendered-paper path.
 Each stage has a falsifiable gate, a baseline, and a negative control that must
 FAIL before the gate is declared live. Prospectively, stages may not be skipped;
 the chronology in [`AGENTS.md`](AGENTS.md#stage-gates) and
-[`docs/decisions.md`](docs/decisions.md) records where that rule was not followed.
+[`docs/provenance/decisions.md`](docs/provenance/decisions.md) records where that rule was not followed.
 
 ### Stage 1 result — letters
 
@@ -476,7 +476,7 @@ failure at the bindings step rather than a skipped one, so `full` cannot be take
 without those inputs. Fresh hosted acquisition is a separate authorized
 measurement workflow. For frozen publication-only repairs, use the exact
 independently reviewed
-[publication derivative](docs/publication_derivative.md); the original binding
+[publication derivative](docs/method/publication_derivative.md); the original binding
 receipts remain unchanged. Hosted CI runs `quick` only. What each profile
 checks, why the runner must be started with `-I -S`, and how it isolates its
 environment are in [`docs/guides/quickstart.md`](docs/guides/quickstart.md) (section 7) and the
@@ -487,7 +487,7 @@ The gate audit inside it classifies every stage against a typed comparator
 exceedable reference failing the bar reads `ABOVE_REFERENCE`), exports to
 `output/reports/gate_audit.json`, and its licensing rule is proved in Lean
 (`formal/AILM/GateVerdict.lean`, `unreachable_requires_bound`); see
-[`docs/gate_design.md`](docs/gate_design.md).
+[`docs/development/gate_design.md`](docs/development/gate_design.md).
 
 ## Claims Ledger
 

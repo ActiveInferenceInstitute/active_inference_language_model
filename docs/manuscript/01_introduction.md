@@ -404,7 +404,7 @@ ceiling or its baseline measured before it was accepted.
 ## Reading the evidence: development findings and held-back tests
 
 Numbered *decisions* cited throughout are entries in the repository's
-chronological decisions log, `docs/decisions.md`, released with the code; each
+chronological decisions log, `docs/provenance/decisions.md`, released with the code; each
 records a design choice or a measured outcome, including every null.
 Quantitative statements in this manuscript use the following strength labels,
 and the prose holds each result to its label. *Corrected-threshold survivor*: the effect

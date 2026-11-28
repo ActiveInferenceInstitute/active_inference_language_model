@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Precheck for the decision-79 confirmatory replication run -- PREP ONLY, no scoring.
 
-Decision 79 (docs/decisions.md) froze the confirmatory replication protocol:
+Decision 79 (docs/provenance/decisions.md) froze the confirmatory replication protocol:
 the 16-member ``SIGNIFICANCE_FAMILY`` is to be scored exactly once against
 held-back populations, gated by ``confirmatory_run_completed_<population>``
 sentinel claims that make a second pass refuse to run. This script is the
@@ -10,7 +10,7 @@ nothing unless ``--report PATH`` is given, in which case the same summary is als
 published to that path -- it scores nothing, vendors nothing, and creates no
 sentinel.
 
-Decision 91 (docs/decisions.md) retired the run by exhaustion for the eight
+Decision 91 (docs/provenance/decisions.md) retired the run by exhaustion for the eight
 external_lexicon members: that population is provably empty, because upstream
 CMUdict ``HEAD`` is byte-identical to the vendored pin. Decision 111 is the
 successor registration for the other four: the ``ud_ewt_test`` members were
@@ -75,7 +75,7 @@ from ailm.statistics import (  # noqa: E402 - project path established above
     SIGNIFICANCE_FAMILY,
 )
 
-#: Decision 79's census, transcribed verbatim from docs/decisions.md entry 79.
+#: Decision 79's census, transcribed verbatim from docs/provenance/decisions.md entry 79.
 #: The frozen code mapping must equal this exactly.
 DECISION_79_ENUMERATION: dict[str, str] = {
     # CMUdict members (8): population external_lexicon.

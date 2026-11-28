@@ -48,7 +48,7 @@ The complete enum is `VACUOUS`, `UNREACHABLE`, `ABOVE_REFERENCE`, `UNAUDITED`,
 
 The classification is mechanical once the trivial baseline and the achievable
 ceiling have been measured. The single implementation is
-[`../src/ailm/gates.py`](../src/ailm/gates.py); the audit script and figures
+[`../src/ailm/gates.py`](../../src/ailm/gates.py); the audit script and figures
 delegate to it:
 
 Every ceiling carries a declared `ComparatorType` — `model_class_bound`,
@@ -95,7 +95,7 @@ either: `compute_perplexity` also scores the first character, and the recorder's
 bound includes that term. Continuing with the training figure:
 the demanded gain is roughly double the ceiling (the exact ratio is the derived
 manuscript token `{{STAGE1_CEILING_SHORTFALL_RATIO}}`; it is computed in
-[`../src/ailm/manuscript_variables/`](../src/ailm/manuscript_variables/__init__.py), not
+[`../src/ailm/manuscript_variables/`](../../src/ailm/manuscript_variables/__init__.py), not
 typed here). The shipped agent realizes claim:stage1_gain_over_uniform_nats nats,
 i.e. claim:stage1_bigram_signal_captured_pct% of what the model order permits.
 
@@ -135,7 +135,7 @@ $$
 
 and the corresponding perplexity floor is $\exp\big(H(X_t \mid X_{t-1})\big)$.
 The implementation is `_conditional_entropy` in
-[`../scripts/audit_gates.py`](../scripts/audit_gates.py): build the joint from
+[`../scripts/audit_gates.py`](../../scripts/audit_gates.py): build the joint from
 the raw `"prev,next"` bigram counts, normalize it, marginalize for
 $P(x_{t-1})$, and accumulate per-column.
 
@@ -145,7 +145,7 @@ Three details that decide whether the number you get is the number you want:
   table. Add-1 smoothing raises it. For phonemes the two differ in the third
   decimal place, which is enough to make an equality assertion fail on correct
   code. The module docstring of
-  [`../src/ailm/levels/phoneme.py`](../src/ailm/levels/phoneme.py) records both.
+  [`../src/ailm/levels/phoneme.py`](../../src/ailm/levels/phoneme.py) records both.
 - **Which positions count.** The floor over genuine *transitions* excludes
   sequence-initial positions, which have no predecessor. A language-model
   perplexity that scores every position pays for position 0 under the start
@@ -254,7 +254,7 @@ column-stochastic and satisfies `_validate()` in either slot.
 At Level 2 there are two learned matrices and therefore twice the room. Three
 mis-wirings were built and measured against the context-free bar (figures and the
 exact per-variant numbers are in the
-[`../src/ailm/levels/phoneme.py`](../src/ailm/levels/phoneme.py) module
+[`../src/ailm/levels/phoneme.py`](../../src/ailm/levels/phoneme.py) module
 docstring, derived rather than retyped here):
 
 | Mis-wiring | Caught by "beats the baseline"? |
@@ -274,7 +274,7 @@ express:
    along the specific axis — a transposed matrix still sums to 1 along *some*
    axis, so `assert np.allclose(M.sum(axis=...), 1)` with the wrong axis is a
    green check on broken code. Both assertions live in
-   [`../tests/test_stage2_gate.py`](../tests/test_stage2_gate.py)
+   [`../tests/test_stage2_gate.py`](../../tests/test_stage2_gate.py)
    (`test_stage2_g2p_emission_orientation_is_pinned`).
 2. **Numerical agreement with an independent closed-form oracle.** See below.
 
@@ -294,13 +294,13 @@ that a deterministic prefix is reproducible. It is. It is also biased:
 The prefix reported a margin several times the full-set
 claim:stage2_g2p_margin_pts pts — a comfortable-looking pass built entirely out
 of the slice. The exact prefix figure and the overstatement factor are derived in
-[`../scripts/record_stage2_claims.py`](../scripts/record_stage2_claims.py) and
-retained in the dated [development history](development_history.md); they are not retyped here,
+[`../scripts/record_stage2_claims.py`](../../scripts/record_stage2_claims.py) and
+retained in the dated [development history](../provenance/development_history.md); they are not retyped here,
 because a number that appears in two places drifts in one of them.
 
 The fix was to subsample by **even spacing** (a stride), which spans all 26
 initials at the same cost. `_iter_pairs` in
-[`../src/ailm/levels/phoneme.py`](../src/ailm/levels/phoneme.py) does that now.
+[`../src/ailm/levels/phoneme.py`](../../src/ailm/levels/phoneme.py) does that now.
 
 Then the second, sharper problem appeared. A *representative* stride of the same
 size is **underpowered**: over claim:stage2_g2p_subsample_positions positions the
@@ -348,7 +348,7 @@ Stage 2's G2P margin is claim:stage2_g2p_margin_pts pts
 (claim:stage2_g2p_accuracy% against claim:stage2_g2p_baseline_accuracy%). That is
 thin **by construction**, not by weakness: on a transparent-orthography subset
 the letter alone is nearly sufficient, which is exactly why the context-free
-baseline is strong (see [`design/stage2_g2p.md`](design/stage2_g2p.md)).
+baseline is strong (see [`design/stage2_g2p.md`](../design/stage2_g2p.md)).
 
 A bare `assert model_accuracy > baseline_accuracy` on half a point is not
 evidence. It is within the range a different tie-break rule or smoothing constant
@@ -391,7 +391,7 @@ the fast approximation as if it were the agent.
 The pattern that is honest:
 
 1. Implement an **independent** closed-form oracle —
-   [`../src/ailm/verification/oracle.py`](../src/ailm/verification/oracle.py):
+   [`../src/ailm/verification/oracle.py`](../../src/ailm/verification/oracle.py):
    `forward_filter`, `forward_backward`, `viterbi`, `sequence_perplexity`,
    `markov_chain_perplexity`. Pure numpy. **It must never import pymdp or jax**,
    because an auditor that shares code with the thing it audits inherits the
@@ -402,7 +402,7 @@ The pattern that is honest:
 4. **Refuse to record** if the disagreement count is ever nonzero, since the
    full-set figures would then no longer describe the pymdp agent.
    `verify_decoder_equivalence` in
-   [`../scripts/record_stage2_claims.py`](../scripts/record_stage2_claims.py)
+   [`../scripts/record_stage2_claims.py`](../../scripts/record_stage2_claims.py)
    enforces step 4.
 
 Step 4 makes the substitution conditional on observed agreement. It does not
@@ -443,11 +443,11 @@ Two caveats that are printed in the output and are worth restating:
 - `--limit` bounds the G2P evaluation. A bounded subsample is enough to
   *classify* the gate (baseline versus ceiling versus threshold) but **not** to
   establish significance. The gate statistic lives in
-  [`../scripts/record_stage2_claims.py`](../scripts/record_stage2_claims.py),
+  [`../scripts/record_stage2_claims.py`](../../scripts/record_stage2_claims.py),
   which runs the full set.
 - The subsample values printed by the audit will not equal the recorded claims,
   and should not be quoted as results. The claims ledger
-  ([`../data/claims.json`](../data/claims.json)) is the source of record; the
+  ([`../data/claims.json`](../../data/claims.json)) is the source of record; the
   audit is a classification instrument.
 
 **Adding a stage to the audit.** Write an `audit_stageN()` returning the dict
@@ -482,7 +482,7 @@ For the stage you are about to build:
       metric, or a strictly more powerful decode for a classification metric.
       Record its comparator type: only a bound that cannot clear the threshold
       licenses UNREACHABLE; an exceedable reference gives ABOVE_REFERENCE.
-      Record any correction and *why* in [`../CHANGELOG.md`](../CHANGELOG.md).
+      Record any correction and *why* in [`../CHANGELOG.md`](../../CHANGELOG.md).
 - [ ] **Estimate the expected margin.** If it is thin, specify the paired
       statistic and its no-effect control now.
 - [ ] **Enumerate the mis-wirings this level makes available** (which matrices
@@ -490,17 +490,17 @@ For the stage you are about to build:
       and write one negative control per mis-wiring. Confirm each fails, and note
       any that your guard set does *not* catch.
 - [ ] **Wire the oracle cross-check** before trusting any number. Extend
-      [`../src/ailm/verification/oracle.py`](../src/ailm/verification/oracle.py)
+      [`../src/ailm/verification/oracle.py`](../../src/ailm/verification/oracle.py)
       rather than writing a scratch script.
 - [ ] **Add `audit_stageN()`** to
-      [`../scripts/audit_gates.py`](../scripts/audit_gates.py) and remove the
+      [`../scripts/audit_gates.py`](../../scripts/audit_gates.py) and remove the
       stage from `UNAUDITED_STAGES`.
 - [ ] **Record every number as a claim** and reference it as `claim:<label>` in
-      prose (see [`syntax_guide.md`](syntax_guide.md)).
+      prose (see [`syntax_guide.md`](../reference/syntax_guide.md)).
 
 The following are historical declarations and their failure modes, retained as
-lessons rather than current specifications. The [hierarchy](hierarchy.md) and
-[decision chronology](decisions.md) govern the repaired gates.
+lessons rather than current specifications. The [hierarchy](../design/hierarchy.md) and
+[decision chronology](../provenance/decisions.md) govern the repaired gates.
 
 Stage-specific warnings already known:
 
@@ -517,9 +517,9 @@ Stage-specific warnings already known:
 ## Cross-references
 
 - [`testing_philosophy.md`](testing_philosophy.md) — controls, `GateVacuousError`, the oracle pattern
-- [`design/architecture.md`](design/architecture.md) — the level hierarchy and each level's matrices
-- [`design/stage2_g2p.md`](design/stage2_g2p.md) — why the G2P margin is thin by construction
-- [`syntax_guide.md`](syntax_guide.md) — recording and referencing measured numbers
-- [`../scripts/audit_gates.py`](../scripts/audit_gates.py) — the re-runnable classification
-- [`../scripts/record_stage2_claims.py`](../scripts/record_stage2_claims.py) — the full-set gate statistic and the equivalence proof
-- [`../AGENTS.md`](../AGENTS.md) — the stage gate table and both gate restatements
+- [`design/architecture.md`](../design/architecture.md) — the level hierarchy and each level's matrices
+- [`design/stage2_g2p.md`](../design/stage2_g2p.md) — why the G2P margin is thin by construction
+- [`syntax_guide.md`](../reference/syntax_guide.md) — recording and referencing measured numbers
+- [`../scripts/audit_gates.py`](../../scripts/audit_gates.py) — the re-runnable classification
+- [`../scripts/record_stage2_claims.py`](../../scripts/record_stage2_claims.py) — the full-set gate statistic and the equivalence proof
+- [`../AGENTS.md`](../../AGENTS.md) — the stage gate table and both gate restatements

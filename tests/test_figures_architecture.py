@@ -620,7 +620,7 @@ class TestArchitectureFigures:
         """An arrow is a claim about a relation between exactly the rows it touches.
 
         The alphabet-identity gutter is labeled for L1 and L2 and drawn one way,
-        because L2's observation modality is L1's alphabet; ``docs/hierarchy.md``
+        because L2's observation modality is L1's alphabet; ``docs/design/hierarchy.md``
         rules out any level-spanning cascade. A double-headed arrow from L1 to L6
         shipped for weeks under an L1/L2 label, which is what this pins.
         """

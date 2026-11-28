@@ -23,7 +23,7 @@ independence is the only reason running the check is worth anything.
 | The enforced subset and its non-goals | [`../../../gnn/SPEC.md`](../../../gnn/SPEC.md) |
 | The naming grammar for spec identifiers | `registry.py` (`SPEC_KINDS`, `SPEC_SUFFIX`, `parse_model_id`) |
 | The public API surface | `__init__.py`'s `__all__` — every other module's exports reach callers through it |
-| Composition semantics in the wider project | [`../../../docs/gnn_composition.md`](../../../docs/gnn_composition.md) |
+| Composition semantics in the wider project | [`../../../docs/gnn_composition.md`](../../../docs/reference/gnn_composition.md) |
 
 ## Invariants (never violate)
 
@@ -128,4 +128,4 @@ print('ailm.gnn is independent')
 - [`../../../gnn/SPEC.md`](../../../gnn/SPEC.md) — the enforced subset and non-goals
 - [`../../../gnn/AGENTS.md`](../../../gnn/AGENTS.md) — rules for the spec files themselves
 - [`../verification/AGENTS.md`](../verification/AGENTS.md) — the independent numeric instrument
-- [`../../../docs/architecture.md`](../../../docs/architecture.md) — the package map and import contract
+- [`../../../docs/architecture.md`](../../../docs/development/code-architecture.md) — the package map and import contract

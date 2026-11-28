@@ -6,7 +6,7 @@ GNN-specified pymdp agents. The implementation is
 contract is in [`connected_types.py`](../../src/ailm/levels/connected_types.py), and
 [`load_connected_model`](../../src/ailm/levels/connected_builder.py) assembles the
 agents and train-only connection kernels. The existing stage measurements remain
-the independent experiments described in the [governing hierarchy](../hierarchy.md).
+the independent experiments described in the [governing hierarchy](hierarchy.md).
 No stage score or claim-ledger value is reassigned to this new runtime.
 
 The rejected alternative was to concatenate the existing intervention scores and
@@ -207,7 +207,7 @@ The original measured source inventory includes `levels/widened.py` module
 comments written before decision 114. Their references to a shipped case-only
 arm describe that historical source epoch, not the current canonical model.
 The canonical widened arm and retained case-only ablation are distinguished
-by this runtime contract, [the hierarchy](../hierarchy.md), and
+by this runtime contract, [the hierarchy](hierarchy.md), and
 [the notation reference](../reference/notation.md). Preserve the measured
 module’s exact bytes when reproducing its bound report; editing even a
 docstring invalidates that source binding. This is retained provenance, not

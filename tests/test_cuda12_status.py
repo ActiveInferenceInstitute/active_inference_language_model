@@ -23,7 +23,7 @@ def pytest_configure(config):
     config.addinivalue_line(
         "markers",
         "requires_cuda12: requires the cuda12 extra (jax[cuda12]==0.4.38 plugin set); "
-        "opt in with -m requires_cuda12. See docs/troubleshooting.md CUDA section",
+        "opt in with -m requires_cuda12. See docs/guides/troubleshooting.md CUDA section",
     )
 
 

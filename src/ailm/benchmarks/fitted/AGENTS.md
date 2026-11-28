@@ -30,4 +30,4 @@ reference is [`README.md`](README.md); this file is the ownership boundary.
 `identity.py` reads `ailm.benchmarks.constants` (read-only). The receipt
 schema is a contract for the future trainer: changing a field name is a
 breaking change for that consumer and must be recorded in
-`docs/extension_protocols.md` §2.3 in the same change.
+`docs/reference/extension_protocols.md` §2.3 in the same change.

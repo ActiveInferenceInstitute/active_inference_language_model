@@ -76,7 +76,7 @@ works at all with the offline newcomer demo — read-only and offline. The first
 It prints the committed Stage 1-6 gate-verdict table from
 `output/reports/gate_audit.json`, then a live Stage 2B G2P decode of one word.
 See [`README.md`](../../README.md#usage) for what each call does and
-[`architecture.md`](../architecture.md#package-map) for `ailm.demo`'s module row.
+[`architecture.md`](../development/code-architecture.md#package-map) for `ailm.demo`'s module row.
 
 ## 1b. Run the connected model
 
@@ -281,7 +281,7 @@ The coverage floor is claim:stage0_coverage_floor_pct% branch coverage, set once
 whenever `--cov` is passed, and the release runner reads the same key, so no command
 repeats the number. Note what that gate does and does not
 prove: a green exit means the floor was cleared, not that any particular behavior
-is covered. See [`testing_philosophy.md`](../testing_philosophy.md) for what a
+is covered. See [`testing_philosophy.md`](../development/testing_philosophy.md) for what a
 passing suite here is allowed to mean.
 
 ## 4. Audit the gates themselves
@@ -295,7 +295,7 @@ For each implemented stage `scripts/audit_gates.py` prints the trivial baseline,
 the shipped model, the typed comparator, and one exact `GateVerdict`: `VACUOUS`,
 `UNREACHABLE`, `ABOVE_REFERENCE`, `UNAUDITED`, `BRACKETED_BOUND`, or
 `BRACKETED_REFERENCE`. The reasoning and the bound-versus-reference distinction
-are in [`gate_design.md`](../gate_design.md); the exact command (and the faster,
+are in [`gate_design.md`](../development/gate_design.md); the exact command (and the faster,
 noisier subsample variant) is in
 [`agent_instructions.md#rule-3-the-command-set`](agent_instructions.md#rule-3-the-command-set).
 
@@ -508,12 +508,12 @@ the artifact is worse than no checksum, so it is checked rather than trusted.
 
 | You want to | Read |
 |---|---|
-| Know where a function belongs | [`architecture.md`](../architecture.md) |
+| Know where a function belongs | [`architecture.md`](../development/code-architecture.md) |
 | Understand the number pipeline | [`rendering_pipeline.md`](../method/rendering_pipeline.md) |
-| Understand what the gates mean | [`gate_design.md`](../gate_design.md), [`testing_philosophy.md`](../testing_philosophy.md) |
+| Understand what the gates mean | [`gate_design.md`](../development/gate_design.md), [`testing_philosophy.md`](../development/testing_philosophy.md) |
 | Understand the model itself | [`design/architecture.md`](../design/architecture.md) |
-| Fix a failure | [`troubleshooting.md`](../troubleshooting.md) |
-| Add a number to prose | [`syntax_guide.md`](../syntax_guide.md) |
+| Fix a failure | [`troubleshooting.md`](troubleshooting.md) |
+| Add a number to prose | [`syntax_guide.md`](../reference/syntax_guide.md) |
 
 ## Capped hosted-model runs
 

@@ -56,7 +56,7 @@ Confirm what you are actually running before debugging anything else:
 .venv/bin/python -c "import pymdp, inspect; print(inspect.getfile(pymdp))"
 ```
 
-[`../AGENTS.md`](../AGENTS.md) records the same rule. `python -m pytest` is what
+[`../AGENTS.md`](../../AGENTS.md) records the same rule. `python -m pytest` is what
 makes the difference; `.venv/bin/python` removes the remaining ambiguity.
 
 ---
@@ -98,7 +98,7 @@ absence of an exception treats that as success.
 
 **Fix.** Do not wrap anything in `timeout`. Per-test time bounds are already
 configured (`timeout = 300` in
-[`../pyproject.toml`](../pyproject.toml), via `pytest-timeout`), and a
+[`../pyproject.toml`](../../pyproject.toml), via `pytest-timeout`), and a
 long-running step should be bounded by making it cheaper, not by killing it. If
 you need a wall-clock bound for an ad-hoc command, run it in the background and
 poll.
@@ -125,8 +125,8 @@ statically and materializes `policy_arr` lazily).
 
 **Status.** Resolved upstream in 1.0.4. On 1.0.3 it was filtered where it would drown useful
 output — see the `warnings.filterwarnings` call at the top of
-[`../scripts/audit_gates.py`](../scripts/audit_gates.py) and
-[`../scripts/record_stage2_claims.py`](../scripts/record_stage2_claims.py):
+[`../scripts/audit_gates.py`](../../scripts/audit_gates.py) and
+[`../scripts/record_stage2_claims.py`](../../scripts/record_stage2_claims.py):
 
 ```python
 warnings.filterwarnings("ignore", message=".*JAX array is being set as static.*")
@@ -166,7 +166,7 @@ print('STAGE2_G2P_ACCURACY' in d)"
 An unresolved or malformed token in a published document reads as a fabricated
 result. The project contract now makes it a nonzero generator exit even though
 the shared template writer itself only warns. See
-[`syntax_guide.md`](syntax_guide.md#detecting-unresolved-tokens).
+[`syntax_guide.md`](../reference/syntax_guide.md#detecting-unresolved-tokens).
 
 ---
 
@@ -176,8 +176,8 @@ the shared template writer itself only warns. See
 missing labels.
 
 **Cause.** `REQUIRED_CLAIMS` in
-[`../src/ailm/manuscript_variables/`](../src/ailm/manuscript_variables/__init__.py) names
-a label that [`../data/claims.json`](../data/claims.json) does not contain — the
+[`../src/ailm/manuscript_variables/`](../../src/ailm/manuscript_variables/__init__.py) names
+a label that [`../data/claims.json`](../../data/claims.json) does not contain — the
 recorders have not been run, or a new prose number was added without recording
 it.
 
@@ -243,7 +243,7 @@ Unbacked prose claims: ['stage3_word_perplexity']
 **Fix.** Record the measurement from the run that produced it. If the tag was a
 typo, fix the tag. If the number is a *derived* token
 (`{{STAGE1_UNIGRAM_MARGIN}}`, `{{STAGE1_CEILING_SHORTFALL_RATIO}}` and the other
-two listed in [`syntax_guide.md`](syntax_guide.md#derived-tokens)), it has no
+two listed in [`syntax_guide.md`](../reference/syntax_guide.md#derived-tokens)), it has no
 lowercase tag form at all — cite the component claims instead.
 
 **Never** delete the tag to make the gate green. That is the exact failure this
@@ -276,9 +276,9 @@ G2P recorder instead uses a bounded pymdp/NumPy decoded-position agreement check
 then the fast oracle for full-set statistics, refusing to record if that check
 fails. That check does not prove equality for every input or predictive loss.
 `verify_decoder_equivalence` in
-[`../scripts/record_stage2_claims.py`](../scripts/record_stage2_claims.py) is the
+[`../scripts/record_stage2_claims.py`](../../scripts/record_stage2_claims.py) is the
 implementation; the reasoning is in
-[`gate_design.md`](gate_design.md#when-the-full-set-is-too-slow-oracle-equivalence).
+[`gate_design.md`](../development/gate_design.md#when-the-full-set-is-too-slow-oracle-equivalence).
 
 For sequence perplexity there is a second route: replace the walk with a closed
 form over the count table (`full_corpus_perplexity`), tested against both
@@ -303,7 +303,7 @@ quotable results.
 - `IllegibleFigureError` — type below `ailm.viz_config.MIN_FONT_PT`
 - `FigureOverflowError` — an artist outside the canvas
 - an assertion from
-  [`../tests/test_figure_layout.py`](../tests/test_figure_layout.py) reporting
+  [`../tests/test_figure_layout.py`](../../tests/test_figure_layout.py) reporting
   overlapping label pairs or clipped labels with their overhang in points
 
 **Cause.** Legibility is a **build-time invariant** here. `save_figure` refuses to
@@ -369,7 +369,7 @@ population notes. The script’s exit status is not simply “every scalar score
   well-formed and the model is failing it. This is the case where the outcome,
   rather than threshold placement, is the problem.
 
-See [`gate_design.md`](gate_design.md) for both restatements this project has
+See [`gate_design.md`](../development/gate_design.md) for both restatements this project has
 already had to make.
 
 ---
@@ -383,7 +383,7 @@ already had to make.
 relative no matter how exact the algebra is.
 
 **Fix.** Compare with a tolerance. `FLOAT32_REL = 1e-6` in
-[`../tests/test_phoneme_full_corpus.py`](../tests/test_phoneme_full_corpus.py) is
+[`../tests/test_phoneme_full_corpus.py`](../../tests/test_phoneme_full_corpus.py) is
 the documented bound; asserting tighter than the arithmetic can deliver produces a
 test that fails on correct code.
 
@@ -392,7 +392,7 @@ third decimal from the add-1-smoothed version, and an all-positions perplexity i
 legitimately above a transitions-only floor. A failing assertion may be comparing
 two different quantities rather than reporting a numerical error — check which
 pair you are comparing before widening a tolerance. See
-[`gate_design.md`](gate_design.md#how-to-compute-an-information-ceiling).
+[`gate_design.md`](../development/gate_design.md#how-to-compute-an-information-ceiling).
 
 ---
 
@@ -402,7 +402,7 @@ pair you are comparing before widening a tolerance. See
 `Phoneme counts not found at …/vendor/cmudict_counts.json`.
 
 **Fix.** Regenerate. Both are deterministic and byte-identical on regeneration,
-so the checksums in [`provenance/sources.md`](provenance/sources.md) must still
+so the checksums in [`provenance/sources.md`](../provenance/sources.md) must still
 match afterwards:
 
 ```bash
@@ -455,7 +455,7 @@ whether the store or the server is the thing that moved.
 endpoint, model identity, serving options and producer receipt before deciding
 which evidence needs a new measurement. Historical rows from another serving
 configuration are ineligible, not corrupt merely because they differ. Follow
-[the release checklist](method/release_checklist.md) to remeasure affected
+[the release checklist](../method/release_checklist.md) to remeasure affected
 producers and dependents under a new scope. Do not delete records, relabel a
 scope, or rewrite old receipt hashes to get past the refusal.
 
@@ -515,8 +515,8 @@ This is an explicit closed-vocabulary result. The CLI serializes the nonfinite
 word loss as `null` and reports `word_loss_status: "infinite_oov"`; each token
 still carries its OOV flag. Letter and phone inference continue. Do not replace
 the value with zero, drop those tokens, or present an in-vocabulary diagnostic as
-full-stream word performance. See [the input contract](design/connected_runtime.md)
-and [the data statement](reference/data_statement.md).
+full-stream word performance. See [the input contract](../design/connected_runtime.md)
+and [the data statement](../reference/data_statement.md).
 
 ## A moved checkout imports provider code from its old location
 
@@ -582,7 +582,7 @@ ENABLE_PJRT_COMPATIBILITY=1 JAX_PLATFORMS=METAL python -c "import jax; print(jax
 
 Measured on that machine, same commit, same corpus. The qualitative verdict is
 what this page keeps; the numbers behind it are in the dated
-[development-history](development_history.md) entry for that measurement (*Verified — full release receipt + rendered
+[development-history](../provenance/development_history.md) entry for that measurement (*Verified — full release receipt + rendered
 artifact (2026-08-04)*), which is the record, not this page:
 
 | Workload | Verdict |
@@ -609,8 +609,8 @@ before reconsidering.
 
 ## See also
 
-- [`gate_design.md`](gate_design.md) — gate verdicts, ceilings, subsample bias
-- [`testing_philosophy.md`](testing_philosophy.md) — controls, oracle cross-checks, running the suite
-- [`syntax_guide.md`](syntax_guide.md) — token and claim protocols
-- [`agent_instructions.md`](guides/agent_instructions.md) — the command set and invariants
-- [`faq.md`](guides/faq.md) — design questions rather than failures
+- [`gate_design.md`](../development/gate_design.md) — gate verdicts, ceilings, subsample bias
+- [`testing_philosophy.md`](../development/testing_philosophy.md) — controls, oracle cross-checks, running the suite
+- [`syntax_guide.md`](../reference/syntax_guide.md) — token and claim protocols
+- [`agent_instructions.md`](agent_instructions.md) — the command set and invariants
+- [`faq.md`](faq.md) — design questions rather than failures

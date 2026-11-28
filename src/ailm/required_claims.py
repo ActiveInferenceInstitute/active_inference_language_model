@@ -2077,7 +2077,7 @@ REQUIRED_CLAIMS += CONFIRMATORY_STAGE6_CLUSTERED_CLAIMS
 
 # ── The P2 stipulated aligned spelling→pronunciation comparator arm ─────────
 #
-# Protocol P2, design B (`docs/extension_protocols.md` §3.4), recorded by
+# Protocol P2, design B (`docs/reference/extension_protocols.md` §3.4), recorded by
 # `scripts/record_aligned_g2p_comparator_claims.py`. The supplement's
 # comparator table and `fig:aligned_g2p_arms` read every label below; the
 # Wilson intervals on the arms are derived at render time from the recorded

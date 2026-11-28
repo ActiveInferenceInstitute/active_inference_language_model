@@ -5,10 +5,10 @@ This is the historical decision-by-decision changelog preserved from
 the vocabulary and implementation state of their time; they are not current
 API guidance, source availability or release-acceptance evidence.
 
-For current model paths, start with [the governing hierarchy](hierarchy.md) and
-[the connected runtime contract](design/connected_runtime.md). The append-only
+For current model paths, start with [the governing hierarchy](../design/hierarchy.md) and
+[the connected runtime contract](../design/connected_runtime.md). The append-only
 [decision log](decisions.md) records later corrections and their chronology;
-the public-facing [changelog](../CHANGELOG.md) carries the concise release record.
+the public-facing [changelog](../../CHANGELOG.md) carries the concise release record.
 
 ---
 
@@ -299,7 +299,7 @@ replication, the widened clause arm, and the reader-facing object (this
 section), then the lexical backoff correction, the Holm layer, and the
 reviewer findings (the section after it).
 
-Decisions 111 and 112 in `docs/decisions.md` carry the record; every quantity
+Decisions 111 and 112 in `docs/provenance/decisions.md` carry the record; every quantity
 is a `claim:` tag there and a `{{TOKEN}}` in the manuscript, resolved from
 `data/claims.json`. Nothing in this section types a measured value.
 
@@ -324,7 +324,7 @@ is a `claim:` tag there and a `{{TOKEN}}` in the manuscript, resolved from
   and does not change (`sec:confirmatory_discussion`). The seven sentences that
   said the EWT members remained unscored pending a principal decision now say
   what happened, and the abstract, README status block, level list, and
-  `docs/hierarchy.md` carry the outcome. `data/confirmatory/` holds the
+  `docs/design/hierarchy.md` carry the outcome. `data/confirmatory/` holds the
   population counts; `scripts/generate_confirmatory_ewt_counts.py`,
   `scripts/record_confirmatory_replication.py`, and
   `scripts/precheck_confirmatory_replication.py` build, score, and guard it;
@@ -360,7 +360,7 @@ is a `claim:` tag there and a `{{TOKEN}}` in the manuscript, resolved from
   carries its run id in the digested receipt configuration, so a re-run
   appends beside the previous run and a receipt cannot claim another run's
   records. `docs/release_checklist.md` retires the known limit and
-  `docs/troubleshooting.md` gains the two refusals that occurred, with the
+  `docs/guides/troubleshooting.md` gains the two refusals that occurred, with the
   audit commands that distinguish a stale store from a moved server.
 - The reproduction-documentation guard admits digest-bound data-resident
   generators, so an artifact under `data/` whose sha256 is recorded in
@@ -391,7 +391,7 @@ is a `claim:` tag there and a `{{TOKEN}}` in the manuscript, resolved from
 
 ## [Unreleased] — release-readiness pass: the lexical backoff correction, the Holm layer, and the reviewer findings (2026-09-05)
 
-Decisions 109 and 110 in `docs/decisions.md` carry the record; every quantity
+Decisions 109 and 110 in `docs/provenance/decisions.md` carry the record; every quantity
 below is cited there as a `claim:` tag and resolved from `data/claims.json`.
 
 ### Fixed — the lexical channel's backoff matched the wrong context (decision 110)
@@ -476,7 +476,7 @@ below is cited there as a `claim:` tag and resolved from `data/claims.json`.
 
 ## [Unreleased] — adversarial audit and fleet arms (2026-09-02)
 
-Decisions 96 to 108 in `docs/decisions.md` carry the record; every quantity
+Decisions 96 to 108 in `docs/provenance/decisions.md` carry the record; every quantity
 below is cited there as a `claim:` tag and resolved from `data/claims.json`.
 
 ### Fixed — the two claims-status writers agree (2026-09-04)
@@ -604,11 +604,11 @@ below is cited there as a `claim:` tag and resolved from `data/claims.json`.
 - The `UserWarning: A JAX array is being set as static!` emitted by every
   `Agent()` construction on 1.0.3 is resolved upstream: 1.0.4 raises no
   warning on the documented `Agent(A=..., B=..., C=..., D=...)` construction
-  path. Docs (`docs/troubleshooting.md`) and the filter comment in
+  path. Docs (`docs/guides/troubleshooting.md`) and the filter comment in
   `src/ailm/__init__.py` were updated to record this as a dated change.
 - `update_empirical_prior` still vmaps over `B` and `compute_expected_state`
   still indexes `B_f[..., u_f]` - the JAX 0.4.38 pin rationale in
-  `docs/troubleshooting.md` carries over unchanged.
+  `docs/guides/troubleshooting.md` carries over unchanged.
 - `infer_parameters` remains the learning API (`pymdp/agent.py:421`);
   `update_A`/`update_B` exist only under `pymdp.legacy`. Agent construction
   via `num_obs`/`num_states` keyword form is gone in 1.0.4 (Agent is an
@@ -817,7 +817,7 @@ sharpest findings were conceptual: an untyped gate taxonomy licensing
 impossibility claims from exceedable comparators, an unhedged priority claim,
 construct names outrunning their constructs, and two mechanism attributions
 resting on comparisons that could not carry them. This entry is the response;
-what was not built is pre-registered in `TODO.md` and `docs/research_queue.md`
+what was not built is pre-registered in `TODO.md` and `docs/method/research_queue.md`
 rather than silently dropped.
 
 ### Changed — the gate taxonomy is typed, and the Lean layer proves the repair
@@ -937,7 +937,7 @@ rather than silently dropped.
 
 ### Added — the adversarial pass over the research queue
 
-- All 33 items in `docs/research_queue.md` were attacked, one skeptic per
+- All 33 items in `docs/method/research_queue.md` were attacked, one skeptic per
   direction, each defaulting to refuted. Of 48 judged items: 14 already landed, 11
   refuted, 19 survive modified, 4 survive as written. Verdicts and reasons are
   appended to that file.
@@ -1005,12 +1005,12 @@ rather than silently dropped.
   is a property of how a gate was constructed rather than of how it classifies.
   `scripts/audit_gates.py` prints the note beside every affected verdict.
 - **Two senses of "channel" were being counted against each other.**
-  `docs/hierarchy.md` says five inter-level channels were built and measured;
+  `docs/design/hierarchy.md` says five inter-level channels were built and measured;
   `scripts/generate_cover.py` labels the cover "six levels, two channels" and draws
   the two that carry a preference vector. Both are correct under their own
   definition. The distinction is now stated once, in the authoritative file.
 - **The sparse-path queue entry was itself the drift.** `TODO.md` and
-  `docs/research_queue.md` asserted that the claim "pymdp has no sparse path"
+  `docs/method/research_queue.md` asserted that the claim "pymdp has no sparse path"
   remained uncorrected in four locations. Every one already carried the narrow,
   accurate form ("reachable through pymdp's public `Agent` API"). Recorded as
   closed, because a stale queue routes the next reader to a fixed bug.
@@ -1378,7 +1378,7 @@ rather than silently dropped.
   exactly. The result was **NO IMPROVEMENT / QUALIFIED**: the latent-state lane
   moved the emission but did not improve held-out decoding. Claims are recorded
   by `scripts/record_g2p_learning_claims.py` and the outcome is appended to
-  decision 29 in `docs/decisions.md`.
+  decision 29 in `docs/provenance/decisions.md`.
 - Added the mock-free external benchmark harness, a fixed-seed same-position
   Gemma 3 4B reference receipt, the ledger-backed comparison figure, and
   manuscript supplement section 98.
@@ -1419,7 +1419,7 @@ rather than silently dropped.
   `src/ailm/levels/online_learning.py`,
   `scripts/generate_online_genre_counts.py`,
   `scripts/record_online_learning_claims.py`, `tests/test_online_learning.py`.
-- Both outcomes recorded in `docs/decisions.md` (entry 27 outcome block,
+- Both outcomes recorded in `docs/provenance/decisions.md` (entry 27 outcome block,
   entry 28 CONFIRMED block + TOC), the manuscript sections
   (`docs/manuscript/09_hierarchy.md` five-channel framing + clause→word outcome,
   `docs/manuscript/10_verification.md` online increment), HANDOFF and TODO queues,
@@ -1455,7 +1455,7 @@ rather than silently dropped.
   ledger, and agreement is enforced at draw time.
 - **F5** — recorder-replay acceptance test kept in the default suite and
   documented as the deliberate exception to the 60-second per-test cap in
-  `docs/testing_philosophy.md`.
+  `docs/development/testing_philosophy.md`.
 - **F6** — TODO.md release receipt updated to the measured state
   (1782 passed / 22 skipped / 0 failed, branch coverage 95.11%).
 - **F7** — TODO.md legacy-caption allowlist count corrected 15 → 14
@@ -1537,7 +1537,7 @@ rather than silently dropped.
 
 ### Added — documentation
 
-- `formal/README.md` and `docs/formal.md`: what is formalized, the Lean ↔
+- `formal/README.md` and `docs/reference/lean.md`: what is formalized, the Lean ↔
   equation ↔ Python ↔ test isomorphism table, elan/lake build and regeneration
   commands, and an explicit scope boundary separating *not a Lean object at this
   scope* from *empirical, and formalising it would launder a conjecture* from
@@ -1568,7 +1568,7 @@ rather than silently dropped.
 - **A conditional theorem with no witness.** `bonferroni_union_bound_div` (B3) —
   the *divided* form of the correction the manuscript actually writes — had no
   satisfiability witness and no instantiation anywhere in the tree, while
-  `formal/README.md` and `docs/formal.md` both asserted that every conditional
+  `formal/README.md` and `docs/reference/lean.md` both asserted that every conditional
   theorem carries one. `witnessFamily_bounded_by_corrected_threshold` and
   `witnessFamily_bound_div` supply the missing pair; B2a is now exercised through
   B3 rather than only stated.
@@ -1729,7 +1729,7 @@ rather than silently dropped.
 
 - Framing sections no longer call built stages unbuilt; the universal
   novel-information "iff" is stated as an evidence-bounded working hypothesis
-  (pre-registration records in `docs/decisions.md` preserved verbatim, entry
+  (pre-registration records in `docs/provenance/decisions.md` preserved verbatim, entry
   18 carries a dated status note); the multiplicity family and exact 99%
   intervals render from `STAT_*` tokens; layout defect in the level-stack
   figure footnote fixed; the figure-vs-gate alpha agreement test rebound
@@ -1742,7 +1742,7 @@ rather than silently dropped.
   95.21%; unbounded gate audit clean (Stage 7 boundary re-scoped UNAUDITED by
   design). 68-page PDF, 24 figures, zero `??`/`{{TOKEN}}`, sha256
   `fe97faed66399928958888917c9f9da5458bcd5216817760205e8fccdac91a2c`.
-- Apple-Silicon Metal measured and documented (`docs/troubleshooting.md`):
+- Apple-Silicon Metal measured and documented (`docs/guides/troubleshooting.md`):
   works via `jax-metal` + PJRT shim, float32 agreement ~1e-6, 309/309 tested
   Metal passes — but 3.6× slower on real AILM inference (tiny state spaces);
   CPU remains the only environment of record.
@@ -1811,7 +1811,7 @@ rather than silently dropped.
 
 ### Added — W2, pre-registered before measured
 
-- `docs/decisions.md` entry 22, committed at `c760357` BEFORE any update ran:
+- `docs/provenance/decisions.md` entry 22, committed at `c760357` BEFORE any update ran:
   under the letter level's identity emission, pymdp's `infer_parameters` must
   reproduce the shipped add-k counting path exactly (conjugate Dirichlet
   posterior mean), with a stated withdrawal condition. Entry 23 records the
@@ -1907,7 +1907,7 @@ rather than silently dropped.
   on the comparator; the doctored A/B-swap spec refused **by role**; and the
   exact partition of the eleven mutations into eight that fail construction and
   three that construct provably different models.
-- `docs/decisions.md` entry 20 and ISA criteria ISC-44..46.
+- `docs/provenance/decisions.md` entry 20 and ISA criteria ISC-44..46.
 
 ### Changed
 
@@ -2010,7 +2010,7 @@ value to prove the flags mean "checked" rather than "labeled".
 ### Added — the inter-level composition experiment
 
 The project had two inter-level results with opposite signs, which is an anecdote
-unless something explains both. `docs/decisions.md` entry 18 states the
+unless something explains both. `docs/provenance/decisions.md` entry 18 states the
 **novel-information criterion** — a message improves the receiver iff it carries
 information the receiver does not already have — derives a prediction, and
 records that prediction **before** the measurement. Entry 19 records the outcome.
@@ -2058,7 +2058,7 @@ space — is now exercised.
 - `src/ailm/generation.py`, `gnn/models/L1g_letter_generation.gnn.md` plus three
   mutations, `scripts/record_generation_claims.py`, `tests/test_generation.py`,
   `audit_generation()`, manuscript section `08_generation.md`,
-  `docs/decisions.md` entry 17.
+  `docs/provenance/decisions.md` entry 17.
 - **Policy selection is generation, not a metaphor.** The letter level gains a
   controllable transition with one action per symbol: choosing an action *is*
   choosing the next symbol. The learned bigram moves from the transition to the
@@ -2221,7 +2221,7 @@ space — is now exercised.
   "Defect three: necessary is not sufficient, at scale" and "Defect four: one
   threshold, both defects at once".
 - New design docs `docs/design/stage3_word.md` and `docs/design/stage4_case.md`.
-- `docs/decisions.md` entries 13–16.
+- `docs/provenance/decisions.md` entries 13–16.
 - **The generation contradiction is resolved in the ISA**, which is the system of
   record: generation is out of scope, and Stages 6–7 are therefore *blocked
   pending an explicit scope change* rather than merely unstarted. The roadmap

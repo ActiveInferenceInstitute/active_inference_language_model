@@ -26,13 +26,13 @@ a style problem.
 | `docs/**/*.md`, `README.md`, `AGENTS.md`, `CHANGELOG.md`, `src/**/*.py` docstrings | `claim:<label>` | The sources are not substituted in place; the tag is a verifiable pointer, checked by a test. `scripts/z_render_docs.py` writes a **hydrated mirror** to `output/docs/` where every tag has become its value, so the source stays auditable and the reader still gets numbers |
 
 Both resolve to the same source of truth,
-[`../data/claims.json`](../data/claims.json), recorded by the
+[`../data/claims.json`](../../data/claims.json), recorded by the
 `scripts/record_stage*_claims.py` runs.
 
 Writing a bare measured numeral in either place is the defect both mechanisms
 exist to prevent. In `docs/manuscript/` a literal silently stops tracking the
 measurement. In current documentation and Python docstrings,
-[`../tests/test_claims_discipline.py`](../tests/test_claims_discipline.py) both
+[`../tests/test_claims_discipline.py`](../../tests/test_claims_discipline.py) both
 checks that visible tags are backed and rejects high-signal untagged forms such
 as percentages, measured units, and statistical assignments. The latter is a
 conservative grammar, not a digit ban: naked scalars and spelled-out quantities
@@ -79,7 +79,7 @@ per-occurrence exemption is checked against the literal on that line, so it
 cannot drift onto a different number when the file is edited.
 
 Two files are exempt as documents rather than as oversights.
-`docs/research_queue.md` quotes what a probe measured, and the whole value of
+`docs/method/research_queue.md` quotes what a probe measured, and the whole value of
 that record is that the figure can be compared against the ledger later —
 substituting would make every entry agree by construction and delete the
 comparison. `CHANGELOG.md` is a dated record, and several entries quote a
@@ -97,7 +97,7 @@ docs tag       claim:stage1_letter_perplexity
 ```
 
 `generate_manuscript_variables()` in
-[`../src/ailm/manuscript_variables/`](../src/ailm/manuscript_variables/__init__.py)
+[`../src/ailm/manuscript_variables/`](../../src/ailm/manuscript_variables/__init__.py)
 walks every ledger entry and emits `label.upper()`. It also emits two provenance
 companions per label so the manuscript can cite where a number came from without
 a second lookup:
@@ -127,7 +127,7 @@ executable registries. All enter a duplicate-refusing producer map.
 ## Rule 2: a missing claim fails the render
 
 `REQUIRED_CLAIMS` in
-[`../src/ailm/manuscript_variables/`](../src/ailm/manuscript_variables/__init__.py) lists
+[`../src/ailm/manuscript_variables/`](../../src/ailm/manuscript_variables/__init__.py) lists
 the labels the manuscript's central claims rest on. If any is absent,
 `MissingClaimError` is raised and the render stops.
 
@@ -140,7 +140,7 @@ This is deliberate. The alternatives are worse:
 `REQUIRED_CLAIMS` must also list every label the *derived* block reads, not just
 what prose references directly. Otherwise a ledger can satisfy `REQUIRED_CLAIMS`
 and still fail with a bare `KeyError` deep inside the generator — which is
-exactly what [`../tests/test_manuscript_variables.py`](../tests/test_manuscript_variables.py)
+exactly what [`../tests/test_manuscript_variables.py`](../../tests/test_manuscript_variables.py)
 caught. `num()` raises `MissingClaimError` naming the omission rather than
 `KeyError`, so the failure is diagnosable.
 
@@ -255,7 +255,7 @@ name the derived token as a token.
 The checksum tokens exist so a reader can verify they have the same inputs,
 rather than trusting that "the Brown corpus" and "CMUdict" mean the same bytes
 everywhere. They are enforced against the artifacts on disk by
-[`../tests/test_provenance_checksums.py`](../tests/test_provenance_checksums.py).
+[`../tests/test_provenance_checksums.py`](../../tests/test_provenance_checksums.py).
 
 ---
 
@@ -267,7 +267,7 @@ report is current: the connected figure reader checks its complete canonical
 execution binding and exact frozen population. Preserve the difference between
 character loss, finite in-vocabulary word diagnostics and full-stream word loss.
 Use the recorded OOV/loss-status fields; do not manufacture a finite replacement
-for an infinite closed-vocabulary result. The [data statement](reference/data_statement.md)
+for an infinite closed-vocabulary result. The [data statement](data_statement.md)
 explains the population and normalization.
 
 ## Adding a number
@@ -333,7 +333,7 @@ Check the `docs/` side with the real gate rather than by eye:
 .venv/bin/python -m pytest tests/test_claims_discipline.py -q
 ```
 
-See [`troubleshooting.md`](troubleshooting.md#a-literal-token-appears-in-the-rendered-output)
+See [`troubleshooting.md`](../guides/troubleshooting.md#a-literal-token-appears-in-the-rendered-output)
 when either check fires.
 
 ---
@@ -355,9 +355,9 @@ equation number.
 ## Figure label registry
 
 This table is the reader-facing projection of
-[`../output/figures/figure_registry.json`](../output/figures/figure_registry.json),
-generated by [`../src/ailm/figures/`](../src/ailm/figures/) and orchestrated by
-[`../scripts/generate_figures.py`](../scripts/generate_figures.py).
+[`../output/figures/figure_registry.json`](../../output/figures/figure_registry.json),
+generated by [`../src/ailm/figures/`](../../src/ailm/figures/) and orchestrated by
+[`../scripts/generate_figures.py`](../../scripts/generate_figures.py).
 `tests/test_documentation.py` checks the filename, label, and generator module
 against that registry exactly. Use these labels; do not invent new ones for an
 existing figure.
@@ -467,7 +467,7 @@ in the manuscript bibliography; the keys above are placeholders, not live ones.
 Never write raw `\cite{}`.
 
 Both papers are the author's own and both are described in
-[`provenance/sources.md`](provenance/sources.md) — including the note that the
+[`provenance/sources.md`](../provenance/sources.md) — including the note that the
 truncated 38-page CEREBRUM `full_text.md` export omits Supplements 8–15 and must
 not be cited for engineering content.
 
@@ -490,8 +490,8 @@ from ailm.levels.phoneme import build_g2p_agent
 
 Link text must be informative, and paths must be real:
 
-- **BAD** — "See [this file](../src/ailm/levels/phoneme.py) for details."
-- **GOOD** — "The emission is built by [build_g2p_emission](../src/ailm/levels/phoneme.py)."
+- **BAD** — "See [this file](../../src/ailm/levels/phoneme.py) for details."
+- **GOOD** — "The emission is built by [build_g2p_emission](../../src/ailm/levels/phoneme.py)."
 
 (In real prose the function name inside the link text carries backticks; it is
 written plainly above so this example does not nest code spans.)
@@ -504,8 +504,8 @@ Markdown, never HTML, for anything markdown supports.
 
 ## Cross-references
 
-- [`style_guide.md`](method/style_guide.md) — the prose and honesty rules that sit on top of this syntax
-- [`gate_design.md`](gate_design.md) — where the recorded numbers come from
-- [`testing_philosophy.md`](testing_philosophy.md) — the tests that enforce both protocols
-- [`../src/ailm/manuscript_variables/`](../src/ailm/manuscript_variables/__init__.py) — the authoritative token generator
-- [`../src/ailm/claims.py`](../src/ailm/claims.py) — `ClaimsLedger`, `scan_prose`
+- [`style_guide.md`](../method/style_guide.md) — the prose and honesty rules that sit on top of this syntax
+- [`gate_design.md`](../development/gate_design.md) — where the recorded numbers come from
+- [`testing_philosophy.md`](../development/testing_philosophy.md) — the tests that enforce both protocols
+- [`../src/ailm/manuscript_variables/`](../../src/ailm/manuscript_variables/__init__.py) — the authoritative token generator
+- [`../src/ailm/claims.py`](../../src/ailm/claims.py) — `ClaimsLedger`, `scan_prose`

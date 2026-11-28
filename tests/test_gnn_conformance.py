@@ -20,7 +20,7 @@ tested here rather than asserted in prose:
    the covered set to equal what is there, exactly. A spec added later cannot go
    unchecked by being forgotten, and there is nowhere to record that one is
    allowed to: a spec that does not conform is a finding to fix or to record in
-   ``docs/decisions.md``.
+   ``docs/provenance/decisions.md``.
 
 4. **Every declaration KIND has a reader.** A spec can be bound to an agent and
    still declare things nothing compares — which is how L1g's policy prior
@@ -824,7 +824,7 @@ class TestEveryShippedSpecIsCovered:
             f"spec(s) {sorted(uncovered)} ship under gnn/models/ but are bound to "
             f"no live agent here. Add them to SPEC_NAMES. If one genuinely does "
             f"not conform, that is a finding about the repository to fix or to "
-            f"record in docs/decisions.md, not an entry in an exception list."
+            f"record in docs/provenance/decisions.md, not an entry in an exception list."
         )
         phantom = covered - discovered
         assert phantom == set(), (
@@ -1239,7 +1239,7 @@ class TestSpecFilesParse:
         assert spec.role_of("E") == "PolicyPrior"
         assert spec.parameterization["E"] == ("Uniform", "30"), (
             "E is uniform AT CONSTRUCTION; the generation loop installs the "
-            "learned habit column per step (docs/decisions.md entry 20)."
+            "learned habit column per step (docs/provenance/decisions.md entry 20)."
         )
         assert spec.variables_with_role("TransitionMatrix") == ["B"]
 

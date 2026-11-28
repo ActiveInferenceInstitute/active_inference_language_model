@@ -6,7 +6,7 @@ every ``learning_*`` label, and the writer of ``data/learning_agreement.npz``
 — the matrices the agreement figure draws, saved here so the figure never
 re-runs pymdp and can be checked against the ledger instead.
 
-The prediction this measures was pre-registered in ``docs/decisions.md``
+The prediction this measures was pre-registered in ``docs/provenance/decisions.md``
 entry 22 and committed BEFORE this script existed; entry 23 records the
 outcome. The recorder refuses to write unless every pre-registered clause
 holds:

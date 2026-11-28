@@ -43,14 +43,14 @@ FIGURE_REGISTRY = REPO_ROOT / "output" / "figures" / "figure_registry.json"
 
 GATE_TAXONOMY_SUMMARIES = (
     Path("docs/README.md"),
-    Path("docs/gate_design.md"),
+    Path("docs/development/gate_design.md"),
     Path("docs/reference/notation.md"),
     Path("docs/guides/quickstart.md"),
-    Path("docs/troubleshooting.md"),
+    Path("docs/guides/troubleshooting.md"),
     Path("docs/reference/output_inventory.md"),
-    Path("docs/syntax_guide.md"),
-    Path("docs/testing_philosophy.md"),
-    Path("docs/formal.md"),
+    Path("docs/reference/syntax_guide.md"),
+    Path("docs/development/testing_philosophy.md"),
+    Path("docs/reference/lean.md"),
     Path("docs/guides/forking_guide.md"),
     Path("docs/manuscript/README.md"),
     Path("src/ailm/figures/README.md"),
@@ -81,7 +81,7 @@ EXTERNAL_INDEXED = (
 CURRENT_STATUS_SURFACES = (
     Path("ISA.md"),
     Path("HANDOFF.md"),
-    Path("docs/decisions.md"),
+    Path("docs/provenance/decisions.md"),
     Path("tests/README.md"),
     Path("scripts/probe_l5_widened_alphabet.py"),
     Path("docs/manuscript/01_introduction.md"),
@@ -103,8 +103,8 @@ CATEGORICAL_CLAIM_SURFACES = (
 INVENTORY_COUNT_SURFACES = (
     Path("README.md"),
     Path("HANDOFF.md"),
-    Path("docs/hierarchy.md"),
-    Path("docs/gnn_composition.md"),
+    Path("docs/design/hierarchy.md"),
+    Path("docs/reference/gnn_composition.md"),
     Path("docs/reference/formalism_map.md"),
     Path("docs/guides/quickstart.md"),
     Path("scripts/README.md"),
@@ -286,7 +286,7 @@ def _relative_link_defects(document: Path, variables: Mapping[str, str]) -> list
     # registered portable page is backed by its canonical authored document;
     # missing/stale generated HTML is rejected by the mandatory later check.
     supporting_sources = {
-        "ailm-supporting-docs/docs__extension_protocols.html": DOCS / "extension_protocols.md",
+        "ailm-supporting-docs/docs__extension_protocols.html": DOCS / "reference/extension_protocols.md",
     }
     return [
         target
@@ -621,7 +621,7 @@ def test_metadata_links_are_resolved_without_exempting_broken_targets(
 def test_every_source_package_is_documented_beside_its_code():
     """A package README is the only documentation that moves with the package.
 
-    `docs/architecture.md` maps every module, but it is one file away from the
+    `docs/development/code-architecture.md` maps every module, but it is one file away from the
     code and drifts on its own schedule. A package that grows a README is a
     package whose author had to say what it is for.
     """
@@ -650,7 +650,7 @@ def test_the_architecture_map_lists_every_shipped_module():
     A module added without a row is a module nobody can find by reading the map,
     and the map still looks complete — every row in it is correct.
     """
-    architecture = (DOCS / "architecture.md").read_text(encoding="utf-8")
+    architecture = (DOCS / "development/code-architecture.md").read_text(encoding="utf-8")
     package_root = REPO_ROOT / "src" / "ailm"
 
     modules = [
@@ -669,7 +669,7 @@ def test_the_architecture_map_lists_every_shipped_module():
 
 
 def test_architecture_dependency_column_is_explanatory_not_a_false_allowlist() -> None:
-    architecture = (DOCS / "architecture.md").read_text(encoding="utf-8")
+    architecture = (DOCS / "development/code-architecture.md").read_text(encoding="utf-8")
     assert "Principal dependencies (not exhaustive)" in architecture
     assert "not an exhaustive per-file allowlist" in architecture
     assert "| Module | Owns | May import |" not in architecture
@@ -685,7 +685,7 @@ def test_script_ownership_docs_admit_and_bound_recorder_local_estimands() -> Non
     readme = (REPO_ROOT / "scripts" / "README.md").read_text(encoding="utf-8")
     agents = (REPO_ROOT / "scripts" / "AGENTS.md").read_text(encoding="utf-8")
     root_agents = (REPO_ROOT / "AGENTS.md").read_text(encoding="utf-8")
-    architecture = (DOCS / "architecture.md").read_text(encoding="utf-8")
+    architecture = (DOCS / "development/code-architecture.md").read_text(encoding="utf-8")
     style = (DOCS / "method" / "style_guide.md").read_text(encoding="utf-8")
     for text in (readme, agents, root_agents, architecture, style):
         assert "recorder-specific estimands" in text
@@ -740,8 +740,8 @@ def test_reader_facing_figure_inventories_exactly_match_the_registry():
             (DOCS / "reference" / "output_inventory.md").read_text(encoding="utf-8"),
             label_first=False,
         ),
-        "docs/syntax_guide.md": _figure_projection(
-            (DOCS / "syntax_guide.md").read_text(encoding="utf-8"), label_first=True
+        "docs/reference/syntax_guide.md": _figure_projection(
+            (DOCS / "reference/syntax_guide.md").read_text(encoding="utf-8"), label_first=True
         ),
     }
     for path, actual in projections.items():
@@ -815,7 +815,7 @@ def test_pytest_locator_check_rejects_an_import_and_a_missing_method():
 
 def test_troubleshooting_dependency_pins_match_pyproject_exactly():
     """The recovery command must install the environment the project declares."""
-    text = (DOCS / "troubleshooting.md").read_text(encoding="utf-8")
+    text = (DOCS / "guides/troubleshooting.md").read_text(encoding="utf-8")
     expected = {
         name: _exact_dependency_pin(name) for name in ("inferactively-pymdp", "jax", "jaxlib")
     }
@@ -839,7 +839,7 @@ def test_dependency_pin_check_can_detect_planted_drift():
 
 def test_research_queue_marks_incomplete_attack_export_non_governing():
     """Literal ellipses cannot carry the authority the malformed export claimed."""
-    text = (DOCS / "research_queue.md").read_text(encoding="utf-8")
+    text = (DOCS / "method/research_queue.md").read_text(encoding="utf-8")
     assert "## Adversarial verdict export (retired)" in text
     assert "the verdict governs" not in text.lower()
     assert "Do not infer task\nstatus from it" in text
@@ -857,7 +857,7 @@ def test_research_queue_marks_incomplete_attack_export_non_governing():
 
 def test_research_queue_retirement_contract_is_live():
     """POSITIVE CONTROL: an active malformed export and open resolved item fail."""
-    text = (DOCS / "research_queue.md").read_text(encoding="utf-8")
+    text = (DOCS / "method/research_queue.md").read_text(encoding="utf-8")
     planted = text.replace(
         "## Adversarial verdict export (retired)", "## Adversarial verdicts, per item"
     ).replace(
@@ -871,7 +871,7 @@ def test_research_queue_retirement_contract_is_live():
 def test_package_readme_delegates_the_module_inventory_to_the_checked_map():
     """The package README must not become a second hand-maintained module map."""
     text = (REPO_ROOT / "src" / "ailm" / "README.md").read_text(encoding="utf-8")
-    assert "../../docs/architecture.md#package-map" in text
+    assert "../../docs/development/code-architecture.md#package-map" in text
     assert "### Flat modules" not in text
     assert "### Subpackages" not in text
 
@@ -888,7 +888,7 @@ def test_cache_receipt_docs_state_the_unkeyed_trusted_local_boundary():
     """A digest detects drift; it does not authenticate a hostile writer."""
 
     sources = {
-        "architecture": (DOCS / "architecture.md").read_text(encoding="utf-8"),
+        "architecture": (DOCS / "development/code-architecture.md").read_text(encoding="utf-8"),
         "output conventions": (DOCS / "reference" / "output_conventions.md").read_text(
             encoding="utf-8"
         ),

@@ -4,7 +4,7 @@
 Thin orchestrator. Computation lives in ``ailm.generation``; this script builds
 the word-identity construction, sequences the measurements, and writes the
 ledger. Single writer for every ``generation_word_state_*`` label. Decision 78
-(``docs/decisions.md``) prospectively specifies the construction, prefix rule,
+(``docs/provenance/decisions.md``) prospectively specifies the construction, prefix rule,
 predictions, and refusals within the development session. The decision and this
 recorder first appear in the same commit, so the result is not independently
 timestamped or preregistered.

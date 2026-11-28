@@ -1,3 +1,5 @@
+manuscript_dir: "docs/manuscript"
+
 paper:
   # "Fully mechanistic" was the wrong word and made the wrong claim twice over.
   # A transformer is a mechanism too; what AILM has that it lacks is a declared

@@ -8,7 +8,7 @@ and what holds across all of them. Subpackage-specific rules are in the nested
 [`benchmarks/`](benchmarks/AGENTS.md), and [`dashboard/`](dashboard/AGENTS.md).
 
 The module-by-module inventory is owned by one file,
-[`../../docs/architecture.md`](../../docs/architecture.md), which a repository test
+[`../../docs/architecture.md`](../../docs/development/code-architecture.md), which a repository test
 checks against every shipped Python module. This file does not duplicate it.
 
 ## Ownership boundary

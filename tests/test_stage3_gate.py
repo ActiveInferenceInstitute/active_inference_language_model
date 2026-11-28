@@ -9,7 +9,7 @@ end-of-word symbol, over held-out in-vocabulary Brown tokens.
 
 The declared "perplexity < 500 on PTB-1k" was VACUOUS — the bar itself clears it
 by claim:stage3_declared_gate_slack times — and named a corpus this project does
-not have. ``docs/decisions.md`` entry 14 records the restatement;
+not have. ``docs/provenance/decisions.md`` entry 14 records the restatement;
 ``test_the_declared_gate_was_vacuous`` re-derives that verdict rather than
 trusting the prose.
 
@@ -31,7 +31,7 @@ every one of them fails it.
 Claims discipline
 -----------------
 This file **verifies**; ``scripts/record_stage3_claims.py`` writes. See
-``docs/decisions.md`` entry 10 and ``tests/test_claims_single_writer.py``.
+``docs/provenance/decisions.md`` entry 10 and ``tests/test_claims_single_writer.py``.
 """
 
 from __future__ import annotations
@@ -136,7 +136,7 @@ def test_the_bar_is_scored_on_identical_positions(scores):
 def test_the_declared_gate_was_vacuous(scores):
     """POSITIVE CONTROL on the restatement: re-derive the old gate's verdict.
 
-    ``docs/decisions.md`` entry 14 says the declared "perplexity < 500" is
+    ``docs/provenance/decisions.md`` entry 14 says the declared "perplexity < 500" is
     vacuous. Prose asserting a verdict is not the verdict; this measures it.
     """
     declared = 500.0
@@ -386,7 +386,7 @@ def test_the_bar_does_not_catch_the_prior_miswirings(artifact, prior, scores):
     assertion rather than a remark is what stops a future reader concluding that
     ``assert model < bar`` is a sufficient gate. If this test ever fails because
     a mis-wiring stopped clearing the bar, the *finding* changed and
-    ``docs/decisions.md`` entry 14 needs updating — it is not a license to drop
+    ``docs/provenance/decisions.md`` entry 14 needs updating — it is not a license to drop
     the identity check.
     """
     survived = {

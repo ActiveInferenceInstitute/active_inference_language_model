@@ -409,10 +409,10 @@ Diagrams in `docs/` are never rendered through Pandoc, so this constraint applie
 
 ## Cross-references
 
-- [`syntax_guide.md`](../syntax_guide.md) — the `{{TOKEN}}` and `claim:<label>` protocols and the cross-reference conventions
+- [`syntax_guide.md`](../reference/syntax_guide.md) — the `{{TOKEN}}` and `claim:<label>` protocols and the cross-reference conventions
 - [`output_conventions.md`](../reference/output_conventions.md) — the regenerable boundary and the regeneration order
 - [`output_inventory.md`](../reference/output_inventory.md) — every artifact this pipeline writes
-- [`architecture.md`](../architecture.md) — why `src/` may not import `infrastructure`
+- [`architecture.md`](../development/code-architecture.md) — why `src/` may not import `infrastructure`
 - [`provenance/sources.md`](../provenance/sources.md) — the vendored artifacts whose checksums become `META_*` tokens
 - [`../src/ailm/manuscript_variables/`](../../src/ailm/manuscript_variables/__init__.py) — strict token producers and derived values
 - [`../src/ailm/manuscript_contract.py`](../../src/ailm/manuscript_contract.py) — pre-injection grammar/literal checks and exact post-injection validation

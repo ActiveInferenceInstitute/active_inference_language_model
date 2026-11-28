@@ -19,7 +19,7 @@ output two stages later.
 
 ## Why this is a script and not part of ``src/``
 
-``docs/architecture.md`` states that ``src/ailm/`` must never import
+``docs/development/code-architecture.md`` states that ``src/ailm/`` must never import
 ``infrastructure``: the package is available at render time and at no other
 time, and ``src/`` has to work in a bare checkout with no template beside it.
 Scripts are the sanctioned boundary — ``scripts/z_generate_manuscript_variables.py``

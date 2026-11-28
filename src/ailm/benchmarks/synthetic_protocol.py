@@ -39,7 +39,7 @@ from ailm.levels.synthetic import (
 class SyntheticAlignedG2pProtocol:
     """The aligned spelling-to-pronunciation arm's frozen execution contract.
 
-    Protocol P2 of ``docs/extension_protocols.md`` §3: a pair-structured
+    Protocol P2 of ``docs/reference/extension_protocols.md`` §3: a pair-structured
     stipulated artifact over a seeded per-letter correspondence, structurally
     distinct from the order-one continuation chains.  Nothing is recorded
     under this contract by this module's own milestone; the offline evaluator

@@ -33,7 +33,7 @@ Guards — the recorder refuses to write when
    be bit-identical, position by position, to a plain hard-evidence filter
    written independently of the coupling code. If weight zero is not the
    uncoupled decode, every "gain" is measured against the wrong baseline.
-   This is the void condition ``docs/research_queue.md`` states for this arm.
+   This is the void condition ``docs/method/research_queue.md`` states for this arm.
 2. **The accuracy axis does not reproduce the recorded cell.** The probe must
    land on ``channel_letter_evidence_best_accuracy`` and the uncoupled anchor
    already in the ledger. If it does not, it is measuring some other channel
@@ -145,7 +145,7 @@ def main() -> int:
         raise SystemExit(
             "VOID: the weight-zero posteriors are not bit-identical to the "
             "uncoupled decode, so every gain below is measured against the "
-            "wrong anchor. docs/research_queue.md voids this arm on exactly "
+            "wrong anchor. docs/method/research_queue.md voids this arm on exactly "
             "this condition."
         )
 

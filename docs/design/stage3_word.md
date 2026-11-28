@@ -6,8 +6,8 @@ what that costs, and what pins it. This page describes the standalone Stage 3
 score; [connected execution](connected_runtime.md) uses live L3 updates and
 reports OOV continuation under a separate scoring contract.
 
-Decision records: [`../decisions.md`](../decisions.md) entries 13 and 14.
-Gate procedure: [`../gate_design.md`](../gate_design.md).
+Decision records: [`../decisions.md`](../provenance/decisions.md) entries 13 and 14.
+Gate procedure: [`../gate_design.md`](../development/gate_design.md).
 
 - [The trie does not fit](#the-trie-does-not-fit)
 - [Word identity times position](#word-identity-times-position)

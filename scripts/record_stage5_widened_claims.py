@@ -7,7 +7,7 @@ Single writer for every ``stage5w_*`` label.
 
 What is being recorded
 ----------------------
-The widened-observation arm registered in ``docs/decisions.md`` entry 112: the
+The widened-observation arm registered in ``docs/provenance/decisions.md`` entry 112: the
 same clause level over an alphabet widened by one distinguished symbol per
 ``VERB`` and per ``AUX`` token in surface order, on decision 85's authenticated
 document partition. Decision 114 made this arm the canonical Level 5 and the

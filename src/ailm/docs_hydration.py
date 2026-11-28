@@ -74,7 +74,7 @@ DISTINCTIVE_NUMERAL_RE = re.compile(r"(?<![\w.,])(\d{1,3}(?:,\d{3})+|\d+\.\d{3,}
 #: Files where a literal numeral matching a claim is correct, with the reason.
 #: Keyed by repository-relative path.
 LITERAL_EXEMPTIONS: dict[str, str] = {
-    "docs/research_queue.md": (
+    "docs/method/research_queue.md": (
         "Proposer-stage document. Its Evidence sub-bullets quote what a probe or "
         "scratchpad run measured, and the whole value of that record is that the "
         "figure can be compared against the ledger later. Substituting the ledger "
@@ -82,12 +82,12 @@ LITERAL_EXEMPTIONS: dict[str, str] = {
         "delete the comparison — which is how the 153/58 exclusion-count error was "
         "found in the first place."
     ),
-    "docs/syntax_guide.md": (
+    "docs/reference/syntax_guide.md": (
         "Documents the mechanism itself. Its examples must show literal tags and "
         "literal values side by side, or the guide cannot demonstrate what it "
         "describes."
     ),
-    "docs/testing_philosophy.md": (
+    "docs/development/testing_philosophy.md": (
         "Quotes numbers from worked examples of failure modes, several of which are "
         "deliberately values the ledger no longer holds."
     ),
@@ -98,7 +98,7 @@ LITERAL_EXEMPTIONS: dict[str, str] = {
         "rewrite both halves on every re-record, turning a history into a mirror of "
         "the present."
     ),
-    "docs/development_history.md": (
+    "docs/provenance/development_history.md": (
         "The verbatim pre-1.0.0 changelog history moved out of `CHANGELOG.md`; the "
         "same dated record, exempt for the same reason."
     ),
@@ -110,7 +110,7 @@ LITERAL_EXEMPTIONS: dict[str, str] = {
 #:
 #: **Keyed on content, not on line number.** Absolute line numbers were the
 #: original key and they drifted four times in a single session: every append to
-#: ``docs/decisions.md`` shifted five exemptions, and each time the literal check
+#: ``docs/provenance/decisions.md`` shifted five exemptions, and each time the literal check
 #: fired and each time the fix was to renumber. The literal check was doing its
 #: job -- it is what stopped a moved key from silently suppressing whatever number
 #: happened to land on that line -- but a key that changes whenever an unrelated
@@ -123,27 +123,27 @@ LITERAL_EXEMPTIONS: dict[str, str] = {
 #: a reworded line deserves a fresh judgment about whether the coincidence holds.
 COINCIDENTAL_MATCHES: dict[tuple[str, str, str], str] = {
     (
-        "docs/decisions.md",
+        "docs/provenance/decisions.md",
         "1,322",
         "raw positions held only 480 distinct ones",
     ): "a raw position count, not the McNemar discordant count whose value it equals",
     (
-        "docs/decisions.md",
+        "docs/provenance/decisions.md",
         "0.000",
         "channel_factorial_anchor_accuracy",
     ): "a zero margin in a results table, not a cache-freshness fraction",
     (
-        "docs/decisions.md",
+        "docs/provenance/decisions.md",
         "1.0000",
         "nothing anywhere: p = 0.5966",
     ): "one of four p-values listed in a row, not an argmax-agreement rate",
     (
-        "docs/decisions.md",
+        "docs/provenance/decisions.md",
         "0.3900",
         "below the comparator, having closed",
     ): "a fidelity delta below a comparator, not a crossover target",
     (
-        "docs/decisions.md",
+        "docs/provenance/decisions.md",
         "2,000",
         "claim:stage3_trie_nodes_v2000",
     ): "a row label of the vocabulary ladder, which is the table's independent "
@@ -156,7 +156,7 @@ COINCIDENTAL_MATCHES: dict[tuple[str, str, str], str] = {
         "claim:stage3_trie_nodes_v2000",
     ): "the same ladder axis in the second copy of the table",
     (
-        "docs/decisions.md",
+        "docs/provenance/decisions.md",
         "5,643",
         "claim:stage3_trie_nodes_v2000 now regenerates as",
     ): "the decision record deliberately types the ledger value it reconciled to; "
@@ -164,14 +164,14 @@ COINCIDENTAL_MATCHES: dict[tuple[str, str, str], str] = {
     "the historical receipt (5,693) — substituting a live reference would erase "
     "the very discrepancy the entry documents",
     (
-        "docs/decisions.md",
+        "docs/provenance/decisions.md",
         "0.025",
         "replayed in a new process 100/0 in 0.025 s",
     ): "a wall-clock timing quoted as measured evidence in the decision record, "
     "coincidentally equal to bench_synth_context_family_alpha; timings are not "
     "ledger-owned quantities",
     (
-        "docs/decisions.md",
+        "docs/provenance/decisions.md",
         "135,166",
         "exactly), 135,166 lines,",
     ): "a raw download line count recorded as byte-level verification evidence "

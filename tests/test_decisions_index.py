@@ -1,6 +1,6 @@
 """The decisions index must name every decision, and link to it.
 
-`docs/decisions.md` opens with a hand-maintained table of contents. It had
+`docs/provenance/decisions.md` opens with a hand-maintained table of contents. It had
 silently drifted: seventeen entries existed in the file and not in the table, so
 the document that is "the single record of the decisions behind AILM's numbers"
 did not list a third of them. Nothing failed, because nothing checked.
@@ -18,7 +18,7 @@ from pathlib import Path
 
 import pytest
 
-DECISIONS = Path(__file__).resolve().parent.parent / "docs" / "decisions.md"
+DECISIONS = Path(__file__).resolve().parent.parent / "docs" / "provenance/decisions.md"
 
 
 def _slug(heading: str) -> str:

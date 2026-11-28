@@ -2,7 +2,7 @@
 
 The experiment this module exists to run
 ----------------------------------------
-``docs/decisions.md`` entry 27 pre-registers what it called the **clause ->
+``docs/provenance/decisions.md`` entry 27 pre-registers what it called the **clause ->
 word** channel as a
 falsification test of the first clause of the novel-information criterion (entry
 18; refined to two clauses by entries 25-26): a message helps iff it is **novel
@@ -31,7 +31,7 @@ The corrected measurement does not confirm that prediction. On the canonical
 Stage 3 whole-document partition, every tested positive weight improves the
 declared perplexity and the best tested value is the high grid endpoint. The
 sweep therefore establishes neither harm nor an interior optimum; it records a
-small descriptive gain over the tested range. ``docs/decisions.md`` entries 27
+small descriptive gain over the tested range. ``docs/provenance/decisions.md`` entries 27
 and 88 own that chronology and interpretation.
 
 Why the message is conditioned on sentence type, and the axis

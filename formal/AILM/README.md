@@ -56,4 +56,4 @@ in `../Scripts/AxiomReport.lean` sees every named declaration behind one import.
 
 See [`AGENTS.md`](AGENTS.md) for the rules in full, [`../README.md`](../README.md)
 for what is proved and what is deliberately not, and
-[`../../docs/formal.md`](../../docs/formal.md) for the documentation-side account.
+[`../../docs/formal.md`](../../docs/reference/lean.md) for the documentation-side account.

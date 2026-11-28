@@ -32,7 +32,7 @@ result that a sparse-``B`` agent under two named patches is bit-identical to the
 dense one. The trie is not discarded: after
 observing a prefix the posterior over factor 0 is supported exactly on the words
 sharing that prefix, which *is* the trie node. The factorization is the same
-model in cheaper coordinates, and ``docs/decisions.md`` entry 13 records the
+model in cheaper coordinates, and ``docs/provenance/decisions.md`` entry 13 records the
 measured comparison.
 
 Where the statistics live
@@ -1114,7 +1114,7 @@ def build_word_agent(
             f"deterministic, so word_perplexity() and the oracle compute the "
             f"model's scores in closed form at any vocabulary size, exactly. Use "
             f"those, and instantiate the agent at a smaller vocabulary to prove "
-            f"the closed form still describes it (see docs/decisions.md entry 13)."
+            f"the closed form still describes it (see docs/provenance/decisions.md entry 13)."
         )
 
     prior = (
@@ -1207,7 +1207,7 @@ def word_perplexity(
     the path probability of a token *is* its prior mass; that identity is
     checked against a live pymdp walk in ``tests/test_stage3_gate.py`` before
     this function's output is trusted, which is the oracle-equivalence pattern
-    Stage 2 established (``docs/gate_design.md``).
+    Stage 2 established (``docs/development/gate_design.md``).
 
     Args:
         artifact: The vendored statistics.

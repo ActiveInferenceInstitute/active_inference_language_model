@@ -57,16 +57,16 @@ _BARE_QUANTITATIVE_EXCLUSIONS: dict[str, str] = {
     "CHANGELOG.md": (
         "append-only historical release record with substantial pre-ledger numeric debt"
     ),
-    "docs/development_history.md": (
+    "docs/provenance/development_history.md": (
         "verbatim pre-1.0.0 changelog history moved out of CHANGELOG.md; the same "
         "append-only record with the same pre-ledger numeric debt"
     ),
     "TODO.md": ("planning and exploratory work queue; proposals are not recorded project results"),
-    "docs/decisions.md": (
+    "docs/provenance/decisions.md": (
         "dated historical decision log; bare literals are existing migration debt, "
         "not silently classified as verified"
     ),
-    "docs/research_queue.md": (
+    "docs/method/research_queue.md": (
         "explicit exploratory scratch and falsifier queue; proposals are not recorded results"
     ),
     "docs/method/style_guide.md": (
@@ -89,7 +89,7 @@ def _prose_files() -> list[Path]:
     files.extend(sorted((PROJECT_ROOT / "src").rglob("*.py")))
     # formal/README.md documents the Lean layer and cites its recorded counts.
     # It was outside this set, so those counts were bare digits: correct on the
-    # day they were written, with no mechanism to stay correct. docs/formal.md
+    # day they were written, with no mechanism to stay correct. docs/reference/lean.md
     # already used claim: tags for the same numbers; the in-tree companion did
     # not, which is precisely the asymmetry a scan set decides.
     files.extend(sorted((PROJECT_ROOT / "formal").rglob("*.md")))
@@ -382,11 +382,11 @@ def test_bare_scan_surface_and_exclusions_are_explicit():
     assert candidates - scanned == excluded
     assert scanned.isdisjoint(excluded)
     for required in (
-        "docs/gate_design.md",
+        "docs/development/gate_design.md",
         "docs/design/stage4_case.md",
         "docs/reference/output_conventions.md",
         "docs/guides/quickstart.md",
-        "docs/troubleshooting.md",
+        "docs/guides/troubleshooting.md",
         "README.md",
         "AGENTS.md",
         "formal/README.md",

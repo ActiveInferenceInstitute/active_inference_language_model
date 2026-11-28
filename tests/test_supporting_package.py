@@ -876,7 +876,7 @@ def _source(tmp_path: Path) -> Path:
     source = tmp_path / "extension_protocols.md"
     source.write_text(
         hydrate(
-            (ROOT / "docs/extension_protocols.md").read_text(),
+            (ROOT / "docs/reference/extension_protocols.md").read_text(),
             claims,
             reference_variables=_load_reference_variables(ROOT),
         )

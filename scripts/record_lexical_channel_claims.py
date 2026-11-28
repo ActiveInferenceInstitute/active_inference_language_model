@@ -6,7 +6,7 @@ script sequences the measurements and writes the ledger. Single writer for every
 ``lexical_*`` label.
 
 The experiment tests a prediction that was written down **before** it ran
-(``docs/decisions.md`` entry 18): the novel-information criterion says this
+(``docs/provenance/decisions.md`` entry 18): the novel-information criterion says this
 channel should help, and should do so non-monotonically, because the lexicon is
 information the G2P level lacks entirely. Entry 19 records what happened.
 

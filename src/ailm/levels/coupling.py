@@ -40,7 +40,7 @@ carries strictly less information about letter ``t`` than the glyph does, and
 mixing it in dilutes exact evidence with a guess. The channel is nonetheless not
 inert, which is what makes this a measurement rather than a wiring bug; the full
 evidence, including the scrambled-control and message-quality numbers, is in
-``docs/decisions.md``. The module is kept, gated, and off by default: the
+``docs/provenance/decisions.md``. The module is kept, gated, and off by default: the
 recommendation that follows is to correct the architecture figure's arrow label,
 not to ship a coupling that costs accuracy. A coupling form that adds an
 *independent* channel is not what the figure claims and is not measured here.
@@ -729,7 +729,7 @@ def coupled_positions(
     Mirrors :func:`ailm.levels.phoneme.decode_positions`, including ``limit``, and
     resolves the subsample through the *same* :func:`ailm.levels.phoneme._iter_pairs`
     — an evenly spaced stride, never a prefix, because the vendored ``g2p_pairs``
-    list is alphabetically sorted (see ``docs/decisions.md``). Sharing the
+    list is alphabetically sorted (see ``docs/provenance/decisions.md``). Sharing the
     subsample function is also what keeps the returned vector aligned
     position-for-position with :func:`ailm.levels.phoneme.baseline_positions` and
     :func:`uncoupled_positions` on the same ``pairs`` and ``limit``, which is what

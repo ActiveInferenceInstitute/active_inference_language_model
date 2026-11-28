@@ -12,7 +12,7 @@ under `output/figures/` and, with `fig:` prefixed, the labels the manuscript
 references. The authoritative filename/label/generator projection is
 `output/figures/figure_registry.json`, checked against
 [`../../../docs/output_inventory.md`](../../../docs/reference/output_inventory.md) and
-[`../../../docs/syntax_guide.md`](../../../docs/syntax_guide.md) by
+[`../../../docs/syntax_guide.md`](../../../docs/reference/syntax_guide.md) by
 `tests/test_documentation.py`; this table names modules, not that projection.
 
 | Module | Output stems | Argument carried |

@@ -404,7 +404,7 @@ are the PASS rows; GT12 is the non-passing Stage 5 row.
 
 Together these are what stops the block above from being green by construction:
 the same `passes` relation, applied to the same kind of recorded triple, comes
-out false exactly once — on the row the ledger and `docs/decisions.md` entry 83
+out false exactly once — on the row the ledger and `docs/provenance/decisions.md` entry 83
 record as non-passing with unresolved gain. -/
 
 /-- **GT7.** The Stage 1 letter bigram beats its unigram bar. -/
@@ -432,7 +432,7 @@ theorem stage4Derived_model_passes :
 **GT12.** The Stage 5 mixture does **not** beat the type-free bar.
 
 Manuscript: non-passing with unresolved privileged-label gain
-(`docs/decisions.md` entry 83). `audit_gates.py` treats a *pass* on this row or
+(`docs/provenance/decisions.md` entry 83). `audit_gates.py` treats a *pass* on this row or
 a resolved paired interval as a changed finding, not a success.
 
 FALSIFIER: a recorded `stage5_mixture_perplexity` below
@@ -467,7 +467,7 @@ never licensed by it; what is licensed is that the declared bar sits above
 every comparator measured here. `unreachable_requires_bound` (G10) is the
 general fact; this row is where it bites recorded data.
 
-Manuscript: `docs/decisions.md` entry 16 — the declared gate "fails in BOTH
+Manuscript: `docs/provenance/decisions.md` entry 16 — the declared gate "fails in BOTH
 directions depending on the population".
 
 FALSIFIER: a derived-population comparator strictly above 60. Not "at or
@@ -534,7 +534,7 @@ theorem stage4Gold_no_threshold_is_sound (t : Rat) :
 **DG5.** The Stage 3 declared bar (perplexity < 500) is VACUOUS: the
 letter-bigram baseline already clears it.
 
-Manuscript: `docs/decisions.md` entry 14 — declared "by a wide margin" vacuous,
+Manuscript: `docs/provenance/decisions.md` entry 14 — declared "by a wide margin" vacuous,
 against a corpus this project does not even have.
 
 FALSIFIER: a Stage 3 baseline perplexity at or above 500. The gate would then

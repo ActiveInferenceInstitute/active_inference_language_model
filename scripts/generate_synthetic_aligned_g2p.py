@@ -9,7 +9,7 @@ independently seeded trajectories of the shipped stipulated letter chain
 (``ailm.levels.synthetic.generate_sequence``), one word per trajectory, with
 each pronunciation the correspondence applied per position.
 
-Protocol P2 of ``docs/extension_protocols.md`` §3 (frozen:
+Protocol P2 of ``docs/reference/extension_protocols.md`` §3 (frozen:
 ``output/reports/omp-dispatch-20260908/evidence/extensions-E1R-frozen/``).
 Deliberately not an English reading; the table is recorded and digested.
 

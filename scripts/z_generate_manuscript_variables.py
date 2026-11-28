@@ -154,7 +154,7 @@ def render_supporting_protocol_html(
         os.close(descriptor)
     with tempfile.TemporaryDirectory(prefix=".protocol-html-", dir=output_dir.parent) as temporary:
         staged = Path(temporary)
-        source = staged / "docs" / "extension_protocols.md"
+        source = staged / "docs" / "reference/extension_protocols.md"
         source.parent.mkdir()
         source.write_bytes(hydrated_source.read_bytes())
         # The staged ``docs/`` directory is the provider's manuscript root, so the

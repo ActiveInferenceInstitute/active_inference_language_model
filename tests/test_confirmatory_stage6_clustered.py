@@ -558,7 +558,7 @@ def test_the_arm_is_descriptive_and_cites_its_decision() -> None:
         )
     assert _value(f"{PREFIX}decision") == DECISION
 
-    decisions = (PROJECT_ROOT / "docs" / "decisions.md").read_text(encoding="utf-8")
+    decisions = (PROJECT_ROOT / "docs" / "provenance/decisions.md").read_text(encoding="utf-8")
     assert f"\n## {DECISION} —" in decisions, (
         f"decision {DECISION} has no entry in the decision log, so the arm's "
         "registration is not on the record"

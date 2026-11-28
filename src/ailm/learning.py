@@ -5,7 +5,7 @@ pymdp and installed as a fixed array: the agents inferred, but had never
 learned. Here the letter level's transition is learned by pymdp itself —
 `infer_states` collects the filtered beliefs, `infer_parameters` updates a
 Dirichlet over ``B`` — and the result is held against the shipped counting
-path under the pre-registered prediction of ``docs/decisions.md`` entry 22:
+path under the pre-registered prediction of ``docs/provenance/decisions.md`` entry 22:
 
     With an identity emission the filtered posterior at every step is a
     one-hot on the observed letter, so pymdp's Dirichlet accumulation over

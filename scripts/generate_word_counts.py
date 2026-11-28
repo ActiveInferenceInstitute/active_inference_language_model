@@ -75,7 +75,7 @@ DEFAULT_OUTPUT = REPO_ROOT / "vendor" / "brown_word_counts.json"
 #: Observation alphabet: 26 lowercase letters, index 0-25, plus END at 26.
 LETTERS = "abcdefghijklmnopqrstuvwxyz"
 
-#: Default bounded vocabulary. See docs/decisions.md entry 13 for the measured
+#: Default bounded vocabulary. See docs/provenance/decisions.md entry 13 for the measured
 #: trade-off between coverage and the word factor's dense transition.
 DEFAULT_VOCAB_SIZE = 2000
 
@@ -140,7 +140,7 @@ def _parse_custom_lexicon(path: Path) -> tuple[dict[str, int], int, str]:
         print(
             f"WARNING: {path} carries no frequency column, so the word prior will "
             f"be UNIFORM over {len(freq):,} words. A uniform word prior is one of "
-            f"the mis-wirings docs/decisions.md entry 14 records as beating the "
+            f"the mis-wirings docs/provenance/decisions.md entry 14 records as beating the "
             f"accuracy bar while being wrong. Supply frequencies if you have them.",
             file=sys.stderr,
         )

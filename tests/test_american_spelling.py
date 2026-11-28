@@ -223,7 +223,7 @@ def _prose_only(text: str) -> str:
     """The text with inline code spans and fenced blocks removed.
 
     A document that *describes* a rename has to name the old identifier, and
-    ``docs/decisions.md`` does exactly that in the entries recording this sweep.
+    ``docs/provenance/decisions.md`` does exactly that in the entries recording this sweep.
     Exempting the whole file would stop checking its prose too, which is most of
     it. Code spans are where a quoted identifier belongs, so they are dropped and
     everything else is still scanned — an old spelling in a sentence still fails,
@@ -283,7 +283,7 @@ def _spelling_offenders(root: Path = PROJECT_ROOT) -> dict[str, list[str]]:
         # where the convention is publication-visible, and a repository-wide
         # sweep would touch Lean proofs, test identifiers and API names, which
         # is a larger and riskier change than a spelling gate should force.
-        # `docs/research_queue.md` tracks the wider sweep.
+        # `docs/method/research_queue.md` tracks the wider sweep.
         if relative.startswith("docs/manuscript/"):
             found |= _unlisted_ise_words(prose)
         if found:

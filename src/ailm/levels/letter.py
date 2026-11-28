@@ -12,7 +12,7 @@ parameterized by Brown corpus letter bigram statistics:
 The bigram counts parameterize the TRANSITION (B), not the emission (A). Putting
 them in A instead makes the model *anti*-informative — the posterior would be
 over the letter that *preceded* the observation — and pymdp accepts either
-placement, so nothing structural objects. See ``docs/decisions.md``.
+placement, so nothing structural objects. See ``docs/provenance/decisions.md``.
 
 Inference cycle (per letter)
 -----------------------------
@@ -31,8 +31,8 @@ Perplexity = exp(H)
 
 Uniform baseline: exp(log(30)) = 30.0. The gate is stated against the measured
 context-free unigram baseline and the order-1 information floor rather than
-against a margin below uniform; ``docs/decisions.md`` records why, and
-``docs/gate_design.md`` is the procedure.
+against a margin below uniform; ``docs/provenance/decisions.md`` records why, and
+``docs/development/gate_design.md`` is the procedure.
 
 Unlike the L2 models, this level does NOT reset the empirical prior per word: its
 corpus is running text, where the transition across a space is a real letter

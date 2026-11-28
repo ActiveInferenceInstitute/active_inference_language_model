@@ -48,7 +48,7 @@ PROSE_ROOTS = ("src", "docs", "manuscript")
 #: research queue records the correction, this test explains it, and the probe
 #: demonstrates it; all three necessarily quote the false sentence.
 DISCUSSION_SITES = (
-    "docs/research_queue.md",
+    "docs/method/research_queue.md",
     "scripts/probe_pymdp_sparse.py",
     "tests/test_pymdp_sparse.py",
 )
@@ -185,7 +185,7 @@ def test_the_correction_is_recorded_where_a_reader_will_look():
     equivalence. Without it the next reader who sees `B` allocated densely has
     the same conversation from the beginning.
     """
-    decisions = (REPO_ROOT / "docs" / "decisions.md").read_text(encoding="utf-8")
+    decisions = (REPO_ROOT / "docs" / "provenance/decisions.md").read_text(encoding="utf-8")
     assert "## 58 —" in decisions, "decision 58 is gone"
     entry = decisions[decisions.index("## 58 —") :]
     entry = entry[: entry.index("\n## ") if "\n## " in entry else len(entry)]

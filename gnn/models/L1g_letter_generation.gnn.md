@@ -133,7 +133,7 @@ D=Uniform(30)
 # scripts/generate_counts.py over vendor/brown_counts.json — is installed by the
 # generation loop at every step, the same way C receives the top-down
 # preference. Declaring the bigram here would describe an agent whose E at
-# construction it is not (docs/decisions.md entry 20).
+# construction it is not (docs/provenance/decisions.md entry 20).
 
 E=Uniform(30)
 

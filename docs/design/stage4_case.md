@@ -9,8 +9,8 @@ reuses the case agent but supplies optional external UPOS before a word or a
 train-fitted uncertain UPOS encoding after raw spelling. That conditional
 observation contract does not replace these stage populations or labels.
 
-Decision records: [`../decisions.md`](../decisions.md) entries 15, 16, and 84.
-Gate procedure: [`../gate_design.md`](../gate_design.md).
+Decision records: [`../decisions.md`](../provenance/decisions.md) entries 15, 16, and 84.
+Gate procedure: [`../gate_design.md`](../development/gate_design.md).
 
 - [The model](#the-model)
 - [The circularity trap](#the-circularity-trap)
@@ -207,5 +207,5 @@ claim:fillmore_subject_control_accuracy — near-perfect circularity by
 construction, as registered — while the leftmost-role baseline scores
 claim:fillmore_subject_baseline_accuracy at full coverage. A resolvable
 version of this arm needs the train-split fit described in
-`docs/research_queue.md`, which is a different experiment because it vendors
+`docs/method/research_queue.md`, which is a different experiment because it vendors
 a new corpus split.

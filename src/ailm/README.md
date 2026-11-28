@@ -7,7 +7,7 @@ keeps its numbers honest**.
 ## What lives here
 
 The exhaustive, module-by-module package map is
-[`docs/architecture.md`](../../docs/architecture.md#package-map). That map names
+[`docs/development/code-architecture.md`](../../docs/development/code-architecture.md#package-map). That map names
 each module's ownership, allowed imports, and exercising tests, and a repository
 test checks it against every shipped Python module. This README deliberately
 does not copy that inventory or count modules: either would become a second,

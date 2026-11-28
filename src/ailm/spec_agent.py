@@ -879,7 +879,7 @@ def build_agent_from_spec(
                 f"{e_variables[0]}: only Uniform({num_controls}) is "
                 f"constructible in the PolicyPrior slot — the habit is "
                 f"installed per-step by the generation loop, not baked into "
-                f"the constructed agent (docs/decisions.md entry 20)."
+                f"the constructed agent (docs/provenance/decisions.md entry 20)."
             )
         e_slot = jnp.full((1, num_controls), 1.0 / num_controls, dtype=jnp.float32)
 

@@ -36,7 +36,7 @@ case role) space — 2 types × 8 cases = 16 states, type-major order.
 - C is flat. This level expresses no preferences and selects no actions.
 
 What the measurement found. Stage 5 is non-passing and its paired
-privileged-label gain remains unresolved (docs/decisions.md entry 83). The
+privileged-label gain remains unresolved (docs/provenance/decisions.md entry 83). The
 privileged type-label arm selects the fitted chain with a privileged
 reference label. Its claim:stage5_oracle_gain_ci_confidence_pct% sentence-paired
 gain interval runs from claim:stage5_oracle_gain_sentence_ci_low to
@@ -161,7 +161,7 @@ build_joint_transition, build_joint_start, build_joint_emission). Conformance
 to this spec is checked against a LIVE pymdp agent by the default-deny suite in
 tests/test_gnn_conformance.py and locally by tests/test_stage5_gate.py; the
 mutations under gnn/mutations/ are negative controls. Stage 5 is non-passing and
-its paired privileged-label gain is unresolved — see docs/decisions.md entry 83
+its paired privileged-label gain is unresolved — see docs/provenance/decisions.md entry 83
 — and scripts/audit_gates.py::audit_stage5 enforces that joint status rather
 than demanding a metric pass.
 

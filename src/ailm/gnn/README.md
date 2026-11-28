@@ -78,4 +78,4 @@ See [`AGENTS.md`](AGENTS.md) for the ownership boundary and the invariants.
 The enforced subset and the explicit non-goals are written out in
 [`../../../gnn/SPEC.md`](../../../gnn/SPEC.md); composition and conformance in the
 wider project are described in
-[`../../../docs/gnn_composition.md`](../../../docs/gnn_composition.md).
+[`../../../docs/gnn_composition.md`](../../../docs/reference/gnn_composition.md).

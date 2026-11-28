@@ -32,7 +32,7 @@ Level 6 of the AILM hierarchy: document-position terciles over sentence types.
   5 Agent.
 - A is the learned tercile-conditional type distribution. The directional
   prediction and intervention anchors were committed before the held-out
-  measurement (docs/decisions.md entries 25–26). The registered
+  measurement (docs/provenance/decisions.md entries 25–26). The registered
   **observed-position** score indexes A by the known position tercile and has a
   positive point estimate of claim:stage6_logloss_improvement_nats nats over
   the unigram bar; it does not run pymdp filtering through B and D. At the
@@ -165,7 +165,7 @@ mutation under gnn/mutations/ is its negative control. The registered
 observed-position score, the non-confirmatory document-clustered primary
 analysis, the distinct descriptive live-Agent score, and the independent
 L6→L5 D-prior intervention are recorded separately; chronology and outcome are
-in docs/decisions.md entries 25–26 and their audit correction.
+in docs/provenance/decisions.md entries 25–26 and their audit correction.
 
 ## Signature
 

@@ -323,7 +323,7 @@ def audit_stage4(population: str = "derived") -> dict:
     The declared ">=60%" has population-dependent defects: VACUOUS on gold
     morphology (a constant majority predictor clears it), and ABOVE_REFERENCE
     on the derived oracle (the typed comparator is exceedable, not a model-class
-    bound). See docs/decisions.md entries 16 and 75.
+    bound). See docs/provenance/decisions.md entries 16 and 75.
 
     The reported quantity is AGREEMENT, not accuracy: five of the eight case
     roles have no morphological ground truth in English EWT.
@@ -650,7 +650,7 @@ def _ceil_str(a: dict) -> str:
     cname = a["ceiling_name"]
     cval = a["ceiling"]
     if a.get("ceiling_degenerate", False):
-        # Informational note (mirrors docs/formal.md): "ceiling" here names a
+        # Informational note (mirrors docs/reference/lean.md): "ceiling" here names a
         # MEASURED comparator (forward-backward smoothing of the same model),
         # not an upper bound over the model class. The shipped filtering agent
         # legitimately scores above it, so the gate is still bracketed.
@@ -658,7 +658,7 @@ def _ceil_str(a: dict) -> str:
             f"  ceiling   {cval:10.4f}   {cname}  [{_TYPE_TAG[a['ceiling_type']]}]  \u26a0 BELOW model\n"
             '            note: "ceiling" is a measured comparator, not an upper\n'
             "            bound over the model class; the shipped agent scores\n"
-            "            above it and the gate stays bracketed (docs/formal.md)."
+            "            above it and the gate stays bracketed (docs/reference/lean.md)."
         )
     return f"  ceiling   {cval:10.4f}   {cname}  [{_TYPE_TAG[a['ceiling_type']]}]"
 
@@ -805,7 +805,7 @@ def audit_stage3() -> dict:
 
     The originally declared "perplexity < 500 on PTB-1k" is VACUOUS by a wide
     margin — the baseline itself clears it — and named a corpus this project does
-    not have. See docs/decisions.md entry 14.
+    not have. See docs/provenance/decisions.md entry 14.
 
     Every number here describes the in-vocabulary sublanguage; the coverage is
     reported alongside so the scope travels with the result.
@@ -1117,7 +1117,7 @@ def audit_stage5() -> dict:
         # the definitionally hairline point-perplexity margin against the
         # refitted bar (decision 123).
         "sesoi_margin": oracle_gain.mean_nats_per_sentence,
-        "original": "registered before regeneration in docs/decisions.md entry 112",
+        "original": "registered before regeneration in docs/provenance/decisions.md entry 112",
         "original_verdict": "REGISTERED",
         "eval_positions": perplexities["positions"],
         "oracle_n_sentences": oracle_gain.n_sentences,
@@ -1330,7 +1330,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         default=None,
         help="G2P eval pairs (evenly-spaced stride). Larger is slower and tighter. "
         "NOTE: this is NOT a deterministic prefix - the alphabetical head inflates "
-        "the G2P margin 3.1x (see docs/decisions.md entry 4).",
+        "the G2P margin 3.1x (see docs/provenance/decisions.md entry 4).",
     )
     population.add_argument(
         "--full",

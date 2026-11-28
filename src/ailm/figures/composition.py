@@ -21,8 +21,8 @@ Two figures, drawn entirely with matplotlib patches and text.
 real Level 1 to Level 2 soft-observation channel was implemented
 (:mod:`ailm.levels.coupling`) and measured harmful, so it ships gated off. What
 composes is the alphabet — L2B's observation space *is* L1's state space — and
-the GNN section grammar the three specs share. ``docs/gnn_composition.md`` is the
-long form; ``docs/decisions.md`` holds the measurement.
+the GNN section grammar the three specs share. ``docs/reference/gnn_composition.md`` is the
+long form; ``docs/provenance/decisions.md`` holds the measurement.
 
 Neither figure may contain a sentence implying agent-to-agent inference.
 ``tests/test_figures_composition.py`` scans the rendered text artists for that
@@ -954,7 +954,7 @@ def generate_composition_figure(variables: dict[str, str] | None = None) -> Figu
         0.0,
         0.010,
         "Composition here is representational and structural, never a message "
-        "pass. docs/gnn_composition.md is the long form; docs/decisions.md entry "
+        "pass. docs/reference/gnn_composition.md is the long form; docs/provenance/decisions.md entry "
         "9 records the coupling null and its controls.",
         fontsize=FONTS["cell"],
         va="bottom",

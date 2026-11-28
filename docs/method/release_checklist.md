@@ -38,7 +38,7 @@ write evidence; they are not documentation validation commands.
 
 For a frozen publication-only repair, preserve the original claims, call store,
 protocols and binding receipts. Follow the exact independently reviewed
-[publication-derivative contract](../publication_derivative.md), freeze its named
+[publication-derivative contract](publication_derivative.md), freeze its named
 source/support delta, regenerate current outputs, and run the clean full profile
 against that external contract. Do not run the acquisition or ledger-writing
 steps below for this route. Review the current command inventory without running
@@ -279,10 +279,10 @@ Select the frozen derivative route above for publication-only repairs.
    absent until the corresponding tagged release has been verified.
 
    The public push is one squashed (orphan) commit of the reviewed tree: every
-   tracked file ships, including `docs/decisions.md` and
-   `docs/development_history.md`; only the private commit history is left
+   tracked file ships, including `docs/provenance/decisions.md` and
+   `docs/provenance/development_history.md`; only the private commit history is left
    behind, retained in the private development repository. Commit SHAs cited
-   in `docs/decisions.md` refer to that private history.
+   in `docs/provenance/decisions.md` refer to that private history.
 
 9. **Push, deposit, and close the citation.** After explicit publication
    authorization, push the reviewed public commit and tag. Verify the intended

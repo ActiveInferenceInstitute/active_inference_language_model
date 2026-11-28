@@ -392,7 +392,7 @@ def test_renderer_refuses_invalid_existing_tree_before_replacing_any_file(tmp_pa
     generated = subprocess.run(command, cwd=REPO_ROOT, capture_output=True, text=True, check=False)
     assert generated.returncode == 0, generated.stderr
     prior = (output_dir / "AGENTS.md").read_bytes()
-    blocked = output_dir / "docs" / "decisions.md"
+    blocked = output_dir / "docs" / "provenance/decisions.md"
     saved = tmp_path / "saved-decisions.md"
     blocked.replace(saved)
     blocked.mkdir()

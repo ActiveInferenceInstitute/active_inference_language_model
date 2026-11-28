@@ -29,7 +29,7 @@ argmax — scored on four subsets of the identical held-out split:
     a larger stride. Representative and adequately powered.
 
 The pairing is what makes each row a paired McNemar test rather than a difference
-of two aggregates (``docs/decisions.md`` entry 5), and every row is scored on
+of two aggregates (``docs/provenance/decisions.md`` entry 5), and every row is scored on
 positions drawn from one split so the four are comparable.
 
 Usage
@@ -179,7 +179,7 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError(
             f"The alphabetical prefix no longer overstates the margin "
             f"(factor {overstatement:.2f}). The 'reproducible is not "
-            f"representative' finding has changed; update docs/decisions.md "
+            f"representative' finding has changed; update docs/provenance/decisions.md "
             f"entry 4 rather than recording this."
         )
     if recorded["subsample_prefix_initials"] >= recorded["subsample_full_initials"]:

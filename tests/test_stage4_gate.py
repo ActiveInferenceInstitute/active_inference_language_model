@@ -14,7 +14,7 @@ against:
 
 This is the first gate in the project carrying both defects simultaneously, and
 it is why a threshold without a named population is not a threshold.
-``docs/decisions.md`` entry 16 records it; the tests below re-derive both
+``docs/provenance/decisions.md`` entry 16 records it; the tests below re-derive both
 verdicts rather than trusting the prose.
 
 The shipped gold arm is an empirical null
@@ -77,7 +77,7 @@ ARTIFACT = PROJECT_ROOT / "vendor" / "ud_ewt_case_counts.json"
 DECLARED_GATE_PCT = 60.0
 
 #: Significance level for the paired McNemar test. Part of the 11-test
-#: family (see docs/decisions.md, tests/test_stage2_gate.py for the
+#: family (see docs/provenance/decisions.md, tests/test_stage2_gate.py for the
 #: Bonferroni analysis). The token-level McNemar result is secondary to the
 #: source-document cluster interval recorded by ``record_cluster_claims.py``;
 #: the gold-morphology arm has zero discordance.

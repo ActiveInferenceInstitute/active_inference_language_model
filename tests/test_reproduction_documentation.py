@@ -26,8 +26,8 @@ REPRODUCTION_SURFACES = (
     Path("docs/guides/agent_instructions.md"),
     Path("docs/reference/formalism_map.md"),
     Path("docs/reference/output_conventions.md"),
-    Path("docs/syntax_guide.md"),
-    Path("docs/troubleshooting.md"),
+    Path("docs/reference/syntax_guide.md"),
+    Path("docs/guides/troubleshooting.md"),
     Path("docs/manuscript/07_reproducibility.md"),
     Path("docs/manuscript/AGENTS.md"),
     Path("docs/manuscript/README.md"),
@@ -55,7 +55,7 @@ LEAN_CONTROL_NODE = (
 LEAN_CONTROL_SURFACES = (
     Path("HANDOFF.md"),
     Path("docs/reference/output_conventions.md"),
-    Path("docs/formal.md"),
+    Path("docs/reference/lean.md"),
     Path("docs/manuscript/07_reproducibility.md"),
     Path("formal/README.md"),
     Path("formal/Controls/MustFail.lean"),
@@ -67,7 +67,7 @@ LEAN_PLACEHOLDER_COMMAND = (
     "tests/test_formal_isomorphism.py::test_the_placeholder_scan_covers_a_non_empty_file_set "
     "-v --no-cov"
 )
-LEAN_PLACEHOLDER_SURFACES = (Path("docs/formal.md"), Path("formal/README.md"))
+LEAN_PLACEHOLDER_SURFACES = (Path("docs/reference/lean.md"), Path("formal/README.md"))
 RAW_LEAN_CONTROL = re.compile(r"\blake\b[^\n]*\benv\s+lean\b[^\n]*\bMustFail\.lean\b")
 
 

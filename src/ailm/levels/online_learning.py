@@ -2,7 +2,7 @@
 
 What this module is
 -------------------
-``docs/decisions.md`` entry 28 pre-registers the W2 increment where learning
+``docs/provenance/decisions.md`` entry 28 pre-registers the W2 increment where learning
 could actually *earn* its way in: an agent that keeps learning on a changing
 distribution should track a drift that a frozen (non-learning) agent cannot.
 The setup is scoped to where conjugacy is exact — the letter level, whose

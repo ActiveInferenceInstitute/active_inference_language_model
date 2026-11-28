@@ -479,7 +479,7 @@ def channel_comparison_data(variables: dict[str, str] | None = None) -> dict[str
         raise ValueError(
             f"The two channels no longer have opposite signs (coupling "
             f"{harmful}, lexical {helpful}). The controlled comparison in "
-            f"docs/decisions.md entry 19 has changed."
+            f"docs/provenance/decisions.md entry 19 has changed."
         )
 
     alphas = [alpha for alpha, _ in _LEXICAL_SWEEP_GRID]

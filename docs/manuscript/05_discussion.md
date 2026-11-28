@@ -467,7 +467,7 @@ The open Major items already carried in `TODO.md` are the nearest and most
 concrete of these: equal opportunity to fit the task, the aligned-pronunciation
 zero-shot arms, and the end-to-end top-down cascade's performance claim. None
 of them is a fresh idea. Each has an unadopted design written down in
-`docs/extension_protocols.md`, and each design is partially landed rather than
+`docs/reference/extension_protocols.md`, and each design is partially landed rather than
 merely sketched. Protocol P1's offline data and identity foundation — the
 streaming census objective, the diagnostic carve, the separate fitted-probe
 registry, the stride-aliasing refutation — is built and fixture-tested, and its

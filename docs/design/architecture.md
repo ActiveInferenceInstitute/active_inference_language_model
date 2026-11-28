@@ -2,7 +2,7 @@
 
 > **Scope.** This file records the design rationale and the corrected shipped
 > structure. The compact, governing model/scorer table is
-> [`docs/hierarchy.md`](../hierarchy.md); it wins on any disagreement about the
+> [`docs/design/hierarchy.md`](hierarchy.md); it wins on any disagreement about the
 > shipped level structure. Historical plans are
 > labeled as such; `ISA.md` is not a current-status source.
 
@@ -10,7 +10,7 @@ The standalone stage scorers and the [connected runtime](connected_runtime.md)
 use the same declared component models with different execution contracts.
 Historical intervention results below remain evidence about their original
 seams; the connected raw-text comparison is reported separately under
-[decision 132](../decisions.md#132--implemented-a-conditional-connected-runtime-and-a-locally-registered-gum-comparison-2026-10-05).
+[decision 132](../provenance/decisions.md#132--implemented-a-conditional-connected-runtime-and-a-locally-registered-gum-comparison-2026-10-05).
 
 ## Hierarchy
 
@@ -238,7 +238,7 @@ claim:stage2_g2p_eval_positions positions) rather than by a bare inequality.
 - Canonical outcome: the widened gate passes as a development-session
   specification, with no held-back replication. Its paired privileged-label gain
   resolves away from zero. The retained case-only ablation remains non-passing
-  with unresolved gain, including its held-back replication. [Decision 114](../decisions.md#114--the-widened-observation-clause-model-is-the-canonical-level-5-the-case-only-model-is-the-retained-ablation-2026-09-06)
+  with unresolved gain, including its held-back replication. [Decision 114](../provenance/decisions.md#114--the-widened-observation-clause-model-is-the-canonical-level-5-the-case-only-model-is-the-retained-ablation-2026-09-06)
   records the promotion and preserves both limits.
 - The type-label arm is a privileged-information sensitivity reference, not a
   hard information bound or an equivalence result.
@@ -259,7 +259,7 @@ claim:stage2_g2p_eval_positions positions) rather than by a bare inequality.
   excludes zero at its declared coverage but spans zero at family-corrected
   coverage; that population had already been used, so the result is descriptive.
   The sentence-level sign test is a different estimand. The full qualifications
-  are in the [governing hierarchy](../hierarchy.md).
+  are in the [governing hierarchy](hierarchy.md).
 
 L7 is the ARPAbet serialization/parsing boundary described in
 [`speech_boundary.md`](speech_boundary.md), not another generative level.

@@ -2,7 +2,7 @@
 
 The experiment this module exists to run
 ----------------------------------------
-``docs/decisions.md`` entry 18 states the **novel-information criterion** — an
+``docs/provenance/decisions.md`` entry 18 states the **novel-information criterion** — an
 inter-level message helps iff it carries information the receiver does not
 already have — and derives a prediction from it. This is the test.
 
@@ -29,7 +29,7 @@ Why it is conditioned on the prefix and not on word identity
 Conditioning on the full word would hand over the answer: the lexicon maps word
 to pronunciation, so G2P would become a dictionary lookup and any "improvement"
 would be the Stage 4 circularity trap wearing a new costume
-(``docs/decisions.md`` entry 15). A prefix statistic estimated on train pairs and
+(``docs/provenance/decisions.md`` entry 15). A prefix statistic estimated on train pairs and
 evaluated on held-out ones is a genuine lexical generalization instead — it can
 be wrong, which is the property that makes it a measurement.
 

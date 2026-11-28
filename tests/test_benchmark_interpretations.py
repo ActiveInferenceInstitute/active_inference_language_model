@@ -51,7 +51,7 @@ from ailm.statistics import REFERENCE_SHARE, exact_binomial_power
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 LEDGER = PROJECT_ROOT / "data" / "claims.json"
 SUPPLEMENT = PROJECT_ROOT / "docs" / "manuscript" / "98_supplement_external_benchmarks.md"
-DECISIONS = PROJECT_ROOT / "docs" / "decisions.md"
+DECISIONS = PROJECT_ROOT / "docs" / "provenance/decisions.md"
 
 #: How the supplement is named in every failure message. The point of a failure
 #: here is to send a reader to one sentence in one file, so the path is spelled
@@ -1916,7 +1916,7 @@ def test_stipulated_arm_claims_only_reduced_exact_artifact_overlap() -> None:
         "makes no general contamination or non-exposure claim",
     ):
         assert fragment in normalized_decision, (
-            f"docs/decisions.md decision 90 lost its bounded claim: {fragment!r}"
+            f"docs/provenance/decisions.md decision 90 lost its bounded claim: {fragment!r}"
         )
 
     forbidden = (

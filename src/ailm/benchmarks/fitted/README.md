@@ -1,7 +1,7 @@
 # ailm/benchmarks/fitted/ — fitted-probe data/identity foundation
 
 The separate experimental surface for the fitted external-probe arm
-([`docs/extension_protocols.md`](../../../../docs/extension_protocols.md) §2).
+([`docs/reference/extension_protocols.md`](../../../../docs/reference/extension_protocols.md) §2).
 Nothing here enters [`../constants.py::SERVED_PROBES`](../constants.py),
 touches any historical bench namespace, downloads a model, or trains.
 

@@ -16,15 +16,15 @@ cost.
 | Read this | Before | Skip consequence |
 |---|---|---|
 | **This file** | any modification | every risk below |
-| [Governing hierarchy](../hierarchy.md) and [decisions](../decisions.md) | changing model scope, channels, or a reported outcome | confusing historical isolated experiments with the connected runtime |
-| [`gate_design.md`](../gate_design.md) | specifying or changing a gate; starting a stage | shipping a fourth vacuous or unreachable gate |
-| [`testing_philosophy.md`](../testing_philosophy.md) | writing or changing a test | a green suite that constrains nothing |
-| [`syntax_guide.md`](../syntax_guide.md) | writing any number in prose or the manuscript | a hand-typed number, or an unbacked `claim:` tag turning the suite red |
+| [Governing hierarchy](../design/hierarchy.md) and [decisions](../provenance/decisions.md) | changing model scope, channels, or a reported outcome | confusing historical isolated experiments with the connected runtime |
+| [`gate_design.md`](../development/gate_design.md) | specifying or changing a gate; starting a stage | shipping a fourth vacuous or unreachable gate |
+| [`testing_philosophy.md`](../development/testing_philosophy.md) | writing or changing a test | a green suite that constrains nothing |
+| [`syntax_guide.md`](../reference/syntax_guide.md) | writing any number in prose or the manuscript | a hand-typed number, or an unbacked `claim:` tag turning the suite red |
 | [`style_guide.md`](../method/style_guide.md) | writing prose or source | overstated claims, ambiguous units, wrong import layer |
 | [`design/architecture.md`](../design/architecture.md) | touching a level's matrices | a wiring error pymdp cannot detect |
 | [`design/stage2_g2p.md`](../design/stage2_g2p.md) | touching the G2P level | reintroducing the subsample bias |
 | [`provenance/sources.md`](../provenance/sources.md) | touching a corpus artifact | a checksum that drifts from the bytes it documents |
-| [`troubleshooting.md`](../troubleshooting.md) | debugging | hours on the wrong interpreter |
+| [`troubleshooting.md`](troubleshooting.md) | debugging | hours on the wrong interpreter |
 
 ---
 
@@ -35,7 +35,7 @@ cost.
 | **No mocks** — no `MagicMock`, `unittest.mock`, `mocker.patch` | Every test runs real pymdp against real vendored corpora. A mocked `Agent` makes the project's central claim false while the suite stays green |
 | **No transformers, no neural networks, no learned embeddings** | The generative engine is pymdp, entirely; stochastic-kernel composition is implemented, but no DisCoCat meaning functor is claimed |
 | **`infer_parameters` for learning** — never `update_A` / `update_B` | pymdp 1.0.4's API |
-| **`update_empirical_prior` is within-level temporal recursion only** | It is the second half of filtering inside one agent, never a channel between levels. The connected runtime transports messages on explicit event clocks; historical isolated channel experiments retain their own populations and outcomes. `docs/hierarchy.md` governs |
+| **`update_empirical_prior` is within-level temporal recursion only** | It is the second half of filtering inside one agent, never a channel between levels. The connected runtime transports messages on explicit event clocks; historical isolated channel experiments retain their own populations and outcomes. `docs/design/hierarchy.md` governs |
 | **Sequence dynamics in the transition `B`; emission in `A`** | The inverse is anti-informative and pymdp validates it anyway |
 | **`A_dependencies` factorization** | Without it the word-level `A` is physically impossible to store |
 | **The canonical ARPAbet inventory is claim:phoneme_count_39 phones** | Naive parsing yields claim:phoneme_count_naive_unstripped by capturing `#` comment tokens |
@@ -94,7 +94,7 @@ Use `.venv/bin/python` for every AILM execution. `uv run` inside this
 sidecar can select another checkout’s environment, independently of whether
 the cache is writable. Use `uv sync --locked` only to prepare the intended
 environment; the template checkout has its own interpreter contract. See
-[`troubleshooting.md`](../troubleshooting.md#bare-uv-run-pytest-resolves-to-the-wrong-python-and-a-different-pymdp).
+[`troubleshooting.md`](troubleshooting.md#bare-uv-run-pytest-resolves-to-the-wrong-python-and-a-different-pymdp).
 
 ### Gate audit
 
@@ -186,7 +186,7 @@ cached compilation of real pymdp methods; its eager mode is a numerical control.
 - **Report each arm with its population and limits.** The canonical widened
   Stage 5 arm, retained case-only ablation, Stage 6 development and held-back
   analyses, and connected GUM comparison have distinct evidence. Use
-  [the hierarchy](../hierarchy.md) rather than carrying a historical verdict
+  [the hierarchy](../design/hierarchy.md) rather than carrying a historical verdict
   forward as the status of every arm. Stage 7 is a boundary contract.
 - **Never report agreement with a research-claim oracle as accuracy.**
 - **Never commit to `docxology/template`.**
@@ -266,6 +266,6 @@ as much as how they were fixed.
 
 - [`../AGENTS.md`](../../AGENTS.md) — repository-root reference: stage gate table, gate restatements
 - [`../README.md`](../../README.md) — scope statement and roadmap
-- [`gate_design.md`](../gate_design.md) — the centerpiece; read before any gate work
+- [`gate_design.md`](../development/gate_design.md) — the centerpiece; read before any gate work
 - [`forking_guide.md`](forking_guide.md) — the procedure for adding a level
-- [`testing_philosophy.md`](../testing_philosophy.md) · [`style_guide.md`](../method/style_guide.md) · [`syntax_guide.md`](../syntax_guide.md) · [`troubleshooting.md`](../troubleshooting.md) · [`faq.md`](faq.md)
+- [`testing_philosophy.md`](../development/testing_philosophy.md) · [`style_guide.md`](../method/style_guide.md) · [`syntax_guide.md`](../reference/syntax_guide.md) · [`troubleshooting.md`](troubleshooting.md) · [`faq.md`](faq.md)
